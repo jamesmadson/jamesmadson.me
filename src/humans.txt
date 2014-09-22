@@ -1,0 +1,22 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    <name> James Madson <role> Designer & Developer <twitter> James Madson
+
+# THANKS
+
+    <name> Mike Brown, Jonah VanTuyl, Jeff Harris, Dave Merwin, Rob Hudson, Percy Perez, Brad Pitcher, Nick Lang, Mike Biglan
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3
+    Normalize.css, jQuery, Modernizr
+    Assemble
+    Bower
+    HTML5 Boilerplate
+    Adobe Illustrator
+    Symbol Set Social Icons
+    Grunt.js
+
