@@ -31,11 +31,12 @@
         <meta name="application-name" content="James Madson">
 
         <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
+        <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
         <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
         <link rel="stylesheet" type="text/css" href="assets/fonts/ss-social/webfonts/ss-social.css"/>
         <link rel="stylesheet" type="text/css" href="assets/fonts/ss-pika/ss-pika.css"/>
+        <link rel="stylesheet" type="text/css" href="assets/css/pace-theme-minimal.css">
 
-        <link rel="stylesheet" href="assets/css/normalize.css">
         <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
         
         <!-- Typekit -->
@@ -47,21 +48,25 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        
-        <!-- FOR ABOVE THE FOLD!
-        <img src="" alt="jm" description="">
-        <h1>James Madson</h1>
-        <p>I am a homeless interdisciplinary designer. Currently traveling the world with my wife experiencing different cultures with the aim to better understand ourselves and the world we are a part of.</p>
-        <a href="https://www.github.com/jamesmadson"><i class="ss-icon ss-social">github</i> Github</a>
-        <a href="http://www.twitter.com/jamesmadson"><i class="ss-icon ss-social">twitter</i> Twitter</a>
-        <a href="http://www.dribbble.com/jamesmadson"><i class="ss-icon ss-social">dribbble</i> Dribbble</a>
-        <a href="mailto:james@jamesmadson.me"><i class="ss-icon">email</i> Email</a>-->
-
         <header class="headroom">
           <nav class="jm-nav">
-            <a href="#" desc="james madson">
+            <a href='#' class='jm-button'>
               <h1>jm</h1>
             </a>
+
+            <div class="sidemenu">
+              <nav class="left">
+                <img src="assets/img/james-temp.jpeg" alt="jm" description="" height="200px" width="270px">
+                <a href="https://www.github.com/jamesmadson"><i class="ss-icon ss-social">Github</i></a>
+                <a href="http://www.twitter.com/jamesmadson"><i class="ss-icon ss-social">Twitter</i></a>
+                <a href="http://www.dribbble.com/jamesmadson"><i class="ss-icon ss-social">Dribbble</i></a>
+                <a href="mailto:james@jamesmadson.me"><i class="ss-icon">Email</i></a>
+              </nav>
+              <nav class="right">
+                <h1>James Madson</h1>
+                <p>I am a homeless interdisciplinary designer. Currently traveling the world with my wife experiencing different cultures with the aim to better understand ourselves and the world we are a part of.</p>
+              </nav>
+            </div>
           </nav>
         </header>
         <div id="portfolio">
@@ -133,7 +138,9 @@
 
         <script src="bower_components/headroom.js/dist/headroom.js"></script>
         <script src="bower_components/fastclick/lib/fastclick.js"></script>
-        <script src="bower_components/scrollReveal.js/scrollReveal.js"></script>
+        <script src="bower_components/pace/pace.min.js"></script>
+
+        <script src="assets/js/jquery.square_menu.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
@@ -154,6 +161,12 @@
           });
           // initialise
           headroom.init();
+        </script>
+
+        <script>
+          $(document).ready( function() {
+            $(".sidemenu").square_menu();
+          });
         </script>
     </body>
 </html>

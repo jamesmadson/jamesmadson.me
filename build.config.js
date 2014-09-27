@@ -63,12 +63,13 @@ module.exports = {
   vendor_files: {
     js: [
       //'vendor/angular/angular.js',
+      'bower_components/jquery/dist/jquery.min.js',
       'bower_components/html5-boilerplate/js/main.js',
       'bower_components/html5-boilerplate/js/plugins.js',
       'bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js',
       'bower_components/headroom.js/dist/headroom.js',
       'bower_components/fastclick/lib/fastclick.js',
-      'bower_components/scrollReveal.js/scrollReveal.js'
+      'bower_components/pace/pace.min.js'
     ],
     css: [
     	//'bower_components/animate.css/animate.min.css'
