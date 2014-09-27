@@ -7,7 +7,7 @@
 
 # THANKS
 
-    <name> Mike Brown, Jonah VanTuyl, Jeff Harris, Dave Merwin, Rob Hudson, Percy Perez, Brad Pitcher, Nick Lang, Mike Biglan
+    <name> Paul Madson, Scott Harris, Mike Brown, Jonah VanTuyl, Jeff Harris, Dave Merwin, Rob Hudson, Percy Perez, Brad Pitcher, Nick Lang, Mike Biglan, CSS-tricks.com
 
 # TECHNOLOGY COLOPHON
 
@@ -19,4 +19,5 @@
     Adobe Illustrator
     Symbol Set Social Icons
     Grunt.js
+    realfavicongenerator.net
 

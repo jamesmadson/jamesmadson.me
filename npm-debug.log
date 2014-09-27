@@ -1,41 +1,26 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'grunt-wiredep' ]
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'uninstall', 'assemble' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.5
 4 verbose node symlink /usr/local/bin/node
-5 warn package.json karma-coffee-preprocessor@0.2.1 No README data
-6 verbose readDependencies using package.json deps
-7 verbose cache add [ 'grunt-wiredep', null ]
-8 verbose cache add name=undefined spec="grunt-wiredep" args=["grunt-wiredep",null]
-9 verbose parsed url { protocol: null,
-9 verbose parsed url   slashes: null,
-9 verbose parsed url   auth: null,
-9 verbose parsed url   host: null,
-9 verbose parsed url   port: null,
-9 verbose parsed url   hostname: null,
-9 verbose parsed url   hash: null,
-9 verbose parsed url   search: null,
-9 verbose parsed url   query: null,
-9 verbose parsed url   pathname: 'grunt-wiredep',
-9 verbose parsed url   path: 'grunt-wiredep',
-9 verbose parsed url   href: 'grunt-wiredep' }
-10 silly lockFile 8ef1d8e8-grunt-wiredep grunt-wiredep
-11 verbose lock grunt-wiredep /Users/jamesmadson/.npm/8ef1d8e8-grunt-wiredep.lock
-12 silly lockFile 8ef1d8e8-grunt-wiredep grunt-wiredep
-13 error Error: Attempt to unlock grunt-wiredep, which hasn't been locked
-13 error     at unlock (/usr/local/lib/node_modules/npm/lib/utils/locker.js:44:11)
-13 error     at cb (/usr/local/lib/node_modules/npm/lib/cache/add-local.js:30:5)
-13 error     at /usr/local/lib/node_modules/npm/lib/cache/add-local.js:47:20
-13 error     at /usr/local/lib/node_modules/npm/lib/utils/locker.js:30:7
-13 error     at cb (/usr/local/lib/node_modules/npm/node_modules/lockfile/lockfile.js:149:38)
-13 error     at /usr/local/lib/node_modules/npm/node_modules/lockfile/lockfile.js:177:38
-13 error     at Object.oncomplete (fs.js:107:15)
-14 error If you need help, you may report this *entire* log,
-14 error including the npm and node versions, at:
-14 error     <http://github.com/npm/npm/issues>
-15 error System Darwin 13.3.0
-16 error command "node" "/usr/local/bin/npm" "install" "grunt-wiredep"
-17 error cwd /Users/jamesmadson/sandbox/jamesmadson.me
-18 error node -v v0.10.5
-19 error npm -v 1.4.28
-20 verbose exit [ 1, true ]
+5 verbose node_modules/assemble unbuild
+6 info preuninstall assemble@0.4.42
+7 info uninstall assemble@0.4.42
+8 verbose true,/Users/jamesmadson/sandbox/jamesmadson.me/node_modules,/Users/jamesmadson/sandbox/jamesmadson.me/node_modules unbuild assemble@0.4.42
+9 info postuninstall assemble@0.4.42
+10 error Error: EACCES, unlink '/Users/jamesmadson/sandbox/jamesmadson.me/node_modules/assemble/node_modules/assemble-handlebars/node_modules/.bin/handlebars'
+10 error  { [Error: EACCES, unlink '/Users/jamesmadson/sandbox/jamesmadson.me/node_modules/assemble/node_modules/assemble-handlebars/node_modules/.bin/handlebars']
+10 error   errno: 3,
+10 error   code: 'EACCES',
+10 error   path: '/Users/jamesmadson/sandbox/jamesmadson.me/node_modules/assemble/node_modules/assemble-handlebars/node_modules/.bin/handlebars' }
+11 error Please try running this command again as root/Administrator.
+12 error System Darwin 13.4.0
+13 error command "node" "/usr/local/bin/npm" "uninstall" "assemble"
+14 error cwd /Users/jamesmadson/sandbox/jamesmadson.me
+15 error node -v v0.10.5
+16 error npm -v 1.4.28
+17 error path /Users/jamesmadson/sandbox/jamesmadson.me/node_modules/assemble/node_modules/assemble-handlebars/node_modules/.bin/handlebars
+18 error code EACCES
+19 error errno 3
+20 error stack Error: EACCES, unlink '/Users/jamesmadson/sandbox/jamesmadson.me/node_modules/assemble/node_modules/assemble-handlebars/node_modules/.bin/handlebars'
+21 verbose exit [ 3, true ]

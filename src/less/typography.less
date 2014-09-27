@@ -1,0 +1,108 @@
+@import url(http: //fonts.googleapis.com/css?family=Varela+Round);
+
+// Typography
+@base_line_height: 1.5em;
+@base_font_size: 1em;
+@base_font_family: "ff-enzo-web-1","ff-enzo-web-2", 'Helvetica-Neue','Helvetica', 'Arial', sans-serif;
+@header_font_family: "ff-enzo-web-1","ff-enzo-web-2", 'Helvetica-Neue','Helvetica', 'Arial', sans-serif;
+@header_weight: 700;
+
+body {
+	font-size: @base_font_size;
+	font-family: @base_font_family;
+  margin: 0;
+}
+
+h1 {
+	font-size: 2em;
+	line-height: @base_line_height;
+	font-family: @header_font_family;
+	font-weight: @header_weight;
+}
+
+h2 {
+	font-size: 1.5em;
+	line-height: @base_line_height;
+	font-family: @header_font_family;
+	font-weight: @header_weight;
+}
+
+h3 {
+	font-size: 1.3125em;
+	line-height: @base_line_height;
+	font-family: @header_font_family;
+	font-weight: @header_weight;
+}
+
+h4 {
+	font-size: 1.125em;
+	line-height: @base_line_height;
+	font-family: @header_font_family;
+	font-weight: @header_weight;
+}
+h5 {
+	font-size: inherit;
+	line-height: @base_line_height;
+	font-family: @header_font_family;
+	font-weight: @header_weight;
+}
+
+p {
+	line-height: @base_line_height;
+}
+
+li {
+	line-height: @base_line_height;
+}
+
+.form_block textarea, input {
+
+	font-family: @base_font_family;
+}
+
+p,
+dl,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ol,
+ul,
+pre,
+table,
+address,
+fieldset {
+	margin: 0 0 @base_line_height 0;
+}
+
+a:focus {
+	outline: none;
+}
+
+hr {
+	border:  0 #ccc solid;
+	border-top-width:  0.0625em;
+	clear:  both;
+	height:  0;
+}
+
+ul {
+    list-style: disc;
+}
+
+ol {
+    list-style: decimal;
+}
+
+a {
+	text-decoration: none;
+}
+
+input[type="submit"] {
+	padding: 0;
+	margin: 0;
+	border: none;
+}

@@ -17,7 +17,6 @@ module.exports = function ( grunt ) {
   grunt.loadNpmTasks('grunt-coffeelint');
   grunt.loadNpmTasks('grunt-html2js');
   grunt.loadNpmTasks('grunt-wiredep');
-  grunt.loadNpmTasks('assemble');
 
   /**
    * Load in our build configuration file.
@@ -478,48 +477,7 @@ module.exports = function ( grunt ) {
         options: {
           livereload: false
         }
-      },
-
-    assemble: {
-      options: {
-        assets: 'assets',
-        plugins: ['permalinks'],
-        partials: ['includes/**/*.hbs'],
-        layout: ['layouts/default.hbs'],
-        data: ['data/*.{json,yml}']
-      },
-      site: {
-        src: ['docs/*.hbs'],
-        dest: './'
       }
-    },
-
-    wiredep: {
-
-      target: {
-
-        // Point to the files that should be updated when
-        // you run `grunt wiredep`
-        src: [
-          'app/views/**/*.html',   // .html support...
-          'app/views/**/*.jade',   // .jade support...
-          'app/styles/main.scss',  // .scss & .sass support...
-          'app/config.yml'         // and .yml & .yaml support out of the box!
-        ],
-
-        // Optional:
-        // ---------
-        options: {
-          cwd: '',
-          dependencies: true,
-          devDependencies: false,
-          exclude: [],
-          fileTypes: {},
-          ignorePath: '',
-          overrides: {}
-        }
-      }
-}
     }
   };
 
