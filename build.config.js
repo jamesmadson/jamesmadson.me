@@ -29,7 +29,8 @@ module.exports = {
     atpl: [ 'src/app/**/*.tpl.html' ],
     ctpl: [ 'src/common/**/*.tpl.html' ],
 
-    html: [ 'src/index.html' ],
+    html: [ 'src/index.html', 'src/jauntly/jauntly.html', 'src/ans/ans.html',
+     'src/swiftkick/swiftkick.html', 'src/treadhub/treadhub.html' ],
     less: 'src/less/style.less'
   },
 

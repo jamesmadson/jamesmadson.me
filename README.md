@@ -15,7 +15,10 @@ headroom.js
 fastclick.js
 pace.js
 squaremenu.js
+Symbol Set Icons
 
+Typekit
+Webfaction
 
 Programs:
 
