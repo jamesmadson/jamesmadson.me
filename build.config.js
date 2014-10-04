@@ -26,21 +26,11 @@ module.exports = {
     coffee: [ 'src/**/*.coffee', '!src/**/*.spec.coffee' ],
     coffeeunit: [ 'src/**/*.spec.coffee' ],
 
-    atpl: [ 'src/app/**/*.tpl.html' ],
     ctpl: [ 'src/common/**/*.tpl.html' ],
 
-    html: [ 'src/index.html', 'src/jauntly/jauntly.html', 'src/ans/ans.html',
-     'src/swiftkick/swiftkick.html', 'src/treadhub/treadhub.html' ],
+    html: [ 'src/index.html' ],
+    pages: [ 'src/pages/**/*.html' ],
     less: 'src/less/style.less'
-  },
-
-  /**
-   * This is a collection of files used during testing only.
-   */
-  test_files: {
-    js: [
-      //'vendor/angular-mocks/angular-mocks.js'
-    ]
   },
 
   /**
@@ -70,7 +60,10 @@ module.exports = {
       'bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js',
       'bower_components/headroom.js/dist/headroom.js',
       'bower_components/fastclick/lib/fastclick.js',
-      'bower_components/pace/pace.min.js'
+      'bower_components/pace/pace.min.js',
+      'bower_components/masonry/dist/masonry.pkgd.js',
+      'bower_components/scrollReveal.js/scrollReveal.js',
+      'bower_components/imagesloaded/imagesloaded.js'
     ],
     css: [
     	//'bower_components/animate.css/animate.min.css'

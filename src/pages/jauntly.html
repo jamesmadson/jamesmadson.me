@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>James Madson</title>
+        <title>James Madson | Jauntly</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -48,19 +48,16 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-
-        <!-- build:section layout.header -->
-        <!-- /build -->
-
-        <!-- build:section views -->
-        <!-- /build -->
-
-        <!-- build:section layout.footer -->
-        <!-- /build -->
-
-        <!-- build:remove -->
-        <!-- /build -->
-
+        <nav class="sidenav">
+          <a href="" class="previous">
+            <i class="ss-icon">directleft</i>
+            <span>Previous Project</span>
+          </a>
+          <a href="" class="next">
+            <span>Next Project</span>
+            <i class="ss-icon">directright</i>
+          </a>
+        </nav>
         <header class="headroom">
           <nav class="jm-nav">
             <a href='#' class='jm-button'>
@@ -82,67 +79,31 @@
             </div>
           </nav>
         </header>
-        <div id="projects">
-          <a href="jauntly.html" class="jauntly project">
+
+        <div id="project-detail">
+          <div class="top-detail">
             <h1>Jauntly</h1>
             <span class="underline"></span>
-            <p>Designed to address and aid patients dealing with comorbiity, this responsive web app encouraged users set goals in four distinct domains — Activity, Food, Mood and Sleep.</p>
-          </a>
-
-          <a href="ans.html" class="ans project">
-            <h1>Analytic Spot <i class="ss-icon">info</i></h1>
-            <span class="underline"></span>
-            <p>Disrupting the educational analytics space with the aim to provide excellent insights into how students are learning.</p>
-            <h5>Responsibilities:</h5>
-            <ul>
-              <li>Identity</li>
-              <li>User Experience</li>
-              <li>User Interface</li>
-              <li>Front-end Development</li>
-            </ul>
-          </a>
-
-          <a href="swiftkick.html" class="swiftkick project">
-            <h1>Swiftkick</h1>
-            <span class="underline"></span>
-            <p>A prototype to test whether sedentary government employees from 0 to 30 minutes of exercise a day using a system already in their workflow – Google calendar. Users could sign up, choose a move pack plan and be back at work with short activities added into their calendar at common convenient times through the day. The results proved very successful in a large majoity of the test subjects becoming more active and feeling better throughout the day.</p>
-            <h5>Responsibilities:</h5>
-            <ul>
-              <li>Identity</li>
-              <li>Product Design</li>
-              <li>Illustration</li>
-              <li>User Interface</li>
-              <li>Front-end Development</li>
-            </ul>
-          </a>
-
-          <a href="treadhub.html" class="treadhub project">
-            <h1>Treadhub</h1>
-            <span class="underline"></span>
-            <p>Responsive web app focused on the endurance athletes and their coaches. Modern training was beginning to be logged in several places - blog, gps watch brand, social training sites, and coaches platform of choice. Treadhub combines all of these into one place.</p>
-            <h5>Responsibilities:</h5>
-            <ul>
-              <li>Co-founder</li>
-              <li>Product Name</li>
-              <li>Identity</li>
-              <li>Visual Design</li>
-              <li>Product Design</li>
-              <li>User Interface</li>
-              <li>User Experience</li>
-              <li>Front-end Development</li>
-              <li>Social Media, SEO</li>
-            </ul>
-          </a>
+            <p class="desc">Designed to address and aid patients dealing with comorbiity, this responsive web app encouraged users set goals in four distinct domains — Activity, Food, Mood and Sleep.</p>
+          </div>
+          <div class="product-pieces">
+            <img src="" class="piece main" desc="" alt="" data-scroll-reveal="enter from the left after 0.2s">
+            <img src="" class="piece iphone" desc="" alt="" data-scroll-reveal="enter from the left after 0.2s">
+            <img src="" class="piece tablet" desc="" alt="" data-scroll-reveal="enter from the top after 0.2s">
+            <img src="" class="piece iphone" desc="" alt="" data-scroll-reveal="enter from the left after 0.2s">
+            <img src="" class="piece laptop" desc="" alt="" data-scroll-reveal="enter from the right after 0.2s">
+            <img src="" class="piece sketch" desc="" alt="" data-scroll-reveal="enter from the bottom after 0.2s">
+            <img src="" class="piece iphone" desc="" alt="" data-scroll-reveal="enter from the left after 0.2s">
+            <img src="" class="piece tablet" desc="" alt="" data-scroll-reveal="enter from the top after 0.2s">
+            <img src="" class="piece iphone" desc="" alt="" data-scroll-reveal="enter from the left after 0.2s">
+            <img src="" class="piece iphone" desc="" alt="" data-scroll-reveal="enter from the left after 0.2s">
+            <img src="" class="piece laptop" desc="" alt="" data-scroll-reveal="enter from the right after 0.2s">
+            <img src="" class="piece sketch" desc="" alt="" data-scroll-reveal="enter from the bottom after 0.2s">
+            <img src="" class="piece iphone" desc="" alt="" data-scroll-reveal="enter from the top after 0.2s">
+            <img src="" class="piece iphone" desc="" alt="" data-scroll-reveal="enter from the left after 0.2s">
+            <img src="" class="piece iphone" desc="" alt="" data-scroll-reveal="enter from the bottom after 0.2s">
+          </div>
         </div>
-
-        <!-- build:script inline main -->
-        <script type="text/javascript">
-            main();
-        </script>
-        <!-- /build -->
-
-        <!-- build:section optional test -->
-        <!-- /build -->
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
@@ -155,16 +116,9 @@
 
         <script src="assets/js/jquery.square_menu.js"></script>
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-5440985-16');ga('send','pageview');
-        </script>
-
+        <script src="bower_components/scrollReveal.js/scrollReveal.js"></script>
+        <script src="bower_components/masonry/dist/masonry.pkgd.js"></script>
+        
         <script>
           var myElement = document.querySelector("header");
           // construct an instance of Headroom, passing the element
@@ -174,12 +128,35 @@
           });
           // initialise
           headroom.init();
-        </script>
-
-        <script>
+        
+          // Top Menu
           $(document).ready( function() {
             $(".sidemenu").square_menu();
           });
+        </script>
+
+        <script>
+          // Masonry
+          var container = document.querySelector('.product-pieces');
+          var masnry = new Masonry( container, {
+            // options
+            //columnWidth: 200,
+            itemSelector: '.piece'
+          });
+        </script>
+        <script>
+          // Scroll Reveal
+          window.scrollReveal = new scrollReveal();
+        </script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-5440985-16');ga('send','pageview');
         </script>
     </body>
 </html>

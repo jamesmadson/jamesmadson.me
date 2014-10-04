@@ -15,8 +15,7 @@ module.exports = function ( grunt ) {
   grunt.loadNpmTasks('grunt-conventional-changelog');
   grunt.loadNpmTasks('grunt-bump');
   grunt.loadNpmTasks('grunt-coffeelint');
-  grunt.loadNpmTasks('grunt-html2js');
-  grunt.loadNpmTasks('grunt-wiredep');
+  grunt.loadNpmTasks('grunt-html-build');
 
   /**
    * Load in our build configuration file.
@@ -150,6 +149,47 @@ module.exports = function ( grunt ) {
       }
     },
 
+    fixturesPath: "fixtures",
+
+    htmlbuild: {
+        dist: {
+            src: 'index.html',
+            dest: 'pages/',
+            options: {
+                beautify: true,
+                //prefix: '//some-cdn',
+                relative: true,
+                scripts: {
+                    bundle: [
+                        '<%= fixturesPath %>/scripts/*.js',
+                        '!**/main.js'
+                    ],
+                    main: '<%= fixturesPath %>/scripts/main.js'
+                },
+                styles: {
+                    bundle: [
+                        '<%= fixturesPath %>/css/libs.css',
+                        '<%= fixturesPath %>/css/dev.css'
+                    ],
+                    test: '<%= fixturesPath %>/css/inline.css'
+                },
+                sections: {
+                    views: '<%= fixturesPath %>/pages/**/*.html',
+                    templates: '<%= fixturesPath %>/pages/**/*.html',
+                    layout: {
+                        header: '<%= fixturesPath %>/layout/header.html',
+                        footer: '<%= fixturesPath %>/layout/footer.html'
+                    }
+                },
+                data: {
+                    // Data to pass to templates
+                    version: "0.1.0",
+                    title: "test"
+                }
+            }
+        }
+    },
+
     /**
      * `grunt concat` concatenates multiple source files into a single file.
      */
@@ -177,7 +217,7 @@ module.exports = function ( grunt ) {
           '<%= vendor_files.js %>', 
           'module.prefix', 
           '<%= build_dir %>/src/**/*.js', 
-          '<%= html2js.app.dest %>', 
+          //'<%= html2js.app.dest %>', 
           //'<%= html2js.common.dest %>', 
           'module.suffix' 
         ],
@@ -290,36 +330,6 @@ module.exports = function ( grunt ) {
     },
 
     /**
-     * HTML2JS is a Grunt plugin that takes all of your template files and
-     * places them into JavaScript files as strings that are added to
-     * AngularJS's template cache. This means that the templates too become
-     * part of the initial payload as one JavaScript file. Neat!
-     */
-    html2js: {
-      /**
-       * These are the templates from `src/app`.
-       */
-      app: {
-        options: {
-          base: 'src/app'
-        },
-        src: [ '<%= app_files.atpl %>' ],
-        dest: '<%= build_dir %>/templates-app.js'
-      }//,
-
-      /**
-       * These are the templates from `src/common`.
-       */
-      // common: {
-      //   options: {
-      //     base: 'src/common'
-      //   },
-      //   src: [ '<%= app_files.ctpl %>' ],
-      //   dest: '<%= build_dir %>/templates-common.js'
-      // }
-    },
-
-    /**
      * The `index` task compiles the `index.html` file as a Grunt template. CSS
      * and JS files co-exist here but they get split apart later.
      */
@@ -337,7 +347,7 @@ module.exports = function ( grunt ) {
           '<%= vendor_files.js %>',
           '<%= build_dir %>/src/**/*.js',
           //'<%= html2js.common.dest %>',
-          '<%= html2js.app.dest %>',
+          //'<%= html2js.app.dest %>',
           '<%= vendor_files.css %>',
           '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
         ]
@@ -435,13 +445,13 @@ module.exports = function ( grunt ) {
       /**
        * When our templates change, we only rewrite the template cache.
        */
-      tpls: {
-        files: [ 
-          '<%= app_files.atpl %>', 
-          '<%= app_files.ctpl %>'
-        ],
-        tasks: [ 'html2js' ]
-      },
+      //tpls: {
+        //files: [ 
+          //'<%= app_files.atpl %>', 
+          //'<%= app_files.ctpl %>'
+        //],
+        //tasks: [ 'html2js' ]
+      //},
 
       /**
        * When the CSS files change, we need to compile and minify them.
@@ -502,7 +512,7 @@ module.exports = function ( grunt ) {
    * The `build` task gets your app ready to run for development and testing.
    */
   grunt.registerTask( 'build', [
-    'clean', 'html2js', 'jshint', 'coffeelint', 'coffee', 'less:build', 
+    'clean', 'jshint', 'coffeelint', 'coffee', 'less:build', 
     'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_assets',
     'copy:build_appjs', 'copy:build_vendorjs', 'index:build' //,
   ]);
@@ -549,6 +559,50 @@ module.exports = function ( grunt ) {
     });
 
     grunt.file.copy('src/index.html', this.data.dir + '/index.html', { 
+      process: function ( contents, path ) {
+        return grunt.template.process( contents, {
+          data: {
+            scripts: jsFiles,
+            styles: cssFiles,
+            version: grunt.config( 'pkg.version' )
+          }
+        });
+      }
+    });
+    grunt.file.copy('src/pages/ans.html', this.data.dir + '/ans.html', { 
+      process: function ( contents, path ) {
+        return grunt.template.process( contents, {
+          data: {
+            scripts: jsFiles,
+            styles: cssFiles,
+            version: grunt.config( 'pkg.version' )
+          }
+        });
+      }
+    });
+    grunt.file.copy('src/pages/jauntly.html', this.data.dir + '/jauntly.html', { 
+      process: function ( contents, path ) {
+        return grunt.template.process( contents, {
+          data: {
+            scripts: jsFiles,
+            styles: cssFiles,
+            version: grunt.config( 'pkg.version' )
+          }
+        });
+      }
+    });
+    grunt.file.copy('src/pages/swiftkick.html', this.data.dir + '/swiftkick.html', { 
+      process: function ( contents, path ) {
+        return grunt.template.process( contents, {
+          data: {
+            scripts: jsFiles,
+            styles: cssFiles,
+            version: grunt.config( 'pkg.version' )
+          }
+        });
+      }
+    });
+    grunt.file.copy('src/pages/treadhub.html', this.data.dir + '/treadhub.html', { 
       process: function ( contents, path ) {
         return grunt.template.process( contents, {
           data: {

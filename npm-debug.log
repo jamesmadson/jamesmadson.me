@@ -1,26 +1,21 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'node', '/usr/local/bin/npm', 'uninstall', 'assemble' ]
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'grunt-html-build' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.5
 4 verbose node symlink /usr/local/bin/node
-5 verbose node_modules/assemble unbuild
-6 info preuninstall assemble@0.4.42
-7 info uninstall assemble@0.4.42
-8 verbose true,/Users/jamesmadson/sandbox/jamesmadson.me/node_modules,/Users/jamesmadson/sandbox/jamesmadson.me/node_modules unbuild assemble@0.4.42
-9 info postuninstall assemble@0.4.42
-10 error Error: EACCES, unlink '/Users/jamesmadson/sandbox/jamesmadson.me/node_modules/assemble/node_modules/assemble-handlebars/node_modules/.bin/handlebars'
-10 error  { [Error: EACCES, unlink '/Users/jamesmadson/sandbox/jamesmadson.me/node_modules/assemble/node_modules/assemble-handlebars/node_modules/.bin/handlebars']
-10 error   errno: 3,
-10 error   code: 'EACCES',
-10 error   path: '/Users/jamesmadson/sandbox/jamesmadson.me/node_modules/assemble/node_modules/assemble-handlebars/node_modules/.bin/handlebars' }
-11 error Please try running this command again as root/Administrator.
-12 error System Darwin 13.4.0
-13 error command "node" "/usr/local/bin/npm" "uninstall" "assemble"
-14 error cwd /Users/jamesmadson/sandbox/jamesmadson.me
-15 error node -v v0.10.5
-16 error npm -v 1.4.28
-17 error path /Users/jamesmadson/sandbox/jamesmadson.me/node_modules/assemble/node_modules/assemble-handlebars/node_modules/.bin/handlebars
-18 error code EACCES
-19 error errno 3
-20 error stack Error: EACCES, unlink '/Users/jamesmadson/sandbox/jamesmadson.me/node_modules/assemble/node_modules/assemble-handlebars/node_modules/.bin/handlebars'
-21 verbose exit [ 3, true ]
+5 error Failed to parse json
+5 error Unexpected token /
+6 error File: /Users/jamesmadson/sandbox/jamesmadson.me/package.json
+7 error Failed to parse package.json data.
+7 error package.json must be actual JSON, not just JavaScript.
+7 error
+7 error This is not a bug in npm.
+7 error Tell the package author to fix their package.json file. JSON.parse
+8 error System Darwin 13.4.0
+9 error command "node" "/usr/local/bin/npm" "install" "grunt-html-build"
+10 error cwd /Users/jamesmadson/sandbox/jamesmadson.me
+11 error node -v v0.10.5
+12 error npm -v 1.4.28
+13 error file /Users/jamesmadson/sandbox/jamesmadson.me/package.json
+14 error code EJSONPARSE
+15 verbose exit [ 1, true ]
