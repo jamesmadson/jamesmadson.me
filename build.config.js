@@ -61,9 +61,10 @@ module.exports = {
       'bower_components/headroom.js/dist/headroom.js',
       'bower_components/fastclick/lib/fastclick.js',
       'bower_components/pace/pace.min.js',
-      'bower_components/masonry/dist/masonry.pkgd.js',
+      'bower_components/jquery-masonry/dist/masonry.pkgd.js',
       'bower_components/scrollReveal.js/scrollReveal.js',
-      'bower_components/imagesloaded/imagesloaded.js'
+      'bower_components/imagesloaded/imagesloaded.pkgd.js',
+      'bower_components/classie/classie.js'
     ],
     css: [
     	//'bower_components/animate.css/animate.min.css'

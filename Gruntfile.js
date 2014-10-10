@@ -569,7 +569,7 @@ module.exports = function ( grunt ) {
         });
       }
     });
-    grunt.file.copy('src/pages/ans.html', this.data.dir + '/ans.html', { 
+    grunt.file.copy('src/ans.html', this.data.dir + '/ans.html', { 
       process: function ( contents, path ) {
         return grunt.template.process( contents, {
           data: {
@@ -580,7 +580,7 @@ module.exports = function ( grunt ) {
         });
       }
     });
-    grunt.file.copy('src/pages/jauntly.html', this.data.dir + '/jauntly.html', { 
+    grunt.file.copy('src/jauntly.html', this.data.dir + '/jauntly.html', { 
       process: function ( contents, path ) {
         return grunt.template.process( contents, {
           data: {
@@ -591,7 +591,7 @@ module.exports = function ( grunt ) {
         });
       }
     });
-    grunt.file.copy('src/pages/swiftkick.html', this.data.dir + '/swiftkick.html', { 
+    grunt.file.copy('src/swiftkick.html', this.data.dir + '/swiftkick.html', { 
       process: function ( contents, path ) {
         return grunt.template.process( contents, {
           data: {
@@ -602,7 +602,18 @@ module.exports = function ( grunt ) {
         });
       }
     });
-    grunt.file.copy('src/pages/treadhub.html', this.data.dir + '/treadhub.html', { 
+    grunt.file.copy('src/treadhub.html', this.data.dir + '/treadhub.html', { 
+      process: function ( contents, path ) {
+        return grunt.template.process( contents, {
+          data: {
+            scripts: jsFiles,
+            styles: cssFiles,
+            version: grunt.config( 'pkg.version' )
+          }
+        });
+      }
+    });
+    grunt.file.copy('src/eugixd.html', this.data.dir + '/eugixd.html', { 
       process: function ( contents, path ) {
         return grunt.template.process( contents, {
           data: {

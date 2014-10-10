@@ -110,10 +110,11 @@ body {
   -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
   width: 50%;
+  padding: 5%;
   height: 100%;
   position: absolute;
   top: 0;
-  background: @black;
+  background: @white;
 }
 
 
@@ -187,41 +188,43 @@ body {
   top: 0;
   right: 0;
   z-index: 100;
-  padding: 10px 15px;
-  font-size: 30px;
+  padding: 0.5em;
+  font-size: 4em;
   font-weight: 100;
   line-height: 100%;
 }
 
 .sm-menu .sm-close:hover {
-  color: @white;
+  color: @black;
+  .animated;
+  .pulse;
 }
 
 .sm-menu p, .sm-menu h1 {
-	color: @white;
+	color: @black;
 }
 
 .sm-menu .sm-nav .nav-inner > a{
-  font-size: 36px;
-  line-height: 40px;
-  margin-bottom: 32px;
+  font-size: 3em;
+  margin-bottom: 3em;
   font-weight: 300;
-  display: block;
-  color: @white;
+  display: inline-block;
+  color: @black;
 }
 .sm-menu .sm-nav .nav-inner > a:hover{
-  color: @lightgrey;
+  color: @white;
+  background: @black;
 }
 
 .sm-menu .sm-close {
-  color: @white;
+  color: @black;
 }
 
 .sm-overlay {
   cursor: pointer;
   height: 100%;
   width: 100%;
-  background: @lightgrey;
+  background: rgba(255,255,255,0.8);
   opacity: 0;
   position: fixed;
   left: 0;

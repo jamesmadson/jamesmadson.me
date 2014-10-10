@@ -8,6 +8,13 @@
 @import "animate-mixins.less";
 @import "animations.less";
 
+
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 ::selection {
   background: @lightgrey; /* WebKit/Blink Browsers */
 }
@@ -37,8 +44,8 @@ body {
   right: 0;
   left: 0;
   top: 0;
-  background-color: @lightgrey;
-  height: 50px;
+  background-color: transparent;
+  height: 3em;
   .transition(0.5s);
 
   &.headroom--not-top {
@@ -61,10 +68,10 @@ body {
 
       h1 {
         width: 2em;
-        height: 1.75em;
+        height: 1.5em;
         margin: 0 auto;
-        padding: 0.15em 0 0.05em 0;
-        font-size: 3em;
+        padding: 0.225em 0.04em 1.75em 0.025em;
+        font-size: 6em;
         position: absolute;
         top: 0;
         left: 0;
@@ -80,20 +87,22 @@ body {
 
 #projects {
   display: block;
+  margin-bottom: 5em;
 
   .project {
     color: @white;
     display: inline-block;
     float: left;
-    width: 45%;
-    padding: 2.5%;
+    width: 50%;
+    padding: 5%;
     height: 30em;
     text-decoration: none;
     background-size: 100%;
     .transition(0.3s);
 
     h1 {
-      margin-bottom: 0.25em;
+      margin: 0.25em 0;
+      font-size: 4em;
     }
 
     .ss-icon {
@@ -116,8 +125,8 @@ body {
     }
 
     &:hover, &.hover {
-      width: 40%;
-      padding: 2.5% 5%;
+      width: 50%;
+      padding: 5% 7.5%;
       .transition(0.3s);
 
       .underline {
@@ -140,7 +149,7 @@ body {
     
     &::after {
       content: "";
-      background-image: url('img/jauntly/new-jauntly-nav-dribbble-x2.jpg') ;
+      background-image: url('img/jauntly/800x600-jauntly-nav.jpg') ;
       opacity: 0.7;
       top: 0;
       left: 0;
@@ -156,36 +165,126 @@ body {
       .opacity(0.95);
 
       &::after {
-        background-image: url('img/jauntly/new-jauntly-nav-dribbble-x2.jpg') ;
-        .opacity(0.3);
+        background-image: url('img/jauntly/800x600-jauntly-nav.jpg') ;
+        .opacity(0.1);
       }
     }
   }
 
   .ans {
     background-color: @ans;
-    background-image: url('img/ans/_0000_homepage.jpg');
+    position: relative;
+    .opacity(0.8);
+    
+    &::after {
+      content: "";
+      background-image: url('img/jauntly/800x600-jauntly-nav.jpg') ;
+      opacity: 0.7;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      z-index: -1; 
+      .transition(0.3s);  
+    }
 
     &:hover, &.hover {
       background-color: @ans_dark;
+      .opacity(0.95);
+
+      &::after {
+        background-image: url('img/jauntly/800x600-jauntly-nav.jpg') ;
+        .opacity(0.1);
+      }
+    }
+  }
+
+
+  .eugixd {
+    background-color: @eugixd;
+    position: relative;
+    .opacity(0.8);
+    
+    &::after {
+      content: "";
+      background-image: url('img/jauntly/800x600-jauntly-nav.jpg') ;
+      opacity: 0.7;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      z-index: -1; 
+      .transition(0.3s);  
+    }
+
+    &:hover, &.hover {
+      background-color: @eugixd_dark;
+      .opacity(0.95);
+
+      &::after {
+        background-image: url('img/jauntly/800x600-jauntly-nav.jpg') ;
+        .opacity(0.1);
+      }
     }
   }
   
   .treadhub {
     background-color: @treadhub;
-    background-image: url('img/treadhub/Treadhub-desktop.png');
+    position: relative;
+    .opacity(0.8);
+    
+    &::after {
+      content: "";
+      background-image: url('img/jauntly/800x600-jauntly-nav.jpg') ;
+      opacity: 0.7;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      z-index: -1; 
+      .transition(0.3s);  
+    }
 
     &:hover, &.hover {
       background-color: @treadhub_dark;
+      .opacity(0.95);
+
+      &::after {
+        background-image: url('img/jauntly/800x600-jauntly-nav.jpg') ;
+        .opacity(0.1);
+      }
     }
   }
   
   .swiftkick {
     background-color: @swiftkick;
-    background-image: url('img/swiftkick/swiftkick-dribbble-x2.jpg');
+    position: relative;
+    .opacity(0.8);
+    
+    &::after {
+      content: "";
+      background-image: url('img/jauntly/800x600-jauntly-nav.jpg') ;
+      opacity: 0.7;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      z-index: -1; 
+      .transition(0.3s);  
+    }
 
     &:hover, &.hover {
       background-color: @swiftkick_dark;
+      .opacity(0.95);
+
+      &::after {
+        background-image: url('img/jauntly/800x600-jauntly-nav.jpg') ;
+        .opacity(0.1);
+      }
     }
   }
 }
@@ -202,10 +301,10 @@ nav.sidenav {
     min-height: 1em;
     padding: 0.125em 0 0.125em 0;
     font-size: 4em;
-    color: @black;
+    color: rgba(0,0,0,0.3);
     text-decoration: none;
     overflow: visible;
-    .transition(0.1s);
+    .transition(0.5s);
 
     .ss-icon {
       vertical-align: middle;
@@ -217,7 +316,7 @@ nav.sidenav {
       color: transparent;
       font-size: 1em;
       font-weight: bold;
-      text-transform: lowercase;
+      //text-transform: lowercase;
     }
 
     &.previous {
@@ -230,7 +329,14 @@ nav.sidenav {
       padding-left: 0.5em;
     }
 
+    &.home {
+      left: 0;
+      margin-top: -2em;
+      padding-right: 0.5em;
+    }
+
     &:hover {
+      color: @black;
       background: @white;
       .transition(0.5s);
 
@@ -253,54 +359,145 @@ nav.sidenav {
 #project-detail {
 
   .top-detail {
-    padding: 1em 2em;
+    padding: 2em 4em 0 4em;
+    margin-bottom: -10em;
+    border: 0;
     display: block;
-    height: 5em;
-    z-index: 200;
+    height: 26em;
+    z-index: -5;
+    position: relative;
+
+
+    &.jauntly {
+      background-color: @jauntly;
+    }
+
+    &.ans {
+      background-color: @ans;
+    }
+    
+    &.swiftkick {
+      background-color: @swiftkick;
+    }
+    
+    &.treadhub {
+      background-color: @treadhub;
+    }
+    
+    &.eugixd {
+      background-color: @eugixd;
+    }
 
     h1 {
-      font-size: 5em;
-      display: inline-block;
-      float: left;
+      font-size: 6.5em;
+      color: @white;
+      padding-left: 0.5em;
+      margin: 0;
+      display: block;
+      width: 7em;
+      overflow: hidden;
+    }
+
+    .underline {
+      width: 15%;
+      height: 1em;
+      background: @white;
+      display: block;
     }
 
     .desc {
       display: block;
       float: right;
-      width: 20em;
-      padding: 1em;
+      width: 16em;
+      min-height: 5em;
+      padding: 0.5em 1em;
       background: @white;
+      margin-right:1em;
+      font-size: 2.75em;
     }
-
   }
+  
+  .product-pieces {
+    max-width: 1595px;
+    //overflow: hidden;
 
-  .piece {
-    width: 20%;
-    background: rgba(0,0,0,0.5);
-    min-height: 400px;
-    margin: 2.5%;
-    border: none;
+    .piece {
+      width:  320px;
+      //height: 320px;
+      //float: left;
+      .transition(0.5s);
 
-    &.iphone {
-      background: @swiftkick;
-
-    }
-
-    &.tablet {
-      width: 45%;
-      background: @ans;
+      &:after {
+        content: '';
+        display: block;
+        clear: both;
+      }
       
-    }
+      &:hover {
+        //cursor: pointer;
 
-    &.laptop, &.main {
-      width: 95%;
-      background: @treadhub;
+        .text {
+          margin: 0 2.5% 0 2.5%;
+          .opacity(1);
+          .transition(0.5s);
+        }
+
+        img {
+        }
+      }
+
+      img {
+        width: 100%;
+      }
+
+      .text {
+        bottom: 0em;
+        .opacity(0.5);
+        background: @white;
+        position: absolute;
+        height: 4em;
+        color: @black;
+        width: 95%;
+        padding: 2% 2.5%;
+        margin: 0 2.5% -2em 2.5%;
+        .transition(0.5s);
+      }
+
+      &.textquote {
+        width: 160px;
+        background-color: @white;
+        padding: 1em;
+
+        p {
+          font-size: 2em;
+          color: @black;        
+        }
+      }
       
-    }
+      &.xs {
+        width: 160px;
+      }
 
-    &.sketch {
-      width: 70%;
-      background: @jauntly;
+      &.sm {
+        width: 320px;
+      }
+
+      &.md {
+        width: 640px;
+      }
+
+      &.lg {
+        width: 1280px;
+      }
+
+      &.gigante {
+        width: 640px;
+        //height: 640px;
+      }
+      // Height Half
+      &.hh {
+        //height: 160px;
+      }
     }
   }
 }
