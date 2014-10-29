@@ -1,16 +1,39 @@
 /* 480px */
 @media only screen and (min-width: 480px) {
 	body {
-		font-size: 100%;
+		font-size: 50%;
 	}
 
-	#portfolio {
-		.project {
-			width: 45%;
+	.headroom {
+		.jm-nav {
+			a {
+				h1 {
+					font-size: 9em;
+				}
+			}
+		}
+	}
+	
+	#project-detail {
 
-			&:hover {
-	      width: 40%;
-	    }
+		.jmbackground {
+			height: 26em;
+		}
+
+		.top-detail {
+			height: 13.35em;
+
+			&::before {
+				width: 100%;
+				height: 90%;
+				left: 5em;
+				top: 1em;
+			}
+
+			&.eugixd::before {
+				width: 60%;
+				left: 8em;
+			}
 		}
 	}
 }

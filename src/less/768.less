@@ -1,4 +1,70 @@
 /* 768px */
 @media only screen and (min-width: 768px) {
+	body {
+		font-size: 100%;
+	}
 
+	.headroom {
+		.jm-nav {
+			a {
+				h1 {
+					font-size: 8.3em;
+				}
+			}
+		}
+	}
+
+	#project-detail {
+		.jmbackground {
+			height: 14em;
+		}
+
+		.top-detail {
+			height: 9.9em;
+
+			&.aboutjames {
+				.left {
+	        width: 700px;
+	        height: 350px;
+	        overflow: hidden;
+
+	        .jmlogo, img {
+	        	width: 350px;
+	        }
+	        img {
+	        	height: 350px;
+	        }
+	      }
+			}
+		}
+
+		.project-pieces {
+			padding-top: 15em;
+
+			.piece {
+				width: 75%;
+
+				&.textquote {
+					width: 65%;
+					padding: 5%;
+					
+					p {
+						font-size: 2em;
+						margin: 0;
+						font-weight: 600;
+					}
+				}
+			}
+		}
+	}
+
+	#projects {
+		.project {
+			&.jauntly, &.ans, &.swiftkick, &.treadhub, &.eugixd, &.twentyideas {
+				&::after {
+					background-size: 90%;
+				}
+			}
+		}
+	}
 }

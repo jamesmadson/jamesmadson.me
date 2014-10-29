@@ -624,5 +624,16 @@ module.exports = function ( grunt ) {
         });
       }
     });
+    grunt.file.copy('src/twentyideas.html', this.data.dir + '/twentyideas.html', { 
+      process: function ( contents, path ) {
+        return grunt.template.process( contents, {
+          data: {
+            scripts: jsFiles,
+            styles: cssFiles,
+            version: grunt.config( 'pkg.version' )
+          }
+        });
+      }
+    });
   });
 };

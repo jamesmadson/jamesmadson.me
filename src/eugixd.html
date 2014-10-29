@@ -35,7 +35,6 @@
         <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
         <link rel="stylesheet" type="text/css" href="assets/fonts/ss-social/webfonts/ss-social.css"/>
         <link rel="stylesheet" type="text/css" href="assets/fonts/ss-pika/ss-pika.css"/>
-        <link rel="stylesheet" type="text/css" href="assets/css/pace-theme-minimal.css">
 
         <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
         
@@ -51,61 +50,52 @@
         <nav class="sidenav">
           <a href="/treadhub.html" class="previous">
             <i class="ss-icon">directleft</i>
-            <span>Treadhub</span>
           </a>
-          <a href="/index.html" class="next">
-            <span>Home</span>
-            <i class="ss-icon">home</i>
+          <a href="/twentyideas.html" class="next">
+            <i class="ss-icon">directright</i>
           </a>
         </nav>
         <header class="headroom">
           <nav class="jm-nav">
-            <a href='#' class='jm-button'>
+            <a href="index.html" alt="Home">
               <h1>jm</h1>
             </a>
-
-            <div class="sidemenu">
-              <nav class="left">
-                <img src="assets/img/james-temp.jpg" alt="jm" description="James Madson">
-                <a href="https://www.github.com/jamesmadson" target="_blank"><i class="ss-icon ss-social">Github</i></a>
-                <a href="http://www.twitter.com/jamesmadson" target="_blank"><i class="ss-icon ss-social">Twitter</i></a>
-                <a href="http://www.dribbble.com/jamesmadson" target="_blank"><i class="ss-icon ss-social">Dribbble</i></a>
-                <a href="mailto:james@jamesmadson.me" target="_blank"><i class="ss-icon">Email</i></a>
-                <a href="http://www.jamesmadson.me/v1" target="_blank"><i class="ss-icon">floppydisk</i></a>
-              </nav>
-              <nav class="right">
-                <p>My name is James Madson. I am an interdisciplinary designer. I design identities, experiences and develop interfaces for web based products.</p>
-              </nav>
-            </div>
           </nav>
         </header>
 
         <div id="project-detail">
           <div class="top-detail eugixd">
-            <h1 data-scroll-reveal="enter from the top after 0.3s">Eugene IxD</h1>
-            <span class="underline" data-scroll-reveal="enter from the left after 0.5s"></span>
-            <p class="desc" data-scroll-reveal="enter from the right after 1s">Eugene IxD was the solution to the lack of design focused events in Eugene, OR. Each month a guest speaker presented on a relevent topic to others interested in interaction design. Eugene's diverce interaction community . Guest speakers such as Chris Bailey, CTO for Hotel Tonight, streaming video of Wilson Miner, and group discussions on ways to get involved locally were just some parts of this groups dynamics.</p>
           </div>
-          <div class="product-pieces">
-            <div class="piece md">
-              <img src="assets/img/eugixd/800x800-james-presenting-eugixd.jpg" srcset="" desc="" alt="" data-scroll-reveal="enter from the left">
-            </div>
-            <div class="piece md">
+          <div class="project-pieces">
+          	<div class="piece textquote">
+          		<p>I created the Eugene IxD monthly meetup group with a fellow designer to provide a solution to the lack of interaction design-focused events in the town of Eugene, Oregon. Each month a guest speaker gave a presentation to the group on a relevant topic and led a follow-up question and answer session. We hosted speakers such as Chris Bailey, the CTO for Hotel Tonight, streamed talks from the industry’s best designers, enjoyed group discussions, and brainstormed about ways to get involved in our local community through design.</p>
+        		</div>
+        		<div class="piece textquote">
+          		<p>
+          			<strong>ROLE IN PROJECT</strong><br />
+								Name<br />
+								Identity<br />
+								Marketing<br />
+								Co-founder<br />
+								Speaker<br />
+          		</p>
+          	</div>
+            <div class="piece">
               <img src="assets/img/eugixd/1600x1200-eug-ixd-01.jpg" srcset="" desc="" alt="" data-scroll-reveal="enter from the left">
             </div>
-            <div class="piece md">
+            <div class="piece">
+              <img src="assets/img/eugixd/800x800-james-presenting-eugixd.jpg" srcset="" desc="" alt="" data-scroll-reveal="enter from the left">
+            </div>
+            <div class="piece">
               <img src="assets/img/eugixd/1600x1200-eug-ixd-02.jpg" srcset="" desc="" alt="" data-scroll-reveal="enter from the left">
             </div>
-            <div class="piece md">
-              <img src="assets/img/eugixd/1600x1200-eug-ixd-03.jpg" srcset="" desc="" alt="" data-scroll-reveal="enter from the left">
-            </div>
-            <div class="piece md">
+            <div class="piece">
               <img src="assets/img/eugixd/1600x1200-eug-ixd-05.jpg" srcset="" desc="" alt="" data-scroll-reveal="enter from the left">
             </div>
-            <div class="piece md">
+            <div class="piece">
               <img src="assets/img/eugixd/1600x1200-eug-ixd-07.jpg" srcset="" desc="" alt="" data-scroll-reveal="enter from the left">
             </div>
-            <div class="piece xl">
+            <div class="piece">
               <img src="assets/img/eugixd/1600x1200-eug-ixd-08.jpg" srcset="" desc="" alt="" data-scroll-reveal="enter from the left">
             </div>
             
@@ -121,11 +111,7 @@
         <script src="bower_components/headroom.js/dist/headroom.js"></script>
         <script src="bower_components/fastclick/lib/fastclick.js"></script>
         <script src="bower_components/pace/pace.min.js"></script>
-
-        <script src="assets/js/jquery.square_menu.js"></script>
         <script src="bower_components/scrollReveal.js/scrollReveal.js"></script>
-        <script src="bower_components/imagesloaded/imagesloaded.pkgd.js"></script>
-        <script src="bower_components/jquery-masonry/dist/masonry.pkgd.js"></script>
         
         <script>
           var myElement = document.querySelector("header");
@@ -136,44 +122,8 @@
           });
           // initialise
           headroom.init();
-        
-          // Top Menu
-          $(document).ready( function() {
-            $(".sidemenu").square_menu();
-          });
         </script>
 
-        <script>
-          $('.product-pieces').imagesLoaded( function() {
-            // images have loaded
-          });
-        </script>
-
-        <script>
-          // Masonry
-          //var container = document.querySelector('.product-pieces');
-          //var masnry = new Masonry( container, {
-            // options
-            //columnWidth: 200,
-            //itemSelector: '.piece'
-          //});
-
-          var container = document.querySelector('.product-pieces');
-          var msnry = new Masonry( container, {
-            columnWidth: 200
-          });
-
-          eventie.bind( container, 'click', function( event ) {
-            // don't proceed if item was not clicked on
-            if ( !classie.has( event.target, 'piece' ) ) {
-              return;
-            }
-            // change size of item via class
-            classie.toggle( event.target, 'sketch' );
-            // trigger layout
-            msnry.layout();
-          });
-        </script>
         <script>
           // Scroll Reveal
           window.scrollReveal = new scrollReveal();

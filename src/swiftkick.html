@@ -35,7 +35,6 @@
         <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
         <link rel="stylesheet" type="text/css" href="assets/fonts/ss-social/webfonts/ss-social.css"/>
         <link rel="stylesheet" type="text/css" href="assets/fonts/ss-pika/ss-pika.css"/>
-        <link rel="stylesheet" type="text/css" href="assets/css/pace-theme-minimal.css">
 
         <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
         
@@ -49,72 +48,55 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <nav class="sidenav">
-          <a href="/index.html" class="home">
-            <i class="ss-icon">home</i>
-            <span>Home</span>
-          </a>
           <a href="/ans.html" class="previous">
             <i class="ss-icon">directleft</i>
-            <span>Analytic Spot</span>
           </a>
           <a href="/treadhub.html" class="next">
-            <span>Treadhub</span>
             <i class="ss-icon">directright</i>
           </a>
         </nav>
         <header class="headroom">
           <nav class="jm-nav">
-            <a href='#' class='jm-button'>
+            <a  href="index.html" alt="Home">
               <h1>jm</h1>
             </a>
-
-            <div class="sidemenu">
-              <nav class="left">
-                <img src="assets/img/james-temp.jpg" alt="jm" description="James Madson">
-                <a href="https://www.github.com/jamesmadson" target="_blank"><i class="ss-icon ss-social">Github</i></a>
-                <a href="http://www.twitter.com/jamesmadson" target="_blank"><i class="ss-icon ss-social">Twitter</i></a>
-                <a href="http://www.dribbble.com/jamesmadson" target="_blank"><i class="ss-icon ss-social">Dribbble</i></a>
-                <a href="mailto:james@jamesmadson.me" target="_blank"><i class="ss-icon">Email</i></a>
-                <a href="http://www.jamesmadson.me/v1" target="_blank"><i class="ss-icon">floppydisk</i></a>
-              </nav>
-              <nav class="right">
-                <p>My name is James Madson. I am an interdisciplinary designer. I design identities, experiences and develop interfaces for web based products.</p>
-              </nav>
-            </div>
           </nav>
         </header>
 
         <div id="project-detail">
           <div class="top-detail swiftkick">
-            <h1 data-scroll-reveal="enter from the top after 0.3s">Swiftkick</h1>
-            <span class="underline" data-scroll-reveal="enter from the left after 0.5s"></span>
-            <p class="desc" data-scroll-reveal="enter from the right after 1s">A prototype to test whether sedentary government employees from 0 to 30 minutes of exercise a day using a system already in their workflow – Google calendar. Users could sign up, choose a move pack plan and be back at work with short activities added into their calendar at common convenient times through the day. The results proved very successful in a large majoity of the test subjects becoming more active and feeling better throughout the day.</p>
           </div>
-          <div class="product-pieces">
-            <div class="piece lg">
-              <img src="assets/img/swiftkick/800x600-swiftkick.jpg" srcset="" desc="" alt="" data-scroll-reveal="enter from the left">
-            </div>
-            <div class="piece md">
-              <img src="assets/img/swiftkick/800x800-swiftkick-icons-1.jpg" srcset="" desc="" alt="" data-scroll-reveal="enter from the left">
-            </div>
-            <div class="piece md">
-              <img src="assets/img/swiftkick/800x800-swiftkick-icons-2.jpg" srcset="" desc="" alt="" data-scroll-reveal="enter from the left">
-            </div>
-            <div class="piece md">
-              <img src="assets/img/swiftkick/800x800-swiftkick-icons-3.jpg" srcset="" desc="" alt="" data-scroll-reveal="enter from the left">
-            </div>
-            <div class="piece xl">
+          <div class="project-pieces">
+          	<div class="piece textquote">
+          		<p>Swiftkick is an app designed to help sedentary government employees add up to 30 minutes of exercise into their day using a system already utilized in their workflow: Google calendar. With this prototype, users were able to easily sign up, choose a “Move Pack Plan,” and go back to work knowing that short activities were being added into their calendar at convenient times throughout the day. The results proved very successful as a large majority of the test subjects reported that they became more active and felt better throughout the day as a result of these reminders.</p>
+        		</div>
+        		<div class="piece textquote">
+          		<p>
+	          		<strong>COMPANY</strong><br />
+								ORCAS<br /><br />
+
+								<strong>ROLE IN PROJECT</strong><br />
+								Identity<br />
+								UI/UX Design<br />
+								Front End Development
+          		</p>
+        		</div>
+            <div class="piece">
               <img src="assets/img/swiftkick/1600x800-swiftkick-logo.jpg" srcset="" desc="" alt="" data-scroll-reveal="enter from the left">
             </div>
-            <div class="piece md">
+            <div class="piece">
+              <img src="assets/img/swiftkick/800x600-swiftkick.jpg" srcset="" desc="" alt="" data-scroll-reveal="enter from the left">
+            </div>
+            <div class="piece">
               <img src="assets/img/swiftkick/720x600-swiftkick-wireframe-1.jpg" srcset="" desc="" alt="" data-scroll-reveal="enter from the left">
             </div>
-            <div class="piece md">
+            <div class="piece">
               <img src="assets/img/swiftkick/720x600-swiftkick-wireframe-2.jpg" srcset="" desc="" alt="" data-scroll-reveal="enter from the left">
             </div>
-            <div class="piece md">
+            <div class="piece">
               <img src="assets/img/swiftkick/720x600-swiftkick-wireframe-3.jpg" srcset="" desc="" alt="" data-scroll-reveal="enter from the left">
             </div>
+
 
           </div>
         </div>
@@ -127,11 +109,7 @@
         <script src="bower_components/headroom.js/dist/headroom.js"></script>
         <script src="bower_components/fastclick/lib/fastclick.js"></script>
         <script src="bower_components/pace/pace.min.js"></script>
-
-        <script src="assets/js/jquery.square_menu.js"></script>
         <script src="bower_components/scrollReveal.js/scrollReveal.js"></script>
-        <script src="bower_components/imagesloaded/imagesloaded.pkgd.js"></script>
-        <script src="bower_components/jquery-masonry/dist/masonry.pkgd.js"></script>
         
         <script>
           var myElement = document.querySelector("header");
@@ -142,44 +120,8 @@
           });
           // initialise
           headroom.init();
-        
-          // Top Menu
-          $(document).ready( function() {
-            $(".sidemenu").square_menu();
-          });
         </script>
 
-        <script>
-          $('.product-pieces').imagesLoaded( function() {
-            // images have loaded
-          });
-        </script>
-
-        <script>
-          // Masonry
-          //var container = document.querySelector('.product-pieces');
-          //var masnry = new Masonry( container, {
-            // options
-            //columnWidth: 200,
-            //itemSelector: '.piece'
-          //});
-
-          var container = document.querySelector('.product-pieces');
-          var msnry = new Masonry( container, {
-            columnWidth: 200
-          });
-
-          eventie.bind( container, 'click', function( event ) {
-            // don't proceed if item was not clicked on
-            if ( !classie.has( event.target, 'piece' ) ) {
-              return;
-            }
-            // change size of item via class
-            classie.toggle( event.target, 'sketch' );
-            // trigger layout
-            msnry.layout();
-          });
-        </script>
         <script>
           // Scroll Reveal
           window.scrollReveal = new scrollReveal();
