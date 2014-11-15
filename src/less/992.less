@@ -1,8 +1,33 @@
 /* 992px */
 @media only screen and (min-width: 992px) {
+	
+	.headroom {
+		.jm-nav {
+			a {
+				h1 {
+					font-size: 8.3em;
+				}
+			}
+		}
+	}
+
 	#project-detail {
+		.jmbackground {
+			height: 14em;
+		}
 		.top-detail {
 			height: 9.9em;
+
+			&.aboutjames {
+				.left {
+
+					height: 370px;
+
+					.jmlogo {
+						height: 350px;
+					}
+				}
+			}
 
 			&::before {
 				width: 90%;
@@ -13,8 +38,15 @@
 
 			&.eugixd::before {
 				width: 40%;
-				left: 8em;
+				left: 10em;
 			}
+		}
+	}
+
+	#projects {
+		.project {
+			height: 12em;
+			margin: 1%;
 		}
 	}
 }

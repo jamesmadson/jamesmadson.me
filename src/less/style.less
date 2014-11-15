@@ -160,7 +160,7 @@ body {
       height: auto;
       position: relative;
 
-      &::after {
+      &::after, &::before {
         display:none;
       }
 
@@ -304,8 +304,11 @@ body {
       }
 
       &::after {
-        background-image: url('img/treadhub/1600x3400-treadhub-home-desktop.jpg');
+        background-image: url('img/treadhub/topo.svg');
         background-position: center;
+        -webkit-filter: blur(0px);
+        -moz-filter: blur(0px);
+        filter: blur(0px);
       }
     }
     

@@ -9,7 +9,7 @@
 		.jm-nav {
 			a {
 				h1 {
-					font-size: 8em;
+					font-size: 7.35em;
 				}
 			}
 		}
@@ -18,7 +18,7 @@
 	#project-detail {
 
 		.jmbackground {
-			height: 26em;
+			height: 37em;
 		}
 		
 		display: block;
@@ -81,16 +81,16 @@
 					height: auto;
 					display: block;
 					float: none;
-					margin: 15em auto 0 auto;
+					margin: 25em auto 0 auto;
 				}
 
 				.jmlogo {
-					width: 115px;
-					height: 110px;
-					font-size: 8em;
+					width: 200px;
+					height: 175px;
+					font-size: 12em;
 					display: block;
 					margin: 0 auto;
-					padding: 5px 0 0 0;
+					padding: 25px 0 0 0;
 					position: absolute;
 					top: 0;
 					left: 0;
@@ -99,7 +99,8 @@
 				}
 
 				a {
-					padding: 1em 0.25em 0 0.25em;
+					padding: 1em 0.1em 0 0.25em;
+					text-align: center;
 					font-size: 5em;
 				}
 
@@ -140,8 +141,20 @@
 
 		.project {
 			width: 90%;
+			height: 200px;
 			margin: 2em 5%;
 			padding: 6em 0;
+			background-size: 50% 50%;
+
+			&.eugixd {
+				&::after {
+					background-size: 80% 80% !important;
+				}
+			}
+
+			&::after {
+				background-size: 100% 100% !important;
+			}
 		}
 	}
 

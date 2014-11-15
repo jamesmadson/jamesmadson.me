@@ -8,7 +8,7 @@
 		.jm-nav {
 			a {
 				h1 {
-					font-size: 8.3em;
+					font-size: 5.95em;
 				}
 			}
 		}
@@ -16,7 +16,7 @@
 
 	#project-detail {
 		.jmbackground {
-			height: 14em;
+			height: 36em;
 		}
 
 		.top-detail {
@@ -25,11 +25,12 @@
 			&.aboutjames {
 				.left {
 	        width: 700px;
-	        height: 350px;
+	        height: 750px;
 	        overflow: hidden;
 
 	        .jmlogo, img {
 	        	width: 350px;
+	        	height: 325px;
 	        }
 	        img {
 	        	height: 350px;
@@ -46,7 +47,7 @@
 
 				&.textquote {
 					width: 65%;
-					padding: 5%;
+					padding: 2.5% 5%;
 					
 					p {
 						font-size: 2em;
@@ -60,10 +61,61 @@
 
 	#projects {
 		.project {
-			&.jauntly, &.ans, &.swiftkick, &.treadhub, &.eugixd, &.twentyideas {
+			margin: 2em 5%;
+			
+			&.eugixd {
 				&::after {
-					background-size: 90%;
+					background-size: 125% 125% !important;
 				}
+			}
+
+			&::after {
+				background-size: 150% 150% !important;
+			}
+		}
+	}
+}
+
+//simple max-width query
+@media screen and ( max-height: 768px ){
+
+	#project-detail {
+		.jmbackground {
+			height: 13em;
+		}
+
+		.top-detail {
+
+			&.aboutjames {
+				.left {
+					height: 370px;
+	       
+	        .jmlogo, img {
+	        	width: 350px;
+	        	height: 350px;
+	        }
+	        img {
+	        	height: 350px;
+	        }
+	      }
+			}
+		}
+	}
+
+	#projects {
+		.project {
+			margin: 4em 2.5%;
+			width: 39.25%;
+			height: 150px;
+
+			&.eugixd {
+				&::after {
+					background-size: 75% 75% !important;
+				}
+			}
+
+			&::after {
+				background-size: 125% 125% !important;
 			}
 		}
 	}
