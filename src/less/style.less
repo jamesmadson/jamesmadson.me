@@ -171,7 +171,7 @@ body {
         width: 100%;
         display: block;
         padding: 0;
-        margin: 0 0 -0.5em 0;
+        margin: 0 0 1em 0;
         font-weight: 300;
         .animated;
         .fadeInUp;
@@ -426,21 +426,90 @@ body {
   }
 }
 
+.social-list {
+  display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+
+  .social-list-item {
+    display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    flex-direction: column;
+
+    a {
+      font-size: 5em;
+      margin: 0;
+      padding: 1.5em 0.75em 0 0.75em;
+      font-weight: 300;
+      display: inline-block;
+      color: @grey;
+      .animated;
+      .fadeInDown;
+      .transition(0.3s);
+
+      &:hover {
+        color: @black;
+        .transition(0.3s);
+
+        .ss-icon {
+          .animated;
+          .pulse;
+        }
+      }
+
+      .ss-icon {
+        &::after {
+          -webkit-transform: scale(0);
+          -moz-transform: scale(0);
+          -ms-transform: scale(0);
+          transform: scale(0);
+          opacity: 0;
+          -webkit-transition: -webkit-transform 0.4s, opacity 0.2s;
+          -moz-transition: -moz-transform 0.4s, opacity 0.2s;
+          transition: transform 0.4s, opacity 0.2s;
+        }
+      }
+    }
+  }
+}
+
+//OLD #PROJECTS LESS
 #projects {
+  display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  justify-content: center;
   padding: 5em 0;
-  display: block;
-  width: 100%;
+  //display: block;
+  //width: 100%;
   overflow: hidden;
-  font-size: 0.125em;
+  //font-size: 0.125em;
 
   .project {
+    display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    //flex: 1;
+    flex-direction: column;
     color: @white;
-    display: inline-block;
-    float: left;
-    width: 26.25%;
-    padding: 5% 2.5%;
+    //display: inline-block;
+    //float: left;
+    //width: 26.25%;
+    padding: 2em 15em;
     margin: 1%;
-    height: 12em;
+    //height: 12em;
     text-decoration: none;
     text-align: center;
     overflow: hidden;
