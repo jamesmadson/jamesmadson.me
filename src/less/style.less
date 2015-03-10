@@ -62,13 +62,13 @@ body {
       &:hover, &:active {
         text-decoration: none;
 
-        h1 {
+        .jm-secondary-logo {
           .animated;
           .pulse;
         }
       }
 
-      h1 {
+      .jm-secondary-logo {
         width: 1.75em;
         height: 1.22em;
         margin: 0 auto;
@@ -79,6 +79,7 @@ body {
         left: 0;
         background: @black;
         color: @white;
+        font-weight: bold;
         text-align: center;
         z-index: 102;
         -webkit-user-select: none; /* Chrome/Safari */        
@@ -91,7 +92,7 @@ body {
   }
 }
 
-#project-detail {
+.project-detail {
   display: block;
 
   .jmbackground {
@@ -171,10 +172,20 @@ body {
         width: 100%;
         display: block;
         padding: 0;
-        margin: 0 0 1em 0;
+        margin: 0 0 0.5em 0;
         font-weight: 300;
         .animated;
         .fadeInUp;
+      }
+
+      img {
+        width: 400px;
+        height: 400px;
+        padding: 0;
+        float: right;
+        display: inline-block;
+        .animated;
+        .fadeInRight;
       }
       
       .left, .right {
@@ -191,7 +202,7 @@ body {
         height: 400px;
         display: block;
         margin: 0 auto 2em auto;
-        overflow: visible;        
+        overflow: visible;
       }
 
       .right {
@@ -228,23 +239,15 @@ body {
         }
       }
 
-      img {
-        width: 400px;
-        height: 400px;
-        padding: 0;
-        float: right;
-        display: inline-block;
-        .animated;
-        .fadeInRight;
-      }
-
       .jmlogo {
         padding: 0;
+        float: left;
         font-size: 13.5em;
         color: @white;
         margin: 0;
         width: 400px;
-        height: 400px;
+        height: 360px;
+        padding: 40px 0 0 0;
         font-weight: bold;
         background: @black;
         text-align: center;
@@ -340,7 +343,7 @@ body {
       }
     }
 
-    h1 {
+    .project-name {
       font-size: 6.25em;
       color: @white;
       display: inline-block;
@@ -434,6 +437,8 @@ body {
   display: -webkit-flex;
   flex-wrap: nowrap;
   justify-content: center;
+  margin: 0;
+  padding: 0;
 
   .social-list-item {
     display: flex;
@@ -446,7 +451,7 @@ body {
     a {
       font-size: 5em;
       margin: 0;
-      padding: 1.5em 0.75em 0 0.75em;
+      padding: 0.5em 0.75em 0 0.75em;
       font-weight: 300;
       display: inline-block;
       color: @grey;
@@ -480,8 +485,7 @@ body {
   }
 }
 
-//OLD #PROJECTS LESS
-#projects {
+.projects {
   display: flex;
   display: -webkit-box;
   display: -moz-box;
@@ -490,10 +494,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   padding: 5em 0;
-  //display: block;
-  //width: 100%;
   overflow: hidden;
-  //font-size: 0.125em;
 
   .project {
     display: flex;
@@ -501,15 +502,10 @@ body {
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-flex;
-    //flex: 1;
     flex-direction: column;
     color: @white;
-    //display: inline-block;
-    //float: left;
-    //width: 26.25%;
     padding: 2em 15em;
     margin: 1%;
-    //height: 12em;
     text-decoration: none;
     text-align: center;
     overflow: hidden;
@@ -518,7 +514,7 @@ body {
     .fadeInUp;
     .transition(0.3s);
 
-    h1 {
+    .project-name {
       display: none;
       margin: 0 auto;
       font-size: 3em;
