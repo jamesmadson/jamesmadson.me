@@ -216,9 +216,7 @@ module.exports = function ( grunt ) {
         src: [ 
           '<%= vendor_files.js %>', 
           'module.prefix', 
-          '<%= build_dir %>/src/**/*.js', 
-          //'<%= html2js.app.dest %>', 
-          //'<%= html2js.common.dest %>', 
+          '<%= build_dir %>/src/**/*.js',
           'module.suffix' 
         ],
         dest: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js'
@@ -276,7 +274,7 @@ module.exports = function ( grunt ) {
         },
         options: {
           cleancss: true,
-          compress: true
+          yuicompress: true
         }
       }
     },

@@ -23,13 +23,9 @@
     <link rel="icon" type="image/png" href="assets/img/favicon-32x32.png" sizes="32x32">
     <meta name="application-name" content="James Madson">
 
-    <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
-    <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
-    <link rel="stylesheet" type="text/css" href="assets/fonts/ss-social/webfonts/ss-social.css"/>
-    <link rel="stylesheet" type="text/css" href="assets/fonts/ss-pika/ss-pika.css"/>    
-    <!-- Typekit -->
-    <script type="text/javascript" src="http://use.typekit.com/skc2ixc.js"></script>
-    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <% styles.forEach( function ( file ) { %>
+    <link rel="stylesheet" type="text/css" href="<%= file %>" />
+    <% }); %>    
   </head>
 
   <body>
@@ -37,53 +33,43 @@
       <div class="jmbackground"></div>
       <div class="top-detail aboutjames vcard">
         <div class="left">
-          <div class="jmlogo nickname">jm</div>
+          <div class="jmlogo">jm</div>
           <img src="assets/img/jamesmadson.jpg" alt="jm" description="James Madson" class="photo fn" />
         </div><!-- .left -->
 
         <div class="right">
-          <h1>Hi, my name is James Madson<br /> and I’m a <span class="title">web designer</span>.</h1>
+          <h1 class="p-note">Hi, my name is <span class="nickname">James Madson</span><br /> and I’m a <span class="title">web designer</span>.</h1>
           <ul class="social-list">
             <li class="social-list-item">
               <a href="https://www.twitter.com/jamesmadson" class="url" rel="me" target="_blank" title="Twitter">
-                <i class="ss-icon ss-social">Twitter</i>
+                <img src="assets/svg/twitter.svg" alt="Twitter">
               </a>
             </li>
             <li class="social-list-item">
               <a href="https://dribbble.com/jamesmadson" class="url" rel="me" target="_blank" title="Dribbble">
-                <i class="ss-icon ss-social">Dribbble</i>
+                <img src="assets/svg/dribbble.svg" alt="Dribbble">
               </a>
             </li>
             <li class="social-list-item">
               <a href="https://www.github.com/jamesmadson" class="url" rel="me" target="_blank" title="Github">
-                <i class="ss-icon ss-social">Github</i>
+                <img src="assets/svg/github.svg" alt="Github">
               </a>
             </li>
             <li class="social-list-item">
               <a href="https://instagram.com/jamesmadson/" class="url" rel="me" target="_blank" title="Instagram">
-                <i class="ss-icon ss-social">Instagram</i>
+                <img src="assets/svg/instagram.svg" alt="Instagram">
               </a>
             </li>
             <li class="social-list-item">
               <a href="mailto:james@jamesmadson.me" class="url" target="_blank" title="Email">
-                <i class="ss-icon email">Email</i>
+                <img src="assets/svg/email.svg" alt="Email">
               </a>
-            </li><!--
-            <li class="social-list-item">
-                <a href="http://jamesmadson.me/blog/" class="url" rel="me" title="James Madson Blog">
-                  <i class="ss-icon">Draw</i>
-                </a>
             </li>
-            <li class="social-list-item">
-              <a href="http://jamesmadson.me/v1/index" class="url" rel="me" target="_blank" title="Jamesmadson.me V1">
-                <i class="ss-icon">Laptop</i>
-              </a>
-            </li>-->
           </ul><!-- .social-list -->
         </div><!-- .right -->
       </div><!-- .top-detail .aboutjames -->
     </div><!-- .project-detail -->
-    
+
     <div class="projects">
       <a href="jauntly" class="jauntly project">
         <div class="project-name">Jauntly</div>
@@ -109,8 +95,11 @@
         <div class="project-name">Twenty Ideas</div>
       </a>
     </div><!-- .projects -->
+    <!-- Typekit -->
+    <script type="text/javascript" src="http://use.typekit.com/skc2ixc.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
     <script src="bower_components/pace/pace.min.js"></script>
     <script>

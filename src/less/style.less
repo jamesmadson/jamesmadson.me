@@ -6,14 +6,6 @@
 @import "mixins.less";
 @import "typography.less";
 @import "animate-mixins.less";
-@import "animations.less";
-
-
-//* {
-//  -webkit-box-sizing: border-box;
- //    -moz-box-sizing: border-box;
- //         box-sizing: border-box;
-//}
 
 ::selection {
   background: @grey; /* WebKit/Blink Browsers */
@@ -133,8 +125,6 @@ body {
       left: 1em;
       z-index: 1;
       .opacity(0);
-      .animated;
-      .fadeInLeft;
     }
 
     &::after {
@@ -216,26 +206,19 @@ body {
         font-weight: 300;
         display: inline-block;
         color: @grey;
-        .animated;
-        .fadeInDown;
+        .opacity(0.5);
         .transition(0.3s);
 
-        &:hover {
-          color: @black;
-          .transition(0.3s);
+        img {
+          height: 50px;
+          width: 50px;
         }
 
-        .ss-icon {
-          &::after {
-            -webkit-transform: scale(0);
-            -moz-transform: scale(0);
-            -ms-transform: scale(0);
-            transform: scale(0);
-            opacity: 0;
-            -webkit-transition: -webkit-transform 0.4s, opacity 0.2s;
-            -moz-transition: -moz-transform 0.4s, opacity 0.2s;
-            transition: transform 0.4s, opacity 0.2s;
-          }
+        &:hover {
+          .opacity(1);
+          .animated;
+          .pulse;
+          .transition(0.3s);
         }
       }
 
@@ -439,6 +422,8 @@ body {
   justify-content: center;
   margin: 0;
   padding: 0;
+  .animated;
+  .fadeInDown;
 
   .social-list-item {
     display: flex;
@@ -447,41 +432,6 @@ body {
     display: -ms-flexbox;
     display: -webkit-flex;
     flex-direction: column;
-
-    a {
-      font-size: 5em;
-      margin: 0;
-      padding: 0.5em 0.75em 0 0.75em;
-      font-weight: 300;
-      display: inline-block;
-      color: @grey;
-      .animated;
-      .fadeInDown;
-      .transition(0.3s);
-
-      &:hover {
-        color: @black;
-        .transition(0.3s);
-
-        .ss-icon {
-          .animated;
-          .pulse;
-        }
-      }
-
-      .ss-icon {
-        &::after {
-          -webkit-transform: scale(0);
-          -moz-transform: scale(0);
-          -ms-transform: scale(0);
-          transform: scale(0);
-          opacity: 0;
-          -webkit-transition: -webkit-transform 0.4s, opacity 0.2s;
-          -moz-transition: -moz-transform 0.4s, opacity 0.2s;
-          transition: transform 0.4s, opacity 0.2s;
-        }
-      }
-    }
   }
 }
 
@@ -520,7 +470,7 @@ body {
       font-size: 3em;
     }
 
-    .ss-icon {
+    img {
       float: right;
       .opacity(0.5);
     }
@@ -662,7 +612,7 @@ body {
     text-decoration: none;
     .transition(0.1s);
 
-    .ss-icon {
+    img {
       vertical-align: middle;
       display: inline-block;
     }
@@ -670,6 +620,12 @@ body {
     &.previous {
       left: 0;
       padding-right: 0.5em;
+      padding-bottom: 0.5em;
+      -webkit-transform: rotate(180deg);     /* Chrome and other webkit browsers */
+      -moz-transform: rotate(180deg);        /* FF */
+      -o-transform: rotate(180deg);          /* Opera */
+      -ms-transform: rotate(180deg);         /* IE9 */
+      transform: rotate(180deg);             /* W3C compliant browsers */
     }
 
     &.next {
@@ -706,7 +662,7 @@ body {
 @import "320less.less";
 @import "320.less";
 @import "480.less";
-@import "600.less";
+//@import "600.less";
 @import "768.less";
 @import "992.less";
 @import "1382.less";

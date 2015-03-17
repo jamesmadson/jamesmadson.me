@@ -23,22 +23,17 @@
     <link rel="icon" type="image/png" href="assets/img/favicon-32x32.png" sizes="32x32">
     <meta name="application-name" content="James Madson">
 
-    <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
-    <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
-    <link rel="stylesheet" type="text/css" href="assets/fonts/ss-social/webfonts/ss-social.css"/>
-    <link rel="stylesheet" type="text/css" href="assets/fonts/ss-pika/ss-pika.css"/>
-    
-    <!-- Typekit -->
-    <script type="text/javascript" src="http://use.typekit.com/skc2ixc.js"></script>
-    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <% styles.forEach( function ( file ) { %>
+    <link rel="stylesheet" type="text/css" href="<%= file %>" />
+    <% }); %>
   </head>
   <body>
       <nav class="sidenav">
         <a href="/eugixd" class="previous" rel="prev">
-          <i class="ss-icon">directleft</i>
+          <img src="assets/svg/arrow.svg" alt="Previous">
         </a>
         <a href="/" class="next" rel="next">
-          <i class="ss-icon">directright</i>
+          <img src="assets/svg/arrow.svg" alt="Next">
         </a>
       </nav>
       <header class="headroom">
@@ -91,8 +86,11 @@
           </div>
         </div><!-- .project-pieces -->
       </div><!-- .project-detail -->
+      <!-- Typekit -->
+      <script type="text/javascript" src="http://use.typekit.com/skc2ixc.js"></script>
+      <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+      <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
       <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
 
       <script src="bower_components/headroom.js/dist/headroom.js"></script>
