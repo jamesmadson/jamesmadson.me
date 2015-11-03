@@ -25,12 +25,25 @@ button, input, textarea {
 
 body {
 	background-color: @lightgrey;
-  padding: 2.5% 5% 5% 5%;
+  padding: 0 0 5% 0;
   -webkit-font-smoothing: antialiased;
 }
 
 .headroom--unpinned {
   .transition(0.3s);
+  opacity: 0.3;
+
+  .jm-secondary-logo {
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .jm-nav {
+    h1 {
+      display: none;
+    }
+  }
 }
 
 .headroom {
@@ -44,9 +57,21 @@ body {
 
   &.headroom--not-top {
     .transition(0.3s);
+
+    h1 {
+      display: none;
+    }
   }
 
   .jm-nav {
+    h1 {
+      position: fixed;
+      font-size: 4em;
+      top: 1em;
+      left: 4.5em;
+      color: @white;
+    }
+
     a {
       text-decoration: none;
       .transition(0.3s);
@@ -64,7 +89,7 @@ body {
         width: 1.75em;
         height: 1.22em;
         margin: 0 auto;
-        padding: 0.05em 0.03em 0.4em 0.025em;
+        padding: 0.3em 0.03em 0.15em 0.025em;
         font-size: 6em;
         position: absolute;
         top: 0;
@@ -86,20 +111,6 @@ body {
 
 .project-detail {
   display: block;
-
-  .jmbackground {
-    width: 100%;
-    background: @white;
-    border-bottom: 0.5em solid darken(@lightgrey,5%);
-    height: 16em;
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    margin: 0 auto 0 auto;
-    z-index: -1;
-  }
 
   .top-detail {
     padding: 2em 0;
@@ -162,8 +173,20 @@ body {
         width: 100%;
         display: block;
         padding: 0;
-        margin: 0 0 0.5em 0;
+        margin: 0;
         font-weight: 300;
+        .animated;
+        .fadeInUp;
+      }
+
+      h3 {
+        color: @grey;
+        margin: 0 auto;
+        display: block;
+        font-weight: 300;
+        font-size: 2.5em;
+        //margin: 0 15% 0 15%;
+        width: 90%;
         .animated;
         .fadeInUp;
       }
@@ -191,7 +214,7 @@ body {
         width: 800px;
         height: 400px;
         display: block;
-        margin: 0 auto 2em auto;
+        margin: 0 auto 0 auto;
         overflow: visible;
       }
 
@@ -202,11 +225,11 @@ body {
       a {
         font-size: 3em;
         margin:0;
-        padding: 1.5em 0.75em 0 0.75em;
+        padding: 1em 0.75em 0 0.75em;
         font-weight: 300;
         display: inline-block;
         color: @grey;
-        .opacity(0.5);
+        .opacity(0.3);
         .transition(0.3s);
 
         img {
@@ -230,7 +253,7 @@ body {
         margin: 0;
         width: 400px;
         height: 360px;
-        padding: 40px 0 0 0;
+        padding: 55px 0 0 0;
         font-weight: bold;
         background: @black;
         text-align: center;
@@ -245,6 +268,17 @@ body {
       }
     }
 
+    &.about {
+      background-color: @grey;
+
+      &::before {
+      }
+
+      &::after {
+        background-position: center;
+      }
+    }
+
     &.jauntly {
       background-color: @jauntly;
       
@@ -253,7 +287,7 @@ body {
       }
 
       &::after {
-        background-image: url('img/jauntly/w-800-square-image.jpg');
+        //background-image: url('img/jauntly/w-800-square-image.jpg');
       }
     }
 
@@ -265,7 +299,7 @@ body {
       }
 
       &::after {
-        background-image: url('img/ans/1600x800-ans-brand-book-2.jpg');
+        //background-image: url('img/ans/1600x800-ans-brand-book-2.jpg');
         background-position: center;
       }
     }
@@ -278,7 +312,7 @@ body {
       }
 
       &::after {
-        background-image: url('img/swiftkick/800x600-swiftkick.jpg');
+        //background-image: url('img/swiftkick/800x600-swiftkick.jpg');
       }
     }
     
@@ -308,7 +342,7 @@ body {
       }
 
       &::after {
-        background-image: url('img/eugixd/1600x1200-eug-ixd-02.jpg');
+        //background-image: url('img/eugixd/1600x1200-eug-ixd-02.jpg');
         background-position: center;
       }
     }
@@ -321,7 +355,46 @@ body {
       }
 
       &::after {
-        background-image: url('img/twentyideas/20i-website-v1b.jpg');
+        //background-image: url('img/twentyideas/20i-website-v1b.jpg');
+        background-position: center;
+      }
+    }
+
+    &.ampersand {
+      background-color: @ampersand;
+
+      &::before {
+        background-image: url('img/ampersand/ampersand.svg');
+      }
+
+      &::after {
+        //background-image: url('img/ampersand/ampersand_nav_menu.jpg');
+        background-position: center;
+      }
+    }
+
+    &.immersion {
+      background-color: @immersion;
+
+      &::before {
+        background-image: url('img/immersion/immersion.svg');
+      }
+
+      &::after {
+        //background-image: url('img/immersion/immersion_entertainment.png');
+        background-position: center;
+      }
+    }
+
+    &.bliphub {
+      background-color: @bliphub;
+
+      &::before {
+        background-image: url('img/bliphub/bliphub.svg');
+      }
+
+      &::after {
+        //background-image: url('img/bliphub/Explore.png');
         background-position: center;
       }
     }
@@ -356,7 +429,7 @@ body {
   }
   
   .project-pieces {
-    max-width: 1595px;
+    //max-width: 1595px;
     padding-top: 10em;
 
     .piece {
@@ -405,7 +478,14 @@ body {
           font-size: 2em;
           margin-bottom: 1em;
           color: @black;
-          font-weight: 600;
+          font-weight: 300;
+        }
+
+        a, a:visited, a:active {
+          color: @grey;
+        }
+        a:hover {
+          color: @black;
         }
       }
     }
@@ -420,7 +500,8 @@ body {
   display: -webkit-flex;
   flex-wrap: nowrap;
   justify-content: center;
-  margin: 0;
+  margin: 0 auto;
+  display: inline-block;
   padding: 0;
   .animated;
   .fadeInDown;
@@ -432,6 +513,7 @@ body {
     display: -ms-flexbox;
     display: -webkit-flex;
     flex-direction: column;
+    display: inline-block;
   }
 }
 
@@ -442,9 +524,23 @@ body {
   display: -ms-flexbox;
   display: -webkit-flex;
   flex-wrap: wrap;
+  //display: block;
   justify-content: center;
-  padding: 5em 0;
+  padding: 2em 0;
+  margin-top: 60px;
   overflow: hidden;
+  background: @white;
+  border-top: 1px solid lighten(@grey,20%);
+
+  .my-work {
+    width: 90%;
+    padding: 1em 5%;
+    margin: 0;
+    font-size: 48px;
+    font-weight: 300;
+    color: @grey;
+    text-align: center;
+  }
 
   .project {
     display: flex;
@@ -453,9 +549,11 @@ body {
     display: -ms-flexbox;
     display: -webkit-flex;
     flex-direction: column;
+    display: inline-block;
     color: @white;
-    padding: 2em 15em;
-    margin: 1%;
+    //padding: 2em 15em;
+    padding: 6em 20em;
+    margin: 1em;
     text-decoration: none;
     text-align: center;
     overflow: hidden;
@@ -496,7 +594,7 @@ body {
       }
     }
 
-    &.jauntly, &.ans, &.swiftkick, &.treadhub, &.eugixd, &.twentyideas {
+    &.about, &.jauntly, &.ans, &.swiftkick, &.treadhub, &.eugixd, &.twentyideas, &.ampersand, &.immersion, &.bliphub {
       position: relative;
 
       &::after {
@@ -525,6 +623,17 @@ body {
           .opacity(1);
         }
       }
+    }
+  }
+
+  .about {
+    
+    &::after {
+      background-image: url('img/selleck404.jpg');
+    }
+
+    &:hover, &.hover {
+      background-color: @black;
     }
   }
 
@@ -593,6 +702,39 @@ body {
       background-color: @twentyideas_blue;
     }
   }
+
+  .ampersand {
+    
+    &::after {
+      background-image: url('img/ampersand/ampersand.svg');
+    }
+
+    &:hover, &.hover {
+      background-color: @ampersand;
+    }
+  }
+
+  .immersion {
+    
+    &::after {
+      background-image: url('img/immersion/immersion.svg');
+    }
+
+    &:hover, &.hover {
+      background-color: @immersion;
+    }
+  }
+
+  .bliphub {
+    
+    &::after {
+      background-image: url('img/bliphub/bliphub.svg');
+    }
+
+    &:hover, &.hover {
+      background-color: @bliphub;
+    }
+  }
 }
 
 .sidenav {
@@ -610,6 +752,7 @@ body {
     font-size: 6em;
     color: @grey;
     text-decoration: none;
+    opacity: 0.2;
     .transition(0.1s);
 
     img {
@@ -662,6 +805,7 @@ body {
 @import "320less.less";
 @import "320.less";
 @import "480.less";
+
 //@import "600.less";
 @import "768.less";
 @import "992.less";
