@@ -386,6 +386,19 @@ body {
       }
     }
 
+    &.chefstable {
+      background-color: @chefstable;
+
+      &::before {
+        background-image: url('img/chefstable/chefstable.svg');
+      }
+
+      &::after {
+        //background-image: url('img/chefstable/Dashboard.png');
+        background-position: center;
+      }
+    }
+
     &.bliphub {
       background-color: @bliphub;
 
@@ -594,7 +607,7 @@ body {
       }
     }
 
-    &.about, &.jauntly, &.ans, &.swiftkick, &.treadhub, &.eugixd, &.twentyideas, &.ampersand, &.immersion, &.bliphub {
+    &.about, &.jauntly, &.ans, &.swiftkick, &.treadhub, &.eugixd, &.twentyideas, &.ampersand, &.immersion, &.chefstable, &.bliphub {
       position: relative;
 
       &::after {
@@ -722,6 +735,17 @@ body {
 
     &:hover, &.hover {
       background-color: @immersion;
+    }
+  }
+
+  .chefstable {
+    
+    &::after {
+      background-image: url('img/chefstable/chefstable.svg');
+    }
+
+    &:hover, &.hover {
+      background-color: @chefstable;
     }
   }
 
