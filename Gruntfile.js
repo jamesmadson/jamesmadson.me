@@ -688,5 +688,27 @@ module.exports = function ( grunt ) {
         });
       }
     });
+    grunt.file.copy('src/resume.html', this.data.dir + '/resume.html', { 
+      process: function ( contents, path ) {
+        return grunt.template.process( contents, {
+          data: {
+            scripts: jsFiles,
+            styles: cssFiles,
+            version: grunt.config( 'pkg.version' )
+          }
+        });
+      }
+    });
+    grunt.file.copy('src/contact.html', this.data.dir + '/contact.html', { 
+      process: function ( contents, path ) {
+        return grunt.template.process( contents, {
+          data: {
+            scripts: jsFiles,
+            styles: cssFiles,
+            version: grunt.config( 'pkg.version' )
+          }
+        });
+      }
+    });
   });
 };

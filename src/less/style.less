@@ -7,6 +7,11 @@
 @import "typography.less";
 @import "animate-mixins.less";
 
+// Typekit Loading - Hide fonts using Proxima Nova until loaded to prevent FOUT. (Font FLash)
+.wf-loading h1, .wf-loading h2, .wf-loading h3, .wf-loading p, .wf-loading a, .wf-loading blockquote, .wf-loading .jmlogo {
+    visibility: hidden;
+}
+
 ::selection {
   background: @grey; /* WebKit/Blink Browsers */
   color: @white;
@@ -185,10 +190,17 @@ body {
         display: block;
         font-weight: 300;
         font-size: 2.5em;
-        //margin: 0 15% 0 15%;
         width: 90%;
         .animated;
         .fadeInUp;
+
+        a {
+          color: @black;
+          font-size: 1em !important;
+          padding: 0;
+          font-weight: bold;
+          text-decoration: none;
+        }
       }
 
       img {
@@ -448,7 +460,7 @@ body {
     .piece {
       width: 800px;
       margin: 0.5em auto 2em auto;
-      border: 1px solid darken(@lightgrey, 10%);
+      //border: 1px solid darken(@lightgrey, 10%);
       .transition(0.3s);
 
       &:after {
@@ -642,7 +654,7 @@ body {
   .about {
     
     &::after {
-      background-image: url('img/selleck404.jpg');
+      background-image: url('img/james-pyrenees-traverse.jpg');
     }
 
     &:hover, &.hover {
@@ -807,6 +819,7 @@ body {
   }
 }
 
+//Pace.js Styles
 .pace .pace-progress {
   background: @black;
   position: fixed;
@@ -824,6 +837,15 @@ body {
 .pace-inactive {
   display: none;
 }
+
+// Mailto.Ninja Customize
+//.override .mailto.ninja footer nav.toolbar { background-color: @black; }
+//.override .mailto.ninja footer nav.toolbar ul li a.logo { display: none; }
+//.override .mailto.ninja footer nav.toolbar ul li button#send { background: @white; color: @black; }
+//.override .mailto.ninja footer nav.toolbar ul li button#send:hover { background: @grey; color: @black; }
+//.override .mailto.ninja fieldset label { font-size: 10px; font-family: @base_font_family; }
+//.override .mailto.ninja fieldset p { font-family: @base_font_family; }
+//.override .mailto.ninja textarea { font-family: @base_font_family; }
 
 // Media Queries
 @import "320less.less";
