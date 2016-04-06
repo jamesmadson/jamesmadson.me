@@ -7,11 +7,6 @@
 @import "typography.less";
 @import "animate-mixins.less";
 
-// Typekit Loading - Hide fonts using Proxima Nova until loaded to prevent FOUT. (Font FLash)
-.wf-loading h1, .wf-loading h2, .wf-loading h3, .wf-loading p, .wf-loading a, .wf-loading blockquote, .wf-loading .jmlogo {
-    visibility: hidden;
-}
-
 ::selection {
   background: @grey; /* WebKit/Blink Browsers */
   color: @white;
@@ -29,9 +24,15 @@ button, input, textarea {
 }
 
 body {
-	background-color: @lightgrey;
+	background-color: @beige;
   padding: 0 0 5% 0;
   -webkit-font-smoothing: antialiased;
+}
+
+header {
+  background-color: @white;
+  color: @black;
+  border-bottom: 0.25em solid @black;
 }
 
 .headroom--unpinned {
@@ -104,7 +105,7 @@ body {
         font-weight: bold;
         text-align: center;
         z-index: 102;
-        -webkit-user-select: none; /* Chrome/Safari */        
+        -webkit-user-select: none; /* Chrome/Safari */
         -moz-user-select: none; /* Firefox */
         -ms-user-select: none; /* IE10+ */
         -o-user-select: none;
@@ -212,7 +213,7 @@ body {
         .animated;
         .fadeInRight;
       }
-      
+
       .left, .right {
         width: 100%;
         display: block;
@@ -233,7 +234,7 @@ body {
       .right {
         width: 100%;
       }
-      
+
       a {
         font-size: 3em;
         margin:0;
@@ -269,7 +270,7 @@ body {
         font-weight: bold;
         background: @black;
         text-align: center;
-        -webkit-user-select: none; /* Chrome/Safari */        
+        -webkit-user-select: none; /* Chrome/Safari */
         -moz-user-select: none; /* Firefox */
         -ms-user-select: none; /* IE10+ */
         -o-user-select: none;
@@ -293,7 +294,7 @@ body {
 
     &.jauntly {
       background-color: @jauntly;
-      
+
       &::before {
         background-image: url('img/jauntly/jauntly.svg');
       }
@@ -315,7 +316,7 @@ body {
         background-position: center;
       }
     }
-    
+
     &.swiftkick {
       background-color: @swiftkick;
 
@@ -327,7 +328,7 @@ body {
         //background-image: url('img/swiftkick/800x600-swiftkick.jpg');
       }
     }
-    
+
     &.treadhub {
       background-color: @treadhub;
 
@@ -343,7 +344,7 @@ body {
         filter: blur(0px);
       }
     }
-    
+
     &.eugixd {
       background-color: @eugixd;
 
@@ -452,7 +453,7 @@ body {
       }
     }
   }
-  
+
   .project-pieces {
     //max-width: 1595px;
     padding-top: 10em;
@@ -468,7 +469,7 @@ body {
         display: block;
         clear: both;
       }
-      
+
       &:hover {
         .text {
           margin: 0 2.5% 0 2.5%;
@@ -554,8 +555,8 @@ body {
   padding: 2em 0;
   margin-top: 60px;
   overflow: hidden;
-  background: @white;
-  border-top: 1px solid lighten(@grey,20%);
+  //background: @white;
+  //border-top: 1px solid lighten(@grey,20%);
 
   .my-work {
     width: 90%;
@@ -576,13 +577,13 @@ body {
     flex-direction: column;
     display: inline-block;
     color: @white;
-    //padding: 2em 15em;
     padding: 6em 20em;
     margin: 1em;
     text-decoration: none;
     text-align: center;
     overflow: hidden;
     background: @grey;
+    border-radius: 0 1em 1em 0;
     .animated;
     .fadeInUp;
     .transition(0.3s);
@@ -652,7 +653,7 @@ body {
   }
 
   .about {
-    
+
     &::after {
       background-image: url('img/james-pyrenees-traverse.jpg');
     }
@@ -663,7 +664,7 @@ body {
   }
 
   .jauntly {
-    
+
     &::after {
       background-image: url('img/jauntly/jauntly.svg');
     }
@@ -674,9 +675,9 @@ body {
   }
 
   .ans {
-    
+
     &::after {
-      background-image: url('img/ans/ans.svg') ; 
+      background-image: url('img/ans/ans.svg') ;
     }
 
     &:hover, &.hover {
@@ -685,29 +686,29 @@ body {
   }
 
   .eugixd {
-    
+
     &::after {
-      background-image: url('img/eugixd/eugixd.svg') ;  
+      background-image: url('img/eugixd/eugixd.svg') ;
     }
 
     &:hover, &.hover {
       background-color: @eugixd;
     }
   }
-  
+
   .treadhub {
-    
+
     &::after {
-      background-image: url('img/treadhub/treadhub.svg') ; 
+      background-image: url('img/treadhub/treadhub.svg') ;
     }
 
     &:hover, &.hover {
       background-color: @treadhub;
     }
   }
-  
+
   .swiftkick {
-    
+
     &::after {
       background-image: url('img/swiftkick/swiftkick.svg') ;
     }
@@ -718,7 +719,7 @@ body {
   }
 
   .twentyideas {
-    
+
     &::after {
       background-image: url('img/twentyideas/twentyideas.svg') ;
     }
@@ -729,7 +730,7 @@ body {
   }
 
   .ampersand {
-    
+
     &::after {
       background-image: url('img/ampersand/ampersand.svg');
     }
@@ -740,7 +741,7 @@ body {
   }
 
   .immersion {
-    
+
     &::after {
       background-image: url('img/immersion/immersion.svg');
     }
@@ -751,7 +752,7 @@ body {
   }
 
   .chefstable {
-    
+
     &::after {
       background-image: url('img/chefstable/chefstable.svg');
     }
@@ -762,7 +763,7 @@ body {
   }
 
   .bliphub {
-    
+
     &::after {
       background-image: url('img/bliphub/bliphub.svg');
     }
@@ -779,7 +780,7 @@ body {
   display: block;
   z-index: 2023;
   height: auto;
-    
+
   a {
     position: fixed;
     top: 30%;
