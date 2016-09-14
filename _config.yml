@@ -1,0 +1,23 @@
+title: jm
+email: james@jamesmadson.me
+description: I’m James Madson, an independent designer living in Flagstaff, Arizona. I help lifestyle organizations create purposeful digital products.
+
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://jamesmadson.me" # the base hostname & protocol for your site
+
+social:
+  twitter_username: jamesmadson
+  github_username:  jamesmadson
+  dribbble_username:  jamesmadson
+  instagram_username: jamesmadson
+
+sass:
+    sass_dir: assets/css/
+    style: compressed
+
+# Google services
+google_analytics: UA—5440985-16
+
+# Build settings
+markdown: kramdown
+# theme: minima

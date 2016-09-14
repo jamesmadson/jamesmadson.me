@@ -1,0 +1,26 @@
+body {
+  background-color: $white;
+  color: $black;
+  font-family: $base-font-family;
+  @include background-grid($color: rgba(0,0,0,0.25));
+}
+
+.logo {
+  font-size: 5em;
+  text-align: center;
+  vertical-align: middle;
+  color: $white;
+  background: $black;
+  height: 2em;
+  overflow: hidden;
+  @include grid-span(3, 1);
+  float: none;
+}
+
+.full-width {
+  @include grid-span(3, 1);
+}
+
+ul {
+  list-style: none;
+}
