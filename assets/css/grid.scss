@@ -1,18 +1,21 @@
 @import "../../bower_components/singularity/stylesheets/_singularitygs";
 
-//* {
-//  @include box-sizing('border-box');
+//html {
+//  box-sizing: border-box;
 //}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
 
 // Singularity 1.2+ Syntax
-@include add-grid(3);
-@include add-grid(6 at 500px);
-@include add-grid(12 at 700px);
-@include add-grid(4 4 4 at 900px);
-@include add-grid(5 5 5 5 5 at 1100px);
+@include add-grid(6);
+@include add-grid(.5 5 .5 at 300px);
+@include add-grid(1 1 1 1 1 1 at 700px);
+//@include add-grid(1 1 1 1 1 at 900px);
+//@include add-grid(1 1 1 1 1 at 1100px);
 
-@include add-gutter(1/3);
-@include add-gutter(.25 at 900px);
+@include add-gutter(1/5);
+@include add-gutter(.25 at 700px);
 
 // Singularity 1.2+ Syntax
 @include add-gutter-style('split');

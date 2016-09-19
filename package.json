@@ -1,0 +1,22 @@
+{
+  "name": "jamesmadson.me",
+  "version": "1.0.0",
+  "description": "jamesmadson.me",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamesmadson/jamesmadson.me.git"
+  },
+  "author": "James Madson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamesmadson/jamesmadson.me/issues"
+  },
+  "homepage": "https://github.com/jamesmadson/jamesmadson.me#readme",
+  "dependencies": {
+    "@frctl/fractal": "^1.0.8"
+  }
+}

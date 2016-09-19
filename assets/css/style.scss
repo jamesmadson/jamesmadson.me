@@ -5,18 +5,10 @@
 @import "../../bower_components/susy/sass/_susy";
 @import "../../bower_components/breakpoint-sass/stylesheets/_breakpoint";
 
-// Susy
-//$susy: (
-//  columns: 12,
-//  container: 1200px,
-//  gutters: 1/4,
-//  global-box-sizing: border-box,
-//  debug: (image: show)
-//);
-
 // Our variables
-$base-font-family: "adelle-sans", Helvetica, Arial, sans-serif;
-$base-font-size:   16px;
+$base-font-family: "sofia-pro", Helvetica, Arial, sans-serif;
+$sub-base-font-family: "grad", Times, Georgia, serif;
+$base-font-size:   1em;
 $base-font-weight: 400;
 $small-font-size:  $base-font-size * 0.875;
 $base-line-height: 1.5;
@@ -31,7 +23,7 @@ $brand-color:      #2a7ae2;
 
 $white:            #FFFFFF;
 $black:            #252525;
-$grey:             #AEB1A0;
+$grey:             #E9E9E9;
 $grey-light:       #E8E8E8;
 $grey-dark:        darken($grey, 25%);
 $dark-tan:         #A6A69E;
@@ -39,6 +31,7 @@ $red:              #EF5124;
 $yellow:           #FDB813;
 $baby_blue:        #AED7E9;
 $green:            #27B87B;
+$gold:             #9C8341;
 
 $grey-color:       #828282;
 $grey-color-light: lighten($grey-color, 40%);
@@ -46,3 +39,4 @@ $grey-color-dark:  darken($grey-color, 25%);
 
 @import "grid";
 @import "jm";
+@import "print"
