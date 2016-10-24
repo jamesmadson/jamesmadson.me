@@ -29,11 +29,11 @@
   </head>
   <body>
     <nav class="sidenav">
-      <a href="/" class="previous" rel="prev">
-        <img src="assets/svg/arrow.svg" alt="Previous">
+      <a href="/mindset" class="previous" rel="prev">
+        <img src="assets/svg/arrow.svg" alt="Mindset">
       </a>
       <a href="/chefstable" class="next" rel="next">
-        <img src="assets/svg/arrow.svg" alt="Next">
+        <img src="assets/svg/arrow.svg" alt="Chefstable">
       </a>
     </nav>
     <header class="headroom">
@@ -50,42 +50,55 @@
       </div>
       <div class="project-pieces">
         <div class="piece textquote">
-          <p><strong>Role in project:</strong><br />
-          Visual Design</p>
+          <p class="lead-desc">A website design for the UK's premier typography conference presented by <a href="http://www.clearleft.com" target="_blank">Clearleft</a>.</p>
+          <p class="role"><strong>Client:</strong><br />
+          Clearleft<br />
+          <strong>Role:</strong><br />
+          Visual Design</br />
+          <strong>Scope:</strong><br />
+          Website<br />
+          <strong>Featured:</strong><br />
+          <a href="https://www.typewolf.com/site-of-the-day/ampersand-2015" target="_blank">Typewolf.com</a>
+          <br /><br />
+          </p>
           <br />
-          <hr />
           <br />
-          <!--<p>This project allowed me to explore more about web typography (obviously) but also animating SVGs, responsive layout techniques all while trying to maintain a cohesive identity.</p><br /><br />-->
-          <p><a href="http://2015.ampersandconf.com/">2015.ampersandconf.com</a></p><br /><br />
-          <p>Featured as site of the day on <a href="https://www.typewolf.com/site-of-the-day/ampersand-2015">Typewolf.com</a></p>
-        </div>
-        <div class="piece">
+          <p>I had the amazing opportunity to intern with Clearleft, one of the top web design agencies in the world, at their agency in Brighton, England.</p>
+
+          <p>One of my main projects while there was to design a unique, responsive, typography-focused website for Clearleft's annual <a href="http://2015.ampersandconf.com/" target="_blank">Ampersand</a> Conference. Visitors to the site needed to know the conference speakers, schedule, workshops, locations and sponsors.</p>
+
+          <div class="mobile-scroll">
+            <img src="assets/img/ampersand/ampersand-mobile.jpg" srcset="" desc="" alt="Ampersand Mobile">
+          </div>
+
+          <p>At first, I felt as though I was fumbling through the project with the ever gracious and type-savvy <a href="http://clagnut.com/" target="_blank">Richard Rutter</a> overseeing my work. I made mistakes from the get go, being over ambitious and jumping straight into mockups without sketching first.</p>
+
+          <p>Not all was lost however, and with new content and information coming into the project each week, I revised and adapted designs multiple times while learning a ton about grid layouts, content/mobile first and the beauty and subtly that is typography with the <a href="http://thequestaproject.com/" target="_blank">Questa font family</a> at the center.</p>
+
           <img src="assets/img/ampersand/ampersand_home.png" srcset="" desc="" alt="">
-        </div>
-        <div class="piece">
+
           <img src="assets/img/ampersand/ampersand_schedule.png" srcset="" desc="" alt="">
-        </div>
-        <div class="piece">
-          <img src="assets/img/ampersand/ampersand_sponsors.png" srcset="" desc="" alt="">
-        </div>
-        <div class="piece">
+
           <img src="assets/img/ampersand/ampersand_location.png" srcset="" desc="" alt="">
-        </div>
-        <div class="piece">
-          <img src="assets/img/ampersand/ampersand_workshops.png" srcset="" desc="" alt="">
-        </div>
       </div><!-- .project-pieces -->
     </div><!-- .project-detail -->
     <!-- Typekit -->
-    <script src="//use.typekit.net/jvt0vxy.js"></script>
-    <script>try{Typekit.load();}catch(e){}</script>
+    <script src="https://use.typekit.net/eel2ffw.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
 
     <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+    <script>window.jQuery || document.write('<script src="bower_components/jquery/dist/jquery.min.js"><\/script>')</script>
+    <script src="bower_components/PACE/pace.min.js"></script>
 
-    <script src="bower_components/headroom.js/dist/headroom.js"></script>
-    <script src="bower_components/pace/pace.min.js"></script>
-    <script src="bower_components/scrollReveal.js/scrollReveal.js"></script>
+    <script src="bower_components/headroom.js/dist/headroom.min.js"></script>
+    <script src="bower_components/scrollreveal/dist/scrollreveal.min.js"></script>
+
+    <script>
+      // JavaScript
+      window.sr = ScrollReveal();
+      sr.reveal('.piece img', { delay: 200, duration: 1200 });
+      sr.reveal('.piece p', { delay: 200, duration: 1200 });
+    </script>
 
     <script>
       var myElement = document.querySelector("header");
@@ -96,11 +109,6 @@
       });
       // initialise
       headroom.init();
-    </script>
-    
-    <script>
-      // Scroll Reveal
-      window.scrollReveal = new scrollReveal();
     </script>
 
     <script>

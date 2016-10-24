@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>James Madson | User Interface & Experience Designer</title>
+    <title>James Madson | Interactive Designer</title>
     <meta name="description" content="James Madson is a web designer travelling the world.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -23,107 +23,68 @@
     <link rel="icon" type="image/png" href="assets/img/favicon-32x32.png" sizes="32x32">
     <meta name="application-name" content="James Madson">
 
+    <!-- Typekit -->
+    <script src="https://use.typekit.net/eel2ffw.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+
     <% styles.forEach( function ( file ) { %>
     <link rel="stylesheet" type="text/css" href="<%= file %>" />
-    <% }); %>    
+    <% }); %>
   </head>
 
   <body>
+    <nav class="main-nav">
+     <a href="about">About</a>
+     <!--<a href="contact">Contact</a>
+     <a href="resume">Resume</a>-->
+   </nav>
     <div class="project-detail">
       <div class="top-detail aboutjames vcard">
-        <div class="left">
-          <div class="jmlogo">jm</div>
-          <img src="assets/img/jamesmadson.jpg" alt="jm" description="James Madson" class="photo fn" />
-        </div><!-- .left -->
-
         <div class="right">
-          <h1 class="p-note">Hi, my name is <span class="nickname">James Madson</span>.</h1>
-          <h3 class="p-note">I design user interfaces and experiences.</h3>
-          <ul class="social-list">
-            <li class="social-list-item">
-              <a href="https://www.twitter.com/jamesmadson" class="url" rel="me" target="_blank" title="Twitter">
-                <img src="assets/svg/twitter.svg" alt="Twitter">
-              </a>
-            </li>
-            <li class="social-list-item">
-              <a href="https://dribbble.com/jamesmadson" class="url" rel="me" target="_blank" title="Dribbble">
-                <img src="assets/svg/dribbble.svg" alt="Dribbble">
-              </a>
-            </li>
-            <li class="social-list-item">
-              <a href="https://www.github.com/jamesmadson" class="url" rel="me" target="_blank" title="Github">
-                <img src="assets/svg/github.svg" alt="Github">
-              </a>
-            </li>
-            <li class="social-list-item">
-              <a href="https://instagram.com/jamesmadson/" class="url" rel="me" target="_blank" title="Instagram">
-                <img src="assets/svg/instagram.svg" alt="Instagram">
-              </a>
-            </li>
-            <li class="social-list-item">
-              <a href="mailto:james@jamesmadson.me" class="url" target="_blank" title="Email">
-                <img src="assets/svg/email.svg" alt="Email">
-              </a>
-            </li>
-          </ul><!-- .social-list -->
-        </div><!-- .right -->
-
-      </div><!-- .top-detail .aboutjames -->
-    </div><!-- .project-detail -->
-    
+          <h1 class="p-note"><span class="nickname">James<br /> Madson</span></h1>
+          <h3 class="p-note">Digital Designer</h3>
+      </div>
+    </div>
     <div class="projects">
-      <h2 class="my-work">Projects</h2>
+      <h2 class="my-work">Featured Work</h2>
+      <a href="hokaoneone" class="hoka project" title="Hoka One One">
+        <div class="project-name">Hoka One One</div>
+      </a>
+      <a href="mindset" class="mindset project" title="Mindset">
+        <div class="project-name">Mindset</div>
+      </a>
       <a href="ampersand" class="ampersand project" title="Ampersand Conference 2015">
         <div class="project-name">Ampersand Conference 2015</div>
       </a>
-
       <a href="chefstable" class="chefstable project" title="Chefs Table">
         <div class="project-name">Chefs Table</div>
       </a>
-
-      <a href="bliphub" class="bliphub project" title="Bliphub">
-        <div class="project-name">Bliphub</div>
+      <a href="treadhub" class="treadhub project" title="Treadhub">
+        <div class="project-name">Treadhub</div>
       </a>
-
-      <a href="jauntly" class="jauntly project" title="Jauntly">
+      <!--<a href="jauntly" class="jauntly project" title="Jauntly">
         <div class="project-name">Jauntly</div>
       </a>
 
       <a href="ans" class="ans project" title="Analytic Spot">
         <div class="project-name">Analytic Spot</div>
       </a>
-
-      <a href="treadhub" class="treadhub project" title="Treadhub">
-        <div class="project-name">Treadhub</div>
-      </a>
-
-      <!--<a href="immersion" class="immersion project" title="Immersion">
-        <div class="project-name">Immersion</div>
-      </a>-->
-
-      <!--<a href="swiftkick" class="swiftkick project" title="Swiftkick">
-        <div class="project-name">Swiftkick</div>
-      </a>-->
-
-      <!--<a href="eugixd" class="eugixd project" title="Eugene IxD">
-        <div class="project-name">Eugene IxD</div>
-      </a>-->
-
-      <!--<a href="twentyideas" class="twentyideas project"  title="Twenty Ideas">
-        <div class="project-name">Twenty Ideas</div>
-      </a>-->
     </div><!-- .projects -->
-    <div class="footer">
-     <a href="about.html">About</a> |
-     <a href="resume.html">Resume</a>
-    </div>
-    <!-- Typekit -->
-    <script src="//use.typekit.net/jvt0vxy.js"></script>
-    <script>try{Typekit.load();}catch(e){}</script>
 
     <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="bower_components/dist/jquery.min.js"><\/script>')</script>
-    <script src="bower_components/pace/pace.min.js"></script>
+    <script>window.jQuery || document.write('<script src="bower_components/jquery/dist/jquery.min.js"><\/script>')</script>
+    <script src="bower_components/PACE/pace.min.js"></script>
+    <script src="bower_components/scrollreveal/dist/scrollreveal.min.js"></script>
+
+    <script>
+      // JavaScript
+      window.sr = ScrollReveal();
+      sr.reveal('.project', { delay: 800, duration: 2000 }, 50);
+      sr.reveal('.my-work', { delay: 800, duration: 2000 });
+      sr.reveal('h1', { delay: 400, duration: 2000 });
+      sr.reveal('h3', { delay: 800, duration: 2000 });
+      sr.reveal('.main-nav', { delay: 1000, duration: 2000, origin: 'top' });
+    </script>
 
     <script>
         (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=

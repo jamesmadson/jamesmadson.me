@@ -4,7 +4,7 @@
 		font-size: 50%;
 		padding: 0;
 	}
-	
+
 	.headroom {
 		.jm-nav {
 			a {
@@ -12,11 +12,68 @@
 					font-size: 8.15em;
 				}
 			}
+
+			h1 {
+				font-size: 3em;
+				top: 1.5em;
+				left: 5.5em;
+			}
+		}
+	}
+
+	.jm-nav {
+	  height: 13.9em;
+	}
+
+	.contact-btn {
+		width: 100% !important;
+	}
+
+	.social-list {
+		margin-bottom: 5em;
+
+		li {
+			margin-bottom: 1em;
+		}
+	}
+
+	.main-nav {
+		text-align: center;
+		background: @darkgrey;
+		margin: 0;
+		bottom: 0;
+		padding: 1em 5% 3em;
+
+		a {
+			font-size: 2em;
+			letter-spacing: 0.2em;
+			color: @white;
+
+			&:hover {
+				color: @lightgrey;
+			}
+		}
+	}
+
+	.project {
+		&.hoka {
+			background-color: @hoka;
+		}
+		&.ampersand {
+			background-color: @ampersand;
+		}
+		&.mindset {
+			background-color: @mindset;
+		}
+		&.chefstable {
+			background-color: @chefstable;
+		}
+		&.treadhub {
+			background-color: @treadhub;
 		}
 	}
 
 	.project-detail {
-		
 		display: block;
 		overflow: hidden;
 		height: auto;
@@ -28,7 +85,6 @@
 			width: 100%;
 
 			&::before {
-				//width: 100%;
 				height: 50%;
 				left: 5em;
 				top: 3em;
@@ -55,14 +111,17 @@
 			}
 
 			&.aboutjames {
-				padding: 0 2.5%;
+				padding: 1em 2.5% 4em;
 				width: 95%;
 				margin: 0;
 				display: block;
-				overflow: hidden;
 				height: auto;
 
-				.left, .right {
+				.left {
+					display: none;
+				}
+
+				.right {
 					display: block;
 					width: 100%;
 					padding: 0;
@@ -99,29 +158,37 @@
 				}
 
 				a {
-					padding: 1em 0.1em 0 0.25em;
+					padding: 0.25em 0.15em 0.25em 0.15em;
 					text-align: center;
 					font-size: 5em;
+
+					img {
+						height: 30px;
+				    width: 40px;
+					}
 				}
 
 				h1 {
 					text-align: center;
-					font-size: 4em;
+					font-size: 7em;
 					width: 70%;
-					margin: 1em 15% 0 15%;
+					margin: 0.5em 15% 0.25em 15%;
 					display: block;
 					overflow: hidden;
 					padding: 0;
 				}
 
 				h3 {
-					font-size: 2.75em;
+					font-size: 1.75em;
+					line-height: 2em;
+					font-weight: 700;
+					letter-spacing: 0.2em;
 				}
 			}
 		}
 
 		.project-pieces {
-			padding-top: 15em;
+			padding-top: 12em;
 
 			.piece {
 				width: 85%;
@@ -129,11 +196,37 @@
 				&.textquote {
 					width: 75%;
 					padding: 5%;
-					
+
+					.mobile-scroll {
+						//white-space: nowrap;
+						overflow-y: hidden;
+						overflow-x: scroll;
+						-webkit-overflow-scrolling: touch;
+
+						img {
+							height: 375px;
+							width: 595px;
+							padding: 0 5em 0 0;
+							display:inline-block;
+					    *display:inline;/* For IE7*/
+					    *zoom:1;/* For IE7*/
+					    vertical-align:top;
+							opacity: 1 !important;
+							margin: 0em 0 5em 0;
+						}
+					}
+
 					p {
 						font-size: 2.5em;
-						margin: 0;
-						//font-weight: 600;
+						margin: 0 0 1em 0;
+					}
+
+					.lead-desc {
+						padding-bottom: 1em !important;
+					}
+
+					.role {
+						font-size: 2em !important;
 					}
 				}
 			}
@@ -145,8 +238,8 @@
 		.project {
 			width: 90%;
 			height: 200px;
-			margin: 2em 5%;
-			padding: 6em 0;
+			margin: 1em 5%;
+			padding: 4em 0;
 			background-size: 50% 50%;
 
 			&.eugixd {
@@ -165,14 +258,18 @@
 		a {
 			font-size: 4em;
 
+			img {
+				height: 1em;
+			}
+
 			&.previous {
 	      left: 0;
-	      padding: 1em 0em 1em 0;
+	      padding: 1em 0.2em 1em 0;
 	    }
 
 	    &.next {
 	      right: 0;
-	      padding: 1em 0 1em 1em;
+	      padding: 0.6em 0.2em 1em 1em;
 	    }
 	  }
 	}

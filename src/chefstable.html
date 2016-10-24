@@ -30,10 +30,10 @@
   <body>
     <nav class="sidenav">
       <a href="/ampersand" class="previous" rel="prev">
-        <img src="assets/svg/arrow.svg" alt="Previous">
+        <img src="assets/svg/arrow.svg" alt="Ampersand Conference 2015">
       </a>
-      <a href="/bliphub" class="next" rel="next">
-        <img src="assets/svg/arrow.svg" alt="Next">
+      <a href="/treadhub" class="next" rel="next">
+        <img src="assets/svg/arrow.svg" alt="Treadhub">
       </a>
     </nav>
     <header class="headroom">
@@ -41,7 +41,7 @@
         <a href="/">
           <div class="jm-secondary-logo">jm</div>
         </a>
-        <h1>Chefs Table</h1>
+        <h1>Chef's Table</h1>
       </nav>
     </header>
 
@@ -50,28 +50,42 @@
       </div>
       <div class="project-pieces">
         <div class="piece textquote">
-          <p><strong>Role in project:</strong><br />
-          UI/UX Design
-          </p><br /><br />
-        </div><!-- .piece .textquote -->
-        <div class="piece">
-          <img src="assets/img/chefstable/chefstable-1.png" srcset="" desc="" alt="">
-        </div>
-        <div class="piece">
-          <img src="assets/img/chefstable/chefstable-2.png" srcset="" desc="" alt="">
+          <p class="lead-desc">A restaurant loyalty rewards app for an exclusive community of restaurants in Portland, Oregon.</p>
+          <p class="role"><strong>Client:</strong><br />
+          BLVD<br />
+          <strong>Role:</strong><br />
+          User Experience, User Interface, Prototype<br />
+          <strong>Scope:</strong><br />
+          iOS / Android App
+          <br /><br />
+          </p>
+          <br />
+          <br />
+          <p>With a tight timeline, I worked closely with the folks at BLVD to execute a visual design system that would compliment their existing UX work. This captivating experience was fun to work on with the BLVD developers and even more exciting to see it launch and improve customers' experiences.
+          </p>
+          <div class="mobile-scroll">
+            <img src="assets/img/chefstable/chefstable-mobile.jpg" srcset="" desc="" alt="Chefstable Mobile">
+          </div>
         </div>
       </div><!-- .project-pieces -->
     </div><!-- .project-detail -->
     <!-- Typekit -->
-    <script src="//use.typekit.net/jvt0vxy.js"></script>
-    <script>try{Typekit.load();}catch(e){}</script>
+    <script src="https://use.typekit.net/eel2ffw.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
 
     <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+    <script>window.jQuery || document.write('<script src="bower_components/jquery/dist/jquery.min.js"><\/script>')</script>
+    <script src="bower_components/PACE/pace.min.js"></script>
 
-    <script src="bower_components/headroom.js/dist/headroom.js"></script>
-    <script src="bower_components/pace/pace.min.js"></script>
-    <script src="bower_components/scrollReveal.js/scrollReveal.js"></script>
+    <script src="bower_components/headroom.js/dist/headroom.min.js"></script>
+    <script src="bower_components/scrollreveal/dist/scrollreveal.min.js"></script>
+
+    <script>
+      // JavaScript
+      window.sr = ScrollReveal();
+      sr.reveal('.piece img', { delay: 200, duration: 1200 });
+      sr.reveal('.piece p', { delay: 200, duration: 1200 });
+    </script>
 
     <script>
       var myElement = document.querySelector("header");
@@ -82,11 +96,6 @@
       });
       // initialise
       headroom.init();
-    </script>
-    
-    <script>
-      // Scroll Reveal
-      window.scrollReveal = new scrollReveal();
     </script>
 
     <script>

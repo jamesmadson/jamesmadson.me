@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>James Madson | Hoka One One</title>
+    <meta name="description" content="James Madson is a web designer travelling the world.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/img/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/img/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/img/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/img/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/img/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/img/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon-180x180.png">
+    <meta name="apple-mobile-web-app-title" content="James Madson">
+    <link rel="icon" type="image/png" href="assets/img/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="assets/img/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="assets/img/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="assets/img/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="assets/img/favicon-32x32.png" sizes="32x32">
+    <meta name="application-name" content="James Madson">
+
+    <% styles.forEach( function ( file ) { %>
+    <link rel="stylesheet" type="text/css" href="<%= file %>" />
+    <% }); %>
+  </head>
+  <body>
+    <nav class="sidenav">
+      <a href="/" class="previous" rel="prev">
+        <img src="assets/svg/arrow.svg" alt="Home">
+      </a>
+      <a href="/mindset" class="next" rel="next">
+        <img src="assets/svg/arrow.svg" alt="Mindset">
+      </a>
+    </nav>
+    <header class="headroom">
+      <nav class="jm-nav">
+        <a href="/">
+          <div class="jm-secondary-logo">jm</div>
+        </a>
+        <h1>Hoka One One</h1>
+      </nav>
+    </header>
+
+    <div class="project-detail">
+      <div class="top-detail hoka">
+      </div>
+      <div class="project-pieces">
+        <div class="piece textquote">
+          <p class="lead-desc">A responsive e-commerce experience for a revolutionary athletic shoe brand.</p>
+          <p class="role"><strong>Client:</strong><br />
+          Hoka One One / Deckers Brands<br />
+          <strong>Role:</strong><br />
+          User Experience Consulting, User Interface, Prototype</br />
+          <strong>Scope:</strong><br />
+          E-commerce Product Pages
+          <br />
+          <br />
+          </p>
+          <br />
+          <br />
+          <p class=""><a href="http://www.hokaoneone.com/" target="_blank">Hoka One One</a> is an athletic shoe brand known for unique design and advanced technology. I got to work with the new UX team at Deckers as they embarked on their first design sprint.</p>
+
+          <img src="assets/img/hoka/hoka-team-work.jpg" srcset="" desc="" alt="Hoka/Deckers UX Design Team">
+
+          <img src="assets/img/hoka/post-its.jpg" srcset="" desc="" alt="Post-its!!">
+
+          <p class="">After interviewing customers it was clear that the brand’s technological terms like <em>marshmallow, rocking chair</em> and <em>bucket seat</em> were confusing customers.</p>
+
+          <img src="assets/img/hoka/hoka-shoe-technology.png" srcset="" desc="" alt="Hoka Shoe Technology">
+
+          <p class="">Our goal was to communicate Hoka’s innovative technology through engaging visuals accompanied by simple and supportive explanatory copy – all with a solid responsive, e-commerce experience at the core.</p>
+
+          <div class="mobile-scroll">
+            <img src="assets/img/hoka/hoka-mobile.jpg" srcset="" desc="" alt="Hoka One One Mobile">
+          </div>
+
+          <p class="">The process included thorough user research, competitor analysis, preliminary sketches, low to high fidelity prototypes, stakeholder reviews, rounds of testing and revising. The final result is a redesigned product page highlighting the brand’s revolutionary technologies as well as a streamlined ordering process.</p>
+          <br /><br />
+
+          <img src="assets/img/hoka/hoka-pdp.png" srcset="" desc="" alt="Hoka Product Detail Page">
+
+          <!--<img src="assets/img/hoka/sketch-working-screenshot.png" srcset="" desc="" alt="Hoka Design in Sketch App">
+
+          <img src="assets/img/hoka/hoka-shoe-specs.png" srcset="" desc="" alt="Hoka Shoe Specs Design">-->
+
+        </div>
+      </div><!-- .project-pieces -->
+    </div><!-- .project-detail -->
+    <!-- Typekit -->
+    <script src="https://use.typekit.net/eel2ffw.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="bower_components/jquery/dist/jquery.min.js"><\/script>')</script>
+    <script src="bower_components/PACE/pace.min.js"></script>
+
+    <script src="bower_components/headroom.js/dist/headroom.min.js"></script>
+    <script src="bower_components/scrollreveal/dist/scrollreveal.min.js"></script>
+
+    <script>
+      // JavaScript
+      window.sr = ScrollReveal();
+      sr.reveal('.piece img', { delay: 200, duration: 1200 });
+      sr.reveal('.piece p', { delay: 200, duration: 1200 });
+    </script>
+
+    <script>
+      var myElement = document.querySelector("header");
+      // construct an instance of Headroom, passing the element
+      var headroom  = new Headroom(myElement, {
+        "offset": 105,
+        "tolerance": 5
+      });
+      // initialise
+      headroom.init();
+    </script>
+
+    <script>
+        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+        e.src='//www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+        ga('create','UA-5440985-16');ga('send','pageview');
+    </script>
+  </body>
+</html>

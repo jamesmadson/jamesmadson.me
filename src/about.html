@@ -28,14 +28,6 @@
     <% }); %>
   </head>
   <body>
-    <nav class="sidenav">
-      <a href="/" class="previous" rel="prev">
-        <img src="assets/svg/arrow.svg" alt="Previous">
-      </a>
-      <a href="/immersion" class="next" rel="next">
-        <img src="assets/svg/arrow.svg" alt="Next">
-      </a>
-    </nav>
     <header class="headroom">
       <nav class="jm-nav">
         <a href="/">
@@ -46,32 +38,80 @@
     </header>
 
     <div class="project-detail">
+      <div class="top-detail aboutjames vcard social">
+        <div class="right">
+          <ul class="social-list">
+            <li class="social-list-item twitter">
+              <a href="https://www.twitter.com/jamesmadson" class="url" rel="me" target="_blank" title="Twitter">
+                <img src="assets/svg/twitter.svg" alt="Twitter">
+              </a>
+            </li>
+            <li class="social-list-item dribbble">
+              <a href="https://dribbble.com/jamesmadson" class="url" rel="me" target="_blank" title="Dribbble">
+                <img src="assets/svg/dribbble.svg" alt="Dribbble">
+              </a>
+            </li>
+            <li class="social-list-item github">
+              <a href="https://www.github.com/jamesmadson" class="url" rel="me" target="_blank" title="Github">
+                <img src="assets/svg/github.svg" alt="Github">
+              </a>
+            </li>
+            <li class="social-list-item instagram">
+              <a href="https://instagram.com/jamesmadson/" class="url" rel="me" target="_blank" title="Instagram">
+                <img src="assets/svg/instagram.svg" alt="Instagram">
+              </a>
+            </li>
+            <li class="social-list-item strava">
+              <a href="https://strava.com/athletes/jamesmadson/" class="url" rel="me" target="_blank" title="Strava">
+                <img src="assets/svg/strava.svg" alt="Strava">
+              </a>
+            </li>
+            <!--<li class="social-list-item">
+              <a href="mailto:james@jamesmadson.me" class="url" target="_blank" title="Email">
+                <img src="assets/svg/email.svg" alt="Email">
+              </a>
+            </li>-->
+          </ul><!-- .social-list -->
+      </div>
+    </div>
+
+    <div class="project-detail">
       <div class="top-detail about">
       </div>
       <div class="project-pieces">
-        <div class="piece">
-          <img src="assets/img/james-pyrenees-traverse.jpg" />
-          <p><small>Summit overlooking the beautiful Pyrenees mountains of France and Spain during a through hike of the GR10 trail.</small></p>
-        </div>
         <div class="piece textquote">
-          <p><strong>Hi, I'm James.</strong> I design identities, digital experiences and products. I began designing websites and logos back in 1999. Since then I use design to provide solutions for companies, their products and users complex needs and ideas. My experience varies from naming products and constructing identities to creating and building interfaces that work on all device screens.</p>
-          <p>Away from work I love to explore the world with my wife and friends, play bass, rock climb, and run long distances in the mountains.</p>
-        </div>
-        <div class="piece textquote">
-          <p><a href="/resume">Resume</a></p>
+          <p>Hey! I’m James Madson, an independent digital designer living in Flagstaff, Arizona. Over the last 10+ years I’ve gotten to work alongside various organizations, from small startups to global brands.</p>
+
+          <p>My focus is mostly on web-based products, working solo and with teams, crafting interactive user experiences while also developing new processes within organizations.</p>
+
+          <img src="assets/img/james-middle-teton.jpg" />
+
+          <p>I enjoy all aspects of product design, from jumping into front-end code to making paper and digital prototypes, as well as conducting user research, coaching design teams, meeting with and presenting to stakeholders, bridging design and business goals – and even bringing donuts to meetings.</p>
+
+          <p><a href="mailto:james@jamesmadson.me" class="contact-btn">Contact Me</a></p>
+
+
         </div>
 
       </div><!-- .project-pieces -->
     </div><!-- .project-detail -->
     <!-- Typekit -->
-    <script src="//use.typekit.net/jvt0vxy.js"></script>
-    <script>try{Typekit.load();}catch(e){}</script>
+    <script src="https://use.typekit.net/eel2ffw.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
 
     <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+    <script>window.jQuery || document.write('<script src="bower_components/jquery/dist/jquery.min.js"><\/script>')</script>
+    <script src="bower_components/PACE/pace.min.js"></script>
 
-    <script src="bower_components/headroom.js/dist/headroom.js"></script>
-    <script src="bower_components/pace/pace.min.js"></script>
+    <script src="bower_components/headroom.js/dist/headroom.min.js"></script>
+    <script src="bower_components/scrollreveal/dist/scrollreveal.min.js"></script>
+
+    <script>
+      // JavaScript
+      window.sr = ScrollReveal();
+      sr.reveal('.piece img', { delay: 200, duration: 1200 });
+      sr.reveal('.piece p', { delay: 200, duration: 1200 });
+    </script>
 
     <script>
       var myElement = document.querySelector("header");

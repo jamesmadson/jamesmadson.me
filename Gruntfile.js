@@ -1,6 +1,6 @@
 module.exports = function ( grunt ) {
-  
-  /** 
+
+  /**
    * Load required Grunt tasks. These are installed based on the versions listed
    * in `package.json` when you do `npm install` in this directory.
    */
@@ -23,7 +23,7 @@ module.exports = function ( grunt ) {
   var userConfig = require( './build.config.js' );
 
   /**
-   * This is the configuration object Grunt uses to give each plugin its 
+   * This is the configuration object Grunt uses to give each plugin its
    * instructions.
    */
   var taskConfig = {
@@ -34,12 +34,12 @@ module.exports = function ( grunt ) {
     pkg: grunt.file.readJSON("package.json"),
 
     /**
-     * The banner is the comment that is placed at the top of our compiled 
+     * The banner is the comment that is placed at the top of our compiled
      * source files. It is first processed as a Grunt template, where the `<%=`
      * pairs are evaluated based on this very configuration object.
      */
     meta: {
-      banner: 
+      banner:
         '/**\n' +
         ' * <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n' +
         ' * <%= pkg.homepage %>\n' +
@@ -65,13 +65,13 @@ module.exports = function ( grunt ) {
     bump: {
       options: {
         files: [
-          "package.json", 
+          "package.json",
           "bower.json"
         ],
         commit: false,
         commitMessage: 'chore(release): v%VERSION%',
         commitFiles: [
-          "package.json", 
+          "package.json",
           "client/bower.json"
         ],
         createTag: false,
@@ -80,13 +80,13 @@ module.exports = function ( grunt ) {
         push: false,
         pushTo: 'origin'
       }
-    },    
+    },
 
     /**
      * The directories to delete when `grunt clean` is executed.
      */
-    clean: [ 
-      '<%= build_dir %>', 
+    clean: [
+      '<%= build_dir %>',
       '<%= compile_dir %>'
     ],
 
@@ -98,24 +98,24 @@ module.exports = function ( grunt ) {
     copy: {
       build_app_assets: {
         files: [
-          { 
+          {
             src: [ '**' ],
             dest: '<%= build_dir %>/assets/',
             cwd: 'src/assets',
             expand: true
           }
-       ]   
+       ]
       },
       build_vendor_assets: {
         files: [
-          { 
+          {
             src: [ '<%= vendor_files.assets %>' ],
             dest: '<%= build_dir %>/assets/',
             cwd: '.',
             expand: true,
             flatten: true
           }
-       ]   
+       ]
       },
       build_appjs: {
         files: [
@@ -213,11 +213,11 @@ module.exports = function ( grunt ) {
         options: {
           banner: '<%= meta.banner %>'
         },
-        src: [ 
-          '<%= vendor_files.js %>', 
-          'module.prefix', 
+        src: [
+          '<%= vendor_files.js %>',
+          'module.prefix',
           '<%= build_dir %>/src/**/*.js',
-          'module.suffix' 
+          'module.suffix'
         ],
         dest: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js'
       }
@@ -288,7 +288,7 @@ module.exports = function ( grunt ) {
      * nonetheless inside `src/`.
      */
     jshint: {
-      src: [ 
+      src: [
         '<%= app_files.js %>'
       ],
       test: [
@@ -368,13 +368,13 @@ module.exports = function ( grunt ) {
 
     /**
      * And for rapid development, we have a watch set up that checks to see if
-     * any of the files listed below change, and then to execute the listed 
+     * any of the files listed below change, and then to execute the listed
      * tasks when they do. This just saves us from having to type "grunt" into
      * the command-line every time we want to see what we're working on; we can
      * instead just leave "grunt watch" running in a background terminal. Set it
      * and forget it, as Ron Popeil used to tell us.
      *
-     * But we don't need the same thing to happen for all the files. 
+     * But we don't need the same thing to happen for all the files.
      */
     delta: {
       /**
@@ -404,7 +404,7 @@ module.exports = function ( grunt ) {
        * run our unit tests.
        */
       jssrc: {
-        files: [ 
+        files: [
           '<%= app_files.js %>'
         ],
         tasks: [ 'jshint:src', 'copy:build_appjs' ]
@@ -415,7 +415,7 @@ module.exports = function ( grunt ) {
        * run our unit tests.
        */
       coffeesrc: {
-        files: [ 
+        files: [
           '<%= app_files.coffee %>'
         ],
         tasks: [ 'coffeelint:src', 'coffee:source', 'copy:build_appjs' ]
@@ -426,7 +426,7 @@ module.exports = function ( grunt ) {
        * files, so this is probably not very useful.
        */
       assets: {
-        files: [ 
+        files: [
           'src/assets/**/*'
         ],
         tasks: [ 'copy:build_app_assets', 'copy:build_vendor_assets' ]
@@ -444,8 +444,8 @@ module.exports = function ( grunt ) {
        * When our templates change, we only rewrite the template cache.
        */
       //tpls: {
-        //files: [ 
-          //'<%= app_files.atpl %>', 
+        //files: [
+          //'<%= app_files.atpl %>',
           //'<%= app_files.ctpl %>'
         //],
         //tasks: [ 'html2js' ]
@@ -510,7 +510,7 @@ module.exports = function ( grunt ) {
    * The `build` task gets your app ready to run for development and testing.
    */
   grunt.registerTask( 'build', [
-    'clean', 'jshint', 'coffeelint', 'coffee', 'less:build', 
+    'clean', 'jshint', 'coffeelint', 'coffee', 'less:build',
     'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_assets',
     'copy:build_appjs', 'copy:build_vendorjs', 'index:build' //,
   ]);
@@ -541,7 +541,7 @@ module.exports = function ( grunt ) {
     });
   }
 
-  /** 
+  /**
    * The index.html template includes the stylesheet and javascript sources
    * based on dynamic names calculated in this Gruntfile. This task assembles
    * the list into variables for the template to use and then runs the
@@ -556,7 +556,7 @@ module.exports = function ( grunt ) {
       return file.replace( dirRE, '' );
     });
 
-    grunt.file.copy('src/index.html', this.data.dir + '/index.html', { 
+    grunt.file.copy('src/index.html', this.data.dir + '/index.html', {
       process: function ( contents, path ) {
         return grunt.template.process( contents, {
           data: {
@@ -567,7 +567,7 @@ module.exports = function ( grunt ) {
         });
       }
     });
-    grunt.file.copy('src/ans.html', this.data.dir + '/ans.html', { 
+    grunt.file.copy('src/ans.html', this.data.dir + '/ans.html', {
       process: function ( contents, path ) {
         return grunt.template.process( contents, {
           data: {
@@ -578,7 +578,7 @@ module.exports = function ( grunt ) {
         });
       }
     });
-    grunt.file.copy('src/jauntly.html', this.data.dir + '/jauntly.html', { 
+    grunt.file.copy('src/jauntly.html', this.data.dir + '/jauntly.html', {
       process: function ( contents, path ) {
         return grunt.template.process( contents, {
           data: {
@@ -589,7 +589,7 @@ module.exports = function ( grunt ) {
         });
       }
     });
-    grunt.file.copy('src/swiftkick.html', this.data.dir + '/swiftkick.html', { 
+    grunt.file.copy('src/swiftkick.html', this.data.dir + '/swiftkick.html', {
       process: function ( contents, path ) {
         return grunt.template.process( contents, {
           data: {
@@ -600,7 +600,7 @@ module.exports = function ( grunt ) {
         });
       }
     });
-    grunt.file.copy('src/treadhub.html', this.data.dir + '/treadhub.html', { 
+    grunt.file.copy('src/treadhub.html', this.data.dir + '/treadhub.html', {
       process: function ( contents, path ) {
         return grunt.template.process( contents, {
           data: {
@@ -611,7 +611,7 @@ module.exports = function ( grunt ) {
         });
       }
     });
-    grunt.file.copy('src/eugixd.html', this.data.dir + '/eugixd.html', { 
+    grunt.file.copy('src/eugixd.html', this.data.dir + '/eugixd.html', {
       process: function ( contents, path ) {
         return grunt.template.process( contents, {
           data: {
@@ -622,7 +622,7 @@ module.exports = function ( grunt ) {
         });
       }
     });
-    grunt.file.copy('src/twentyideas.html', this.data.dir + '/twentyideas.html', { 
+    grunt.file.copy('src/twentyideas.html', this.data.dir + '/twentyideas.html', {
       process: function ( contents, path ) {
         return grunt.template.process( contents, {
           data: {
@@ -633,7 +633,7 @@ module.exports = function ( grunt ) {
         });
       }
     });
-    grunt.file.copy('src/ampersand.html', this.data.dir + '/ampersand.html', { 
+    grunt.file.copy('src/ampersand.html', this.data.dir + '/ampersand.html', {
       process: function ( contents, path ) {
         return grunt.template.process( contents, {
           data: {
@@ -644,7 +644,7 @@ module.exports = function ( grunt ) {
         });
       }
     });
-    grunt.file.copy('src/immersion.html', this.data.dir + '/immersion.html', { 
+    grunt.file.copy('src/immersion.html', this.data.dir + '/immersion.html', {
       process: function ( contents, path ) {
         return grunt.template.process( contents, {
           data: {
@@ -655,7 +655,7 @@ module.exports = function ( grunt ) {
         });
       }
     });
-    grunt.file.copy('src/chefstable.html', this.data.dir + '/chefstable.html', { 
+    grunt.file.copy('src/chefstable.html', this.data.dir + '/chefstable.html', {
       process: function ( contents, path ) {
         return grunt.template.process( contents, {
           data: {
@@ -666,7 +666,7 @@ module.exports = function ( grunt ) {
         });
       }
     });
-    grunt.file.copy('src/bliphub.html', this.data.dir + '/bliphub.html', { 
+    grunt.file.copy('src/mindset.html', this.data.dir + '/mindset.html', {
       process: function ( contents, path ) {
         return grunt.template.process( contents, {
           data: {
@@ -677,7 +677,7 @@ module.exports = function ( grunt ) {
         });
       }
     });
-    grunt.file.copy('src/about.html', this.data.dir + '/about.html', { 
+    grunt.file.copy('src/about.html', this.data.dir + '/about.html', {
       process: function ( contents, path ) {
         return grunt.template.process( contents, {
           data: {
@@ -688,7 +688,7 @@ module.exports = function ( grunt ) {
         });
       }
     });
-    grunt.file.copy('src/resume.html', this.data.dir + '/resume.html', { 
+    grunt.file.copy('src/resume.html', this.data.dir + '/resume.html', {
       process: function ( contents, path ) {
         return grunt.template.process( contents, {
           data: {
@@ -699,7 +699,18 @@ module.exports = function ( grunt ) {
         });
       }
     });
-    grunt.file.copy('src/contact.html', this.data.dir + '/contact.html', { 
+    grunt.file.copy('src/contact.html', this.data.dir + '/contact.html', {
+      process: function ( contents, path ) {
+        return grunt.template.process( contents, {
+          data: {
+            scripts: jsFiles,
+            styles: cssFiles,
+            version: grunt.config( 'pkg.version' )
+          }
+        });
+      }
+    });
+    grunt.file.copy('src/hokaoneone.html', this.data.dir + '/hokaoneone.html', {
       process: function ( contents, path ) {
         return grunt.template.process( contents, {
           data: {

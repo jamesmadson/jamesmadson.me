@@ -1,0 +1,28 @@
+{
+  "name": "jamesmadson",
+  "description": "",
+  "main": "",
+  "authors": [
+    "James Madson"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/jamesmadson/jamesmadson.me",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "animateCSS": "^1.2.1",
+    "breakpoint": "^4.6.4",
+    "headroom.js": "headroom-js#^0.9.3",
+    "PACE": "pace#^1.0.2",
+    "scrollreveal": "^3.3.2",
+    "singularity": "^1.7.0",
+    "smoothstate": "^0.7.2",
+    "susy": "^2.2.12"
+  }
+}

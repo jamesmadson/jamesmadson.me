@@ -22,7 +22,7 @@ module.exports = {
   app_files: {
     js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js' ],
     jsunit: [ 'src/**/*.spec.js' ],
-    
+
     coffee: [ 'src/**/*.coffee', '!src/**/*.spec.coffee' ],
     coffeeunit: [ 'src/**/*.spec.coffee' ],
 
@@ -58,10 +58,11 @@ module.exports = {
       'bower_components/html5-boilerplate/js/main.js',
       'bower_components/html5-boilerplate/js/plugins.js',
       'bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js',
-      'bower_components/headroom.js/dist/headroom.js',
+      'bower_components/headroom.js/dist/headroom.min.js',
       'bower_components/fastclick/lib/fastclick.js',
-      'bower_components/pace/pace.min.js',
-      'bower_components/scrollReveal.js/scrollReveal.js'
+      'bower_components/PACE/pace.min.js',
+      'bower_components/scrollreveal/dist/scrollreveal.min.js',
+      'bower_components/smoothstate/jquery.smoothState.min.js'
     ],
     css: [
     	//'bower_components/animate.css/animate.min.css'

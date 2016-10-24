@@ -29,11 +29,11 @@
   </head>
   <body>
     <nav class="sidenav">
-      <a href="/ans" class="previous" rel="prev">
-        <img src="assets/svg/arrow.svg" alt="Previous">
+      <a href="/chefstable" class="previous" rel="prev">
+        <img src="assets/svg/arrow.svg" alt="Chefstable">
       </a>
       <a href="/" class="next" rel="next">
-        <img src="assets/svg/arrow.svg" alt="Next">
+        <img src="assets/svg/arrow.svg" alt="JM Home">
       </a>
     </nav>
     <header class="headroom">
@@ -50,27 +50,28 @@
       </div>
       <div class="project-pieces">
       	<div class="piece textquote">
-      		<p><strong>Roles in project:</strong><br />
+          <p class="lead-desc">A personal side project turned sports-tracking startup. All your training in one place.</p>
+      		<p class="role"><strong>Role:</strong><br />
             Name<br />
             Identity<br />
             User Experience<br />
             User Interface<br />
             Front-end Development<br />
-            Co-Founder
+            Co-Founder<br /><br />
+            <strong>Scope:</strong><br />
+              Web app<br />
+              <br />
           </p><br /><br />
-          <p>Treadhub is a responsive web app my friend and I created to enable endurance athletes and their coaches to keep all their training data in one convenient place. Most digital training logs are kept in many different places: personal blogs, GPS watch accounts, social training sites, and separate coaching platforms. Treadhub combines all of these outlets into one, giving athletes more time to focus on what they do best.</p><br />
-      		
-    		</div><!-- .piece .textquote -->
-        <div class="piece">
+          <p>Treadhub was one of my many side projects, but unlike the others, it passed the validity test: people wanted it.</p>
+
+          <p>We launched our beta more than a year after working on the product: a responsive web-based app that athletes and their coaches could use to track their training and tell their friends and the world about their fitness goals and progress.</p>
+
+          <p>Nick, my friend and developer/engineer, and myself worked on nights and weekends giving our spare time to Treadhub. We learned a lot about business plans, product design, new technologies and much more. It's still available for our loyal users who enjoy tracking all their training in one place.</p>
+
           <img src="assets/img/treadhub/800x450-treadhub-logo.jpg" srcset="" desc="" alt="" data-scroll-reveal="enter from the left">
-        </div>
-        <div class="piece">
+
           <img src="assets/img/treadhub/1600x3400-treadhub-home-desktop.jpg" srcset="" desc="" alt="">
-        </div>
-        <!--<div class="piece">
-          <img src="assets/img/treadhub/800x600-treadhub-concept-ui.jpg" srcset="" desc="" alt="" data-scroll-reveal="enter from the left">
-        </div>-->
-        <div class="piece">
+
           <img src="assets/img/treadhub/800x800-treadhub-sketch.jpg" srcset="" desc="" alt="" data-scroll-reveal="enter from the left">
         </div>
         <div class="piece sm">
@@ -79,16 +80,23 @@
       </div><!-- .project-pieces -->
     </div><!-- .project-detail -->
     <!-- Typekit -->
-    <script src="//use.typekit.net/jvt0vxy.js"></script>
-    <script>try{Typekit.load();}catch(e){}</script>
+    <script src="https://use.typekit.net/eel2ffw.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
 
     <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+    <script>window.jQuery || document.write('<script src="bower_components/jquery/dist/jquery.min.js"><\/script>')</script>
+    <script src="bower_components/PACE/pace.min.js"></script>
 
-    <script src="bower_components/headroom.js/dist/headroom.js"></script>
-    <script src="bower_components/pace/pace.min.js"></script>
-    <script src="bower_components/scrollReveal.js/scrollReveal.js"></script>
-    
+    <script src="bower_components/headroom.js/dist/headroom.min.js"></script>
+    <script src="bower_components/scrollreveal/dist/scrollreveal.min.js"></script>
+
+    <script>
+      // JavaScript
+      window.sr = ScrollReveal();
+      sr.reveal('.piece img', { delay: 200, duration: 1200 });
+      sr.reveal('.piece p', { delay: 200, duration: 1200 });
+    </script>
+
     <script>
       var myElement = document.querySelector("header");
       // construct an instance of Headroom, passing the element
@@ -99,10 +107,7 @@
       // initialise
       headroom.init();
     </script>
-    <script>
-      // Scroll Reveal
-      window.scrollReveal = new scrollReveal();
-    </script>
+
     <script>
         (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
         function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;

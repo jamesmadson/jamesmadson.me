@@ -8,6 +8,7 @@
 		.jm-nav {
 			h1 {
 				top: 1em;
+				left: 4.25em;
 			}
 			a {
 				.jm-secondary-logo {
@@ -20,13 +21,14 @@
 	.project-detail {
 
 		.top-detail {
-			height: 9.9em;
+			height: 13.9em;
 
 			&.aboutjames {
 				.left {
 	        width: 700px;
 	        height: 400px;
 	        overflow: hidden;
+					display: none;
 
 	        .jmlogo, img {
 	        	width: 350px;
@@ -43,15 +45,27 @@
 			padding-top: 15em;
 
 			.piece {
-				width: 70%;
+				width: 60%;
 
 				&.textquote {
 					width: 60%;
-					padding: 2.5% 5%;
-					
+					padding: 0.5% 5%;
+
+					.mobile-scroll {
+						//white-space: nowrap;
+						overflow-y: hidden;
+						overflow-x: scroll;
+						-webkit-overflow-scrolling: touch;
+
+						img {
+							padding: 0 0 0 0;
+							display: block;
+						}
+					}
+
 					p {
-						font-size: 2em;
-						margin: 0;
+						//font-size: 2em;
+						margin-bottom: 1em;
 						//font-weight: 600;
 					}
 				}
@@ -62,7 +76,11 @@
 	.projects {
 		.project {
 			margin: 2em 5%;
-			
+			height: 350px;
+			width: 450px;
+			//margin: 1em 5%;
+			padding: 2em 0;
+
 			&.eugixd {
 				&::after {
 					background-size: 75% 75% !important;
@@ -86,7 +104,7 @@
 			&.aboutjames {
 				.left {
 					height: 370px;
-	       
+
 	        .jmlogo, img {
 	        	width: 350px;
 	        	height: 350px;

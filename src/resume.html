@@ -53,6 +53,14 @@
           <p><small><i>References available on request</i></small></p>
         </div>
         <div class="piece textquote">
+
+          <h1>Skills</h1>
+
+Fluent in HTML, CSS, Javascript, LESS, SASS, Git, Sketch, Adobe Creative Suite, Adobe Lightroom, Sublime Text
+
+Proficient in Python, Node, D3, Wordpress, SVN, Vim, Bash
+
+
           <p><strong>Proficiencies</strong></p>
           <ul>
             <li>Sketch, Photoshop, Illustrator, and Fireworks</li>
@@ -107,18 +115,26 @@
             <li>Installed vinyl graphics</li>
           </ul>
         </div>
-        
+
       </div><!-- .project-pieces -->
     </div><!-- .project-detail -->
     <!-- Typekit -->
-    <script src="//use.typekit.net/jvt0vxy.js"></script>
-    <script>try{Typekit.load();}catch(e){}</script>
+    <script src="https://use.typekit.net/eel2ffw.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
 
     <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+    <script>window.jQuery || document.write('<script src="bower_components/jquery/dist/jquery.min.js"><\/script>')</script>
+    <script src="bower_components/PACE/pace.min.js"></script>
 
-    <script src="bower_components/headroom.js/dist/headroom.js"></script>
-    <script src="bower_components/pace/pace.min.js"></script>
+    <script src="bower_components/headroom.js/dist/headroom.min.js"></script>
+    <script src="bower_components/scrollreveal/dist/scrollreveal.min.js"></script>
+
+    <script>
+      // JavaScript
+      window.sr = ScrollReveal();
+      sr.reveal('.piece img', { delay: 200, duration: 1200 });
+      sr.reveal('.piece p', { delay: 200, duration: 1200 });
+    </script>
 
     <script>
       var myElement = document.querySelector("header");
