@@ -94,5 +94,19 @@
         r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
         ga('create','UA-5440985-16');ga('send','pageview');
     </script>
+<script>
+// Register our service-worker
+if (navigator.serviceWorker) {
+    navigator.serviceWorker.register('/serviceworker.js', {
+        scope: '/'
+    });
+    window.addEventListener('load', function() {
+        if (navigator.serviceWorker.controller) {
+            navigator.serviceWorker.controller.postMessage({'command': 'trimCaches'});
+        }
+    });
+}
+//-->
+</script>
   </body>
 </html>
