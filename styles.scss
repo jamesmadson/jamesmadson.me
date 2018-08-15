@@ -1,6 +1,304 @@
-@import "neat";
+//@import "neat/neat";
+//@import "bourbon/bourbon";
+@import url("https://use.typekit.net/gus7uam.css");
 
+// Mixins
+@mixin transition( $val : ease 0.5s ) {
+  -webkit-transition: $val;
+  -moz-transition:$val;
+  -o-transition:$val;
+  -ms-transition:$val;
+  transition:$val;
+}
+
+@mixin rounded-corners($tl : 4px, $tr : 4px, $br: 4px, $bl: 4px) {
+  -webkit-border-radius:$tl $tr $br $bl;
+  -moz-border-radius:$tl $tr $br $bl;
+  -o-border-radius:$tl $tr $br $bl;
+  border-radius:$tl $tr $br $bl;
+}
+
+@mixin rotate( $val: -2deg ) {
+  -webkit-transform: rotate($val);
+  -moz-transform: rotate($val);
+  -ms-transform: rotate($val);
+  -o-transform: rotate($val);
+  transform: rotate($val);
+}
+
+// Variables
+$base-font-family: "aktiv-grotesk-extended", "Eurostile", "Helvetica-Neue", Helvetica, Arial, sans-serif;
+$base-font-size:   18px;
+$base-font-weight: 400;
+$small-font-size:  $base-font-size * 0.875;
+$base-line-height: 1.9;
+$body-font-family: "courier-prime", Courier, sans-serif;
+$spacing-unit:     30px;
+
+$white:            #FFFFFF;
+$black:            #1F201C;
+$tan:              #DED6C5;
+$tan-dark:         #928C6A;
+$tan-darkest:      #686953;
+$tan-light:        #C9BA96;
+$tan-lightest:     #F4F2EE;
+$grey:             #D4D5D0;
+$fuchsia:          #7B3F3E;
+$yellow:           #FFC200;
+$sage:             #A1B19E;
+
+// Global Styles
 body {
-  background-color: #1F201C;
-  color: #ffffff;
+  background-color: $black;
+  color: $tan-dark;
+  font-family: $body-font-family;
+  margin: 0;
+  overflow: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $base-font-family;
+  margin: 0;
+}
+
+h1 {
+  color: $tan-light;
+  font-size: 72px;
+  font-weight: normal;
+  line-height: 92px;
+}
+
+h2 {
+  color: $tan-light;
+  font-size: 72px;
+  font-weight: bold;
+  line-height: 94px;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+
+  &.project_title {
+    font-weight: normal;
+    letter-spacing: 0;
+    text-transform: inherit;
+  }
+}
+
+h3 {
+  color: $tan-dark;
+  font-size: $base-font-size + 18;
+  font-weight: 100;
+  line-height: 60px;
+  margin-top: 6px;
+
+  small {
+    color: $tan-darkest;
+    display: block;
+    font-size: $base-font-size - 2;
+  }
+}
+
+h4 {
+  color: $tan;
+  font-size: $base-font-size + 6;
+  font-weight: bold;
+  letter-spacing: 5px;
+  line-height: 48px;
+  text-transform: uppercase;
+}
+
+h5 {
+  font-size: $base-font-size - 2;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+a {
+  color: $tan;
+  text-decoration: none;
+
+  &:hover {
+    color: $fuchsia;
+  }
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+
+  li {
+
+  }
+}
+
+header {
+  background-image: url('img/woodgrain.webp');
+  padding: 150px 0;
+
+  nav {
+    display: none;
+  }
+}
+
+.name {
+  color: $tan-dark;
+  display: block;
+  font-family: $base-font-family;
+  font-size: $base-font-size - 2;
+  font-weight: bold;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+
+  .arrow {
+    border: 4px solid rgba($tan-darkest, .1);
+    display: block;
+    padding: 38px 24px 30px 24px;
+    @include rounded-corners(50px, 50px, 50px, 50px);
+  }
+
+  span {
+    display: block;
+    height: auto;
+    @include rotate(-90deg);
+  }
+
+  &:hover {
+    .arrow {
+      border: 4px solid rgba($tan-darkest, 1);
+    }
+  }
+}
+
+.image_lead {
+  height: auto;
+  width: 100%;
+}
+
+.about_images {
+  display: block;
+  position: relative;
+
+  .image_film_strip {
+    display: block;
+    position: absolute;
+    right: 40px;
+    top: 100px;
+    z-index: 10;
+    @include rotate(-4deg);
+  }
+
+  .image_waves {
+    bottom: -100px;
+    display: block;
+    position: absolute;
+    right: -300px;
+    z-index: 1;
+  }
+}
+
+.about {
+  padding: 400px 0 200px 0;
+}
+
+.btn {
+  font-family: $base-font-family;
+  font-weight: bold;
+  letter-spacing: 5px;
+  padding: 20px;
+  text-transform: uppercase;
+  width: 300px;
+
+  &.primary {
+    border: 1px solid $black;
+    color: $black;
+
+    &:hover {
+      border: 2px solid $black;
+    }
+  }
+
+  &.secondary {
+    background-color: $black;
+    color: $white;
+
+    &:hover {
+      background-color: $fuchsia;
+    }
+  }
+}
+
+// Grid
+$gutter: 20px;
+$width: 1280px;
+$columns: 12;
+$column-width: ($width - $columns * $gutter) / $columns;
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(
+    $columns,
+    $column-width
+  );
+  grid-column-gap: $gutter;
+  justify-content: center;
+  width: $width;
+  margin: 0 auto;
+}
+@for $i from 1 through $columns {
+  .grid_#{$i} { grid-column: span $i; }
+}
+[class*=push_],
+[class*=pull_] {
+  position: relative;
+}
+@for $i from 1 through $columns {
+  .push_#{$i} { right: $i * ($column-width + $gutter) * -1; }
+}
+@for $i from 1 through $columns {
+  .pull_#{$i} { left: $i * ($column-width + $gutter) * -1; }
+}
+
+.grid-col {
+  border: 1px solid #fff;
+  padding: 10px 0;
+  margin: 10px 0;
+}
+
+.color_block {
+  &.fuchsia {
+    background-color: $fuchsia;
+    height: 20px;
+    margin-top: -20px;
+  }
+  &.yellow {
+    background-color: $yellow;
+    height: 20px;
+  }
+}
+
+.project {
+  background-color: $white;
+  padding: 40px 0;
+
+  h2 {
+    color: $black;
+  }
+
+  &.bundle_select {
+    background-color: $white;
+  }
+
+  &.furniture_society {
+    background-color: $tan-lightest;
+  }
+
+  &.american_press_institute {
+    background-color: $grey;
+  }
+
+  p {
+    font-family: $base-font-family;
+    font-size: 24px;
+    line-height: 48px;
+    color: $black;
+  }
 }
