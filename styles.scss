@@ -45,6 +45,7 @@ $tan-lightest:     #F4F2EE;
 $grey:             #D4D5D0;
 $fuchsia:          #7B3F3E;
 $yellow:           #FFC200;
+$yellow-lighter:   #FEF1C1;
 $sage:             #A1B19E;
 
 // Global Styles
@@ -70,9 +71,9 @@ h1 {
 
 h2 {
   color: $tan-light;
-  font-size: 72px;
+  font-size: 60px;
   font-weight: bold;
-  line-height: 94px;
+  line-height: 84px;
   letter-spacing: 10px;
   text-transform: uppercase;
 
@@ -99,7 +100,7 @@ h3 {
 
 h4 {
   color: $tan;
-  font-size: $base-font-size + 6;
+  font-size: $base-font-size + 2;
   font-weight: bold;
   letter-spacing: 5px;
   line-height: 48px;
@@ -126,7 +127,7 @@ ul {
   padding: 0;
 
   li {
-
+    line-height: $base-line-height;
   }
 }
 
@@ -176,27 +177,52 @@ header {
 .about_images {
   display: block;
   position: relative;
+  width: 100%;
 
   .image_film_strip {
     display: block;
+    overflow: visible;
     position: absolute;
-    right: 40px;
+    right: 60px;
     top: 100px;
     z-index: 10;
     @include rotate(-4deg);
   }
 
+  .image_portrait {
+    top: 300px;
+    display: block;
+    position: absolute;
+    right: 500px;
+    z-index: 15;
+    @include rotate(4deg);
+
+    &::after {
+      content: "";
+      position: absolute;
+      display: block;
+      height: 100%;
+      width: 100%;
+      top: 5px;
+      left: 10px;
+      z-index: -12;
+      background-color: $yellow-lighter;
+    }
+  }
+
   .image_waves {
     bottom: -100px;
     display: block;
+    overflow: hidden;
     position: absolute;
-    right: -300px;
+    right: 0px;
     z-index: 1;
   }
 }
 
 .about {
-  padding: 400px 0 200px 0;
+  padding-top: 400px;
+  padding-bottom: 100px;
 }
 
 .btn {
@@ -227,8 +253,9 @@ header {
 }
 
 // Grid
-$gutter: 20px;
-$width: 1280px;
+$gutter: 0px;
+$padding: 0 40px;
+$width: 1200px;
 $columns: 12;
 $column-width: ($width - $columns * $gutter) / $columns;
 
@@ -242,6 +269,7 @@ $column-width: ($width - $columns * $gutter) / $columns;
   justify-content: center;
   width: $width;
   margin: 0 auto;
+  padding: $padding;
 }
 @for $i from 1 through $columns {
   .grid_#{$i} { grid-column: span $i; }
@@ -277,7 +305,8 @@ $column-width: ($width - $columns * $gutter) / $columns;
 
 .project {
   background-color: $white;
-  padding: 40px 0;
+  padding-top: 40px;
+  padding-bottom: 40px;
 
   h2 {
     color: $black;
@@ -300,5 +329,106 @@ $column-width: ($width - $columns * $gutter) / $columns;
     font-size: 24px;
     line-height: 48px;
     color: $black;
+  }
+}
+
+//Slick Slider
+.slick-slider {
+  button {
+    white-space: nowrap;
+    overflow: hidden;
+    text-indent: -9999px;
+  }
+}
+.slick-slide {
+  cursor: grab;
+  //border: 1px solid $grey;
+}
+
+//SCSS from github
+.slick-nav-wrap{
+  text-align: center;
+  width: 100%;
+}
+.slick-nav{
+  position: relative;
+  display: inline-block;
+
+
+  .slick-dots{
+    position: static;
+  }
+}
+
+.slick-arrow {
+  background-image: url('img/slider-arrow.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid $fuchsia;
+  border-radius: 50px;
+  cursor: pointer;
+  height: 21px;
+  padding: 20px;
+  width: 11px;
+
+  &:focus {
+    outline:0;
+  }
+
+  &.slick-next {
+    @include rotate(180deg);
+    float: right;
+  }
+
+  &.slick-prev {
+
+  }
+}
+
+.slick-dots {
+  //background-color: $white;
+  display: inline-block;
+  list-style: none;
+  margin: 0 auto;
+  width: 380px;
+
+  li {
+    display: inline-block;
+    margin: 0 20px;
+    //width: 100px;
+    //cursor: pointer;
+
+    &.slick-active button {
+      background-color: $black;
+      border: 2px solid $white;
+      padding: 4px;
+      border-radius: 20px;
+      height: 8px;
+      width: 8px;
+
+      &::after {
+        content: '';
+        position: absolute;
+        border-radius: 20px;
+        height: 12px;
+        width: 12px;
+        top: -4px;
+        left: -4px;
+        border: 2px solid $fuchsia;
+      }
+    }
+
+    button {
+      background-color: $white;
+      border: 2px solid $grey;
+      cursor: pointer;
+      position: relative;
+      padding: 4px;
+      border-radius: 20px;
+      height: 8px;
+      width: 8px;
+
+      &:focus {outline:0;}
+    }
   }
 }
