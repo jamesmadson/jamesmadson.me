@@ -66,36 +66,38 @@ ul {
 
 header {
   background-image: url("img/woodgrain.webp");
-  padding: 150px 0; }
-  header nav {
-    display: none; }
+  padding: 40px 0; }
+  header .name {
+    color: #928C6A;
+    display: inline-block;
+    float: left;
+    font-family: "aktiv-grotesk-extended", "Eurostile", "Helvetica-Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-transform: uppercase; }
+  header nav ul {
+    display: inline-block;
+    float: right;
+    list-style: none; }
+    header nav ul li {
+      display: inline-block; }
 
-.name {
-  color: #928C6A;
-  display: block;
-  font-family: "aktiv-grotesk-extended", "Eurostile", "Helvetica-Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  font-weight: bold;
-  letter-spacing: 10px;
-  text-transform: uppercase; }
-  .name .arrow {
+.hero {
+  display: block; }
+  .hero h1 {
+    margin: 100px 0; }
+  .hero .arrow {
     border: 4px solid rgba(104, 105, 83, 0.1);
     display: block;
+    margin-top: 100px;
     padding: 38px 24px 30px 24px;
     -webkit-border-radius: 50px 50px 50px 50px;
     -moz-border-radius: 50px 50px 50px 50px;
     -o-border-radius: 50px 50px 50px 50px;
     border-radius: 50px 50px 50px 50px; }
-  .name span {
-    display: block;
-    height: auto;
-    -webkit-transform: rotate(-90deg);
-    -moz-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg);
-    -o-transform: rotate(-90deg);
-    transform: rotate(-90deg); }
-  .name:hover .arrow {
-    border: 4px solid #686953; }
+    .hero .arrow:hover {
+      border: 4px solid #686953; }
 
 .image_lead {
   height: auto;
@@ -151,12 +153,17 @@ header {
   padding-bottom: 100px; }
 
 .btn {
+  display: block;
   font-family: "aktiv-grotesk-extended", "Eurostile", "Helvetica-Neue", Helvetica, Arial, sans-serif;
   font-weight: bold;
   letter-spacing: 5px;
+  margin: 20px 0;
   padding: 20px;
   text-transform: uppercase;
   width: 300px; }
+  .btn.submit {
+    color: #DED6C5;
+    background-color: transparent; }
   .btn.primary {
     border: 1px solid #1F201C;
     color: #1F201C; }
@@ -170,8 +177,8 @@ header {
 
 .container {
   display: grid;
-  grid-template-columns: repeat(12, 100px);
-  grid-column-gap: 0px;
+  grid-template-columns: repeat(12, 80px);
+  grid-column-gap: 20px;
   justify-content: center;
   width: 1200px;
   margin: 0 auto;
@@ -304,6 +311,7 @@ header {
 
 .project {
   background-color: #FFFFFF;
+  margin-top: -10px;
   padding-top: 40px;
   padding-bottom: 40px; }
   .project h2 {
@@ -347,7 +355,8 @@ header {
   cursor: pointer;
   height: 21px;
   padding: 20px;
-  width: 11px; }
+  width: 11px;
+  text-indent: -9999px; }
   .slick-arrow:focus {
     outline: 0; }
   .slick-arrow.slick-next {
@@ -390,8 +399,25 @@ header {
       padding: 4px;
       border-radius: 20px;
       height: 8px;
+      text-indent: -9999px;
       width: 8px; }
       .slick-dots li button:focus {
         outline: 0; }
+
+.contact-form .label {
+  font-family: "aktiv-grotesk-extended", "Eurostile", "Helvetica-Neue", Helvetica, Arial, sans-serif; }
+.contact-form input[type="text"], .contact-form textarea {
+  background-color: transparent;
+  border: 1px solid #DED6C5;
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%; }
+.contact-form select {
+  background-color: transparent;
+  border: 1px solid #DED6C5;
+  padding: 20px;
+  width: 100%; }
+  .contact-form select:focus {
+    outline: none; }
 
 /*# sourceMappingURL=styles.css.map */

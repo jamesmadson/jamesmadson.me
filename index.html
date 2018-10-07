@@ -28,27 +28,27 @@
   <link rel="stylesheet" type="text/css" href="styles.css" />
 
   <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
-  <!--<link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>-->
 
 </head>
 
 <body>
   <header>
-    <nav>
-      <a href="#">X Close</a>
-      <ul>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Bundle Select</a></li>
-        <li><a href="#">Furniture Society</a></li>
-        <li><a href="#">American Press Institute</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
+    <nav class="container">
+      <div class="grid_12">
+        <!--<ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#bundle-select">Bundle Select</a></li>
+          <li><a href="#furniture-society">Furniture Society</a></li>
+          <li><a href="#american-press-institute">American Press Institute</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>-->
+        <span class="name">James Madson</span>
+      </div>
     </nav>
-    <a href="#menu">—</a>
-    <div class="container">
+
+    <div class="container hero">
       <div class="grid_2">
-        <a href="#about_james_madson" class="name">
-          <span>James Madson</span>
+        <a data-scroll href="#about_james_madson">
           <img src="img/arrow.svg" class="arrow" height="25" width="45">
         </a>
       </div>
@@ -65,7 +65,7 @@
     <img src="img/james-in-pyrenees@2x.jpg" class="image_lead" height="1072" width="1680" />
     <img src="img/travel-photos@2x.jpg" class="image_film_strip" height="1046" width="454" />
     <div class="image_portrait">
-      <img src="img/james-madson-portrait-1@2x.png" height="440" width="440" />
+      <img src="img/jm-profile@2x.png" height="440" width="440" />
     </div>
     <img src="img/waves@2x.png" class="image_waves" height="720" width="1200" />
   </div>
@@ -73,7 +73,7 @@
     <div class="grid_9 color_block yellow "></div>
   </div>
 
-  <section class="about">
+  <section class="about" id="about_james_madson">
     <div class="container">
       <div class="grid_6">
         <h2>About</h2>
@@ -128,7 +128,8 @@
           <h4>Brands</h4>
           <li>UGG
           <li>Hoka One One</li>
-          <li>Reuters Xprize</li>
+          <li>Reuters </li>
+          <li>Xprize</li>
           <li>Stack Overflow</li>
           <li>Kirkus Reviews</li>
           <li>Copic Markers</li>
@@ -138,15 +139,16 @@
         <ul>
           <h4>Agencies</h4>
           <li>Clearleft</li>
-          <li>Tallwave</li>
           <li>10Up</li>
           <li>Twenty Ideas</li>
+          <li>Tallwave</li>
+          <li>Eightfold</li>
         </ul>
       </div>
       <div class="grid_2">
         <ul>
           <h4>Nonprofits</h4>
-          <li>Furniture Society</li>
+          <li>The Furniture Society</li>
           <li>American Press Institute</li>
           <li>Global Training Network</li>
         </ul>
@@ -164,6 +166,7 @@
           <li>Summer Web Dev Code Camp for kids</li>
           <li>Trail Building/Maintenance</li>
           <li>Running Race Setup/Aid Stations/Sweep</li>
+          <li>Roots Micro Farm</li>
         </ul>
       </div>
     </div>
@@ -175,10 +178,12 @@
     <section class="container project bundle_select">
       <div class="grid_6">
         <img src="img/bundle-select-logo-black.svg" class="client_logo" height="150" width="150" />
+        <a name="bundle-select"></a>
         <h5>Bundle Select</h5>
         <h2 class="project_title">Definining  the future of real estate.</h2>
         <a href="https://www.bundleselect.com" class="btn primary" target="_blank">Visit Website</a>
         <ul>
+          <li><strong>Roles:</strong></li>
           <li>Identity</li>
           <li>Branding</li>
           <li>Strategy</li>
@@ -195,9 +200,9 @@
       </div>
       <div class="grid_12">
         <div class="project-1-carousel">
-          <div><img src="img/test-slider-image.jpg" width="100%" /></div>
-          <div><img src="img/test-slider-image.jpg" width="100%" /></div>
-          <div><img src="img/test-slider-image.jpg" width="100%" /></div>
+          <div><img src="img/bundle-select-4@2x.jpg" width="100%" /></div>
+          <div><img src="img/bundle-select-8@2x.jpg" width="100%" /></div>
+          <div><img src="img/bundle-select-5@2x.jpg" width="100%" /></div>
         </div>
         <div class="slick-nav-wrap grid_12">
           <div class="slick-nav"></div>
@@ -213,10 +218,12 @@
     <section class="container project furniture_society">
       <div class="grid_6">
         <img src="img/furnsoc-logo-black.svg" class="client_logo" height="150" width="150" />
+        <a name="furniture-society"></a>
         <h5>The Furniture Society</h5>
         <h2 class="project_title">Advancing the art of furniture making.</h2>
         <a href="http://www.furnsoc.org" class="btn primary" target="_blank">Visit Website</a>
         <ul>
+          <li><strong>Roles:</strong></li>
           <li>Wireframes</li>
           <li>Visual Design</li>
           <li>Conference Micro-site</li>
@@ -229,24 +236,19 @@
 
         <p>Alongside developer Eli Van Zoe Ren, we were able to produce a brand new version of the site that reflects the level of its members and mission.  </p>
       </div>
-      <div class="project-2-carousel grid_12">
-        <div><img src="img/test-slider-image.jpg" height="720" width="1440" /></div>
-        <div><img src="img/test-slider-image.jpg" height="720" width="1440" /></div>
-        <div><img src="img/test-slider-image.jpg" height="720" width="1440" /></div>
-      </div>
-      <div class="slick-nav-wrap-2">
-        <div class="slick-nav-2"></div>
-      </div>
+
     </section>
 
     <img src="img/american-press-institute-lead.webp" class="image_lead" height="1072" width="1680" />
     <section class="container project american_press_institute">
       <div class="grid_6">
         <!--<img src="img/api-logo-black.svg" class="client_logo" height="150" width="150" />-->
+        <a name="american-press-institute"></a>
         <h5>American Press Institute</h5>
         <h2 class="project_title">Advancing journalism with insights, tools and research.</h2>
         <a href="http://www.americanpressinstitute.org/" class="btn primary" target="_blank">Visit Website</a>
         <ul>
+          <li><strong>Roles:</strong></li>
           <li>Wireframes</li>
           <li>Visual Design</li>
         </ul>
@@ -257,53 +259,113 @@
         <p>API helps publishers understand and engage audiences, grow revenue, improve public-service journalism, and succeed at organizational change. Research and actionable insights focus on news audiences, cultural change, new revenue, youth and media, diversity of news.</p>
 
         <blockquote>“We appreciate the creativity, expertise, and flexible problem solving that James brought to our website redesign project. This was the second time we've worked with James, and his ability to take client input, generate a smart and polished design, and refine it with feedback creates great results.”</blockquote>
-        <cite><strong>— Jeff Sonderman</strong>Deputy Executive Director and Executive Vice President</cite>
+        <cite><strong>— Jeff Sonderman</strong><br />
+          Executive Vice President and Deputy Executive Director</cite>
       </div>
     </section>
 
   </main>
   <footer>
-    <h2>Contact</h2>
-    <ul>
-      <h4>Online</h4>
-      <li><a href="mailto:james@jamesmadson.me">Email</a> </li>
-      <li><a href="https://instagram.com/jamesmadson/" target="_blank">Instagram</a> </li>
-      <li><a href="https://twitter.com/jamesmadson/" target="_blank">Twitter</a> </li>
-      <li><a href="https://dribbble.com/jamesmadson/" target="_blank">Dribbble </a></li>
-      <li><a href="https://linkedin.com/jamesmadson/" target="_blank">Linkedin</a> </li>
-      <li><a href="https://github.com/jamesmadson/" target="_blank">Github</a></li>
-      <li><a href="https://strava.com/jamesmadson/" target="_blank">Strava</a></li>
-    </ul>
+    <div class="container">
+      <div class="grid_12">
+        <h2>Contact</h2>
+      </div>
+    </div>
+    <div class="container">
+      <div class="grid_6">
+        <h4>How can I help?</h4>
+        <p>I'd love to hear about your branding, website, or product design project! I also enjoy front-end development and working with engineers to create templates for projects.</p>
+        <p>Just want to say "hey"? Send me a message at <a href="mailto:james@jamesmadson.me?subject=Hey%20James!">james@jamesmadson.me</a> .</p>
+        <h4>Online</h4>
+        <ul>
+          <li><a href="mailto:james@jamesmadson.me?subject=Hey%20James!">Email</a> </li>
+          <li><a href="https://instagram.com/jamesmadson/" target="_blank">Instagram</a> </li>
+          <li><a href="https://twitter.com/jamesmadson/" target="_blank">Twitter</a> </li>
+          <li><a href="https://dribbble.com/jamesmadson/" target="_blank">Dribbble </a></li>
+          <li><a href="https://linkedin.com/jamesmadson/" target="_blank">Linkedin</a> </li>
+          <li><a href="https://github.com/jamesmadson/" target="_blank">Github</a></li>
+          <li><a href="https://strava.com/athletes/166343" target="_blank">Strava</a></li>
+        </ul>
+      </div>
+      <div class="grid_6">
+        <form action="https://docs.google.com/forms/d/e/1FAIpQLScbC2U28M9XX_RDOHNhlOlNcNEDf3mSk-XIbroWZmoL3c_N-w/formResponse" target="_self" method="POST" id="mG61Hd" class="contact-form">
+          <div class="exportFormCard">
+              <div class="">
+                  <div role="list">
+                      <div role="listitem" class="" jsname="ibnC6b" jscontroller="rDGJeb" jsaction="sPvj8e:e4JwSe,vwKRrd;" data-required="true" data-item-id="847330986">
+                          <div class="label exportItemTitle freebirdCustomFont" dir="auto" role="heading" aria-level="2" aria-describedby="i.desc.847330986 i3">Name <span class="" aria-label="Required question">*</span></div>
 
-    <form action="">
+                          <div class="" jscontroller="pxq3x" jsaction="clickonly:KjsqPd; focus:Jt1EX; blur:fpfTEe; input:Lg5SV;" jsshadow jsname="W85ice">
+                            <input type="text" class="" jsname="YPqjbf" autocomplete="off" tabindex="0" aria-label="Name" aria-describedby="i.desc.847330986 i.err.847330986" name="entry.310170835" value="" required dir="auto" data-initial-dir="auto" data-initial-value="" />
+                          </div>
+                      </div>
+                      <div role="listitem" class="" jsname="ibnC6b" jscontroller="rDGJeb" jsaction="sPvj8e:e4JwSe,vwKRrd;" data-required="true" data-item-id="2138436356">
+                          <div class="" dir="auto" role="heading" aria-level="2" aria-describedby="i.desc.2138436356 i6">Email Address <span class="" aria-label="Required question">*</span></div>
+                          <div class="">
+                              <div class="" jscontroller="pxq3x" jsaction="clickonly:KjsqPd; focus:Jt1EX; blur:fpfTEe; input:Lg5SV;" jsshadow jsname="W85ice">
+                                <input type="text" class="" jsname="YPqjbf" autocomplete="off" tabindex="0" aria-label="Email Address" aria-describedby="i.desc.2138436356 i.err.2138436356" name="entry.822718017" value="" required dir="auto" data-initial-dir="auto" data-initial-value="" />
+                              </div>
+                          </div>
+                      </div>
+                      <div role="listitem" class="" jsname="ibnC6b" jscontroller="rDGJeb" jsaction="sPvj8e:e4JwSe,vwKRrd;" data-item-id="1769051768">
+                          <div class="label" dir="auto" role="heading" aria-level="2" aria-describedby="i.desc.1769051768">Company Name</div>
+                          <div class="" jscontroller="pxq3x" jsaction="clickonly:KjsqPd; focus:Jt1EX; blur:fpfTEe; input:Lg5SV;" jsshadow jsname="W85ice">
+                            <input type="text" class="" jsname="YPqjbf" autocomplete="off" tabindex="0" aria-label="Company Name" aria-describedby="i.desc.1769051768 i.err.1769051768" name="entry.1253432716" value="" dir="auto" data-initial-dir="auto" data-initial-value="" />
+                        </div>
+                      </div>
+                      <div role="listitem" class="" jsname="ibnC6b" jscontroller="rDGJeb" jsaction="sPvj8e:e4JwSe,vwKRrd;" data-item-id="1902424178">
+                          <div class="label" dir="auto" role="heading" aria-level="2" aria-describedby="i.desc.1902424178">Project Details</div>
+                          <div class="" jscontroller="pxq3x" jsaction="clickonly:KjsqPd; focus:Jt1EX; blur:fpfTEe; input:Lg5SV;" jsshadow jsname="W85ice">
+                            <textarea class="" jsname="YPqjbf" data-rows="1" tabindex="0" aria-label="Project Details" jscontroller="gZjhIf" jsaction="input:Lg5SV;ti6hGc:XMgOHc;rcuQ6b:WYd;" name="entry.1759996042" dir="auto" data-initial-dir="auto" data-initial-value="" aria-describedby="i.desc.1902424178 i.err.1902424178"></textarea>
+                          </div>
+                      </div>
+                      <div role="listitem" class="" jsname="ibnC6b" jscontroller="jmDACb" jsaction="rcuQ6b:kzSVDc;JIbuQc:aj0Jcf,vwKRrd;" data-input="L9xHkb" data-item-id="2000728034">
+                          <div class="label" dir="auto" id="i13" role="heading" aria-level="2" aria-describedby="i.desc.2000728034">Project Budget</div>
+                          <select name="entry.686869614">
+                            <option selected disabled>Choose</option>
 
-    <label for="oname">Organization Name</label>
-    <input type="text" id="oname" name="organizationname" placeholder="Organization Name">
+                            <option jsname="ksKsZd" jsaction="" data-value="$5,000" role="option" tabindex="-1">$5,000</option>
 
-    <label for="yname">Your Name</label>
-    <input type="text" id="yname" name="yourname" placeholder="Your Name">
+                            <option jsname="ksKsZd" jsaction="" data-value="$10,000" role="option" tabindex="-1">$10,000</option>
 
-    <label for="email">Email</label>
-    <input type="text" id="email" name="emailaddress" placeholder="Email Address">
+                            <option jsname="ksKsZd" jsaction="" data-value="$15,000">$15,000</option>
 
-    <label for="budget">Budget</label>
-    <select id="budget" name="budget">
-      <option value="5000">$5,000</option>
-      <option value="10000">$10,000</option>
-      <option value="15000">$15,000</option>
-      <option value="20000">+$20,000</option>
-    </select>
+                            <option jsname="ksKsZd" jsaction="" data-value="+$20,000">+$20,000</option>
+                          </select>
+                      </div>
+                      <div role="listitem" class="" jsname="ibnC6b" jscontroller="rDGJeb" jsaction="sPvj8e:e4JwSe,vwKRrd;" data-item-id="891001571">
+                          <div class="label" dir="auto" role="heading" aria-level="2" aria-describedby="i.desc.891001571">Additional Info</div>
 
-    <label for="subject">Project Details</label>
-    <textarea id="subject" name="subject" placeholder="Write something.." style="height:100px"></textarea>
+                          <div class="" jscontroller="pxq3x" jsaction="clickonly:KjsqPd; focus:Jt1EX; blur:fpfTEe; input:Lg5SV;" jsshadow jsname="W85ice">
+                            <div class="" jsname="LwH6nd">Anything else?</div>
+                            <textarea class="" jsname="YPqjbf" data-rows="1" tabindex="0" aria-label="Additional Info" jscontroller="gZjhIf" jsaction="input:Lg5SV;ti6hGc:XMgOHc;rcuQ6b:WYd;" name="entry.1162104306" dir="auto" data-initial-dir="auto" data-initial-value="" aria-describedby="i.desc.891001571 i.err.891001571"></textarea>
+                          </div>
+                          <div class="" jsname="R7fTud"></div>
+                          <div jsname="XbIQze" class="" id="i.err.891001571" role="alert"></div>
+                      </div>
+                  </div>
+                  <button class="btn submit" type="submit" value="send">Submit</button>
+                  <input type="hidden" name="fvv" value="1">
+                  <input type="hidden" name="draftResponse" value="[null,null,&quot;4721514676762352242&quot;]">
+                  <input type="hidden" name="pageHistory" value="0">
+                  <input type="hidden" name="fbzx" value="4721514676762352242">
+              </div>
+          </div>
+      </form>
+      </div>
+    </div>
 
-    <input type="submit" value="Submit">
-  </form>
+        </form>
+      </div>
 
-    <p>Copyright © 2018 James Madson.</p>
-    <p>All Rights Reserved.</p>
 
-    <a href="/colophon">Colophon</a>
+
+        <p>Copyright © 2018 James Madson.</p>
+        <p>All Rights Reserved.</p>
+
+        <a href="/colophon">Colophon</a>
+      </div>
+    </div>
   </footer>
 
   <div class="container">
@@ -412,6 +474,9 @@
   <script type="text/javascript" src="slick/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="slick/jquery-migrate-1.2.1.min.js"></script>
   <script type="text/javascript" src="slick/slick.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@14.0.0/dist/smooth-scroll.polyfills.min.js"></script>
+
 
   <script type="text/javascript" src="functions.js"></script>
 </body>

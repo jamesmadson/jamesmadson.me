@@ -1,8 +1,3 @@
-//
-//down vote
-//accepted
-//Add unique ids+ class to each slider & navigation
-
 //$('.slider').slick({
 //  dots: true,
 //  nextArrow: $('#next')
@@ -12,13 +7,14 @@
 //  nextArrow: $('#next2')
 //});
 
+
 $(document).ready(function(){
+  var scroll = new SmoothScroll('a[href*="#"]');
+
   $('.project-1-carousel').slick({
     infinite: true,
-    //arrows: true,
     appendArrows: '.slick-nav',
     appendDots: '.slick-nav',
-    //centerMode: true, shows a little of prev/next slides
     dots: true,
     speed: 500,
     // RESPONSIVE

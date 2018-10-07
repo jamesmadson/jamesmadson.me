@@ -133,37 +133,49 @@ ul {
 
 header {
   background-image: url('img/woodgrain.webp');
-  padding: 150px 0;
+  padding: 40px 0;
+
+
+  .name {
+    color: $tan-dark;
+    display: inline-block;
+    float: left;
+    font-family: $base-font-family;
+    font-size: $base-font-size - 2;
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+  }
 
   nav {
-    display: none;
+
+    ul {
+      display: inline-block;
+      float: right;
+      list-style: none;
+
+      li {
+        display: inline-block;
+      }
+    }
   }
 }
 
-.name {
-  color: $tan-dark;
+.hero {
   display: block;
-  font-family: $base-font-family;
-  font-size: $base-font-size - 2;
-  font-weight: bold;
-  letter-spacing: 10px;
-  text-transform: uppercase;
+
+  h1 {
+    margin: 100px 0;
+  }
 
   .arrow {
     border: 4px solid rgba($tan-darkest, .1);
     display: block;
+    margin-top: 100px;
     padding: 38px 24px 30px 24px;
     @include rounded-corners(50px, 50px, 50px, 50px);
-  }
 
-  span {
-    display: block;
-    height: auto;
-    @include rotate(-90deg);
-  }
-
-  &:hover {
-    .arrow {
+    &:hover {
       border: 4px solid rgba($tan-darkest, 1);
     }
   }
@@ -226,12 +238,19 @@ header {
 }
 
 .btn {
+  display: block;
   font-family: $base-font-family;
   font-weight: bold;
   letter-spacing: 5px;
+  margin: 20px 0;
   padding: 20px;
   text-transform: uppercase;
   width: 300px;
+
+  &.submit {
+    color: $tan;
+    background-color: transparent;
+  }
 
   &.primary {
     border: 1px solid $black;
@@ -253,7 +272,7 @@ header {
 }
 
 // Grid
-$gutter: 0px;
+$gutter: 20px;
 $padding: 0 40px;
 $width: 1200px;
 $columns: 12;
@@ -305,6 +324,7 @@ $column-width: ($width - $columns * $gutter) / $columns;
 
 .project {
   background-color: $white;
+  margin-top: -10px;
   padding-top: 40px;
   padding-bottom: 40px;
 
@@ -370,6 +390,7 @@ $column-width: ($width - $columns * $gutter) / $columns;
   height: 21px;
   padding: 20px;
   width: 11px;
+  text-indent: -9999px;
 
   &:focus {
     outline:0;
@@ -378,10 +399,6 @@ $column-width: ($width - $columns * $gutter) / $columns;
   &.slick-next {
     @include rotate(180deg);
     float: right;
-  }
-
-  &.slick-prev {
-
   }
 }
 
@@ -426,9 +443,36 @@ $column-width: ($width - $columns * $gutter) / $columns;
       padding: 4px;
       border-radius: 20px;
       height: 8px;
+      text-indent: -9999px;
       width: 8px;
 
       &:focus {outline:0;}
+    }
+  }
+}
+
+.contact-form {
+
+  .label {
+    font-family: $base-font-family;
+  }
+
+  input[type="text"], textarea  {
+      background-color: transparent;
+      border: 1px solid $tan;
+      margin: 10px 0;
+      padding: 10px;
+      width: 100%;
+  }
+
+  select {
+    background-color: transparent;
+    border: 1px solid $tan;
+    padding: 20px;
+    width: 100%;
+
+    &:focus {
+      outline: none;
     }
   }
 }
