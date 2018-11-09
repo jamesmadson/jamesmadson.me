@@ -1,0 +1,46 @@
+// Mixins
+@mixin transition( $val : ease 0.5s ) {
+  -webkit-transition: $val;
+  -moz-transition:$val;
+  -o-transition:$val;
+  -ms-transition:$val;
+  transition:$val;
+}
+
+@mixin rounded-corners($tl : 4px, $tr : 4px, $br: 4px, $bl: 4px) {
+  -webkit-border-radius:$tl $tr $br $bl;
+  -moz-border-radius:$tl $tr $br $bl;
+  -o-border-radius:$tl $tr $br $bl;
+  border-radius:$tl $tr $br $bl;
+}
+
+@mixin rotate( $val: -2deg ) {
+  -webkit-transform: rotate($val);
+  -moz-transform: rotate($val);
+  -ms-transform: rotate($val);
+  -o-transform: rotate($val);
+  transform: rotate($val);
+}
+
+// Typography
+$base-font-family: "aktiv-grotesk-extended", "Eurostile", "Helvetica-Neue", Helvetica, Arial, sans-serif;
+$base-font-size:   18px;
+$base-font-weight: 400;
+$small-font-size:  $base-font-size * 0.875;
+$base-line-height: 1.9;
+$body-font-family: "courier-prime", Courier, sans-serif;
+$spacing-unit:     30px;
+
+// Colors
+$white:            #FFFFFF;
+$black:            #1F201C;
+$tan:              #DED6C5;
+$tan-dark:         #928C6A;
+$tan-darkest:      #686953;
+$tan-light:        #C9BA96;
+$tan-lightest:     #F4F2EE;
+$grey:             #D4D5D0;
+$fuchsia:          #7B3F3E;
+$yellow:           #FFC200;
+$yellow-lighter:   #FEF1C1;
+$sage:             #A1B19E;
