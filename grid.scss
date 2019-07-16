@@ -13,7 +13,7 @@ $column-width: ($width - $columns * $gutter) / $columns;
   );
   grid-column-gap: $gutter;
   justify-content: center;
-  width: $width;
+  //width: $width;
   margin: 0 auto;
   padding: $padding;
 }
@@ -35,42 +35,8 @@ $column-width: ($width - $columns * $gutter) / $columns;
   .pull_#{$i} { left: $i * ($column-width + $gutter) * -1; }
 }
 
-/* Small devices (480px and down) */
-@media (max-width: 480px) {
-  .container {
-    display: grid;
-    grid-template-columns: repeat(
-      ($columns / 4),
-      ($column-width / 4)
-    );
-    grid-column-gap: ($gutter / 4);
-    justify-content: center;
-    width: ($width / 4);
-    margin: 0 auto;
-    padding: ($padding / 4);
-  }
-}
-
-/* Medium devices (481px and up) */
-@media (min-width: 481px) {
-
-}
-
 .grid-col {
   border: 1px solid #fff;
   padding: 10px 0;
   margin: 10px 0;
-}
-
-.color_block {
-  &.fuchsia {
-    background-color: $fuchsia;
-    height: 20px;
-    margin-top: -20px;
-  }
-  &.yellow {
-    background-color: $yellow;
-    height: 20px;
-    margin-top: -7px;
-  }
 }

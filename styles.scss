@@ -15,6 +15,7 @@
 
 body {
   background-color: $black;
+  //background-image: url('img/halftone.png');
   color: $tan-dark;
   font-family: $body-font-family;
   margin: 0;
@@ -66,7 +67,7 @@ h3 {
   margin-top: 6px;
 
   small {
-    color: $tan-darkest;
+    color: $tan-dark;
     display: block;
     font-size: $base-font-size - 2;
   }
@@ -100,6 +101,7 @@ h6 {
 a {
   color: $tan;
   text-decoration: none;
+  transition: all .4s ease-in-out;
 
   &:hover {
     color: $fuchsia;
@@ -116,13 +118,15 @@ ul {
 }
 
 header {
-  background-image: url('img/woodgrain.webp');
+  background-color: transparent;
   background-attachment: fixed;
+  display: block;
   padding: 40px 0;
   position: relative;
+  background-image: url('img/woodgrain.webp');
 
   .name {
-    color: $tan-dark;
+    color: $tan-darkest;
     display: inline-block;
     float: left;
     font-family: $base-font-family;
@@ -132,8 +136,64 @@ header {
     text-transform: uppercase;
   }
 
-  h1 {
-    margin: 100px 0;
+  // H1
+  .jm-title {
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: $white;
+    display: block;
+    font-size: 140px;
+    font-weight: 100;
+    height: 300px;
+    letter-spacing: 0px;
+    line-height: 140px;
+    padding-bottom: 300px;
+    //position: relative;
+    margin: 100px 0 0 0;
+    //overflow: hidden;
+    //text-decoration-style: solid;
+    //-webkit-mask-image: url('img/woodgrain.png');
+    //-webkit-text-stroke: 2px $black;
+    //z-index: 5;
+
+    span {
+      color: $tan-dark;
+      font-size: 30px;
+      font-weight: 500;
+      letter-spacing: 9px;
+      line-height: 0;
+      position: absolute;
+      text-transform: uppercase;
+      top: 320px;
+    }
+
+    //&:before {
+      //content: '';
+      //background-image: url('img/waves@2x.png');
+      //background-attachment: fixed;
+      //height: 200px;
+      //width: 100%;
+      //display: block;
+      //position: fixed;
+      //bottom: 0px;
+      //left: 0px;
+      //z-index: -1;
+    //}
+
+    //&.title-exploded {
+      //color: transparent;
+      //letter-spacing: 180px;
+      //-webkit-text-stroke: 2px transparent;
+
+      //span {
+        //color: $black;
+      //}
+
+      //&:before {
+        //height: 200px;
+        //bottom: -130px;
+      //}
+    //}
   }
 
   .arrow {
@@ -146,7 +206,7 @@ header {
     transition: all 0.3s ease;
 
     &:hover {
-      border: 4px solid rgba($yellow, 1);
+      border: 4px solid rgba($tan-light, 1);
       opacity: 1;
       padding: 48px 24px 20px 24px;
     }
@@ -155,6 +215,7 @@ header {
 
 // Nav Link
 .nav-link {
+  //background-color: rgba($black, .2);
   display: block;
   height: 45px;
   position: fixed;
@@ -163,7 +224,7 @@ header {
   top: 25px;
   transition: all 0.4s ease;
   width: 45px;
-  z-index: 25;
+  z-index: 35;
 
   &:before {
     background-color: transparent;
@@ -200,7 +261,6 @@ header {
   }
 
   &:hover {
-
     &:before {
       background-color: $fuchsia;
       bottom: 0;
@@ -220,8 +280,8 @@ header {
 
 // NAV Menu
 .nav-menu {
-  background-color: rgba($tan-lightest, .95);
-  display: block;
+  background-color: rgba($black, .9);
+  //display: block;
   font-family: $base-font-family;
   height: 100%;
   left: 0;
@@ -231,10 +291,23 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 15;
+  z-index: 300;
 
   .close-link {
-    color: $tan-darkest;
+    color: $tan-dark;
+    cursor: pointer;
+    display: block;
+    font-weight: bold;
+    right: 50px;
+    position: fixed;
+    transform-style: preserve-3d;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: $white;
+      padding-left: 20px;
+    }
   }
 
   ul {
@@ -244,14 +317,14 @@ header {
     li {
       text-align: left;
       padding: 10px 0;
-      transform: rotateY(-25deg) translateZ(0) scale(1);
+      transform: rotateY(0deg) translateZ(0) scale(1);
       transform-origin: left center;
       transform-style: preserve-3d;
       will-change: transform;
-      transition: transform 2.5s cubic-bezier(.075,.82,.165,1);
+      transition: transform 1.3s cubic-bezier(.075,.82,.165,1);
 
       &:hover {
-        transform: rotateY(0deg) translateZ(0) scale(1);
+        transform: rotateY(15deg) translateZ(0) scale(1.3);
       }
 
       &:nth-child(1):before {
@@ -269,31 +342,44 @@ header {
       &:nth-child(5):before {
         content: '05';
       }
-      &:nth-child(6):before {
-        content: '06';
-      }
-      &:nth-child(7):before {
-        content: '07';
-      }
 
       &:before {
         color: $tan-light;
         content: '';
         display: inline-block;
-        position: relative;
         left: 0px;
-        top: 0;
+        position: relative;
+        top: 15px;
+        vertical-align: top;
       }
 
       a {
-        color: $black;
+        color: $white;
         font-size: $base-font-size + 20;
+        padding-left: 20px;
         text-transform: uppercase;
-        transition: color 0.2s ease;
+        transition: color 0.3s ease;
+
+        &:after {
+          content: '';
+          display: block;
+          border-bottom: 2px solid $tan-dark;
+          width: 0;
+          position: absolute;
+          left: 30px;
+          opacity: 0;
+          -webkit-transition: 0.3s ease;
+          transition: 0.6s ease;
+        }
 
         &:hover, &.active {
-          color: $fuchsia;
-          text-decoration: underline;
+          color: $tan;
+          text-decoration: none;
+
+          &:after {
+            opacity: 1;
+            width: 80%;
+          }
         }
       }
     }
@@ -312,25 +398,36 @@ header {
 
 //Case Studies Nav
 .case-studies-nav {
-  grid-template-columns: repeat(12, 100px) !important;
-  grid-column-gap: 0px !important;
+  //grid-template-columns: repeat(12, 100px);
+  //grid-column-gap: 0px;
   padding-bottom: 100px;
+
+  h4 {
+    color: $tan-darkest;
+    display: block;
+    margin: 0px 0 20px 0;
+    //opacity: 0;
+
+    &.faded {
+      opacity: 1;
+    }
+  }
 
   .case-study {
     align-items: center;
-    border: 2px solid transparentize($white, 0.8);
+    //border: 1px solid transparentize($tan-light, 0.8);
+    background-color: transparentize($tan-light, 0.95);
     display: flex;
     height: 400px;
     margin-top: -2px;
-    //opacity: 0;
     position: relative;
     text-align: center;
-    //transition: all 0.3s ease;
-    transition: transform 2.5s cubic-bezier(.075,.82,.165,1);
-    transform: rotateY(0deg) translateZ(0) scale(1);
-    transform-origin: left center;
-    transform-style: preserve-3d;
-    will-change: transform;
+    //opacity: 0;
+    transition: all 0.2s ease;
+
+    &.case-fade-in {
+      opacity: 1;
+    }
 
     img {
       display: block;
@@ -357,21 +454,34 @@ header {
       width: 100%;
     }
 
-    &:nth-child(3) {
+    &.bs {
+      &:hover {
+        background-color: $tan;
+      }
+    }
+
+    &.fs {
+      &:hover {
+        background-color: $yellow;
+      }
+    }
+
+    &.mn {
       &:hover {
         background-color: $sage;
       }
     }
 
-    &:nth-child(2) {
+    &.api {
       &:hover {
-        background-color: $tan-light;
+        background-color: $grey;
       }
     }
 
     &.blank-study {
+      background-color: transparent;
       border: none;
-      border: 2px solid transparent;
+      //border: 1px solid transparent;
 
       &:hover {
         background-color: transparent;
@@ -382,20 +492,20 @@ header {
     }
 
     &:hover {
+      background-position: 0 0;
       background-color: $fuchsia;
-      border: 2px solid transparent;
-      transform: rotateY(25deg) translateZ(0) scale(1);
+      //border: 1px solid transparent;
 
       span {
         bottom: 70px;
-        color: $white;
+        color: $black;
         display: block;
         left: 0;
       }
 
       &:after {
         bottom: 30px;
-        color: $white;
+        color: $black;
         display: block;
         content: 'View Case Study →';
       }
@@ -408,13 +518,34 @@ header {
 }
 
 .image_lead {
-  min-height: 600px;
+  //min-height: 600px;
   width: 100%;
+  height: auto;
+}
+
+.color_block {
+  &.sage {
+    background-color: $sage;
+    height: 20px;
+    margin-top: -20px;
+  }
+  &.fuchsia {
+    background-color: $fuchsia;
+    height: 20px;
+    margin-top: -20px;
+  }
+  &.yellow {
+    background-color: $yellow;
+    height: 20px;
+    margin-top: -8px;
+  }
 }
 
 .about_images {
   display: block;
-  //overflow: hidden;
+  height: 100%;
+  //overflow-x: hidden;
+  //overflow-y: visible;
   position: relative;
   width: 100%;
 
@@ -423,15 +554,15 @@ header {
     overflow: visible;
     position: absolute;
     top: 400px;
-    right: -480px;
+    right: 0px;
     @include rotate(0deg);
     z-index: 10;
 
 
     &.film-animated {
-      right: 60px;
-      top: 100px;
-      @include rotate(-4deg);
+      right: 100px;
+      top: -100px;
+      @include rotate(-8deg);
     }
   }
 
@@ -448,6 +579,13 @@ header {
       top: 300px;
       @include rotate(4deg);
 
+        &::after {
+          left: 10px;
+          opacity: 1;
+          top: 25px;
+          @include rotate(4deg);
+        }
+
     }
 
     &::after {
@@ -456,16 +594,18 @@ header {
       position: absolute;
       display: block;
       height: 100%;
+      opacity: 0;
       width: 100%;
-      top: 25px;
-      left: 10px;
+      top: 0;
+      left: 0;
       z-index: -12;
-      @include rotate(4deg);
+      @include rotate(0deg);
+      transition: all 0.2s ease;
     }
   }
 
   .image_waves {
-    bottom: 400px;
+    bottom: 300px;
     display: block;
     overflow: hidden;
     position: absolute;
@@ -474,7 +614,7 @@ header {
 
     &.waves_animated {
       right: 0px;
-      bottom: -200px;
+      bottom: -100px;
     }
   }
 }
@@ -493,10 +633,15 @@ header {
 
   ul {
     margin: 0;
+
+    li {
+      color: $tan-light;
+    }
   }
 }
 
 .btn {
+  cursor: pointer;
   display: block;
   font-family: $base-font-family;
   font-weight: bold;
@@ -509,8 +654,13 @@ header {
   width: 300px;
 
   &.submit {
-    color: $tan;
-    background-color: transparent;
+    color: $black;
+    background-color: $tan;
+    opacity: 0.8;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 
   &.primary {
@@ -541,25 +691,25 @@ header {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  //transform: translateZ(-1px) scale(1.5);
 
-    &.bs {
-      background-image: url('img/bundle-select-lead.webp');
-    }
-    &.fs {
-      background-image: url('img/furniture-society-lead.webp');
-    }
-    &.mfn {
-      background-image: url('img/metrics-for-news-lead.webp');
-    }
-    &.api {
-      background-image: url('img/american-press-institute-lead.webp');
-    }
-    &.confetti {
-      background-image: url('img/confetti.webp');
-      min-height: 100px;
-      //transform: translateZ(-1px) scale(1.2);
-    }
+  &.bs {
+    background-image: url('img/bundle-select-lead.webp');
+  }
+  &.fs {
+    background-image: url('img/furniture-society-lead.webp');
+  }
+  &.mfn {
+    background-image: url('img/metrics-for-news-lead.webp');
+  }
+  &.api {
+    background-image: url('img/american-press-institute-lead.webp');
+  }
+  &.confetti {
+    background-image: url('img/confetti.webp');
+    background-size: auto;
+    background-repeat: repeat;
+    min-height: 100px;
+  }
 }
 
 .project {
@@ -568,8 +718,24 @@ header {
   margin-top: -10px;
   overflow: hidden;
   padding-top: 100px;
-  padding-bottom: 40px;
+  padding-bottom: 150px;
+  //scroll-behavior: smooth;
   width: 100%;
+
+  .client_logo {
+    margin-top: 15px;
+    padding-bottom: 20px;
+  }
+
+  .btn {
+    transition: all .4s ease-in-out;
+    width: auto;
+
+    &:hover {
+      padding-right: 10px;
+      transition: all .4s ease-in-out;
+    }
+  }
 
   h1 {
     color: $tan;
@@ -581,11 +747,15 @@ header {
   }
 
   p {
-    color: $black;
+    color: $tan-darkest;
     font-family: $base-font-family;
-    font-size: 24px;
-    line-height: 48px;
-    //margin: 20px 0;
+    font-size: 16px;
+    line-height: 36px;
+    padding-right: 30px;
+  }
+
+  li {
+    color: $tan-darkest;
   }
 }
 
@@ -638,7 +808,6 @@ blockquote {
   position: relative;
   display: inline-block;
 
-
   .slick-dots{
     position: static;
   }
@@ -684,8 +853,7 @@ blockquote {
     border-color: $black;
 
     &:before {
-        box-shadow: inset 0 0 0 0px $fuchsia;
-
+      box-shadow: inset 0 0 0 0px $fuchsia;
     }
   }
 
@@ -745,15 +913,17 @@ blockquote {
         border: 2px solid $fuchsia;
       }
 
-      &:focus {outline:0;}
+      &:focus {
+        outline:0;
+      }
     }
   }
 }
 
 .contact-form {
-
   .label {
     font-family: $base-font-family;
+    margin-top: 5px;
   }
 
   textarea {
@@ -763,9 +933,12 @@ blockquote {
   input[type="text"], textarea  {
       background-color: transparent;
       border: 1px solid $tan;
+      color: $tan;
+      font-family: $base-font-family;
+      font-size: 18px;
       margin: 10px 0;
       padding: 10px;
-      width: 100%;
+      width: calc(100% - 40px);
   }
 
   select {
@@ -773,13 +946,14 @@ blockquote {
     border: 1px solid $tan;
     border-radius: 0;
     color: $tan;
+    cursor: pointer;
     font-family: $base-font-family;
     font-size: $base-font-size - 6;
     height: 40px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    //padding: 20px;
-    width: 100%;
+    margin-top: 10px;
+    width: calc(100% - 18px);
 
     option {
       padding: 10px 15px 1px 15px;
@@ -792,14 +966,13 @@ blockquote {
 }
 
 footer {
-  padding: 200px 0;
+  padding: 100px 0;
 }
 
 // Animations
 @-webkit-keyframes fadeIn {
   0% {
     opacity: 0;
-    //transform: rotateY(-45deg) translateZ(0) scale(1);
   }
   100% {
     opacity: 1;
@@ -809,7 +982,7 @@ footer {
 @keyframes fadeIn {
   0% {
     opacity: 0;
-    transform: rotateY(-45deg) translateZ(0) scale(1);
+    transform: rotateY(-90deg) translateZ(0) scale(1);
   }
 
   100% {
@@ -823,22 +996,49 @@ footer {
   transform-style: preserve-3d;
   will-change: transform;
   transition: transform 1.5s cubic-bezier(.075,.82,.165,1);
+  opacity: 1 !important;
 
   // Call Animations
   -webkit-animation-name: fadeIn;
   animation-name: fadeIn;
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
+}
 
-  &:nth-child(2), &:nth {
-    transition-delay: .36667s;
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity: 1;
   }
-
-  &:nth-child(3) {
-    transition-delay: .66667s;
-  }
-
-  &:nth-child(4) {
-    transition-delay: .96667s;
+  100% {
+    opacity: 0;
   }
 }
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: rotateY(-90deg) translateZ(0) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: rotateY(0deg) translateZ(0) scale(1);
+  }
+}
+
+.fadeOut {
+  transform-origin: right center;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 1.5s cubic-bezier(.075,.82,.165,1);
+  opacity: 0 !important;
+
+  // Call Animations
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+}
+
+@import "sm";
+@import "md";

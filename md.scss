@@ -1,0 +1,188 @@
+/* Small devices (600px and down) */
+@media (max-width: 1279px) {
+
+  h2 {
+    padding-bottom: 10px;
+  }
+
+  //Grid
+  $gutter: 0;
+  $padding: 0 20px;
+  $width: 100%;
+  $columns: 2;
+  $column-width: ($width - $columns * $gutter) / $columns;
+  //$column-width: calc(50% - 20px);
+
+  .container {
+    column-count: $columns;
+    grid-template-columns: repeat($columns, $column-width);
+    grid-column-gap: $gutter;
+    justify-content: left;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: $padding;
+    //width: calc(100% - 20px);
+  }
+
+  .grid_2, .grid_3, .grid_4 {
+    //display: block;
+    break-after: always;
+    grid-column: span 1;
+  }
+
+  .grid_6, .grid_8, .grid_9, .grid_12 {
+    //display: block;
+    break-after: always;
+    grid-column: span 2;
+  }
+
+  header {
+    padding: 20px 0;
+
+    .nav-link {
+      //right: 45px;
+      //top: 6px;
+    }
+
+    h1 {
+      font-size: 80px;
+      line-height: $base-font-size + 72;
+      margin: 45px 0 40px 0;
+    }
+  }
+
+  .case-studies-nav {
+
+    .blank-study {
+      display: none;
+    }
+    .case-study {
+      border: 0;
+      break-after: always;
+      grid-column: span 1;
+      height: 300px;
+      margin: 0;
+
+      img {
+        filter: invert(0);
+      }
+
+      span, &:hover span {
+        bottom: 40px;
+        color: $black;
+        left: 0;
+        display: block;
+      }
+
+      &:after, &:hover:after {
+        bottom: 15px;
+        color: $black;
+        display: block;
+        opacity: 0.4;
+      }
+
+      &.bs {
+        background-color: $white;
+      }
+      &.fs {
+        background-color: lighten($tan-light, 10%);
+      }
+      &.mn {
+        background-color: lighten($sage, 10%);
+      }
+      &.api {
+        background-color: lighten($grey, 10%);
+      }
+    }
+  }
+
+  .color_block {
+
+    &.push_3 {
+      right: 20px;
+    }
+    &.sage, &.fuchsia {
+      margin-top: 0;
+    }
+
+    &.yellow {
+      display: block;
+      position: relative;
+      right: -20px;
+      top: 0;
+    }
+  }
+
+  #about_photos {
+    overflow: hidden;
+    background-image: url(img/woodgrain.webp);
+    background-attachment: fixed;
+  }
+
+  .about_images {
+    overflow: hidden;
+    width: 100%;
+
+    .image_lead {
+      height: 800px;
+      width: auto;
+    }
+
+    .image_waves {
+      height: 540px;
+      width: 900px;
+    }
+
+    .image_portrait {
+      left: 300px;
+      right: 0;
+      top: 50px;
+
+      img {
+        height: 350px;
+        width: 350px;
+      }
+
+      &:after {
+        width: 350px;
+      }
+    }
+
+    .image_film_strip {
+      display: none;
+    }
+  }
+
+  .about {
+    padding-top: 50px;
+
+    .container {
+      padding: 20px;
+    }
+  }
+
+  .project_image_lead {
+    min-height: 400px;
+
+    &.bs {
+      background-image: url('img/bundle-select-lead.webp');
+    }
+    &.fs {
+      background-image: url('img/furniture-society-lead.webp');
+    }
+    &.mfn {
+      background-image: url('img/metrics-for-news-lead.webp');
+    }
+    &.api {
+      background-image: url('img/american-press-institute-lead.webp');
+    }
+    &.confetti {
+      background-image: url('img/confetti.png');
+      min-height: 100px;
+    }
+  }
+
+  footer {
+    padding: 60px 0 0 0;
+  }
+}

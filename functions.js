@@ -1,20 +1,26 @@
 $(document).ready(function(){
   // SmoothScroll
   var scroll = new SmoothScroll('a[href*="#"]', {
-    speed: 3000,
+    speed: 1000,
     popstate: true,
-    updateURL: false
+    updateURL: true
+  });
+
+  // Widon't – No orphans or widows
+  $('h1,h2,h3,li,p').each(function() {
+    $(this).html($(this).html().replace(/\s([^\s<]+)\s*$/,'&nbsp;$1'));
   });
 
   // Nav Menu
   var menu = new TimelineLite()
-	.from("#navmenu", 1, {width:0, ease:Power2.easeInOut})
+	.from("#navmenu", 1, {width:0, autoAlpha:0, ease:Power2.easeInOut})
 	.from("#navicon", 1, {ease:Power2.easeInOut},0)
   .reversed(true);
 
   var menuChilds = document.querySelectorAll('ul li, #navicon, .close-link');
   for( var i=menuChilds.length ; i--; ){
-    menuChilds[i].addEventListener('click',function(){ menu.reversed(!menu.reversed()) })
+    menuChilds[i].addEventListener('click',function(){ menu.reversed(!menu.reversed())
+    })
   };
 
   // Slick Slider
@@ -25,24 +31,8 @@ $(document).ready(function(){
     dots: true,
     speed: 800,
     infinite: false,
-    // RESPONSIVE
-    responsive: [{
-
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 1
-      }
-    }, {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 1
-      }
-
-    }, {
-
-      breakpoint: 300,
-      //settings: "unslick" // destroys slick
-    }]
+    slidesToShow: 1,
+    slidesToScroll: 1
   });
 
   $('.project-2-carousel').slick({
@@ -52,6 +42,8 @@ $(document).ready(function(){
     dots: true,
     speed: 800,
     infinite: false,
+    slidesToShow: 1,
+    slidesToScroll: 1
   });
 
   $('.project-3-carousel').slick({
@@ -61,6 +53,8 @@ $(document).ready(function(){
     dots: true,
     speed: 800,
     infinite: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
   });
 
   $('.project-4-carousel').slick({
@@ -70,6 +64,8 @@ $(document).ready(function(){
     dots: true,
     speed: 800,
     infinite: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
   });
 
   //ScrollMagic.js and GSAP Animation.js Plugin
@@ -77,10 +73,9 @@ $(document).ready(function(){
   // build tween
   var tween = TweenMax.to(".image_film_strip", 1, {className: "+=film-animated"});
 
-  // build scene
+  // About Photos
   var scene = new ScrollMagic.Scene({triggerElement: "#about_photos", duration: 800, offset: 100})
   .setTween(tween)
-  //.addIndicators({name: "tween css class"}) // add indicators
   .addTo(controller);
 
   // 2
@@ -88,10 +83,9 @@ $(document).ready(function(){
   // build tween
   var tween2 = TweenMax.to(".image_portrait", 1, {className: "+=profile_animated"});
 
-  // build scene
+  // About Photos
   var scene = new ScrollMagic.Scene({triggerElement: "#about_photos", duration: 800, offset: 100})
   .setTween(tween2)
-  //.addIndicators({name: "tween2 css class"}) // add indicators
   .addTo(controller2);
 
   // 3
@@ -104,6 +98,43 @@ $(document).ready(function(){
   .setTween(tween3)
   //.addIndicators({name: "tween3 css class"}) // add indicators
   .addTo(controller3);
+
+  // 4
+  // Header
+  var controller4 = new ScrollMagic.Controller();
+
+  var tween4 = TweenMax.to("header", 1, {className: "+=header-dark"});
+
+  // build scene
+  var scene = new ScrollMagic.Scene({triggerElement: ".case-studies-nav", duration: 0, offset: 0})
+  .setTween(tween4)
+  //.addIndicators({name: "tween4 css class"}) // add indicators
+  .addTo(controller4);
+
+  // 5
+  // H1
+  //var controller5 = new ScrollMagic.Controller();
+
+  //var tween5 = TweenMax.to(".jm-title", 5, {className: "+=title-exploded"});
+
+  // build scene
+  //var scene = new ScrollMagic.Scene({triggerElement: ".case-studies-nav", duration: 300, offset: 0})
+  //.setTween(tween5)
+  //.addIndicators({name: "tween5 css class"}) // add indicators
+  //.addTo(controller5);
+
+  // 6
+  // Case Studies
+  var controller6 = new ScrollMagic.Controller();
+
+  var tween6 = TweenMax.to(".case-studies-nav h4", 6, {className: "+=faded"});
+
+  // build scene
+  var scene = new ScrollMagic.Scene({triggerElement: ".case-studies-nav", duration: 300, offset: 00})
+  .setTween(tween6)
+  //.addIndicators({name: "tween6 css class"}) // add indicators
+  .addTo(controller6);
+
 
   // Active link show which section you're in
   var controller = new ScrollMagic.Controller({
@@ -122,7 +153,7 @@ $(document).ready(function(){
       'bundle_select': 'bs_link'
     },
     'fs': {
-      'section-2': 'anchor2'
+      'furniture_society': 'fs_link'
     },
     'mfn': {
       'metrics_for_news': 'mfn_link'
@@ -150,13 +181,5 @@ $(document).ready(function(){
           .addTo(controller);
     }
   }
-
-  // Animate Trigger CSS Class
-  var scene = new ScrollMagic.Scene({triggerElement: ".name", duration: null})
-  // trigger animation by adding a css class
-  .setClassToggle(".case-study", "fadeIn")
-  //.addIndicators({name: "Animation FadeIn"}) // add indicators (requires plugin)
-  .addTo(controller);
-
 
 });
