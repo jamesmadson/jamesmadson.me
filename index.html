@@ -3,473 +3,317 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>James Madson</title>
+  <meta name="color-scheme" content="light dark">
+  <title>James Madson – Designer</title>
   <meta name="title" content="James Madson">
   <meta name="description" content="Independent designer & developer.">
+  <meta name="keywords" content="designer, product designer, brand designer, design director, seattle, best designers">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="shortcut icon" type="image/x-icon" href="icons/favicon-32x32.png">
+
+  <link rel="canonical" href="https://jamesmadson.me">
 
   <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
   <link rel="manifest" href="icons/site.webmanifest">
-  <link rel="mask-icon" href="icons/safari-pinned-tab.svg" color="#928c6a">
+  <link rel="mask-icon" href="icons/safari-pinned-tab.svg" color="#282829">
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="theme-color" content="#ffffff">
 
-  <link rel="stylesheet" type="text/css" href="styles2.css" />
-  <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="styles.css" />
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-5440985-16"></script>
+  <!-- Google tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HL3TB4H7XS"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    gtag('config', 'UA-5440985-16');
+    gtag('config', 'G-HL3TB4H7XS');
   </script>
 </head>
 
-<body>
-  <nav class="nav-menu" id="navmenu">
-    <div class="container">
+<body class="">
+  <div class="container nav_container fadeIn">
+    <a href="index.html">
+      <h1 class="nav_title">JM</h1>
+    </a>
+    <nav class="nav_large">
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li>
+          <button id="light_switch">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 37 37"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M18.5006 36.4173C16.0221 36.4173 13.693 35.947 11.5131 35.0064C9.33333 34.0657 7.43713 32.7892 5.82461 31.1767C4.21211 29.5642 2.93554 27.668 1.99492 25.4881C1.05429 23.3083 0.583984 20.9791 0.583984 18.5006C0.583984 16.0222 1.05429 13.693 1.99492 11.5131C2.93554 9.33331 4.21211 7.43711 5.82461 5.82461C7.43713 4.21211 9.33333 2.93555 11.5131 1.99492C13.693 1.0543 16.0221 0.583984 18.5006 0.583984C20.9791 0.583984 23.3083 1.0543 25.4881 1.99492C27.668 2.93555 29.5642 4.21211 31.1767 5.82461C32.7892 7.43711 34.0657 9.33331 35.0063 11.5131C35.947 13.693 36.4173 16.0222 36.4173 18.5006C36.4173 20.9791 35.947 23.3083 35.0063 25.4881C34.0657 27.668 32.7892 29.5642 31.1767 31.1767C29.5642 32.7892 27.668 34.0657 25.4881 35.0064C23.3083 35.947 20.9791 36.4173 18.5006 36.4173ZM20.2923 32.6996C23.8458 32.2517 26.8244 30.6914 29.2282 28.0189C31.632 25.3463 32.834 22.1736 32.834 18.5006C32.834 14.8277 31.632 11.655 29.2282 8.98241C26.8244 6.30985 23.8458 4.74961 20.2923 4.30169V32.6996Z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <nav class="mobile_nav_menu" id="mobilenavmenu">
+    <div class="container fadeIn">
       <div class="grid_8">
-        <span class="close-link">&#10005; Close</span>
+        <button class="close_link" aria-label="Close Menu">&#10005; Close</button>
         <ul>
-          <li><a data-scroll href="#about_james_madson" id="about_link">About</a></li>
-          <li><a data-scroll href="#bundle_select" id="bs_link">Bundle Select</a></li>
-          <li><a data-scroll href="#furniture_society" id="fs_link">Furniture Society</a></li>
-          <li><a data-scroll href="#metrics_for_news" id="mfn_link">Metrics for News</a></li>
-          <!--<li><a data-scroll href="#american_press_institute" id="api_link">American Press Intitute</a></li>-->
-          <li><a data-scroll href="#contact" id="contact_link">Contact</a></li>
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="work.html">Work</a></li>
+          <li><a href="about.html">About</a></li>
         </ul>
       </div>
     </div>
   </nav>
-  <div class="nav-link" id="navicon"><span>Menu</span></div>
+  <button id="navlink" aria-controls="mobilenavmenu" aria-expanded="false">
+    Menu
+  </button>
+
+  <header class="fadeIn">
+    <a name="home"></a>
+    <div class="container">
+      <div class="grid_10">
+        <h1 class="fadeIn jm_title">Hey, I'm James.</h1>
+        <h1 class="jm_subtitle">I am a
+          <a href="about.html" class="highlight jm">designer</a>
+          who helps teams turn ideas into
+          <a href="case_studies/naturescore.html" class="highlight ns">clear</a>,
+          <a href="case_studies/pecan.html" class="highlight pecan">useful</a>,
+          and
+          <a href="case_studies/naturequant.html" class="highlight nq">lasting</a>
+          digital experiences. I focus on making
+          <a href="case_studies/visualization_community.html" class="highlight viz">complex</a> interactions
+          <a href="case_studies/naturedose.html" class="highlight nd">easier</a>
+          for the people who use them.
+        </h1>
+        <!--<br><br><a href="#recent_work" id="#recent_work_link">
+          <h5>Scroll to view more</h5>
+        </a>-->
+      </div>
+      <div class="grid_4"></div>
+    </div>
+  </header>
+
+  <main class="fadeIn">
+  <!--<div class="container">
+    <div class="grid_12">
+      <img src="img/jm_featured_work.gif" width="100%" class="homepage_work">
+    </div>
+  </div>-->
+
+  <div class="container">
+    <div class="grid_12">
+      <h5 class="select_clients">Select Clients</h5>
+    </div>
+  </div>
+  <section class="logo_scroller">
+    <ul class="client_logos">
+      <li>
+        <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+          <image href="img/clients/clearleft_logo.svg" />
+        </svg>
+      </li>
+      <li>
+        <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+          <image href="img/clients/copic_logo.svg" />
+        </svg>
+      </li>
+      <li>
+        <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+          <image href="img/clients/hoka_logo.svg" />
+        </svg>
+      </li>
+      <li>
+        <svg xmlns="http://www.w3.org/2000/svg">
+          <image href="img/clients/kirkus_logo.svg" />
+        </svg>
+      </li>
+      <li>
+        <svg xmlns="http://www.w3.org/2000/svg">
+          <image href="img/clients/reicaf_logo.svg" />
+        </svg>
+      </li>
+      <li>
+        <svg xmlns="http://www.w3.org/2000/svg">
+          <image href="img/clients/stackoverflow_logo.svg" />
+        </svg>
+      </li>
+      <li>
+        <svg xmlns="http://www.w3.org/2000/svg">
+          <image href="img/clients/stjude_logo.svg" />
+        </svg>
+      </li>
+      <li>
+        <svg xmlns="http://www.w3.org/2000/svg">
+          <image href="img/clients/ugg_logo.svg" />
+        </svg>
+      </li>
+      <li>
+        <svg xmlns="http://www.w3.org/2000/svg">
+          <image href="img/clients/clearleft_logo.svg" />
+        </svg>
+      </li>
+      <li>
+        <svg xmlns="http://www.w3.org/2000/svg">
+          <image href="img/clients/copic_logo.svg" />
+        </svg>
+      </li>
+      <li>
+        <svg xmlns="http://www.w3.org/2000/svg">
+          <image href="img/clients/hoka_logo.svg" />
+        </svg>
+      </li>
+      <li>
+        <svg xmlns="http://www.w3.org/2000/svg">
+          <image href="img/clients/kirkus_logo.svg" />
+        </svg>
+      </li>
+      <li>
+        <svg xmlns="http://www.w3.org/2000/svg">
+          <image href="img/clients/reicaf_logo.svg" />
+        </svg>
+      </li>
+      <li>
+        <svg xmlns="http://www.w3.org/2000/svg">
+          <image href="img/clients/stackoverflow_logo.svg" />
+        </svg>
+      </li>
+      <li>
+        <svg xmlns="http://www.w3.org/2000/svg">
+          <image href="img/clients/stjude_logo.svg" />
+        </svg>
+      </li>
+      <li>
+        <svg xmlns="http://www.w3.org/2000/svg">
+          <image href="img/clients/ugg_logo.svg" />
+        </svg>
+      </li>
+    </ul>
+  </section>
+
   <header class="fadeIn">
     <div class="container">
-      <div class="grid_12">
-        <h1 class="fadeIn jm-title">James<br /> Madson<br /> <span>Independent Designer</span></h1>
+      <div class="grid_3">
+        <br><br><br><h2 class="fadeIn">Recent Work</h2>
       </div>
     </div>
   </header>
 
-  <main class="scrollContent">
-  <div class="container" id="about_photos">
-    <div class="grid_9 push_3 color_block fuchsia"></div>
-  </div>
-  <div class="about_images">
-    <img class="image_lead" height="1072" width="1680" sizes="(min-width: 400px) 80vw, 100vw"
-  srcset="img/james-in-pyrenees.jpg 375w,
-          img/james-in-pyrenees@2x.webp 1630w" alt="James in the Pyrenees"/>
-    <div class="image_film_strip">
-      <img height="1046" width="454"
-      sizes="(min-width: 400px) 80vw, 100vw"
-    srcset="img/travel-photos.jpg 375w,
-            img/travel-photos@2x.webp 1500w" alt="James' Travels"/>
-    </div>
+  <section class="about work" id="recent_work">
 
-    <div class="image_portrait">
-      <img height="440" width="440"
-      sizes="(min-width: 400px) 80vw, 100vw"
-    srcset="img/jm-profile.png 375w,
-            img/jm-profile@2x.png 1500w" alt="James Profile Photo"/>
-    </div>
-    <img class="image_waves" height="594" width="975"
-  src="img/waves@2x.webp" alt="Wavy Lines"/>
-  </div>
-  <div class="container">
-    <div class="grid_9 color_block yellow"></div>
-  </div>
-
-  <section class="about" id="about_james_madson">
-    <div class="container">
-      <div class="grid_3">
-        <a name="about_james_madson"></a>
-        <h3>About</h3>
-      </div>
-      <div class="grid_9">
-        <h4>I work with global brands, non-profits, and agencies to create* purposeful, simple, and engaging designs.</h4><h3><small>*on-time and on-budget</small></h3>
-      </div>
-    </div>
-    <div class="container">
-      <div class="grid_3">
-        <h3>What I Do</h3>
-      </div>
-      <div class="grid_3">
-        <ul>
-          <br /><li>Art Direction</li>
-          <li>Brand Identity</li>
-          <li>Data Visualization</li>
-          <li>Front-end Development</li>
-          <li>Icons</li>
-        </ul>
-      </div>
-      <div class="grid_3">
-        <ul>
-          <br /><li>Naming</li>
-          <li>Style Guide</li>
-          <li>Prototyping (Lo/Hi)</li>
-          <li>Pattern Libraries</li>
-          <li>Product Research</li>
-        </ul>
-      </div>
-      <div class="grid_3">
-        <ul>
-          <br /><li>Prototyping</li>
-          <li>UI/UX</li>
-          <li>User Testing</li>
-          <li>Wireframing</li>
-          <li>Visual Concepts</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="grid_3">
-        <h3>Who I've Worked With</h3>
-      </div>
-      <div class="grid_3">
-        <ul>
-          <li><h4>Brands</h4></li>
-          <li>Hoka One One</li>
-          <li>Kirkus Reviews</li>
-          <li>Reuters </li>
-          <li>Stack Overflow</li>
-          <li>UGG</li>
-          <li>Xprize</li>
-        </ul>
-      </div>
-      <div class="grid_3">
-        <ul>
-          <li><h4>Agencies</h4></li>
-          <li>10Up</li>
-          <li>Clearleft</li>
-          <li>Eightfold</li>
-          <li>Tallwave</li>
-          <li>Twenty Ideas</li>
-        </ul>
-      </div>
-      <div class="grid_3">
-        <ul>
-          <li><h4>Nonprofits</h4></li>
-          <li>American Press Institute</li>
-          <li>Global Training Network</li>
-          <li>Metrics for News</li>
-          <li>The Furniture Society</li>
-        </ul>
-      </div>
-    </div>
-
-    <!--<div class="container">
-      <div class="grid_3">
-        <h3>Community</h3>
-      </div>
-      <div class="grid_3">
-        <ul>
-          <br /><li>AIGA Mentor</li>
-          <li>Kids Summer Web Dev Code Camp</li>
-          <li>Flag Tech Track</li>
-          <li>Trail Building / Maintenance</li>
-          <li>Roots Micro Farm</li>
-        </ul>
-      </div>
-    </div>-->
-
-  </section>
-
-  <div class="container case-studies-nav">
-    <div class="grid_12">
-      <h4>Case Studies</h4>
-    </div>
-    <a data-scroll href="#bundle_select" class="grid_4 case-study bs">
-        <img src="img/bundle-select-logo-black.svg" class="client_logo" height="auto" width="175" alt="Bundle Select Logo"/>
-        <span>Bundle Select</span>
-    </a>
-    <div class="grid_4 case-study blank-study"></div>
-    <a data-scroll href="#furniture_society" class="grid_4 case-study fs ">
-      <img src="img/furnsoc-logo-black.svg" class="client_logo" height="auto" width="175" alt="The Furniture Society Logo"/>
-      <span>The Furniture Society</span>
-    </a>
-    <div class="grid_4 case-study blank-study"></div>
-    <a data-scroll href="#metrics_for_news" class="grid_4 case-study mn">
-      <img src="img/metrics-for-news-black.svg" class="client_logo" height="auto" width="175" alt="Metrics For News Logo"/>
-      <span>Metrics for News</span>
-    </a>
-    <!--<a data-scroll href="#american_press_institute" class="grid_4 case-study api">
-      <img src="img/american-press-institute-black.svg" class="client_logo" height="auto" width="175" alt="American Press Institute Logo"/>
-      <span>American Press Institute</span>
-    </a>-->
-  </div>
-
-  <div class="project_image_lead bs"></div>
-  <section class="project" id="bundle_select">
-    <div class="container">
-      <div class="grid_3">
-        <img src="img/bundle-select-logo-black.svg" class="client_logo" height="auto" width="225px" alt="Bundle Select Logo"/>
-        <a name="bundle_select"></a>
-        <ul>
-          <!--<li><strong>Work:</strong></li>-->
-          <li>Identity</li>
-          <li>Website Design</li>
-          <li>Frontend HTML/CSS/JS</li>
-          <li>Icons</li>
-          <li>Pitch Deck</li>
-          <li>Print Colateral</li>
-        </ul>
-        <a href="https://www.bundleselect.com" class="btn primary" target="_blank" rel="noreferrer">Visit Website</a>
-      </div>
-      <div class="grid_1">
-      </div>
-      <div class="grid_8">
-        <h5>Bundle Select</h5>
-        <h2 class="project_title">Definining the future of real estate.</h2>
-         <p>In the fall of 2017, startup Bundle Select brought me on to establish the branding and website design for their new real estate service alternative. I developed a new logo and visual branding that elevated the companies image and provides credibility that matches it’s service.</p>
-         <p> With the new logo, I designed a new website to communicate how much people could save when buying and selling a home. With the designs in place, I began to develop the front-end, using Jekyll to generate our templates, and keep the technical debt to a minimum while Bundle Select starts and determines what the users and products needs would be.</p>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="grid_12">
-        <div class="project-1-carousel">
-          <div><img src="img/bundle-select/bundle-select-mobile-3up@2x.webp" width="100%" alt="Bundle Select Mobile Designs"/></div>
-          <div><img src="img/bundle-select/bundle-select-slider-savings@2x.webp" width="100%" alt="Bundle Select Savings Calculator"/></div>
-          <div><img src="img/bundle-select/bundle-select-icons@2x.webp" width="100%" alt="Bundle Select Icons"/></div>
-          <div><img src="img/bundle-select/bundle-select-team-page@2x.webp" width="100%" alt="Bundle Select Team Page"/></div>
-          <div><img src="img/bundle-select/bundle-select-how-it-works-page@2x.webp" width="100%" alt="Bundle Select How It Works Page"/></div>
-          <div><img src="img/bundle-select/bundle-select-brandguidelines@2x.webp" width="100%" alt="Bundle Select Brand Guidelines"/></div>
-        </div>
-        <div class="slick-nav-wrap grid_12">
-          <div class="slick-nav"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="grid_12">
-        <blockquote>In the first few months, James quickly created a unique and trustworthy identity to support our new brand, designed and built out our new site, pitch deck, postcards, business cards...he brings a lot of expertise to the table, and continues to improve Bundle Select and be an integral part of our team.<span><strong>– Joe Cucchiara</strong><br />Founder & CEO</span></blockquote>
-      </div>
-    </div>
-  </section>
-
-  <div class="project_image_lead fs"></div>
-  <section class="project" id="furniture_society">
-    <div class="container">
-      <div class="grid_3">
-        <img src="img/furnsoc-logo-black.svg" class="client_logo" height="auto" width="auto" alt="The Furniture Society Logo"/>
-        <a name="furniture_society"></a>
-        <ul>
-          <li>Wireframes</li>
-          <li>Visual Design</li>
-          <li>Conference Micro-site</li>
-        </ul>
-        <a href="http://furnsoc.elivz.net" class="btn primary" target="_blank" rel="noreferrer">Visit Website</a>
-      </div>
-      <div class="grid_1">
-      </div>
-      <div class="grid_8">
-        <h5>The Furniture Society</h5>
-        <h2 class="project_title">Advancing the art of furniture making.</h2>
-         <p>The Furniture Society is a nonprofit, educational organization, founded in 1996, its mission is, “to advance the art of furniture making by inspiring creativity, promoting excellence and fostering an understanding of this art and its place in society.”</p>
-
-         <p>I began redesigning the website by exploring several visual styles, and using pieces of each to initiate the homepage design, and on into the other templates and components of the website.</p>
-
-         <p>Alongside developer Eli Van Zoe Ren, we were able to produce a brand new version of the site that reflects the level of its members and mission. </p>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="grid_12">
-        <div class="project-2-carousel">
-          <div><img src="img/furniture-society/furniture-society-ui-elements-2@2x.webp" width="100%" alt="The Furniture Society UI Elements 1"/></div>
-          <div><img src="img/furniture-society/furniture-society-mobile-3up@2x.webp" width="100%" alt="The Furniture Society Mobile Designs"/></div>
-          <div><img src="img/furniture-society/furniture-society-ui-elements@2x.webp" width="100%" alt="The Furniture Society UI Elements 2"/></div>
-          <div><img src="img/furniture-society/furniture-society-header@2x.webp" width="100%" alt="The Furniture Society Header"/></div>
-          <div><img src="img/furniture-society/furniture-society-member-directory@2x.webp" width="100%" alt="The Furniture Society Member Directory"/></div>
-        </div>
-        <div class="slick-nav-wrap grid_12">
-          <div class="slick-nav2"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!--<img src="img/bundle-select-lead.webp" class="image_lead" height="1072" width="1680" />
-  <div class="project_image_lead confetti"></div>-->
-  <div class="project_image_lead mfn"></div>
-  <section class="project" id="metrics_for_news">
-    <div class="container">
-      <div class="grid_3">
-        <img src="img/metrics-for-news-black.svg" class="client_logo" height="auto" width="225px" alt="Metrics For News Logo"/>
-        <a name="metrics_for_news"></a>
-        <ul>
-          <li>Identity</li>
-          <li>UI Design</li>
-          <li>Prototype</li>
-        </ul>
-        <a href="https://www.metricsfornews.com" class="btn primary" target="_blank" rel="noreferrer">Visit Website</a>
-        <i>*Paid account needed to access dashboard.</i>
-      </div>
-      <div class="grid_1">
-      </div>
-      <div class="grid_8">
-        <h5>Metrics For News</h5>
-        <h2 class="project_title">Empower journalists to measure and improve their performance.</h2>
-         <p>Engagement scores, customized dashboards... with a host of new features designed and wireframed, the Metrics for News team was eager to transition these new ideas into a refined and polished interface, and upgrade the visual brand and identity.</p>
-         <p>I organized these new concepts into a structured grid that allowed for elements to be rearranged into new or existing templates.</p>
-      </div>
-    </div>
-    <div class="container">
-      <div class="grid_12">
-        <blockquote>“We appreciate the creativity, expertise, and flexible problem solving that James brought to our website redesign project. This was the second time we've worked with James, and his ability to take client input, generate a smart and polished design, and refine it with feedback creates great results.”<span><strong>— Jeff Sonderman</strong><br />Executive Vice President and Deputy Executive Director</span></blockquote>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="grid_12">
-        <div class="project-3-carousel">
-          <div><img src="img/metrics-for-news/metrics-for-news-ui@2x.webp" width="100%" alt="Metrics for News UI"/></div>
-          <div><img src="img/metrics-for-news/metrics-for-news-ui-2@2x.webp" width="100%" alt="Metrics for News UI 2"/></div>
-          <div><img src="img/metrics-for-news/metrics-for-news-dashboard@2x.webp" width="100%" alt="Metrics for News Dashboard"/></div>
-          <div><img src="img/metrics-for-news/metrics-for-news-logo@2x.webp" width="100%" alt="Metrics for News Logo Design"/></div>
-        </div>
-        <div class="slick-nav-wrap grid_12">
-          <div class="slick-nav3"></div>
-        </div>
-      </div>
-    </div>
-
-  </section>
-
-  <!--<div class="project_image_lead api"></div>
-  <section class="project" id="american_press_institute">
-    <div class="container">
+    <div class="container nd">
+      <div class="cs_work_title">NatureDose</div>
       <div class="grid_4">
-        <img src="img/american-press-institute-black.svg" class="client_logo" height="auto" width="250" alt="American Press Institute Logo"/>
-        <ul>
-          <li>Wireframes</li>
-          <li>Visual Design</li>
-        </ul>
+        <h3>NatureDose</h3>
+        <p>NatureQuant</p>
+        <p>NatureDose.</p>
       </div>
-      <div class="grid_8">
-        <h5>American Press Institute</h5>
-        <h2 class="project_title">Advancing journalism with insights, tools and research.</h2>
-        <p>The American Press Institute is a nonprofit that advances an innovative and sustainable news industry.</p>
+      <div class="grid_4">
+        <a href="case_studies/naturedose.html">
+          <img src="img/naturedose/naturedose_logo@2x.png" width="100%" alt="NatureDose App icons"/>
+        </a>
+      </div>
+      <div class="grid_4">
+        <a href="case_studies/naturedose.html">
+          <img src="img/naturequant/naturedose_icon@2x.png" width="100%"  alt="NatureDose Logo"/>
+        </a>
+      </div>
+    </div>
 
-        <p>API helps publishers understand and engage audiences, grow revenue, improve public-service journalism, and succeed at organizational change. Research and actionable insights focus on news audiences, cultural change, new revenue, youth and media, diversity of news.</p>
-        <a href="http://www.americanpressinstitute.org/" class="btn primary" target="_blank" rel="noreferrer">Visit Website</a>
+    <div class="container viz">
+      <div class="cs_work_title">Viz</div>
+      <div class="grid_4">
+        <h3>Visualization Community</h3>
+        <p>St. Jude Children's Research Hospital</p>
+        <p>Designing a new way for scientists to see and share genomic discoveries.</p>
+        <a href="">View More</a>
+      </div>
+      <div class="grid_4">
+        <a href="case_studies/visualization_community.html">
+          <img src="img/visualization_community/visualization_community_logo@2x.png" width="100%" alt="Animated example showing different visualization track types in the editor interface."/>
+        </a>
+      </div>
+      <div class="grid_4">
+        <a href="case_studies/visualization_community.html">
+          <img src="img/visualization_community/viz_editor_square@2x.png" width="100%" alt="Animated example showing different visualization track types in the editor interface."/>
+        </a>
       </div>
     </div>
 
-    <div class="container">
-      <div class="grid_12">
-        <div class="project-4-carousel">
-          <div><img src="img/american-press-institute/american-press-institute-home@2x.webp" width="100%" alt="American Press Institute Homepage"/></div>
-          <div><img src="img/american-press-institute/american-press-institute-colors@2x.webp" width="100%" alt="American Press Institute Color Pallette"/></div>
-          <div><img src="img/american-press-institute/american-press-institute-multi-chapter-reports@2x.webp" width="100%" alt="American Press Institute Reports"/></div>
-          <div><img src="img/american-press-institute/american-press-institute-mission@2x.webp" width="100%" alt="American Press Institute Mission Statement"/></div>
-          <div><img src="img/american-press-institute/american-press-institute-ui@2x.webp" width="100%" alt="American Press Institute UI"/></div>
-          <div><img src="img/american-press-institute/american-press-institute-featured-reports@2x.webp" width="100%" alt="American Press Institute Reports 2"/></div>
-          <div><img src="img/american-press-institute/american-press-institute-multi-chapter-reports-2@2x.webp" width="100%" alt="American Press Institute Reports 3"/></div>
-        </div>
-        <div class="slick-nav-wrap grid_12">
-          <div class="slick-nav4"></div>
-        </div>
+    <div class="container ns">
+      <div class="cs_work_title">NatureScore</div>
+      <div class="grid_4">
+        <h3>NatureScore</h3>
+        <p>NatureQuant</p>
+        <p>NatureScore text</p>
+      </div>
+      <div class="grid_4">
+        <a href="case_studies/naturescore.html">
+          <img src="img/naturescore/naturescore_logo@2x.png" width="100%" alt=""/>
+        </a>
+      </div>
+      <div class="grid_4">
+        <a href="case_studies/naturescore.html">
+          <img src="img/naturescore/naturescore_widget@2x.png" width="100%" alt=""/>
+        </a>
       </div>
     </div>
-  </section>-->
+
+    <div class="container pecan">
+      <div class="cs_work_title">PeCan</div>
+      <div class="grid_4">
+        <h3>PeCan</h3>
+        <p>St. Jude Children's Research Hospital</p>
+        <p>blah descr</p>
+      </div>
+      <div class="grid_4">
+        <a href="case_studies/pecan.html">
+          <img src="img/pecan/pecan_logo@2x.png" width="100%" alt="PeCan Logo"/>
+        </a>
+      </div>
+      <div class="grid_4">
+        <a href="case_studies/pecan.html">
+          <img src="img/pecan/pecan_gif_data_facet_homepage_square.gif" width="100%" alt="Animated example showing different visualization track types in the editor interface."/>
+        </a>
+      </div>
+    </div>
+
+  </section>
 
 </main>
 
 <footer id="contact">
   <div class="container">
-
+    <div class="grid_8">
+      <h3>James Madson</h3>
+      <h6>Product Designer</h6>
+    </div>
     <div class="grid_4">
-      <h4>Online</h4>
       <ul>
         <li><a href="mailto:james@jamesmadson.me?subject=Hey%20James!">Email</a> </li>
-        <li><a href="https://twitter.com/jamesmadson/" target="_blank" rel="noreferrer">Twitter</a> </li>
-        <li><a href="https://dribbble.com/jamesmadson/" target="_blank" rel="noreferrer">Dribbble </a></li>
         <li><a href="https://github.com/jamesmadson/" target="_blank" rel="noreferrer">Github</a></li>
-        <li><a href="https://strava.com/athletes/166343" target="_blank" rel="noreferrer">Strava</a></li>
+        <li><a href="https://linkedin.com/jamesmadson/" target="_blank" rel="noreferrer">LinkedIn</a></li>
+        <li><a href="https://bandcamp.com/jamesmadson/" target="_blank" rel="noreferrer">Bandcamp</a></li>
       </ul>
-      <p>Copyright © 2019 James Madson.</p>
-      <p>All Rights Reserved.</p>
-    </div>
-
-    <div class="grid_8">
-      <a name="contact"></a>
-      <h4>Contact</h4>
-      <form action="https://docs.google.com/forms/d/e/1FAIpQLScbC2U28M9XX_RDOHNhlOlNcNEDf3mSk-XIbroWZmoL3c_N-w/formResponse" target="_self" method="POST" id="mG61Hd" class="contact-form">
-        <div class="exportFormCard">
-            <div >
-                <div role="list">
-                    <div role="listitem"  jsname="ibnC6b" jscontroller="rDGJeb" jsaction="sPvj8e:e4JwSe,vwKRrd;" data-required="true" data-item-id="847330986">
-                        <div class="label" dir="auto" role="heading" aria-level="2" aria-describedby="Name">Name</div>
-
-                        <div  jscontroller="pxq3x" jsaction="clickonly:KjsqPd; focus:Jt1EX; blur:fpfTEe; input:Lg5SV;" jsshadow jsname="W85ice">
-                          <input type="text" jsname="YPqjbf" autocomplete="off" tabindex="0" aria-label="Name" aria-describedby="Name" name="entry.310170835" value="" required dir="auto" data-initial-dir="auto" />
-                        </div>
-                    </div>
-                    <div role="listitem"  jsname="ibnC6b" jscontroller="rDGJeb" jsaction="sPvj8e:e4JwSe,vwKRrd;" data-required="true" data-item-id="2138436356">
-                        <div dir="auto" role="heading" aria-level="2" aria-describedby="Email Address" class="label">Email Address</div>
-                        <div >
-                            <div  jscontroller="pxq3x" jsaction="clickonly:KjsqPd; focus:Jt1EX; blur:fpfTEe; input:Lg5SV;" jsshadow jsname="W85ice">
-                              <input type="text"  jsname="YPqjbf" autocomplete="off" tabindex="0" aria-label="Email Address" aria-describedby="Email" name="Email" value="" required dir="auto" data-initial-dir="auto" />
-                            </div>
-                        </div>
-                    </div>
-                    <div role="listitem"  jsname="ibnC6b" jscontroller="rDGJeb" jsaction="sPvj8e:e4JwSe,vwKRrd;" data-item-id="1769051768">
-                        <div class="label" dir="auto" role="heading" aria-level="2" aria-describedby="Company Name">Company Name</div>
-                        <div  jscontroller="pxq3x" jsaction="clickonly:KjsqPd; focus:Jt1EX; blur:fpfTEe; input:Lg5SV;" jsshadow jsname="W85ice">
-                          <input type="text"  jsname="YPqjbf" autocomplete="off" tabindex="0" aria-label="Company Name" aria-describedby="Company Name" name="Company Name" value="" dir="auto" data-initial-dir="auto" />
-                      </div>
-                    </div>
-                    <div role="listitem"  jsname="ibnC6b" jscontroller="rDGJeb" jsaction="sPvj8e:e4JwSe,vwKRrd;" data-item-id="1902424178">
-                        <div class="label" dir="auto" role="heading" aria-level="2" aria-describedby="Project Details">Project Details</div>
-                        <div  jscontroller="pxq3x" jsaction="clickonly:KjsqPd; focus:Jt1EX; blur:fpfTEe; input:Lg5SV;" jsshadow jsname="W85ice">
-                          <textarea  jsname="YPqjbf" data-rows="1" tabindex="0" aria-label="Project Details" jscontroller="gZjhIf" jsaction="input:Lg5SV;ti6hGc:XMgOHc;rcuQ6b:WYd;" name="Project Details" dir="auto" data-initial-dir="auto" aria-describedby="Project Details"></textarea>
-                        </div>
-                    </div>
-                    <!--<div role="listitem"  jsname="ibnC6b" jscontroller="jmDACb" jsaction="rcuQ6b:kzSVDc;JIbuQc:aj0Jcf,vwKRrd;" data-input="L9xHkb" data-item-id="2000728034">
-                        <label class="label" dir="auto" id="i13" role="heading" aria-level="2" aria-describedby="Project Budget">Project Budget</label>
-                        <select name="entry.686869614" aria-label="Project Budget">
-                          <option selected disabled>Select Budget</option>
-
-                          <option jsname="ksKsZd" data-value="$5,000" role="option" tabindex="-1">$5,000</option>
-
-                          <option jsname="ksKsZd" data-value="$10,000" role="option" tabindex="-1">$10,000</option>
-
-                          <option jsname="ksKsZd" data-value="$15,000">$15,000</option>
-
-                          <option jsname="ksKsZd" data-value="+$20,000">+$20,000</option>
-                        </select>
-                    </div>-->
-                </div>
-                <button class="btn submit" type="submit" value="send">Submit</button>
-                <input type="hidden" name="fvv" value="1">
-                <input type="hidden" name="draftResponse" value="[null,null,&quot;4721514676762352242&quot;]">
-                <input type="hidden" name="pageHistory" value="0">
-                <input type="hidden" name="fbzx" value="4721514676762352242">
-            </div>
-          </div>
-      </form>
+      <p>Copyright © 2026 James Madson.</p>
     </div>
   </div>
-  </footer>
+</footer>
 
 <!-- JS -->
-<!--<script type="text/javascript" src="slick/jquery-1.11.0.min.js"></script>-->
 <script
   src="https://code.jquery.com/jquery-1.11.0.min.js"
   integrity="sha256-spTpc4lvj4dOkKjrGokIrHkJgNA0xMS98Pw9N7ir9oI="
   crossorigin="anonymous"></script>
-<!--<script type="text/javascript" src="slick/jquery-migrate-1.2.1.min.js"></script>-->
-<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"></script>-->
-<script type="text/javascript" src="slick/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="slick/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="slick/slick.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@14.0.0/dist/smooth-scroll.polyfills.min.js"></script>
 

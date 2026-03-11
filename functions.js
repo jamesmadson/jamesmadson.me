@@ -7,66 +7,21 @@ $(document).ready(function(){
   });
 
   // Widon't – No orphans or widows
-  $('h1,h2,h3,li,p').each(function() {
+  $('h1,h2,h3,h4,h5li,p').each(function() {
     $(this).html($(this).html().replace(/\s([^\s<]+)\s*$/,'&nbsp;$1'));
   });
 
   // Nav Menu
   var menu = new TimelineLite()
-	.from("#navmenu", 1, {width:0, autoAlpha:0, ease:Power2.easeInOut})
+	.from("#mobilenavmenu", 1, {autoAlpha:0, ease:Power2.easeInOut})
 	.from("#navicon", 1, {ease:Power2.easeInOut},0)
   .reversed(true);
 
-  var menuChilds = document.querySelectorAll('ul li, #navicon, .close-link');
+  var menuChilds = document.querySelectorAll('#navlink, .close_link');
   for( var i=menuChilds.length ; i--; ){
     menuChilds[i].addEventListener('click',function(){ menu.reversed(!menu.reversed())
     })
   };
-
-  // Slick Slider
-  $('.project-1-carousel').slick({
-    infinite: true,
-    appendArrows: '.slick-nav',
-    appendDots: '.slick-nav',
-    dots: true,
-    speed: 800,
-    infinite: false,
-    slidesToShow: 1,
-    slidesToScroll: 1
-  });
-
-  $('.project-2-carousel').slick({
-    infinite: true,
-    appendArrows: '.slick-nav2',
-    appendDots: '.slick-nav2',
-    dots: true,
-    speed: 800,
-    infinite: false,
-    slidesToShow: 1,
-    slidesToScroll: 1
-  });
-
-  $('.project-3-carousel').slick({
-    infinite: true,
-    appendArrows: '.slick-nav3',
-    appendDots: '.slick-nav3',
-    dots: true,
-    speed: 800,
-    infinite: false,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  });
-
-  $('.project-4-carousel').slick({
-    infinite: true,
-    appendArrows: '.slick-nav4',
-    appendDots: '.slick-nav4',
-    dots: true,
-    speed: 800,
-    infinite: false,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  });
 
   //ScrollMagic.js and GSAP Animation.js Plugin
   var controller = new ScrollMagic.Controller();
@@ -111,26 +66,14 @@ $(document).ready(function(){
   //.addIndicators({name: "tween4 css class"}) // add indicators
   .addTo(controller4);
 
-  // 5
-  // H1
-  //var controller5 = new ScrollMagic.Controller();
-
-  //var tween5 = TweenMax.to(".jm-title", 5, {className: "+=title-exploded"});
-
-  // build scene
-  //var scene = new ScrollMagic.Scene({triggerElement: ".case-studies-nav", duration: 300, offset: 0})
-  //.setTween(tween5)
-  //.addIndicators({name: "tween5 css class"}) // add indicators
-  //.addTo(controller5);
-
   // 6
-  // Case Studies
+  // Work
   var controller6 = new ScrollMagic.Controller();
 
   var tween6 = TweenMax.to(".case-studies-nav h4", 6, {className: "+=faded"});
 
   // build scene
-  var scene = new ScrollMagic.Scene({triggerElement: ".case-studies-nav", duration: 300, offset: 00})
+  var scene = new ScrollMagic.Scene({triggerElement: ".case_studies_nav", duration: 300, offset: 100})
   .setTween(tween6)
   //.addIndicators({name: "tween6 css class"}) // add indicators
   .addTo(controller6);
@@ -146,24 +89,30 @@ $(document).ready(function(){
   });
 
   var scenes = {
-    'about': {
-      'about_james_madson': 'about_link'
+    'overview': {
+      'overview': 'overview_link'
     },
-    'bs': {
-      'bundle_select': 'bs_link'
+    'challenges': {
+      'challenges': 'challenges_link'
     },
-    'fs': {
-      'furniture_society': 'fs_link'
+    'contributions': {
+      'contributions': 'contributions_link'
     },
-    'mfn': {
-      'metrics_for_news': 'mfn_link'
+    'design': {
+      'design': 'design_link'
     },
-    'api': {
-      'american_press_institute': 'api_link'
+    'impact': {
+      'impact': 'impact_link'
     },
-    'contact': {
-      'contact': 'contact_link'
+    'reflection': {
+      'reflection': 'reflection_link'
+    },
+    'recent_work': {
+      'recent_work': 'recent_work_link'
     }
+    //'': {
+    //  '': ''
+    //},
   }
 
   for(var key in scenes) {
@@ -181,5 +130,26 @@ $(document).ready(function(){
           .addTo(controller);
     }
   }
+
+  // Light Mode Toggle
+  const toggleButton = document.getElementById('light_switch');
+  const body = document.body;
+
+  // Load saved preference (if any)
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'light') {
+    body.classList.add('light_mode');
+  }
+
+  toggleButton.addEventListener('click', () => {
+    body.classList.toggle('light_mode');
+
+    // Save preference
+    if (body.classList.contains('light_mode')) {
+      localStorage.setItem('theme', 'light');
+    } else {
+      localStorage.setItem('theme', 'dark');
+    }
+  });
 
 });
