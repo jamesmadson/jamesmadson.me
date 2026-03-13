@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="color-scheme" content="light dark">
+  <title>NatureDose Case Study – James Madson</title>
+  <meta name="description" content="How I designed NatureDose, a mobile app that tracks time outdoors and encourages more nature exposure through gamification and wellness challenges.">
+  <meta name="author" content="James Madson">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="canonical" href="https://jamesmadson.me/case_studies/naturedose/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://jamesmadson.me/case_studies/naturedose/">
+  <meta property="og:title" content="NatureDose Case Study – James Madson">
+  <meta property="og:description" content="How I designed NatureDose, a mobile app that tracks time outdoors and encourages more nature exposure through gamification and wellness challenges.">
+  <meta property="og:image" content="https://jamesmadson.me/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="James Madson">
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NatureDose Case Study – James Madson">
+  <meta name="twitter:description" content="How I designed NatureDose, a mobile app that tracks time outdoors and encourages more nature exposure through gamification and wellness challenges.">
+  <meta name="twitter:image" content="https://jamesmadson.me/img/og-image.png">
+
+  <link rel="shortcut icon" type="image/x-icon" href="../icons/favicon-32x32.png">
+  <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="../icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32x32.png">
+  <link rel="manifest" href="../icons/site.webmanifest">
+  <link rel="mask-icon" href="../icons/safari-pinned-tab.svg" color="#282829">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/styles.css" />
+
+  <!-- Google tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HL3TB4H7XS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-HL3TB4H7XS');
+  </script>
+  <script>!function(){var e=document.documentElement,t=localStorage.getItem("theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");e.className=e.className.replace(/\btheme-\S+/g,"");e.classList.add("theme-"+t)}();</script>
+</head>
+
+<body data-hero-bg="#339999">
+  <a name="top"></a>
+  <div class="nav_container fadeIn">
+    <nav class="nav_large nav_left">
+      <ul>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../work.html">Work</a></li>
+      </ul>
+    </nav>
+    <a href="../index.html">
+      <h1 class="nav_title">J<span class="nav_expand"><span>ames </span></span>M<span class="nav_expand"><span>adson</span></span></h1>
+    </a>
+    <nav class="nav_large nav_right">
+      <ul>
+        <li><a href="../music.html">Music</a></li>
+        <li><a class="nav_contact" data-e="amFtZXM=" data-d="amFtZXNtYWRzb24ubWU=" data-s="Hey+James!" href="#">Contact</a></li>
+        <li>
+          <button id="light_switch" aria-label="Toggle light/dark mode">
+            <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <nav class="mobile_nav_menu" id="mobilenavmenu" aria-hidden="true">
+    <div class="mobile_nav_inner">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../work.html">Work</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../music.html">Music</a></li>
+      </ul>
+      <div class="mobile_nav_footer">
+        <a class="nav_contact" data-e="amFtZXM=" data-d="amFtZXNtYWRzb24ubWU=" data-s="Hey+James!" href="#">Contact</a>
+        <button id="light_switch_mobile" aria-label="Toggle light/dark mode">
+        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+      </button>
+      </div>
+    </div>
+  </nav>
+  <button id="navlink" aria-controls="mobilenavmenu" aria-expanded="false" aria-label="Toggle menu"></button>
+
+  <ul class="case_study_nav">
+    <li>
+      <a href="#overview" id="overview_link">Overview</a>
+    </li>
+    <li>
+      <a href="#challenges" id="challenges_link">Challenges</a>
+    </li>
+    <li>
+      <a href="#contributions" id="contributions_link">Contributions</a>
+    </li>
+    <li>
+      <a href="#design" id="design_link">Design</a>
+    </li>
+    <li>
+      <a href="#impact" id="impact_link">Impact</a>
+    </li>
+    <li>
+      <a href="#reflection" id="reflection_link">Reflection</a>
+    </li>
+    <li>
+      <a href="#top" id="top_link">Back to Top</a>
+    </li>
+  </ul>
+
+<main>
+  <section class="about about_naturedose">
+    <div class="container">
+      <!--<div class="grid_3">
+        <img src="../img/naturequant-logo.svg" class="client_logo" height="auto" width="225px" alt="NatureQuant Logo"/>
+        <h4>NatureDose®</h4>
+        <h6>NatureQuant, LLC</h6>
+        <p>Platforms: iOS & Android + Website</p>
+        <a href="https://naturequant.com/naturedose" class="">naturequant.com/naturedose ↗</a>
+      </div>-->
+      <div class="grid_9">
+        <h1 class="project_title">
+          <span class="case_study_label">Case Study</span>
+          Designing a mobile nature-prescription app that encourages time outside.
+        </h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="project">
+    <section class="overview" id="overview">
+      <div class="container">
+        <div class="grid_3">
+          <a name="overview"></a>
+          <h3>Overview</h3>
+          <p class="role">Client</p>
+          <p>NatureQuant</p>
+
+          <p class="role">Role</p>
+          <p>Lead Product Designer</p>
+
+          <p class="role">Website</p>
+          <a href="https://naturequant.com/naturedose" target="_blank" rel="noreferrer">
+            <p>https://naturequant.com/naturedose</p>
+          </a>
+
+          <p class="role">Contributions</p>
+          <ul>
+            <li class="tag">UI/UX Design</li>
+            <li class="tag">Design Systems</li>
+            <li class="tag">Data Visualization</li>
+            <li class="tag">Front-End Development</li>
+            <li class="tag">Strategic Communication</li>
+          </ul>
+        </div>
+        <div class="grid_9">
+          <p class="leadin">I led the design of NatureDose®, a mobile app that tracks how much time users spend outdoors or exposed to nature, and encourages more of it through gamification, challenges, and meaningful features.</p>
+          <p>My work spanned rapid prototyping, feature strategy, UI/UX for both iOS and Android, website for launch, App Store screens, and ongoing additions like badges, “find nearby parks,” and team challenges. The result: a clearer, engaging experience that bridges wellness, technology, and time in nature.</p>
+
+          <div class="stats-container">
+            <div class="stat">
+              <div class="stat_number">5</div>
+              <p class="stat_info">
+                Completely redesigned and
+              </p>
+            </div>
+
+            <div class="stat">
+              <div class="stat_number">9000+</div>
+              <p class="stat_info">
+                Unique samples to explore
+              </p>
+            </div>
+
+            <div class="stat">
+              <div class="stat_number">1</div>
+              <p class="stat_info">
+                Design system to provide cohesion in product design, prototyping, and development.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="cs_images container">
+      <div class="grid_12">
+        <img src="../img/naturedose/naturedose_title_bg@2x.png" width="100%" alt="NatureDose App Mockup"/>
+      </div>
+    </div>
+
+    <div class="container cs_content" id="challenges">
+      <div class="grid_3">
+        <a name="challenges"></a>
+        <h3>Challenges</h3>
+      </div>
+      <div class="push_1 grid_8">
+        <p class="leadin">While scientific research shows major benefits of nature exposure, the tools to track, encourage, and build habits around it were limited. NatureDose aimed to fill that gap by making a nature “prescription” accessible and engaging.</p>
+        <p>At NatureQuant, the core mission is to treat nature exposure like it’s one of the essential habits of health—right alongside diet, exercise, and sleep.</p>
+        <br>
+        <p><strong>The specific challenges were:</strong></p>
+        <ul>
+          <li><p>Translate scientific research on nature and health into a consumer-friendly mobile experience.</p></li>
+          <li><p>Design tools that motivate users to spend more time outdoors and track real progress.</p></li>
+          <li><p>Ensure consistency across iOS, Android, and web—while keeping the experience lightweight and engaging.</p></li>
+        </ul>
+        <div class="grid_12">
+          <img src="../img/naturedose/naturedose_pillars_of_wellness_icons@2x.png" width="100%" alt="NatureDose App Mockup"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="container cs_content" id="contributions">
+      <div class="grid_3">
+        <a name="contributions"></a>
+        <h3>Contributions</h3>
+      </div>
+      <div class="push_1 grid_8">
+        <h4>Rapid Prototyping & Feature Design</h4>
+        <p>I sketched and prototyped ideas quickly, refining features like adjustable weekly goals, session tracking, and nature-quality scoring for both iOS and Android platforms.</p>
+
+        <h4>Website & Launch Stack</h4>
+        <p>I designed the website and App Store screens to communicate the app’s promise—“Measure your nature dose,” “Earn badges for outdoor time,” and “Find green spaces near you.”</p>
+
+        <h4>Feature Enhancements</h4>
+        <p>After launch, we introduced gamified features like badges and team challenges, local discovery (“Find Nearby Parks”), and UX improvements for smoother onboarding and daily use.</p>
+
+        <h4>Design System Integration</h4>
+        <p>Maintained cross-platform consistency through unified typography, iconography, and color systems that aligned with the NatureQuant brand while optimizing for mobile usability.</p>
+      </div>
+    </div>
+
+    <div class="container cs_content" id="design">
+      <div class="grid_3">
+        <a name="design"></a>
+        <h3>Design</h3>
+      </div>
+      <div class="push_1 grid_8">
+        <p>We moved from concept to functioning mobile product through iterative design and development. Each prototype tested how best to motivate outdoor behavior while keeping data and visuals simple and actionable.</p>
+        <p>The final app experience combined passive nature tracking, daily goal-setting, and visual feedback loops—turning abstract health research into an everyday wellness habit.</p>
+      </div>
+    </div>
+
+    <div class="container cs_content" id="impact">
+      <div class="grid_3">
+        <a name="impact"></a>
+        <h3>Impact</h3>
+      </div>
+      <div class="push_1 grid_8">
+        <p>NatureDose has been recognized as a meaningful tool in wellness tracking—positioned as a nature-prescription tracker supported by research and partnerships (e.g., Outside Interactive).</p>
+        <p>Users can now set goals, track sessions, learn how “nature quality” matters (via NatureScore®), and see their progress visually. The design bridges nature, technology, and wellness—encouraging time outside in a measurable, motivating way.</p>
+      </div>
+    </div>
+
+    <div class="container cs_content" id="reflection">
+      <div class="grid_3">
+        <a name="reflection"></a>
+        <h3>Reflection</h3>
+      </div>
+      <div class="push_1 grid_8">
+        <p>This project reminded me how design can help translate research into daily habits. Nature exposure is backed by hundreds of studies, but until now, few tools made it clear, accessible, and motivating.</p>
+        <p>By designing fast, iterative interfaces, mobile features, launch communications, and gamified experiences, we made “get outside more” feel like something you can track, measure, and succeed at.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<section class="more_work">
+  <div class="container">
+    <div class="grid_12">
+      <h3>More Work</h3>
+      <div class="more_work_grid">
+      <a class="more_work_card" href="visualization_community.html" style="background-color:#1462b8">
+        <img src="../img/visualization_community/visualization_community_logo@2x.png" alt="Visualization Community logo" />
+        <h4>Visualization Community</h4>
+        <span>St. Jude Cloud</span>
+      </a>
+      <a class="more_work_card" href="naturescore.html" style="background-color:#7aaa00">
+        <img src="../img/naturescore/naturescore_logo@2x.png" alt="NatureScore logo" />
+        <h4>NatureScore</h4>
+        <span>NatureQuant</span>
+      </a>
+      <a class="more_work_card" href="pecan.html" style="background-color:#0f8fc4">
+        <img src="../img/pecan/pecan_logo@2x.png" alt="PeCan logo" />
+        <h4>PeCan</h4>
+        <span>St. Jude Cloud</span>
+      </a>
+      <a class="more_work_card" href="naturequant.html" style="background-color:#007a28">
+        <img src="../img/naturequant/naturequant_logo@2x.png" alt="NatureQuant logo" />
+        <h4>NatureQuant</h4>
+        <span>NatureQuant</span>
+      </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="container">
+    <div class="grid_4">
+      <h4>Online</h4>
+      <ul>
+        <li><a href="mailto:james@jamesmadson.me?subject=Hey%20James!">Email</a> </li>
+        <li><a href="https://github.com/jamesmadson/" target="_blank" rel="noreferrer">Github</a></li>
+        <li><a href="https://linkedin.com/jamesmadson/" target="_blank" rel="noreferrer">LinkedIn</a></li>
+        <li><a href="https://bandcamp.com/jamesmadson/" target="_blank" rel="noreferrer">Bandcamp</a></li>
+      </ul>
+      <p>Copyright © 2026 James Madson.</p>
+    </div>
+  </div>
+</footer>
+
+
+  <script src="/assets/js/site.js" defer></script>
+  <script src="/assets/js/hero-scroll.js" defer></script>
+</body>
+</html>

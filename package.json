@@ -1,0 +1,15 @@
+{
+  "name": "jamesmadson.me",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "eleventy",
+    "build:css": "sass --no-source-map _sass/styles.scss:assets/css/styles.css",
+    "start": "npm run dev"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "sass": "^1.70.0"
+  }
+}

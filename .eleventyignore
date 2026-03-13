@@ -1,0 +1,6 @@
+_layouts/
+_layouts.jekyll.bak/
+.backup/
+*_layouts*/*.bak
+*.bak
+README.html

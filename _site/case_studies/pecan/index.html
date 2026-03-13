@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="color-scheme" content="light dark">
+  <title>PeCan Case Study – James Madson</title>
+  <meta name="description" content="How I redesigned PeCan, St. Jude Cloud's pediatric cancer genomics knowledge base, making complex research data more accessible for scientists worldwide.">
+  <meta name="author" content="James Madson">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="canonical" href="https://jamesmadson.me/case_studies/pecan/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://jamesmadson.me/case_studies/pecan/">
+  <meta property="og:title" content="PeCan Case Study – James Madson">
+  <meta property="og:description" content="How I redesigned PeCan, St. Jude Cloud's pediatric cancer genomics knowledge base, making complex research data more accessible for scientists worldwide.">
+  <meta property="og:image" content="https://jamesmadson.me/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="James Madson">
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PeCan Case Study – James Madson">
+  <meta name="twitter:description" content="How I redesigned PeCan, St. Jude Cloud's pediatric cancer genomics knowledge base, making complex research data more accessible for scientists worldwide.">
+  <meta name="twitter:image" content="https://jamesmadson.me/img/og-image.png">
+
+  <link rel="shortcut icon" type="image/x-icon" href="../icons/favicon-32x32.png">
+  <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="../icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32x32.png">
+  <link rel="manifest" href="../icons/site.webmanifest">
+  <link rel="mask-icon" href="../icons/safari-pinned-tab.svg" color="#282829">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/styles.css" />
+
+  <!-- Google tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HL3TB4H7XS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-HL3TB4H7XS');
+  </script>
+  <script>!function(){var e=document.documentElement,t=localStorage.getItem("theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");e.className=e.className.replace(/\btheme-\S+/g,"");e.classList.add("theme-"+t)}();</script>
+</head>
+
+<body data-hero-bg="#23AFE5">
+  <a name="top"></a>
+  <div class="nav_container fadeIn">
+    <nav class="nav_large nav_left">
+      <ul>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../work.html">Work</a></li>
+      </ul>
+    </nav>
+    <a href="../index.html">
+      <h1 class="nav_title">J<span class="nav_expand"><span>ames </span></span>M<span class="nav_expand"><span>adson</span></span></h1>
+    </a>
+    <nav class="nav_large nav_right">
+      <ul>
+        <li><a href="../music.html">Music</a></li>
+        <li><a class="nav_contact" data-e="amFtZXM=" data-d="amFtZXNtYWRzb24ubWU=" data-s="Hey+James!" href="#">Contact</a></li>
+        <li>
+          <button id="light_switch" aria-label="Toggle light/dark mode">
+            <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <nav class="mobile_nav_menu" id="mobilenavmenu" aria-hidden="true">
+    <div class="mobile_nav_inner">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../work.html">Work</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../music.html">Music</a></li>
+      </ul>
+      <div class="mobile_nav_footer">
+        <a class="nav_contact" data-e="amFtZXM=" data-d="amFtZXNtYWRzb24ubWU=" data-s="Hey+James!" href="#">Contact</a>
+        <button id="light_switch_mobile" aria-label="Toggle light/dark mode">
+        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+      </button>
+      </div>
+    </div>
+  </nav>
+  <button id="navlink" aria-controls="mobilenavmenu" aria-expanded="false" aria-label="Toggle menu"></button>
+
+  <ul class="case_study_nav">
+    <li>
+      <a href="#overview" id="overview_link">Overview</a>
+    </li>
+    <li>
+      <a href="#challenges" id="challenges_link">Challenges</a>
+    </li>
+    <li>
+      <a href="#contributions" id="contributions_link">Contributions</a>
+    </li>
+    <li>
+      <a href="#design" id="design_link">Design</a>
+    </li>
+    <li>
+      <a href="#impact" id="impact_link">Impact</a>
+    </li>
+    <li>
+      <a href="#reflection" id="reflection_link">Reflection</a>
+    </li>
+    <li>
+      <a href="#top" id="top_link">Back to Top</a>
+    </li>
+  </ul>
+
+  <main>
+  <section class="about about_pecan fadeIn">
+    <div class="container">
+      <!--<div class="grid_3">
+        <img src="../img/stjude-logo.svg" class="client_logo" height="auto" width="225px" alt="St. Jude Logo"/>
+      </div>-->
+      <div class="grid_10">
+        <h1 class="project_title">
+          <span class="case_study_label">Case Study</span> Redesigning St. Jude Cloud's Pediatric Cancer Knowledge Base</h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="project">
+    <section class="overview" id="overview">
+      <div class="container">
+        <div class="grid_3">
+          <a name="overview"></a>
+          <h3>Overview</h3>
+          <p class="role">Client</p>
+          <p>St. Jude Children’s Research Hospital</p>
+
+          <p class="role">Role</p>
+          <p>Lead Product Designer</p>
+
+          <p class="role">Website</p>
+          <a href="https://pecan.stjude.cloud" target="_blank" rel="noreferrer">
+            <p>pecan.stjude.cloud</p>
+          </a>
+
+          <p class="role">Contributions</p>
+          <ul>
+            <li class="tag">UI/UX Design</li>
+            <li class="tag">Design Systems</li>
+            <li class="tag">Data Visualization</li>
+            <li class="tag">Front-End Development</li>
+            <li class="tag">Strategic Communication</li>
+          </ul>
+        </div>
+        <div class="grid_9">
+          <p class="leadin">I led the redesign of PeCan (Pediatric Cancer Knowledge Base), St. Jude Cloud's knowledge base for pediatric cancer genomics which collects and organizes data from thousands of pediatric cancer genomes, connecting scientists to research findings around the world.</p>
+          <p>PeCan is one of St. Jude Cloud’s cornerstone research tools, but over time it became limited by it’s interface, growing apart from the rest of the ecosystem. The challenge was to redesign PeCan so it could provide richer insights without having to write code, while matching the quality of its data: clear, consistent, and accessible for scientists and collaborators everywhere.</p>
+          <p>The work spanned brand identity, UI/UX design, front-end development, copywriting, and launch strategy. This transformed PeCan into a more approachable, unified experience within the St. Jude Cloud ecosystem. I helped define key product features, built the updated design system integration, and wrote front-end code and supporting materials for launch, newsletters, and documentation.</p>
+          <p><strong>The result:</strong> a clearer, faster, and more human platform for researchers exploring genetic insights into childhood cancer.</p>
+
+          <div class="stats-container">
+            <div class="stat">
+              <div class="stat_number">5</div>
+              <p class="stat_info">
+                Completely redesigned and
+              </p>
+            </div>
+
+            <div class="stat">
+              <div class="stat_number">9000+</div>
+              <p class="stat_info">
+                Unique samples to explore
+              </p>
+            </div>
+
+            <div class="stat">
+              <div class="stat_number">1</div>
+              <p class="stat_info">
+                Design system to provide cohesion in product design, prototyping, and development.
+              </p>
+            </div>
+          </div>
+          <br>
+          <div class="cs_images cs_smaller container">
+            <div class="grid_6">
+              <img src="../img/pecan/pecan_home_hero_square.png" width="100%" alt=""/>
+              <span class="cs_description">PeCan homepage here design</span>
+            </div>
+            <div class="grid_6">
+              <img src="../img/pecan/pecan_gif_data_facet_homepage_square.gif" width="100%" alt=""/>
+              <span class="cs_description">Homepage data facet section designs</span>
+            </div>
+          </div>
+
+
+          <div class="cs_images cs_smaller container">
+            <div class="grid_12">
+              <img src="../img/pecan/pecan_variant_prevalence_pathways@2x.png" width="100%" alt=""/>
+              <span class="cs_description">Variants data facet displaying variant pathway prevalence within the LYMPH subtype</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="container cs_content" id="challenges">
+      <div class="grid_3">
+        <a name="challenges"></a>
+        <h3>Challenges</h3>
+      </div>
+      <div class="grid_9">
+        <ul>
+          <li><p>Unify PeCan’s design and brand identity with the broader St. Jude Cloud ecosystem.</p></li>
+          <li><p>Transform dense, technical genomic data into clear, navigable experiences for researchers.</p></li>
+          <li><p>Balance scientific precision with human-centered design and the variabilities of a web-based platform.</p></li>
+        </ul>
+        <div class="cs_images cs_smaller container">
+          <div class="grid_12">
+            <img src="../img/pecan/pecan_sketch_gene_expression_interface_revisions@2x.png" width="100%" alt=""/>
+            <span class="cs_description">Proposed changes from design review of the Expression data facet</span>
+          </div>
+        </div>
+<br><br><br><br>
+      </div>
+    </section>
+
+    <section class="container cs_content" id="contributions">
+      <div class="grid_3">
+        <a name="contributions"></a>
+        <h3>Contributions</h3>
+      </div>
+      <div class="grid_9">
+        <h4>Visual Identity & Branding</h4>
+        <p>I created a new visual identity and logo system for PeCan, aligned with St. Jude Cloud’s brand guidelines and visual principles.</p>
+        <div class="cs_images cs_smaller container">
+          <div class="grid_6">
+            <img src="../img/pecan/pecan_logo@2x.png" width="100%" alt=""/>
+            <span class="cs_description">Pediatric Cancer (PeCan) Knowledge Base Logo</span>
+          </div>
+          <div class="grid_6">
+            <img src="../img/pecan/pecan_data_facet_icons_square@2x.png" width="100%" alt=""/>
+            <span class="cs_description">Icon design for each data facet</span>
+          </div>
+        </div>
+
+        <div class="cs_images">
+          <div class="grid_12">
+            <img src="../img/pecan/pecan_data_facet_icons@2x.png" width="100%" alt=""/>
+            <span class="cs_description">Data table presenting the data available within the PeCan platform</span>
+          </div>
+        </div>
+        <br><br><br><br>
+
+        <h4>UX & UI Redesign</h4>
+        <p>Updated UX flows for data exploration and comparison, making it easier for researchers to navigate, analyze, and compare genomic datasets.</p>
+
+        <div class="cs_images">
+          <div class="grid_6">
+            <img src="../img/pecan/pecan_prototype_connections_square@2x.png" width="100%" alt=""/>
+            <span class="cs_description">PeCan prototype connections</span>
+          </div>
+        </div>
+
+        <div class="cs_images cs_smaller container">
+          <div class="grid_6">
+            <img src="../img/pecan/pecan_barplot_dataviz_modal@2x.png" width="100%" alt=""/>
+            <span class="cs_description">Data modal user interface component</span>
+          </div>
+          <div class="grid_6">
+            <img src="../img/pecan/pecan_ui_components@2x.png" width="100%" alt=""/>
+            <span class="cs_description">User interface components used within PeCan</span>
+          </div>
+        </div>
+        <br><br><br><br>
+
+        <h4>Content Strategy & Copywriting</h4>
+        <p>Simplified language for onboarding, dataset descriptions, and publication summaries to make complex information more accessible to users across disciplines.</p>
+        <div class="cs_images">
+          <div class="grid_12">
+            <img src="../img/pecan/pecan_mutational_signatures_homepage@2x.png" width="100%" alt=""/>
+            <span class="cs_description">Design system colors</span>
+          </div>
+        </div>
+        <br><br><br><br>
+
+        <h4>Design System Integration</h4>
+        <p>Integrated PeCan’s redesign into St. Jude’s broader design system to ensure visual and functional consistency across all cloud tools.</p>
+        <div class="cs_images">
+          <div class="grid_12">
+            <img src="../img/pecan/pecan_color_design_system@2x.png" width="100%" alt=""/>
+            <span class="cs_description">Design system colors</span>
+          </div>
+        </div>
+        <div class="cs_images">
+          <div class="grid_12">
+            <img src="../img/pecan/pecan_design_system_components@2x.png" width="100%" alt=""/>
+            <span class="cs_description">Design system navigation components</span>
+          </div>
+        </div>
+        <div class="cs_images">
+          <div class="grid_12">
+            <img src="../img/pecan/pecan_buttons_design_system@2x.png" width="100%" alt=""/>
+            <span class="cs_description">Design system buttons</span>
+          </div>
+        </div>
+        <br><br><br><br>
+
+        <h4>Launch & Communication Support</h4>
+        <p>Collaborated on launch planning, email newsletters, and feature rollout strategy—ensuring the new PeCan was introduced with clarity and cohesion.</p>
+        <div class="cs_images">
+          <div class="grid_12">
+            <img src="../img/pecan/pecan_presentation_table@2x.png" width="100%" alt=""/>
+            <span class="cs_description">Data table presenting the data available within the PeCan platform</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container cs_content" id="design">
+      <div class="grid_3">
+        <a name="design"></a>
+        <h3>Design</h3>
+      </div>
+      <div class="grid_9">
+        <p>We replaced dense tables and long lists with flexible data views that help users uncover relationships between datasets, diagnoses, and publications. Interactive elements guide researchers through complex results without overwhelming them.</p>
+        <p>The new interface emphasizes clarity and readability through structured grids, soft neutrals, and gentle gradients—balancing scientific precision with approachability. Each page was restructured for improved navigation and user focus.</p>
+
+        <div class="cs_images cs_smaller container">
+      <div class="grid_6">
+        <img src="../img/pecan/pecan_sketch_expression_violin_plot_subtypes_layout_square@2x.png" width="100%" alt=""/>
+        <span class="cs_description">Early sketch for displaying multiple gene's expressions across subtypes</span>
+      </div>
+      <div class="grid_6">
+        <img src="../img/pecan/pecan_expression_geneexpression_plots_final@2x.png" width="100%" alt=""/>
+        <span class="cs_description">Expression data facet's compact display of gene expression for multiple genes across subtypes</span>
+      </div>
+    </div>
+    <br>
+    <div class="cs_images cs_smaller container">
+      <div class="grid_12">
+        <img src="../img/pecan/pecan_variant_prevalence_pathways@2x.png" width="100%" alt=""/>
+        <span class="cs_description">There were a lot of dense bar charts. Between contextual visibility, colors, and orientation these provided massive amounts of data in a small space.</span>
+      </div>
+    </div>
+      </div>
+    </section>
+
+
+
+    <section class="container cs_content" id="impact">
+      <div class="grid_3">
+        <a name="impact"></a>
+        <h3>Impact</h3>
+      </div>
+      <div class="grid_9">
+        <p class="leadin">The redesign helped PeCan stand out as a modern research product while remaining cohesive with the rest of the St. Jude Cloud ecosystem. It now serves as an accessible, reliable hub for pediatric cancer data—used by researchers across St. Jude and partner institutions worldwide.</p>
+        <ul>
+          <li><p>Stronger visual and UX alignment across all St. Jude Cloud tools</p></li>
+          <li><p>Consistent tone and messaging across marketing, product, and documentation</p></li>
+          <li><p>Faster time-to-insight for researchers exploring genomic data</p></li>
+          <li><p>AACR (American Association for Cancer Research) presentation of software and new features</p></li>
+          <li><p>Clearer communication of findings and publications</p></li>
+          <li><p>Cross-department collaboration</p></li>
+        </ul>
+        <p>PeCan’s redesign strengthened St. Jude’s broader mission: to share knowledge openly and accelerate cures for children everywhere.</p>
+      </div>
+    </section>
+
+    <div class="cs_images container">
+      <div class="grid_12">
+        <img src="../img/pecan/pecan_aacr_poster@2x.png" width="100%" alt=""/>
+        <span class="cs_description">AACR poster design to present new features and findings</span>
+      </div>
+    </div>
+
+    <section class="container cs_content" id="reflection">
+      <div class="grid_3">
+        <a name="reflection"></a>
+        <h3>Reflection</h3>
+      </div>
+      <div class="grid_9">
+        <p>This project reinforced how design, language, and strategy work best when they serve the same goal: helping people connect with complex information easily.</p>
+        <p>Redesigning PeCan wasn’t just about improving a research tool—it was about bringing clarity and consistency to something that saves lives. Finding cures. Saving children.</p>
+      </div>
+    </section>
+  </section>
+</main>
+
+<section class="more_work">
+  <div class="container">
+    <div class="grid_12">
+      <h3>More Work</h3>
+      <div class="more_work_grid">
+      <a class="more_work_card" href="naturedose.html" style="background-color:#2a8080">
+        <img src="../img/naturedose/naturedose_logo@2x.png" alt="NatureDose logo" />
+        <h4>NatureDose</h4>
+        <span>NatureQuant</span>
+      </a>
+      <a class="more_work_card" href="visualization_community.html" style="background-color:#1462b8">
+        <img src="../img/visualization_community/visualization_community_logo@2x.png" alt="Visualization Community logo" />
+        <h4>Visualization Community</h4>
+        <span>St. Jude Cloud</span>
+      </a>
+      <a class="more_work_card" href="naturescore.html" style="background-color:#7aaa00">
+        <img src="../img/naturescore/naturescore_logo@2x.png" alt="NatureScore logo" />
+        <h4>NatureScore</h4>
+        <span>NatureQuant</span>
+      </a>
+      <a class="more_work_card" href="naturequant.html" style="background-color:#007a28">
+        <img src="../img/naturequant/naturequant_logo@2x.png" alt="NatureQuant logo" />
+        <h4>NatureQuant</h4>
+        <span>NatureQuant</span>
+      </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="container">
+    <div class="grid_4">
+      <h4>Online</h4>
+      <ul>
+        <li><a href="mailto:james@jamesmadson.me?subject=Hey%20James!">Email</a> </li>
+        <li><a href="https://github.com/jamesmadson/" target="_blank" rel="noreferrer">Github</a></li>
+        <li><a href="https://linkedin.com/jamesmadson/" target="_blank" rel="noreferrer">LinkedIn</a></li>
+        <li><a href="https://bandcamp.com/jamesmadson/" target="_blank" rel="noreferrer">Bandcamp</a></li>
+      </ul>
+      <p>Copyright © 2026 James Madson.</p>
+    </div>
+  </div>
+</footer>
+
+
+  <script src="/assets/js/site.js" defer></script>
+  <script src="/assets/js/hero-scroll.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<script>
+  (function () {
+    const doc = document.documentElement;
+    const preferred = localStorage.getItem('theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    doc.classList.toggle('theme-dark', preferred === 'dark');
+    doc.classList.toggle('theme-light', preferred === 'light');
+    function setTheme(t) {
+      localStorage.setItem('theme', t);
+      doc.classList.toggle('theme-dark', t === 'dark');
+      doc.classList.toggle('theme-light', t === 'light');
+    }
+    document.addEventListener('click', function (e) {
+      const btn = e.target.closest && e.target.closest('#light_switch');
+      if (btn) {
+        const current = document.documentElement.classList.contains('theme-dark') ? 'dark' : 'light';
+        setTheme(current === 'dark' ? 'light' : 'dark');
+      }
+    });
+  })();
+</script>
+
+<script src="/assets/js/marquee.js" defer></script>
+<script src="/functions-min.js" defer></script>
+<script src="/functions.js" defer></script>
+<script src="/animation.gsap.js" defer></script>

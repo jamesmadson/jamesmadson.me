@@ -1,0 +1,14 @@
+<footer id="contact">
+  <div class="container">
+    <div class="grid_8">
+      <h3>James Madson</h3>
+      <h6>Product Designer</h6>
+    </div>
+    <div class="grid_4">
+      <ul>
+        <li><a href="mailto:james@jamesmadson.me">Email</a></li>
+      </ul>
+      <p>Copyright © {{ now | date("YYYY") }} James Madson.</p>
+    </div>
+  </div>
+</footer>

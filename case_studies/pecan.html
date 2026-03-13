@@ -4,15 +4,31 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="color-scheme" content="light dark">
-  <title>Visualization Community – St. Jude Children's Research Hospital | James Madson</title>
-  <meta name="description" content="Designing the Visualization Community for St. Jude Cloud — a platform helping researchers see and share genomic discoveries.">
-  <meta name="keywords" content="designer, product designer, brand designer, design director, seattle, best designers">
+  <title>PeCan Case Study – James Madson</title>
+  <meta name="description" content="How I redesigned PeCan, St. Jude Cloud's pediatric cancer genomics knowledge base, making complex research data more accessible for scientists worldwide.">
+  <meta name="author" content="James Madson">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <link rel="canonical" href="https://jamesmadson.me/case_studies/pecan/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://jamesmadson.me/case_studies/pecan/">
+  <meta property="og:title" content="PeCan Case Study – James Madson">
+  <meta property="og:description" content="How I redesigned PeCan, St. Jude Cloud's pediatric cancer genomics knowledge base, making complex research data more accessible for scientists worldwide.">
+  <meta property="og:image" content="https://jamesmadson.me/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="James Madson">
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PeCan Case Study – James Madson">
+  <meta name="twitter:description" content="How I redesigned PeCan, St. Jude Cloud's pediatric cancer genomics knowledge base, making complex research data more accessible for scientists worldwide.">
+  <meta name="twitter:image" content="https://jamesmadson.me/img/og-image.png">
+
   <link rel="shortcut icon" type="image/x-icon" href="../icons/favicon-32x32.png">
-
-  <link rel="canonical" href="https://jamesmadson.me">
-
+  <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="../icons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32x32.png">
   <link rel="manifest" href="../icons/site.webmanifest">
@@ -20,7 +36,11 @@
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="theme-color" content="#ffffff">
 
-  <link rel="stylesheet" type="text/css" href="../styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/styles.css" />
 
   <!-- Google tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HL3TB4H7XS"></script>
@@ -31,52 +51,50 @@
 
     gtag('config', 'G-HL3TB4H7XS');
   </script>
+  <script>!function(){var e=document.documentElement,t=localStorage.getItem("theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");e.className=e.className.replace(/\btheme-\S+/g,"");e.classList.add("theme-"+t)}();</script>
 </head>
 
-<body>
+<body data-hero-bg="#23AFE5">
   <a name="top"></a>
-  <div class="container nav_container">
-    <a href="../index.html">
-      <h1 class="nav_title">JM <span class="breadcrumb pecan">PeCan</span></h1>
-    </a>
-    <nav class="nav_large">
+  <div class="nav_container fadeIn">
+    <nav class="nav_large nav_left">
       <ul>
         <li><a href="../about.html">About</a></li>
         <li><a href="../work.html">Work</a></li>
+      </ul>
+    </nav>
+    <a href="../index.html">
+      <h1 class="nav_title">J<span class="nav_expand"><span>ames </span></span>M<span class="nav_expand"><span>adson</span></span></h1>
+    </a>
+    <nav class="nav_large nav_right">
+      <ul>
+        <li><a href="../music.html">Music</a></li>
+        <li><a class="nav_contact" data-e="amFtZXM=" data-d="amFtZXNtYWRzb24ubWU=" data-s="Hey+James!" href="#">Contact</a></li>
         <li>
-          <button id="light_switch">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 37 37"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M18.5006 36.4173C16.0221 36.4173 13.693 35.947 11.5131 35.0064C9.33333 34.0657 7.43713 32.7892 5.82461 31.1767C4.21211 29.5642 2.93554 27.668 1.99492 25.4881C1.05429 23.3083 0.583984 20.9791 0.583984 18.5006C0.583984 16.0222 1.05429 13.693 1.99492 11.5131C2.93554 9.33331 4.21211 7.43711 5.82461 5.82461C7.43713 4.21211 9.33333 2.93555 11.5131 1.99492C13.693 1.0543 16.0221 0.583984 18.5006 0.583984C20.9791 0.583984 23.3083 1.0543 25.4881 1.99492C27.668 2.93555 29.5642 4.21211 31.1767 5.82461C32.7892 7.43711 34.0657 9.33331 35.0063 11.5131C35.947 13.693 36.4173 16.0222 36.4173 18.5006C36.4173 20.9791 35.947 23.3083 35.0063 25.4881C34.0657 27.668 32.7892 29.5642 31.1767 31.1767C29.5642 32.7892 27.668 34.0657 25.4881 35.0064C23.3083 35.947 20.9791 36.4173 18.5006 36.4173ZM20.2923 32.6996C23.8458 32.2517 26.8244 30.6914 29.2282 28.0189C31.632 25.3463 32.834 22.1736 32.834 18.5006C32.834 14.8277 31.632 11.655 29.2282 8.98241C26.8244 6.30985 23.8458 4.74961 20.2923 4.30169V32.6996Z"
-                fill="currentColor"
-              />
-            </svg>
+          <button id="light_switch" aria-label="Toggle light/dark mode">
+            <span class="toggle-track"><span class="toggle-thumb"></span></span>
           </button>
         </li>
       </ul>
     </nav>
   </div>
-  <nav class="mobile_nav_menu" id="mobilenavmenu">
-    <div class="container fadeIn">
-      <div class="grid_8">
-        <button class="close_link" aria-label="Close Menu">&#10005; Close</button>
-        <ul>
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="../work.html">Work</a></li>
-          <li><a href="../about.html">About</a></li>
-        </ul>
+  <nav class="mobile_nav_menu" id="mobilenavmenu" aria-hidden="true">
+    <div class="mobile_nav_inner">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../work.html">Work</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../music.html">Music</a></li>
+      </ul>
+      <div class="mobile_nav_footer">
+        <a class="nav_contact" data-e="amFtZXM=" data-d="amFtZXNtYWRzb24ubWU=" data-s="Hey+James!" href="#">Contact</a>
+        <button id="light_switch_mobile" aria-label="Toggle light/dark mode">
+        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+      </button>
       </div>
     </div>
   </nav>
-  <button id="navlink" aria-controls="mobilenavmenu" aria-expanded="false">
-    Menu
-  </button>
+  <button id="navlink" aria-controls="mobilenavmenu" aria-expanded="false" aria-label="Toggle menu"></button>
 
   <ul class="case_study_nav">
     <li>
@@ -376,6 +394,36 @@
   </section>
 </main>
 
+<section class="more_work">
+  <div class="container">
+    <div class="grid_12">
+      <h3>More Work</h3>
+      <div class="more_work_grid">
+      <a class="more_work_card" href="naturedose.html" style="background-color:#2a8080">
+        <img src="../img/naturedose/naturedose_logo@2x.png" alt="NatureDose logo" />
+        <h4>NatureDose</h4>
+        <span>NatureQuant</span>
+      </a>
+      <a class="more_work_card" href="visualization_community.html" style="background-color:#1462b8">
+        <img src="../img/visualization_community/visualization_community_logo@2x.png" alt="Visualization Community logo" />
+        <h4>Visualization Community</h4>
+        <span>St. Jude Cloud</span>
+      </a>
+      <a class="more_work_card" href="naturescore.html" style="background-color:#7aaa00">
+        <img src="../img/naturescore/naturescore_logo@2x.png" alt="NatureScore logo" />
+        <h4>NatureScore</h4>
+        <span>NatureQuant</span>
+      </a>
+      <a class="more_work_card" href="naturequant.html" style="background-color:#007a28">
+        <img src="../img/naturequant/naturequant_logo@2x.png" alt="NatureQuant logo" />
+        <h4>NatureQuant</h4>
+        <span>NatureQuant</span>
+      </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer id="contact">
   <div class="container">
     <div class="grid_4">
@@ -391,19 +439,8 @@
   </div>
 </footer>
 
-<!-- JS -->
-<script
-  src="https://code.jquery.com/jquery-1.11.0.min.js"
-  integrity="sha256-spTpc4lvj4dOkKjrGokIrHkJgNA0xMS98Pw9N7ir9oI="
-  crossorigin="anonymous"></script>
 
-<script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@14.0.0/dist/smooth-scroll.polyfills.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/ScrollMagic.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/plugins/debug.addIndicators.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
-<script type="text/javascript" src="../animation.gsap.js"></script>
-
-<script type="text/javascript" src="../functions.js"></script>
+  <script src="/assets/js/site.js" defer></script>
+  <script src="/assets/js/hero-scroll.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="color-scheme" content="light dark">
+  <title>Example Project | James Madson</title>
+  <meta name="description" content="Independent designer & developer.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="/icons/favicon-32x32.png">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+
+  <body class="theme-light">
+    <header>
+  <div class="container nav_container fadeIn">
+    <a href="/">
+      <h1 class="nav_title">JM</h1>
+    </a>
+    <nav class="nav_large">
+      <ul>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/work.html">Work</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+    <main id="content">
+      <article class="project">
+  <header class="project-header">
+    <div class="container">
+      <h1>Example Project</h1>
+      <p class="client">Client: Example Co</p>
+      <p class="roles">Roles: Design, Front-end</p>
+    </div>
+  </header>
+
+  <section class="project-intro container">
+    <p>Short intro blurb for the project.</p>
+  </section>
+
+  
+  <section class="project-gallery container">
+    
+      <figure>
+        <img src="/img/clients/clearleft_logo.svg" alt="">
+      </figure>
+    
+      <figure>
+        <img src="/img/naturedose/naturedose_logo@2x.png" alt="">
+      </figure>
+    
+  </section>
+  
+
+  <section class="project-body container">
+    <h2>Overview</h2>
+<p>Write full project content below. Images referenced in <code>gallery</code> will render above.</p>
+
+  </section>
+</article>
+
+    </main>
+    <footer id="contact">
+  <div class="container">
+    <div class="grid_4">
+      <ul>
+        <li><a href="mailto:james@jamesmadson.me?subject=Hey%20James!">Email</a> </li>
+        <li><a href="https://github.com/jamesmadson/" target="_blank" rel="noreferrer">Github</a></li>
+        <li><a href="https://linkedin.com/jamesmadson/" target="_blank" rel="noreferrer">LinkedIn</a></li>
+        <li><a href="https://bandcamp.com/jamesmadson/" target="_blank" rel="noreferrer">Bandcamp</a></li>
+      </ul>
+      <p>Copyright © <script>document.write(new Date().getFullYear())</script> James Madson.</p>
+    </div>
+  </div>
+  <div class="footer_wordmark">
+    <h3>James Madson</h3>
+  </div>
+</footer>
+
+    <script>
+  (function () {
+    const doc = document.documentElement;
+    const preferred = localStorage.getItem('theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    doc.classList.toggle('theme-dark', preferred === 'dark');
+    doc.classList.toggle('theme-light', preferred === 'light');
+    function setTheme(t) {
+      localStorage.setItem('theme', t);
+      doc.classList.toggle('theme-dark', t === 'dark');
+      doc.classList.toggle('theme-light', t === 'light');
+    }
+    document.addEventListener('click', function (e) {
+      const btn = e.target.closest && e.target.closest('#light_switch');
+      if (btn) {
+        const current = document.documentElement.classList.contains('theme-dark') ? 'dark' : 'light';
+        setTheme(current === 'dark' ? 'light' : 'dark');
+      }
+    });
+  })();
+</script>
+
+<script src="/assets/js/marquee.js" defer></script>
+<script src="/functions-min.js" defer></script>
+<script src="/functions.js" defer></script>
+<script src="/animation.gsap.js" defer></script>
+
+  </body>
+</html>

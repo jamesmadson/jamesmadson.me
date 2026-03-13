@@ -1,0 +1,55 @@
+// Grid
+$gutter: 20px;
+$padding: 0 40px;
+$width: 1800px;
+$columns: 12;
+$column-width: calc(($width - $columns * $gutter) / $columns - 30px);
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(
+    $columns,
+    $column-width
+  );
+  grid-column-gap: $gutter;
+  justify-content: center;
+  //width: $width;
+  margin: 0 auto;
+  padding: $padding;
+}
+
+.container_fluid {
+  display: grid;
+  grid-template-columns: repeat(
+    $columns,
+    calc(8.333% - 20px)
+  );
+  grid-column-gap: $gutter;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+  padding: $padding;
+}
+
+@for $i from 1 through $columns {
+  .grid_#{$i} { grid-column: span $i; }
+}
+
+[class*=push_],
+[class*=pull_] {
+  position: relative;
+}
+
+@for $i from 1 through $columns {
+  .push_#{$i} { right: $i * ($column-width + $gutter) * -1; }
+}
+
+@for $i from 1 through $columns {
+  .pull_#{$i} { left: $i * ($column-width + $gutter) * -1; }
+}
+
+.grid-col {
+  border: 1px solid #fff;
+  padding: 10px 0;
+  margin: 10px 0;
+}

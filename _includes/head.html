@@ -1,0 +1,33 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="color-scheme" content="light dark">
+  <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="title" content="James Madson">
+  <meta name="description" content="Independent designer & developer.">
+  <meta name="keywords" content="designer, product designer, brand designer, design director, seattle, best designers">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="shortcut icon" type="image/x-icon" href="{{ '/icons/favicon-32x32.png' | relative_url }}">
+
+  <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ '/icons/apple-touch-icon.png' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/icons/favicon-32x32.png' | relative_url }}">
+  <link rel="manifest" href="{{ '/icons/site.webmanifest' | relative_url }}">
+  <link rel="mask-icon" href="{{ '/icons/safari-pinned-tab.svg' | relative_url }}" color="#282829">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" type="text/css" href="{{ '/styles.css' | relative_url }}" />
+
+  <!-- Google tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HL3TB4H7XS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-HL3TB4H7XS');
+  </script>
+</head>

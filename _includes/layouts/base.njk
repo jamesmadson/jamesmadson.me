@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en">
+  {% include "partials/head.njk" %}
+  <body class="{% if theme == 'dark' %}theme-dark{% else %}theme-light{% endif %}">
+    {% include "partials/header.njk" %}
+    <main id="content">
+      {{ content | safe }}
+    </main>
+    {% include "partials/footer.njk" %}
+    {% include "partials/scripts.njk" %}
+  </body>
+</html>
