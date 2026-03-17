@@ -1,0 +1,3 @@
+{
+  "permalink": "/case_studies/{{ page.fileSlug }}.html"
+}

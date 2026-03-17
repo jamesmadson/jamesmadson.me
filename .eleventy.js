@@ -5,16 +5,13 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("functions-min.js");
   eleventyConfig.addPassthroughCopy("animation.gsap.js");
   eleventyConfig.addPassthroughCopy({"assets/": "assets/"});
-  eleventyConfig.addPassthroughCopy("index.html");
-  eleventyConfig.addPassthroughCopy("case_studies/");
-  eleventyConfig.addPassthroughCopy("about.html");
-  eleventyConfig.addPassthroughCopy("work.html");
   eleventyConfig.addPassthroughCopy("feed.html");
   eleventyConfig.addPassthroughCopy("404.html");
   eleventyConfig.addPassthroughCopy("robots.txt");
   eleventyConfig.addPassthroughCopy("sitemap.xml");
 
   return {
+    htmlTemplateEngine: "njk",
     dir: {
       input: ".",
       includes: "_includes",

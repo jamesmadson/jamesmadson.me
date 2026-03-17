@@ -38,7 +38,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" type="text/css" href="/assets/css/styles.css" />
 
@@ -54,47 +54,103 @@
   <script>!function(){var e=document.documentElement,t=localStorage.getItem("theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");e.className=e.className.replace(/\btheme-\S+/g,"");e.classList.add("theme-"+t)}();</script>
 </head>
 
-<body data-hero-bg="#99CC00">
+<body>
 <a name="top"></a>
-<div class="nav_container">
-  <nav class="nav_large nav_left">
-    <ul>
-      <li><a href="../about.html">About</a></li>
-      <li><a href="../work.html" class="active">Work</a></li>
-    </ul>
-  </nav>
-  <a href="../index.html">
-    <h1 class="nav_title">J<span class="nav_expand"><span>ames </span></span>M<span class="nav_expand"><span>adson</span></span></h1>
-  </a>
-  <nav class="nav_large nav_right">
-    <ul>
-      <li><a href="../music.html">Music</a></li>
-      <li><a class="nav_contact" data-e="amFtZXM=" data-d="amFtZXNtYWRzb24ubWU=" data-s="Hey+James!" href="#">Contact</a></li>
-      <li>
-        <button id="light_switch" aria-label="Toggle light/dark mode">
-          <span class="toggle-track"><span class="toggle-thumb"></span></span>
-        </button>
-      </li>
-    </ul>
-  </nav>
+<div class="site_header">
+  <a href="../index.html" class="site_name">James Madson</a>
+  <div class="nav_container">
+    <nav class="nav_large">
+      <ul>
+        <li><a href="../about.html">About</a></li>
+        <li class="nav_dropdown_trigger">
+          <a href="../work.html" class="active">Work</a>
+          <div class="nav_dropdown">
+            <a href="/case_studies/naturedose.html" class="nav_dropdown_item">
+              <div class="nav_dropdown_icon_placeholder"></div>
+              <div class="nav_dropdown_meta">
+                <span class="nav_dropdown_title">NatureDose</span>
+                <span class="nav_dropdown_company">NatureQuant</span>
+              </div>
+            </a>
+            <a href="/case_studies/visualization_community.html" class="nav_dropdown_item">
+              <div class="nav_dropdown_icon_placeholder"></div>
+              <div class="nav_dropdown_meta">
+                <span class="nav_dropdown_title">Visualization Community</span>
+                <span class="nav_dropdown_company">St. Jude Children's Research Hospital</span>
+              </div>
+            </a>
+            <a href="/case_studies/naturescore.html" class="nav_dropdown_item">
+              <div class="nav_dropdown_icon_placeholder"></div>
+              <div class="nav_dropdown_meta">
+                <span class="nav_dropdown_title">NatureScore</span>
+                <span class="nav_dropdown_company">NatureQuant</span>
+              </div>
+            </a>
+            <a href="/case_studies/naturequant.html" class="nav_dropdown_item">
+              <div class="nav_dropdown_icon_placeholder"></div>
+              <div class="nav_dropdown_meta">
+                <span class="nav_dropdown_title">NatureQuant</span>
+                <span class="nav_dropdown_company">NatureQuant</span>
+              </div>
+            </a>
+            <a href="/case_studies/pecan.html" class="nav_dropdown_item">
+              <div class="nav_dropdown_icon_placeholder"></div>
+              <div class="nav_dropdown_meta">
+                <span class="nav_dropdown_title">PeCan</span>
+                <span class="nav_dropdown_company">St. Jude Children's Research Hospital</span>
+              </div>
+            </a>
+            <div class="nav_dropdown_item nav_dropdown_item--nda">
+              <div class="nav_dropdown_icon_placeholder"></div>
+              <div class="nav_dropdown_meta">
+                <span class="nav_dropdown_title">Health Platform</span>
+                <span class="nav_dropdown_company">Under NDA</span>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li><a class="nav_contact" data-e="amFtZXM=" data-d="amFtZXNtYWRzb24ubWU=" data-s="Hey+James!" href="#">Contact</a></li>
+        <li>
+          <button id="light_switch" aria-label="Toggle light/dark mode">
+            <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+    <button id="navlink" aria-controls="mobilenavmenu" aria-expanded="false" aria-label="Toggle menu"><span class="navlink_icon"><span class="navlink_bar navlink_bar1"></span><span class="navlink_bar navlink_bar2"></span></span><span class="navlink_label">Menu</span></button>
+  </div>
+  <div class="nav_cta_wrapper">
+    <a class="nav_cta work_with_me" data-e="amFtZXM=" data-d="amFtZXNtYWRzb24ubWU=" data-s="Hey+James!" href="#">Work with me</a>
+  </div>
 </div>
   <nav class="mobile_nav_menu" id="mobilenavmenu" aria-hidden="true">
     <div class="mobile_nav_inner">
       <ul>
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../work.html">Work</a></li>
-        <li><a href="../about.html">About</a></li>
-        <li><a href="../music.html">Music</a></li>
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li class="mobile_nav_accordion">
+          <button class="mobile_nav_accordion_btn" aria-expanded="false">
+            Work
+            <svg class="mobile_nav_chevron" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <ul class="mobile_nav_accordion_panel" aria-hidden="true">
+          <li><a href="/case_studies/naturedose.html">NatureDose</a></li>
+          <li><a href="/case_studies/naturescore.html">NatureScore</a></li>
+          <li><a href="/case_studies/naturequant.html">NatureQuant</a></li>
+          <li><a href="/case_studies/pecan.html">PeCan</a></li>
+          <li><a href="/case_studies/visualization_community.html">Visualization Community</a></li>
+          <li><a href="/case_studies/stjudecloud.html">St. Jude Cloud</a></li>
+          </ul>
+        </li>
+        <li><a class="nav_contact" data-e="amFtZXM=" data-d="amFtZXNtYWRzb24ubWU=" data-s="Hey+James!" href="#">Contact</a></li>
       </ul>
       <div class="mobile_nav_footer">
-        <a class="nav_contact" data-e="amFtZXM=" data-d="amFtZXNtYWRzb24ubWU=" data-s="Hey+James!" href="#">Contact</a>
         <button id="light_switch_mobile" aria-label="Toggle light/dark mode">
           <span class="toggle-track"><span class="toggle-thumb"></span></span>
         </button>
       </div>
     </div>
   </nav>
-  <button id="navlink" aria-controls="mobilenavmenu" aria-expanded="false" aria-label="Toggle menu"></button>
 
 <ul class="case_study_nav">
   <li>
@@ -125,14 +181,14 @@
     <div class="container">
       <!--<div class="grid_3">
         <img src="../img/naturequant-logo.svg" class="client_logo" height="auto" width="225px" alt="NatureQuant Logo"/>
-        <h4>NatureScore®</h4>
+        <h4>NatureScore<sup class="reg">®</sup></h4>
         <h6>NatureQuant, LLC</h6>
         <p>Platform: Web + Mapping / GIS</p>
         <a href="https://naturequant.com/naturescore" class="">naturequant.com/naturescore ↗</a>
       </div>-->
       <div class="grid_9">
         <h1 class="project_title">
-          <span class="case_study_label">Case Study</span>
+          <span class="case_study_label">NatureScore</span>
           Designing a new way to measure nature’s value at every address.
         </h1>
       </div>
@@ -152,9 +208,7 @@
           <p>Lead Product Designer</p>
 
           <p class="role">Website</p>
-          <a href="https://naturequant.com/naturescore" target="_blank" rel="noreferrer">
-            <p>naturequant.com/naturescore</p>
-          </a>
+          <a href="https://naturequant.com/naturescore" class="view_project" target="_blank" rel="noreferrer">View Project ↗</a>
 
           <ul>
             <li class="tag">UI/UX Design</li>
@@ -167,10 +221,10 @@
           <a name="summary"></a>
           <p class="leadin">As urban environments grow and people spend more time indoors, understanding how nature affects health, real estate, and community equity became increasingly important. NatureQuant needed a product that could translate complex GIS and environmental data into actionable insight.</p>
           <br><br>
-          <p class="leadin">I led the design and launch of NatureScore®, NatureQuant’s first product. The work spanned brand identity, custom maps (GIS data), website launch, white papers and pitch decks, and feature ideation.</p>
+          <p class="leadin">I led the design and launch of NatureScore<sup class="reg">®</sup>, NatureQuant’s first product. The work spanned brand identity, custom maps (GIS data), website launch, white papers and pitch decks, and feature ideation.</p>
           <p>The product transforms raw environmental and GIS data into a visual, easy-to-understand score (0-100) that reflects the quantity and quality of natural elements around any location. By combining satellite imagery, land use data, pollution measures, tree canopy, parks, and computer vision, NatureScore helps professionals and individuals alike understand how “nature­rich” a place really is.</p>
 
-        <p><strong>NatureScore became the foundation of that vision:</strong> a first product that would set the tone for future apps (such as NatureDose®) and open data tools, and position NatureQuant as a serious player in nature + health + data.</p>
+        <p><strong>NatureScore became the foundation of that vision:</strong> a first product that would set the tone for future apps (such as NatureDose<sup class="reg">®</sup>) and open data tools, and position NatureQuant as a serious player in nature + health + data.</p>
 
         </div>
       </div>
@@ -261,45 +315,48 @@
     <div class="grid_12">
       <h3>More Work</h3>
       <div class="more_work_grid">
-      <a class="more_work_card" href="naturedose.html" style="background-color:#2a8080">
-        <img src="../img/naturedose/naturedose_logo@2x.png" alt="NatureDose logo" />
-        <h4>NatureDose</h4>
-        <span>NatureQuant</span>
-      </a>
-      <a class="more_work_card" href="visualization_community.html" style="background-color:#1462b8">
-        <img src="../img/visualization_community/visualization_community_logo@2x.png" alt="Visualization Community logo" />
-        <h4>Visualization Community</h4>
-        <span>St. Jude Cloud</span>
-      </a>
-      <a class="more_work_card" href="pecan.html" style="background-color:#0f8fc4">
-        <img src="../img/pecan/pecan_logo@2x.png" alt="PeCan logo" />
-        <h4>PeCan</h4>
-        <span>St. Jude Cloud</span>
-      </a>
-      <a class="more_work_card" href="naturequant.html" style="background-color:#007a28">
-        <img src="../img/naturequant/naturequant_logo@2x.png" alt="NatureQuant logo" />
-        <h4>NatureQuant</h4>
-        <span>NatureQuant</span>
-      </a>
+        <a class="more_work_card" href="naturedose.html">
+          <div class="more_work_img">
+            <img src="../img/naturedose/naturedose_title_bg@2x.png" alt="NatureDose" />
+          </div>
+          <div class="more_work_info">
+            <h4>NatureDose</h4>
+            <span>NatureQuant</span>
+          </div>
+        </a>
+        <a class="more_work_card" href="visualization_community.html">
+          <div class="more_work_img">
+            <img src="../img/visualization_community/visualization_community_title_bg@2x.png" alt="Visualization Community" />
+          </div>
+          <div class="more_work_info">
+            <h4>Visualization Community</h4>
+            <span>St. Jude Cloud</span>
+          </div>
+        </a>
+        <a class="more_work_card" href="pecan.html">
+          <div class="more_work_img">
+            <img src="../img/pecan/pecan_title_bg@2x.png" alt="PeCan" />
+          </div>
+          <div class="more_work_info">
+            <h4>PeCan</h4>
+            <span>St. Jude Cloud</span>
+          </div>
+        </a>
+        <a class="more_work_card" href="naturequant.html">
+          <div class="more_work_img">
+            <img src="../img/naturequant/naturequant_title_bg@2x.png" alt="NatureQuant" />
+          </div>
+          <div class="more_work_info">
+            <h4>NatureQuant</h4>
+            <span>NatureQuant</span>
+          </div>
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<footer id="contact">
-  <div class="container">
-    <div class="grid_4">
-      <h4>Online</h4>
-      <ul>
-        <li><a href="mailto:james@jamesmadson.me?subject=Hey%20James!">Email</a> </li>
-        <li><a href="https://github.com/jamesmadson/" target="_blank" rel="noreferrer">Github</a></li>
-        <li><a href="https://linkedin.com/jamesmadson/" target="_blank" rel="noreferrer">LinkedIn</a></li>
-        <li><a href="https://bandcamp.com/jamesmadson/" target="_blank" rel="noreferrer">Bandcamp</a></li>
-      </ul>
-      <p>Copyright © 2026 James Madson.</p>
-    </div>
-  </div>
-</footer>
+{% include "partials/footer.njk" %}
 
 
   <script src="/assets/js/site.js" defer></script>

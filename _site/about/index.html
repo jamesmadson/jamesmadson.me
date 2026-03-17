@@ -38,7 +38,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" type="text/css" href="/assets/css/styles.css" />
 
@@ -57,53 +57,98 @@
 </head>
 
 <body>
-  <div class="nav_container">
-    <nav class="nav_large nav_left">
-      <ul>
-        <li><a href="about.html" class="active">About</a></li>
-        <li><a href="work.html">Work</a></li>
-      </ul>
-    </nav>
-    <a href="index.html">
-      <h1 class="nav_title">J<span class="nav_expand"><span>ames </span></span>M<span class="nav_expand"><span>adson</span></span></h1>
-    </a>
-    <nav class="nav_large nav_right">
-      <ul>
-        <li><a href="music.html">Music</a></li>
-        <li><a class="nav_contact" data-e="amFtZXM=" data-d="amFtZXNtYWRzb24ubWU=" data-s="Hey+James!" href="#">Contact</a></li>
-        <li>
-          <button id="light_switch" aria-label="Toggle light/dark mode">
-            <span class="toggle-track"><span class="toggle-thumb"></span></span>
-          </button>
-        </li>
-      </ul>
-    </nav>
+  <div class="site_header">
+    <a href="index.html" class="site_name">James Madson</a>
+    <div class="nav_container">
+      <nav class="nav_large">
+        <ul>
+          <li><a href="about.html" class="active">About</a></li>
+          <li class="nav_dropdown_trigger">
+            <a href="work.html">Work</a>
+            <div class="nav_dropdown">
+              <a href="/case_studies/naturedose.html" class="nav_dropdown_item">
+                <div class="nav_dropdown_icon_placeholder"></div>
+                <div class="nav_dropdown_meta">
+                  <span class="nav_dropdown_title">NatureDose</span>
+                  <span class="nav_dropdown_company">NatureQuant</span>
+                </div>
+              </a>
+              <a href="/case_studies/visualization_community.html" class="nav_dropdown_item">
+                <div class="nav_dropdown_icon_placeholder"></div>
+                <div class="nav_dropdown_meta">
+                  <span class="nav_dropdown_title">Visualization Community</span>
+                  <span class="nav_dropdown_company">St. Jude Children's Research Hospital</span>
+                </div>
+              </a>
+              <a href="/case_studies/naturescore.html" class="nav_dropdown_item">
+                <div class="nav_dropdown_icon_placeholder"></div>
+                <div class="nav_dropdown_meta">
+                  <span class="nav_dropdown_title">NatureScore</span>
+                  <span class="nav_dropdown_company">NatureQuant</span>
+                </div>
+              </a>
+              <a href="/case_studies/naturequant.html" class="nav_dropdown_item">
+                <div class="nav_dropdown_icon_placeholder"></div>
+                <div class="nav_dropdown_meta">
+                  <span class="nav_dropdown_title">NatureQuant</span>
+                  <span class="nav_dropdown_company">NatureQuant</span>
+                </div>
+              </a>
+              <a href="/case_studies/pecan.html" class="nav_dropdown_item">
+                <div class="nav_dropdown_icon_placeholder"></div>
+                <div class="nav_dropdown_meta">
+                  <span class="nav_dropdown_title">PeCan</span>
+                  <span class="nav_dropdown_company">St. Jude Children's Research Hospital</span>
+                </div>
+              </a>
+              <div class="nav_dropdown_item nav_dropdown_item--nda">
+                <div class="nav_dropdown_icon_placeholder"></div>
+                <div class="nav_dropdown_meta">
+                  <span class="nav_dropdown_title">Health Platform</span>
+                  <span class="nav_dropdown_company">Under NDA</span>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li><a class="nav_contact" data-e="amFtZXM=" data-d="amFtZXNtYWRzb24ubWU=" data-s="Hey+James!" href="#">Contact</a></li>
+          <li>
+            <button id="light_switch" aria-label="Toggle light/dark mode">
+              <span class="toggle-track"><span class="toggle-thumb"></span></span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+      <button id="navlink" aria-controls="mobilenavmenu" aria-expanded="false" aria-label="Toggle menu"></button>
+    </div>
+    <div class="nav_cta_wrapper">
+      <a class="nav_cta work_with_me" data-e="amFtZXM=" data-d="amFtZXNtYWRzb24ubWU=" data-s="Hey+James!" href="#">Work with me</a>
+    </div>
   </div>
   <nav class="mobile_nav_menu" id="mobilenavmenu" aria-hidden="true">
     <div class="mobile_nav_inner">
+      <button class="mobile_nav_close" aria-label="Close menu">✕</button>
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="work.html">Work</a></li>
         <li><a href="about.html" class="active">About</a></li>
-        <li><a href="music.html">Music</a></li>
       </ul>
       <div class="mobile_nav_footer">
         <a class="nav_contact" data-e="amFtZXM=" data-d="amFtZXNtYWRzb24ubWU=" data-s="Hey+James!" href="#">Contact</a>
         <button id="light_switch_mobile" aria-label="Toggle light/dark mode">
-        <span class="toggle-track"><span class="toggle-thumb"></span></span>
-      </button>
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+        </button>
       </div>
     </div>
   </nav>
-  <button id="navlink" aria-controls="mobilenavmenu" aria-expanded="false" aria-label="Toggle menu"></button>
   <header class="fadeIn">
     <div class="container">
       <div class="grid_3">
         <h1 class="fadeIn jm_title">About</h1>
+        <p class="about_meta" id="seattle_time"></p>
       </div>
       <div class="grid_9">
         <h2 class="fadeIn jm_subtitle location">
-          I'm an independent product designer</br> based in Seattle, Washington.
+          I am a designer</br> based in Seattle, Washington.
         </h2>
       </div>
     </div>
@@ -111,17 +156,16 @@
       <div class="grid_3"></div>
       <div class="grid_3">
         <p class="about_me">
-          I create successful products experiences from the ground up. UX and CX, <br />UI to AI, my multiple displinary approach is grounded in empathy and craft.
+          I think of myself as box-shaped, with deep expertise across a few core disciplines and broad knowledge filling in around them. Running through all of it is empathy, a genuine ability to understand the language, constraints, and goals of whoever I'm working with.        </p>
+      </div>
+      <div class="grid_3">
+        <p class="about_me">
+          I'm the 6th man, the rhythm section. Not always in the spotlight, but reliable enough that teams move faster and work better together because of it. Resilient and adaptable, I move between roles as needed, filling gaps and getting projects across the finish line.
         </p>
       </div>
       <div class="grid_3">
         <p class="about_me">
-          This mix of concept to implementation helps me see the full picture from concept to execution and ensure every detail, visible or not, supports the larger vision.
-        </p>
-      </div>
-      <div class="grid_3">
-        <p class="about_me">
-          Design is changing fast — and I think that's a good thing. I bring curiosity and resilience to every shift, including AI. Rather than resisting the tools that are redefining the craft, I lean in with grit and a designer's eye, using them to move faster, think bigger, and stay closer to what actually matters: the people on the other end of the experience.
+          That might mean stepping into strategy, systems, branding, or code, depending on what the team needs most. I see the full picture from concept to execution, and I make sure every detail, visible or not, is in service of the larger vision.
         </p>
       </div>
     </div>
@@ -201,17 +245,22 @@
     <div class="grid_3">
       <h3>Values</h3>
     </div>
-    <div class="grid_3">
-      <h3>Details</h3>
-      <p>The things that seem small — spacing, timing, a label that actually makes sense — are usually what separates work that earns trust from work that merely exists.</p>
+    <div class="grid_2">
+      <h3>Useful</h3>
     </div>
-    <div class="grid_3">
-      <h3>Curiosity</h3>
-      <p>Better answers come from staying genuinely open: to new tools, unfamiliar domains, and problems that don't have a template yet. Especially those.</p>
+    <div class="grid_2">
+      <h3>Clear</h3>
     </div>
-    <div class="grid_3">
-      <h3>People</h3>
-      <p>The measure of good design isn't how it looks in a Figma frame. It's whether it helps someone do something they care about, on the worst day they've had all week.</p>
+    <div class="grid_2">
+      <h3>Resonant</h3>
+    </div>
+    <div class="grid_2">
+      <h3>Lasting</h3>
+    </div>
+    <div class="grid_1"></div>
+    <div class="grid_3"></div>
+    <div class="grid_9">
+      <p class="about_me">Things I've always cared about and tried to bring to every project. If the work isn't useful, nothing else really matters — but if it's also clear and built to last, that's when it starts to feel right. I love solving a real need with something beautiful. Working with a great team to get there makes it better every time. I try to think big, move fast, and care about the details — always with an eye toward actually helping the people using it.</p>
     </div>
   </div>
 </section>
@@ -292,7 +341,7 @@
         <div class="experience_item">
           <div class="experience_left">
             <span class="experience_company">ORCAS</span>
-            <span class="experience_meta"><a href="https://orcasinc.com" target="_blank" rel="noreferrer">orcasinc.com</a><br>2007–2010 · Seattle</span>
+            <span class="experience_meta">Oregon Center for Applied Science<br>2007–2010 · Seattle</span>
           </div>
           <div class="experience_right">
             <p class="experience_role">Product Designer</p>
@@ -321,22 +370,58 @@
   <div class="container">
     <div class="grid_4">
       <ul>
-        <li><a href="mailto:james@jamesmadson.me?subject=Hey%20James!">Email</a> </li>
+        <li><a class="nav_contact" data-e="amFtZXM=" data-d="amFtZXNtYWRzb24ubWU=" data-s="Hey+James!" href="#">Email</a></li>
         <li><a href="https://github.com/jamesmadson/" target="_blank" rel="noreferrer">Github</a></li>
-        <li><a href="https://linkedin.com/jamesmadson/" target="_blank" rel="noreferrer">LinkedIn</a></li>
+        <li><a href="https://linkedin.com/in/jamesmadson/" target="_blank" rel="noreferrer">LinkedIn</a></li>
         <li><a href="https://bandcamp.com/jamesmadson/" target="_blank" rel="noreferrer">Bandcamp</a></li>
       </ul>
+      <p>Copyright © <script>document.write(new Date().getFullYear())</script> James Madson.</p>
     </div>
-  </div>
-  <div class="footer_wordmark">
-    <h3>James Madson</h3>
-  </div>
-  <div class="colophon">
-    <p>Copyright © 2026 James Madson.</p>
-    <p>Design and code by James Madson. Typeset in <a href="https://fonts.google.com/specimen/Instrument+Sans" target="_blank" rel="noreferrer">Instrument Sans</a> by Google Fonts. Built with <a href="https://www.11ty.dev" target="_blank" rel="noreferrer">Eleventy</a>.</p>
   </div>
 </footer>
 
+
+<script>
+(function () {
+  var el = document.getElementById('seattle_time');
+  if (!el) return;
+
+  var weatherStr = '';
+
+  function wxCode(code) {
+    if (code === 0) return '☀️';
+    if (code <= 2) return '🌤';
+    if (code === 3) return '☁️';
+    if (code <= 48) return '🌫';
+    if (code <= 57) return '🌦';
+    if (code <= 67) return '🌧';
+    if (code <= 77) return '❄️';
+    if (code <= 82) return '🌦';
+    return '⛈';
+  }
+
+  function fetchWeather() {
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=47.6062&longitude=-122.3321&current=temperature_2m,weather_code&temperature_unit=fahrenheit&timezone=America%2FLos_Angeles')
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        var temp = Math.round(d.current.temperature_2m);
+        var icon = wxCode(d.current.weather_code);
+        weatherStr = ' · ' + icon + ' ' + temp + '°F';
+      })
+      .catch(function() {});
+  }
+
+  function tick() {
+    var t = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/Los_Angeles', hour12: true });
+    el.textContent = t + ' · Seattle' + weatherStr;
+  }
+
+  fetchWeather();
+  setInterval(fetchWeather, 1800000); // refresh every 30 min
+  tick();
+  setInterval(tick, 1000);
+}());
+</script>
 <script src="/assets/js/site.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
