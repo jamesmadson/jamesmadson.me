@@ -114,17 +114,14 @@ permalink: /about.html
             </div>
           </li>
           <li><a class="nav_contact" data-e="amFtZXM=" data-d="amFtZXNtYWRzb24ubWU=" data-s="Hey+James!" href="#">Contact</a></li>
-          <li>
-            <button id="light_switch" aria-label="Toggle light/dark mode">
-              <span class="toggle-track"><span class="toggle-thumb"></span></span>
-            </button>
-          </li>
         </ul>
       </nav>
       <button id="navlink" aria-controls="mobilenavmenu" aria-expanded="false" aria-label="Toggle menu"><span class="navlink_icon"><span class="navlink_bar navlink_bar1"></span><span class="navlink_bar navlink_bar2"></span></span><span class="navlink_label">Menu</span></button>
     </div>
     <div class="nav_cta_wrapper">
-      <a class="nav_cta work_with_me" data-e="amFtZXM=" data-d="amFtZXNtYWRzb24ubWU=" data-s="Hey+James!" href="#">Work with me</a>
+      <button id="light_switch" aria-label="Toggle light/dark mode">
+        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+      </button>
     </div>
   </div>
   <nav class="mobile_nav_menu" id="mobilenavmenu" aria-hidden="true">
@@ -161,27 +158,20 @@ permalink: /about.html
         <h1 class="fadeIn jm_title">About</h1>
         <p class="about_meta" id="seattle_time"></p>
       </div>
-      <div class="grid_9">
-        <h2 class="fadeIn jm_subtitle location">
-          Welcome! I am a designer</br> based in Seattle, Washington.
-        </h2>
+      <div class="grid_9" style="display:flex;align-items:center;justify-content:flex-end;gap:0.75rem;padding-bottom:0.35rem;">
+        <a href="https://github.com/jamesmadson" target="_blank" rel="noreferrer" class="view_project" style="margin-top:0">GitHub <span class="arrow">↗</span></a>
+        <a href="resume.html" class="view_project" style="margin-top:0">Resume</a>
       </div>
     </div>
-    <div class="container">
-      <div class="grid_3"></div>
-      <div class="grid_3">
-        <p class="about_me">
-          I think of myself as box-shaped, with deep expertise across a few core disciplines and broad knowledge filling in around them. Running through all of it is empathy, a genuine ability to understand the language, constraints, and goals of whoever I'm working with.
-        </p>
+    <div class="container about_bio">
+      <div class="grid_4">
+        <h2 class="about_me--lead">I'm an ambitious generalist with design at the core. Over the years I've learned to code, research, and think about business, and I'd rather find my own path than follow a well-worn one.</h2>
       </div>
-      <div class="grid_3">
-        <p class="about_me">
-          I'm the 6th man, the rhythm section. Not always in the spotlight, but reliable enough that teams move faster and work better together because of it. Resilient and adaptable, I move between roles as needed, filling gaps and getting projects across the finish line.
-        </p>
+      <div class="grid_4">
+        <p class="about_me">I think of myself as box-shaped: deep expertise across a few core disciplines, broad knowledge filling in around them, and empathy running through all of it. A genuine ability to understand the language, constraints, and goals of whoever I'm working with.</p>
       </div>
-      <div class="grid_3">
-        <p class="about_me">That might mean stepping into strategy, systems, branding, or code, whatever the team needs most. In a moment where the rules are being rewritten and the tools are changing faster than the playbooks, I see the full picture and make sure every detail, visible or not, serves the larger vision.
-        </p>
+      <div class="grid_4">
+        <p class="about_me">I'm the 6th man: not always in the spotlight, but reliable enough that teams move faster because of it. Stepping into strategy, systems, branding, or code as needed, seeing the full picture, and making sure every detail serves the larger vision.</p>
       </div>
     </div>
 
@@ -213,6 +203,9 @@ permalink: /about.html
     </div>
     <div class="container">
       <div class="grid_9 color_block yellow"></div>
+    </div>
+    <div class="container">
+      <div class="grid_7 push_2 color_block orange"></div>
     </div>
     <svg class="yellow_dots" width="524" height="264" viewBox="0 0 524 264" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="2" cy="2" r="2" fill="#FFC200"/>
@@ -259,13 +252,13 @@ permalink: /about.html
   <div class="container">
     <div class="grid_12">
       <div class="values_row">
-        <span class="value_word">Useful</span>
+        <a href="case_studies/pecan.html" class="value_word highlight pecan">Useful</a>
         <span class="value_connector"></span>
-        <span class="value_word">Clear</span>
+        <a href="case_studies/naturescore.html" class="value_word highlight ns">Clear</a>
         <span class="value_connector"></span>
-        <span class="value_word">Resonant</span>
+        <a href="case_studies/naturedose.html" class="value_word highlight nd">Resonant</a>
         <span class="value_connector"></span>
-        <span class="value_word">Lasting</span>
+        <a href="case_studies/naturequant.html" class="value_word highlight nq">Lasting</a>
       </div>
     </div>
     <div class="grid_6">
@@ -273,6 +266,25 @@ permalink: /about.html
     </div>
     <div class="grid_6">
       <p class="about_me">I love solving a real need with something beautiful. Working with a great team to get there makes it better every time. I try to think big, move fast, and care about the details — always with an eye toward actually helping the people using it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="about about_services">
+  <div class="container">
+    <div class="grid_3">
+      <h3>Services</h3>
+    </div>
+    <div class="grid_9">
+      <ul class="services_list">
+        <li><a href="case_studies/naturequant.html" class="highlight nq">Creative Consulting</a></li>
+        <li><a href="case_studies/naturedose.html" class="highlight nd">Design Direction</a></li>
+        <li><a href="case_studies/naturescore.html" class="highlight ns">Art Direction</a></li>
+        <li><a href="case_studies/visualization_community.html" class="highlight viz">Visual Design</a></li>
+        <li><a href="case_studies/pecan.html" class="highlight pecan">Product UX/UI</a></li>
+        <li><a href="case_studies/naturequant.html" class="highlight nq">Design Systems</a></li>
+        <li><a href="case_studies/pecan.html" class="highlight pecan">Rapid Prototyping</a></li>
+      </ul>
     </div>
   </div>
 </section>
@@ -376,6 +388,76 @@ permalink: /about.html
     </div>
   </section>
 
+  <section class="about work work_listing" id="recent_work">
+    <div class="work_carousel">
+
+      <a href="case_studies/naturedose.html" class="work_card nd" aria-label="View NatureDose case study" data-images='["img/naturedose/naturedose_logo@2x.png","img/naturequant/naturedose_icon@2x.png","img/naturequant/naturedose_benefits@2x.png","img/naturedose/naturedose_pillars_of_wellness_icons@2x.png"]'>
+        <div class="work_card_info">
+          <span class="work_card_label">NatureQuant</span>
+          <h3>NatureDose</h3>
+          <p>A mobile app that turns time spent outdoors into a measurable wellness habit.</p>
+          <div class="work_tags">
+            <span class="work_tag">UI/UX Design</span>
+            <span class="work_tag">Design Systems</span>
+            <span class="work_tag">Data Visualization</span>
+          </div>
+        </div>
+        <div class="work_card_img">
+          <img src="img/naturequant/naturedose_benefits@2x.png" alt="NatureDose app preview">
+        </div>
+      </a>
+
+      <a href="case_studies/visualization_community.html" class="work_card viz" aria-label="View Visualization Community case study" data-images='["img/visualization_community/viz_editor_square@2x.png","img/visualization_community/viz_tracks_square@2x.png","img/visualization_community/viz_tracks_components_square@2x.png","img/visualization_community/visualization_community_logo@2x.png"]'>
+        <div class="work_card_info">
+          <span class="work_card_label">St. Jude Children's Research Hospital</span>
+          <h3>Visualization Community</h3>
+          <p>A platform that transforms static genomic research into living, interactive visualizations.</p>
+          <div class="work_tags">
+            <span class="work_tag">UI/UX Design</span>
+            <span class="work_tag">Design Systems</span>
+            <span class="work_tag">Data Visualization</span>
+          </div>
+        </div>
+        <div class="work_card_img">
+          <img src="img/visualization_community/viz_editor_square@2x.png" alt="Visualization Community editor">
+        </div>
+      </a>
+
+      <a href="case_studies/pecan.html" class="work_card pecan" aria-label="View PeCan case study" data-images='["img/pecan/pecan_gif_data_facet_homepage_square.gif","img/pecan/pecan_home_hero_square@2x.png","img/pecan/pecan_data_facet_icons_square@2x.png","img/pecan/pecan_prototype_connections_square@2x.png"]'>
+        <div class="work_card_info">
+          <span class="work_card_label">St. Jude Children's Research Hospital</span>
+          <h3>PeCan</h3>
+          <p>A pediatric cancer genomic knowledge base redesigned for clarity and speed.</p>
+          <div class="work_tags">
+            <span class="work_tag">UI/UX Design</span>
+            <span class="work_tag">Design Systems</span>
+            <span class="work_tag">Front-End Development</span>
+          </div>
+        </div>
+        <div class="work_card_img">
+          <img src="img/pecan/pecan_home_hero_square@2x.png" alt="PeCan homepage">
+        </div>
+      </a>
+
+      <a href="case_studies/naturequant.html" class="work_card nq" aria-label="View NatureQuant case study" data-images='["img/naturequant/naturequant_title_bg@2x.png","img/naturequant/naturequant_colors_square@2x.png","img/naturequant/naturequant_felt_map_500_cities@2x.png","img/naturequant/naturequant_logo_geometry@2x.png"]'>
+        <div class="work_card_info">
+          <span class="work_card_label">NatureQuant</span>
+          <h3>NatureQuant</h3>
+          <p>Brand identity, design system, and data products for a nature-science research company.</p>
+          <div class="work_tags">
+            <span class="work_tag">Brand Identity</span>
+            <span class="work_tag">Design Systems</span>
+            <span class="work_tag">Data Visualization</span>
+          </div>
+        </div>
+        <div class="work_card_img">
+          <img src="img/naturequant/naturequant_title_bg@2x.png" alt="NatureQuant brand">
+        </div>
+      </a>
+
+    </div>
+  </section>
+
 </main>
 
 {% include "partials/footer.njk" %}
@@ -429,44 +511,228 @@ permalink: /about.html
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
   gsap.registerPlugin(ScrollTrigger);
 
-  var ease = 'power3.out';
-  var st = { trigger: '#about_photos', start: 'top 80%', toggleActions: 'play none none reverse' };
+  var section = '.about_images';
 
   ScrollTrigger.matchMedia({
-    // Desktop: film strip, portrait, and waves all animate
+    // Desktop: all three images scrub with scroll
     '(min-width: 1280px)': function () {
-      gsap.to('.image_film_strip', {
-        right: 100, top: -100, rotation: -8,
-        duration: 1, ease: ease,
-        scrollTrigger: st
-      });
-      gsap.to('.image_portrait', {
-        right: 500, top: 300, rotation: 0,
-        duration: 1.1, ease: ease, delay: 0.15,
-        scrollTrigger: st
-      });
-      gsap.to('.image_waves', {
-        bottom: -100,
-        duration: 0.9, ease: ease, delay: 0.05,
-        scrollTrigger: st
-      });
+      gsap.fromTo('.image_film_strip',
+        { right: -300, top: 600, rotation: 12 },
+        {
+          right: 100, top: -100, rotation: -8,
+          ease: 'none',
+          scrollTrigger: { trigger: section, start: 'top bottom', end: 'center center', scrub: 0.4 }
+        }
+      );
+      gsap.fromTo('.image_portrait',
+        { xPercent: 150, y: 200, rotation: -30 },
+        {
+          xPercent: -50, y: 0, rotation: 0,
+          ease: 'none',
+          scrollTrigger: { trigger: section, start: 'top bottom', end: 'top center', scrub: 0.5 }
+        }
+      );
+      gsap.fromTo('.image_waves',
+        { y: 120 },
+        {
+          y: -120,
+          ease: 'none',
+          scrollTrigger: { trigger: section, start: 'top bottom', end: 'center center', scrub: 0.3 }
+        }
+      );
+      gsap.fromTo('.yellow_dots',
+        { y: 60 },
+        {
+          y: -100,
+          ease: 'none',
+          scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: 0.6 }
+        }
+      );
     },
 
-    // Tablet: portrait and waves only (film strip hidden via CSS)
+    // Tablet: portrait + waves scrub (film strip hidden via CSS)
     '(min-width: 769px) and (max-width: 1279px)': function () {
-      gsap.to('.image_portrait', {
-        left: 300, top: 50, rotation: 0,
-        duration: 1.1, ease: ease, delay: 0.1,
-        scrollTrigger: st
-      });
-      gsap.to('.image_waves', {
-        bottom: -100,
-        duration: 0.9, ease: ease,
-        scrollTrigger: st
-      });
+      gsap.fromTo('.image_portrait',
+        { xPercent: -200, y: 200, rotation: -20 },
+        {
+          xPercent: -50, y: 0, rotation: 0,
+          ease: 'none',
+          scrollTrigger: { trigger: section, start: 'top bottom', end: 'top center', scrub: 0.5 }
+        }
+      );
+      gsap.fromTo('.image_waves',
+        { y: 80 },
+        {
+          y: -80,
+          ease: 'none',
+          scrollTrigger: { trigger: section, start: 'top bottom', end: 'center center', scrub: 1 }
+        }
+      );
+      gsap.fromTo('.yellow_dots',
+        { y: 40 },
+        {
+          y: -80,
+          ease: 'none',
+          scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: 0.6 }
+        }
+      );
     }
-    // Mobile (≤768px): portrait fixed to left:0,top:0 by CSS — no animation needed
+    // Mobile (≤768px): no animation
   });
+}());
+</script>
+<script>
+(function () {
+  var photos = [
+    'img/james-photos/jm-profile-photo.jpg',
+    'img/james-photos/james-madson-7-17-17-9.jpg',
+    'img/james-photos/james-madson-7-17-17-10.jpg',
+    'img/james-photos/james-madson-7-17-17-43.jpg',
+    'img/james-photos/james-madson-7-17-17-47.jpg',
+    'img/james-photos/james-madson-7-17-17-62.jpg',
+    'img/james-photos/PXL_20250222_172946384_Original.jpg',
+    'img/james-photos/10410401_10204233330867954_8529453933383458417_n.jpg',
+    'img/james-photos/10530565_10204760817294785_6939027400680971698_o.jpg',
+    'img/james-photos/10614105_10207451828873008_2230392912092616986_n.jpg',
+    'img/james-photos/10640981_10204233367148861_5515906622959887115_n.jpg',
+    'img/james-photos/10861017_10205185965160219_2390826584881452173_o.jpg',
+    'img/james-photos/10991626_10205185964960214_3804948782590707453_o.jpg',
+    'img/james-photos/11393203_10207444253043617_7825791941830293655_n.jpg',
+    'img/james-photos/13502828_10208808758207781_3080255086287926461_o.jpg',
+    'img/james-photos/13528521_10208808752407636_4653635360094544152_o.jpg',
+    'img/james-photos/13532760_10207043945921650_6802925887738573082_n.jpg',
+    'img/james-photos/14276443_181573015604868_614656747_n.jpg',
+    'img/james-photos/16707263_10210906422488077_8486459450485523862_o.jpg',
+    'img/james-photos/17758332_10211411019862696_3798941684971365516_o.jpg',
+    'img/james-photos/17855464_10211411020382709_4599443525834242597_o.jpg',
+    'img/james-photos/17966375_10211476828467870_7050652622241007592_o.jpg',
+    'img/james-photos/19452880_10212076750865555_7791620535091627283_o.jpg',
+    'img/james-photos/19598984_10212812962691614_4125019329876909962_n.jpg',
+    'img/james-photos/19989455_10211265774733393_8592238648175413696_n.jpg',
+    'img/james-photos/20819107_10212544942450052_2934777826999443415_o.jpg',
+    'img/james-photos/20861739_1558416527557733_3360347709937033298_o.jpg',
+    'img/james-photos/23215772_1963204257254059_938669100145225539_o.jpg',
+    'img/james-photos/70006357-SLD-010-0029.JPEG',
+    'img/james-photos/70006357-SLD-011-0041.JPEG',
+    'img/james-photos/File0074.JPG',
+    'img/james-photos/IMG_1172.JPG',
+    'img/james-photos/IMG_1283.JPG',
+    'img/james-photos/IMG_1309.JPG',
+    'img/james-photos/IMG_1601.JPG',
+    'img/james-photos/IMG_2777.JPG',
+    'img/james-photos/IMG_2970.JPG',
+    'img/james-photos/IMG_3301.JPG',
+    'img/james-photos/IMG_3685.JPEG',
+    'img/james-photos/IMG_0458.jpg',
+    'img/james-photos/IMG_1436.jpg',
+    'img/james-photos/IMG_3702.jpg',
+    'img/james-photos/IMG_4818.jpg',
+    'img/james-photos/IMG_4943.jpg',
+    'img/james-photos/IMG_4960.jpg',
+    'img/james-photos/IMG_6002%203.JPG',
+    'img/james-photos/IMG_6505.JPG',
+    'img/james-photos/IMG_7265.JPG',
+    'img/james-photos/IMG_7577.jpg',
+    'img/james-photos/IMG_7667.jpg',
+    'img/james-photos/IMG_7988.jpg',
+    'img/james-photos/IMG_8839.JPG',
+    'img/james-photos/IMG_9407.jpg',
+    'img/james-photos/JAMES%201.5%20YRS%20OLD%20-%20AFTER%20BATH%20CLOSE%20UP.jpg',
+    'img/james-photos/JON%20%26%20JAMES%20-%20AGES%203%20%26%202%20-%201987.jpg',
+    'img/james-photos/James%20-%20Yosemite%20-%20white.jpg',
+    'img/james-photos/Jon%20%26%20James%20-%20muscle%20shirts%20-%20Portland%20Rose%20Garden1.jpg',
+    'img/james-photos/dad-and-james-marathon.jpg',
+    'img/james-photos/james%20(1).jpg',
+    'img/james-photos/james%20(3).jpg',
+    'img/james-photos/james%20(6).jpg',
+    'img/james-photos/james%20(7).jpg',
+    'img/james-photos/james-elf.jpg',
+    'img/james-photos/james-kid-bowlcut.jpg',
+    'img/james-photos/james-middle-teton.jpg',
+    'img/james-photos/james-portrait-annas-drawing.jpg',
+    'img/james-photos/james-wizard-painting.jpeg',
+    'img/james-photos/james_evan_drums.jpg',
+    'img/james-photos/james-.png',
+    'img/james-photos/james-2.png',
+    'img/james-photos/james-5.png',
+    'img/james-photos/james-10.png',
+    'img/james-photos/MADISON%2C%20JAMES_99%20Screenshot%202025-05-22%20at%2010.20.15%E2%80%AFPM.jpg'
+  ];
+
+  var wrapper = document.querySelector('.image_portrait');
+  var img = wrapper && wrapper.querySelector('img');
+  if (!img) return;
+
+  var origSrc = img.src;
+  var origSrcset = img.srcset;
+  var timer = null;
+  var used = [];
+
+  function randomPick() {
+    if (used.length >= photos.length) used = [];
+    var remaining = photos.filter(function (p) { return used.indexOf(p) === -1; });
+    var pick = remaining[Math.floor(Math.random() * remaining.length)];
+    used.push(pick);
+    return pick;
+  }
+
+  var MAX_STACK = 5;
+  var stack = [];
+
+  function rand(min, max) { return Math.random() * (max - min) + min; }
+
+  function pushPhoto(src) {
+    var el = document.createElement('img');
+    el.src = src;
+    el.style.cssText = [
+      'pointer-events:none',
+      'position:absolute',
+      'inset:0',
+      'width:100%',
+      'height:100%',
+      'object-fit:cover',
+      'object-position:center top',
+      'border-radius:12px',
+      'box-shadow:0 8px 32px rgba(0,0,0,0.45)',
+      'transform:translate(' + rand(-220, 80).toFixed(1) + 'px,' + rand(-120, 120).toFixed(1) + 'px) rotate(' + rand(-18, 18).toFixed(1) + 'deg)',
+      'transition:opacity 0.15s'
+    ].join(';');
+    wrapper.appendChild(el);
+    stack.push(el);
+    if (stack.length > MAX_STACK) {
+      var old = stack.shift();
+      old.parentNode && old.parentNode.removeChild(old);
+    }
+  }
+
+  wrapper.addEventListener('mouseenter', function () {
+    used = [];
+    function next() {
+      pushPhoto(randomPick());
+      timer = setTimeout(next, 380);
+    }
+    next();
+  });
+
+  wrapper.addEventListener('mouseleave', function () {
+    clearTimeout(timer);
+    timer = null;
+    stack.forEach(function (el) { el.parentNode && el.parentNode.removeChild(el); });
+    stack = [];
+  });
+
+  // Mobile: auto-cycle after 2s so profile photo is visible first
+  if ('ontouchstart' in window || window.innerWidth <= 768) {
+    setTimeout(function () {
+      used = [];
+      img.srcset = '';
+      function next() {
+        pushPhoto(randomPick());
+        timer = setTimeout(next, 600);
+      }
+      next();
+    }, 2000);
+  }
 }());
 </script>
 </body>

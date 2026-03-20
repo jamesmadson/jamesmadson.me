@@ -46,14 +46,31 @@
     if (!link) return;
     e.preventDefault();
     try {
-      var u = atob(link.dataset.e);
-      var d = atob(link.dataset.d);
-      var s = link.dataset.s || '';
-      window.location.href = 'mailto:' + u + '@' + d + (s ? '?subject=' + s : '');
+      var email = atob(link.dataset.e) + '@' + atob(link.dataset.d);
+      navigator.clipboard.writeText(email).then(function () {
+        var orig = link.textContent;
+        link.textContent = 'Copied!';
+        setTimeout(function () { link.textContent = orig; }, 2000);
+      });
     } catch (ex) {}
   });
 }());
 
+
+// ============================================================
+// Active nav link — mark current page
+// ============================================================
+(function () {
+  var path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
+  var allNavLinks = Array.prototype.slice.call(document.querySelectorAll('.nav_large a, .mobile_nav_menu a'));
+  allNavLinks.forEach(function (link) {
+    var href = (link.getAttribute('href') || '').replace(/\/index\.html$/, '/').replace(/\.html$/, '');
+    if (!href || href === '#') return;
+    if (href === path || (href.length > 1 && path.startsWith(href))) {
+      link.classList.add('active');
+    }
+  });
+}());
 
 // ============================================================
 // Mobile Nav
@@ -137,13 +154,6 @@
 
   if (!sections.length) return;
 
-  // Show nav only after the intro (first section) scrolls out of view
-  var intro = document.querySelector('.about') || sections[0].el;
-  var visObserver = new IntersectionObserver(function (entries) {
-    nav.classList.toggle('is-visible', !entries[0].isIntersecting);
-  }, { threshold: 0 });
-  visObserver.observe(intro);
-
   // Scroll spy — highlight active section
   var spyObserver = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
@@ -192,15 +202,17 @@
   var el = document.getElementById('hero_rotating');
   if (!el) return;
 
-  var CLEAR_MS   = 700;
-  var TYPE_MS    = 1400;
-  var DISPLAY_MS = 9000;
+  var CLEAR_MS   = 600;
+  var TYPE_MS    = 1100;
+  var DISPLAY_MS = 6000;
 
   var slides = [
-    'I\'m a <a href="about.html" class="highlight jm">designer</a> who helps teams turn ideas into <a href="case_studies/naturescore.html" class="highlight ns">clear</a>, <a href="case_studies/pecan.html" class="highlight pecan">useful</a>, and <a href="case_studies/naturequant.html" class="highlight nq">lasting</a> digital products. I\'m at my best making <a href="case_studies/visualization_community.html" class="highlight viz">complex</a> things feel <a href="case_studies/naturedose.html" class="highlight nd">simple</a> for the people using them.',
-    'I <a href="about.html" class="highlight jm">build</a> design teams and systems. I\'ve <a href="case_studies/naturequant.html" class="highlight nq">defined</a> visual identities from scratch, <a href="case_studies/naturescore.html" class="highlight ns">mapped</a> complex data into something humans can read, and <a href="case_studies/pecan.html" class="highlight pecan">shipped</a> work I\'m still proud of.',
-    'I <a href="case_studies/naturedose.html" class="highlight nd">prototype</a> quickly and iterate in the open. I like <a href="case_studies/visualization_community.html" class="highlight viz">tricky</a> problems and <a href="case_studies/naturescore.html" class="highlight ns">intuitive</a> solutions. The best interfaces feel <a href="case_studies/naturequant.html" class="highlight nq">obvious</a> after the fact.',
-    'I <a href="about.html" class="highlight jm">work</a> closely with product and engineering. I help <a href="case_studies/naturedose.html" class="highlight nd">scope</a> what gets built, <a href="case_studies/pecan.html" class="highlight pecan">cut</a> the noise, and <a href="case_studies/visualization_community.html" class="highlight viz">design</a> things that feel right for the people using them.'
+    'I\'m a <a href="about.html" class="highlight jm">designer</a> who makes things that feel <a href="case_studies/naturescore.html" class="highlight ns">considered</a> — for real people spending time in the real world.',
+    'I take cues from <a href="case_studies/naturedose.html" class="highlight nd">nature</a>: patient, purposeful, and grounded. It shows up in everything I make.',
+    'I don\'t run teams — I join them. I bring a clean eye, good ideas, and a lot of <a href="case_studies/pecan.html" class="highlight pecan">care</a> for getting it right.',
+    'I enjoy the <a href="case_studies/visualization_community.html" class="highlight viz">process</a>. The best answers come from sitting with a problem long enough that the solution feels obvious.',
+    'I\'ve shipped things people actually use — apps that help them <a href="case_studies/naturedose.html" class="highlight nd">get outside</a>, tools that make sense of <a href="case_studies/visualization_community.html" class="highlight viz">complex data</a>.',
+    'I want the work to be <a href="case_studies/naturescore.html" class="highlight ns">useful</a> — genuinely helpful. Something the person on the other end is glad exists.'
   ];
 
   // Parse HTML string into a flat segment list
@@ -274,14 +286,91 @@
     requestAnimationFrame(step);
   }
 
+  // Scheduling with pause support
+  var loopTimer = null;
+  var paused = false;
+
+  function updateDots() {
+    if (!heroDots) return;
+    Array.prototype.slice.call(heroDots.querySelectorAll('.hero_dot')).forEach(function (d, i) {
+      d.classList.toggle('active', i === idx);
+    });
+  }
+
+  function updatePlayPause() {
+    if (!heroPlayBtn || !heroPauseBtn) return;
+    heroPlayBtn.classList.toggle('active', paused);
+    heroPauseBtn.classList.toggle('active', !paused);
+  }
+
   function cycle() {
     runClear(parsed[idx], counts[idx], function () {
       idx = (idx + 1) % slides.length;
+      updateDots();
       runType(parsed[idx], counts[idx], function () {});
     });
   }
 
-  setTimeout(function loop() { cycle(); setTimeout(loop, DISPLAY_MS); }, DISPLAY_MS);
+  function scheduleCycle() {
+    clearTimeout(loopTimer);
+    loopTimer = setTimeout(function () {
+      if (!paused) { cycle(); scheduleCycle(); }
+    }, DISPLAY_MS);
+  }
+
+  function pauseHero() { paused = true; clearTimeout(loopTimer); updatePlayPause(); }
+  function resumeHero() { paused = false; scheduleCycle(); updatePlayPause(); }
+
+  // Inject progress bar (dots + play/pause) below hero header
+  var heroHeader = el.closest('header');
+  var playIcon  = '<svg viewBox="0 0 16 16" fill="currentColor"><polygon points="4,2 13,8 4,14"/></svg>';
+  var pauseIcon = '<svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="2" width="4" height="12" rx="1"/><rect x="9" y="2" width="4" height="12" rx="1"/></svg>';
+
+  var heroProgress = document.createElement('div');
+  heroProgress.className = 'hero_progress';
+
+  var heroDots = document.createElement('div');
+  heroDots.className = 'hero_dots';
+  slides.forEach(function (_, i) {
+    var dot = document.createElement('button');
+    dot.className = 'hero_dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+    dot.dataset.slide = i;
+    heroDots.appendChild(dot);
+  });
+
+  var heroPP = document.createElement('div');
+  heroPP.className = 'hero_pp';
+  heroPP.innerHTML =
+    '<button class="hero_pp_btn" data-action="play" aria-label="Play">' + playIcon + '</button>' +
+    '<button class="hero_pp_btn" data-action="pause" aria-label="Pause">' + pauseIcon + '</button>';
+
+  heroProgress.appendChild(heroDots);
+  heroProgress.appendChild(heroPP);
+  if (heroHeader) heroHeader.insertAdjacentElement('afterend', heroProgress);
+
+  var heroPlayBtn  = heroPP.querySelector('[data-action="play"]');
+  var heroPauseBtn = heroPP.querySelector('[data-action="pause"]');
+
+  // Dot clicks jump to slide
+  Array.prototype.slice.call(heroDots.querySelectorAll('.hero_dot')).forEach(function (dot) {
+    dot.addEventListener('click', function () {
+      var target = parseInt(dot.dataset.slide, 10);
+      if (target === idx) return;
+      clearTimeout(loopTimer);
+      runClear(parsed[idx], counts[idx], function () {
+        idx = target;
+        updateDots();
+        runType(parsed[idx], counts[idx], function () { if (!paused) scheduleCycle(); });
+      });
+    });
+  });
+
+  heroPlayBtn.addEventListener('click',  resumeHero);
+  heroPauseBtn.addEventListener('click', pauseHero);
+
+  updatePlayPause();
+  scheduleCycle();
 }());
 
 
@@ -325,16 +414,19 @@
   });
 
   // --- Carousel controls ---
+  var AUTOPLAY_MS = 3500;
+
   var sections = Array.prototype.slice.call(document.querySelectorAll('.about.work'));
   sections.forEach(function (section) {
+    if (section.classList.contains('work_listing')) return;
     var carousel = section.querySelector('.work_carousel');
     if (!carousel) return;
     var allCards = Array.prototype.slice.call(carousel.querySelectorAll('.work_card'));
     if (allCards.length < 2) return;
 
-    // Set the edge-fade colour from the actual computed background of the page
-    var pageBg = getComputedStyle(document.body).backgroundColor;
-    section.style.setProperty('--carousel-fade', pageBg);
+    // Set the edge-fade colour and autoplay duration as CSS vars
+    section.style.setProperty('--carousel-fade', getComputedStyle(document.body).backgroundColor);
+    section.style.setProperty('--autoplay-ms', AUTOPLAY_MS + 'ms');
 
     // Inject "View Project" CTA into each clickable card
     Array.prototype.slice.call(section.querySelectorAll('a.work_card')).forEach(function (c) {
@@ -342,28 +434,45 @@
       if (!imgArea) return;
       var cta = document.createElement('span');
       cta.className = 'work_card_cta';
-      cta.textContent = 'View Project';
+      cta.innerHTML = 'View Project <span class="arrow">\u2197</span>';
       imgArea.appendChild(cta);
     });
 
     // Inject prev / next buttons
-    var chevronL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15,18 9,12 15,6"/></svg>';
-    var chevronR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9,18 15,12 9,6"/></svg>';
-
     var prevBtn = document.createElement('button');
     prevBtn.className = 'work_carousel_btn work_carousel_btn_prev';
     prevBtn.setAttribute('aria-label', 'Previous project');
-    prevBtn.innerHTML = chevronL;
+    prevBtn.innerHTML = '\u2190';
 
     var nextBtn = document.createElement('button');
     nextBtn.className = 'work_carousel_btn work_carousel_btn_next';
     nextBtn.setAttribute('aria-label', 'Next project');
-    nextBtn.innerHTML = chevronR;
+    nextBtn.innerHTML = '\u2192';
 
     section.appendChild(prevBtn);
     section.appendChild(nextBtn);
 
-    // Position arrows vertically at the centre of the card image area
+    // One dot per card
+    var numCards = allCards.length;
+    var dotsEl = document.createElement('div');
+    dotsEl.className = 'work_carousel_dots';
+    for (var d = 0; d < numCards; d++) {
+      var dot = document.createElement('button');
+      dot.className = 'work_carousel_dot';
+      dot.setAttribute('aria-label', 'Go to project ' + (d + 1));
+      dot.dataset.idx = d;
+      dotsEl.appendChild(dot);
+    }
+    carousel.insertAdjacentElement('afterend', dotsEl);
+    var dots = Array.prototype.slice.call(dotsEl.querySelectorAll('.work_carousel_dot'));
+
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        goTo(parseInt(dot.dataset.idx, 10), false, true);
+      });
+    });
+
+    // Position arrows at vertical centre of card image area
     function positionArrows() {
       var imgEl = allCards[0] && allCards[0].querySelector('.work_card_img');
       if (!imgEl) return;
@@ -377,23 +486,77 @@
     window.addEventListener('resize', positionArrows);
 
     var cur = 0;
+    var hovered = false;
+    var autoTimer = null;
 
-    function updateEdgeClasses() {
-      section.classList.toggle('at-start', cur === 0);
-      section.classList.toggle('at-end',   cur === allCards.length - 1);
-      prevBtn.disabled = cur === 0;
-      nextBtn.disabled = cur === allCards.length - 1;
+    // Restart the progress-fill animation on the active dot
+    function updateDots() {
+      dots.forEach(function (d, i) {
+        if (i === cur) {
+          // Remove and re-add .active to restart the CSS animation
+          d.classList.remove('active');
+          void d.offsetWidth; // trigger reflow
+          d.classList.add('active');
+        } else {
+          d.classList.remove('active');
+        }
+      });
     }
 
-    function goTo(idx) {
-      cur = Math.max(0, Math.min(idx, allCards.length - 1));
+    function scrollTo(idx, instant) {
       var pl = parseFloat(getComputedStyle(carousel).paddingLeft) || 0;
-      carousel.scrollTo({ left: allCards[cur].offsetLeft - pl, behavior: 'smooth' });
-      updateEdgeClasses();
+      carousel.scrollTo({
+        left: allCards[idx].offsetLeft - pl,
+        behavior: instant ? 'instant' : 'smooth'
+      });
     }
 
-    prevBtn.addEventListener('click', function () { goTo(cur - 1); });
-    nextBtn.addEventListener('click', function () { goTo(cur + 1); });
+    // userAction: true when triggered by user click — resets autoplay timer
+    function goTo(idx, instant, userAction) {
+      var total = allCards.length;
+      cur = ((idx % total) + total) % total;
+      scrollTo(cur, instant);
+      updateDots();
+      if (userAction) {
+        stopAutoplay();
+        if (!hovered) startAutoplay();
+      }
+    }
+
+    function advance() {
+      var next = cur + 1;
+      if (next >= allCards.length) {
+        // Instant-jump back to start (no scroll animation on wrap)
+        scrollTo(0, true);
+        cur = 0;
+        updateDots();
+      } else {
+        goTo(next, false, false);
+      }
+    }
+
+    function startAutoplay() {
+      if (autoTimer) return;
+      autoTimer = setInterval(advance, AUTOPLAY_MS);
+    }
+
+    function stopAutoplay() {
+      clearInterval(autoTimer);
+      autoTimer = null;
+    }
+
+    prevBtn.addEventListener('click', function () { goTo(cur - 1, false, true); });
+    nextBtn.addEventListener('click', function () { goTo(cur + 1, false, true); });
+
+    // Pause on hover, resume on leave
+    section.addEventListener('mouseenter', function () {
+      hovered = true;
+      stopAutoplay();
+    });
+    section.addEventListener('mouseleave', function () {
+      hovered = false;
+      startAutoplay();
+    });
 
     // Keep state in sync when user swipes manually
     var scrollDebounce;
@@ -402,14 +565,18 @@
       scrollDebounce = setTimeout(function () {
         var pl = parseFloat(getComputedStyle(carousel).paddingLeft) || 0;
         var sl = carousel.scrollLeft;
-        var closest = 0;
-        var minDist = Infinity;
+        var closest = 0, minDist = Infinity;
         allCards.forEach(function (card, i) {
           var dist = Math.abs(card.offsetLeft - pl - sl);
           if (dist < minDist) { minDist = dist; closest = i; }
         });
-        if (closest !== cur) { cur = closest; updateEdgeClasses(); }
-      }, 50);
+        if (closest !== cur) {
+          cur = closest;
+          updateDots();
+          stopAutoplay();
+          if (!hovered) startAutoplay();
+        }
+      }, 60);
     }, { passive: true });
 
     // Update fade colour when theme toggles
@@ -420,8 +587,375 @@
       }, 50);
     });
 
-    updateEdgeClasses();
+    // Kick off
+    updateDots();
+    startAutoplay();
   });
+}());
+
+
+// ============================================================
+// Work listing — grid / list view toggle
+// ============================================================
+(function () {
+  var section = document.querySelector('.about.work.work_listing');
+  if (!section) return;
+
+  var saved = localStorage.getItem('workView') || 'grid';
+  section.classList.toggle('view-list', saved === 'list');
+
+  // Inject toggle into the header — only on the work page, not about
+  var header = document.querySelector('header');
+  if (header && !document.querySelector('.about_header')) {
+    var gridIcon = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>';
+    var listIcon = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="1" y1="4" x2="15" y2="4"/><line x1="1" y1="8" x2="15" y2="8"/><line x1="1" y1="12" x2="15" y2="12"/></svg>';
+    var controls = document.createElement('div');
+    controls.className = 'work_view_controls';
+    controls.innerHTML =
+      '<div class="work_view_toggle">' +
+        '<button class="work_view_btn" data-view="grid" aria-label="Grid view">' + gridIcon + 'Grid</button>' +
+        '<button class="work_view_btn" data-view="list" aria-label="List view">' + listIcon + 'List</button>' +
+      '</div>';
+    var headerContainer = header.querySelector('.container');
+    headerContainer.appendChild(controls);
+
+    var btns = Array.prototype.slice.call(controls.querySelectorAll('.work_view_btn'));
+
+    function updateActive() {
+      var current = section.classList.contains('view-list') ? 'list' : 'grid';
+      btns.forEach(function (b) { b.classList.toggle('active', b.dataset.view === current); });
+    }
+    updateActive();
+
+    btns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var isList = btn.dataset.view === 'list';
+        section.classList.toggle('view-list', isList);
+        localStorage.setItem('workView', isList ? 'list' : 'grid');
+        updateActive();
+      });
+    });
+  }
+
+  // --- Inject row numbers into card info (top-right) for list view ---
+  var allListCards = Array.prototype.slice.call(section.querySelectorAll('.work_carousel .work_card'));
+  allListCards.forEach(function (card, i) {
+    var info = card.querySelector('.work_card_info');
+    if (!info) return;
+    var num = document.createElement('span');
+    num.className = 'work_list_num';
+    num.textContent = String(i + 1).padStart(2, '0');
+    info.insertBefore(num, info.firstChild);
+  });
+
+}());
+
+
+// ============================================================
+// Set --header-h CSS variable to actual header height
+// ============================================================
+(function () {
+  function setHeaderH() {
+    var h = document.querySelector('.site_header');
+    if (h) {
+      document.documentElement.style.setProperty('--header-h', h.offsetHeight + 'px');
+    }
+  }
+  setHeaderH();
+  window.addEventListener('resize', setHeaderH);
+}());
+
+
+// ============================================================
+// Smooth scroll with gentle bounce (easeOutBack)
+// ============================================================
+function smoothScrollTo(targetY, duration) {
+  var startY = window.pageYOffset;
+  var diff = targetY - startY;
+  var startTime = null;
+
+  function easeOutBack(t) {
+    var c1 = 1.35;
+    var c3 = c1 + 1;
+    return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
+  }
+
+  function step(timestamp) {
+    if (!startTime) startTime = timestamp;
+    var elapsed = timestamp - startTime;
+    var progress = Math.min(elapsed / duration, 1);
+    window.scrollTo(0, startY + diff * easeOutBack(progress));
+    if (progress < 1) requestAnimationFrame(step);
+  }
+
+  requestAnimationFrame(step);
+}
+
+// ============================================================
+// Case Study — dot nav + Image Feed toggle + lightbox
+// ============================================================
+(function () {
+  var csNav = document.querySelector('.case_study_nav');
+  if (!csNav) return;
+
+  // --- Inject dot + label spans into each nav link, add smooth scroll ---
+  var navLinks = Array.prototype.slice.call(csNav.querySelectorAll('a[href^="#"]'));
+  navLinks.forEach(function (a) {
+    var label = a.textContent.trim();
+    a.innerHTML = '';
+    var dot = document.createElement('span');
+    dot.className = 'cs_nav_dot';
+    var labelEl = document.createElement('span');
+    labelEl.className = 'cs_nav_label';
+    labelEl.textContent = label;
+    a.appendChild(dot);
+    a.appendChild(labelEl);
+
+    a.addEventListener('click', function (e) {
+      var targetId = a.getAttribute('href').slice(1);
+      var targetY = targetId === 'top' ? 0 : (function () {
+        var el = document.getElementById(targetId);
+        if (!el) return null;
+        var siteHeader = document.querySelector('.site_header');
+        var csNavBar   = document.querySelector('.case_study_nav');
+        var offset = (siteHeader ? siteHeader.offsetHeight : 72)
+                   + (csNavBar  ? csNavBar.offsetHeight   : 40)
+                   + 16;
+        return el.getBoundingClientRect().top + window.pageYOffset - offset;
+      })();
+      if (targetY === null) return;
+      e.preventDefault();
+      smoothScrollTo(targetY, 900);
+    });
+  });
+
+  // --- Build meta bar (view toggle + overview fields) below the project title ---
+  var hasCsContent = document.querySelector('.cs_content');
+  var csBtns = [];
+
+  if (hasCsContent) {
+    // Extract Client/Role/Contributions/Website from overview grid_3
+    var overviewGrid3 = document.querySelector('.overview .grid_3');
+    var fields = {};
+    if (overviewGrid3) {
+      var kids = Array.prototype.slice.call(overviewGrid3.children);
+      for (var i = 0; i < kids.length; i++) {
+        var kid = kids[i];
+        if (kid.classList && kid.classList.contains('role')) {
+          var key = kid.textContent.trim().toLowerCase();
+          var next = kids[i + 1];
+          if (next && !(next.classList && next.classList.contains('role'))) {
+            fields[key] = { labelText: kid.textContent.trim(), el: next };
+            kid.parentNode.removeChild(kid);
+            next.parentNode.removeChild(next);
+            kids.splice(i, 2);
+            i--;
+          }
+        }
+      }
+    }
+
+    // Build meta bar
+    var metaBar = document.createElement('div');
+    metaBar.className = 'cs_meta_bar';
+    var metaInner = document.createElement('div');
+    metaInner.className = 'container';
+    var metaRow = document.createElement('div');
+    metaRow.className = 'cs_meta_row';
+    metaInner.appendChild(metaRow);
+    metaBar.appendChild(metaInner);
+
+    function makeMetaItem(labelText, contentEl) {
+      var item = document.createElement('div');
+      item.className = 'cs_meta_item';
+      var lbl = document.createElement('span');
+      lbl.className = 'cs_meta_label';
+      lbl.textContent = labelText;
+      item.appendChild(lbl);
+      if (contentEl) item.appendChild(contentEl);
+      return item;
+    }
+
+    // 1. View toggle
+    var viewItem = document.createElement('div');
+    viewItem.className = 'cs_meta_item';
+    var viewLbl = document.createElement('span');
+    viewLbl.className = 'cs_meta_label';
+    viewLbl.textContent = 'View';
+    var toggleEl = document.createElement('div');
+    toggleEl.className = 'cs_view_toggle';
+    toggleEl.innerHTML =
+      '<button class="cs_view_btn" data-view="case-study">Case Study</button>' +
+      '<button class="cs_view_btn" data-view="image-feed">Image Grid</button>';
+    viewItem.appendChild(viewLbl);
+    viewItem.appendChild(toggleEl);
+    metaRow.appendChild(viewItem);
+    csBtns = Array.prototype.slice.call(toggleEl.querySelectorAll('.cs_view_btn'));
+
+    // 2–5. Client, Role, Contributions, Website
+    ['client', 'role', 'contributions', 'website'].forEach(function (key) {
+      if (fields[key]) {
+        metaRow.appendChild(makeMetaItem(fields[key].labelText, fields[key].el));
+      }
+    });
+
+    // Insert after section.about
+    var mainEl = document.querySelector('main');
+    var projectHeader = mainEl && mainEl.querySelector('section.about');
+    if (projectHeader) {
+      projectHeader.insertAdjacentElement('afterend', metaBar);
+    } else if (mainEl) {
+      mainEl.insertBefore(metaBar, mainEl.firstChild);
+    }
+
+    // Move case_study_nav inside main, after the meta bar
+    metaBar.insertAdjacentElement('afterend', csNav);
+
+    // Apply saved preference
+    var savedCsView = localStorage.getItem('csView') || 'case-study';
+    var isImageFeedSaved = savedCsView === 'image-feed';
+    if (isImageFeedSaved) document.body.classList.add('image-feed');
+    csBtns.forEach(function (b) {
+      b.classList.toggle('active', b.dataset.view === savedCsView);
+    });
+  } else {
+    // No cs_content (e.g. resume) — move nav inside main after header area
+    var mainEl = document.querySelector('main');
+    var anchor = mainEl && (mainEl.querySelector('section.about') || mainEl.querySelector('.resume_header'));
+    if (anchor) {
+      anchor.insertAdjacentElement('afterend', csNav);
+    } else if (mainEl) {
+      mainEl.insertBefore(csNav, mainEl.firstChild);
+    }
+  }
+
+  // --- Collect all images from .cs_images ---
+  var allImgs = Array.prototype.slice.call(document.querySelectorAll('.cs_images img'));
+  var items = allImgs.map(function (img) {
+    var captionEl = img.parentElement && img.parentElement.querySelector('.cs_description');
+    return {
+      src: img.src,
+      caption: captionEl ? captionEl.textContent.trim() : ''
+    };
+  }).filter(function (item) { return item.src; });
+
+  // --- Build masonry feed ---
+  var feedSection = document.createElement('section');
+  feedSection.className = 'cs_image_feed';
+
+  var masonry = document.createElement('div');
+  masonry.className = 'cs_masonry';
+
+  items.forEach(function (item, idx) {
+    var figure = document.createElement('figure');
+    figure.className = 'cs_masonry_item';
+    figure.dataset.idx = idx;
+    var img = document.createElement('img');
+    img.src = item.src;
+    img.alt = item.caption || '';
+    figure.appendChild(img);
+    if (item.caption) {
+      var cap = document.createElement('figcaption');
+      cap.textContent = item.caption;
+      figure.appendChild(cap);
+    }
+    masonry.appendChild(figure);
+  });
+
+  feedSection.appendChild(masonry);
+
+  var project = document.querySelector('.project');
+  if (project) {
+    overview.insertAdjacentElement('afterend', feedSection);
+  }
+
+  // --- Build lightbox ---
+  var lb = document.createElement('div');
+  lb.className = 'cs_lightbox';
+  lb.setAttribute('role', 'dialog');
+  lb.setAttribute('aria-modal', 'true');
+  lb.innerHTML =
+    '<button class="cs_lb_close" aria-label="Close">&#x2715;</button>' +
+    '<button class="cs_lb_prev" aria-label="Previous">&#x2039;</button>' +
+    '<img class="cs_lb_img" src="" alt="">' +
+    '<p class="cs_lb_caption"></p>' +
+    '<button class="cs_lb_next" aria-label="Next">&#x203A;</button>';
+  document.body.appendChild(lb);
+
+  var lbImg     = lb.querySelector('.cs_lb_img');
+  var lbCaption = lb.querySelector('.cs_lb_caption');
+  var lbClose   = lb.querySelector('.cs_lb_close');
+  var lbPrev    = lb.querySelector('.cs_lb_prev');
+  var lbNext    = lb.querySelector('.cs_lb_next');
+  var lbCurrent = 0;
+
+  function lbOpen(idx) {
+    lbCurrent = Math.max(0, Math.min(idx, items.length - 1));
+    lbImg.src = items[lbCurrent].src;
+    lbImg.alt = items[lbCurrent].caption || '';
+    lbCaption.textContent = items[lbCurrent].caption || '';
+    lbPrev.disabled = lbCurrent === 0;
+    lbNext.disabled = lbCurrent === items.length - 1;
+    lb.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function lbClose_fn() {
+    lb.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  lbClose.addEventListener('click', lbClose_fn);
+  lbPrev.addEventListener('click', function () { lbOpen(lbCurrent - 1); });
+  lbNext.addEventListener('click', function () { lbOpen(lbCurrent + 1); });
+
+  lb.addEventListener('click', function (e) {
+    if (e.target === lb) lbClose_fn();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (!lb.classList.contains('is-open')) return;
+    if (e.key === 'Escape')      lbClose_fn();
+    if (e.key === 'ArrowLeft')   lbOpen(lbCurrent - 1);
+    if (e.key === 'ArrowRight')  lbOpen(lbCurrent + 1);
+  });
+
+  // Open lightbox on masonry item click
+  masonry.addEventListener('click', function (e) {
+    var item = e.target.closest('.cs_masonry_item');
+    if (!item) return;
+    lbOpen(parseInt(item.dataset.idx, 10));
+  });
+
+  // --- Toggle handler (saves preference) ---
+  csBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var isImageFeed = btn.dataset.view === 'image-feed';
+      document.body.classList.toggle('image-feed', isImageFeed);
+      csBtns.forEach(function (b) { b.classList.toggle('active', b === btn); });
+      try { localStorage.setItem('csView', btn.dataset.view); } catch (e) {}
+    });
+  });
+
+  // --- Dot nav scroll spy ---
+  var dotLinks = Array.prototype.slice.call(csNav.querySelectorAll('a[href^="#"]'));
+  var spySections = dotLinks.map(function (a) {
+    var id = a.getAttribute('href').slice(1);
+    return { el: document.getElementById(id), link: a };
+  }).filter(function (s) { return s.el; });
+
+  if (spySections.length) {
+    var spyObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          dotLinks.forEach(function (l) { l.classList.remove('active'); });
+          var match = spySections.find(function (s) { return s.el === entry.target; });
+          if (match) match.link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-15% 0px -75% 0px', threshold: 0 });
+    spySections.forEach(function (s) { spyObs.observe(s.el); });
+  }
 }());
 
 

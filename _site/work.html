@@ -110,17 +110,14 @@
             </div>
           </li>
           <li><a class="nav_contact" data-e="amFtZXM=" data-d="amFtZXNtYWRzb24ubWU=" data-s="Hey+James!" href="#">Contact</a></li>
-          <li>
-            <button id="light_switch" aria-label="Toggle light/dark mode">
-              <span class="toggle-track"><span class="toggle-thumb"></span></span>
-            </button>
-          </li>
         </ul>
       </nav>
       <button id="navlink" aria-controls="mobilenavmenu" aria-expanded="false" aria-label="Toggle menu"><span class="navlink_icon"><span class="navlink_bar navlink_bar1"></span><span class="navlink_bar navlink_bar2"></span></span><span class="navlink_label">Menu</span></button>
     </div>
     <div class="nav_cta_wrapper">
-      <a class="nav_cta work_with_me" data-e="amFtZXM=" data-d="amFtZXNtYWRzb24ubWU=" data-s="Hey+James!" href="#">Work with me</a>
+      <button id="light_switch" aria-label="Toggle light/dark mode">
+        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+      </button>
     </div>
   </div>
 
@@ -162,13 +159,10 @@
   </header>
 
   <main class="fadeIn">
-    <section class="about work" id="recent_work">
+    <section class="about work work_listing" id="recent_work">
       <div class="work_carousel">
 
         <a href="case_studies/naturedose.html" class="work_card nd" aria-label="View NatureDose case study" data-images='["img/naturedose/naturedose_logo@2x.png","img/naturequant/naturedose_icon@2x.png","img/naturequant/naturedose_benefits@2x.png","img/naturedose/naturedose_pillars_of_wellness_icons@2x.png"]'>
-          <div class="work_card_img">
-            <img src="img/naturedose/naturedose_logo@2x.png" alt="NatureDose app icons">
-          </div>
           <div class="work_card_info">
             <span class="work_card_label">NatureQuant</span>
             <h3>NatureDose</h3>
@@ -180,12 +174,12 @@
               <span class="work_tag">Front-End Development</span>
             </div>
           </div>
+          <div class="work_card_img">
+            <img src="img/naturequant/naturedose_benefits@2x.png" alt="NatureDose app preview">
+          </div>
         </a>
 
         <a href="case_studies/visualization_community.html" class="work_card viz" aria-label="View Visualization Community case study" data-images='["img/visualization_community/viz_editor_square@2x.png","img/visualization_community/viz_tracks_square@2x.png","img/visualization_community/viz_tracks_components_square@2x.png","img/visualization_community/visualization_community_logo@2x.png"]'>
-          <div class="work_card_img">
-            <img src="img/visualization_community/viz_editor_square@2x.png" alt="Visualization Community editor">
-          </div>
           <div class="work_card_info">
             <span class="work_card_label">St. Jude Children's Research Hospital</span>
             <h3>Visualization Community</h3>
@@ -196,12 +190,12 @@
               <span class="work_tag">Data Visualization</span>
             </div>
           </div>
+          <div class="work_card_img">
+            <img src="img/visualization_community/viz_editor_square@2x.png" alt="Visualization Community editor">
+          </div>
         </a>
 
         <a href="case_studies/naturescore.html" class="work_card ns" aria-label="View NatureScore case study" data-images='["img/naturescore/naturescore_widget@2x.png","img/naturescore/naturescore_logo@2x.png","img/naturequant/naturescore_legend_square@2x.png"]'>
-          <div class="work_card_img">
-            <img src="img/naturescore/naturescore_widget@2x.png" alt="NatureScore widget">
-          </div>
           <div class="work_card_info">
             <span class="work_card_label">NatureQuant</span>
             <h3>NatureScore</h3>
@@ -212,12 +206,12 @@
               <span class="work_tag">Data Visualization</span>
             </div>
           </div>
+          <div class="work_card_img">
+            <img src="img/naturescore/naturescore_widget@2x.png" alt="NatureScore widget">
+          </div>
         </a>
 
         <a href="case_studies/naturequant.html" class="work_card nq" aria-label="View NatureQuant case study" data-images='["img/naturequant/naturequant_colors_square@2x.png","img/naturequant/naturequant_logo@2x.png","img/naturequant/naturequant_logo_geometry@2x.png","img/naturequant/naturequant_felt_map_500_cities@2x.png"]'>
-          <div class="work_card_img">
-            <img src="img/naturequant/naturequant_colors_square@2x.png" alt="NatureQuant brand colors">
-          </div>
           <div class="work_card_info">
             <span class="work_card_label">NatureQuant</span>
             <h3>NatureQuant</h3>
@@ -228,12 +222,12 @@
               <span class="work_tag">Design Systems</span>
             </div>
           </div>
+          <div class="work_card_img">
+            <img src="img/naturequant/naturequant_felt_map_500_cities@2x.png" alt="NatureQuant map visualization">
+          </div>
         </a>
 
         <a href="case_studies/pecan.html" class="work_card pecan" aria-label="View PeCan case study" data-images='["img/pecan/pecan_gif_data_facet_homepage_square.gif","img/pecan/pecan_home_hero_square@2x.png","img/pecan/pecan_data_facet_icons_square@2x.png","img/pecan/pecan_prototype_connections_square@2x.png","img/pecan/pecan_color_design_system@2x.png"]'>
-          <div class="work_card_img">
-            <img src="img/pecan/pecan_gif_data_facet_homepage_square.gif" alt="PeCan data explorer">
-          </div>
           <div class="work_card_info">
             <span class="work_card_label">St. Jude Children's Research Hospital</span>
             <h3>PeCan</h3>
@@ -244,10 +238,12 @@
               <span class="work_tag">Front-End Development</span>
             </div>
           </div>
+          <div class="work_card_img">
+            <img src="img/pecan/pecan_home_hero_square@2x.png" alt="PeCan homepage">
+          </div>
         </a>
 
         <div class="work_card health">
-          <div class="work_card_img"></div>
           <div class="work_card_info">
             <span class="work_card_label">Under NDA</span>
             <h3>Health Platform</h3>
@@ -259,13 +255,20 @@
             </div>
             <span class="view_project_nda">Under NDA · Launching 2026</span>
           </div>
+          <div class="work_card_img"></div>
         </div>
 
       </div>
     </section>
   </main>
 
-  
+  <footer class="site_footer">
+  <div class="container">
+    <span class="site_footer_name">James Madson 2026</span>
+    <span class="site_footer_tagline">Make something beautiful today.</span>
+  </div>
+</footer>
+
 
   <script src="/assets/js/site.js" defer></script>
 </body>

@@ -51,11 +51,13 @@ html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
 
   .site_name { color: $dark-default; opacity: 0.65; }
   .site_name:hover { opacity: 1; }
+  .nav_title { color: rgba($dark-default, 0.5); }
+  .nav_title:hover { color: $dark-default; }
   .nav_large li a { color: $dark-default; opacity: 0.5; }
-  .nav_large li a.active,
-  .nav_large li a:hover { color: $dark-default; opacity: 1; }
+  .nav_large li a:hover { background: rgba($dark-default, 0.06); color: $dark-default; opacity: 1; }
+  .nav_large li a.active { background: rgba($dark-default, 0.1); border-radius: 2rem; color: $dark-default; opacity: 1; padding: 0.45rem 0.85rem; }
   .nav_container { background: rgba($dark-default, 0.06); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06); }
-  .nav_cta { border-color: rgba($dark-default, 0.25); color: rgba($dark-default, 0.6); }
+  .nav_cta { border-color: rgba($dark-default, 0.25); color: $dark-default; }
   .nav_cta:hover { background: $dark-default; border-color: $dark-default; color: $white; }
   .mobile_nav_menu { background-color: rgba($tan, 0.82); border-color: rgba($dark-default, 0.08); }
   .mobile_nav_menu ul li { border-bottom-color: rgba($dark-default, 0.08); }
@@ -69,6 +71,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
   header .jm_subtitle { color: rgba($dark-default, 0.5); }
   header .about_me { color: rgba($dark-default, 0.8); }
   header .about_me a { color: $dark-default; }
+  header .about_me--lead { color: $white; }
 
   .about.work .container { background-color: rgba($dark-default, 0.03); border-color: rgba($dark-default, 0.08); }
   .about.work a, .about.work h3 { color: $dark-default; }
@@ -92,10 +95,14 @@ html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
   .designer_shape_label { color: rgba($dark-default, 0.4); }
   .designer_shape_desc { color: rgba($dark-default, 0.5); }
 
-  // Case study left nav
-  .case_study_nav a { color: rgba($dark-default, 0.3); }
-  .case_study_nav a:hover { color: rgba($dark-default, 0.7); }
-  .case_study_nav a.active { border-left-color: $dark-default; color: $dark-default; }
+  // Case study nav — light theme
+  .case_study_nav               { background: rgba($dark-default, 0.06); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06); }
+  .case_study_nav a             { color: rgba($dark-default, 0.5); }
+  .case_study_nav a:hover       { background: $dark-default; color: $white; }
+  .case_study_nav .cs_nav_dot   { background: rgba($dark-default, 0.3); }
+  .case_study_nav a:hover .cs_nav_dot  { background: $white; }
+  .case_study_nav a.active      { background: $dark-default; color: $white; }
+  .case_study_nav a.active .cs_nav_dot { background: $white; }
 
   // Project/case study content areas — after hero scrolls away, body is $tan
   .project {
@@ -151,6 +158,7 @@ body.theme-light       { @include light-theme; }
   // Base link color is $dark-default — invisible on dark bg
   a { color: $text-secondary; }
   a:hover { color: $white; }
+  a.view_project:hover { color: $dark-default; }
 
   // Nav links already white in base, but re-assert for specificity
   .nav_large li a { color: $white; }
@@ -160,8 +168,7 @@ body.theme-light       { @include light-theme; }
   // Highlight words are black in base styles — override to white for dark bg
   header .highlight { color: $white; }
 
-  // Case study left nav
-  .case_study_nav a { color: rgba($white, 0.25); }
+  // Case study nav active/hover contrast overrides handled in base styles
 
   // Project/case study content areas
   .project {
@@ -195,7 +202,7 @@ body {
   font-family: $font;
   letter-spacing: -0.01em;
   margin: 0;
-  overflow: none;
+  padding-top: 5rem;
   transition: background-color 0.5s ease;
 }
 
@@ -204,6 +211,7 @@ body {
   from { opacity: 0; transform: translateY(6px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
 
 body.page-loaded {
   animation: pageFadeIn 0.35s ease forwards;
@@ -363,13 +371,15 @@ ul {
 // Navigation
 // ============================================================
 
-// Full-width sticky header row
+// Full-width fixed header row
 .site_header {
   align-items: center;
   display: flex;
   justify-content: space-between;
+  left: 0;
   padding: 1rem 3rem;
-  position: sticky;
+  position: fixed;
+  right: 0;
   top: 0;
   z-index: 300;
 }
@@ -417,7 +427,7 @@ ul {
 .nav_cta {
   border: 1px solid rgba($white, 0.3);
   border-radius: 2rem;
-  color: rgba($white, 0.65);
+  color: $white;
   font-family: $font;
   font-size: 0.85rem;
   font-weight: 500;
@@ -442,7 +452,7 @@ ul {
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
   display: flex;
-  padding: 0 0.75rem;
+  padding: 0 0.75rem 0 0.125rem;
 }
 
 .nav_large {
@@ -464,44 +474,56 @@ ul {
     font-size: 1rem;
 
     a {
+      border-radius: 2rem;
       color: $white;
       font-weight: 500;
       letter-spacing: 0.01em;
       opacity: 0.5;
       padding: 0.75rem 0.625rem;
       text-decoration: none;
+      transition: background 0.2s ease, opacity 0.2s ease;
 
-      &.active, &:hover { opacity: 1; }
+      &:hover {
+        background: rgba($white, 0.08);
+        opacity: 1;
+      }
+
+      &.active {
+        background: rgba($white, 0.15);
+        opacity: 1;
+        padding: 0.45rem 0.85rem;
+      }
     }
 
-    #light_switch {
-      all: unset;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      padding: 0.75rem 0.625rem;
+  }
+}
 
-      .toggle-track {
-        background: rgba($white, 0.2);
-        border: 1.5px solid rgba($white, 0.35);
-        border-radius: 2rem;
-        box-sizing: border-box;
-        display: flex;
-        align-items: center;
-        height: 1.5rem;
-        padding: 0.18rem;
-        width: 2.75rem;
-        transition: background 0.3s ease, border-color 0.3s ease;
+#light_switch {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 0.85rem;
 
-        .toggle-thumb {
-          background: $white;
-          border-radius: 50%;
-          height: 1rem;
-          width: 1rem;
-          flex-shrink: 0;
-          transition: transform 0.25s ease;
-        }
-      }
+  .toggle-track {
+    background: rgba($white, 0.2);
+    border: 1.5px solid rgba($white, 0.35);
+    border-radius: 2rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    height: 1.5rem;
+    padding: 0.18rem;
+    width: 2.75rem;
+    transition: background 0.3s ease, border-color 0.3s ease;
+
+    .toggle-thumb {
+      background: $white;
+      border-radius: 50%;
+      height: 1rem;
+      width: 1rem;
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
     }
   }
 }
@@ -679,7 +701,8 @@ html.theme-light #navlink { color: $dark-default; }
   text-decoration: none;
   transition: background 0.15s ease;
 
-  &:hover { background: rgba($white, 0.08); }
+  &:hover,
+  &.active { background: rgba($white, 0.08); border-radius: 0.625rem; padding: 0.5rem 0.625rem; opacity: 1; }
 
   img {
     border-radius: 0.375rem;
@@ -729,7 +752,8 @@ html.theme-light {
     background: rgba($tan, 0.94);
     box-shadow: 0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba($white, 0.8);
   }
-  .nav_dropdown_item:hover { background: rgba($dark-default, 0.06); }
+  .nav_dropdown_item:hover,
+  .nav_dropdown_item.active { background: rgba($dark-default, 0.06); }
   .nav_dropdown_icon_placeholder { background: rgba($dark-default, 0.1); }
   .nav_dropdown_title { color: $dark-default; }
   .nav_dropdown_company { color: rgba($dark-default, 0.5); }
@@ -957,8 +981,8 @@ header {
   background-color: transparent;
   background-attachment: fixed;
   display: block;
-  margin-bottom: 4rem;
-  padding: 40px 0;
+  margin-bottom: 0;
+  padding: 10px 0;
   position: relative;
   overflow-x: hidden;
   width: 100%;
@@ -1006,8 +1030,46 @@ header {
 }
 
 header.about_header {
+  padding-top: 4rem;
   .grid_3 { align-self: end; }
   .jm_title { margin: 0; padding-bottom: 0.35rem; }
+
+  .about_bio {
+    padding-top: 3rem;
+
+    .about_me--lead {
+      color: $white;
+      font-size: clamp(1.25rem, 2vw, 1.75rem);
+      font-weight: 400;
+      line-height: 1.35;
+      margin: 0;
+    }
+
+    .about_me {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+  }
+}
+
+.about_services {
+  .services_list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-weight: 500;
+      line-height: 1.3;
+    }
+
+    .highlight { color: $white; }
+  }
 }
 
 
@@ -1208,6 +1270,8 @@ header.about_header {
   &.sage    { background-color: $sage; height: 20px; margin-top: -20px; }
   &.fuchsia { background-color: $text-muted; height: 20px; margin-top: -20px; }
   &.yellow  { background-color: $yellow; height: 20px; margin-top: -8px; }
+  &.orange  { background-color: #E64F13; height: 20px; margin-top: -6px; }
+  &.gold    { background-color: #6E5E36; height: 20px; margin-top: -4px; }
 }
 
 .yellow_dots {
@@ -1218,7 +1282,6 @@ header.about_header {
 
 .about_images {
   display: block;
-  height: 100%;
   position: relative;
   width: 100%;
 
@@ -1233,11 +1296,20 @@ header.about_header {
 
   .image_portrait {
     display: block;
+    left: 50%;
     position: absolute;
-    top: 0;
-    right: 1200px;
-    transform: rotate(-30deg);
+    top: 200px;
     z-index: 10;
+
+    img {
+      aspect-ratio: 1;
+      border-radius: 12px;
+      display: block;
+      height: 440px;
+      object-fit: cover;
+      object-position: center top;
+      width: 440px;
+    }
 
     &::after {
       background-color: $white;
@@ -1275,8 +1347,10 @@ header.about_header {
   background-blend-mode: soft-light;
   background-position: center;
   margin-top: 4rem;
-  padding: 8rem 0 9rem;
+  padding: 8rem 0 4rem;
   overflow-x: hidden;
+  position: relative;
+  z-index: 11;
   width: 100%;
 
   h4 { color: $white; }
@@ -1317,16 +1391,63 @@ header.about_header {
 
     .work_carousel {
       display: flex;
-      gap: 1.25rem;
+      gap: 2rem;
       overflow-x: auto;
       padding: 0.5rem 3rem 1.5rem;
       scroll-behavior: smooth;
+      scroll-padding-left: 3rem;
       scroll-snap-type: x mandatory;
       scrollbar-width: none;
 
       &::-webkit-scrollbar { display: none; }
 
-      @media (max-width: 768px) { padding-left: 1.25rem; padding-right: 1.25rem; }
+      @media (max-width: 768px) { padding-left: 1.25rem; padding-right: 1.25rem; scroll-padding-left: 1.25rem; }
+    }
+
+    .work_carousel_dots {
+      align-items: center;
+      display: flex;
+      gap: 0.35rem;
+      justify-content: center;
+      list-style: none;
+      margin: 0 0 0.75rem;
+      padding: 0.5rem 0;
+
+      .work_carousel_dot {
+        background: rgba($white, 0.22);
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        height: 3px;
+        overflow: hidden;
+        padding: 0;
+        position: relative;
+        transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease;
+        width: 18px;
+
+        &::after {
+          background: $white;
+          content: '';
+          height: 100%;
+          left: 0;
+          position: absolute;
+          top: 0;
+          width: 0;
+        }
+
+        &.active {
+          background: rgba($white, 0.3);
+
+          &::after {
+            animation: dot-fill var(--autoplay-ms, 3500ms) linear forwards;
+          }
+        }
+      }
+    }
+
+    @keyframes dot-fill {
+      from { width: 0; }
+      to   { width: 100%; }
     }
 
     // Fade edges to show scroll affordance
@@ -1363,7 +1484,8 @@ header.about_header {
       width: 40px;
       z-index: 10;
 
-      svg { flex-shrink: 0; height: 16px; width: 16px; }
+      font-family: $mono;
+      font-size: 1rem;
 
       &:hover { background: rgba($white, 0.35); }
       &:disabled { opacity: 0; pointer-events: none; }
@@ -1377,6 +1499,13 @@ header.about_header {
 
     .work_card {
       border-radius: 1.75rem;
+      box-shadow:
+        inset 0 1px 0 rgba($white, 0.1),
+        0 2px 6px  rgba(0, 0, 0, 0.45),
+        0 12px 28px rgba(0, 0, 0, 0.35),
+        0 36px 72px rgba(0, 0, 0, 0.22),
+        -10px 16px 28px rgba(0, 0, 0, 0.18),
+        10px 16px 28px rgba(0, 0, 0, 0.18);
       color: $white;
       cursor: pointer;
       display: flex;
@@ -1386,35 +1515,105 @@ header.about_header {
       position: relative;
       scroll-snap-align: start;
       text-decoration: none;
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      width: 680px;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+      width: 280px;
 
       @media (max-width: 768px) { width: calc(100vw - 2.5rem); }
 
       &:hover {
-        transform: scale(1.015);
+        box-shadow:
+          inset 0 1px 0 rgba($white, 0.14),
+          0 4px 10px  rgba(0, 0, 0, 0.5),
+          0 18px 40px rgba(0, 0, 0, 0.4),
+          0 52px 96px rgba(0, 0, 0, 0.28),
+          -14px 20px 36px rgba(0, 0, 0, 0.22),
+          14px 20px 36px rgba(0, 0, 0, 0.22);
+        transform: translateY(-6px);
 
         .work_card_cta { opacity: 1; transform: translateY(0); }
       }
 
-      &.nd     { background-color: #1A4D4D; }
-      &.viz    { background-color: #0D3070; }
-      &.ns     { background-color: #2D4A00; }
-      &.nq     { background-color: #003D14; }
-      &.pecan  { background-color: #0B3A52; }
-      &.health { background-color: #0D2545; }
+      // Gradient backgrounds + per-card fade color for image overlay
+      &.nd     { background: linear-gradient(155deg, #1E6060 0%, #071A1A 100%); --card-fade: #071A1A; }
+      &.viz    { background: linear-gradient(155deg, #1E4490 0%, #060A20 100%); --card-fade: #060A20; }
+      &.ns     { background: linear-gradient(155deg, #365800 0%, #0E1800 100%); --card-fade: #0E1800; }
+      &.nq     { background: linear-gradient(155deg, #0A4E22 0%, #020C07 100%); --card-fade: #020C07; }
+      &.pecan  { background: linear-gradient(155deg, #145674 0%, #030E14 100%); --card-fade: #030E14; }
+      &.health { background: linear-gradient(155deg, #1A3462 0%, #050B1C 100%); --card-fade: #050B1C; }
+
+      .work_card_info {
+        flex-shrink: 0;
+        padding: 1.5rem 1.5rem 1.25rem;
+
+        .work_card_label {
+          color: rgba($white, 0.45);
+          display: block;
+          font-family: $mono;
+          font-size: 0.62rem;
+          letter-spacing: 0.1em;
+          margin-bottom: 0.4rem;
+          text-transform: uppercase;
+        }
+
+        h3 {
+          color: $white;
+          font-size: 1.25rem;
+          font-weight: 600;
+          line-height: 1.2;
+          margin: 0 0 0.45rem;
+        }
+
+        p {
+          color: rgba($white, 0.6);
+          font-size: 0.85rem;
+          line-height: 1.55;
+          margin: 0;
+          padding: 0;
+        }
+
+        .view_project_nda {
+          color: rgba($white, 0.35);
+          display: block;
+          font-family: $mono;
+          font-size: 0.62rem;
+          letter-spacing: 0.08em;
+          margin-top: 0.75rem;
+          text-transform: uppercase;
+        }
+
+        .work_tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.3rem;
+          margin-top: 0.85rem;
+        }
+      }
 
       .work_card_img {
-        aspect-ratio: 16 / 9;
+        flex: 1;
+        min-height: 155px;
         overflow: hidden;
         position: relative;
 
+        // Gradient fade from card background into the preview image
+        &::before {
+          background: linear-gradient(to bottom, var(--card-fade, #000), transparent);
+          content: '';
+          height: 5rem;
+          left: 0;
+          pointer-events: none;
+          position: absolute;
+          right: 0;
+          top: 0;
+          z-index: 1;
+        }
+
         img {
-          border-radius: 0;
           display: block;
           height: 100%;
           object-fit: cover;
-          transition: opacity 0.15s ease;
+          object-position: top center;
+          transition: opacity 0.15s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
           width: 100%;
         }
 
@@ -1439,56 +1638,151 @@ header.about_header {
           z-index: 2;
         }
       }
+    }
 
-      .work_card_info {
-        padding: 1.25rem 1.5rem 1.75rem;
+    // Work listing page — grid / list layout (overrides carousel behaviour)
+    &.work_listing {
+      padding-top: 0;
 
-        .work_card_label {
-          color: rgba($white, 0.55);
-          display: block;
+      &::before, &::after { display: none; }
+      .work_carousel_btn { display: none !important; }
+
+      .work_carousel {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        overflow-x: visible;
+        padding: 0.5rem 3rem 3rem;
+        scroll-snap-type: none;
+
+        @media (max-width: 960px)  { grid-template-columns: 1fr; }
+        @media (max-width: 768px)  { padding-left: 1.25rem; padding-right: 1.25rem; }
+
+        .work_card {
+          scroll-snap-align: none;
+          width: auto;
+        }
+      }
+
+      &.view-list .work_carousel {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        padding: 0 3rem 3rem;
+
+        @media (max-width: 768px) { padding-left: 1.25rem; padding-right: 1.25rem; }
+
+        .work_card_img {
+          aspect-ratio: 3 / 2;
+          flex-shrink: 0;
+          overflow: hidden;
+          width: 160px;
+
+          img {
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            width: 100%;
+          }
+
+          @media (max-width: 768px) { display: none; }
+        }
+
+        .work_list_num {
+          color: rgba($white, 0.3);
           font-family: $mono;
-          font-size: 0.65rem;
-          letter-spacing: 0.08em;
-          margin-bottom: 0.3rem;
-          text-transform: uppercase;
+          font-size: 0.75rem;
+          letter-spacing: 0.04em;
+          padding-top: 0.2rem;
         }
 
-        h3 {
-          color: $white;
-          font-size: 1.2rem;
-          line-height: 1.25;
-          margin: 0 0 0.4rem;
-        }
-
-        p {
-          color: rgba($white, 0.65);
-          font-size: 0.875rem;
-          line-height: 1.5;
-          margin: 0;
-          padding: 0;
-        }
-
-        .view_project_nda {
-          color: rgba($white, 0.4);
-          display: block;
-          font-family: $mono;
-          font-size: 0.65rem;
-          letter-spacing: 0.08em;
-          margin-top: 0.75rem;
-          text-transform: uppercase;
-        }
-
-        .work_tags {
+        .work_card {
+          align-items: center;
+          background: none;
+          border-top: 1px solid rgba($white, 0.22);
+          border-radius: 0;
           display: flex;
-          flex-wrap: wrap;
-          gap: 0.3rem;
-          margin-top: 0.75rem;
+          flex-direction: row;
+          gap: 0;
+          padding: 0;
+          text-decoration: none;
+          transition: opacity 0.25s ease;
+          width: 100%;
+
+          &:last-child { border-bottom: 1px solid rgba($white, 0.22); }
+
+          &:hover .work_card_img img { transform: scale(1.03); }
+
+          .work_card_info {
+            background: none;
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            gap: 0.3rem;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+
+            .work_list_num {
+              align-self: flex-end;
+            }
+
+            h3 {
+              font-size: clamp(1.1rem, 1.8vw, 1.75rem);
+              font-weight: 500;
+              letter-spacing: -0.02em;
+              line-height: 1.2;
+              margin: 0;
+            }
+
+            .work_card_label {
+              font-size: 0.8125rem;
+              opacity: 0.4;
+            }
+
+            p { display: none; }
+
+            .work_tags {
+              display: flex;
+              flex-wrap: wrap;
+              gap: 0.35rem;
+
+              .work_tag {
+                background: rgba($white, 0.08);
+                border-radius: 2rem;
+                font-size: 0.7rem;
+                padding: 0.2rem 0.65rem;
+                white-space: nowrap;
+              }
+            }
+          }
         }
+
+        // Dim all rows; un-dim hovered
+        &:has(.work_card:hover) .work_card { opacity: 0.35; }
+        &:has(.work_card:hover) .work_card:hover { opacity: 1; }
       }
     }
   }
 
-  &.about_pecan       { background-image: url("img/pecan/pecan_title_bg@2x.png"); }
+  &.about_pecan, &.about_naturedose, &.about_naturescore, &.about_naturequant, &.about_viz, &.about-stjude {
+    margin-top: -5rem;
+    padding-top: 13rem;
+  }
+
+  &.about_pecan        { background-blend-mode: soft-light; background-color: $cyan;  background-image: url("img/pecan/pecan_title_bg@2x.png"); }
+  &.about_naturedose {
+    background-color: #000000;
+    background-image:
+      radial-gradient(94.3% 100.05% at 98.93% 1.45%, rgba(153, 204, 0, 0.35) 0%, transparent 100%),
+      url("img/naturedose/naturedose_title_bg@2x.png"),
+      radial-gradient(53.54% 105.33% at 43.14% 38.89%, #008866 0%, #000000 100%);
+    background-blend-mode: normal, screen, normal;
+    background-size: cover, cover, cover;
+    background-position: center, center top, center;
+  }
+  &.about_naturescore  { background-blend-mode: soft-light; background-color: $lime;  background-image: url("img/naturescore/naturescore_title_bg@2x.png"); }
+  &.about_naturequant  { background-blend-mode: soft-light; background-color: $green; background-image: url("img/naturequant/naturequant_title_bg@2x.png"); }
+  &.about_viz          { background-blend-mode: soft-light; background-color: $blue;  background-image: url("img/visualization_community/visualization_community_title_bg@2x.png"); }
+  &.about-stjude       { background-color: $blue; }
 
   .project_title {
     font-size: clamp(2rem, 3.5vw + 1rem, 4rem); // ~32–64px
@@ -1606,6 +1900,9 @@ header.about_header {
   a:hover { color: $white; }
 }
 
+// Arrow characters — always render in IBM Plex Mono
+.arrow { font-family: $mono; }
+
 // View project link (work cards)
 .view_project {
   border: 1px solid rgba($white, 0.28);
@@ -1618,6 +1915,7 @@ header.about_header {
   font-weight: 500;
   gap: 0.4em;
   letter-spacing: 0.02em;
+  line-height: 1;
   margin-top: 1.5rem;
   padding: 0.55em 1.25em;
   text-decoration: none;
@@ -1691,23 +1989,22 @@ sup.reg {
 // ============================================================
 
 .case_study_nav {
+  -webkit-backdrop-filter: blur(28px) saturate(2);
+  backdrop-filter: blur(28px) saturate(2);
+  background: rgba($white, 0.1);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
   list-style: none;
   margin: 0;
-  opacity: 0;
-  padding: 0.25rem 0;
-  pointer-events: none;
-  position: fixed;
-  left: 1.75rem;
-  top: 50%;
-  transform: translateY(calc(-50% + 0.75rem));
-  transition: opacity 0.35s ease, transform 0.35s ease;
-  z-index: 5;
-
-  &.is-visible {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(-50%);
-  }
+  padding: 0.4rem 0.6rem;
+  position: sticky;
+  top: var(--header-h, 5rem);
+  width: 100%;
+  z-index: 200;
 
   li {
     display: block;
@@ -1717,20 +2014,22 @@ sup.reg {
 
   a {
     align-items: center;
-    border-left: none;
-    color: rgba($white, 0.5);
+    border-radius: 1.5rem;
+    color: rgba($white, 0.6);
     display: flex;
-    gap: 0.6rem;
-    padding: 0.45rem 0;
+    gap: 0.4rem;
+    padding: 0.35rem 0.75rem;
     text-decoration: none;
-    transition: color 0.15s ease;
+    transition: background 0.2s ease, color 0.2s ease;
 
-    &:hover { color: $white; }
-    &.active { color: $white; }
+    &:hover {
+      background: $white;
+      color: $dark-default;
+    }
   }
 
   .cs_nav_dot {
-    background: rgba($white, 0.3);
+    background: rgba($white, 0.4);
     border-radius: 50%;
     flex-shrink: 0;
     height: 5px;
@@ -1738,31 +2037,425 @@ sup.reg {
     width: 5px;
   }
 
-  a:hover .cs_nav_dot { background: rgba($white, 0.75); }
+  a:hover .cs_nav_dot { background: $dark-default; }
 
-  a.active .cs_nav_dot {
+  a.active {
     background: $white;
-    transform: scale(1.5);
+    color: $dark-default;
+
+    .cs_nav_dot {
+      background: $dark-default;
+      transform: scale(1.5);
+    }
   }
 
   .cs_nav_label {
+    color: inherit;
     font-family: $mono;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 400;
-    letter-spacing: 0.06em;
-    max-width: 0;
-    opacity: 0;
-    overflow: hidden;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    transition: max-width 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
     white-space: nowrap;
   }
 
-  a:hover .cs_nav_label {
-    max-width: 10rem;
-    opacity: 1;
+  @media (max-width: 768px) { display: none; }
+}
+
+// View toggle bar (legacy — no longer used as standalone)
+.cs_view_toggle_bar {
+  padding: 0 0 0.75rem;
+}
+
+// Meta bar — sits below the project title, contains toggle + overview fields
+.cs_meta_bar {
+  border-bottom: 1px solid rgba($white, 0.12);
+  border-top: 1px solid rgba($white, 0.12);
+  padding: 1.5rem 0;
+}
+
+.cs_meta_row {
+  display: grid;
+  gap: 0;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+
+  @media (max-width: 600px) { grid-template-columns: 1fr; }
+}
+
+.cs_meta_item {
+  border-left: 1px solid rgba($white, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0 1.5rem;
+
+  &:first-child {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  @media (max-width: 600px) {
+    border-left: none;
+    border-top: 1px solid rgba($white, 0.1);
+    padding: 1rem 0;
+
+    &:first-child { border-top: none; padding-top: 0; }
+  }
+
+  // Value text (extracted <p> elements)
+  > p {
+    color: rgba($white, 0.85);
+    font-size: 0.875rem;
+    margin: 0;
+  }
+
+  // View project link
+  > a.view_project {
+    display: block;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.85rem;
+    text-align: center;
+  }
+
+  // Contributions tag list — pill style
+  > ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      border: 1px solid rgba($white, 0.2);
+      border-radius: 2rem;
+      color: rgba($white, 0.8);
+      font-size: 0.65rem;
+      letter-spacing: 0.04em;
+      padding: 0.2rem 0.65rem;
+      text-transform: uppercase;
+    }
   }
 }
+
+.cs_meta_label {
+  color: rgba($white, 0.65);
+  font-family: $mono;
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cs_view_toggle {
+  background: rgba($white, 0.07);
+  border: 1px solid rgba($white, 0.12);
+  border-radius: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+
+  .cs_view_btn {
+    background: none;
+    border: none;
+    color: rgba($white, 0.45);
+    cursor: pointer;
+    font-family: $mono;
+    font-size: 0.6rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    padding: 0.35rem 0.85rem;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+
+    &.active {
+      background: rgba($white, 0.14);
+      color: $white;
+    }
+  }
+}
+
+// Work page view toggle — fills remaining columns in same row as h1, baseline-aligned
+.work_view_controls {
+  align-items: end;
+  display: flex;
+  grid-column: span 9;
+  justify-content: flex-end;
+  padding: 0;
+
+  @media (max-width: 768px) { display: none; }
+}
+
+// Hero progress bar — dots + play/pause, sits below the hero header
+.hero_progress {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  padding: 1.25rem 3rem 0.5rem;
+
+  @media (max-width: 768px) { padding-left: 1.25rem; padding-right: 1.25rem; }
+}
+
+.hero_dots {
+  align-items: center;
+  display: flex;
+  gap: 0.45rem;
+
+  .hero_dot {
+    background: rgba($white, 0.25);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 6px;
+    padding: 0;
+    transition: background 0.2s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    width: 6px;
+
+    &.active {
+      background: $white;
+      transform: scale(1.5);
+    }
+  }
+}
+
+.hero_pp {
+  align-items: center;
+  display: flex;
+  gap: 0.15rem;
+
+  .hero_pp_btn {
+    align-items: center;
+    background: none;
+    border: none;
+    color: rgba($white, 0.3);
+    cursor: pointer;
+    display: flex;
+    height: 22px;
+    justify-content: center;
+    padding: 0;
+    transition: color 0.15s ease;
+    width: 22px;
+
+    svg { height: 11px; width: 11px; }
+
+    &.active { color: rgba($white, 0.85); }
+    &:hover  { color: rgba($white, 0.65); }
+  }
+}
+
+html.theme-light {
+  .hero_dot { background: rgba($dark-default, 0.15); }
+  .hero_dot.active { background: $dark-default; }
+  .hero_pp_btn { color: rgba($dark-default, 0.25); }
+  .hero_pp_btn.active { color: rgba($dark-default, 0.75); }
+  .hero_pp_btn:hover { color: rgba($dark-default, 0.5); }
+}
+
+.work_view_toggle {
+  background: rgba($white, 0.08);
+  border-radius: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  position: relative;
+
+  &::before {
+    background: rgba($white, 0.16);
+    content: '';
+    height: 100%;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 50%;
+  }
+
+  &:has(.work_view_btn:last-child.active)::before {
+    transform: translateX(100%);
+  }
+
+  .work_view_btn {
+    align-items: center;
+    background: none;
+    border: none;
+    color: rgba($white, 0.45);
+    cursor: pointer;
+    display: flex;
+    font-family: $mono;
+    font-size: 0.6rem;
+    font-weight: 400;
+    gap: 0.35rem;
+    justify-content: center;
+    letter-spacing: 0.05em;
+    padding: 0.4rem 0.75rem;
+    position: relative;
+    text-transform: uppercase;
+    transition: color 0.25s ease;
+    z-index: 1;
+
+    svg { flex-shrink: 0; height: 13px; width: 13px; }
+
+    &.active { color: $white; }
+  }
+}
+
+// Light mode overrides
+.theme-light {
+  .cs_meta_bar                  { border-color: rgba($dark-default, 0.1); }
+  .cs_meta_label                { color: rgba($dark-default, 0.55); }
+  .cs_meta_item > p             { color: rgba($dark-default, 0.8); }
+  .cs_meta_item > ul li         { border-color: rgba($dark-default, 0.15); color: rgba($dark-default, 0.7); }
+  .cs_view_toggle               { background: rgba($dark-default, 0.06); border-color: rgba($dark-default, 0.1); }
+  .cs_view_btn                  { color: rgba($dark-default, 0.4); }
+  .cs_view_btn.active           { background: rgba($dark-default, 0.1); color: $dark-default; }
+  .work_view_toggle             { background: rgba($dark-default, 0.08); }
+  .work_view_toggle::before     { background: rgba($dark-default, 0.12); }
+  .work_view_btn                { color: rgba($dark-default, 0.4); }
+  .work_view_btn.active         { color: $dark-default; }
+
+  // List view — light theme overrides
+  .about.work.work_listing.view-list .work_carousel {
+    .work_card {
+      border-top-color: rgba($dark-default, 0.18);
+      &:last-child { border-bottom-color: rgba($dark-default, 0.18); }
+    }
+    .work_list_num { color: rgba($dark-default, 0.3); }
+    .work_tag { background: rgba($dark-default, 0.06); }
+    &:has(.work_card:hover) .work_card { opacity: 0.3; }
+    &:has(.work_card:hover) .work_card:hover { opacity: 1; }
+  }
+}
+
+
+// Masonry image feed
+.cs_image_feed {
+  display: none;
+  padding: 0 3rem 5rem;
+
+  @media (max-width: 768px) { padding: 0 1.25rem 3rem; }
+}
+
+.cs_masonry {
+  column-count: 3;
+  column-gap: 1.25rem;
+
+  @media (max-width: 1100px) { column-count: 2; }
+  @media (max-width: 600px)  { column-count: 1; }
+}
+
+.cs_masonry_item {
+  break-inside: avoid;
+  border-radius: 0.75rem;
+  cursor: zoom-in;
+  margin-bottom: 1.25rem;
+  overflow: hidden;
+
+  img {
+    border-radius: 0;
+    display: block;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    width: 100%;
+  }
+
+  figcaption {
+    color: rgba($white, 0.4);
+    font-family: $mono;
+    font-size: 0.6rem;
+    letter-spacing: 0.05em;
+    padding: 0.4rem 0.75rem 0.5rem;
+    text-transform: uppercase;
+  }
+
+  &:hover img { transform: scale(1.02); }
+}
+
+// Lightbox
+.cs_lightbox {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  flex-direction: column;
+  inset: 0;
+  justify-content: center;
+  opacity: 0;
+  padding: 3rem;
+  pointer-events: none;
+  position: fixed;
+  transition: opacity 0.25s ease;
+  z-index: 1000;
+
+  &.is-open { opacity: 1; pointer-events: all; }
+
+  .cs_lb_img {
+    border-radius: 0.75rem;
+    max-height: 78vh;
+    max-width: 86vw;
+    object-fit: contain;
+  }
+
+  .cs_lb_caption {
+    color: rgba($white, 0.45);
+    font-family: $mono;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    margin-top: 0.9rem;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .cs_lb_close {
+    background: rgba($white, 0.1);
+    border: 1px solid rgba($white, 0.15);
+    border-radius: 50%;
+    color: $white;
+    cursor: pointer;
+    font-size: 1.1rem;
+    height: 38px;
+    line-height: 38px;
+    position: absolute;
+    right: 1.5rem;
+    text-align: center;
+    top: 1.5rem;
+    width: 38px;
+
+    &:hover { background: rgba($white, 0.2); }
+  }
+
+  .cs_lb_prev, .cs_lb_next {
+    background: rgba($white, 0.1);
+    border: 1px solid rgba($white, 0.15);
+    border-radius: 50%;
+    color: $white;
+    cursor: pointer;
+    font-size: 1.4rem;
+    height: 48px;
+    line-height: 48px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+
+    &:hover { background: rgba($white, 0.2); }
+    &:disabled { opacity: 0.15; pointer-events: none; }
+  }
+
+  .cs_lb_prev { left: 1.5rem; }
+  .cs_lb_next { right: 1.5rem; }
+}
+
+// Image Feed mode — hide text content, show masonry
+body.image-feed {
+  .cs_content { display: none !important; }
+  .overview .grid_9 > *:not(.leadin) { display: none !important; }
+  .cs_image_feed { display: block !important; }
+  .case_study_nav { display: none !important; }
+}
+
 
 .case_studies_nav {
   padding-bottom: 100px;
@@ -1915,7 +2608,7 @@ sup.reg {
 
   ul { list-style: initial; li { color: $text-muted; } }
 
-  .cs_content { margin-bottom: 4rem; margin-top: 4rem; }
+  .cs_content { margin-bottom: 4rem; margin-top: 4rem; scroll-margin-top: 9rem; }
 
   .cs_images {
     &.cs_smaller { padding: 0; }
@@ -1923,16 +2616,13 @@ sup.reg {
     img { border-radius: 1rem; margin: 1rem 0 0; object-fit: fill; width: 100%; }
 
     .cs_description {
-      background: $text-muted;
-      color: $text-secondary;
+      color: rgba($white, 0.4);
       display: block;
+      font-family: $mono;
       font-size: 0.6rem;
-      letter-spacing: 0.05rem;
-      line-height: 0.6rem;
-      margin: -0.2rem 0 0;
-      padding: 0.5rem 0.5rem 0.4rem;
+      letter-spacing: 0.05em;
+      margin: 0.4rem 0 0;
       text-transform: uppercase;
-      width: max-content;
     }
   }
 
@@ -1941,6 +2631,7 @@ sup.reg {
     margin-bottom: 1.25rem;
     padding-bottom: 6rem;
     padding-top: 6rem;
+    scroll-margin-top: 9rem;
 
     h2, h3, h4, h5, li, a, .leadin { color: $white; margin: 0; }
 
@@ -1950,29 +2641,46 @@ sup.reg {
     p { color: rgba($white, 0.6); display: block; margin: 2rem 0; }
 
     .stats-container {
-      display: flex;
-      justify-content: space-around;
-      align-items: stretch;
-      flex-wrap: wrap;
+      border-top: 1px solid rgba($white, 0.12);
       color: $white;
-      gap: 2rem;
-      text-align: center;
-      font-family: system-ui, sans-serif;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      margin-top: 2.5rem;
 
       .stat {
-        background-color: rgba($white, 0.05);
+        border-left: 1px solid rgba($white, 0.12);
         display: flex;
-        flex: 1;
         flex-direction: column;
-        align-items: left;
-        margin: 1rem 0 0;
-        padding: 2rem;
-        text-align: left;
-        min-width: 100px;
+        gap: 0.35rem;
+        padding: 1.75rem 1.5rem 1.75rem 2rem;
 
-        p { margin: auto; }
-        .stat_info { opacity: 0.7; margin: 0; }
-        .stat_number { font-size: 4rem; }
+        &:first-child { border-left: none; }
+
+        .stat_label {
+          color: rgba($white, 0.5);
+          font-size: 0.7rem;
+          font-weight: 600;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+        }
+
+        .stat_number {
+          color: $white;
+          font-size: 3.25rem;
+          font-weight: 700;
+          letter-spacing: -0.03em;
+          line-height: 1;
+          margin: 0.15rem 0;
+        }
+
+        .stat_info {
+          color: rgba($white, 0.55);
+          font-size: 0.85rem;
+          line-height: 1.5;
+          margin: 0;
+        }
+
+        p { margin: 0; }
       }
     }
 
@@ -2126,6 +2834,98 @@ html.theme-light {
 
 
 // ============================================================
+// ============================================================
+// NatureDose gallery sections
+// ============================================================
+
+.nd_screens_grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  margin-top: 2rem;
+
+  img {
+    border-radius: 1rem;
+    display: block;
+    height: auto;
+    object-fit: cover;
+    width: 100%;
+  }
+}
+
+.nd_concepts_grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  margin-top: 2rem;
+
+  img {
+    border-radius: 0.75rem;
+    display: block;
+    height: auto;
+    width: 100%;
+  }
+}
+
+.nd_icon_carousel_wrapper {
+  align-items: center;
+  display: flex;
+  gap: 1.5rem;
+  padding: 2rem 3rem;
+}
+
+.nd_carousel_viewport {
+  background: rgba($white, 0.05);
+  border-radius: 1.5rem;
+  flex: 1;
+  overflow: hidden;
+}
+
+.nd_carousel_track {
+  display: flex;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.nd_carousel_slide {
+  align-items: center;
+  display: flex;
+  flex: 0 0 100%;
+  justify-content: center;
+  min-height: 380px;
+  padding: 3rem;
+
+  img {
+    max-height: 300px;
+    max-width: 100%;
+    object-fit: contain;
+  }
+}
+
+.nd_carousel_btn {
+  all: unset;
+  color: rgba($white, 0.45);
+  cursor: pointer;
+  font-family: $mono;
+  font-size: 1.75rem;
+  line-height: 1;
+  padding: 0.5rem;
+  transition: color 0.2s ease;
+
+  &:hover { color: $white; }
+}
+
+.nd_carousel_counter {
+  color: rgba($white, 0.35);
+  font-family: $mono;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  margin-top: 0;
+  padding-bottom: 1rem;
+  text-align: center;
+}
+
+// ============================================================
 // More Work (case study page footer section)
 // ============================================================
 
@@ -2136,7 +2936,7 @@ html.theme-light {
     color: rgba($white, 0.4);
     font-family: $mono;
     font-size: 0.7rem;
-    font-weight: 500;
+    font-weight: 400;
     letter-spacing: 0.12em;
     margin: 0 0 2rem;
     text-transform: uppercase;
@@ -2149,21 +2949,84 @@ html.theme-light {
   }
 
   .more_work_card {
-    border-radius: 1rem;
-    display: block;
+    border-radius: 1.75rem;
+    box-shadow:
+      inset 0 1px 0 rgba($white, 0.1),
+      0 2px 6px  rgba(0, 0, 0, 0.45),
+      0 12px 28px rgba(0, 0, 0, 0.35),
+      0 36px 72px rgba(0, 0, 0, 0.22),
+      -10px 16px 28px rgba(0, 0, 0, 0.18),
+      10px 16px 28px rgba(0, 0, 0, 0.18);
+    color: $white;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     text-decoration: none;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+
+    // Per-project gradient backgrounds via href
+    &[href*="naturedose"]    { background: linear-gradient(155deg, #1E6060 0%, #071A1A 100%); --card-fade: #071A1A; }
+    &[href*="visualization"] { background: linear-gradient(155deg, #1E4490 0%, #060A20 100%); --card-fade: #060A20; }
+    &[href*="naturescore"]   { background: linear-gradient(155deg, #365800 0%, #0E1800 100%); --card-fade: #0E1800; }
+    &[href*="naturequant"]   { background: linear-gradient(155deg, #0A4E22 0%, #020C07 100%); --card-fade: #020C07; }
+    &[href*="pecan"]         { background: linear-gradient(155deg, #145674 0%, #030E14 100%); --card-fade: #030E14; }
+    &[href*="stjudecloud"],
+    &[href*="visualization_community"] { background: linear-gradient(155deg, #1A3462 0%, #050B1C 100%); --card-fade: #050B1C; }
 
     &:hover {
-      transform: translateY(-4px);
-      .more_work_img img { transform: scale(1.04); }
+      box-shadow:
+        inset 0 1px 0 rgba($white, 0.14),
+        0 4px 10px  rgba(0, 0, 0, 0.5),
+        0 18px 40px rgba(0, 0, 0, 0.4),
+        0 52px 96px rgba(0, 0, 0, 0.28),
+        -14px 20px 36px rgba(0, 0, 0, 0.22),
+        14px 20px 36px rgba(0, 0, 0, 0.22);
+      transform: translateY(-6px);
+
+      .more_work_img img { transform: scale(1.03); }
+    }
+
+    .more_work_info {
+      flex-shrink: 0;
+      order: 1;
+      padding: 1.5rem 1.5rem 1.25rem;
+    }
+
+    h4 {
+      color: $white;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 0 0 0.25rem;
+    }
+
+    span {
+      color: rgba($white, 0.45);
+      display: block;
+      font-family: $mono;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
     }
 
     .more_work_img {
-      aspect-ratio: 16/10;
-      border-radius: 1rem;
+      flex: 1;
+      min-height: 180px;
+      order: 2;
       overflow: hidden;
+      position: relative;
+
+      // Gradient fade from card color into image
+      &::before {
+        background: linear-gradient(to bottom, var(--card-fade, #000), transparent);
+        content: '';
+        height: 5rem;
+        left: 0;
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1;
+      }
 
       img {
         display: block;
@@ -2173,29 +3036,6 @@ html.theme-light {
         transition: transform 0.4s ease;
         width: 100%;
       }
-    }
-
-    .more_work_info {
-      background: rgba($white, 0.04);
-      border: 1px solid rgba($white, 0.08);
-      border-radius: 0 0 1rem 1rem;
-      border-top: none;
-      padding: 1.1rem 1.4rem 1.3rem;
-    }
-
-    h4 {
-      color: $white;
-      font-size: 1rem;
-      font-weight: 600;
-      margin: 0 0 0.2rem;
-    }
-
-    span {
-      color: rgba($white, 0.45);
-      display: block;
-      font-family: $mono;
-      font-size: 0.65rem;
-      letter-spacing: 0.05em;
     }
   }
 }
@@ -2386,7 +3226,7 @@ html.theme-light .about_meta { color: rgba($dark-default, 0.5); }
 // ============================================================
 
 .about_values {
-  padding-bottom: 5rem;
+  padding-bottom: 2rem;
 
   .values_row {
     align-items: center;
@@ -2429,6 +3269,44 @@ html.theme-light .about_meta { color: rgba($dark-default, 0.5); }
 html.theme-light .about_values {
   .value_word { color: $dark-default; }
   .value_connector { background: rgba($dark-default, 0.2); }
+}
+
+
+// ============================================================
+// Site Footer
+// ============================================================
+
+.site_footer {
+  border-top: 1px solid rgba($white, 0.08);
+  margin-top: 4rem;
+  padding: 2rem 0;
+
+  .container {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .site_footer_name {
+    color: rgba($white, 0.35);
+    font-family: $mono;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+  }
+
+  .site_footer_tagline {
+    color: rgba($white, 0.25);
+    font-size: 0.72rem;
+    font-style: italic;
+    letter-spacing: 0.01em;
+  }
+}
+
+html.theme-light .site_footer {
+  border-top-color: rgba($dark-default, 0.1);
+
+  .site_footer_name  { color: rgba($dark-default, 0.35); }
+  .site_footer_tagline { color: rgba($dark-default, 0.25); }
 }
 
 
@@ -2606,7 +3484,9 @@ html.theme-light .about_values {
       padding-top: 3rem;
       padding-bottom: 3rem;
 
-      .stats-container { flex-direction: column; }
+      .stats-container { grid-template-columns: 1fr 1fr; }
+      .stats-container .stat:nth-child(-n+2) { border-top: none; }
+      .stats-container .stat:nth-child(odd) { border-left: none; }
     }
   }
 
