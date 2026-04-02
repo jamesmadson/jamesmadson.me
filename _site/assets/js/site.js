@@ -141,10 +141,10 @@
   var links = Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]'));
   if (!links.length) return;
 
-  // Inject dot + label into each link
+  // Wrap link text in label span for consistent styling
   links.forEach(function (a) {
     var text = a.textContent.trim();
-    a.innerHTML = '<span class="cs_nav_dot"></span><span class="cs_nav_label">' + text + '</span>';
+    a.innerHTML = '<span class="cs_nav_label">' + text + '</span>';
   });
 
   var sections = links.map(function (link) {
@@ -163,7 +163,7 @@
         if (match) match.link.classList.add('active');
       }
     });
-  }, { rootMargin: '-15% 0px -75% 0px', threshold: 0 });
+  }, { rootMargin: '-5% 0px -60% 0px', threshold: 0 });
 
   sections.forEach(function (s) { spyObserver.observe(s.el); });
 }());
@@ -204,7 +204,7 @@
 
   var CLEAR_MS   = 600;
   var TYPE_MS    = 1100;
-  var DISPLAY_MS = 6000;
+  var DISPLAY_MS = 7000;
 
   var slides = [
     'I\'m a <a href="about.html" class="highlight jm">designer</a> who makes things that feel <a href="case_studies/naturescore.html" class="highlight ns">considered</a> — for real people spending time in the real world.',
@@ -212,7 +212,10 @@
     'I don\'t run teams — I join them. I bring a clean eye, good ideas, and a lot of <a href="case_studies/pecan.html" class="highlight pecan">care</a> for getting it right.',
     'I enjoy the <a href="case_studies/visualization_community.html" class="highlight viz">process</a>. The best answers come from sitting with a problem long enough that the solution feels obvious.',
     'I\'ve shipped things people actually use — apps that help them <a href="case_studies/naturedose.html" class="highlight nd">get outside</a>, tools that make sense of <a href="case_studies/visualization_community.html" class="highlight viz">complex data</a>.',
-    'I want the work to be <a href="case_studies/naturescore.html" class="highlight ns">useful</a> — genuinely helpful. Something the person on the other end is glad exists.'
+    'I want the work to be <a href="case_studies/naturescore.html" class="highlight ns">useful</a> — genuinely helpful. Something the person on the other end is glad exists.',
+    'I care about whether something feels trustworthy, surprising, or simply right.',
+    'I\'ve worked embedded on teams and brought in to reset direction. Either way I always leave things better than I found them.',
+    'I move between disciplines because the problems are always changing. I adapt to the problem in order to find the best solution.'
   ];
 
   // Parse HTML string into a flat segment list
@@ -288,19 +291,12 @@
 
   // Scheduling with pause support
   var loopTimer = null;
-  var paused = false;
 
   function updateDots() {
     if (!heroDots) return;
     Array.prototype.slice.call(heroDots.querySelectorAll('.hero_dot')).forEach(function (d, i) {
       d.classList.toggle('active', i === idx);
     });
-  }
-
-  function updatePlayPause() {
-    if (!heroPlayBtn || !heroPauseBtn) return;
-    heroPlayBtn.classList.toggle('active', paused);
-    heroPauseBtn.classList.toggle('active', !paused);
   }
 
   function cycle() {
@@ -314,17 +310,12 @@
   function scheduleCycle() {
     clearTimeout(loopTimer);
     loopTimer = setTimeout(function () {
-      if (!paused) { cycle(); scheduleCycle(); }
+      cycle(); scheduleCycle();
     }, DISPLAY_MS);
   }
 
-  function pauseHero() { paused = true; clearTimeout(loopTimer); updatePlayPause(); }
-  function resumeHero() { paused = false; scheduleCycle(); updatePlayPause(); }
-
-  // Inject progress bar (dots + play/pause) below hero header
+  // Inject progress dots below hero header
   var heroHeader = el.closest('header');
-  var playIcon  = '<svg viewBox="0 0 16 16" fill="currentColor"><polygon points="4,2 13,8 4,14"/></svg>';
-  var pauseIcon = '<svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="2" width="4" height="12" rx="1"/><rect x="9" y="2" width="4" height="12" rx="1"/></svg>';
 
   var heroProgress = document.createElement('div');
   heroProgress.className = 'hero_progress';
@@ -339,18 +330,8 @@
     heroDots.appendChild(dot);
   });
 
-  var heroPP = document.createElement('div');
-  heroPP.className = 'hero_pp';
-  heroPP.innerHTML =
-    '<button class="hero_pp_btn" data-action="play" aria-label="Play">' + playIcon + '</button>' +
-    '<button class="hero_pp_btn" data-action="pause" aria-label="Pause">' + pauseIcon + '</button>';
-
   heroProgress.appendChild(heroDots);
-  heroProgress.appendChild(heroPP);
   if (heroHeader) heroHeader.insertAdjacentElement('afterend', heroProgress);
-
-  var heroPlayBtn  = heroPP.querySelector('[data-action="play"]');
-  var heroPauseBtn = heroPP.querySelector('[data-action="pause"]');
 
   // Dot clicks jump to slide
   Array.prototype.slice.call(heroDots.querySelectorAll('.hero_dot')).forEach(function (dot) {
@@ -361,58 +342,19 @@
       runClear(parsed[idx], counts[idx], function () {
         idx = target;
         updateDots();
-        runType(parsed[idx], counts[idx], function () { if (!paused) scheduleCycle(); });
+        runType(parsed[idx], counts[idx], function () { scheduleCycle(); });
       });
     });
   });
 
-  heroPlayBtn.addEventListener('click',  resumeHero);
-  heroPauseBtn.addEventListener('click', pauseHero);
-
-  updatePlayPause();
   scheduleCycle();
 }());
 
 
 // ============================================================
-// Work cards — hover image cycling + carousel controls
+// Work cards — carousel controls
 // ============================================================
 (function () {
-  // --- Image cycling ---
-  var cards = Array.prototype.slice.call(document.querySelectorAll('.work_card[data-images]'));
-  cards.forEach(function (card) {
-    var images;
-    try { images = JSON.parse(card.dataset.images); } catch (e) { return; }
-    if (!images || images.length < 2) return;
-
-    var img = card.querySelector('.work_card_img img');
-    if (!img) return;
-
-    var cur = 0;
-    var timer = null;
-
-    function showNext() {
-      var next = cur;
-      while (next === cur) next = Math.floor(Math.random() * images.length);
-      cur = next;
-      img.style.opacity = '0';
-      setTimeout(function () {
-        img.src = images[cur];
-        img.style.opacity = '1';
-      }, 120);
-    }
-
-    card.addEventListener('mouseenter', function () {
-      if (timer) return;
-      timer = setInterval(showNext, 350);
-    });
-
-    card.addEventListener('mouseleave', function () {
-      clearInterval(timer);
-      timer = null;
-    });
-  });
-
   // --- Carousel controls ---
   var AUTOPLAY_MS = 3500;
 
@@ -595,59 +537,32 @@
 
 
 // ============================================================
-// Work listing — grid / list view toggle
+// Work page — grid / list view toggle
 // ============================================================
 (function () {
-  var section = document.querySelector('.about.work.work_listing');
-  if (!section) return;
+  var list = document.querySelector('.work_full_list');
+  var btns = Array.prototype.slice.call(document.querySelectorAll('.work_view_btn'));
+  if (!list || !btns.length) return;
 
-  var saved = localStorage.getItem('workView') || 'grid';
-  section.classList.toggle('view-list', saved === 'list');
+  // Restore saved preference (default: list)
+  var saved = localStorage.getItem('workView') || 'list';
+  applyView(saved, false);
 
-  // Inject toggle into the header — only on the work page, not about
-  var header = document.querySelector('header');
-  if (header && !document.querySelector('.about_header')) {
-    var gridIcon = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>';
-    var listIcon = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="1" y1="4" x2="15" y2="4"/><line x1="1" y1="8" x2="15" y2="8"/><line x1="1" y1="12" x2="15" y2="12"/></svg>';
-    var controls = document.createElement('div');
-    controls.className = 'work_view_controls';
-    controls.innerHTML =
-      '<div class="work_view_toggle">' +
-        '<button class="work_view_btn" data-view="grid" aria-label="Grid view">' + gridIcon + 'Grid</button>' +
-        '<button class="work_view_btn" data-view="list" aria-label="List view">' + listIcon + 'List</button>' +
-      '</div>';
-    var headerContainer = header.querySelector('.container');
-    headerContainer.appendChild(controls);
-
-    var btns = Array.prototype.slice.call(controls.querySelectorAll('.work_view_btn'));
-
-    function updateActive() {
-      var current = section.classList.contains('view-list') ? 'list' : 'grid';
-      btns.forEach(function (b) { b.classList.toggle('active', b.dataset.view === current); });
-    }
-    updateActive();
-
-    btns.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var isList = btn.dataset.view === 'list';
-        section.classList.toggle('view-list', isList);
-        localStorage.setItem('workView', isList ? 'list' : 'grid');
-        updateActive();
-      });
+  function applyView(view, save) {
+    list.classList.toggle('view-grid', view === 'grid');
+    btns.forEach(function (b) {
+      var isActive = b.dataset.view === view;
+      b.classList.toggle('active', isActive);
+      b.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     });
+    if (save) localStorage.setItem('workView', view);
   }
 
-  // --- Inject row numbers into card info (top-right) for list view ---
-  var allListCards = Array.prototype.slice.call(section.querySelectorAll('.work_carousel .work_card'));
-  allListCards.forEach(function (card, i) {
-    var info = card.querySelector('.work_card_info');
-    if (!info) return;
-    var num = document.createElement('span');
-    num.className = 'work_list_num';
-    num.textContent = String(i + 1).padStart(2, '0');
-    info.insertBefore(num, info.firstChild);
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      applyView(btn.dataset.view, true);
+    });
   });
-
 }());
 
 
@@ -953,7 +868,7 @@ function smoothScrollTo(targetY, duration) {
           if (match) match.link.classList.add('active');
         }
       });
-    }, { rootMargin: '-15% 0px -75% 0px', threshold: 0 });
+    }, { rootMargin: '-5% 0px -60% 0px', threshold: 0 });
     spySections.forEach(function (s) { spyObs.observe(s.el); });
   }
 }());
