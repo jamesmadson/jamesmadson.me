@@ -6,7 +6,6 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("animation.gsap.js");
   eleventyConfig.addPassthroughCopy({"assets/": "assets/"});
   eleventyConfig.addPassthroughCopy("feed.html");
-  eleventyConfig.addPassthroughCopy("404.html");
   eleventyConfig.addPassthroughCopy("robots.txt");
   eleventyConfig.addPassthroughCopy("sitemap.xml");
 
