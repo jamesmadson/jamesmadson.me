@@ -150,7 +150,9 @@ permalink: /case_studies/stjudecloud/
   <section class="about about-stjude fadeIn">
     <div class="container">
       <div class="grid_3">
-        <img src="/img/stjude-logo.svg" class="client_logo" height="auto" width="auto" alt="St. Jude Cloud Logo"/>
+        <div class="client_logo_wrap">
+          <img src="/img/stjude-logo.svg" class="client_logo" height="auto" width="80px" alt="St. Jude Cloud Logo"/>
+        </div>
         <h5>St. Jude Cloud</h5>
         <h6>2019-2025</h6>
       </div>
@@ -239,9 +241,32 @@ permalink: /case_studies/stjudecloud/
       </div>
     </div>
 
-    <div class="container">
+    <div class="cs_images container">
       <div class="grid_12">
-        <img src="/img/stjude/Viz%20Hero%20lg@2x.png" width="100%" alt="Visualization Card UI"/>
+        <img src="/img/stjude/Viz%20Hero%20lg@2x.png" width="100%" alt="Visualization Community hero" loading="lazy"/>
+        <span class="cs_description">Visualization Community platform</span>
+      </div>
+    </div>
+
+    <div class="cs_images container cs_smaller">
+      <div class="grid_6">
+        <img src="/img/stjude/Viz%20Editor%20lg@2x.png" width="100%" alt="Visualization editor" loading="lazy"/>
+        <span class="cs_description">Visualization editor</span>
+      </div>
+      <div class="grid_6">
+        <img src="/img/visualization_community/viz_communities@2x.png" width="100%" alt="Communities view" loading="lazy"/>
+        <span class="cs_description">Communities view</span>
+      </div>
+    </div>
+
+    <div class="cs_images container cs_smaller">
+      <div class="grid_6">
+        <img src="/img/visualization_community/sample_data@2x.png" width="100%" alt="Sample data browser" loading="lazy"/>
+        <span class="cs_description">Sample data browser</span>
+      </div>
+      <div class="grid_6">
+        <img src="/img/visualization_community/proteinpaint@2x.png" width="100%" alt="ProteinPaint visualization" loading="lazy"/>
+        <span class="cs_description">ProteinPaint visualization</span>
       </div>
     </div>
   </section>
@@ -292,21 +317,8 @@ permalink: /case_studies/stjudecloud/
 {% include "partials/footer.njk" %}
 
 <!-- JS -->
-<script
-  src="https://code.jquery.com/jquery-1.11.0.min.js"
-  integrity="sha256-spTpc4lvj4dOkKjrGokIrHkJgNA0xMS98Pw9N7ir9oI="
-  crossorigin="anonymous"></script>
-
-<script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@14.0.0/dist/smooth-scroll.polyfills.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/ScrollMagic.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/plugins/debug.addIndicators.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
-<script type="text/javascript" src="../animation.gsap.js"></script>
-
   <script src="/assets/js/site.js" defer></script>
   <script src="/assets/js/hero-scroll.js" defer></script>
-<script type="text/javascript" src="../functions.js" defer></script>
 
 </body>
 </html>

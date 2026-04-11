@@ -207,15 +207,15 @@
   var DISPLAY_MS = 7000;
 
   var slides = [
-    'I\'m a <a href="about.html" class="highlight jm">designer</a> who makes things that feel <a href="case_studies/naturescore.html" class="highlight ns">considered</a> — for real people spending time in the real world.',
-    'I take cues from <a href="case_studies/naturedose.html" class="highlight nd">nature</a>: patient, purposeful, and grounded. It shows up in everything I make.',
-    'I don\'t run teams — I join them. I bring a clean eye, good ideas, and a lot of <a href="case_studies/pecan.html" class="highlight pecan">care</a> for getting it right.',
+    'I\'m a <a href="about.html" class="highlight jm">designer</a> who makes things that feel <a href="case_studies/naturescore.html" class="highlight ns">considered</a>, for real people spending time in the real world.',
+    'I take cues from <a href="case_studies/naturedose.html" class="highlight nd">nature</a>: patient, purposeful, and grounded. It shows up in everything I <a href="case_studies/naturequant.html" class="highlight nq">make</a>.',
+    'I don\'t run teams. I <a href="case_studies/pecan.html" class="highlight pecan">join them</a>. I bring a clean eye, good ideas, and a lot of care for getting it right.',
     'I enjoy the <a href="case_studies/visualization_community.html" class="highlight viz">process</a>. The best answers come from sitting with a problem long enough that the solution feels obvious.',
-    'I\'ve shipped things people actually use — apps that help them <a href="case_studies/naturedose.html" class="highlight nd">get outside</a>, tools that make sense of <a href="case_studies/visualization_community.html" class="highlight viz">complex data</a>.',
-    'I want the work to be <a href="case_studies/naturescore.html" class="highlight ns">useful</a> — genuinely helpful. Something the person on the other end is glad exists.',
-    'I care about whether something feels trustworthy, surprising, or simply right.',
-    'I\'ve worked embedded on teams and brought in to reset direction. Either way I always leave things better than I found them.',
-    'I move between disciplines because the problems are always changing. I adapt to the problem in order to find the best solution.'
+    'I\'ve <a href="case_studies/naturedose.html" class="highlight nd">shipped</a> things people actually use: apps that help them get outside, tools that make sense of <a href="case_studies/visualization_community.html" class="highlight viz">complex data</a>.',
+    'I want the work to be <a href="case_studies/naturescore.html" class="highlight ns">useful</a>. Genuinely helpful. Something the person on the other end is glad exists.',
+    'I care about whether something feels trustworthy, surprising, or simply right. <a href="case_studies/pecan.html" class="highlight pecan">That shows.</a>',
+    'I\'ve <a href="case_studies/visualization_community.html" class="highlight viz">worked</a> embedded on teams and brought in to reset direction. Either way I leave things better than I found them.',
+    'I <a href="case_studies/naturescore.html" class="highlight ns">move between disciplines</a> because the problems are always changing. I adapt to find the best solution.'
   ];
 
   // Parse HTML string into a flat segment list
@@ -851,6 +851,19 @@ function smoothScrollTo(targetY, duration) {
       try { localStorage.setItem('csView', btn.dataset.view); } catch (e) {}
     });
   });
+
+  // --- Hide primary nav when case study nav is stuck at top ---
+  var siteHdr = document.querySelector('.site_header');
+  if (siteHdr) {
+    var navOriginalTop = csNav.getBoundingClientRect().top + window.pageYOffset;
+    window.addEventListener('scroll', function () {
+      if (window.pageYOffset >= navOriginalTop) {
+        siteHdr.classList.add('cs-nav-stuck');
+      } else {
+        siteHdr.classList.remove('cs-nav-stuck');
+      }
+    }, { passive: true });
+  }
 
   // --- Dot nav scroll spy ---
   var dotLinks = Array.prototype.slice.call(csNav.querySelectorAll('a[href^="#"]'));

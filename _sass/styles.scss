@@ -36,6 +36,7 @@ $mono: "IBM Plex Mono", "Courier New", Courier, monospace;
 :root { color-scheme: light dark; }
 
 html {
+  overflow-x: hidden;
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
 
@@ -112,8 +113,8 @@ html {
 
   // Case study nav — light theme
   .case_study_nav               { background: rgba($dark-default, 0.06); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06); }
-  .case_study_nav a             { color: rgba($dark-default, 0.5); }
-  .case_study_nav a:hover       { background: $dark-default; color: $white; }
+  .case_study_nav a             { color: rgba($dark-default, 0.55); }
+  .case_study_nav a:hover       { background: rgba($dark-default, 0.12); color: $dark-default; }
   .case_study_nav a.active      { background: $dark-default; color: $white; }
 
   // Project/case study content areas — after hero scrolls away, body is $tan
@@ -246,6 +247,7 @@ body {
   font-family: $font;
   letter-spacing: -0.01em;
   margin: 0;
+  overflow-x: hidden;
   padding-top: 5rem;
   transition: background-color 0.5s ease;
 }
@@ -425,7 +427,14 @@ ul {
   position: fixed;
   right: 0;
   top: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
   z-index: 300;
+
+  &.cs-nav-stuck {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-100%);
+  }
 }
 
 .site_name {
@@ -523,7 +532,7 @@ ul {
       font-weight: 500;
       letter-spacing: 0.01em;
       opacity: 0.5;
-      padding: 0.45rem 0.85rem;
+      padding: 0.85rem 0.85rem;
       text-decoration: none;
       transition: background 0.2s ease, opacity 0.2s ease, color 0.2s ease;
 
@@ -1070,7 +1079,7 @@ header {
 
   .jm_subtitle {
     color: rgba($white, 0.5);
-    line-height: 1.6;
+    line-height: 1.45;
     margin: 0;
     text-wrap: pretty;
 
@@ -1177,7 +1186,8 @@ header.about_header {
   font-weight: inherit;
   isolation: isolate;
   line-height: 1.2;
-  padding: 0.15em 0.3em 0.2em;
+  margin-bottom: 0.15em;
+  padding: 0.05em 0.3em 0.1em;
   position: relative;
   text-decoration: none;
   transition: background-color 0.22s ease, color 0.22s ease, box-shadow 0.22s ease;
@@ -1719,14 +1729,54 @@ header.about_header {
   &.about_naturescore { background: linear-gradient(155deg, #365800 0%, #0E1800 100%); }
   &.about_naturequant { background: linear-gradient(155deg, #0A4E22 0%, #020C07 100%); }
   &.about_viz         { background: linear-gradient(155deg, #1E4490 0%, #060A20 100%); }
-  &.about-stjude { background-color: #000000; }
+  &.about-stjude { background-color: #000000; background-attachment: scroll; }
 
   .project_title {
     font-size: clamp(2rem, 3.5vw + 1rem, 4rem); // ~32–64px
     line-height: 1.15;
   }
 
-  .client_logo { margin: 0 auto 2rem; display: block; filter: brightness(0) invert(1); }
+  .client_logo_wrap {
+    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    backdrop-filter: blur(20px) saturate(1.8);
+    background: linear-gradient(
+      160deg,
+      rgba($white, 0.22) 0%,
+      rgba($white, 0.08) 50%,
+      rgba($white, 0.04) 100%
+    );
+    border-radius: 28%;
+    border: 1px solid rgba($white, 0.18);
+    box-shadow:
+      0 2px 0 rgba($white, 0.3) inset,
+      0 -1px 0 rgba($white, 0.06) inset,
+      0 20px 60px rgba(0, 0, 0, 0.35),
+      0 4px 16px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 2rem;
+    padding: 1.5rem;
+    position: relative;
+    width: 120px;
+    height: 120px;
+
+    // Specular highlight sweep across the top third
+    &::before {
+      border-radius: 28% 28% 50% 50% / 20% 20% 60% 60%;
+      background: linear-gradient(
+        180deg,
+        rgba($white, 0.28) 0%,
+        rgba($white, 0.0) 100%
+      );
+      content: "";
+      inset: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+  }
+
+  .client_logo { display: block; filter: brightness(0) invert(1); margin: 0; width: 60px; height: auto; position: relative; z-index: 1; }
 }
 
 .designer_shapes {
@@ -1934,10 +1984,10 @@ sup.reg {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 0;
+  gap: 0.2rem;
   list-style: none;
   margin: 0;
-  padding: 0.4rem 0.6rem;
+  padding: 0.5rem 0.8rem;
   position: sticky;
   top: 0;
   width: 100%;
@@ -1952,16 +2002,16 @@ sup.reg {
   a {
     align-items: center;
     border-radius: 1.5rem;
-    color: rgba($white, 0.6);
+    color: rgba($white, 0.65);
     display: flex;
     gap: 0.4rem;
-    padding: 0.35rem 0.75rem;
+    padding: 0.45rem 0.9rem;
     text-decoration: none;
     transition: background 0.2s ease, color 0.2s ease;
 
     &:hover {
-      background: $white;
-      color: $dark-default;
+      background: rgba($white, 0.15);
+      color: $white;
     }
   }
 
@@ -1973,9 +2023,9 @@ sup.reg {
   .cs_nav_label {
     color: inherit;
     font-family: $mono;
-    font-size: 0.65rem;
+    font-size: 0.72rem;
     font-weight: 400;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.07em;
     text-transform: uppercase;
     white-space: nowrap;
   }
@@ -3177,6 +3227,57 @@ html.theme-light {
 }
 
 // ============================================================
+// Aicher-style systematic icon / image grid
+// ============================================================
+
+.cs_icon_grid {
+  border-left: 1px solid rgba($white, 0.1);
+  border-top: 1px solid rgba($white, 0.1);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin: 2rem 0 3rem;
+
+  .cs_icon_grid_cell {
+    align-items: center;
+    aspect-ratio: 1 / 1;
+    border-bottom: 1px solid rgba($white, 0.1);
+    border-right: 1px solid rgba($white, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    justify-content: center;
+    padding: 1.5rem;
+
+    img, svg {
+      display: block;
+      height: 44%;
+      object-fit: contain;
+      width: 44%;
+    }
+
+    .cs_icon_label {
+      font-family: $mono;
+      font-size: 0.575rem;
+      letter-spacing: 0.07em;
+      opacity: 0.38;
+      text-align: center;
+      text-transform: uppercase;
+    }
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+html.theme-light .cs_icon_grid {
+  border-color: rgba($dark-default, 0.1);
+  .cs_icon_grid_cell {
+    border-color: rgba($dark-default, 0.1);
+  }
+}
+
+// ============================================================
 // More Work (case study page footer section)
 // ============================================================
 
@@ -3933,7 +4034,8 @@ html.theme-light .site_footer {
   .project {
     padding-bottom: 2rem;
 
-    .client_logo { height: 120px; margin-top: 0; padding-bottom: 0; width: 120px; }
+    .client_logo_wrap { width: 90px; height: 90px; padding: 1rem; margin-bottom: 1.5rem; }
+    .client_logo { width: 46px; }
     .project_title { line-height: 1.2; }
     p { padding-right: 0; }
 
