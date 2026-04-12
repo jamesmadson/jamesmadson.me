@@ -154,7 +154,7 @@ html {
   footer { background-color: $dark-default; a { color: $white; } h3 { color: $white; } }
 
   // Project detail page headers — light mode (accent at top-right, fades to tan)
-  .about.about_naturedose  { background: linear-gradient(to bottom left, rgba(#1E6060, 0.4) 0%, $tan 100%); }
+  .about.about_naturedose  { background: linear-gradient(to bottom left, rgba(#009933, 0.4) 0%, $tan 100%); }
   .about.about_pecan       { background: linear-gradient(to bottom left, rgba(#145674, 0.4) 0%, $tan 100%); }
   .about.about_naturescore { background: linear-gradient(to bottom left, rgba(#365800, 0.4) 0%, $tan 100%); }
   .about.about_naturequant { background: linear-gradient(to bottom left, rgba(#0A4E22, 0.4) 0%, $tan 100%); }
@@ -247,7 +247,7 @@ body {
   font-family: $font;
   letter-spacing: -0.01em;
   margin: 0;
-  overflow-x: hidden;
+  overflow-x: clip;
   padding-top: 5rem;
   transition: background-color 0.5s ease;
 }
@@ -505,17 +505,18 @@ ul {
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
   display: flex;
-  padding: 0.125rem 1rem;
+  isolation: isolate;
+  padding: 0.5rem 0.75rem;
 }
 
 .nav_large {
   color: $white;
   list-style: none;
-  transition: all 0.3s ease;
 
   ul {
     align-items: center;
     display: flex;
+    gap: 0.5rem;
     margin: 0;
     padding: 0;
   }
@@ -532,9 +533,10 @@ ul {
       font-weight: 500;
       letter-spacing: 0.01em;
       opacity: 0.5;
-      padding: 0.85rem 0.85rem;
+      padding: 0.5rem 0.85rem;
       text-decoration: none;
       transition: background 0.2s ease, opacity 0.2s ease, color 0.2s ease;
+      will-change: opacity;
 
       &:hover {
         background: rgba($white, 0.15);
@@ -710,8 +712,10 @@ html.theme-light #navlink { color: $dark-default; }
   // Invisible bridge: prevents the dropdown from closing when
   // moving the mouse from the link down to the panel
   &::after {
+    background: transparent;
     bottom: -0.75rem;
     content: '';
+    display: block;
     height: 0.75rem;
     left: -1rem;
     position: absolute;
@@ -727,6 +731,9 @@ html.theme-light #navlink { color: $dark-default; }
   background: rgba(#0b0b0b, 0.88);
   border-radius: 1rem;
   box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba($white, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
   left: 50%;
   min-width: 290px;
   opacity: 0;
@@ -735,28 +742,31 @@ html.theme-light #navlink { color: $dark-default; }
   position: absolute;
   top: calc(100% + 0.75rem);
   transform: translateX(-50%) translateY(-6px);
-  transition: opacity 0.18s ease, transform 0.18s ease;
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+  visibility: hidden;
   z-index: 100;
 
   .nav_dropdown_trigger:hover & {
     opacity: 1;
     pointer-events: auto;
     transform: translateX(-50%) translateY(0);
+    visibility: visible;
   }
 }
 
 .nav_dropdown_item {
   align-items: center;
-  border-radius: 0.625rem;
+  border-radius: 0.75rem;
   color: inherit;
   display: flex;
   gap: 0.75rem;
+  opacity: 1;
   padding: 0.5rem 0.625rem;
   text-decoration: none;
-  transition: background 0.15s ease;
+  transition: background 0.18s ease, opacity 0.18s ease;
 
   &:hover,
-  &.active { background: rgba($white, 0.08); border-radius: 0.625rem; padding: 0.5rem 0.625rem; opacity: 1; }
+  &.active { background: rgba($white, 0.08); }
 
   img {
     border-radius: 0.375rem;
@@ -844,7 +854,7 @@ html.theme-light {
 
     &.about  { background-color: $orange; }
     &.pecan  { background-color: $cyan; }
-    &.nd     { background-color: $teal; }
+    &.nd     { background-color: $green; }
     &.ns     { background-color: $lime; }
     &.nq     { background-color: $green; }
     &.viz    { background-color: $blue; }
@@ -1117,6 +1127,35 @@ header.about_header {
   }
 }
 
+// About page meta — right column (time/weather + links)
+.about_header_meta {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+// About page meta links (GitHub + Resume near time/weather)
+.about_meta_links {
+  border-top: 1px solid rgba($white, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+}
+
+html.theme-light body .about_meta_links {
+  border-top-color: rgba($dark-default, 0.1);
+}
+
+// Clients section — extra breathing room below
+.about_clients {
+  padding-bottom: 5rem;
+}
+
 .about_services {
   .services_list {
     display: flex;
@@ -1138,21 +1177,12 @@ header.about_header {
 
 
 // ============================================================
-// Hero cursor (typewriter animation)
+// Hero crossfade transition
 // ============================================================
 
-.hero_cursor {
-  border-right: 0.08em solid currentColor;
-  display: inline-block;
-  margin-left: 0.05em;
-  opacity: 0.6;
-  vertical-align: baseline;
-  animation: heroCursorBlink 0.7s step-end infinite;
-}
-
-@keyframes heroCursorBlink {
-  0%, 100% { opacity: 0.6; }
-  50%       { opacity: 0; }
+#hero_rotating {
+  // Transition set inline by JS, but ensure the element is a stable block
+  display: block;
 }
 
 
@@ -1252,9 +1282,9 @@ header.about_header {
     &::after { background-color: color.adjust($lime, $lightness: -10%); color: $white; content: "NatureScore"; animation: labelReveal 2.5s ease-in-out 1.3s; }
   }
   &.nd {
-    &:hover, &:active { background-color: $teal; color: $white; box-shadow: 0 0 0 1px $teal; }
-    &::before { background-color: $teal; animation: bgShimmer 2.5s ease-in-out 1.6s; }
-    &::after { background-color: color.adjust($teal, $lightness: -10%); content: "NatureDose"; animation: labelReveal 2.5s ease-in-out 1.6s; }
+    &:hover, &:active { background-color: $green; color: $white; box-shadow: 0 0 0 1px $green; }
+    &::before { background-color: $green; animation: bgShimmer 2.5s ease-in-out 1.6s; }
+    &::after { background-color: color.adjust($green, $lightness: -10%); content: "NatureDose"; animation: labelReveal 2.5s ease-in-out 1.6s; }
   }
 }
 
@@ -1394,9 +1424,9 @@ header.about_header {
   .image_waves {
     bottom: 300px;
     display: block;
+    left: 0;
     overflow: hidden;
     position: absolute;
-    right: 0;
     z-index: 1;
   }
 }
@@ -1588,7 +1618,7 @@ header.about_header {
       }
 
       // Per-project gradients + accent + fade vars
-      &.nd     { background: linear-gradient(155deg, #1E6060 0%, #071A1A 100%); --wli-accent: #1E6060; --card-fade: #071A1A; }
+      &.nd     { background: linear-gradient(155deg, #009933 0%, #001a0a 100%); --wli-accent: #009933; --card-fade: #001a0a; }
       &.viz    { background: linear-gradient(155deg, #1E4490 0%, #060A20 100%); --wli-accent: #1E4490; --card-fade: #060A20; }
       &.ns     { background: linear-gradient(155deg, #365800 0%, #0E1800 100%); --wli-accent: #365800; --card-fade: #0E1800; }
       &.nq     { background: linear-gradient(155deg, #0A4E22 0%, #020C07 100%); --wli-accent: #0A4E22; --card-fade: #020C07; }
@@ -1724,7 +1754,27 @@ header.about_header {
     padding-top: 13rem;
   }
 
-  &.about_naturedose  { background: linear-gradient(155deg, #1E6060 0%, #071A1A 100%); }
+  &.about_naturedose {
+    background: linear-gradient(155deg, #009933 0%, #001a0a 100%);
+
+    .client_logo_wrap {
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+      background: none;
+      border: 2px solid rgba($white, 0.25);
+      overflow: hidden;
+      padding: 0;
+
+      &::before { display: none; }
+    }
+
+    .client_logo {
+      filter: none;
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+  }
   &.about_pecan       { background: linear-gradient(155deg, #145674 0%, #030E14 100%); }
   &.about_naturescore { background: linear-gradient(155deg, #365800 0%, #0E1800 100%); }
   &.about_naturequant { background: linear-gradient(155deg, #0A4E22 0%, #020C07 100%); }
@@ -1854,10 +1904,30 @@ header.about_header {
   }
 
   .experience_role {
+    align-items: center;
     color: $white;
+    display: flex;
+    flex-wrap: wrap;
     font-size: 1.05rem;
     font-weight: bold;
+    gap: 0.5rem;
     margin: 0 0 0.4rem;
+  }
+
+  .experience_badge {
+    background: rgba($cyan, 0.12);
+    border: 1px solid rgba($cyan, 0.25);
+    border-radius: 0.25em;
+    color: $cyan;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    padding: 0.15em 0.5em;
+    text-transform: uppercase;
+  }
+
+  .experience_item--current {
+    .experience_company { color: rgba($white, 0.9); }
   }
 
   p {
@@ -1867,6 +1937,108 @@ header.about_header {
     margin: 0;
   }
 }
+
+// ============================================================
+// 6th Man hover photo
+// ============================================================
+
+.sixth_man_photo,
+.cursor_hover_photo {
+  border: 6px solid $white;
+  border-bottom-width: 22px;
+  border-radius: 2px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  object-fit: cover;
+  object-position: center top;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  transform-origin: bottom center;
+  transition: opacity 0.25s ease;
+  z-index: 9999;
+
+  &.is-visible {
+    opacity: 1;
+  }
+}
+
+.sixth_man_photo {
+  height: 288px;
+  rotate: 10deg;
+  width: 202px;
+}
+
+.cursor_hover_photo {
+  height: 300px;
+  width: 510px;
+}
+
+
+// ============================================================
+// Contact Page
+// ============================================================
+
+.contact_page {
+  padding-top: 4rem;
+  padding-bottom: 8rem;
+}
+
+.contact_email_btn {
+  background: none;
+  border: 1px solid rgba($white, 0.2);
+  border-radius: 0.5rem;
+  color: $white;
+  cursor: pointer;
+  display: inline-block;
+  font-family: $mono;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.25rem;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    background: rgba($white, 0.08);
+    border-color: rgba($white, 0.4);
+  }
+
+  &:active {
+    background: rgba($white, 0.14);
+  }
+}
+
+.contact_links {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.contact_availability_label {
+  color: rgba($white, 0.35);
+  font-family: $mono;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.5rem;
+  text-transform: uppercase;
+}
+
+.contact_availability {
+  color: rgba($white, 0.7);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+html.theme-light body {
+  .contact_email_btn {
+    border-color: rgba($dark-default, 0.2);
+    color: $dark-default;
+    &:hover { background: rgba($dark-default, 0.06); border-color: rgba($dark-default, 0.4); }
+  }
+  .contact_availability_label { color: rgba($dark-default, 0.35); }
+  .contact_availability { color: rgba($dark-default, 0.7); }
+}
+
 
 .colophon {
   border-top: 1px solid rgba($white, 0.1);
@@ -2335,7 +2507,7 @@ html.theme-light {
   &:last-child { border-bottom: 1px solid rgba($white, 0.1); }
 
   // Per-project CSS custom properties
-  &.nd     { --wli-accent: #1E6060; --wli-gradient: linear-gradient(155deg, #1E6060 0%, #071A1A 100%); }
+  &.nd     { --wli-accent: #009933; --wli-gradient: linear-gradient(155deg, #009933 0%, #001a0a 100%); }
   &.viz    { --wli-accent: #1E4490; --wli-gradient: linear-gradient(155deg, #1E4490 0%, #060A20 100%); }
   &.ns     { --wli-accent: #365800; --wli-gradient: linear-gradient(155deg, #365800 0%, #0E1800 100%); }
   &.nq     { --wli-accent: #0A4E22; --wli-gradient: linear-gradient(155deg, #0A4E22 0%, #020C07 100%); }
@@ -2857,7 +3029,7 @@ body.image-feed {
     }
 
     &.nq    { background-blend-mode: soft-light; background-color: $green; background-image: url("/img/naturequant/naturequant_title_bg@2x.png"); }
-    &.nd    { background-blend-mode: soft-light; background-color: $teal;  background-image: url("/img/naturedose/naturedose_title_bg@2x.png"); }
+    &.nd    { background-color: $green; }
     &.ns    { background-blend-mode: soft-light; background-color: $lime;  background-image: url("/img/naturescore/naturescore_title_bg@2x.png"); }
     &.sj    { background-color: $blue; }
     &.pecan { background-blend-mode: soft-light; background-color: $cyan;  background-image: url("/img/pecan/pecan_title_bg@2x.png"); }
@@ -2909,7 +3081,15 @@ body.image-feed {
 
   ul { list-style: initial; li { color: $text-muted; } }
 
-  .cs_content { margin-bottom: 4rem; margin-top: 4rem; scroll-margin-top: 9rem; }
+  .cs_content {
+    margin-bottom: 4rem;
+    margin-top: 4rem;
+    scroll-margin-top: 9rem;
+
+    // Strip top margin from first element in every grid cell so section titles
+    // and adjacent paragraph text start on the same baseline
+    > [class*="grid_"] > *:first-child { margin-top: 0; }
+  }
 
   .cs_images {
     &.cs_smaller { padding: 0; }
@@ -2920,7 +3100,7 @@ body.image-feed {
       color: rgba($white, 0.4);
       display: block;
       font-family: $mono;
-      font-size: 0.6rem;
+      font-size: 0.75rem;
       letter-spacing: 0.05em;
       margin: 0.4rem 0 0;
       text-transform: uppercase;
@@ -3168,63 +3348,6 @@ html.theme-light {
   }
 }
 
-.nd_icon_carousel_wrapper {
-  align-items: center;
-  display: flex;
-  gap: 1.5rem;
-  padding: 2rem 3rem;
-}
-
-.nd_carousel_viewport {
-  background: rgba($white, 0.05);
-  border-radius: 1.5rem;
-  flex: 1;
-  overflow: hidden;
-}
-
-.nd_carousel_track {
-  display: flex;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
-}
-
-.nd_carousel_slide {
-  align-items: center;
-  display: flex;
-  flex: 0 0 100%;
-  justify-content: center;
-  min-height: 380px;
-  padding: 3rem;
-
-  img {
-    max-height: 300px;
-    max-width: 100%;
-    object-fit: contain;
-  }
-}
-
-.nd_carousel_btn {
-  all: unset;
-  color: rgba($white, 0.45);
-  cursor: pointer;
-  font-family: $mono;
-  font-size: 1.75rem;
-  line-height: 1;
-  padding: 0.5rem;
-  transition: color 0.2s ease;
-
-  &:hover { color: $white; }
-}
-
-.nd_carousel_counter {
-  color: rgba($white, 0.35);
-  font-family: $mono;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  margin-top: 0;
-  padding-bottom: 1rem;
-  text-align: center;
-}
 
 // ============================================================
 // Aicher-style systematic icon / image grid
@@ -3565,8 +3688,11 @@ blockquote {
   background: rgba($white, 0.06);
 
   &.hwc_img--empty {
-    background: rgba($white, 0.04);
-    border: 1px dashed rgba($white, 0.1);
+    align-items: center;
+    background: radial-gradient(ellipse at 60% 40%, rgba($cyan, 0.08) 0%, rgba($white, 0.02) 70%);
+    border: 1px dashed rgba($white, 0.12);
+    display: flex;
+    justify-content: center;
   }
 
   img {
@@ -3576,6 +3702,32 @@ blockquote {
     transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     width: 100%;
   }
+}
+
+.hwc_nda_visual {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.hwc_nda_icon {
+  color: rgba($white, 0.2);
+}
+
+.hwc_nda_dot {
+  animation: hwcDotPulse 2.4s ease-in-out infinite;
+  background: $cyan;
+  border-radius: 50%;
+  display: inline-block;
+  height: 5px;
+  margin-right: 0.35em;
+  vertical-align: middle;
+  width: 5px;
+}
+
+@keyframes hwcDotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.35; transform: scale(0.7); }
 }
 
 .hwc_info {
@@ -3601,12 +3753,42 @@ blockquote {
 }
 
 .hwc_nda_label {
-  color: rgba($white, 0.3);
+  align-items: center;
+  color: rgba($white, 0.4);
+  display: flex;
   font-family: $mono;
   font-size: 0.7rem;
   letter-spacing: 0.06em;
   margin-top: 0.25rem;
   text-transform: uppercase;
+}
+
+// Coming Soon work cards
+.home_work_soon {
+  padding-top: 0;
+
+  .home_work_title {
+    color: $white;
+    font-size: clamp(0.9rem, 0.6vw + 0.6rem, 1.05rem);
+    opacity: 1;
+  }
+}
+
+html.theme-light body .home_work_soon .home_work_title {
+  color: $dark-default;
+  opacity: 0.8;
+}
+
+.hwc_soon {
+  .hwc_img {
+    opacity: 0.45;
+    transition: opacity 0.35s ease, transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .hwc_title,
+  .hwc_company { opacity: 0.45; }
+
+  &:hover .hwc_img { opacity: 0.7; }
 }
 
 html.theme-light body {
@@ -3615,14 +3797,15 @@ html.theme-light body {
   .hwc_img {
     background: rgba($dark-default, 0.05);
     &.hwc_img--empty {
-      background: rgba($dark-default, 0.03);
+      background: radial-gradient(ellipse at 60% 40%, rgba($teal, 0.07) 0%, rgba($dark-default, 0.02) 70%);
       border-color: rgba($dark-default, 0.1);
     }
   }
 
+  .hwc_nda_icon { color: rgba($dark-default, 0.15); }
   .hwc_company { color: rgba($dark-default, 0.45); }
   .hwc_title   { color: $dark-default; opacity: 0.8; }
-  .hwc_nda_label { color: rgba($dark-default, 0.3); }
+  .hwc_nda_label { color: rgba($dark-default, 0.4); }
 }
 
 
@@ -3837,10 +4020,54 @@ html.theme-light .about_values {
 
   .site_footer_tagline {
     color: rgba($white, 0.25);
+    cursor: default;
     font-family: $mono;
     font-size: 0.72rem;
     letter-spacing: 0.04em;
+
+    .tl_ch {
+      display: inline-block;
+      transition: color 0.2s ease, transform 0.3s ease;
+    }
+
+    &.tl_rainbow .tl_ch {
+      animation: tlBounce 0.6s ease calc(var(--i) * 0.04s) both,
+                 tlRainbow 2.4s linear calc(var(--i) * 0.04s) infinite;
+    }
   }
+}
+
+.tl_sparkle {
+  animation: tlSparkle 0.6s ease forwards;
+  font-size: 0.65rem;
+  pointer-events: none;
+  position: absolute;
+  user-select: none;
+  z-index: 9999;
+}
+
+@keyframes tlSparkle {
+  0%   { opacity: 1; transform: translate(0, 0) scale(1); }
+  100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0.3); }
+}
+
+@keyframes tlBounce {
+  0%   { transform: translateY(0); }
+  30%  { transform: translateY(-6px); }
+  55%  { transform: translateY(2px); }
+  75%  { transform: translateY(-2px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes tlRainbow {
+  0%   { color: #ff4e4e; }
+  14%  { color: #ff9a00; }
+  28%  { color: #ffe600; }
+  42%  { color: #4cff72; }
+  57%  { color: #00d4ff; }
+  71%  { color: #7b6cff; }
+  85%  { color: #ff6ef7; }
+  100% { color: #ff4e4e; }
 }
 
 html.theme-light .site_footer {
@@ -3960,7 +4187,8 @@ html.theme-light .site_footer {
       white-space: nowrap;
     }
   }
-  .nav_container {
+  .nav_container,
+  html.theme-light body .nav_container {
     background: none;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;

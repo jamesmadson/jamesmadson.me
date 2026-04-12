@@ -196,100 +196,48 @@
 
 
 // ============================================================
-// Hero — text cycling with typewriter effect
+// Hero — text cycling with crossfade transition
 // ============================================================
 (function () {
   var el = document.getElementById('hero_rotating');
   if (!el) return;
 
-  var CLEAR_MS   = 600;
-  var TYPE_MS    = 1100;
+  var FADE_MS    = 320;
   var DISPLAY_MS = 7000;
 
   var slides = [
-    'I\'m a <a href="about.html" class="highlight jm">designer</a> who makes things that feel <a href="case_studies/naturescore.html" class="highlight ns">considered</a>, for real people spending time in the real world.',
-    'I take cues from <a href="case_studies/naturedose.html" class="highlight nd">nature</a>: patient, purposeful, and grounded. It shows up in everything I <a href="case_studies/naturequant.html" class="highlight nq">make</a>.',
-    'I don\'t run teams. I <a href="case_studies/pecan.html" class="highlight pecan">join them</a>. I bring a clean eye, good ideas, and a lot of care for getting it right.',
-    'I enjoy the <a href="case_studies/visualization_community.html" class="highlight viz">process</a>. The best answers come from sitting with a problem long enough that the solution feels obvious.',
-    'I\'ve <a href="case_studies/naturedose.html" class="highlight nd">shipped</a> things people actually use: apps that help them get outside, tools that make sense of <a href="case_studies/visualization_community.html" class="highlight viz">complex data</a>.',
-    'I want the work to be <a href="case_studies/naturescore.html" class="highlight ns">useful</a>. Genuinely helpful. Something the person on the other end is glad exists.',
-    'I care about whether something feels trustworthy, surprising, or simply right. <a href="case_studies/pecan.html" class="highlight pecan">That shows.</a>',
-    'I\'ve <a href="case_studies/visualization_community.html" class="highlight viz">worked</a> embedded on teams and brought in to reset direction. Either way I leave things better than I found them.',
-    'I <a href="case_studies/naturescore.html" class="highlight ns">move between disciplines</a> because the problems are always changing. I adapt to find the best solution.'
+    'I\'m a <a href="/about/" class="highlight jm">designer</a> who makes things that feel <a href="/case_studies/naturedose/" class="highlight nd">considered</a>, for real people spending time in the real world.',
+    'I take cues from <a href="/case_studies/naturedose/" class="highlight nd">nature</a>: patient, purposeful, and grounded. It shows up in everything I <a href="/case_studies/pecan/" class="highlight pecan">make</a>.',
+    'I don\'t run teams. I <a href="/case_studies/pecan/" class="highlight pecan">join them</a>. I bring a clean eye, good ideas, and a lot of care for getting it right.',
+    'I enjoy the <a href="/about/" class="highlight jm">process</a>. The best answers come from sitting with a problem long enough that the solution feels obvious.',
+    'I\'ve <a href="/case_studies/naturedose/" class="highlight nd">built</a> things people actually use: apps that help them get outside, tools that make sense of <a href="/case_studies/pecan/" class="highlight pecan">complex data</a>.',
+    'I want the work to be <a href="/case_studies/pecan/" class="highlight pecan">useful</a>. Genuinely helpful. Something the person on the other end is glad exists.',
+    'I care about whether something feels trustworthy, surprising, or simply right. <a href="/case_studies/pecan/" class="highlight pecan">That shows.</a>',
+    'I\'ve <a href="/about/" class="highlight jm">worked</a> embedded on teams and brought in to reset direction. Either way I leave things better than I found them.',
+    'I <a href="/about/" class="highlight jm">move between disciplines</a> because the problems are always changing. I adapt to find the best solution.',
+    'I try to understand the whole problem before solving any part of it. <a href="/case_studies/pecan/" class="highlight pecan">That\'s where the real work is.</a>',
+    'I\'d rather <a href="/case_studies/naturedose/" class="highlight nd">design the system</a> that helps a team move faster than just move fast alone.',
+    'I stay curious about new approaches. Not for novelty — because better thinking makes <a href="/case_studies/naturedose/" class="highlight nd">better work</a>.'
   ];
 
-  // Parse HTML string into a flat segment list
-  function parse(html) {
-    var tmp = document.createElement('div');
-    tmp.innerHTML = html;
-    var segs = [];
-    tmp.childNodes.forEach(function (node) {
-      if (node.nodeType === 3) {
-        segs.push({ type: 'text', text: node.textContent });
-      } else if (node.nodeName === 'A') {
-        segs.push({ type: 'link', href: node.getAttribute('href'), cls: node.getAttribute('class'), text: node.textContent });
-      }
-    });
-    return segs;
-  }
-
-  function countChars(segs) {
-    return segs.reduce(function (n, s) { return n + s.text.length; }, 0);
-  }
-
-  // Render the first `n` visible characters; append cursor if typing
-  function render(segs, n, cursor) {
-    var html = '';
-    var shown = 0;
-    for (var i = 0; i < segs.length; i++) {
-      if (shown >= n) break;
-      var s = segs[i];
-      var take = Math.min(s.text.length, n - shown);
-      var text = s.text.slice(0, take);
-      shown += take;
-      html += s.type === 'text' ? text : '<a href="' + s.href + '" class="' + s.cls + '">' + text + '</a>';
-    }
-    if (cursor) html += '<span class="hero_cursor" aria-hidden="true"></span>';
+  function renderFull(html) {
     el.innerHTML = html;
   }
 
-  var parsed = slides.map(parse);
-  var counts = parsed.map(countChars);
   var idx = 0;
 
-  // Measure the tallest slide and lock that height so the page doesn't shift
+  // Measure the tallest slide and lock height so page doesn't shift
   var maxH = 0;
-  parsed.forEach(function (segs, i) {
-    render(segs, counts[i], false);
+  slides.forEach(function (html) {
+    el.innerHTML = html;
     maxH = Math.max(maxH, el.offsetHeight);
   });
   el.style.minHeight = maxH + 'px';
 
-  render(parsed[0], counts[0], false);
+  // Set up crossfade transition
+  el.style.transition = 'opacity ' + FADE_MS + 'ms ease, transform ' + FADE_MS + 'ms ease';
+  renderFull(slides[0]);
 
-  function runClear(segs, total, done) {
-    var start = null;
-    function step(ts) {
-      if (!start) start = ts;
-      var p = Math.min((ts - start) / CLEAR_MS, 1);
-      render(segs, Math.round((1 - p) * total), true);
-      if (p < 1) requestAnimationFrame(step); else done();
-    }
-    requestAnimationFrame(step);
-  }
-
-  function runType(segs, total, done) {
-    var start = null;
-    function step(ts) {
-      if (!start) start = ts;
-      var p = Math.min((ts - start) / TYPE_MS, 1);
-      render(segs, Math.round(p * total), p < 1);
-      if (p < 1) requestAnimationFrame(step); else done();
-    }
-    requestAnimationFrame(step);
-  }
-
-  // Scheduling with pause support
   var loopTimer = null;
 
   function updateDots() {
@@ -299,18 +247,30 @@
     });
   }
 
-  function cycle() {
-    runClear(parsed[idx], counts[idx], function () {
-      idx = (idx + 1) % slides.length;
+  function goToSlide(target, callback) {
+    // Fade out
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(6px)';
+    setTimeout(function () {
+      idx = ((target % slides.length) + slides.length) % slides.length;
       updateDots();
-      runType(parsed[idx], counts[idx], function () {});
-    });
+      renderFull(slides[idx]);
+      // Fade in
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+      if (callback) callback();
+    }, FADE_MS + 20);
+  }
+
+  function cycle() {
+    goToSlide(idx + 1);
   }
 
   function scheduleCycle() {
     clearTimeout(loopTimer);
     loopTimer = setTimeout(function () {
-      cycle(); scheduleCycle();
+      cycle();
+      scheduleCycle();
     }, DISPLAY_MS);
   }
 
@@ -339,13 +299,22 @@
       var target = parseInt(dot.dataset.slide, 10);
       if (target === idx) return;
       clearTimeout(loopTimer);
-      runClear(parsed[idx], counts[idx], function () {
-        idx = target;
-        updateDots();
-        runType(parsed[idx], counts[idx], function () { scheduleCycle(); });
-      });
+      goToSlide(target, function () { if (!hovered) scheduleCycle(); });
     });
   });
+
+  // Pause on hover, resume on mouse out
+  var hovered = false;
+  if (heroHeader) {
+    heroHeader.addEventListener('mouseenter', function () {
+      hovered = true;
+      clearTimeout(loopTimer);
+    });
+    heroHeader.addEventListener('mouseleave', function () {
+      hovered = false;
+      scheduleCycle();
+    });
+  }
 
   scheduleCycle();
 }());
@@ -916,5 +885,50 @@ function smoothScrollTo(targetY, duration) {
     setTimeout(function () {
       window.location.href = dest;
     }, 280);
+  });
+}());
+
+
+// ============================================================
+// Footer tagline — rainbow wave on hover
+// ============================================================
+(function () {
+  var tagline = document.querySelector('.site_footer_tagline');
+  if (!tagline) return;
+
+  var text = tagline.textContent;
+  tagline.setAttribute('aria-label', text);
+  tagline.innerHTML = text.split('').map(function (ch, i) {
+    if (ch === ' ') return '<span class="tl_ch" aria-hidden="true">&nbsp;</span>';
+    return '<span class="tl_ch" style="--i:' + i + '" aria-hidden="true">' + ch + '</span>';
+  }).join('');
+
+  function spawnSparkle() {
+    var s = document.createElement('span');
+    s.className = 'tl_sparkle';
+    s.textContent = ['✦','✧','★','⋆','·'][Math.floor(Math.random() * 5)];
+    var rect = tagline.getBoundingClientRect();
+    s.style.left = (rect.left + Math.random() * rect.width) + 'px';
+    s.style.top  = (rect.top + window.scrollY + Math.random() * rect.height) + 'px';
+    s.style.setProperty('--dx', (Math.random() * 60 - 30) + 'px');
+    s.style.setProperty('--dy', -(Math.random() * 50 + 15) + 'px');
+    s.style.animationDuration = (Math.random() * 0.4 + 0.5) + 's';
+    document.body.appendChild(s);
+    s.addEventListener('animationend', function () { s.parentNode && s.parentNode.removeChild(s); });
+  }
+
+  var sparkleTimer = null;
+  tagline.addEventListener('mouseenter', function () {
+    tagline.classList.add('tl_rainbow');
+    (function burst() {
+      spawnSparkle();
+      spawnSparkle();
+      sparkleTimer = setTimeout(burst, 160);
+    }());
+  });
+  tagline.addEventListener('mouseleave', function () {
+    tagline.classList.remove('tl_rainbow');
+    clearTimeout(sparkleTimer);
+    sparkleTimer = null;
   });
 }());
