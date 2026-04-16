@@ -5076,17 +5076,7 @@ blockquote span {
 }
 
 .hwc.health .hwc_img--empty {
-  background: radial-gradient(ellipse at 50% 35%, rgba(255, 255, 255, 0.22) 0%, transparent 62%), linear-gradient(145deg, #ffd580 0%, #ffb347 45%, #ff8c69 100%);
-}
-
-.hwc.health.hwc_soon .hwc_img {
-  opacity: 0.78;
-}
-.hwc.health.hwc_soon .hwc_nda_icon {
-  color: rgba(255, 255, 255, 0.45);
-}
-.hwc.health.hwc_soon:hover .hwc_img {
-  opacity: 0.92;
+  background: radial-gradient(ellipse at 50% 35%, rgba(255, 255, 255, 0.22) 0%, transparent 62%), linear-gradient(145deg, #ffd580 0%, #ffb347 35%, #ff8c69 60%, #b06ee3 100%);
 }
 
 .home_work_soon {
@@ -5286,6 +5276,9 @@ html.theme-light .about_meta {
 
 .about_values {
   padding-bottom: 2rem;
+}
+.about_values .value_word::after {
+  content: none;
 }
 .about_values .values_row {
   align-items: center;

@@ -4224,15 +4224,9 @@ blockquote {
 .hwc.health .hwc_img--empty {
   background:
     radial-gradient(ellipse at 50% 35%, rgba(255, 255, 255, 0.22) 0%, transparent 62%),
-    linear-gradient(145deg, #ffd580 0%, #ffb347 45%, #ff8c69 100%);
+    linear-gradient(145deg, #ffd580 0%, #ffb347 35%, #ff8c69 60%, #b06ee3 100%);
 }
 
-// Override the generic hwc_soon dim — health card reads at higher opacity
-.hwc.health.hwc_soon {
-  .hwc_img { opacity: 0.78; }
-  .hwc_nda_icon { color: rgba($white, 0.45); }
-  &:hover .hwc_img { opacity: 0.92; }
-}
 
 // Coming Soon work cards
 .home_work_soon {
