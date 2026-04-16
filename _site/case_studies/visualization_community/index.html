@@ -62,6 +62,7 @@
     <div class="nav_container">
       <nav class="nav_large">
         <ul>
+          <li><a href="/">Home</a></li>
           <li><a href="/about/">About</a></li>
           <li class="nav_dropdown_trigger">
             <a href="/#recent_work">Work</a>
@@ -75,6 +76,12 @@
               <a href="/case_studies/pecan/" class="nav_dropdown_item">
                 <div class="nav_dropdown_meta">
                   <span class="nav_dropdown_title">PeCan</span>
+                  <span class="nav_dropdown_company">St. Jude Children's Research Hospital</span>
+                </div>
+              </a>
+              <a href="/case_studies/visualization_community/" class="nav_dropdown_item">
+                <div class="nav_dropdown_meta">
+                  <span class="nav_dropdown_title">Visualization Community</span>
                   <span class="nav_dropdown_company">St. Jude Children's Research Hospital</span>
                 </div>
               </a>
@@ -100,8 +107,8 @@
   <nav class="mobile_nav_menu" id="mobilenavmenu" aria-hidden="true">
     <div class="mobile_nav_inner">
       <ul>
-        <li><a href="/index.html">Home</a></li>
-        <li><a href="/about.html">About</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about/">About</a></li>
         <li class="mobile_nav_accordion">
           <button class="mobile_nav_accordion_btn" aria-expanded="false">
             Work
@@ -110,6 +117,7 @@
           <ul class="mobile_nav_accordion_panel" aria-hidden="true">
           <li><a href="/case_studies/naturedose/">NatureDose</a></li>
           <li><a href="/case_studies/pecan/">PeCan</a></li>
+          <li><a href="/case_studies/visualization_community/">Visualization Community</a></li>
           </ul>
         </li>
         <li><a href="/contact/">Contact</a></li>
@@ -125,12 +133,7 @@
   <main id="main-content">
   <section class="about about_viz fadeIn">
     <div class="container">
-      <div class="grid_3">
-        <div class="client_logo_wrap">
-          <img src="/img/visualization_community/visualization%20community%20logo.svg" class="client_logo" height="auto" width="80px" alt="Visualization Community Logo"/>
-        </div>
-      </div>
-      <div class="grid_9">
+      <div class="grid_12">
         <h1 class="project_title">
           <span class="case_study_label">Visualization Community</span>
           Designing a new way for scientists to see and share genomic discoveries.
@@ -150,101 +153,107 @@
   </ul>
 
   <section class="project">
-    <section class="overview" id="overview">
-      <div class="container">
-        <div class="grid_3">
-          <a name="overview"></a>
-          <h3>Overview</h3>
-          <p class="role">Client</p>
-          <p>St. Jude Children’s Research Hospital</p>
-
-          <p class="role">Role</p>
-          <p>Lead Product Designer</p>
-
-          <p class="role">Website</p>
-          <a href="https://viz.stjude.cloud" class="view_project" target="_blank" rel="noreferrer">View Project <span class="arrow">↗</span></a>
-
-          <ul>
-            <li class="tag">UI/UX Design</li>
-            <li class="tag">Design Systems</li>
-            <li class="tag">Data Visualization</li>
-            <li class="tag">Strategic communication</li>
-          </ul>
-        </div>
-        <div class="grid_9">
-          <p class="leadin">Genomic visualizations at St. Jude were stuck — locked on local machines or flattened into static journal figures that lost all their interactivity the moment they were published. Researchers who wanted to revisit or share them had to start from scratch.</p>
-          <p>I led design for the Visualization Community, a platform on <a href="https://stjude.cloud" target="_blank" rel="noreferrer">St. Jude Cloud</a> that lets scientists publish, explore, and share living visualizations — without writing code. What used to take days now takes minutes.</p>
-
-          <div class="stats-container">
-            <div class="stat">
-              <span class="stat_label">Visualizations</span>
-              <div class="stat_number">80+</div>
-              <p class="stat_info">Published visualizations produced across research projects</p>
-            </div>
-
-            <div class="stat">
-              <span class="stat_label">Publications</span>
-              <div class="stat_number">38</div>
-              <p class="stat_info">Visualizations featured in Nature, Cancer Discovery, and peer-reviewed journals</p>
-            </div>
-
-            <div class="stat">
-              <span class="stat_label">Teams</span>
-              <div class="stat_number">20</div>
-              <p class="stat_info">Research teams connected across institutions</p>
-            </div>
-
-            <div class="stat">
-              <span class="stat_label">Views</span>
-              <div class="stat_number">30k+</div>
-              <p class="stat_info">Views for the leading publication visualization</p>
-            </div>
-
-            <div class="stat">
-              <span class="stat_label">Community Views</span>
-              <div class="stat_number">68k+</div>
-              <p class="stat_info">Views for the AGI Community piece</p>
-            </div>
-
-            <div class="stat">
-              <span class="stat_label">Award Noms</span>
-              <div class="stat_number">2</div>
-              <p class="stat_info">Consecutive nominations for the Visualization is Beautiful Award</p>
+    <div class="container cs_content" id="overview">
+      <div class="grid_12">
+        <h3>Overview</h3>
+        <div class="cs_meta_row">
+          <div class="cs_meta_item">
+            <span class="role">View</span>
+            <div class="cs_view_toggle" role="group" aria-label="Toggle case study view">
+              <button class="cs_view_btn" data-view="case-study" aria-pressed="true" aria-label="Case study view">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><line x1="2" y1="4" x2="12" y2="4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="2" y1="7" x2="12" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="2" y1="10" x2="12" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </button>
+              <button class="cs_view_btn" data-view="image-feed" aria-pressed="false" aria-label="Image grid view">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2" y="2" width="4" height="4" rx="0.5" fill="currentColor"/><rect x="8" y="2" width="4" height="4" rx="0.5" fill="currentColor"/><rect x="2" y="8" width="4" height="4" rx="0.5" fill="currentColor"/><rect x="8" y="8" width="4" height="4" rx="0.5" fill="currentColor"/></svg>
+              </button>
             </div>
           </div>
+          <div class="cs_meta_item">
+            <span class="role">Client</span>
+            <p>St. Jude Children’s Research Hospital</p>
+          </div>
+          <div class="cs_meta_item">
+            <span class="role">Role</span>
+            <p>Lead Product Designer</p>
+          </div>
+          <div class="cs_meta_item">
+            <span class="role">Website</span>
+            <p><a href="https://viz.stjude.cloud" class="view_project" target="_blank" rel="noreferrer">viz.stjude.cloud <span class="arrow">↗</span></a></p>
+          </div>
+          <div class="cs_meta_item">
+            <span class="role">Tags</span>
+            <ul class="cs_tags_inline">
+              <li class="tag">UI/UX Design</li>
+              <li class="tag">Design Systems</li>
+              <li class="tag">Data Visualization</li>
+              <li class="tag">Strategic Communication</li>
+            </ul>
+          </div>
+        </div>
+        <p class="leadin">Genomic visualizations at St. Jude were stuck — locked on local machines or flattened into static journal figures that lost all their interactivity the moment they were published. Researchers who wanted to revisit or share them had to start from scratch.</p>
+        <p>I led design for the Visualization Community, a platform on <a href="https://stjude.cloud" target="_blank" rel="noreferrer" class="inline_link">St. Jude Cloud</a> that lets scientists publish, explore, and share living visualizations — without needing to learn how to write or run code specifically for ProteinPaint. What used to take weeks, now takes minutes. Just plug in your data's URL and visualize it with ProteinPaint.</p>
 
+        <div class="stats-container">
+          <div class="stat">
+            <span class="stat_label">Visualizations</span>
+            <div class="stat_number">80+</div>
+            <p class="stat_info">Published visualizations produced across research projects</p>
+          </div>
+          <div class="stat">
+            <span class="stat_label">Publications</span>
+            <div class="stat_number">38</div>
+            <p class="stat_info">Visualizations featured in Nature, Cancer Discovery, and peer-reviewed journals</p>
+          </div>
+          <div class="stat">
+            <span class="stat_label">Teams</span>
+            <div class="stat_number">20</div>
+            <p class="stat_info">Research teams connected across institutions</p>
+          </div>
+          <div class="stat">
+            <span class="stat_label">Views</span>
+            <div class="stat_number">30k+</div>
+            <p class="stat_info">Views for the leading publication visualization</p>
+          </div>
+          <div class="stat">
+            <span class="stat_label">Community Views</span>
+            <div class="stat_number">68k+</div>
+            <p class="stat_info">Views for the AGI Community piece</p>
+          </div>
+          <div class="stat">
+            <span class="stat_label">Award Noms</span>
+            <div class="stat_number">2</div>
+            <p class="stat_info">Consecutive nominations for the Visualization is Beautiful Award</p>
+          </div>
+        </div>
+        <div class="cs_images">
+          <video src="/img/visualization_community/viz_create_code-editor.mov" width="100%" autoplay muted loop playsinline preload="none"></video>
+          <span class="cs_description">Visualization creation — code editor flow</span>
         </div>
       </div>
-    </section>
+    </div>
 
     <div class="container cs_content" id="challenges">
-      <div class="grid_3">
-        <a name="challenges"></a>
+      <div class="grid_12">
         <h3>Challenges</h3>
-      </div>
-      <div class="push_1 grid_8">
         <p class="leadin">Pediatric cancer research generates enormous, complex datasets. The insights are there — but making them visible, shareable, and useful to collaborators across the world was a different problem entirely.</p>
-        <p>Visualizations were flattened into static journal figures and lost their interactivity the moment they were published. Updating them required technical help. Sharing them meant starting over. The science was moving fast; the tools weren't keeping up.</p>
+        <p>Visualizations were flattened into static journal figures and lost their interactivity the moment they were published. Updating them required technical help. Sharing them meant starting over. The science was moving fast; the tools weren’t keeping up.</p>
       </div>
     </div>
 
     <div class="container cs_content" id="contributions">
-      <div class="grid_3">
-        <a name="contributions"></a>
+      <div class="grid_12">
         <h3>Contributions</h3>
-      </div>
-      <div class="push_1 grid_8">
         <p>St. Jude Cloud — already dedicated to open data — was the right foundation. The goal was a platform where researchers could publish, browse, and interact with visualizations without any technical setup. I designed the full product experience: identity, homepage, editor, track library, sample data views, and community pages.</p>
 
         <h4>Visual Identity</h4>
-        <p>I designed the Visualization Community's brand identity, including the logo and visual system that carries through the platform.</p>
-        <div class="cs_images cs_smaller container">
-          <div class="grid_6">
-            <img src="/img/visualization_community/visualization_community_logo@2x.png" width="100%" alt="Visualization Community logo" loading="lazy"/>
+        <p>I designed the Visualization Community’s brand identity, including the logo and visual system that carries through the platform.</p>
+        <div class="cs_image_pair">
+          <div>
+            <img src="/img/visualization_community/visualization_community_logo@2x.png" alt="Visualization Community logo" loading="lazy"/>
             <span class="cs_description">Visualization Community logo</span>
           </div>
-          <div class="grid_6">
-            <img src="/img/visualization_community/3dgs_logo@2x.png" width="100%" alt="3D Genome Consortium logo" loading="lazy"/>
+          <div>
+            <img src="/img/visualization_community/3dgs_logo@2x.png" alt="3D Genome Consortium logo" loading="lazy"/>
             <span class="cs_description">3D Genome Consortium logo — a collaboration between St. Jude and The Broad Institute at MIT</span>
           </div>
         </div>
@@ -252,95 +261,54 @@
         <h4>Platform Design</h4>
         <p>I designed the end-to-end platform experience — from the homepage and visualization explorer to the editor, sample data views, and community pages.</p>
         <div class="cs_images">
-          <div class="grid_12">
-            <img src="/img/visualization_community/Viz.stjude.cloud%20-%20Editor%20Tracks@2x.png" width="100%" alt="Viz.stjude.cloud editor tracks" loading="lazy"/>
-            <span class="cs_description">Visualization editor — track configuration view</span>
-          </div>
+          <img src="/img/visualization_community/Viz.stjude.cloud%20-%20Editor%20Tracks@2x.png" alt="Viz.stjude.cloud editor tracks" loading="lazy"/>
+          <span class="cs_description">Visualization editor — track configuration view</span>
         </div>
-        <div class="cs_images cs_smaller container">
-          <div class="grid_6">
-            <img src="/img/visualization_community/viz_editor@2x.png" width="100%" alt="Visualization editor" loading="lazy"/>
-            <span class="cs_description">Visualization editor interface</span>
-          </div>
-          <div class="grid_6">
-            <img src="/img/visualization_community/viz_communities@2x.png" width="100%" alt="Communities view" loading="lazy"/>
-            <span class="cs_description">Communities view</span>
-          </div>
+        <div class="cs_images">
+          <img src="/img/visualization_community/viz_communities@2x.png" alt="Communities view" loading="lazy"/>
+          <span class="cs_description">Communities view</span>
         </div>
-        <div class="cs_images cs_smaller container">
-          <div class="grid_6">
-            <img src="/img/visualization_community/sample_data@2x.png" width="100%" alt="Sample data view" loading="lazy"/>
+        <div class="cs_image_pair">
+          <div>
+            <img src="/img/visualization_community/sample_data@2x.png" alt="Sample data view" loading="lazy"/>
             <span class="cs_description">Sample data browser</span>
           </div>
-          <div class="grid_6">
-            <img src="/img/visualization_community/proteinpaint@2x.png" width="100%" alt="ProteinPaint visualization" loading="lazy"/>
+          <div>
+            <img src="/img/visualization_community/proteinpaint@2x.png" alt="ProteinPaint visualization" loading="lazy"/>
             <span class="cs_description">ProteinPaint visualization</span>
           </div>
         </div>
         <div class="cs_images">
-          <div class="grid_12">
-            <img src="/img/visualization_community/viz_tracks_components_square@2x.png" width="100%" alt="Track component library" loading="lazy"/>
-            <span class="cs_description">Track component library</span>
-          </div>
-        </div>
-
-        <h4>Platform Screenshots</h4>
-        <p>Live screenshots of the Visualization Community platform in use — showcasing the editor, track browser, and visualization views.</p>
-        <div class="cs_images cs_smaller container">
-          <div class="grid_6">
-            <img src="/img/visualization_community/Screenshot%202025-10-15%20at%207.31.45%20PM%201@2x.png" width="100%" alt="Platform screenshot" loading="lazy"/>
-          </div>
-          <div class="grid_6">
-            <img src="/img/visualization_community/Screenshot%202025-10-15%20at%207.33.57%20PM%201@2x.png" width="100%" alt="Platform screenshot" loading="lazy"/>
-          </div>
-        </div>
-        <div class="cs_images cs_smaller container">
-          <div class="grid_6">
-            <img src="/img/visualization_community/Screenshot%202025-10-15%20at%207.35.21%20PM%201@2x.png" width="100%" alt="Platform screenshot" loading="lazy"/>
-          </div>
-          <div class="grid_6">
-            <img src="/img/visualization_community/Screenshot%202025-10-15%20at%207.35.41%20PM%201@2x.png" width="100%" alt="Platform screenshot" loading="lazy"/>
-          </div>
-        </div>
-        <div class="cs_images cs_smaller container">
-          <div class="grid_6">
-            <img src="/img/visualization_community/Screenshot%202025-10-15%20at%207.36.00%20PM%201@2x.png" width="100%" alt="Platform screenshot" loading="lazy"/>
-          </div>
-          <div class="grid_6">
-            <img src="/img/visualization_community/Screenshot%202025-10-15%20at%207.40.08%20PM%201@2x.png" width="100%" alt="Platform screenshot" loading="lazy"/>
-          </div>
-        </div>
-        <div class="cs_images cs_smaller container">
-          <div class="grid_6">
-            <img src="/img/visualization_community/Screenshot%202025-10-15%20at%207.40.28%20PM%201@2x.png" width="100%" alt="Platform screenshot" loading="lazy"/>
-          </div>
-          <div class="grid_6">
-            <img src="/img/visualization_community/Screenshot%202025-10-15%20at%207.43.16%20PM%201@2x.png" width="100%" alt="Platform screenshot" loading="lazy"/>
-          </div>
-        </div>
-        <div class="cs_images cs_smaller container">
-          <div class="grid_6">
-            <img src="/img/visualization_community/Screenshot%202025-10-15%20at%207.44.08%20PM%201@2x.png" width="100%" alt="Platform screenshot" loading="lazy"/>
-          </div>
+          <img src="/img/visualization_community/viz_tracks_components_square@2x.png" alt="Track component library" loading="lazy"/>
+          <span class="cs_description">Track component library</span>
         </div>
       </div>
     </div>
 
-    <div class="container cs_content" id="design">
-      <div class="grid_3">
-        <a name="design"></a>
-        <h3>Design</h3>
+    <div class="container cs_content cs_content--quote">
+      <div class="grid_12">
+        <blockquote class="cs_blockquote">
+          <p>"Anyone who goes into the visualization applications can look for the underlying data, analyze it, and publish using it if they find something novel. It's really a resource for the entire academic community."</p>
+          <footer>
+            <cite class="cs_blockquote_cite">Asa Karlstrom, PhD</cite>
+            <span class="cs_blockquote_org">St. Jude Children's Research Hospital</span>
+          </footer>
+        </blockquote>
       </div>
-      <div class="push_1 grid_8">
+    </div>
+
+    <div class="container cs_content" id="design">
+      <div class="grid_12">
+        <h3>Design</h3>
         <p class="leadin">The platform supports a wide range of visualization types — from gene expression and mutation plots to genome-wide tracks. Each track type needed to be discoverable, well-labeled, and consistent in how it presented data.</p>
         <p>I designed the track type library and the UI patterns for browsing, configuring, and publishing visualizations within the editor.</p>
         <div class="cs_images">
-          <div class="grid_12">
-            <img src="/img/visualization_community/viz_tracks_square@2x.png" width="100%" alt="Visualization track types" loading="lazy"/>
-            <span class="cs_description">Visualization track type overview</span>
-          </div>
+          <img src="/img/visualization_community/viz_tracks_square@2x.png" alt="Visualization track types" loading="lazy"/>
+          <span class="cs_description">Visualization track type overview</span>
         </div>
-        <div class="cs_icon_grid">
+        <h4>Code Editor</h4>
+        <p>Each track type has a dedicated code editor view — letting researchers configure parameters and see live output as they build their visualization.</p>
+        <div class="cs_icon_grid cs_icon_grid--code">
           <div class="cs_icon_grid_cell"><img src="/img/visualization_community/viz-track-types/viz_track_type_@2x.png" alt="Track type" loading="lazy"/></div>
           <div class="cs_icon_grid_cell"><img src="/img/visualization_community/viz-track-types/viz_track_type_@2x-1.png" alt="Track type" loading="lazy"/></div>
           <div class="cs_icon_grid_cell"><img src="/img/visualization_community/viz-track-types/viz_track_type_@2x-2.png" alt="Track type" loading="lazy"/></div>
@@ -356,22 +324,37 @@
           <div class="cs_icon_grid_cell"><img src="/img/visualization_community/viz-track-types/viz_track_type_@2x-12.png" alt="Track type" loading="lazy"/></div>
           <div class="cs_icon_grid_cell"><img src="/img/visualization_community/viz-track-types/viz_track_type_@2x-13.png" alt="Track type" loading="lazy"/></div>
           <div class="cs_icon_grid_cell"><img src="/img/visualization_community/viz-track-types/viz_track_type_@2x-14.png" alt="Track type" loading="lazy"/></div>
+          <div class="cs_icon_grid_cell"><img src="/img/visualization_community/track%20types/Track%20-%20Editor.png" srcset="/img/visualization_community/track%20types/Track%20-%20Editor%402x.png 2x" alt="Code editor — track type" loading="lazy"/></div>
+          <div class="cs_icon_grid_cell"><img src="/img/visualization_community/track%20types/Track%20-%20Editor-1.png" srcset="/img/visualization_community/track%20types/Track%20-%20Editor%402x-1.png 2x" alt="Code editor — track type" loading="lazy"/></div>
+          <div class="cs_icon_grid_cell"><img src="/img/visualization_community/track%20types/Track%20-%20Editor-2.png" srcset="/img/visualization_community/track%20types/Track%20-%20Editor%402x-2.png 2x" alt="Code editor — track type" loading="lazy"/></div>
+          <div class="cs_icon_grid_cell"><img src="/img/visualization_community/track%20types/Track%20-%20Editor-3.png" srcset="/img/visualization_community/track%20types/Track%20-%20Editor%402x-3.png 2x" alt="Code editor — track type" loading="lazy"/></div>
+          <div class="cs_icon_grid_cell"><img src="/img/visualization_community/track%20types/Track%20-%20Editor-4.png" srcset="/img/visualization_community/track%20types/Track%20-%20Editor%402x-4.png 2x" alt="Code editor — track type" loading="lazy"/></div>
+          <div class="cs_icon_grid_cell"><img src="/img/visualization_community/track%20types/Track%20-%20Editor-5.png" srcset="/img/visualization_community/track%20types/Track%20-%20Editor%402x-5.png 2x" alt="Code editor — track type" loading="lazy"/></div>
+          <div class="cs_icon_grid_cell"><img src="/img/visualization_community/track%20types/Track%20-%20Editor-6.png" srcset="/img/visualization_community/track%20types/Track%20-%20Editor%402x-6.png 2x" alt="Code editor — track type" loading="lazy"/></div>
+          <div class="cs_icon_grid_cell"><img src="/img/visualization_community/track%20types/Track%20-%20Editor-7.png" srcset="/img/visualization_community/track%20types/Track%20-%20Editor%402x-7.png 2x" alt="Code editor — track type" loading="lazy"/></div>
+          <div class="cs_icon_grid_cell"><img src="/img/visualization_community/track%20types/Track%20-%20Editor-8.png" srcset="/img/visualization_community/track%20types/Track%20-%20Editor%402x-8.png 2x" alt="Code editor — track type" loading="lazy"/></div>
+          <div class="cs_icon_grid_cell"><img src="/img/visualization_community/track%20types/Track%20-%20Editor-9.png" srcset="/img/visualization_community/track%20types/Track%20-%20Editor%402x-9.png 2x" alt="Code editor — track type" loading="lazy"/></div>
+          <div class="cs_icon_grid_cell"><img src="/img/visualization_community/track%20types/Track%20-%20Editor-10.png" srcset="/img/visualization_community/track%20types/Track%20-%20Editor%402x-10.png 2x" alt="Code editor — track type" loading="lazy"/></div>
+          <div class="cs_icon_grid_cell"><img src="/img/visualization_community/track%20types/Track%20-%20Editor-11.png" srcset="/img/visualization_community/track%20types/Track%20-%20Editor%402x-11.png 2x" alt="Code editor — track type" loading="lazy"/></div>
+          <div class="cs_icon_grid_cell"><img src="/img/visualization_community/track%20types/Track%20-%20Editor-12.png" srcset="/img/visualization_community/track%20types/Track%20-%20Editor%402x-12.png 2x" alt="Code editor — track type" loading="lazy"/></div>
+          <div class="cs_icon_grid_cell"><img src="/img/visualization_community/track%20types/Track%20-%20Editor-13.png" srcset="/img/visualization_community/track%20types/Track%20-%20Editor%402x-13.png 2x" alt="Code editor — track type" loading="lazy"/></div>
+          <div class="cs_icon_grid_cell"><img src="/img/visualization_community/track%20types/Track%20-%20Editor-14.png" srcset="/img/visualization_community/track%20types/Track%20-%20Editor%402x-14.png 2x" alt="Code editor — track type" loading="lazy"/></div>
+          <div class="cs_icon_grid_cell"><img src="/img/visualization_community/track%20types/Track%20-%20Editor-15.png" srcset="/img/visualization_community/track%20types/Track%20-%20Editor%402x-15.png 2x" alt="Code editor — track type" loading="lazy"/></div>
+          <div class="cs_icon_grid_cell"><img src="/img/visualization_community/track%20types/Track%20-%20Editor-16.png" srcset="/img/visualization_community/track%20types/Track%20-%20Editor%402x-16.png 2x" alt="Code editor — track type" loading="lazy"/></div>
+          <div class="cs_icon_grid_cell"><img src="/img/visualization_community/track%20types/Track%20-%20Editor-17.png" srcset="/img/visualization_community/track%20types/Track%20-%20Editor%402x-17.png 2x" alt="Code editor — track type" loading="lazy"/></div>
+          <div class="cs_icon_grid_cell"><img src="/img/visualization_community/track%20types/Track%20-%20Editor-18.png" srcset="/img/visualization_community/track%20types/Track%20-%20Editor%402x-18.png 2x" alt="Code editor — track type" loading="lazy"/></div>
+          <div class="cs_icon_grid_cell"><img src="/img/visualization_community/track%20types/Track%20-%20Editor-19.png" srcset="/img/visualization_community/track%20types/Track%20-%20Editor%402x-19.png 2x" alt="Code editor — track type" loading="lazy"/></div>
         </div>
         <div class="cs_images">
-          <div class="grid_12">
-            <video src="/img/visualization_community/viz_create_code-editor.mov" width="100%" autoplay muted loop playsinline preload="none"></video>
-            <span class="cs_description">Visualization creation — code editor flow</span>
-          </div>
+          <img src="/img/visualization_community/viz_stjude_cloud_knoll@2x.png" alt="St. Jude Cloud Knoll" loading="lazy"/>
+          <span class="cs_description">St. Jude Cloud — Visualization Community</span>
         </div>
       </div>
     </div>
 
     <div class="container cs_content" id="impact">
-      <div class="grid_3">
-        <a name="impact"></a>
+      <div class="grid_12">
         <h3>Impact</h3>
-      </div>
-      <div class="push_1 grid_8">
         <p class="leadin">Researchers move faster.</p>
         <p>They can build and update visualizations without waiting for technical help.</p>
         <p class="leadin">Access is reliable.</p>
@@ -385,86 +368,51 @@
 
     <div class="container cs_content">
       <div class="grid_12">
-        <blockquote class="leadin">
-          "Anyone who goes into the visualization applications can look for the underlying data, analyze it, and publish using it if they find something novel. It’s really a resource for the entire academic community."
-          <footer><cite><small>— Asa Karlstrom, PhD, St. Jude Children’s Research Hospital</small></cite></footer>
-        </blockquote>
-
-      </div>
-    </div>
-
-    <div class="container cs_content">
-      <div class="grid_12">
-        <img src="/img/visualization_community/visulization_community_poster_aacr@2x.png" width="100%" alt="AACR poster" loading="lazy"/>
-        <span class="cs_description">AACR conference poster presenting the Visualization Community platform</span>
+        <div class="cs_images">
+          <img src="/img/visualization_community/visulization_community_poster_aacr@2x.png" alt="AACR poster" loading="lazy"/>
+          <span class="cs_description">AACR conference poster presenting the Visualization Community platform</span>
+        </div>
       </div>
     </div>
 
     <div class="container cs_content" id="reflection">
-      <div class="grid_3">
-        <a name="reflection"></a>
+      <div class="grid_12">
         <h3>Reflection</h3>
-      </div>
-      <div class="push_1 grid_8">
         <p class="leadin">Designing for researchers taught me that interface complexity has a real cost. When the tool is confusing, scientists ask for help instead of exploring. When it’s clear, they go further on their own.</p>
         <p>The most meaningful moment on this project wasn’t a launch metric — it was watching a researcher configure and publish a visualization in a few minutes that would have taken a week before. That’s what the design was for.</p>
-      </div>
-    </div>
-
-    <div class="container cs_content">
-      <div class="grid_12 cs_images">
-        <img src="/img/visualization_community/viz_stjude_cloud_knoll@2x.png" width="100%" alt="St. Jude Cloud Knoll" loading="lazy"/>
-        <span class="cs_description">St. Jude Cloud — Visualization Community</span>
       </div>
     </div>
   </section>
 
 </main>
 
-<section class="cs_more_work">
+<section class="cs_next_project">
   <div class="container">
-    <div class="grid_12">
-      <h2 class="home_work_title">View more work</h2>
+    <div class="cs_next_inner grid_12">
+      <div class="cs_next_copy">
+        <p class="cs_next_label">Next Case Study</p>
+        <h2>NatureDose</h2>
+        <p>Designing a mobile nature-prescription app that encourages time outside.</p>
+        <a href="/case_studies/naturedose/" class="btn">View Case Study</a>
+      </div>
+      <div class="cs_next_card">
+        <a href="/case_studies/naturedose/" class="hwc nd" aria-label="NatureDose by NatureQuant">
+          <div class="hwc_img">
+            <img src="/img/naturedose/naturedose_cover_image.png" srcset="/img/naturedose/naturedose_cover_image.png 1x, /img/naturedose/naturedose_cover_image@2x.png 2x" alt="NatureDose" loading="lazy" width="600" height="600">
+          </div>
+          <div class="hwc_info">
+            <span class="hwc_company">NatureQuant</span>
+            <span class="hwc_title">NatureDose</span>
+          </div>
+        </a>
+      </div>
     </div>
-  </div>
-  <div class="container home_work_grid">
-
-      <a href="/case_studies/naturedose/" class="hwc nd" aria-label="NatureDose by NatureQuant">
-        <div class="hwc_img">
-          <img src="/img/naturedose/naturedose_cover_image.png" srcset="/img/naturedose/naturedose_cover_image.png 1x, /img/naturedose/naturedose_cover_image@2x.png 2x" alt="NatureDose" loading="lazy" width="600" height="600">
-        </div>
-        <div class="hwc_info">
-          <span class="hwc_company">NatureQuant</span>
-          <span class="hwc_title">NatureDose</span>
-        </div>
-      </a>
-
-      <a href="/case_studies/naturescore/" class="hwc ns" aria-label="NatureScore by NatureQuant">
-        <div class="hwc_img">
-          <img src="/img/naturescore/naturescore_cover_image.png" srcset="/img/naturescore/naturescore_cover_image.png 1x, /img/naturescore/naturescore_cover_image@2x.png 2x" alt="NatureScore" loading="lazy" width="600" height="600">
-        </div>
-        <div class="hwc_info">
-          <span class="hwc_company">NatureQuant</span>
-          <span class="hwc_title">NatureScore</span>
-        </div>
-      </a>
-
-      <a href="/case_studies/pecan/" class="hwc pecan" aria-label="PeCan by St. Jude Children's Research Hospital">
-        <div class="hwc_img">
-          <img src="/img/pecan/pecan_cover.png" srcset="/img/pecan/pecan_cover.png 1x, /img/pecan/pecan_cover@2x.png 2x" alt="PeCan" loading="lazy" width="600" height="600">
-        </div>
-        <div class="hwc_info">
-          <span class="hwc_company">St. Jude Children's Research Hospital</span>
-          <span class="hwc_title">PeCan</span>
-        </div>
-      </a>
-
   </div>
 </section>
 
 <footer class="site_footer">
   <div class="container">
-    <span class="site_footer_name">James Madson 2026</span>
+    <span class="site_footer_name">James Madson <span id="footer_year"></span></span>
     <span class="site_footer_tagline">Make something beautiful today.</span>
   </div>
 </footer>

@@ -62,6 +62,7 @@
     <div class="nav_container">
       <nav class="nav_large">
         <ul>
+          <li><a href="/">Home</a></li>
           <li><a href="/about/">About</a></li>
           <li class="nav_dropdown_trigger">
             <a href="/#recent_work">Work</a>
@@ -75,6 +76,12 @@
               <a href="/case_studies/pecan/" class="nav_dropdown_item">
                 <div class="nav_dropdown_meta">
                   <span class="nav_dropdown_title">PeCan</span>
+                  <span class="nav_dropdown_company">St. Jude Children's Research Hospital</span>
+                </div>
+              </a>
+              <a href="/case_studies/visualization_community/" class="nav_dropdown_item">
+                <div class="nav_dropdown_meta">
+                  <span class="nav_dropdown_title">Visualization Community</span>
                   <span class="nav_dropdown_company">St. Jude Children's Research Hospital</span>
                 </div>
               </a>
@@ -100,8 +107,8 @@
   <nav class="mobile_nav_menu" id="mobilenavmenu" aria-hidden="true">
     <div class="mobile_nav_inner">
       <ul>
-        <li><a href="/index.html">Home</a></li>
-        <li><a href="/about.html">About</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about/">About</a></li>
         <li class="mobile_nav_accordion">
           <button class="mobile_nav_accordion_btn" aria-expanded="false">
             Work
@@ -110,6 +117,7 @@
           <ul class="mobile_nav_accordion_panel" aria-hidden="true">
           <li><a href="/case_studies/naturedose/">NatureDose</a></li>
           <li><a href="/case_studies/pecan/">PeCan</a></li>
+          <li><a href="/case_studies/visualization_community/">Visualization Community</a></li>
           </ul>
         </li>
         <li><a href="/contact/">Contact</a></li>
@@ -125,12 +133,7 @@
 <main id="main-content">
   <section class="about about_naturedose">
     <div class="container">
-      <div class="grid_3">
-        <div class="client_logo_wrap">
-          <img src="/img/naturedose/naturedose-app-icon-glass.png" srcset="/img/naturedose/naturedose-app-icon-glass.png 1x, /img/naturedose/naturedose-app-icon-glass@2x.png 2x" class="client_logo" width="80" height="80" alt="NatureDose App Icon"/>
-        </div>
-      </div>
-      <div class="grid_9">
+      <div class="grid_12">
         <h1 class="project_title">
           <span class="case_study_label">NatureDose</span>
           Designing a mobile nature-prescription app that encourages time outside.
@@ -145,159 +148,181 @@
     <li><a href="#contributions" id="contributions_link">Contributions</a></li>
     <li><a href="#design" id="design_link">Design</a></li>
     <li><a href="#impact" id="impact_link">Impact</a></li>
-    <li><a href="#reflection" id="reflection_link">Reflection</a></li>
     <li><a href="#reviews" id="reviews_link">Reviews</a></li>
+    <li><a href="#concept" id="concept_link">Concept Work</a></li>
     <li><a href="#top" id="top_link">Back to Top</a></li>
   </ul>
 
   <section class="project">
-    <section class="overview" id="overview">
-      <div class="container">
-        <div class="grid_3">
-          <a name="overview"></a>
-          <h3>Overview</h3>
-          <p class="role">Client</p>
-          <p>NatureQuant</p>
-
-          <p class="role">Role</p>
-          <p>Lead Product Designer</p>
-
-          <p class="role">Website</p>
-          <a href="https://naturequant.com/naturedose" class="view_project" target="_blank" rel="noreferrer">View Project <span class="arrow">↗</span></a>
-
-          <p class="role">Contributions</p>
-          <ul>
-            <li class="tag">UI/UX Design</li>
-            <li class="tag">Design Systems</li>
-            <li class="tag">Data Visualization</li>
-            <li class="tag">Front-End Development</li>
-            <li class="tag">Strategic Communication</li>
-          </ul>
+    <div class="container cs_content" id="overview">
+      <div class="grid_12">
+        <h3>Overview</h3>
+        <div class="cs_meta_row">
+          <div class="cs_meta_item">
+            <span class="role">View</span>
+            <div class="cs_view_toggle" role="group" aria-label="Toggle case study view">
+              <button class="cs_view_btn" data-view="case-study" aria-pressed="true" aria-label="Case study view">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><line x1="2" y1="4" x2="12" y2="4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="2" y1="7" x2="12" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="2" y1="10" x2="12" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </button>
+              <button class="cs_view_btn" data-view="image-feed" aria-pressed="false" aria-label="Image grid view">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2" y="2" width="4" height="4" rx="0.5" fill="currentColor"/><rect x="8" y="2" width="4" height="4" rx="0.5" fill="currentColor"/><rect x="2" y="8" width="4" height="4" rx="0.5" fill="currentColor"/><rect x="8" y="8" width="4" height="4" rx="0.5" fill="currentColor"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="cs_meta_item">
+            <span class="role">Client</span>
+            <p>NatureQuant</p>
+          </div>
+          <div class="cs_meta_item">
+            <span class="role">Role</span>
+            <p>Lead Product Designer</p>
+          </div>
+          <div class="cs_meta_item">
+            <span class="role">Website</span>
+            <p><a href="https://naturequant.com/naturedose" class="view_project" target="_blank" rel="noreferrer">naturequant.com/naturedose <span class="arrow">↗</span></a></p>
+          </div>
+          <div class="cs_meta_item">
+            <span class="role">Tags</span>
+            <ul class="cs_tags_inline">
+              <li class="tag">UI/UX Design</li>
+              <li class="tag">Design Systems</li>
+              <li class="tag">Data Visualization</li>
+              <li class="tag">Front-End Development</li>
+              <li class="tag">Strategic Communication</li>
+            </ul>
+          </div>
         </div>
-        <div class="grid_9">
-          <p class=”leadin”>Hundreds of studies link time in nature to lower stress, better sleep, and faster recovery. But no one had made it easy to track, set goals around, or actually feel progress in. NatureDose<sup class=”reg”>®</sup> was built to change that.</p>
-          <p>I led product design across the full arc of the app: from initial concept through iOS and Android launch, App Store screens, feature additions like badges and team challenges, and an ongoing design system to keep it consistent as it grew.</p>
+        <p class="leadin">Hundreds of studies link time in nature to lower stress, better sleep, and faster recovery. But no one had made it easy to track, set goals around, or actually feel progress in. NatureDose<sup class="reg">®</sup> was built to change that.</p>
+        <p>I led product design across the full arc of the app: from initial concept through iOS and Android launch, App Store screens, feature additions like badges and team challenges, and an ongoing design system to keep it consistent as it grew.</p>
 
-          <div class="stats-container">
-            <div class="stat">
-              <span class="stat_label">App of the Day</span>
-              <div class="stat_number">🏆</div>
-              <p class="stat_info">Featured as Apple App Store App of the Day</p>
-            </div>
-
-            <div class="stat">
-              <span class="stat_label">Downloads</span>
-              <div class="stat_number">5,000+</div>
-              <p class="stat_info">Android installs on Google Play at launch</p>
-            </div>
-
-            <div class="stat">
-              <span class="stat_label">App Rating</span>
-              <div class="stat_number">4.6★</div>
-              <p class="stat_info">Average rating on the iOS App Store</p>
-            </div>
-
-            <div class="stat">
-              <span class="stat_label">Ratings</span>
-              <div class="stat_number">599</div>
-              <p class="stat_info">Total iOS ratings received</p>
-            </div>
-
-            <div class="stat">
-              <span class="stat_label">5-Star Reviews</span>
-              <div class="stat_number">79%</div>
-              <p class="stat_info">Of iOS reviews are 5 stars</p>
-            </div>
+        <div class="stats-container">
+          <div class="stat">
+            <span class="stat_label">Featured in App Store</span>
+            <div class="stat_number">3×</div>
+            <p class="stat_info">Featured by Apple on the App Store</p>
+          </div>
+          <div class="stat">
+            <span class="stat_label">Downloads</span>
+            <div class="stat_number">5,000+</div>
+            <p class="stat_info">Android installs on Google Play at launch</p>
+          </div>
+          <div class="stat">
+            <span class="stat_label">App Rating</span>
+            <div class="stat_number">4.6★</div>
+            <p class="stat_info">Average rating on the iOS App Store</p>
+          </div>
+          <div class="stat">
+            <span class="stat_label">Ratings</span>
+            <div class="stat_number">599</div>
+            <p class="stat_info">Total iOS ratings received</p>
+          </div>
+          <div class="stat">
+            <span class="stat_label">5-Star Reviews</span>
+            <div class="stat_number">79%</div>
+            <p class="stat_info">Of iOS reviews are 5 stars</p>
           </div>
         </div>
       </div>
-    </section>
+    </div>
 
     <div class="container cs_content" id="challenges">
-      <div class="grid_3">
-        <a name="challenges"></a>
+      <div class="grid_12">
         <h3>Challenges</h3>
-      </div>
-      <div class="push_1 grid_8">
-        <p class=”leadin”>Nature is one of the most well-researched health interventions, but it had never been treated like one. NatureQuant’s mission was to change that — to put time in nature alongside diet, exercise, and sleep as something you can actually measure.</p>
+        <p class="leadin">Nature is one of the most well-researched health interventions, but it had never been treated like one. NatureQuant’s mission was to change that — to put time in nature alongside diet, exercise, and sleep as something you can actually measure.</p>
         <p><strong>The design challenges were:</strong></p>
         <ul>
           <li><p>Translate scientific research on nature and health into a consumer-friendly mobile experience.</p></li>
           <li><p>Design tools that motivate users to spend more time outdoors and track real progress.</p></li>
           <li><p>Ensure consistency across iOS, Android, and web—while keeping the experience lightweight and engaging.</p></li>
         </ul>
-        <div class="grid_12">
-          <img src="/img/naturedose/naturedose_pillars_of_wellness_icons@2x.png" width="100%" alt="NatureDose App Mockup"/>
+        <div class="cs_images">
+          <img src="/img/naturedose/naturedose_cover_image@2x.png" alt="NatureDose app overview" loading="lazy"/>
         </div>
       </div>
     </div>
 
     <div class="container cs_content" id="contributions">
-      <div class="grid_3">
-        <a name="contributions"></a>
+      <div class="grid_12">
         <h3>Contributions</h3>
-      </div>
-      <div class="push_1 grid_8">
         <h4>Rapid Prototyping & Feature Design</h4>
         <p>I sketched and prototyped ideas quickly, refining features like adjustable weekly goals, session tracking, and nature-quality scoring for both iOS and Android platforms.</p>
 
-        <h4>Website & Launch Stack</h4>
-        <p>I designed the website and App Store screens to communicate the app’s promise—“Measure your nature dose,” “Earn badges for outdoor time,” and “Find green spaces near you.”</p>
+        <h4>Product Page & Launch Stack</h4>
+        <p>I designed and built the NatureDose product page and App Store screens to communicate the app’s promise—"Measure your nature dose," "Earn badges for outdoor time," and "Find green spaces near you."</p>
 
         <h4>Feature Enhancements</h4>
-        <p>After launch, we introduced gamified features like badges and team challenges, local discovery (“Find Nearby Parks”), and UX improvements for smoother onboarding and daily use.</p>
+        <p>After launch, we introduced gamified features like badges and team challenges, local discovery ("Find Nearby Parks"), and UX improvements for smoother onboarding and daily use.</p>
 
         <h4>Design System Integration</h4>
         <p>Maintained cross-platform consistency through unified typography, iconography, and color systems that aligned with the NatureQuant brand while optimizing for mobile usability.</p>
+
+        <div class="cs_image_pair">
+          <div>
+            <img src="/img/naturedose/Juniper%20Design%20System@2x.png" alt="Juniper Design System" loading="lazy"/>
+            <span class="cs_description">Juniper Design System</span>
+          </div>
+          <div>
+            <img src="/img/naturedose/Juniper%20Design%20System%20-%20App%20Screens@2x.png" alt="Juniper Design System App Screens" loading="lazy"/>
+            <span class="cs_description">Juniper Design System — App Screens</span>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="container cs_content" id="design">
-      <div class="grid_3">
-        <a name="design"></a>
+      <div class="grid_12">
         <h3>Design</h3>
-      </div>
-      <div class="push_1 grid_8">
         <p>We moved from concept to functioning mobile product through iterative design and development. Each prototype tested how best to motivate outdoor behavior while keeping data and visuals simple and actionable.</p>
         <p>The final app experience combined passive nature tracking, daily goal-setting, and visual feedback loops—turning abstract health research into an everyday wellness habit.</p>
+        <div class="nd_phone_carousel">
+          <div class="nd_phone_slide">
+            <img src="/img/naturedose/app%20mockups/naturedose-iphone@2x.png" alt="NatureDose Home Screen" loading="lazy" />
+          </div>
+          <div class="nd_phone_slide">
+            <img src="/img/naturedose/app%20mockups/naturedose-iphone-2@2x.png" alt="NatureDose Progress Screen" loading="lazy" />
+          </div>
+          <div class="nd_phone_slide">
+            <img src="/img/naturedose/app%20mockups/naturedose-iphone-3@2x.png" alt="NatureDose Goals Screen" loading="lazy" />
+          </div>
+          <div class="nd_phone_slide">
+            <img src="/img/naturedose/app%20mockups/naturedose-iphone-4@2x.png" alt="NatureDose Nature Score Screen" loading="lazy" />
+          </div>
+          <div class="nd_phone_slide">
+            <img src="/img/naturedose/app%20mockups/naturedose-iphone-5@2x.png" alt="NatureDose Discovery Screen" loading="lazy" />
+          </div>
+          <div class="nd_phone_slide">
+            <img src="/img/naturedose/app%20mockups/naturedose-iphone-5@2x-1.png" alt="NatureDose Badges Screen" loading="lazy" />
+          </div>
+          <div class="nd_phone_slide">
+            <img src="/img/naturedose/app%20mockups/naturedose-iphone-6@2x.png" alt="NatureDose Challenges Screen" loading="lazy" />
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="container cs_content" id="impact">
-      <div class="grid_3">
-        <a name="impact"></a>
+      <div class="grid_12">
         <h3>Impact</h3>
-      </div>
-      <div class="push_1 grid_8">
         <p>NatureDose has been recognized as a meaningful tool in wellness tracking—positioned as a nature-prescription tracker supported by research and partnerships (e.g., Outside Interactive).</p>
-        <p>Users can now set goals, track sessions, learn how “nature quality” matters (via NatureScore<sup class="reg">®</sup>), and see their progress visually. The design bridges nature, technology, and wellness—encouraging time outside in a measurable, motivating way.</p>
-      </div>
-    </div>
-
-    <div class="container cs_content" id="reflection">
-      <div class="grid_3">
-        <a name="reflection"></a>
-        <h3>Reflection</h3>
-      </div>
-      <div class="push_1 grid_8">
-        <p>The hardest part of this project wasn't the UI — it was making something feel worth opening every day. Wellness apps live or die on habit, and habit depends on whether progress feels real. Getting that feedback loop right took a lot of iteration.</p>
-        <p>Seeing a user write that the app helped them recover from cancer by spending more time outside is the clearest measure of whether the design actually worked.</p>
+        <p>Users can now set goals, track sessions, learn how "nature quality" matters (via NatureScore<sup class="reg">®</sup>), and see their progress visually. The design bridges nature, technology, and wellness—encouraging time outside in a measurable, motivating way.</p>
+        <div class="cs_images" style="margin-top:1.5rem">
+          <img src="/img/naturedose/naturedose_pillars_of_wellness_icons@2x.png" alt="NatureDose Pillars of Wellness Icons" loading="lazy"/>
+        </div>
       </div>
     </div>
 
     <div class="container cs_content" id="reviews">
-      <div class="grid_3">
+      <div class="grid_12">
         <a name="reviews"></a>
-        <h3>Reviews</h3>
-        <div class="cs_app_rating">
-          <div class="cs_rating_score">4.6</div>
-          <div class="cs_rating_stars">★★★★★</div>
-          <p class="cs_rating_meta">599 ratings · iOS App Store</p>
-          <p class="cs_rating_meta">79% five-star</p>
+        <div class="cs_reviews_header">
+          <h3>App Reviews</h3>
+          <div class="cs_app_rating">
+            <div class="cs_rating_score">4.6</div>
+            <div class="cs_rating_stars">★★★★★</div>
+            <p class="cs_rating_meta">599 ratings · iOS App Store · 79% five-star</p>
+          </div>
         </div>
-      </div>
-      <div class="push_1 grid_8">
-        <div class="cs_review">
+        <div class="cs_review cs_review--featured">
           <div class="cs_review_stars">★★★★★</div>
           <h4 class="cs_review_title">Clarifying Contributor to Recovery</h4>
           <p class="cs_review_meta"><span class="cs_review_author">parnelliv</span> · App Store</p>
@@ -319,66 +344,27 @@
     </div>
   </section>
 
-  <section class="project">
-
-    <!-- App Screens -->
-    <div class="container cs_content">
-      <div class="grid_3">
-        <h3>App Screens</h3>
-      </div>
-      <div class="push_1 grid_8">
-        <p>Live screens from the iOS and Android builds of NatureDose — onboarding, daily tracking, goal progress, and location features.</p>
-      </div>
-    </div>
-    <div class="cs_images container">
-      <div class="grid_12">
-        <div class="nd_screens_grid">
-          <img src="/img/naturedose/app%20mockups/naturedose-iphone@2x.png" alt="NatureDose Home Screen" loading="lazy" />
-          <img src="/img/naturedose/app%20mockups/naturedose-iphone-2@2x.png" alt="NatureDose Screen 2" loading="lazy" />
-          <img src="/img/naturedose/app%20mockups/naturedose-iphone-3@2x.png" alt="NatureDose Screen 3" loading="lazy" />
-          <img src="/img/naturedose/app%20mockups/naturedose-iphone-4@2x.png" alt="NatureDose Screen 4" loading="lazy" />
-          <img src="/img/naturedose/app%20mockups/naturedose-iphone-5@2x.png" alt="NatureDose Screen 5" loading="lazy" />
-          <img src="/img/naturedose/app%20mockups/naturedose-iphone-5@2x-1.png" alt="NatureDose Screen 5 Alt" loading="lazy" />
-          <img src="/img/naturedose/app%20mockups/naturedose-iphone-6@2x.png" alt="NatureDose Screen 6" loading="lazy" />
-          <img src="/img/naturedose/app%20mockups/Location%20Screens%20b@2x.png" alt="NatureDose Location Screens" loading="lazy" />
-          <img src="/img/naturedose/Frame%20108@2x.png" alt="NatureDose Frame" loading="lazy" />
-          <img src="/img/naturedose/Frame%20269@2x.png" alt="NatureDose Frame" loading="lazy" />
-          <img src="/img/naturedose/Frame%20283@2x.png" alt="NatureDose Frame" loading="lazy" />
-          <img src="/img/naturedose/naturequant_naturedose_challenge@2x.png" alt="NatureDose Challenge" loading="lazy" />
-          <img src="/img/naturedose/week%20overview%20-%20progress%20half@2x.png" alt="NatureDose Week Overview" loading="lazy" />
-          <img src="/img/naturedose/naturedose_pillars_of_wellness_icons@2x.png" alt="NatureDose Pillars of Wellness Icons" loading="lazy" />
-        </div>
-      </div>
-    </div>
+  <section class="project project--compact">
 
     <!-- Concept Work -->
-    <div class="container cs_content">
-      <div class="grid_3">
+    <div class="container cs_content" id="concept">
+      <div class="grid_12">
         <h3>Concept Work</h3>
-      </div>
-      <div class="push_1 grid_8">
         <p>Exploratory designs developed alongside the live product — testing new directions for challenges, activity streaks, achievements, and a deeper NatureScore integration.</p>
+        <div class="cs_images" style="margin-top:1.5rem">
+          <img src="/img/naturedose/naturequant_naturedose_challenge@2x.png" alt="NatureDose challenge concept" loading="lazy"/>
+        </div>
       </div>
     </div>
 
     <!-- Concept App Imagery -->
     <div class="container cs_content">
-      <div class="push_3 grid_9">
+      <div class="grid_12">
         <h4>Future Prototype Screens</h4>
         <p>Concepts exploring what a more social, achievement-driven version of NatureDose could feel like — with richer challenge views, activity history, and nature score visualizations.</p>
-      </div>
-    </div>
-    <div class="cs_images container">
-      <div class="grid_12">
         <div class="nd_concepts_grid">
           <img src="/img/naturedose/future%20prototype/My%20Challenges@2x.png" alt="My Challenges" loading="lazy" />
           <img src="/img/naturedose/future%20prototype/achievements@2x.png" alt="Achievements" loading="lazy" />
-          <img src="/img/naturedose/future%20prototype/activity@2x.png" alt="Activity" loading="lazy" />
-          <img src="/img/naturedose/future%20prototype/months%20activity@2x.png" alt="Months Activity" loading="lazy" />
-          <img src="/img/naturedose/future%20prototype/challenge%20tab%20-%20with%20challenge.png" alt="Challenge Tab" loading="lazy" />
-          <img src="/img/naturedose/future%20prototype/challenge%20tab%20-%20with%20challenge-1.png" alt="Challenge Tab Alt" loading="lazy" />
-          <img src="/img/naturedose/future%20prototype/challenge%20tab%20-%20with%20challenge%20-%20scrolled@2x.png" alt="Challenge Tab Scrolled" loading="lazy" />
-          <img src="/img/naturedose/future%20prototype/challenge%20tab%20-%20with%20challenge%20-%20scrolled@2x-1.png" alt="Challenge Tab Scrolled Alt" loading="lazy" />
           <img src="/img/naturedose/future%20prototype/naturescore%20-%20nature%20utopia@2x.png" alt="NatureScore Nature Utopia" loading="lazy" />
           <img src="/img/naturedose/future%20prototype/naturescore%20-%20nature%20utopia@2x-1.png" alt="NatureScore Nature Utopia Alt" loading="lazy" />
         </div>
@@ -387,7 +373,7 @@
 
     <!-- Custom Icons -->
     <div class="container cs_content">
-      <div class="push_3 grid_9">
+      <div class="grid_12">
         <h4>Custom Icons</h4>
         <p>Conceptual iconography developed alongside the future prototype screens — nature activities, goal types, locations, and achievement markers. Designed to feel organic and lightweight within the concept UI.</p>
       </div>
@@ -419,25 +405,16 @@
 </main>
 
 
-<section class="cs_more_work">
+<section class="cs_next_project">
   <div class="container">
-    <div class="grid_12">
-      <h2 class="home_work_title">View more work</h2>
-    </div>
-  </div>
-  <div class="container home_work_grid">
-
-      <a href="/case_studies/visualization_community/" class="hwc viz" aria-label="Visualization Community by St. Jude Children's Research Hospital">
-        <div class="hwc_img">
-          <img src="/img/visualization_community/visualization_community_cover.png" srcset="/img/visualization_community/visualization_community_cover.png 1x, /img/visualization_community/visualization_community_cover@2x.png 2x" alt="Visualization Community" loading="lazy" width="600" height="600">
-        </div>
-        <div class="hwc_info">
-          <span class="hwc_company">St. Jude Children's Research Hospital</span>
-          <span class="hwc_title">Visualization Community</span>
-        </div>
-      </a>
-
-      <a href="/case_studies/pecan/" class="hwc pecan" aria-label="PeCan by St. Jude Children's Research Hospital">
+    <div class="cs_next_inner grid_12">
+      <div class="cs_next_copy">
+        <p class="cs_next_label">Next Case Study</p>
+        <h2 class="cs_next_title">PeCan — Pediatric Cancer Data Portal</h2>
+        <p class="cs_next_desc">Designing an open-source genomics platform used by pediatric cancer researchers worldwide at St. Jude Children's Research Hospital.</p>
+        <a href="/case_studies/pecan/" class="cs_next_link">View PeCan Case Study <span class="arrow">→</span></a>
+      </div>
+      <a href="/case_studies/pecan/" class="hwc pecan cs_next_card" aria-label="PeCan by St. Jude Children's Research Hospital">
         <div class="hwc_img">
           <img src="/img/pecan/pecan_cover.png" srcset="/img/pecan/pecan_cover.png 1x, /img/pecan/pecan_cover@2x.png 2x" alt="PeCan" loading="lazy" width="600" height="600">
         </div>
@@ -446,23 +423,13 @@
           <span class="hwc_title">PeCan</span>
         </div>
       </a>
-
-      <a href="/case_studies/naturequant/" class="hwc nq" aria-label="NatureQuant by NatureQuant">
-        <div class="hwc_img">
-          <img src="/img/naturequant/naturequant_cover_image.png" srcset="/img/naturequant/naturequant_cover_image.png 1x, /img/naturequant/naturequant_cover_image@2x.png 2x" alt="NatureQuant" loading="lazy" width="600" height="600">
-        </div>
-        <div class="hwc_info">
-          <span class="hwc_company">NatureQuant</span>
-          <span class="hwc_title">NatureQuant</span>
-        </div>
-      </a>
-
+    </div>
   </div>
 </section>
 
 <footer class="site_footer">
   <div class="container">
-    <span class="site_footer_name">James Madson 2026</span>
+    <span class="site_footer_name">James Madson <span id="footer_year"></span></span>
     <span class="site_footer_tagline">Make something beautiful today.</span>
   </div>
 </footer>

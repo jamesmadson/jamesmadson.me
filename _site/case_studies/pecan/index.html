@@ -62,6 +62,7 @@
     <div class="nav_container">
       <nav class="nav_large">
         <ul>
+          <li><a href="/">Home</a></li>
           <li><a href="/about/">About</a></li>
           <li class="nav_dropdown_trigger">
             <a href="/#recent_work">Work</a>
@@ -75,6 +76,12 @@
               <a href="/case_studies/pecan/" class="nav_dropdown_item">
                 <div class="nav_dropdown_meta">
                   <span class="nav_dropdown_title">PeCan</span>
+                  <span class="nav_dropdown_company">St. Jude Children's Research Hospital</span>
+                </div>
+              </a>
+              <a href="/case_studies/visualization_community/" class="nav_dropdown_item">
+                <div class="nav_dropdown_meta">
+                  <span class="nav_dropdown_title">Visualization Community</span>
                   <span class="nav_dropdown_company">St. Jude Children's Research Hospital</span>
                 </div>
               </a>
@@ -100,8 +107,8 @@
   <nav class="mobile_nav_menu" id="mobilenavmenu" aria-hidden="true">
     <div class="mobile_nav_inner">
       <ul>
-        <li><a href="/index.html">Home</a></li>
-        <li><a href="/about.html">About</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about/">About</a></li>
         <li class="mobile_nav_accordion">
           <button class="mobile_nav_accordion_btn" aria-expanded="false">
             Work
@@ -110,6 +117,7 @@
           <ul class="mobile_nav_accordion_panel" aria-hidden="true">
           <li><a href="/case_studies/naturedose/">NatureDose</a></li>
           <li><a href="/case_studies/pecan/">PeCan</a></li>
+          <li><a href="/case_studies/visualization_community/">Visualization Community</a></li>
           </ul>
         </li>
         <li><a href="/contact/">Contact</a></li>
@@ -125,12 +133,7 @@
   <main id="main-content">
   <section class="about about_pecan fadeIn">
     <div class="container">
-      <div class="grid_3">
-        <div class="client_logo_wrap">
-          <img src="/img/pecan/Pecan%20Logo.svg" class="client_logo" height="auto" width="80px" alt="PeCan Logo"/>
-        </div>
-      </div>
-      <div class="grid_9">
+      <div class="grid_12">
         <h1 class="project_title">
           <span class="case_study_label">PeCan</span>
           Redesigning St. Jude Cloud's Pediatric Cancer Knowledge Base
@@ -151,408 +154,350 @@
   </ul>
 
   <section class="project">
-    <section class="overview" id="overview">
-      <div class="container">
-        <div class="grid_3">
-          <a name="overview"></a>
-          <h3>Overview</h3>
-          <p class="role">Client</p>
-          <p>St. Jude Children’s Research Hospital</p>
-
-          <p class="role">Role</p>
-          <p>Lead Product Designer</p>
-
-          <p class="role">Website</p>
-          <a href="https://pecan.stjude.cloud" class="view_project" target="_blank" rel="noreferrer">View Project <span class="arrow">↗</span></a>
-
-          <p class="role">Contributions</p>
-          <ul>
-            <li class="tag">UI/UX Design</li>
-            <li class="tag">Design Systems</li>
-            <li class="tag">Data Visualization</li>
-            <li class="tag">Front-End Development</li>
-            <li class="tag">Strategic Communication</li>
-          </ul>
+    <div class="container cs_content" id="overview">
+      <div class="grid_12">
+        <h3>Overview</h3>
+        <div class="cs_meta_row">
+          <div class="cs_meta_item">
+            <span class="role">View</span>
+            <div class="cs_view_toggle" role="group" aria-label="Toggle case study view">
+              <button class="cs_view_btn" data-view="case-study" aria-pressed="true" aria-label="Case study view">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><line x1="2" y1="4" x2="12" y2="4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="2" y1="7" x2="12" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="2" y1="10" x2="12" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </button>
+              <button class="cs_view_btn" data-view="image-feed" aria-pressed="false" aria-label="Image grid view">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2" y="2" width="4" height="4" rx="0.5" fill="currentColor"/><rect x="8" y="2" width="4" height="4" rx="0.5" fill="currentColor"/><rect x="2" y="8" width="4" height="4" rx="0.5" fill="currentColor"/><rect x="8" y="8" width="4" height="4" rx="0.5" fill="currentColor"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="cs_meta_item">
+            <span class="role">Client</span>
+            <p>St. Jude Children's Research Hospital</p>
+          </div>
+          <div class="cs_meta_item">
+            <span class="role">Role</span>
+            <p>Lead Product Designer</p>
+          </div>
+          <div class="cs_meta_item">
+            <span class="role">Website</span>
+            <p><a href="https://pecan.stjude.cloud" class="view_project" target="_blank" rel="noreferrer">pecan.stjude.cloud <span class="arrow">↗</span></a></p>
+          </div>
+          <div class="cs_meta_item">
+            <span class="role">Tags</span>
+            <ul class="cs_tags_inline">
+              <li class="tag">UI/UX Design</li>
+              <li class="tag">Design Systems</li>
+              <li class="tag">Data Visualization</li>
+              <li class="tag">Front-End Development</li>
+              <li class="tag">Strategic Communication</li>
+            </ul>
+          </div>
         </div>
-        <div class="grid_9">
-          <p class="leadin">PeCan holds data from over 9,000 pediatric cancer patient samples. Researchers use it to look for patterns — mutations, expression differences, histology — across diagnoses and subtypes. But the interface had grown limiting. Dense tables, disconnected views, and a visual language that had drifted from the rest of St. Jude Cloud made it harder to use than the data deserved.</p>
-          <div class="cs_body_cols">
-            <p>I led the redesign: new visual identity, updated UX flows, a rebuilt design system, and front-end code across the platform. The goal was to make PeCan feel as rigorous as its data — clear, navigable, and consistent — without sacrificing the depth researchers depended on.</p>
-            <p>The work also included copywriting, launch strategy, newsletters, and documentation. Everything needed to ship together for the redesign to land as a cohesive release rather than a patchwork of updates.</p>
+        <p class="leadin">PeCan holds data from over 9,000 pediatric cancer patient samples. Researchers use it to look for patterns — mutations, expression differences, histology — across diagnoses and subtypes. But the interface had grown limiting. Dense tables, disconnected views, and a visual language that had drifted from the rest of St. Jude Cloud made it harder to use than the data deserved.</p>
+        <div class="cs_body_cols">
+          <p>I led the redesign: new visual identity, updated UX flows, a rebuilt design system, and front-end code across the platform. The goal was to make PeCan feel as rigorous as its data — clear, navigable, and consistent — without sacrificing the depth researchers depended on.</p>
+          <p>The work also included copywriting, launch strategy, newsletters, and documentation. Everything needed to ship together for the redesign to land as a cohesive release rather than a patchwork of updates.</p>
+        </div>
+        <p><strong>The result:</strong> a clearer, faster, and more accessible platform for exploring genetic insights into childhood cancer.</p>
+
+        <div class="stats-container">
+          <div class="stat">
+            <span class="stat_label">Features</span>
+            <div class="stat_number">5</div>
+            <p class="stat_info">Completely redesigned core features for launch</p>
           </div>
-          <p><strong>The result:</strong> a clearer, faster, and more accessible platform for exploring genetic insights into childhood cancer.</p>
-
-          <div class="stats-container">
-            <div class="stat">
-              <span class="stat_label">Features</span>
-              <div class="stat_number">5</div>
-              <p class="stat_info">Completely redesigned core features for launch</p>
-            </div>
-
-            <div class="stat">
-              <span class="stat_label">Samples</span>
-              <div class="stat_number">9,000+</div>
-              <p class="stat_info">Unique patient samples available to explore</p>
-            </div>
-
-            <div class="stat">
-              <span class="stat_label">Design System</span>
-              <div class="stat_number">1</div>
-              <p class="stat_info">Unified design system for cohesion across product, prototyping, and development</p>
-            </div>
+          <div class="stat">
+            <span class="stat_label">Samples</span>
+            <div class="stat_number">9,000+</div>
+            <p class="stat_info">Unique patient samples available to explore</p>
           </div>
-          <br>
-          <div class="cs_images cs_smaller container">
-            <div class="grid_6">
-              <img src="/img/pecan/pecan_home_hero_square.png" width="100%" alt="PeCan homepage here design"/>
-              <span class="cs_description">PeCan homepage here design</span>
-            </div>
-            <div class="grid_6">
-              <img src="/img/pecan/pecan_gif_data_facet_homepage_square.gif" width="100%" alt="Homepage data facet section designs"/>
-              <span class="cs_description">Homepage data facet section designs</span>
-            </div>
+          <div class="stat">
+            <span class="stat_label">Design System</span>
+            <div class="stat_number">1</div>
+            <p class="stat_info">Unified design system for cohesion across product, prototyping, and development</p>
           </div>
+        </div>
 
-
-          <div class="cs_images cs_smaller container">
-            <div class="grid_12">
-              <img src="/img/pecan/pecan_variant_prevalence_pathways@2x.png" width="100%" alt="Variants data facet displaying variant pathway prevalence within the LYMPH subtype"/>
-              <span class="cs_description">Variants data facet displaying variant pathway prevalence within the LYMPH subtype</span>
-            </div>
+        <div class="cs_image_pair">
+          <div>
+            <img src="/img/pecan/pecan_home_hero_square.png" alt="PeCan homepage hero design"/>
+            <span class="cs_description">PeCan homepage hero design</span>
           </div>
-
+          <div>
+            <img src="/img/pecan/pecan_gif_data_facet_homepage_square.gif" alt="Homepage data facet section designs"/>
+            <span class="cs_description">Homepage data facet section designs</span>
+          </div>
+        </div>
+        <div class="cs_images">
+          <img src="/img/pecan/pecan_variant_prevalence_pathways@2x.png" alt="Variants data facet displaying variant pathway prevalence within the LYMPH subtype"/>
+          <span class="cs_description">Variants data facet displaying variant pathway prevalence within the LYMPH subtype</span>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section class="container cs_content" id="challenges">
-      <div class="grid_3">
-        <a name="challenges"></a>
+    <div class="container cs_content" id="challenges">
+      <div class="grid_12">
         <h3>Challenges</h3>
-      </div>
-      <div class="grid_9">
         <ul>
-          <li><p>Unify PeCan’s design and brand identity with the broader St. Jude Cloud ecosystem.</p></li>
+          <li><p>Unify PeCan's design and brand identity with the broader St. Jude Cloud ecosystem.</p></li>
           <li><p>Transform dense, technical genomic data into clear, navigable experiences for researchers.</p></li>
           <li><p>Balance scientific precision with human-centered design and the variabilities of a web-based platform.</p></li>
         </ul>
-        <div class="cs_images cs_smaller container">
-          <div class="grid_12">
-            <img src="/img/pecan/pecan_sketch_gene_expression_interface_revisions@2x.png" width="100%" alt="Proposed changes from design review of the Expression data facet"/>
-              <span class="cs_description">Proposed changes from design review of the Expression data facet</span>
-          </div>
-        </div>
-</div>
-    </section>
-
-    <section class="container cs_content" id="contributions">
-      <div class="grid_3">
-        <a name="contributions"></a>
-        <h3>Contributions</h3>
-      </div>
-      <div class="grid_9">
-        <h4>Visual Identity & Branding</h4>
-        <p>I created a new visual identity and logo system for PeCan, aligned with St. Jude Cloud’s brand guidelines and visual principles.</p>
-        <div class="cs_images cs_smaller container">
-          <div class="grid_6">
-            <img src="/img/pecan/pecan_logo@2x.png" width="100%" alt="Pediatric Cancer (PeCan) Knowledge Base Logo"/>
-              <span class="cs_description">Pediatric Cancer (PeCan) Knowledge Base Logo</span>
-          </div>
-          <div class="grid_6">
-            <img src="/img/pecan/pecan_data_facet_icons_square@2x.png" width="100%" alt="Icon design for each data facet"/>
-              <span class="cs_description">Icon design for each data facet</span>
-          </div>
-        </div>
-
         <div class="cs_images">
-          <div class="grid_12">
-            <img src="/img/pecan/pecan_data_facet_icons@2x.png" width="100%" alt="Data table presenting the data available within the PeCan platform"/>
-              <span class="cs_description">Data table presenting the data available within the PeCan platform</span>
+          <img src="/img/pecan/pecan_sketch_gene_expression_interface_revisions@2x.png" alt="Proposed changes from design review of the Expression data facet"/>
+          <span class="cs_description">Proposed changes from design review of the Expression data facet</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="container cs_content" id="contributions">
+      <div class="grid_12">
+        <h3>Contributions</h3>
+        <h4>Visual Identity & Branding</h4>
+        <p>I created a new visual identity and logo system for PeCan, aligned with St. Jude Cloud's brand guidelines and visual principles.</p>
+        <div class="cs_image_pair">
+          <div>
+            <img src="/img/pecan/pecan_logo@2x.png" alt="Pediatric Cancer (PeCan) Knowledge Base Logo"/>
+            <span class="cs_description">Pediatric Cancer (PeCan) Knowledge Base Logo</span>
+          </div>
+          <div>
+            <img src="/img/pecan/pecan_data_facet_icons_square@2x.png" alt="Icon design for each data facet"/>
+            <span class="cs_description">Icon design for each data facet</span>
           </div>
         </div>
+        <div class="cs_images">
+          <img src="/img/pecan/pecan_data_facet_icons@2x.png" alt="Data table presenting the data available within the PeCan platform"/>
+          <span class="cs_description">Data table presenting the data available within the PeCan platform</span>
+        </div>
+
         <h4>UX & UI Redesign</h4>
         <p>Updated UX flows for data exploration and comparison, making it easier for researchers to navigate, analyze, and compare genomic datasets.</p>
-
         <div class="cs_images">
-          <div class="grid_6">
-            <img src="/img/pecan/pecan_prototype_connections_square@2x.png" width="100%" alt="PeCan prototype connections"/>
-              <span class="cs_description">PeCan prototype connections</span>
-          </div>
+          <img src="/img/pecan/pecan_prototype_connections_square@2x.png" alt="PeCan prototype connections"/>
+          <span class="cs_description">PeCan prototype connections</span>
         </div>
-
-        <div class="cs_images cs_smaller container">
-          <div class="grid_6">
-            <img src="/img/pecan/pecan_barplot_dataviz_modal@2x.png" width="100%" alt="Data modal UI component" loading="lazy"/>
+        <div class="cs_image_pair">
+          <div>
+            <img src="/img/pecan/pecan_barplot_dataviz_modal@2x.png" alt="Data modal UI component" loading="lazy"/>
             <span class="cs_description">Data modal user interface component</span>
           </div>
-          <div class="grid_6">
-            <img src="/img/pecan/pecan_ui_components@2x.png" width="100%" alt="UI components" loading="lazy"/>
+          <div>
+            <img src="/img/pecan/pecan_ui_components@2x.png" alt="UI components" loading="lazy"/>
             <span class="cs_description">User interface components used within PeCan</span>
           </div>
         </div>
-        <div class="cs_images cs_smaller container">
-          <div class="grid_6">
-            <img src="/img/pecan/pecan_tree_nav_concept_square@2x.png" width="100%" alt="Tree navigation concept" loading="lazy"/>
+        <div class="cs_image_pair">
+          <div>
+            <img src="/img/pecan/pecan_tree_nav_concept_square@2x.png" alt="Tree navigation concept" loading="lazy"/>
             <span class="cs_description">Tree navigation concept for disease ontology browsing</span>
           </div>
-          <div class="grid_6">
-            <img src="/img/pecan/pecan_disease_ontology_illustration@2x.png" width="100%" alt="Disease ontology illustration" loading="lazy"/>
+          <div>
+            <img src="/img/pecan/pecan_disease_ontology_illustration@2x.png" alt="Disease ontology illustration" loading="lazy"/>
             <span class="cs_description">Disease ontology illustration</span>
           </div>
         </div>
+
         <h4>Content Strategy & Copywriting</h4>
         <p>Simplified language for onboarding, dataset descriptions, and publication summaries to make complex information more accessible to users across disciplines.</p>
         <div class="cs_images">
-          <div class="grid_12">
-            <img src="/img/pecan/pecan_mutational_signatures_homepage@2x.png" width="100%" alt="Design system colors"/>
-              <span class="cs_description">Design system colors</span>
-          </div>
+          <img src="/img/pecan/pecan_mutational_signatures_homepage@2x.png" alt="Mutational signatures homepage" loading="lazy"/>
+          <span class="cs_description">Mutational signatures homepage</span>
         </div>
+
         <h4>Design System Integration</h4>
-        <p>Integrated PeCan’s redesign into St. Jude’s broader design system to ensure visual and functional consistency across all cloud tools.</p>
+        <p>Integrated PeCan's redesign into St. Jude's broader design system to ensure visual and functional consistency across all cloud tools.</p>
         <div class="cs_images">
-          <div class="grid_12">
-            <img src="/img/pecan/pecan_color_design_system@2x.png" width="100%" alt="Design system colors"/>
-              <span class="cs_description">Design system colors</span>
-          </div>
+          <img src="/img/pecan/pecan_color_design_system@2x.png" alt="Design system colors" loading="lazy"/>
+          <span class="cs_description">Design system colors</span>
         </div>
         <div class="cs_images">
-          <div class="grid_12">
-            <img src="/img/pecan/pecan_design_system_components@2x.png" width="100%" alt="Design system navigation components"/>
-              <span class="cs_description">Design system navigation components</span>
-          </div>
+          <img src="/img/pecan/pecan_design_system_components@2x.png" alt="Design system navigation components" loading="lazy"/>
+          <span class="cs_description">Design system navigation components</span>
         </div>
         <div class="cs_images">
-          <div class="grid_12">
-            <img src="/img/pecan/pecan_buttons_design_system@2x.png" width="100%" alt="Design system buttons" loading="lazy"/>
-            <span class="cs_description">Design system buttons</span>
-          </div>
+          <img src="/img/pecan/pecan_buttons_design_system@2x.png" alt="Design system buttons" loading="lazy"/>
+          <span class="cs_description">Design system buttons</span>
         </div>
-        <div class="cs_images cs_smaller container">
-          <div class="grid_6">
-            <img src="/img/pecan/pecan_membrane_toggle@2x.png" width="100%" alt="Membrane toggle component" loading="lazy"/>
+        <div class="cs_image_pair">
+          <div>
+            <img src="/img/pecan/pecan_membrane_toggle@2x.png" alt="Membrane toggle component" loading="lazy"/>
             <span class="cs_description">Membrane toggle UI component</span>
           </div>
-          <div class="grid_6">
-            <img src="/img/pecan/pecan_image_kern_ui_elements@2x.png" width="100%" alt="Kern UI elements" loading="lazy"/>
+          <div>
+            <img src="/img/pecan/pecan_image_kern_ui_elements@2x.png" alt="Kern UI elements" loading="lazy"/>
             <span class="cs_description">Image and kern UI element styles</span>
           </div>
         </div>
+
         <h4>Launch & Communication Support</h4>
         <p>Collaborated on launch planning, email newsletters, and feature rollout strategy—ensuring the new PeCan was introduced with clarity and cohesion.</p>
         <div class="cs_images">
-          <div class="grid_12">
-            <img src="/img/pecan/pecan_presentation_table@2x.png" width="100%" alt="Data table" loading="lazy"/>
-            <span class="cs_description">Data table presenting the data available within the PeCan platform</span>
-          </div>
+          <img src="/img/pecan/pecan_presentation_table@2x.png" alt="Data table" loading="lazy"/>
+          <span class="cs_description">Data table presenting the data available within the PeCan platform</span>
         </div>
         <div class="cs_images">
-          <div class="grid_12">
-            <img src="/img/pecan/pecan_presentation_slide_illustrations@2x.png" width="100%" alt="Presentation slide illustrations" loading="lazy"/>
-            <span class="cs_description">Presentation slide illustrations for launch communications</span>
-          </div>
+          <img src="/img/pecan/pecan_presentation_slide_illustrations@2x.png" alt="Presentation slide illustrations" loading="lazy"/>
+          <span class="cs_description">Presentation slide illustrations for launch communications</span>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section class="container cs_content" id="design">
-      <div class="grid_3">
-        <a name="design"></a>
+    <div class="container cs_content" id="design">
+      <div class="grid_12">
         <h3>Design</h3>
-      </div>
-      <div class="grid_9">
         <p>We replaced dense tables and long lists with flexible data views that help users uncover relationships between datasets, diagnoses, and publications. Interactive elements guide researchers through complex results without overwhelming them.</p>
         <p>The new interface emphasizes clarity and readability through structured grids, soft neutrals, and gentle gradients—balancing scientific precision with approachability. Each page was restructured for improved navigation and user focus.</p>
 
-        <div class="cs_images cs_smaller container">
-      <div class="grid_6">
-        <img src="/img/pecan/pecan_sketch_expression_violin_plot_subtypes_layout_square@2x.png" width="100%" alt="Early sketch for displaying multiple gene's expressions across subtypes"/>
-              <span class="cs_description">Early sketch for displaying multiple gene's expressions across subtypes</span>
-      </div>
-      <div class="grid_6">
-        <img src="/img/pecan/pecan_expression_geneexpression_plots_final@2x.png" width="100%" alt="Expression data facet's compact display of gene expression for multiple genes across subtypes"/>
-              <span class="cs_description">Expression data facet's compact display of gene expression for multiple genes across subtypes</span>
+        <div class="cs_image_pair">
+          <div>
+            <img src="/img/pecan/pecan_sketch_expression_violin_plot_subtypes_layout_square@2x.png" alt="Early sketch for displaying multiple gene's expressions across subtypes" loading="lazy"/>
+            <span class="cs_description">Early sketch for displaying multiple gene's expressions across subtypes</span>
+          </div>
+          <div>
+            <img src="/img/pecan/pecan_expression_geneexpression_plots_final@2x.png" alt="Expression data facet's compact display of gene expression for multiple genes across subtypes" loading="lazy"/>
+            <span class="cs_description">Expression data facet's compact display of gene expression for multiple genes across subtypes</span>
+          </div>
+        </div>
+        <div class="cs_images">
+          <img src="/img/pecan/pecan_variant_prevalence_pathways@2x.png" alt="Variant prevalence pathways" loading="lazy"/>
+          <span class="cs_description">There were a lot of dense bar charts. Between contextual visibility, colors, and orientation these provided massive amounts of data in a small space.</span>
+        </div>
+        <div class="cs_image_pair">
+          <div>
+            <img src="/img/pecan/pecan_expression_homepage@2x.png" alt="Expression data facet homepage" loading="lazy"/>
+            <span class="cs_description">Expression data facet homepage</span>
+          </div>
+          <div>
+            <img src="/img/pecan/pecan_histology_homepage@2x.png" alt="Histology data facet homepage" loading="lazy"/>
+            <span class="cs_description">Histology data facet homepage</span>
+          </div>
+        </div>
+        <div class="cs_image_pair">
+          <div>
+            <img src="/img/pecan/pecan_variants_homepage@2x.png" alt="Variants data facet homepage" loading="lazy"/>
+            <span class="cs_description">Variants data facet homepage</span>
+          </div>
+          <div>
+            <img src="/img/pecan/pecan_pie_homepage@2x.png" alt="Pie chart homepage" loading="lazy"/>
+            <span class="cs_description">Pie chart data summary view</span>
+          </div>
+        </div>
+        <div class="cs_image_pair">
+          <div>
+            <img src="/img/pecan/pecan_sketch_data_viz_ideas_assays_square@2x.png" alt="Data viz ideation sketches" loading="lazy"/>
+            <span class="cs_description">Early ideation sketches for assay data visualizations</span>
+          </div>
+          <div>
+            <img src="/img/pecan/pecan_sketch_tsne_differential_gene_expression_ux_flow@2x.png" alt="tSNE differential gene expression UX flow sketch" loading="lazy"/>
+            <span class="cs_description">tSNE differential gene expression UX flow</span>
+          </div>
+        </div>
+        <div class="cs_image_pair">
+          <div>
+            <img src="/img/pecan/pecan_sketch_hic_square@2x.png" alt="HiC visualization sketch" loading="lazy"/>
+            <span class="cs_description">HiC data visualization sketch</span>
+          </div>
+          <div>
+            <img src="/img/pecan/pecan_sketch_ux_flow_pecan_data_facets_square@2x.png" alt="UX flow for data facets" loading="lazy"/>
+            <span class="cs_description">UX flow diagram for PeCan data facets</span>
+          </div>
+        </div>
       </div>
     </div>
-    <br>
-    <div class="cs_images cs_smaller container">
+
+    <div class="container cs_content" id="cohort_building">
       <div class="grid_12">
-        <img src="/img/pecan/pecan_variant_prevalence_pathways@2x.png" width="100%" alt="Variant prevalence pathways" loading="lazy"/>
-        <span class="cs_description">There were a lot of dense bar charts. Between contextual visibility, colors, and orientation these provided massive amounts of data in a small space.</span>
-      </div>
-    </div>
-    <br>
-    <div class="cs_images cs_smaller container">
-      <div class="grid_6">
-        <img src="/img/pecan/pecan_expression_homepage@2x.png" width="100%" alt="Expression data facet homepage" loading="lazy"/>
-        <span class="cs_description">Expression data facet homepage</span>
-      </div>
-      <div class="grid_6">
-        <img src="/img/pecan/pecan_histology_homepage@2x.png" width="100%" alt="Histology data facet homepage" loading="lazy"/>
-        <span class="cs_description">Histology data facet homepage</span>
-      </div>
-    </div>
-    <div class="cs_images cs_smaller container">
-      <div class="grid_6">
-        <img src="/img/pecan/pecan_variants_homepage@2x.png" width="100%" alt="Variants data facet homepage" loading="lazy"/>
-        <span class="cs_description">Variants data facet homepage</span>
-      </div>
-      <div class="grid_6">
-        <img src="/img/pecan/pecan_pie_homepage@2x.png" width="100%" alt="Pie chart homepage" loading="lazy"/>
-        <span class="cs_description">Pie chart data summary view</span>
-      </div>
-    </div>
-    <div class="cs_images cs_smaller container">
-      <div class="grid_6">
-        <img src="/img/pecan/pecan_sketch_data_viz_ideas_assays_square@2x.png" width="100%" alt="Data viz ideation sketches" loading="lazy"/>
-        <span class="cs_description">Early ideation sketches for assay data visualizations</span>
-      </div>
-      <div class="grid_6">
-        <img src="/img/pecan/pecan_sketch_tsne_differential_gene_expression_ux_flow@2x.png" width="100%" alt="tSNE differential gene expression UX flow sketch" loading="lazy"/>
-        <span class="cs_description">tSNE differential gene expression UX flow</span>
-      </div>
-    </div>
-    <div class="cs_images cs_smaller container">
-      <div class="grid_6">
-        <img src="/img/pecan/pecan_sketch_hic_square@2x.png" width="100%" alt="HiC visualization sketch" loading="lazy"/>
-        <span class="cs_description">HiC data visualization sketch</span>
-      </div>
-      <div class="grid_6">
-        <img src="/img/pecan/pecan_sketch_ux_flow_pecan_data_facets_square@2x.png" width="100%" alt="UX flow for data facets" loading="lazy"/>
-        <span class="cs_description">UX flow diagram for PeCan data facets</span>
-      </div>
-    </div>
-      </div>
-    </section>
-
-
-
-    <section class="container cs_content" id="cohort_building">
-      <div class="grid_3">
-        <a name="cohort_building"></a>
         <h3>Cohort Building</h3>
-      </div>
-      <div class="grid_9">
         <p>One of PeCan's most powerful features is the ability to build and compare custom cohorts — grouping patient samples by diagnosis, gene mutations, or other criteria to uncover patterns across the dataset.</p>
         <p>I designed the full cohort-building experience: from initial concept sketches through UX flows, menu systems, and final UI components for comparison views across expression, histology, and variants.</p>
 
-        <div class="cs_images cs_smaller container">
-          <div class="grid_6">
-            <img src="/img/pecan/pecan_sketch_cohort_building@2x.png" width="100%" alt="Cohort building sketches" loading="lazy"/>
+        <div class="cs_image_pair">
+          <div>
+            <img src="/img/pecan/pecan_sketch_cohort_building@2x.png" alt="Cohort building sketches" loading="lazy"/>
             <span class="cs_description">Early cohort building concept sketches</span>
           </div>
-          <div class="grid_6">
-            <img src="/img/pecan/pecan_sketch_cohort_gene@2x.png" width="100%" alt="Cohort gene sketches" loading="lazy"/>
+          <div>
+            <img src="/img/pecan/pecan_sketch_cohort_gene@2x.png" alt="Cohort gene sketches" loading="lazy"/>
             <span class="cs_description">Gene cohort exploration sketches</span>
           </div>
         </div>
-
-        <div class="cs_images container">
-          <div class="grid_12">
-            <img src="/img/pecan/cohort%20building/cohorts_interaction_mockup@2x.png" width="100%" alt="Cohorts interaction mockup" loading="lazy"/>
-            <span class="cs_description">Cohort interaction mockup showing multi-cohort comparison flow</span>
-          </div>
+        <div class="cs_images">
+          <img src="/img/pecan/cohort%20building/cohorts_interaction_mockup@2x.png" alt="Cohorts interaction mockup" loading="lazy"/>
+          <span class="cs_description">Cohort interaction mockup showing multi-cohort comparison flow</span>
         </div>
-
-        <div class="cs_images cs_smaller container">
-          <div class="grid_6">
-            <img src="/img/pecan/cohort%20building/JAMES%20-%20My%20Cohorts%20-%20Grid%20View.png" width="100%" alt="My Cohorts grid view" loading="lazy"/>
-            <span class="cs_description">My Cohorts grid view</span>
-          </div>
-          <div class="grid_6">
-            <img src="/img/pecan/cohort%20building/Cohort%20Selection%20Menu%20States@2x.png" width="100%" alt="Cohort selection menu states" loading="lazy"/>
-            <span class="cs_description">Cohort selection menu states</span>
-          </div>
+        <div class="cs_images">
+          <img src="/img/pecan/cohort%20building/JAMES%20-%20My%20Cohorts%20-%20Grid%20View.png" alt="My Cohorts grid view" loading="lazy"/>
+          <span class="cs_description">My Cohorts grid view</span>
         </div>
-
-        <div class="cs_images cs_smaller container">
-          <div class="grid_6">
-            <img src="/img/pecan/cohort%20building/Cohort%20compare%20dropdown@2x.png" width="100%" alt="Cohort compare dropdown" loading="lazy"/>
+        <div class="cs_image_pair">
+          <div>
+            <img src="/img/pecan/cohort%20building/Cohort%20compare%20dropdown@2x.png" alt="Cohort compare dropdown" loading="lazy"/>
             <span class="cs_description">Cohort compare dropdown</span>
           </div>
-          <div class="grid_6">
-            <img src="/img/pecan/cohort%20building/Cohort%20selection%20dropdown%20menu@2x.png" width="100%" alt="Cohort selection dropdown menu" loading="lazy"/>
+          <div>
+            <img src="/img/pecan/cohort%20building/Cohort%20selection%20dropdown%20menu@2x.png" alt="Cohort selection dropdown menu" loading="lazy"/>
             <span class="cs_description">Cohort selection dropdown menu</span>
           </div>
         </div>
-
-        <div class="cs_images container">
-          <div class="grid_12">
-            <img src="/img/pecan/cohort%20building/Menu%20Selection%20UI%20Styles@2x.png" width="100%" alt="Menu selection UI styles" loading="lazy"/>
-            <span class="cs_description">Menu selection UI styles</span>
-          </div>
+        <div class="cs_images">
+          <img src="/img/pecan/cohort%20building/Cohort%20Menu%20Selection%20UX%20Components.png" alt="Cohort menu selection UX components" loading="lazy"/>
+          <span class="cs_description">Cohort menu selection UX components</span>
         </div>
-
-        <div class="cs_images container">
-          <div class="grid_12">
-            <img src="/img/pecan/cohort%20building/Cohort%20Menu%20Selection%20UX%20Components.png" width="100%" alt="Cohort menu selection UX components" loading="lazy"/>
-            <span class="cs_description">Cohort menu selection UX components</span>
-          </div>
-        </div>
-
-        <div class="cs_images cs_smaller container">
-          <div class="grid_6">
-            <img src="/img/pecan/cohort%20building/Ontology%20Search%20-%20AKA%20Sunburst.png" width="100%" alt="Ontology search sunburst" loading="lazy"/>
+        <div class="cs_image_pair">
+          <div>
+            <img src="/img/pecan/cohort%20building/Ontology%20Search%20-%20AKA%20Sunburst.png" alt="Ontology search sunburst" loading="lazy"/>
             <span class="cs_description">Ontology search — sunburst visualization</span>
           </div>
-          <div class="grid_6">
-            <img src="/img/pecan/cohort%20building/Ontology%20Tree.png" width="100%" alt="Ontology tree" loading="lazy"/>
+          <div>
+            <img src="/img/pecan/cohort%20building/Ontology%20Tree.png" alt="Ontology tree" loading="lazy"/>
             <span class="cs_description">Ontology tree navigation</span>
           </div>
         </div>
-
-        <div class="cs_images cs_smaller container">
-          <div class="grid_6">
-            <img src="/img/pecan/cohort%20building/PeCan%20-%20Sunburst.png" width="100%" alt="PeCan sunburst" loading="lazy"/>
+        <div class="cs_image_pair">
+          <div>
+            <img src="/img/pecan/cohort%20building/PeCan%20-%20Sunburst.png" alt="PeCan sunburst" loading="lazy"/>
             <span class="cs_description">PeCan disease sunburst</span>
           </div>
-          <div class="grid_6">
-            <img src="/img/pecan/cohort%20building/Mutational%20Signatures.png" width="100%" alt="Mutational signatures" loading="lazy"/>
+          <div>
+            <img src="/img/pecan/cohort%20building/Mutational%20Signatures.png" alt="Mutational signatures" loading="lazy"/>
             <span class="cs_description">Mutational signatures view</span>
           </div>
         </div>
-
-        <div class="cs_images cs_smaller container">
-          <div class="grid_6">
-            <img src="/img/pecan/pecan_cohorts_expression_comparison@2x.png" width="100%" alt="Cohort expression comparison" loading="lazy"/>
+        <div class="cs_image_pair">
+          <div>
+            <img src="/img/pecan/pecan_cohorts_expression_comparison@2x.png" alt="Cohort expression comparison" loading="lazy"/>
             <span class="cs_description">Cohort expression comparison</span>
           </div>
-          <div class="grid_6">
-            <img src="/img/pecan/pecan_cohorts_expression_prevalence_comparison@2x.png" width="100%" alt="Cohort expression prevalence comparison" loading="lazy"/>
+          <div>
+            <img src="/img/pecan/pecan_cohorts_expression_prevalence_comparison@2x.png" alt="Cohort expression prevalence comparison" loading="lazy"/>
             <span class="cs_description">Cohort expression prevalence comparison</span>
           </div>
         </div>
-
-        <div class="cs_images cs_smaller container">
-          <div class="grid_6">
-            <img src="/img/pecan/pecan_cohorts_histology_comparison@2x.png" width="100%" alt="Cohort histology comparison" loading="lazy"/>
+        <div class="cs_image_pair">
+          <div>
+            <img src="/img/pecan/pecan_cohorts_histology_comparison@2x.png" alt="Cohort histology comparison" loading="lazy"/>
             <span class="cs_description">Cohort histology comparison</span>
           </div>
-          <div class="grid_6">
-            <img src="/img/pecan/pecan_cohorts_histology_detail@2x.png" width="100%" alt="Cohort histology detail" loading="lazy"/>
+          <div>
+            <img src="/img/pecan/pecan_cohorts_histology_detail@2x.png" alt="Cohort histology detail" loading="lazy"/>
             <span class="cs_description">Cohort histology detail</span>
           </div>
         </div>
-
-        <div class="cs_images cs_smaller container">
-          <div class="grid_6">
-            <img src="/img/pecan/pecan_cohorts_variants.png" width="100%" alt="Cohort variants" loading="lazy"/>
+        <div class="cs_image_pair">
+          <div>
+            <img src="/img/pecan/pecan_cohorts_variants.png" alt="Cohort variants" loading="lazy"/>
             <span class="cs_description">Cohort variants view</span>
           </div>
-          <div class="grid_6">
-            <img src="/img/pecan/pecan_cohorts_mutational_signatures.png" width="100%" alt="Cohort mutational signatures" loading="lazy"/>
+          <div>
+            <img src="/img/pecan/pecan_cohorts_mutational_signatures.png" alt="Cohort mutational signatures" loading="lazy"/>
             <span class="cs_description">Cohort mutational signatures</span>
           </div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section class="container cs_content" id="impact">
-      <div class="grid_3">
-        <a name="impact"></a>
+    <div class="container cs_content" id="impact">
+      <div class="grid_12">
         <h3>Impact</h3>
-      </div>
-      <div class="grid_9">
         <p class="leadin">The redesign helped PeCan stand out as a modern research product while remaining cohesive with the rest of the St. Jude Cloud ecosystem. It now serves as an accessible, reliable hub for pediatric cancer data—used by researchers across St. Jude and partner institutions worldwide.</p>
         <ul>
           <li><p>Stronger visual and UX alignment across all St. Jude Cloud tools</p></li>
@@ -562,74 +507,51 @@
           <li><p>Clearer communication of findings and publications</p></li>
           <li><p>Cross-department collaboration</p></li>
         </ul>
-        <p>PeCan’s redesign strengthened St. Jude’s broader mission: to share knowledge openly and accelerate cures for children everywhere.</p>
-      </div>
-    </section>
-
-    <div class="cs_images container">
-      <div class="grid_12">
-        <img src="/img/pecan/pecan_aacr_poster@2x.png" width="100%" alt="AACR poster design to present new features and findings"/>
-              <span class="cs_description">AACR poster design to present new features and findings</span>
+        <p>PeCan's redesign strengthened St. Jude's broader mission: to share knowledge openly and accelerate cures for children everywhere.</p>
+        <div class="cs_images">
+          <img src="/img/pecan/pecan_aacr_poster@2x.png" alt="AACR poster design to present new features and findings" loading="lazy"/>
+          <span class="cs_description">AACR poster design to present new features and findings</span>
+        </div>
       </div>
     </div>
 
-    <section class="container cs_content" id="reflection">
-      <div class="grid_3">
-        <a name="reflection"></a>
+    <div class="container cs_content" id="reflection">
+      <div class="grid_12">
         <h3>Reflection</h3>
+        <p>Designing for researchers means designing for people who know more about the content than you do. That changes the dynamic. You can't simplify data — you can only make it easier to navigate. The right question is always: what does a researcher need to see first, and what can wait?</p>
+        <p>Working on PeCan also taught me that a design system is only as good as its adoption. Building the components wasn't the hard part — writing the documentation, the newsletters, and the launch materials so the team could carry it forward was what made the work stick.</p>
       </div>
-      <div class="grid_9">
-        <p>Designing for researchers means designing for people who know more about the content than you do. That changes the dynamic. You can’t simplify data — you can only make it easier to navigate. The right question is always: what does a researcher need to see first, and what can wait?</p>
-        <p>Working on PeCan also taught me that a design system is only as good as its adoption. Building the components wasn’t the hard part — writing the documentation, the newsletters, and the launch materials so the team could carry it forward was what made the work stick.</p>
-      </div>
-    </section>
+    </div>
   </section>
 </main>
 
-<section class="cs_more_work">
+<section class="cs_next_project">
   <div class="container">
-    <div class="grid_12">
-      <h2 class="home_work_title">View more work</h2>
+    <div class="cs_next_inner grid_12">
+      <div class="cs_next_copy">
+        <p class="cs_next_label">Next Case Study</p>
+        <h2>Visualization Community</h2>
+        <p>Designing a new way for scientists to see and share genomic discoveries.</p>
+        <a href="/case_studies/visualization_community/" class="btn">View Case Study</a>
+      </div>
+      <div class="cs_next_card">
+        <a href="/case_studies/visualization_community/" class="hwc viz" aria-label="Visualization Community by St. Jude Children's Research Hospital">
+          <div class="hwc_img">
+            <img src="/img/visualization_community/visualization_community_cover.png" srcset="/img/visualization_community/visualization_community_cover.png 1x, /img/visualization_community/visualization_community_cover@2x.png 2x" alt="Visualization Community" loading="lazy" width="600" height="600">
+          </div>
+          <div class="hwc_info">
+            <span class="hwc_company">St. Jude Children's Research Hospital</span>
+            <span class="hwc_title">Visualization Community</span>
+          </div>
+        </a>
+      </div>
     </div>
-  </div>
-  <div class="container home_work_grid">
-
-      <a href="/case_studies/visualization_community/" class="hwc viz" aria-label="Visualization Community by St. Jude Children's Research Hospital">
-        <div class="hwc_img">
-          <img src="/img/visualization_community/visualization_community_cover.png" srcset="/img/visualization_community/visualization_community_cover.png 1x, /img/visualization_community/visualization_community_cover@2x.png 2x" alt="Visualization Community" loading="lazy" width="600" height="600">
-        </div>
-        <div class="hwc_info">
-          <span class="hwc_company">St. Jude Children's Research Hospital</span>
-          <span class="hwc_title">Visualization Community</span>
-        </div>
-      </a>
-
-      <a href="/case_studies/naturescore/" class="hwc ns" aria-label="NatureScore by NatureQuant">
-        <div class="hwc_img">
-          <img src="/img/naturescore/naturescore_cover_image.png" srcset="/img/naturescore/naturescore_cover_image.png 1x, /img/naturescore/naturescore_cover_image@2x.png 2x" alt="NatureScore" loading="lazy" width="600" height="600">
-        </div>
-        <div class="hwc_info">
-          <span class="hwc_company">NatureQuant</span>
-          <span class="hwc_title">NatureScore</span>
-        </div>
-      </a>
-
-      <a href="/case_studies/naturequant/" class="hwc nq" aria-label="NatureQuant by NatureQuant">
-        <div class="hwc_img">
-          <img src="/img/naturequant/naturequant_cover_image.png" srcset="/img/naturequant/naturequant_cover_image.png 1x, /img/naturequant/naturequant_cover_image@2x.png 2x" alt="NatureQuant" loading="lazy" width="600" height="600">
-        </div>
-        <div class="hwc_info">
-          <span class="hwc_company">NatureQuant</span>
-          <span class="hwc_title">NatureQuant</span>
-        </div>
-      </a>
-
   </div>
 </section>
 
 <footer class="site_footer">
   <div class="container">
-    <span class="site_footer_name">James Madson 2026</span>
+    <span class="site_footer_name">James Madson <span id="footer_year"></span></span>
     <span class="site_footer_tagline">Make something beautiful today.</span>
   </div>
 </footer>

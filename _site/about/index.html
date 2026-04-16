@@ -63,6 +63,7 @@
     <div class="nav_container">
       <nav class="nav_large">
         <ul>
+          <li><a href="/">Home</a></li>
           <li><a href="/about/" class="active">About</a></li>
           <li class="nav_dropdown_trigger">
             <a href="/#recent_work">Work</a>
@@ -76,6 +77,12 @@
               <a href="/case_studies/pecan/" class="nav_dropdown_item">
                 <div class="nav_dropdown_meta">
                   <span class="nav_dropdown_title">PeCan</span>
+                  <span class="nav_dropdown_company">St. Jude Children's Research Hospital</span>
+                </div>
+              </a>
+              <a href="/case_studies/visualization_community/" class="nav_dropdown_item">
+                <div class="nav_dropdown_meta">
+                  <span class="nav_dropdown_title">Visualization Community</span>
                   <span class="nav_dropdown_company">St. Jude Children's Research Hospital</span>
                 </div>
               </a>
@@ -101,8 +108,8 @@
   <nav class="mobile_nav_menu" id="mobilenavmenu" aria-hidden="true">
     <div class="mobile_nav_inner">
       <ul>
-        <li><a href="/index.html">Home</a></li>
-        <li><a href="/about.html" class="active">About</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about/" class="active">About</a></li>
         <li class="mobile_nav_accordion">
           <button class="mobile_nav_accordion_btn" aria-expanded="false">
             Work
@@ -111,6 +118,7 @@
           <ul class="mobile_nav_accordion_panel" aria-hidden="true">
           <li><a href="/case_studies/naturedose/">NatureDose</a></li>
           <li><a href="/case_studies/pecan/">PeCan</a></li>
+          <li><a href="/case_studies/visualization_community/">Visualization Community</a></li>
           </ul>
         </li>
         <li><a href="/contact/">Contact</a></li>
@@ -224,13 +232,13 @@
   <div class="container">
     <div class="grid_12">
       <div class="values_row">
-        <a href="/case_studies/pecan/" class="value_word highlight pecan">Useful</a>
+        <a href="/case_studies/visualization_community/" class="value_word highlight viz">Useful</a>
         <span class="value_connector"></span>
-        <a href="/case_studies/naturescore/" class="value_word highlight ns">Clear</a>
+        <a href="/case_studies/naturedose/" class="value_word highlight nd">Clear</a>
         <span class="value_connector"></span>
         <a href="/case_studies/naturedose/" class="value_word highlight nd">Resonant</a>
         <span class="value_connector"></span>
-        <a href="/case_studies/naturequant/" class="value_word highlight nq">Lasting</a>
+        <a href="/case_studies/pecan/" class="value_word highlight pecan">Lasting</a>
       </div>
     </div>
     <div class="grid_6">
@@ -253,7 +261,8 @@
         <li><a href="/case_studies/naturedose/" class="highlight nd">Design Direction</a></li>
         <li><a href="/case_studies/pecan/" class="highlight pecan">Product UX/UI</a></li>
         <li><a href="/case_studies/pecan/" class="highlight pecan">Design Systems</a></li>
-        <li><a href="/case_studies/pecan/" class="highlight pecan">System Design</a></li>
+        <li><a href="/case_studies/visualization_community/" class="highlight viz">Data Visualization</a></li>
+        <li><a href="/case_studies/visualization_community/" class="highlight viz">Information Architecture</a></li>
         <li><a href="/case_studies/naturedose/" class="highlight nd">Rapid Prototyping</a></li>
         <li><a href="/about/" class="highlight jm">AI Workflow Integration</a></li>
       </ul>
@@ -337,11 +346,11 @@
         <div class="experience_item">
           <div class="experience_left">
             <span class="experience_company">NatureQuant</span>
-            <span class="experience_meta">NatureQuant<br>2019–2024 · Remote</span>
+            <span class="experience_meta">NatureQuant<br>2019–Present · Remote</span>
           </div>
           <div class="experience_right">
             <p class="experience_role">Design Director</p>
-            <p>Led and executed design across product and brand for a nature-exposure health tech startup. Directed brand identity, built the design function from scratch, and shipped NatureDose and NatureScore consumer apps.</p>
+            <p>Led and executed design across product and brand for a nature-exposure health tech startup. Directed brand identity, built the design function from scratch, and shipped NatureDose and NatureScore consumer apps. Currently working on GIS mapping visualizations using Felt and ArcGIS.</p>
           </div>
         </div>
 
@@ -376,7 +385,7 @@
 
 <footer class="site_footer">
   <div class="container">
-    <span class="site_footer_name">James Madson 2026</span>
+    <span class="site_footer_name">James Madson <span id="footer_year"></span></span>
     <span class="site_footer_tagline">Make something beautiful today.</span>
   </div>
 </footer>
@@ -433,7 +442,7 @@
   img.src = '/img/generalist_designer.png';
   img.alt = 'Generalist designer diagram';
   img.className = 'cursor_hover_photo';
-  img.style.rotate = '-10deg';
+  img.style.rotate = '10deg';
   document.body.appendChild(img);
 
   var mouseX = 0, mouseY = 0;
@@ -521,9 +530,9 @@
         }
       );
       gsap.fromTo('.image_waves',
-        { y: 180 },
+        { y: 280 },
         {
-          y: -180,
+          y: -280,
           ease: 'none',
           scrollTrigger: { trigger: section, start: 'top bottom', end: 'center center', scrub: 0.4 }
         }
@@ -549,9 +558,9 @@
         }
       );
       gsap.fromTo('.image_waves',
-        { y: 120 },
+        { y: 200 },
         {
-          y: -120,
+          y: -200,
           ease: 'none',
           scrollTrigger: { trigger: section, start: 'top bottom', end: 'center center', scrub: 1 }
         }

@@ -148,10 +148,8 @@ html {
   .music_link { color: $dark-default; }
   .music_soon { color: rgba($dark-default, 0.3); }
 
-  // Blockquote
-  blockquote { background-color: rgba($dark-default, 0.04); color: $dark-default; border-left-color: $text-muted; }
+  // Blockquote — no background, just text
 
-  footer { background-color: $dark-default; a { color: $white; } h3 { color: $white; } }
 
   // Project detail page headers — light mode (accent at top-right, fades to tan)
   .about.about_naturedose  { background: linear-gradient(to bottom left, rgba(#009933, 0.4) 0%, $tan 100%); }
@@ -756,7 +754,7 @@ html.theme-light #navlink { color: $dark-default; }
 
 .nav_dropdown_item {
   align-items: center;
-  border-radius: 0.75rem;
+  border-radius: 0.625rem;
   color: inherit;
   display: flex;
   gap: 0.75rem;
@@ -1154,6 +1152,8 @@ html.theme-light body .about_meta_links {
 // Clients section — extra breathing room below
 .about_clients {
   padding-bottom: 5rem;
+
+  h4 { margin-bottom: 0.75rem; }
 }
 
 .about_services {
@@ -1761,24 +1761,63 @@ html.theme-light body .about_meta_links {
       -webkit-backdrop-filter: none;
       backdrop-filter: none;
       background: none;
-      border: 2px solid rgba($white, 0.25);
-      overflow: hidden;
+      border: none;
+      box-shadow: none;
       padding: 0;
+      width: auto;
+      height: auto;
 
       &::before { display: none; }
     }
 
     .client_logo {
       filter: none;
-      height: 100%;
-      object-fit: cover;
-      width: 100%;
+      height: auto;
+      object-fit: initial;
+      width: 80px;
     }
   }
-  &.about_pecan       { background: linear-gradient(155deg, #145674 0%, #030E14 100%); }
+
+  &.about_pecan {
+    background: linear-gradient(155deg, #145674 0%, #030E14 100%);
+
+    .client_logo_wrap {
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+      background: none;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+      width: auto;
+      height: auto;
+
+      &::before { display: none; }
+    }
+
+    .client_logo { filter: none; height: auto; width: 80px; }
+  }
+
   &.about_naturescore { background: linear-gradient(155deg, #365800 0%, #0E1800 100%); }
   &.about_naturequant { background: linear-gradient(155deg, #0A4E22 0%, #020C07 100%); }
-  &.about_viz         { background: linear-gradient(155deg, #1E4490 0%, #060A20 100%); }
+
+  &.about_viz {
+    background: linear-gradient(155deg, #1E4490 0%, #060A20 100%);
+
+    .client_logo_wrap {
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+      background: none;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+      width: auto;
+      height: auto;
+
+      &::before { display: none; }
+    }
+
+    .client_logo { filter: none; height: auto; width: 80px; }
+  }
   &.about-stjude { background-color: #000000; background-attachment: scroll; }
 
   .project_title {
@@ -2162,7 +2201,9 @@ sup.reg {
   padding: 0.5rem 0.8rem;
   position: sticky;
   top: 0;
+  transform: translateZ(0);
   width: 100%;
+  will-change: transform;
   z-index: 200;
 
   li {
@@ -2176,10 +2217,23 @@ sup.reg {
     border-radius: 1.5rem;
     color: rgba($white, 0.65);
     display: flex;
-    gap: 0.4rem;
+    gap: 0;
     padding: 0.45rem 0.9rem;
     text-decoration: none;
     transition: background 0.2s ease, color 0.2s ease;
+
+    &::before {
+      background: currentColor;
+      border-radius: 50%;
+      content: '';
+      display: block;
+      flex-shrink: 0;
+      height: 4px;
+      margin-right: 0;
+      opacity: 0;
+      transition: width 0.2s ease, opacity 0.2s ease, margin-right 0.2s ease;
+      width: 0;
+    }
 
     &:hover {
       background: rgba($white, 0.15);
@@ -2190,6 +2244,12 @@ sup.reg {
   a.active {
     background: $white;
     color: $dark-default;
+
+    &::before {
+      margin-right: 0.45rem;
+      opacity: 1;
+      width: 4px;
+    }
   }
 
   .cs_nav_label {
@@ -2292,6 +2352,7 @@ sup.reg {
 }
 
 .cs_view_toggle {
+  align-self: flex-start;
   background: rgba($white, 0.07);
   border: 1px solid rgba($white, 0.12);
   border-radius: 2rem;
@@ -2300,22 +2361,27 @@ sup.reg {
   overflow: hidden;
 
   .cs_view_btn {
+    align-items: center;
     background: none;
     border: none;
     color: rgba($white, 0.45);
     cursor: pointer;
-    font-family: $mono;
-    font-size: 0.6rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    padding: 0.35rem 0.85rem;
+    display: flex;
+    justify-content: center;
+    padding: 0.4rem 0.65rem;
     position: relative;
-    text-align: center;
-    text-transform: uppercase;
+    transition: color 0.15s ease, background 0.15s ease;
+
+    svg { display: block; pointer-events: none; }
 
     &.active {
       background: rgba($white, 0.14);
       color: $white;
+    }
+
+    &:focus-visible {
+      outline: 2px solid rgba($white, 0.6);
+      outline-offset: -2px;
     }
   }
 }
@@ -2448,12 +2514,11 @@ html.theme-light {
 
 // Light mode overrides
 .theme-light {
-  .cs_meta_bar                  { border-color: rgba($dark-default, 0.1); }
   .cs_meta_label                { color: rgba($dark-default, 0.55); }
   .cs_meta_item > p             { color: rgba($dark-default, 0.8); }
   .cs_meta_item > ul li         { border-color: rgba($dark-default, 0.15); color: rgba($dark-default, 0.7); }
   .cs_view_toggle               { background: rgba($dark-default, 0.06); border-color: rgba($dark-default, 0.1); }
-  .cs_view_btn                  { color: rgba($dark-default, 0.4); }
+  .cs_view_btn                  { color: rgba($dark-default, 0.4); &:focus-visible { outline-color: rgba($dark-default, 0.5); } }
   .cs_view_btn.active           { background: rgba($dark-default, 0.1); color: $dark-default; }
   .work_view_toggle             { background: rgba($dark-default, 0.08); }
   .work_view_toggle::before     { background: rgba($dark-default, 0.12); }
@@ -2923,8 +2988,11 @@ body.theme-light {
 
 // Image Feed mode — hide text content, show masonry
 body.image-feed {
-  .cs_content { display: none !important; }
-  .overview .grid_9 > *:not(.leadin) { display: none !important; }
+  // Hide all case study content sections except overview (which holds the view toggle)
+  .cs_content:not(#overview) { display: none !important; }
+  // In overview, collapse everything except the meta row so the toggle stays reachable
+  #overview .grid_12 { display: block !important; }
+  #overview .grid_12 > *:not(.cs_meta_row) { display: none !important; }
   .cs_image_feed { display: block !important; }
   .case_study_nav { display: none !important; }
 }
@@ -3051,6 +3119,10 @@ body.image-feed {
   padding-bottom: 8rem;
   width: 100%;
 
+  .container { max-width: 1800px; }
+
+  img { max-width: 100%; }
+
   h1 { color: $white; font-family: $font; }
   h2 { color: $white; }
   h3 { color: $white; }
@@ -3081,6 +3153,75 @@ body.image-feed {
 
   ul { list-style: initial; li { color: $text-muted; } }
 
+  // Left spacer column — aligns content with hero title on desktop, hidden on mobile
+  .cs_spacer {
+    @media (max-width: 1279px) { display: none; }
+  }
+
+  // Horizontal metadata row (overview)
+  .cs_meta_row {
+    border-bottom: 1px solid rgba($white, 0.08);
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.75rem 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+
+    @media (max-width: 768px) { flex-wrap: wrap; }
+  }
+
+  .cs_meta_item {
+    .role {
+      color: rgba($white, 0.4);
+      display: block;
+      font-family: $mono;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.3rem;
+      text-transform: uppercase;
+    }
+    p, a { font-size: 0.9rem; margin: 0; }
+
+    &:has(.cs_tags_inline) {
+      flex: 0 1 auto;
+    }
+  }
+
+  .cs_tags_inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  // Reviews: h3 + rating side by side
+  .cs_reviews_header {
+    align-items: baseline;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    margin-bottom: 1.5rem;
+
+    h3 { margin: 0; }
+
+    .cs_app_rating {
+      align-items: baseline;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem 0.75rem;
+      margin-top: 0;
+
+      .cs_rating_score { font-size: 1.5rem; }
+      .cs_rating_stars { font-size: 0.75rem; }
+    }
+  }
+
+  // Overview: no top gap; challenges flows directly after
+  #overview { margin-top: 2rem; margin-bottom: 0; }
+  #challenges { margin-top: 1.5rem; }
+
   .cs_content {
     margin-bottom: 4rem;
     margin-top: 4rem;
@@ -3091,10 +3232,34 @@ body.image-feed {
     > [class*="grid_"] > *:first-child { margin-top: 0; }
   }
 
-  .cs_images {
-    &.cs_smaller { padding: 0; }
+  // Two-column layout: section title on the left, content on the right
+  .cs_content .grid_12 > p:first-of-type {
+    margin-block-start: 0;
+  }
 
-    img { border-radius: 1rem; margin: 1rem 0 0; object-fit: fill; width: 100%; }
+  .cs_content .grid_12:has(> h3:first-child) {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    column-gap: 4rem;
+    align-items: start;
+
+    > h3 { grid-column: 1; }
+    > *:not(h3) { grid-column: 2; }
+
+    @media (max-width: 1279px) {
+      display: block;
+    }
+  }
+
+  .cs_image_pair {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+    margin: 1rem 0;
+
+    @media (max-width: 768px) { grid-template-columns: 1fr; }
+
+    img { border-radius: 1rem; display: block; height: auto; width: 100%; }
 
     .cs_description {
       color: rgba($white, 0.4);
@@ -3107,19 +3272,37 @@ body.image-feed {
     }
   }
 
-  .overview {
-    color: $white !important;
-    margin-bottom: 1.25rem;
-    padding-bottom: 6rem;
-    padding-top: 6rem;
-    scroll-margin-top: 9rem;
+  .cs_images {
+    &.cs_smaller { padding: 0; }
 
-    h2, h3, h4, h5, li, a, .leadin { color: $white; margin: 0; }
+    img, video { border-radius: 1rem; display: block; margin: 1rem 0 0; object-fit: fill; width: 100%; }
+
+    // Inline link that matches surrounding text
+    .inline_link {
+      color: inherit;
+      font-weight: inherit;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .cs_description {
+      color: rgba($white, 0.4);
+      display: block;
+      font-family: $mono;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      margin: 0.4rem 0 0;
+      text-transform: uppercase;
+    }
+  }
+
+  #overview {
+    h2, h3, h4, h5, li, a, .leadin { color: $white; }
 
     a p { transition: all 0.4s ease; }
     a:hover p { color: $white; transition: all 0.4s ease; }
 
-    p { color: rgba($white, 0.6); display: block; margin: 2rem 0; }
+    p { color: rgba($white, 0.6); }
 
     .stats-container {
       border-top: 1px solid rgba($white, 0.12);
@@ -3178,37 +3361,9 @@ body.image-feed {
       padding: 0.25em 0.65em;
       text-transform: uppercase;
     }
-
-    ul { margin-top: 1.5rem; padding-right: 3rem; }
-
-    ol {
-      font-family: $font;
-      margin: 1rem 0 0;
-
-      li { line-height: 2rem; margin: 1rem 0; }
-    }
-
-    .role {
-      display: block;
-      font-size: 0.8rem;
-      font-weight: bold;
-      letter-spacing: 0.1rem;
-      line-height: 0.8rem;
-      margin-top: 1rem;
-      margin-bottom: -1rem;
-      opacity: 0.5;
-      text-transform: uppercase;
-    }
   }
 
   .client_logo { margin-top: 15px; padding-bottom: 20px; }
-
-  .btn {
-    transition: all 0.4s ease-in-out;
-    width: auto;
-
-    &:hover { padding-right: 10px; }
-  }
 }
 
 
@@ -3217,24 +3372,43 @@ body.image-feed {
 // ============================================================
 
 .btn {
-  background-color: $white;
-  border-radius: 0.4rem;
-  border: none;
-  color: $dark-default;
+  background: transparent;
+  border: 1.5px solid rgba($white, 0.5);
+  border-radius: 99rem;
+  color: $white;
   cursor: pointer;
-  display: block;
+  display: inline-flex;
+  align-items: center;
   font-family: $font;
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin: 2rem 0;
-  padding: 2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin: 1.5rem 0 0;
+  padding: 0.65rem 1.5rem;
   text-align: center;
   text-decoration: none;
-  transition: all 0.4s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   width: auto;
 
-  &.primary { color: $white; &:hover { background-color: $text-secondary; color: $white; } }
-  &.secondary { background-color: $dark-default; color: $white; &:hover { background-color: $text-muted; } }
+  &:hover {
+    background: $white;
+    border-color: $white;
+    color: $dark-default;
+  }
+
+  &.primary { color: $white; }
+  &.secondary { background-color: $dark-default; color: $white; }
+}
+
+html.theme-light .btn {
+  border-color: rgba($dark-default, 0.4);
+  color: $dark-default;
+
+  &:hover {
+    background: $dark-default;
+    border-color: $dark-default;
+    color: $white;
+  }
 }
 
 
@@ -3266,6 +3440,24 @@ body.image-feed {
     letter-spacing: 0.04em;
     margin: 0.15rem 0 0;
   }
+}
+
+.cs_review + .cs_review {
+  margin-top: 1.5rem;
+}
+
+.cs_review--featured {
+  border-color: rgba($green, 0.4);
+  box-shadow: 0 0 0 1px rgba($green, 0.12), 0 4px 24px rgba($green, 0.08);
+}
+
+html.theme-light .cs_review--featured {
+  border-color: rgba($green, 0.35);
+  box-shadow: 0 0 0 1px rgba($green, 0.1), 0 4px 24px rgba($green, 0.06);
+}
+
+.project--compact > .cs_content:first-child {
+  margin-top: 1.5rem;
 }
 
 .cs_review {
@@ -3311,6 +3503,19 @@ html.theme-light {
   .cs_review .cs_review_title { color: $dark-default; }
   .cs_review .cs_review_meta { color: rgba($dark-default, 0.4); }
   .cs_review .cs_review_body { color: rgba($dark-default, 0.75); }
+
+  .stats-container {
+    border-top-color: rgba($dark-default, 0.12);
+    color: $dark-default;
+
+    .stat { border-left-color: rgba($dark-default, 0.12); }
+    .stat_label { color: rgba($dark-default, 0.5); }
+    .stat_number { color: $dark-default; }
+    .stat_info { color: rgba($dark-default, 0.55); }
+  }
+
+  .cs_meta_row { border-bottom-color: rgba($dark-default, 0.1); }
+  .cs_meta_item .role { color: rgba($dark-default, 0.4); }
 }
 
 
@@ -3337,7 +3542,11 @@ html.theme-light {
 .nd_concepts_grid {
   display: grid;
   gap: 0.75rem;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
   margin-top: 2rem;
 
   img {
@@ -3345,6 +3554,184 @@ html.theme-light {
     display: block;
     height: auto;
     width: 100%;
+  }
+}
+
+
+// ============================================================
+// NatureDose phone mockup carousel
+// ============================================================
+
+.nd_phone_carousel {
+  display: flex;
+  gap: 1.25rem;
+  margin: 2.5rem 0 0.5rem;
+  overflow-x: auto;
+  padding: 0 0 1.5rem;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar { display: none; }
+}
+
+.nd_phone_slide {
+  flex: 0 0 calc(30% - 0.75rem);
+  scroll-snap-align: start;
+
+  img {
+    border-radius: 2.5rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    display: block;
+    height: auto;
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    flex: 0 0 75%;
+  }
+}
+
+
+// ============================================================
+// PeCan CTA (end of NatureDose case study)
+// ============================================================
+
+.cs_next_project {
+  background-color: rgba($white, 0.04);
+  border-top: 1px solid rgba($white, 0.08);
+  padding: 5rem 0;
+
+  .cs_next_inner {
+    align-items: center;
+    display: flex;
+    gap: 4rem;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+  }
+
+  .cs_next_copy {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .cs_next_card {
+    flex: 0 0 400px;
+    transition: transform 0.25s ease;
+
+    .hwc_info { display: none; }
+
+    &:hover { transform: translateY(-6px); }
+
+    @media (max-width: 768px) {
+      flex: none;
+      width: 100%;
+    }
+  }
+
+  .cs_next_label {
+    color: rgba($white, 0.4);
+    font-family: $mono;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    margin: 0 0 1rem;
+    text-transform: uppercase;
+  }
+
+  .cs_next_title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.15;
+    margin: 0 0 1rem;
+  }
+
+  .cs_next_desc {
+    color: rgba($white, 0.6);
+    font-size: 1.125rem;
+    line-height: 1.65;
+    margin: 0 0 2rem;
+    max-width: 56ch;
+  }
+
+  .cs_next_link {
+    align-items: center;
+    border: 1px solid rgba($white, 0.45);
+    border-radius: 2rem;
+    color: $white;
+    display: inline-flex;
+    font-size: 0.9rem;
+    font-weight: 600;
+    gap: 0.4rem;
+    padding: 0.6rem 1.25rem;
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    width: auto;
+
+    .arrow { display: inline-block; transition: transform 0.2s ease; }
+    &:hover {
+      background: $white;
+      border-color: $white;
+      color: $dark-default;
+    }
+    &:hover .arrow { transform: translateX(4px); }
+  }
+}
+
+.cs_next_project + .site_footer {
+  border-top: none;
+  margin-top: 0;
+}
+
+html.theme-light .cs_next_project {
+  background-color: rgba($dark-default, 0.04);
+  border-top-color: rgba($dark-default, 0.1);
+
+  .cs_next_label { color: rgba($dark-default, 0.4); }
+  .cs_next_desc { color: rgba($dark-default, 0.6); }
+  .cs_next_link {
+    border-color: rgba($dark-default, 0.35);
+    color: $dark-default;
+
+    &:hover {
+      background: $dark-default;
+      border-color: $dark-default;
+      color: $white;
+    }
+  }
+}
+
+// Light mode overrides for #overview — all dark-mode colors become readable on light bg
+html.theme-light .project #overview {
+  h2, h3, h4, h5, li, a, .leadin { color: $dark-default; }
+  p { color: $text-muted; }
+
+  .cs_meta_row { border-bottom-color: rgba($dark-default, 0.1); }
+
+  .cs_meta_item {
+    .role { color: rgba($dark-default, 0.4); }
+    p, a { color: $text-muted; }
+  }
+
+  .stats-container {
+    border-top-color: rgba($dark-default, 0.12);
+
+    .stat {
+      border-left-color: rgba($dark-default, 0.12);
+
+      .stat_label { color: rgba($dark-default, 0.45); }
+      .stat_number { color: $dark-default; }
+      .stat_info { color: $text-muted; }
+      p { color: $text-muted; margin: 0; }
+    }
+  }
+
+  .tag {
+    background-color: rgba($dark-default, 0.06);
+    color: rgba($dark-default, 0.7);
   }
 }
 
@@ -3369,20 +3756,21 @@ html.theme-light {
     flex-direction: column;
     gap: 0.6rem;
     justify-content: center;
-    padding: 1.5rem;
+    overflow: hidden;
+    padding: 0;
 
     img, svg {
       display: block;
-      height: 44%;
-      object-fit: contain;
-      width: 44%;
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
     }
 
     .cs_icon_label {
       font-family: $mono;
-      font-size: 0.575rem;
-      letter-spacing: 0.07em;
-      opacity: 0.38;
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      opacity: 0.5;
       text-align: center;
       text-transform: uppercase;
     }
@@ -3390,6 +3778,19 @@ html.theme-light {
 
   @media (max-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  // Code editor screenshots — wider aspect, fills cell
+  &--code {
+    grid-template-columns: repeat(4, 1fr);
+
+    .cs_icon_grid_cell {
+      aspect-ratio: 4 / 3;
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 }
 
@@ -3628,16 +4029,72 @@ html.theme-light .cs_icon_grid {
 // ============================================================
 
 blockquote {
-  background-color: $white;
-  border-left: 10px solid $text-muted;
-  color: $dark-default;
+  background: none;
+  border: none;
+  color: inherit;
   font-family: $font;
-  font-size: 22px;
-  line-height: 42px;
-  margin: 40px 0;
-  padding: 50px;
+  font-size: clamp(1.25rem, 2vw + 0.5rem, 2rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 3rem 0;
+  padding: 0;
+
+  footer {
+    font-size: 0.8rem;
+    font-style: normal;
+    margin-top: 1rem;
+    opacity: 0.5;
+  }
 
   span { display: block; padding: 20px; }
+}
+
+.cs_blockquote {
+  background: none;
+  border: none;
+  font-style: normal;
+  margin: 0;
+  padding: 0;
+
+  p {
+    font-size: clamp(1.5rem, 3vw + 0.5rem, 3rem);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.3;
+    margin: 0 0 2rem;
+    opacity: 0.9;
+  }
+
+  footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .cs_blockquote_cite {
+    color: inherit;
+    display: block;
+    font-size: clamp(1rem, 1.5vw + 0.25rem, 1.5rem);
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .cs_blockquote_org {
+    color: inherit;
+    display: block;
+    font-family: $mono;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    opacity: 0.5;
+    text-transform: uppercase;
+  }
+}
+
+.cs_content--quote {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 
@@ -3761,6 +4218,20 @@ blockquote {
   letter-spacing: 0.06em;
   margin-top: 0.25rem;
   text-transform: uppercase;
+}
+
+// Health NDA card — warm gradient with inner radial highlight
+.hwc.health .hwc_img--empty {
+  background:
+    radial-gradient(ellipse at 50% 35%, rgba(255, 255, 255, 0.22) 0%, transparent 62%),
+    linear-gradient(145deg, #ffd580 0%, #ffb347 45%, #ff8c69 100%);
+}
+
+// Override the generic hwc_soon dim — health card reads at higher opacity
+.hwc.health.hwc_soon {
+  .hwc_img { opacity: 0.78; }
+  .hwc_nda_icon { color: rgba($white, 0.45); }
+  &:hover .hwc_img { opacity: 0.92; }
 }
 
 // Coming Soon work cards
@@ -3952,6 +4423,9 @@ html.theme-light .about_meta { color: rgba($dark-default, 0.5); }
 .about_values {
   padding-bottom: 2rem;
 
+  // Value words are large enough — suppress the floating tooltip label
+  .value_word::after { content: none; }
+
   .values_row {
     align-items: center;
     display: flex;
@@ -4001,6 +4475,7 @@ html.theme-light .about_values {
 // ============================================================
 
 .site_footer {
+  background-color: rgba($white, 0.03);
   border-top: 1px solid rgba($white, 0.08);
   margin-top: 4rem;
   padding: 2rem 0;
@@ -4014,7 +4489,7 @@ html.theme-light .about_values {
   .site_footer_name {
     color: rgba($white, 0.35);
     font-family: $mono;
-    font-size: 0.72rem;
+    font-size: 0.875rem;
     letter-spacing: 0.04em;
   }
 
@@ -4022,7 +4497,7 @@ html.theme-light .about_values {
     color: rgba($white, 0.25);
     cursor: default;
     font-family: $mono;
-    font-size: 0.72rem;
+    font-size: 0.875rem;
     letter-spacing: 0.04em;
 
     .tl_ch {
@@ -4071,6 +4546,7 @@ html.theme-light .about_values {
 }
 
 html.theme-light .site_footer {
+  background-color: rgba($dark-default, 0.03);
   border-top-color: rgba($dark-default, 0.1);
 
   .site_footer_name  { color: rgba($dark-default, 0.35); }
@@ -4278,11 +4754,8 @@ html.theme-light .site_footer {
   }
 
   blockquote {
-    padding: 1.25rem;
-    font-size: 1rem;
-    line-height: 1.7;
-
-    span { font-size: 0.9rem; line-height: 1.6; padding: 0.5rem 0 0; }
+    font-size: clamp(1rem, 1.5vw + 0.5rem, 1.5rem);
+    margin: 2rem 0;
   }
 
   footer { padding: 2rem 0 0; }

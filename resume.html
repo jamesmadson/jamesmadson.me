@@ -42,13 +42,14 @@ permalink: /resume/
       margin: 0 0 0.4rem;
     }
     .resume_title {
-      color: rgba(255,255,255,0.7);
-      font-size: 1.1rem;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.95rem;
       font-weight: 400;
-      letter-spacing: 0;
-      margin: 0 0 2rem;
+      letter-spacing: 0.02em;
+      margin: 0 0 1.5rem;
+      text-transform: uppercase;
     }
-    .theme-light .resume_title { color: rgba(0,0,0,0.6); }
+    .theme-light .resume_title { color: rgba(0,0,0,0.45); }
 
     .resume_contact {
       display: flex;
@@ -100,7 +101,7 @@ permalink: /resume/
 
     .resume_summary {
       color: rgba(255,255,255,0.85);
-      font-size: 1.1rem;
+      font-size: 0.975rem;
       line-height: 1.7;
       margin: 0;
       max-width: 680px;
@@ -148,24 +149,25 @@ permalink: /resume/
     @media (max-width: 600px) { .resume_job_meta { margin-left: 0; } }
 
     .resume_job_body {
-      color: rgba(255,255,255,0.75);
-      font-size: 0.95rem;
-      line-height: 1.75;
-      margin: 0 0 1rem;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin: 0 0 0.75rem;
       max-width: 640px;
     }
     .resume_job_body:last-child { margin-bottom: 0; }
-    .theme-light .resume_job_body { color: rgba(0,0,0,0.7); }
+    .theme-light .resume_job_body { color: rgba(0,0,0,0.65); }
 
     .resume_bullets {
-      color: rgba(255,255,255,0.7);
-      font-size: 0.875rem;
+      color: rgba(255,255,255,0.65);
+      font-size: 0.9rem;
       line-height: 1.7;
-      margin: 0.75rem 0 0;
-      padding-left: 1.1rem;
+      list-style: disc;
+      margin: 0.5rem 0 0;
+      padding-left: 1.25rem;
     }
-    .resume_bullets li { margin-bottom: 0.25rem; }
-    .theme-light .resume_bullets { color: rgba(0,0,0,0.6); }
+    .resume_bullets li { font-size: 0.9rem; line-height: 1.7; margin-bottom: 0.15rem; }
+    .theme-light .resume_bullets { color: rgba(0,0,0,0.55); }
 
     .resume_skills {
       display: flex;
@@ -187,6 +189,11 @@ permalink: /resume/
       color: rgba(0,0,0,0.65);
     }
 
+    .resume_actions {
+      display: flex;
+      gap: 0.6rem;
+    }
+
     .resume_print_btn {
       align-items: center;
       background: none;
@@ -200,11 +207,21 @@ permalink: /resume/
       gap: 0.4rem;
       padding: 0.4rem 1rem;
       text-decoration: none;
-      transition: border-color 0.2s ease, color 0.2s ease;
+      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
     }
     .resume_print_btn:hover {
       border-color: rgba(255,255,255,0.5);
       color: rgba(255,255,255,0.9);
+    }
+    .resume_print_btn--pdf {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.8);
+    }
+    .resume_print_btn--pdf:hover {
+      background: rgba(255,255,255,0.18);
+      border-color: rgba(255,255,255,0.6);
+      color: #fff;
     }
     .theme-light .resume_print_btn {
       border-color: rgba(0,0,0,0.15);
@@ -214,6 +231,16 @@ permalink: /resume/
       border-color: rgba(0,0,0,0.4);
       color: rgba(0,0,0,0.8);
     }
+    .theme-light .resume_print_btn--pdf {
+      background: rgba(0,0,0,0.06);
+      border-color: rgba(0,0,0,0.2);
+      color: rgba(0,0,0,0.7);
+    }
+    .theme-light .resume_print_btn--pdf:hover {
+      background: rgba(0,0,0,0.1);
+      border-color: rgba(0,0,0,0.4);
+      color: rgba(0,0,0,0.9);
+    }
 
     .resume_section--footer {
       border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -222,16 +249,61 @@ permalink: /resume/
     .theme-light .resume_section--footer { border-bottom-color: rgba(0,0,0,0.08); }
 
     @media print {
-      .site_header, .mobile_nav_menu, .resume_print_btn, .nav_cta_wrapper, .case_study_nav { display: none !important; }
-      body { background: white; color: black; }
-      .resume_name { color: black; }
-      .resume_section { border-top-color: rgba(0,0,0,0.15); }
-      .resume_job_title { color: black; }
-      .resume_summary, .resume_job_body { color: rgba(0,0,0,0.75); }
-      .resume_job_company, .resume_job_meta, .resume_section_label,
-      .resume_contact a, .resume_contact span { color: rgba(0,0,0,0.45); }
-      .resume_bullets, .resume_title { color: rgba(0,0,0,0.55); }
-      .resume_skills li { border-color: rgba(0,0,0,0.2); color: rgba(0,0,0,0.6); }
+      @page { size: letter; margin: 0.45in 0.5in; }
+
+      /* Hide chrome */
+      .site_header, .mobile_nav_menu, .resume_print_btn, .resume_actions,
+      .nav_cta_wrapper, .case_study_nav, .resume_section--footer,
+      footer, .site_footer { display: none !important; }
+
+      /* Base reset */
+      *, *::before, *::after { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      html, body { background: white !important; color: black; font-size: 10pt; margin: 0; padding: 0; }
+      main { padding: 0 !important; }
+      .container { display: block !important; max-width: none !important; padding: 0 !important; }
+      .grid_12 { display: block !important; }
+
+      /* ── Type scale (all pt, ratio mirrors web rem scale) ──
+         Base:    10pt  ←→  1rem (0.9rem body)
+         Small:    8pt  ←→  0.8rem (labels, meta)
+         XSmall:   6.5pt ←→  0.65rem (section labels)
+         Large:   10.5pt ←→  ~1rem (summary, slightly above body)
+         XLarge:  11.5pt ←→  job titles
+         Display: 22pt  ←→  clamp name
+      */
+
+      /* Header */
+      .resume_header { border-bottom: 1px solid rgba(0,0,0,0.12); padding: 0 0 6pt; }
+      .resume_name { color: black; font-size: 22pt; letter-spacing: -0.02em; line-height: 1; margin: 0 0 3pt; }
+      .resume_title { color: rgba(0,0,0,0.45); font-size: 8pt; letter-spacing: 0.06em; margin: 0 0 5pt; text-transform: uppercase; }
+      .resume_contact { gap: 2pt 12pt; }
+      .resume_contact li { font-size: 7.5pt; }
+      .resume_contact a, .resume_contact span { color: rgba(0,0,0,0.5); text-decoration: none; }
+
+      /* Sections */
+      .resume_section { border-top: 1px solid rgba(0,0,0,0.1); gap: 4pt 18pt; grid-template-columns: 100pt 1fr; padding: 6pt 0; }
+      .resume_section_label { color: rgba(0,0,0,0.38); font-size: 6.5pt; letter-spacing: 0.1em; padding-top: 2pt; text-transform: uppercase; }
+
+      /* Summary */
+      .resume_summary { color: rgba(0,0,0,0.72); font-size: 9pt; line-height: 1.5; margin: 0; max-width: none; }
+
+      /* Jobs */
+      .resume_job { padding: 5pt 0; page-break-inside: avoid; }
+      .resume_job:first-child { padding-top: 0; }
+      .resume_job_header { gap: 2pt 8pt; margin-bottom: 3pt; }
+      .resume_job_title { color: black; font-size: 10pt; font-weight: 600; }
+      .resume_job_company { color: rgba(0,0,0,0.55); font-size: 9pt; font-weight: 400; }
+      .resume_job_meta { color: rgba(0,0,0,0.4); font-size: 7pt; letter-spacing: 0.02em; margin-left: auto; }
+      .resume_job_body { color: rgba(0,0,0,0.68); font-size: 8.5pt; line-height: 1.45; margin: 0 0 3pt; max-width: none; }
+      .resume_job_body:last-child { margin-bottom: 0; }
+      .resume_bullets { color: rgba(0,0,0,0.6); font-size: 8pt; line-height: 1.45; margin: 3pt 0 0; padding-left: 12pt; }
+      .resume_bullets li { margin-bottom: 1.5pt; }
+
+      /* Skills */
+      .resume_skills { gap: 3pt; }
+      .resume_skills li { border: 0.75pt solid rgba(0,0,0,0.18); color: rgba(0,0,0,0.6); font-size: 7.5pt; padding: 1pt 5pt; }
+
+      .cs_body_cols { column-count: 1; }
     }
   </style>
 </head>
@@ -239,10 +311,11 @@ permalink: /resume/
 <body>
   <a href="#main-content" class="skip-nav">Skip to main content</a>
   <div class="site_header">
-    <a href="index.html" class="site_name">James Madson</a>
+    <a href="/" class="site_name">James Madson</a>
     <div class="nav_container">
       <nav class="nav_large">
         <ul>
+          <li><a href="/">Home</a></li>
           <li><a href="/about/">About</a></li>
           <li class="nav_dropdown_trigger">
             <a href="/#recent_work">Work</a>
@@ -256,6 +329,12 @@ permalink: /resume/
               <a href="/case_studies/pecan/" class="nav_dropdown_item">
                 <div class="nav_dropdown_meta">
                   <span class="nav_dropdown_title">PeCan</span>
+                  <span class="nav_dropdown_company">St. Jude Children's Research Hospital</span>
+                </div>
+              </a>
+              <a href="/case_studies/visualization_community/" class="nav_dropdown_item">
+                <div class="nav_dropdown_meta">
+                  <span class="nav_dropdown_title">Visualization Community</span>
                   <span class="nav_dropdown_company">St. Jude Children's Research Hospital</span>
                 </div>
               </a>
@@ -281,8 +360,8 @@ permalink: /resume/
   <nav class="mobile_nav_menu" id="mobilenavmenu" aria-hidden="true">
     <div class="mobile_nav_inner">
       <ul>
-        <li><a href="/index.html">Home</a></li>
-        <li><a href="/about.html">About</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about/">About</a></li>
         <li class="mobile_nav_accordion">
           <button class="mobile_nav_accordion_btn" aria-expanded="false">
             Work
@@ -291,6 +370,7 @@ permalink: /resume/
           <ul class="mobile_nav_accordion_panel" aria-hidden="true">
             <li><a href="/case_studies/naturedose/">NatureDose</a></li>
             <li><a href="/case_studies/pecan/">PeCan</a></li>
+            <li><a href="/case_studies/visualization_community/">Visualization Community</a></li>
           </ul>
         </li>
         <li><a href="/contact/">Contact</a></li>
@@ -303,14 +383,7 @@ permalink: /resume/
     </div>
   </nav>
 
-  <ul class="case_study_nav" aria-label="Page sections">
-    <li><a href="#overview">Overview</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#more">More</a></li>
-  </ul>
-
-  <main class="fadeIn" id="main-content">
+<main class="fadeIn" id="main-content">
     <div class="container resume_header">
       <div class="grid_12">
         <h1 class="resume_name">James Madson</h1>
@@ -319,7 +392,6 @@ permalink: /resume/
           <li><span>Seattle, WA</span></li>
           <li><a class="nav_contact" data-e="amFtZXM=" data-d="amFtZXNtYWRzb24ubWU=" data-s="Resume" href="#">james@jamesmadson.me</a></li>
           <li><a href="https://jamesmadson.me">jamesmadson.me</a></li>
-          <li><a href="https://linkedin.com/in/jamesmadson">linkedin.com/in/jamesmadson</a></li>
           <li><a href="https://github.com/jamesmadson">github.com/jamesmadson</a></li>
         </ul>
       </div>
@@ -330,7 +402,7 @@ permalink: /resume/
 
         <div class="resume_section" id="overview">
           <div class="resume_section_label">Overview</div>
-          <p class="resume_summary">Product designer with 15+ years across startups, research institutions, and independent practice. I care most about work that actually helps people — whether that means redesigning a complex data tool, building a brand from nothing, or writing the CSS myself when it gets to that point. Strong generalist with deep roots in product UX, design systems, and visual craft. Comfortable leading, comfortable contributing, genuinely uncomfortable with work that doesn't hold up.</p>
+          <p class="resume_summary">Product designer with 15+ years across startups, research institutions, and independent practice. I care most about work that actually helps people — whether that means redesigning a complex data tool, building a brand from nothing, or writing code myself when it gets to that point. Strong generalist with deep roots in product UX, design systems, and visual craft. Comfortable leading, comfortable contributing, genuinely uncomfortable with work that doesn't hold up.</p>
         </div>
 
         <div class="resume_section" id="experience">
@@ -344,12 +416,11 @@ permalink: /resume/
                 <span class="resume_job_meta">2019 – 2025 · Remote, Memphis TN</span>
               </div>
               <p class="resume_job_body">St. Jude Cloud is a global genomics data platform — petabytes of childhood cancer research data made accessible to researchers and clinicians worldwide. I was the lead designer for six years, covering everything from day-to-day feature work to major platform overhauls.</p>
-              <p class="resume_job_body">Drove the full redesign of the platform's core experience, introduced a design system used across eight+ applications, and shipped a series of zero-to-one products that are now actively used by the research community. Worked directly with PMs, engineers, and research scientists — often as the first person to define what we were actually trying to build.</p>
+              <p class="resume_job_body">Drove the full redesign of prominent research tool, PeCan, introduced a design system used across eight+ applications, and shipped a series of zero-to-one products that are now actively used by the research community. Worked directly with PMs, engineers, and research scientists — often as one of the first to define what we were trying to build.</p>
               <ul class="resume_bullets">
-                <li>Led end-to-end redesign of St. Jude Cloud, a platform serving researchers at 300+ institutions</li>
+                <li>Led end-to-end redesign of PeCan, a pediatric cancer knowledge base serving researchers at 300+ institutions</li>
                 <li>Built and maintained the platform design system, spanning components, patterns, and documentation</li>
-                <li>Designed the Visualization Community — a tool for creating and sharing interactive genomics research</li>
-                <li>Designed PeCan, a pediatric cancer knowledge base; went from a frustrating research tool to one of the most cited in the field</li>
+                <li>Designed the Visualization Community from the ground up, a tool for creating and sharing interactive genomics research</li>
                 <li>Managed a small design team; ran critique, mentored junior designers, and kept things moving without a lot of overhead</li>
               </ul>
             </div>
@@ -360,14 +431,15 @@ permalink: /resume/
                 <span class="resume_job_company">NatureQuant</span>
                 <span class="resume_job_meta">2019 – 2024 · Remote</span>
               </div>
-              <p class="resume_job_body">First design hire at a nature-exposure health tech startup. I built the design function from scratch — brand identity, design system, two consumer apps, marketing site, and eventually a small team. The scientific credibility was there from day one; my job was to make the work feel as serious as the research behind it.</p>
+              <p class="resume_job_body">Joined the founders as the lead and only designer — which meant owning everything. Brand identity, marketing site (designed and built a large part of it), pitch decks, whitepapers, email templates, client-facing materials, product concepts, and prototypes. Learned geospatial mapping tools specifically for this work. The scientific credibility was there from day one; my job was to make everything feel as serious as the research behind it.</p>
               <p class="resume_job_body">NatureDose was a mobile wellness app that helped people track and build nature habits against a research-backed dose target. NatureScore was a location-based index — essentially a walkability score for nature exposure. Both shipped. Both worked. I'm proud of the brand as much as the product work; we made something that looked genuinely different in a crowded wellness market.</p>
               <ul class="resume_bullets">
                 <li>Created the full visual identity and brand language for NatureQuant from zero</li>
                 <li>Designed and shipped NatureDose on iOS and Android — from concept through App Store launch</li>
                 <li>Designed NatureScore, a data-dense consumer product that had to feel approachable</li>
+                <li>Covered the full scope: product, brand, marketing, pitch materials, client consulting, and art direction</li>
+                <li>Built Juniper, the NatureQuant design system, used across all product and marketing surfaces</li>
                 <li>Defined UX strategy and product roadmap alongside the CEO and engineering leads</li>
-                <li>Built and managed a small design team as the company grew</li>
               </ul>
             </div>
 
@@ -413,6 +485,20 @@ permalink: /resume/
           </div>
         </div>
 
+        <div class="resume_section" id="community">
+          <div class="resume_section_label">Community</div>
+          <div>
+            <div class="resume_job_header">
+              <div>
+                <h2 class="resume_job_title">Board Member</h2>
+                <p class="resume_job_company">Woodland Collective</p>
+              </div>
+              <div class="resume_job_meta">2024 – Present</div>
+            </div>
+            <p class="resume_job_body">Woodland Collective is a nonprofit arts organization based at the historic Woodland Theater in Seattle's Ballard neighborhood. As a sober, all-ages venue operating on a sliding-scale / NOTAFLOF model, we exist to make live performance accessible to everyone — regardless of age or income. Founded in 2024 in response to a growing shortage of affordable, independent arts spaces in Seattle, the organization gives emerging musicians and artists a stage and a community.</p>
+          </div>
+        </div>
+
         <div class="resume_section" id="more">
           <div class="resume_section_label">A few other things</div>
           <div>
@@ -423,14 +509,23 @@ permalink: /resume/
 
         <div class="resume_section resume_section--footer">
           <div class="resume_section_label"></div>
-          <div>
+          <div class="resume_actions">
+            <button class="resume_print_btn resume_print_btn--pdf" onclick="(function(){ var t = document.title; document.title = 'Resume_James_Madson_Product_Designer'; window.print(); document.title = t; })()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="12" y1="18" x2="12" y2="12"/>
+                <line x1="9" y1="15" x2="15" y2="15"/>
+              </svg>
+              Save as PDF
+            </button>
             <button class="resume_print_btn" onclick="window.print()">
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="2" y="9" width="10" height="4" rx="0.5"/>
                 <path d="M4 9V3h6v6"/>
                 <path d="M2 6h10"/>
               </svg>
-              Print / Save as PDF
+              Print
             </button>
           </div>
         </div>

@@ -1,4 +1,13 @@
 // ============================================================
+// Footer year — auto-updates
+// ============================================================
+(function () {
+  var el = document.getElementById('footer_year');
+  if (el) el.textContent = new Date().getFullYear();
+}());
+
+
+// ============================================================
 // Site name — initials expand on hover
 // ============================================================
 (function () {
@@ -196,7 +205,7 @@
 
 
 // ============================================================
-// Hero — text cycling with crossfade transition
+// Hero — text cycling with crossfade + typed highlight words
 // ============================================================
 (function () {
   var el = document.getElementById('hero_rotating');
@@ -204,29 +213,52 @@
 
   var FADE_MS    = 320;
   var DISPLAY_MS = 7000;
+  var CHAR_MS    = 42;   // ms between each character appearing
+  var WORD_GAP   = 80;   // extra pause before the next highlighted word starts
 
   var slides = [
-    'I\'m a <a href="/about/" class="highlight jm">designer</a> who makes things that feel <a href="/case_studies/naturedose/" class="highlight nd">considered</a>, for real people spending time in the real world.',
-    'I take cues from <a href="/case_studies/naturedose/" class="highlight nd">nature</a>: patient, purposeful, and grounded. It shows up in everything I <a href="/case_studies/pecan/" class="highlight pecan">make</a>.',
-    'I don\'t run teams. I <a href="/case_studies/pecan/" class="highlight pecan">join them</a>. I bring a clean eye, good ideas, and a lot of care for getting it right.',
-    'I enjoy the <a href="/about/" class="highlight jm">process</a>. The best answers come from sitting with a problem long enough that the solution feels obvious.',
-    'I\'ve <a href="/case_studies/naturedose/" class="highlight nd">built</a> things people actually use: apps that help them get outside, tools that make sense of <a href="/case_studies/pecan/" class="highlight pecan">complex data</a>.',
-    'I want the work to be <a href="/case_studies/pecan/" class="highlight pecan">useful</a>. Genuinely helpful. Something the person on the other end is glad exists.',
-    'I care about whether something feels trustworthy, surprising, or simply right. <a href="/case_studies/pecan/" class="highlight pecan">That shows.</a>',
-    'I\'ve <a href="/about/" class="highlight jm">worked</a> embedded on teams and brought in to reset direction. Either way I leave things better than I found them.',
-    'I <a href="/about/" class="highlight jm">move between disciplines</a> because the problems are always changing. I adapt to find the best solution.',
-    'I try to understand the whole problem before solving any part of it. <a href="/case_studies/pecan/" class="highlight pecan">That\'s where the real work is.</a>',
-    'I\'d rather <a href="/case_studies/naturedose/" class="highlight nd">design the system</a> that helps a team move faster than just move fast alone.',
-    'I stay curious about new approaches. Not for novelty — because better thinking makes <a href="/case_studies/naturedose/" class="highlight nd">better work</a>.'
+    'I <a href="/about/" class="highlight jm">collaborate</a> to build tools that didn\'t exist before, solving hard problems for people who end up using them every day.',
+    'I work best in <a href="/about/" class="highlight jm">ambiguity</a>. When the problem isn\'t fully defined, figuring out the right question matters as much as the answer.',
+    'I <a href="/about/" class="highlight jm">design</a>, write, and build. Whatever it takes to get from a messy problem to something people actually use.',
+    'I design products grounded in science. Tools built to help cure disease and improve health, <a href="/case_studies/visualization_community/" class="highlight viz">cited</a> in research and <a href="/case_studies/naturedose/" class="highlight nd">featured</a> in the App Store.',
+    'I work closely with engineers, scientists, and PMs. I write enough <a href="/case_studies/pecan/" class="highlight pecan">code</a> to prototype with real data and <a href="/case_studies/naturedose/" class="highlight nd">move fast</a> without friction.',
+    'I think in systems. How pieces connect, how data flows, how people <a href="/case_studies/naturedose/" class="highlight nd">move</a> through something over time. The <a href="/about/" class="highlight jm">details</a> live inside that picture.',
+    'My job is making complex things <a href="/case_studies/pecan/" class="highlight pecan">navigable</a>. Research data for scientists, nature data for people. Different problems. Same way of thinking about them.',
+    'I have an instinct for <a href="/case_studies/pecan/" class="highlight pecan">clarity</a>. What belongs, in what order, for what person. Good design should remove <a href="/case_studies/naturedose/" class="highlight nd">friction</a>.',
+    'I\'ve <a href="/about/" class="highlight jm">designed</a> things that didn\'t exist. Interactive <a href="/case_studies/visualization_community/" class="highlight viz">genomics tools</a>, a <a href="/case_studies/naturedose/" class="highlight nd">nature prescription app</a>, products still under NDA. Zero-to-one is where I\'m most useful.',
+    'I\'m a designer who thinks in systems and <a href="/about/" class="highlight jm">designs</a> in details. I care whether what I\'m building is actually <a href="/about/" class="highlight jm">worth making</a>.'
   ];
 
+  // Render plain HTML (used for height measurement and as the base)
   function renderFull(html) {
     el.innerHTML = html;
   }
 
+  // After a slide fades in, type each highlighted word character by character
+  function animateHighlights(startDelay) {
+    var highlights = Array.prototype.slice.call(el.querySelectorAll('a.highlight'));
+    if (!highlights.length) return;
+    var delay = startDelay || 0;
+    highlights.forEach(function (link) {
+      var text = link.textContent;
+      link.innerHTML = '';
+      text.split('').forEach(function (ch) {
+        var span = document.createElement('span');
+        span.textContent = ch;
+        span.style.cssText = 'opacity:0;display:inline;transition:opacity 55ms ease';
+        link.appendChild(span);
+        (function (s, d) {
+          setTimeout(function () { s.style.opacity = '1'; }, d);
+        })(span, delay);
+        delay += CHAR_MS;
+      });
+      delay += WORD_GAP;
+    });
+  }
+
   var idx = 0;
 
-  // Measure the tallest slide and lock height so page doesn't shift
+  // Measure tallest slide at plain HTML to lock height — no layout shift
   var maxH = 0;
   slides.forEach(function (html) {
     el.innerHTML = html;
@@ -237,6 +269,8 @@
   // Set up crossfade transition
   el.style.transition = 'opacity ' + FADE_MS + 'ms ease, transform ' + FADE_MS + 'ms ease';
   renderFull(slides[0]);
+  // Kick off typing for the first slide after the page fade-in settles
+  setTimeout(function () { animateHighlights(0); }, 200);
 
   var loopTimer = null;
 
@@ -258,6 +292,8 @@
       // Fade in
       el.style.opacity = '1';
       el.style.transform = 'translateY(0)';
+      // Start typing once the fade-in is mostly done
+      setTimeout(function () { animateHighlights(0); }, FADE_MS - 60);
       if (callback) callback();
     }, FADE_MS + 20);
   }
@@ -613,99 +649,38 @@ function smoothScrollTo(targetY, duration) {
     });
   });
 
-  // --- Build meta bar (view toggle + overview fields) below the project title ---
+  // --- Wire up view toggle from HTML + place nav ---
   var hasCsContent = document.querySelector('.cs_content');
   var csBtns = [];
 
+  var mainEl = document.querySelector('main');
+  var projectHeader = mainEl && mainEl.querySelector('section.about');
+
   if (hasCsContent) {
-    // Extract Client/Role/Contributions/Website from overview grid_3
-    var overviewGrid3 = document.querySelector('.overview .grid_3');
-    var fields = {};
-    if (overviewGrid3) {
-      var kids = Array.prototype.slice.call(overviewGrid3.children);
-      for (var i = 0; i < kids.length; i++) {
-        var kid = kids[i];
-        if (kid.classList && kid.classList.contains('role')) {
-          var key = kid.textContent.trim().toLowerCase();
-          var next = kids[i + 1];
-          if (next && !(next.classList && next.classList.contains('role'))) {
-            fields[key] = { labelText: kid.textContent.trim(), el: next };
-            kid.parentNode.removeChild(kid);
-            next.parentNode.removeChild(next);
-            kids.splice(i, 2);
-            i--;
-          }
-        }
-      }
+    // Find the toggle already in the overview HTML
+    var viewToggle = document.querySelector('.cs_view_toggle');
+    if (viewToggle) {
+      csBtns = Array.prototype.slice.call(viewToggle.querySelectorAll('.cs_view_btn'));
     }
 
-    // Build meta bar
-    var metaBar = document.createElement('div');
-    metaBar.className = 'cs_meta_bar';
-    var metaInner = document.createElement('div');
-    metaInner.className = 'container';
-    var metaRow = document.createElement('div');
-    metaRow.className = 'cs_meta_row';
-    metaInner.appendChild(metaRow);
-    metaBar.appendChild(metaInner);
-
-    function makeMetaItem(labelText, contentEl) {
-      var item = document.createElement('div');
-      item.className = 'cs_meta_item';
-      var lbl = document.createElement('span');
-      lbl.className = 'cs_meta_label';
-      lbl.textContent = labelText;
-      item.appendChild(lbl);
-      if (contentEl) item.appendChild(contentEl);
-      return item;
-    }
-
-    // 1. View toggle
-    var viewItem = document.createElement('div');
-    viewItem.className = 'cs_meta_item';
-    var viewLbl = document.createElement('span');
-    viewLbl.className = 'cs_meta_label';
-    viewLbl.textContent = 'View';
-    var toggleEl = document.createElement('div');
-    toggleEl.className = 'cs_view_toggle';
-    toggleEl.innerHTML =
-      '<button class="cs_view_btn" data-view="case-study">Case Study</button>' +
-      '<button class="cs_view_btn" data-view="image-feed">Image Grid</button>';
-    viewItem.appendChild(viewLbl);
-    viewItem.appendChild(toggleEl);
-    metaRow.appendChild(viewItem);
-    csBtns = Array.prototype.slice.call(toggleEl.querySelectorAll('.cs_view_btn'));
-
-    // 2–5. Client, Role, Contributions, Website
-    ['client', 'role', 'contributions', 'website'].forEach(function (key) {
-      if (fields[key]) {
-        metaRow.appendChild(makeMetaItem(fields[key].labelText, fields[key].el));
-      }
-    });
-
-    // Insert after section.about
-    var mainEl = document.querySelector('main');
-    var projectHeader = mainEl && mainEl.querySelector('section.about');
+    // Place nav inside main, directly after the hero section
     if (projectHeader) {
-      projectHeader.insertAdjacentElement('afterend', metaBar);
+      projectHeader.insertAdjacentElement('afterend', csNav);
     } else if (mainEl) {
-      mainEl.insertBefore(metaBar, mainEl.firstChild);
+      mainEl.insertBefore(csNav, mainEl.firstChild);
     }
-
-    // Move case_study_nav inside main, after the meta bar
-    metaBar.insertAdjacentElement('afterend', csNav);
 
     // Apply saved preference
     var savedCsView = localStorage.getItem('csView') || 'case-study';
-    var isImageFeedSaved = savedCsView === 'image-feed';
-    if (isImageFeedSaved) document.body.classList.add('image-feed');
+    if (savedCsView === 'image-feed') document.body.classList.add('image-feed');
     csBtns.forEach(function (b) {
-      b.classList.toggle('active', b.dataset.view === savedCsView);
+      var isActive = b.dataset.view === savedCsView;
+      b.classList.toggle('active', isActive);
+      b.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     });
   } else {
     // No cs_content (e.g. resume) — move nav inside main after header area
-    var mainEl = document.querySelector('main');
-    var anchor = mainEl && (mainEl.querySelector('section.about') || mainEl.querySelector('.resume_header'));
+    var anchor = mainEl && (projectHeader || mainEl.querySelector('.resume_header'));
     if (anchor) {
       anchor.insertAdjacentElement('afterend', csNav);
     } else if (mainEl) {
@@ -713,15 +688,24 @@ function smoothScrollTo(targetY, duration) {
     }
   }
 
-  // --- Collect all images from .cs_images ---
-  var allImgs = Array.prototype.slice.call(document.querySelectorAll('.cs_images img'));
+  // --- Collect all design images for the masonry feed ---
+  // Includes standard blocks, paired images, carousels, and icon grids —
+  // so any new layout type automatically appears if it uses one of these containers.
+  var allImgs = Array.prototype.slice.call(document.querySelectorAll(
+    '.cs_images img, .cs_image_pair img, .nd_phone_carousel img, .cs_icon_grid img'
+  ));
+  var seenSrcs = {};
   var items = allImgs.map(function (img) {
-    var captionEl = img.parentElement && img.parentElement.querySelector('.cs_description');
+    var captionEl = img.closest('.cs_images, .cs_image_pair > div') && img.parentElement.querySelector('.cs_description');
     return {
       src: img.src,
-      caption: captionEl ? captionEl.textContent.trim() : ''
+      caption: captionEl ? captionEl.textContent.trim() : (img.alt || '')
     };
-  }).filter(function (item) { return item.src; });
+  }).filter(function (item) {
+    if (!item.src || seenSrcs[item.src]) return false;
+    seenSrcs[item.src] = true;
+    return true;
+  });
 
   // --- Build masonry feed ---
   var feedSection = document.createElement('section');
@@ -811,12 +795,16 @@ function smoothScrollTo(targetY, duration) {
     lbOpen(parseInt(item.dataset.idx, 10));
   });
 
-  // --- Toggle handler (saves preference) ---
+  // --- Toggle handler (saves preference, updates aria-pressed) ---
   csBtns.forEach(function (btn) {
     btn.addEventListener('click', function () {
       var isImageFeed = btn.dataset.view === 'image-feed';
       document.body.classList.toggle('image-feed', isImageFeed);
-      csBtns.forEach(function (b) { b.classList.toggle('active', b === btn); });
+      csBtns.forEach(function (b) {
+        var isActive = b === btn;
+        b.classList.toggle('active', isActive);
+        b.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
       try { localStorage.setItem('csView', btn.dataset.view); } catch (e) {}
     });
   });
