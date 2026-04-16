@@ -1,0 +1,126 @@
+# ============================================================
+# HTTPS redirect
+# ============================================================
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# ============================================================
+# www → non-www
+# ============================================================
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
+# ============================================================
+# Custom 404
+# ============================================================
+ErrorDocument 404 /404.html
+
+# ============================================================
+# Disable directory listing
+# ============================================================
+Options -Indexes -MultiViews
+
+# ============================================================
+# Block hidden files (.git, .env, etc.)
+# ============================================================
+<IfModule mod_rewrite.c>
+  RewriteCond %{SCRIPT_FILENAME} -d [OR]
+  RewriteCond %{SCRIPT_FILENAME} -f
+  RewriteRule "(^|/)\." - [F]
+</IfModule>
+
+# Block backup and source files
+<FilesMatch "(^#.*#|\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|sw[op])|~)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# ============================================================
+# MIME types
+# ============================================================
+<IfModule mod_mime.c>
+  AddType application/javascript    js
+  AddType application/json          json
+  AddType image/svg+xml             svg svgz
+  AddType image/webp                webp
+  AddType image/x-icon              ico
+  AddType font/woff                 woff
+  AddType font/woff2                woff2
+  AddType video/mp4                 mp4 m4v
+  AddType video/quicktime           mov
+  AddType video/webm                webm
+  AddEncoding gzip                  svgz
+  AddDefaultCharset utf-8
+  AddCharset utf-8 .css .js .json
+</IfModule>
+
+# ============================================================
+# Compression
+# ============================================================
+<IfModule mod_deflate.c>
+  <IfModule mod_filter.c>
+    AddOutputFilterByType DEFLATE \
+      text/html text/css text/plain text/xml \
+      application/javascript application/json \
+      application/xml image/svg+xml font/woff font/woff2
+  </IfModule>
+</IfModule>
+
+# ============================================================
+# Caching
+# ============================================================
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # HTML — no cache so updates land immediately
+  ExpiresByType text/html                   "access plus 0 seconds"
+
+  # CSS & JS
+  ExpiresByType text/css                    "access plus 1 year"
+  ExpiresByType application/javascript      "access plus 1 year"
+
+  # Images
+  ExpiresByType image/png                   "access plus 1 year"
+  ExpiresByType image/jpeg                  "access plus 1 year"
+  ExpiresByType image/gif                   "access plus 1 year"
+  ExpiresByType image/webp                  "access plus 1 year"
+  ExpiresByType image/svg+xml               "access plus 1 year"
+  ExpiresByType image/x-icon                "access plus 1 year"
+
+  # Fonts
+  ExpiresByType font/woff                   "access plus 1 year"
+  ExpiresByType font/woff2                  "access plus 1 year"
+  ExpiresByType application/font-woff       "access plus 1 year"
+
+  # Video
+  ExpiresByType video/mp4                   "access plus 1 year"
+  ExpiresByType video/quicktime             "access plus 1 year"
+  ExpiresByType video/webm                  "access plus 1 year"
+</IfModule>
+
+# Remove ETags (using expires headers instead)
+<IfModule mod_headers.c>
+  Header unset ETag
+</IfModule>
+FileETag None
+
+# ============================================================
+# Security headers
+# ============================================================
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options  "nosniff"
+  Header set X-Frame-Options         "SAMEORIGIN"
+  Header set Referrer-Policy         "strict-origin-when-cross-origin"
+  Header set Permissions-Policy      "camera=(), microphone=(), geolocation=()"
+  Header set X-UA-Compatible         "IE=edge"
+</IfModule>
+
+# ============================================================
+# Clean URLs — rewrite extensionless requests to .html
+# ============================================================
+<IfModule mod_rewrite.c>
+  DirectoryIndex index.html
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^ %{REQUEST_URI}.html [L]
+</IfModule>
