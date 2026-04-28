@@ -323,12 +323,12 @@
 
         <div class="experience_item experience_item--current">
           <div class="experience_left">
-            <span class="experience_company">Digital Health Platform</span>
-            <span class="experience_meta">Under NDA<br>2024–Present · Remote</span>
+            <span class="experience_company">Digital Health App</span>
+            <span class="experience_meta">Under NDA<br>2025–Present · Remote</span>
           </div>
           <div class="experience_right">
-            <p class="experience_role">Lead Designer <span class="experience_badge">Current</span></p>
-            <p>Leading design on a first-of-its-kind digital health app. Focused on system design — using new AI tools to design the systems around the work, including tooling strategy and frameworks that let a small team move with precision and speed.</p>
+            <p class="experience_role">Product Designer <span class="experience_badge">Current</span></p>
+            <p>Contributing designer on a digital health app in active development. Working across UI/UX, design systems, and agent experience design — prototyping with agentic tools and Python to move quickly from concept to something testable.</p>
           </div>
         </div>
 
@@ -573,8 +573,27 @@
           scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: 0.7 }
         }
       );
+    },
+
+    // Mobile: subtle yellow dots + film strip parallax
+    '(max-width: 768px)': function () {
+      gsap.fromTo('.yellow_dots',
+        { y: 50 },
+        {
+          y: -80,
+          ease: 'none',
+          scrollTrigger: { trigger: '.about_images', start: 'top bottom', end: 'bottom top', scrub: 0.9 }
+        }
+      );
+      gsap.fromTo('.image_film_strip',
+        { y: 30 },
+        {
+          y: -60,
+          ease: 'none',
+          scrollTrigger: { trigger: '.about_images', start: 'top bottom', end: 'bottom top', scrub: 0.6 }
+        }
+      );
     }
-    // Mobile (≤768px): no animation
   });
 
   // Services list items — stagger fade-up on scroll
@@ -703,69 +722,70 @@
 
   function rand(min, max) { return Math.random() * (max - min) + min; }
 
-  function pushPhoto(src) {
-    var el = document.createElement('img');
-    el.src = src;
-    el.style.cssText = [
-      'pointer-events:none',
-      'position:absolute',
-      'inset:0',
-      'width:100%',
-      'height:100%',
-      'object-fit:cover',
-      'object-position:center top',
-      'box-sizing:border-box',
-      'border:10px solid #ffffff',
-      'border-bottom:28px solid #ffffff',
-      'border-radius:2px',
-      'box-shadow:0 8px 32px rgba(0,0,0,0.45)',
-      'transform:translate(' + rand(-320, 160).toFixed(1) + 'px,' + rand(-180, 180).toFixed(1) + 'px) rotate(' + rand(-18, 18).toFixed(1) + 'deg)',
-      'transition:opacity 0.15s'
-    ].join(';');
-    el.onerror = function () { el.parentNode && el.parentNode.removeChild(el); };
-    wrapper.appendChild(el);
-    stack.push(el);
-    if (stack.length > MAX_STACK) {
-      var old = stack.shift();
-      old.parentNode && old.parentNode.removeChild(old);
-    }
-  }
+  var isMobile = 'ontouchstart' in window || window.innerWidth <= 768;
 
-  wrapper.addEventListener('mouseenter', function () {
+  function startCycle(delay) {
     used = [];
     photoCount = 0;
+    var xRange = isMobile ? 90 : 320;
+    var yRange = isMobile ? 70 : 180;
     function next() {
       photoCount++;
       var src = (photoCount === 10) ? GIF_SRC : randomPick();
-      pushPhoto(src);
-      var delay = 630 + (src === GIF_SRC ? rand(500, 1000) : 0);
-      timer = setTimeout(next, delay);
+      var el = document.createElement('img');
+      el.src = src;
+      el.style.cssText = [
+        'pointer-events:none',
+        'position:absolute',
+        'inset:0',
+        'width:100%',
+        'height:100%',
+        'object-fit:cover',
+        'object-position:center top',
+        'box-sizing:border-box',
+        'border:' + (isMobile ? '6px' : '10px') + ' solid #ffffff',
+        'border-bottom:' + (isMobile ? '18px' : '28px') + ' solid #ffffff',
+        'border-radius:2px',
+        'box-shadow:0 8px 32px rgba(0,0,0,0.45)',
+        'transform:translate(' + rand(-xRange, xRange).toFixed(1) + 'px,' + rand(-yRange, yRange).toFixed(1) + 'px) rotate(' + rand(-18, 18).toFixed(1) + 'deg)',
+        'transition:opacity 0.15s'
+      ].join(';');
+      el.onerror = function () { el.parentNode && el.parentNode.removeChild(el); };
+      // Insert before portrait img so portrait always renders on top
+      wrapper.insertBefore(el, img);
+      stack.push(el);
+      if (stack.length > MAX_STACK) {
+        var old = stack.shift();
+        old.parentNode && old.parentNode.removeChild(old);
+      }
+      var cycleDelay = (isMobile ? 850 : 630) + (src === GIF_SRC ? rand(500, 1000) : 0);
+      timer = setTimeout(next, cycleDelay);
     }
-    next();
-  });
+    timer = setTimeout(next, delay || 0);
+  }
 
-  wrapper.addEventListener('mouseleave', function () {
+  function stopCycle() {
     clearTimeout(timer);
     timer = null;
     stack.forEach(function (el) { el.parentNode && el.parentNode.removeChild(el); });
     stack = [];
-  });
+  }
 
-  // Mobile: auto-cycle after 2s so profile photo is visible first
-  if ('ontouchstart' in window || window.innerWidth <= 768) {
-    setTimeout(function () {
-      used = [];
-      photoCount = 0;
-      img.srcset = '';
-      function next() {
-        photoCount++;
-        var src = (photoCount === 10) ? GIF_SRC : randomPick();
-        pushPhoto(src);
-        var delay = 850 + (src === GIF_SRC ? rand(500, 1000) : 0);
-        timer = setTimeout(next, delay);
+  if (isMobile) {
+    // Mobile: start on tap, stop on second tap
+    var cycling = false;
+    wrapper.addEventListener('click', function () {
+      if (cycling) {
+        stopCycle();
+        cycling = false;
+      } else {
+        startCycle();
+        cycling = true;
       }
-      next();
-    }, 2000);
+    });
+  } else {
+    wrapper.addEventListener('mouseenter', function () { startCycle(); });
+    wrapper.addEventListener('mouseleave', function () { stopCycle(); });
   }
 }());
 </script>

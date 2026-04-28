@@ -1,4 +1,13 @@
 User-agent: *
 Allow: /
 
+Disallow: /case_studies/naturescore/
+Disallow: /case_studies/naturequant/
+Disallow: /case_studies/stjudecloud/
+Disallow: /music/
+Disallow: /practice/
+Disallow: /art/
+Disallow: /feed/
+Disallow: /resume/
+
 Sitemap: https://jamesmadson.me/sitemap.xml
