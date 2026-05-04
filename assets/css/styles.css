@@ -1823,9 +1823,9 @@ html.theme-light body .about_meta_links {
   display: inline-block;
   font-weight: inherit;
   isolation: isolate;
-  line-height: 1.2;
-  margin-bottom: 0.15em;
-  padding: 0.05em 0.3em 0.1em;
+  line-height: inherit;
+  padding: 0.08em 0.3em;
+  vertical-align: baseline;
   position: relative;
   text-decoration: none;
   transition: background-color 0.22s ease, color 0.22s ease, box-shadow 0.22s ease;

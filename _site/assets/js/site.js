@@ -217,16 +217,11 @@
   var WORD_GAP   = 80;   // extra pause before the next highlighted word starts
 
   var slides = [
-    'I <a href="/about/" class="highlight jm">collaborate</a> to build tools that didn\'t exist before, solving hard problems for people who end up using them every day.',
-    'I work best in <a href="/about/" class="highlight jm">ambiguity</a>. When the problem isn\'t fully defined, figuring out the right question matters as much as the answer.',
-    'I <a href="/about/" class="highlight jm">design</a>, write, and build. Whatever it takes to get from a messy problem to something people actually use.',
-    'I design products grounded in science. Tools built to help cure disease and improve health, <a href="/case_studies/visualization_community/" class="highlight viz">cited</a> in research and <a href="/case_studies/naturedose/" class="highlight nd">featured</a> in the App Store.',
-    'I work closely with engineers, scientists, and PMs. I write enough <a href="/case_studies/pecan/" class="highlight pecan">code</a> to prototype with real data and <a href="/case_studies/naturedose/" class="highlight nd">move fast</a> without friction.',
-    'I think in systems. How pieces connect, how data flows, how people <a href="/case_studies/naturedose/" class="highlight nd">move</a> through something over time. The <a href="/about/" class="highlight jm">details</a> live inside that picture.',
-    'My job is making complex things <a href="/case_studies/pecan/" class="highlight pecan">navigable</a>. Research data for scientists, nature data for people. Different problems. Same way of thinking about them.',
-    'I have an instinct for <a href="/case_studies/pecan/" class="highlight pecan">clarity</a>. What belongs, in what order, for what person. Good design should remove <a href="/case_studies/naturedose/" class="highlight nd">friction</a>.',
-    'I\'ve <a href="/about/" class="highlight jm">designed</a> things that didn\'t exist. Interactive <a href="/case_studies/visualization_community/" class="highlight viz">genomics tools</a>, a <a href="/case_studies/naturedose/" class="highlight nd">nature prescription app</a>, products still under NDA. Zero-to-one is where I\'m most useful.',
-    'I\'m a designer who thinks in systems and <a href="/about/" class="highlight jm">designs</a> in details. I care whether what I\'m building is actually <a href="/about/" class="highlight jm">worth making</a>.'
+    'I <a href="/about/" class="highlight jm">design</a> interfaces that make hard things feel approachable. I\'ve helped researchers <a href="/case_studies/pecan/" class="highlight pecan">navigate</a> cancer data and people <a href="/case_studies/naturedose/" class="highlight nd">connect</a> with nature.',
+    'I <a href="/about/" class="highlight jm">embed</a> with teams, <a href="/case_studies/visualization_community/" class="highlight viz">design</a> the interfaces, and <a href="/case_studies/naturedose/" class="highlight nd">build</a> the systems behind them. I\'ve done it for cancer research platforms and consumer wellness apps.',
+    'I\'ve <a href="/about/" class="highlight jm">designed</a> research software people actually use, <a href="/case_studies/naturedose/" class="highlight nd">shipped</a> a nature app to the App Store, and <a href="/case_studies/visualization_community/" class="highlight viz">built</a> visualization tools cited in academic papers.',
+    'I <a href="/about/" class="highlight jm">prototype</a> with real data, <a href="/case_studies/pecan/" class="highlight pecan">build</a> design systems that scale, and <a href="/case_studies/naturescore/" class="highlight ns">brand</a> the companies behind the product.',
+    'I <a href="/about/" class="highlight jm">work</a> at the intersection of strategy and craft. My job is making sure what gets <a href="/case_studies/pecan/" class="highlight pecan">designed</a> is worth what it took to <a href="/case_studies/naturedose/" class="highlight nd">build</a>.'
   ];
 
   // Render plain HTML (used for height measurement and as the base)
