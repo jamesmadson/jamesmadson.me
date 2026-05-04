@@ -59,9 +59,9 @@ html {
   .site_name:hover { opacity: 1; }
   .nav_title { color: rgba($dark-default, 0.5); }
   .nav_title:hover { color: $dark-default; }
-  .nav_large li a { color: $dark-default; opacity: 0.5; }
-  .nav_large li a:hover { background: rgba($dark-default, 0.1); color: $dark-default; opacity: 1; }
-  .nav_large li a.active { background: rgba($dark-default, 0.1); color: $dark-default; opacity: 1; }
+  .nav_large li a { color: $dark-default; opacity: 0.5; text-decoration: none; }
+  .nav_large li a:hover { background: rgba($dark-default, 0.1); color: $dark-default; opacity: 1; text-decoration: none; }
+  .nav_large li a.active { background: rgba($dark-default, 0.1); color: $dark-default; opacity: 1; text-decoration: none; }
   .nav_container { background: rgba($dark-default, 0.06); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06); }
   .nav_cta { border-color: rgba($dark-default, 0.25); color: $dark-default; }
   .nav_cta:hover { background: $dark-default; border-color: $dark-default; color: $white; }
@@ -343,7 +343,7 @@ h6 {
 a {
   color: $dark-default;
   font-weight: bold;
-  transition: all 0.4s ease-in-out;
+  transition: color 0.4s ease-in-out, opacity 0.4s ease-in-out;
   text-decoration: underline;
   text-decoration-thickness: 0.085em;
   text-underline-offset: 0.0875em;

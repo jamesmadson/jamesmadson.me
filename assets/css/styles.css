@@ -45,16 +45,19 @@ html.theme-light body .nav_title:hover {
 html.theme-light body .nav_large li a {
   color: #1F201C;
   opacity: 0.5;
+  text-decoration: none;
 }
 html.theme-light body .nav_large li a:hover {
   background: rgba(31, 32, 28, 0.1);
   color: #1F201C;
   opacity: 1;
+  text-decoration: none;
 }
 html.theme-light body .nav_large li a.active {
   background: rgba(31, 32, 28, 0.1);
   color: #1F201C;
   opacity: 1;
+  text-decoration: none;
 }
 html.theme-light body .nav_container {
   background: rgba(31, 32, 28, 0.06);
@@ -307,16 +310,19 @@ body.theme-light .nav_title:hover {
 body.theme-light .nav_large li a {
   color: #1F201C;
   opacity: 0.5;
+  text-decoration: none;
 }
 body.theme-light .nav_large li a:hover {
   background: rgba(31, 32, 28, 0.1);
   color: #1F201C;
   opacity: 1;
+  text-decoration: none;
 }
 body.theme-light .nav_large li a.active {
   background: rgba(31, 32, 28, 0.1);
   color: #1F201C;
   opacity: 1;
+  text-decoration: none;
 }
 body.theme-light .nav_container {
   background: rgba(31, 32, 28, 0.06);
@@ -759,7 +765,7 @@ h6 {
 a {
   color: #1F201C;
   font-weight: bold;
-  transition: all 0.4s ease-in-out;
+  transition: color 0.4s ease-in-out, opacity 0.4s ease-in-out;
   text-decoration: underline;
   text-decoration-thickness: 0.085em;
   text-underline-offset: 0.0875em;
