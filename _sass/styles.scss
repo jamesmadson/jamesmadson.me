@@ -4554,6 +4554,17 @@ html.theme-light .about_values {
     justify-content: space-between;
   }
 
+  .site_footer_badge_row {
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  #toptal_badge {
+    // The badge's hex clip-path cuts off the box-shadow, so we add space
+    // around the element via padding to let the shadow breathe
+    padding: 0 2rem 2rem;
+  }
+
   .site_footer_name {
     color: rgba($white, 0.35);
     font-family: $mono;

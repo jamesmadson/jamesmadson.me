@@ -5463,6 +5463,13 @@ html.theme-light .about_values .value_connector {
   display: flex;
   justify-content: space-between;
 }
+.site_footer .site_footer_badge_row {
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+.site_footer #toptal_badge {
+  padding: 0 2rem 2rem;
+}
 .site_footer .site_footer_name {
   color: rgba(255, 255, 255, 0.35);
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
