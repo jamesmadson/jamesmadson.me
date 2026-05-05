@@ -19,4 +19,4 @@ build/*
 bin/*
 
 # Claude Code
-.claude/
+.claude/_site/src/
