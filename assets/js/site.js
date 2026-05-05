@@ -996,13 +996,20 @@ function smoothScrollTo(targetY, duration) {
     var href = link.getAttribute('href');
     if (!href) return;
 
-    // Skip: anchors, external URLs, mailto/tel, new-tab, downloads
+    // Skip: pure anchors, external URLs, mailto/tel, new-tab, downloads
     if (href.charAt(0) === '#' ||
         href.indexOf('://') > -1 ||
         href.indexOf('mailto:') === 0 ||
         href.indexOf('tel:') === 0 ||
         link.target === '_blank' ||
         link.hasAttribute('download')) return;
+
+    // Skip: same-page hash links (e.g. /#recent_work from homepage)
+    // These do an in-page scroll — no reload means page-leaving would stick forever
+    try {
+      var dest_url = new URL(href, window.location.href);
+      if (dest_url.pathname === window.location.pathname && dest_url.hash) return;
+    } catch (ex) {}
 
     e.preventDefault();
     document.body.classList.add('page-leaving');
