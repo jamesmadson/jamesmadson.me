@@ -5463,16 +5463,13 @@ html.theme-light .about_values .value_connector {
   display: flex;
   justify-content: space-between;
 }
-.site_footer .site_footer_badge_row {
-  justify-content: center;
-  height: 7.5rem;
-  overflow: visible;
-  margin-bottom: 0;
-}
 .site_footer #toptal_badge {
-  padding: 0 2rem 2rem;
-  transform: scale(0.5);
-  transform-origin: top center;
+  flex-shrink: 0;
+  height: 3.5rem;
+  overflow: visible;
+  transform: scale(0.25);
+  transform-origin: center center;
+  width: 3.5rem;
 }
 .site_footer .site_footer_name {
   color: rgba(255, 255, 255, 0.35);

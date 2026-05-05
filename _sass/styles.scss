@@ -4554,18 +4554,15 @@ html.theme-light .about_values {
     justify-content: space-between;
   }
 
-  .site_footer_badge_row {
-    justify-content: center;
-    // Height = natural badge height * 0.5 so the next row sits flush
-    height: 7.5rem;
-    overflow: visible;
-    margin-bottom: 0;
-  }
-
   #toptal_badge {
-    padding: 0 2rem 2rem;
-    transform: scale(0.5);
-    transform-origin: top center;
+    // 75% smaller = scale(0.25). Transform doesn't affect layout space,
+    // so we clamp the layout footprint to the rendered size.
+    flex-shrink: 0;
+    height: 3.5rem;   // ~rendered height at 0.25 scale
+    overflow: visible;
+    transform: scale(0.25);
+    transform-origin: center center;
+    width: 3.5rem;    // ~rendered width at 0.25 scale
   }
 
   .site_footer_name {
