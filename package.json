@@ -8,8 +8,11 @@
     "build:css": "sass --no-source-map _sass/styles.scss:assets/css/styles.css",
     "start": "npm run dev"
   },
+  "overrides": {
+    "picomatch": "^4.0.3"
+  },
   "devDependencies": {
-    "@11ty/eleventy": "^3.1.2",
+    "@11ty/eleventy": "^3.1.5",
     "sass": "^1.70.0"
   }
 }
