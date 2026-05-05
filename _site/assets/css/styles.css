@@ -5465,10 +5465,14 @@ html.theme-light .about_values .value_connector {
 }
 .site_footer .site_footer_badge_row {
   justify-content: center;
-  margin-bottom: 2rem;
+  height: 7.5rem;
+  overflow: visible;
+  margin-bottom: 0;
 }
 .site_footer #toptal_badge {
   padding: 0 2rem 2rem;
+  transform: scale(0.5);
+  transform-origin: top center;
 }
 .site_footer .site_footer_name {
   color: rgba(255, 255, 255, 0.35);

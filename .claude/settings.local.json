@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(cp assets/js/site.js _site/assets/js/site.js)",
+      "Bash(cp assets/css/styles.css _site/assets/css/styles.css)",
+      "Bash(npx @11ty/eleventy --input=. --output=_site --quiet)"
+    ]
+  }
+}

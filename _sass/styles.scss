@@ -4556,13 +4556,16 @@ html.theme-light .about_values {
 
   .site_footer_badge_row {
     justify-content: center;
-    margin-bottom: 2rem;
+    // Height = natural badge height * 0.5 so the next row sits flush
+    height: 7.5rem;
+    overflow: visible;
+    margin-bottom: 0;
   }
 
   #toptal_badge {
-    // The badge's hex clip-path cuts off the box-shadow, so we add space
-    // around the element via padding to let the shadow breathe
     padding: 0 2rem 2rem;
+    transform: scale(0.5);
+    transform-origin: top center;
   }
 
   .site_footer_name {
