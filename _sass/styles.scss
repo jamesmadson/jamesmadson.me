@@ -3816,18 +3816,20 @@ html.theme-light .project #overview {
     gap: 0.6rem;
     justify-content: center;
     overflow: hidden;
-    padding: 0;
+    padding: 1rem 0.75rem 0.75rem;
 
     img, svg {
       display: block;
-      height: 100%;
-      object-fit: cover;
+      flex: 1;
+      min-height: 0;
+      object-fit: contain;
       width: 100%;
     }
 
     .cs_icon_label {
+      flex-shrink: 0;
       font-family: $mono;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       letter-spacing: 0.04em;
       opacity: 0.5;
       text-align: center;
@@ -4555,14 +4557,24 @@ html.theme-light .about_values {
   }
 
   #toptal_badge {
-    // 75% smaller = scale(0.25). Transform doesn't affect layout space,
-    // so we clamp the layout footprint to the rendered size.
     flex-shrink: 0;
-    height: 3.5rem;   // ~rendered height at 0.25 scale
     overflow: visible;
-    transform: scale(0.25);
+    transform: scale(0.4);
     transform-origin: center center;
-    width: 3.5rem;    // ~rendered width at 0.25 scale
+    // Negative margins collapse the layout space from the natural size (~221px tall,
+    // ~212px wide) down to the rendered size (natural × 0.4), so flex align-items:center
+    // centers the visual badge correctly. Formula: (scale - 1) / 2 × natural_size
+    margin: -4.15rem -3.975rem;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: center;
+    }
+
+    #toptal_badge { display: none; }
   }
 
   .site_footer_name {

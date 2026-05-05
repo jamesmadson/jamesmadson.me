@@ -4720,17 +4720,19 @@ html.theme-light .project #overview .tag {
   gap: 0.6rem;
   justify-content: center;
   overflow: hidden;
-  padding: 0;
+  padding: 1rem 0.75rem 0.75rem;
 }
 .cs_icon_grid .cs_icon_grid_cell img, .cs_icon_grid .cs_icon_grid_cell svg {
   display: block;
-  height: 100%;
-  object-fit: cover;
+  flex: 1;
+  min-height: 0;
+  object-fit: contain;
   width: 100%;
 }
 .cs_icon_grid .cs_icon_grid_cell .cs_icon_label {
+  flex-shrink: 0;
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   letter-spacing: 0.04em;
   opacity: 0.5;
   text-align: center;
@@ -5465,11 +5467,20 @@ html.theme-light .about_values .value_connector {
 }
 .site_footer #toptal_badge {
   flex-shrink: 0;
-  height: 3.5rem;
   overflow: visible;
-  transform: scale(0.25);
+  transform: scale(0.4);
   transform-origin: center center;
-  width: 3.5rem;
+  margin: -4.15rem -3.975rem;
+}
+@media (max-width: 768px) {
+  .site_footer .container {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  .site_footer #toptal_badge {
+    display: none;
+  }
 }
 .site_footer .site_footer_name {
   color: rgba(255, 255, 255, 0.35);
