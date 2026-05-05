@@ -29,6 +29,12 @@
     // Also on body so body.theme-* selectors work
     document.body.classList.remove('theme-light', 'theme-dark');
     document.body.classList.add('theme-' + theme);
+    // aria-pressed: true = light mode (pressed = light, default = dark)
+    var isLight = theme === 'light';
+    ['light_switch', 'light_switch_mobile'].forEach(function (id) {
+      var btn = document.getElementById(id);
+      if (btn) btn.setAttribute('aria-pressed', String(isLight));
+    });
   }
 
   // Re-apply on body now that it exists (html was already set by inline head script)
@@ -91,12 +97,21 @@
 
   var label = trigger.querySelector('.navlink_label');
 
+  function getFocusable() {
+    return Array.prototype.slice.call(
+      nav.querySelectorAll('a[href], button, [tabindex]:not([tabindex="-1"])')
+    ).filter(function (el) { return !el.closest('[aria-hidden="true"]'); });
+  }
+
   function open() {
     nav.classList.add('is-open');
     nav.removeAttribute('aria-hidden');
     trigger.setAttribute('aria-expanded', 'true');
     if (label) label.textContent = 'Close';
     document.body.style.overflow = 'hidden';
+    // Move focus into nav
+    var first = getFocusable()[0];
+    if (first) first.focus();
   }
 
   function close() {
@@ -105,6 +120,8 @@
     trigger.setAttribute('aria-expanded', 'false');
     if (label) label.textContent = 'Menu';
     document.body.style.overflow = '';
+    // Return focus to trigger
+    trigger.focus();
   }
 
   trigger.addEventListener('click', function () {
@@ -128,6 +145,22 @@
     });
   });
 
+  // Focus trap — keep Tab cycling within the open nav
+  nav.addEventListener('keydown', function (e) {
+    if (!nav.classList.contains('is-open') || e.key !== 'Tab') return;
+    var focusable = getFocusable();
+    if (!focusable.length) return;
+    var first = focusable[0];
+    var last  = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
+
   document.addEventListener('click', function (e) {
     if (nav.classList.contains('is-open') &&
         !e.target.closest('#mobilenavmenu') &&
@@ -135,7 +168,86 @@
   });
 
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') close();
+    if (e.key === 'Escape' && nav.classList.contains('is-open')) close();
+  });
+}());
+
+
+// ============================================================
+// Desktop nav dropdown — keyboard support
+// ============================================================
+(function () {
+  var trigger = document.querySelector('.nav_dropdown_trigger > a[aria-haspopup]');
+  var dropdown = document.getElementById('nav-work-dropdown');
+  if (!trigger || !dropdown) return;
+
+  var li = trigger.closest('.nav_dropdown_trigger');
+
+  function openDropdown() {
+    li.setAttribute('data-open', 'true');
+    trigger.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeDropdown() {
+    li.removeAttribute('data-open');
+    trigger.setAttribute('aria-expanded', 'false');
+  }
+
+  // Enter on the trigger opens dropdown instead of following href
+  trigger.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      if (li.getAttribute('data-open') === 'true') {
+        closeDropdown();
+      } else {
+        openDropdown();
+        var first = dropdown.querySelector('a');
+        if (first) first.focus();
+      }
+    }
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      openDropdown();
+      var first = dropdown.querySelector('a');
+      if (first) first.focus();
+    }
+    if (e.key === 'Escape') closeDropdown();
+  });
+
+  // Arrow key navigation within dropdown
+  dropdown.addEventListener('keydown', function (e) {
+    var items = Array.prototype.slice.call(dropdown.querySelectorAll('a'));
+    var idx = items.indexOf(document.activeElement);
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      var next = items[idx + 1] || items[0];
+      if (next) next.focus();
+    }
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      var prev = items[idx - 1];
+      if (prev) { prev.focus(); } else { closeDropdown(); trigger.focus(); }
+    }
+    if (e.key === 'Escape') {
+      closeDropdown();
+      trigger.focus();
+    }
+    if (e.key === 'Tab' && !e.shiftKey && idx === items.length - 1) {
+      closeDropdown();
+    }
+    if (e.key === 'Tab' && e.shiftKey && idx === 0) {
+      closeDropdown();
+    }
+  });
+
+  // Close when focus leaves the trigger+dropdown entirely
+  li.addEventListener('focusout', function (e) {
+    if (!li.contains(e.relatedTarget)) closeDropdown();
+  });
+
+  // Close on outside click
+  document.addEventListener('click', function (e) {
+    if (!li.contains(e.target)) closeDropdown();
   });
 }());
 
@@ -713,6 +825,9 @@ function smoothScrollTo(targetY, duration) {
     var figure = document.createElement('figure');
     figure.className = 'cs_masonry_item';
     figure.dataset.idx = idx;
+    figure.setAttribute('tabindex', '0');
+    figure.setAttribute('role', 'button');
+    figure.setAttribute('aria-label', 'View image' + (item.caption ? ': ' + item.caption : ''));
     var img = document.createElement('img');
     img.src = item.src;
     img.alt = item.caption || '';
@@ -737,12 +852,13 @@ function smoothScrollTo(targetY, duration) {
   lb.className = 'cs_lightbox';
   lb.setAttribute('role', 'dialog');
   lb.setAttribute('aria-modal', 'true');
+  lb.setAttribute('aria-label', 'Image viewer');
   lb.innerHTML =
-    '<button class="cs_lb_close" aria-label="Close">&#x2715;</button>' +
-    '<button class="cs_lb_prev" aria-label="Previous">&#x2039;</button>' +
+    '<button class="cs_lb_close" aria-label="Close lightbox">&#x2715;</button>' +
+    '<button class="cs_lb_prev" aria-label="Previous image">&#x2039;</button>' +
     '<img class="cs_lb_img" src="" alt="">' +
-    '<p class="cs_lb_caption"></p>' +
-    '<button class="cs_lb_next" aria-label="Next">&#x203A;</button>';
+    '<p class="cs_lb_caption" aria-live="polite"></p>' +
+    '<button class="cs_lb_next" aria-label="Next image">&#x203A;</button>';
   document.body.appendChild(lb);
 
   var lbImg     = lb.querySelector('.cs_lb_img');
@@ -751,8 +867,9 @@ function smoothScrollTo(targetY, duration) {
   var lbPrev    = lb.querySelector('.cs_lb_prev');
   var lbNext    = lb.querySelector('.cs_lb_next');
   var lbCurrent = 0;
+  var lbTrigger = null; // element that opened the lightbox — focus returns here on close
 
-  function lbOpen(idx) {
+  function lbOpen(idx, trigger) {
     lbCurrent = Math.max(0, Math.min(idx, items.length - 1));
     lbImg.src = items[lbCurrent].src;
     lbImg.alt = items[lbCurrent].caption || '';
@@ -761,12 +878,30 @@ function smoothScrollTo(targetY, duration) {
     lbNext.disabled = lbCurrent === items.length - 1;
     lb.classList.add('is-open');
     document.body.style.overflow = 'hidden';
+    if (trigger) lbTrigger = trigger;
+    // Move focus into dialog
+    lbClose.focus();
   }
 
   function lbClose_fn() {
     lb.classList.remove('is-open');
     document.body.style.overflow = '';
+    // Return focus to triggering element
+    if (lbTrigger) { lbTrigger.focus(); lbTrigger = null; }
   }
+
+  // Focus trap within lightbox
+  lb.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab') return;
+    var focusable = Array.prototype.slice.call(lb.querySelectorAll('button:not([disabled])'));
+    var first = focusable[0];
+    var last  = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault(); last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault(); first.focus();
+    }
+  });
 
   lbClose.addEventListener('click', lbClose_fn);
   lbPrev.addEventListener('click', function () { lbOpen(lbCurrent - 1); });
@@ -783,11 +918,19 @@ function smoothScrollTo(targetY, duration) {
     if (e.key === 'ArrowRight')  lbOpen(lbCurrent + 1);
   });
 
-  // Open lightbox on masonry item click
+  // Open lightbox on masonry item click or Enter/Space keydown
   masonry.addEventListener('click', function (e) {
     var item = e.target.closest('.cs_masonry_item');
     if (!item) return;
-    lbOpen(parseInt(item.dataset.idx, 10));
+    lbOpen(parseInt(item.dataset.idx, 10), item);
+  });
+
+  masonry.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    var item = e.target.closest('.cs_masonry_item');
+    if (!item) return;
+    e.preventDefault();
+    lbOpen(parseInt(item.dataset.idx, 10), item);
   });
 
   // --- Toggle handler (saves preference, updates aria-pressed) ---

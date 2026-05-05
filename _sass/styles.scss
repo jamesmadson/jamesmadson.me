@@ -62,6 +62,8 @@ html {
   .nav_large li a { color: $dark-default; opacity: 0.5; text-decoration: none; }
   .nav_large li a:hover { background: rgba($dark-default, 0.1); color: $dark-default; opacity: 1; text-decoration: none; }
   .nav_large li a.active { background: rgba($dark-default, 0.1); color: $dark-default; opacity: 1; text-decoration: none; }
+  .nav_large li a:focus-visible { outline-color: rgba($dark-default, 0.8); }
+  #light_switch:focus-visible, #light_switch_mobile:focus-visible { outline-color: rgba($dark-default, 0.8); }
   .nav_container { background: rgba($dark-default, 0.06); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06); }
   .nav_cta { border-color: rgba($dark-default, 0.25); color: $dark-default; }
   .nav_cta:hover { background: $dark-default; border-color: $dark-default; color: $white; }
@@ -544,17 +546,32 @@ ul {
         background: rgba($white, 0.15);
         opacity: 1;
       }
+
+      &:focus { outline: none; }
+      &:focus-visible {
+        opacity: 1;
+        outline: 2px solid rgba($white, 0.8);
+        outline-offset: 2px;
+      }
     }
 
   }
 }
 
-#light_switch {
+#light_switch,
+#light_switch_mobile {
   all: unset;
   cursor: pointer;
   display: flex;
   align-items: center;
   padding: 0.75rem 0.85rem;
+
+  &:focus { outline: none; }
+  &:focus-visible {
+    border-radius: 2rem;
+    outline: 2px solid rgba($white, 0.8);
+    outline-offset: 2px;
+  }
 
   .toggle-track {
     background: rgba($white, 0.2);
@@ -743,7 +760,8 @@ html.theme-light #navlink { color: $dark-default; }
   visibility: hidden;
   z-index: 100;
 
-  .nav_dropdown_trigger:hover & {
+  .nav_dropdown_trigger:hover &,
+  .nav_dropdown_trigger[data-open="true"] & {
     opacity: 1;
     pointer-events: auto;
     transform: translateX(-50%) translateY(0);
@@ -764,6 +782,13 @@ html.theme-light #navlink { color: $dark-default; }
 
   &:hover,
   &.active { background: rgba($white, 0.08); }
+
+  &:focus { outline: none; }
+  &:focus-visible {
+    background: rgba($white, 0.08);
+    outline: 2px solid rgba($white, 0.7);
+    outline-offset: -2px;
+  }
 
   img {
     border-radius: 0.375rem;
@@ -2442,6 +2467,12 @@ sup.reg {
       background: $white;
       transform: scale(1.5);
     }
+
+    &:focus { outline: none; }
+    &:focus-visible {
+      outline: 2px solid rgba($white, 0.8);
+      outline-offset: 3px;
+    }
   }
 }
 
@@ -2467,6 +2498,13 @@ sup.reg {
 
     &.active { color: rgba($white, 0.85); }
     &:hover  { color: rgba($white, 0.65); }
+
+    &:focus { outline: none; }
+    &:focus-visible {
+      border-radius: 0.25rem;
+      outline: 2px solid rgba($white, 0.8);
+      outline-offset: 2px;
+    }
   }
 }
 
@@ -2797,6 +2835,9 @@ body.theme-light {
   cursor: zoom-in;
   margin-bottom: 1.25rem;
   overflow: hidden;
+
+  &:focus { outline: none; }
+  &:focus-visible { outline: 2px solid rgba($white, 0.7); outline-offset: 2px; }
 
   img {
     border-radius: 0;

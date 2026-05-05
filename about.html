@@ -69,8 +69,8 @@ permalink: /about/
           <li><a href="/">Home</a></li>
           <li><a href="/about/" class="active">About</a></li>
           <li class="nav_dropdown_trigger">
-            <a href="/#recent_work">Work</a>
-            <div class="nav_dropdown">
+            <a href="/#recent_work" aria-haspopup="true" aria-expanded="false" aria-controls="nav-work-dropdown">Work</a>
+            <div class="nav_dropdown" id="nav-work-dropdown">
               <a href="/case_studies/naturedose/" class="nav_dropdown_item">
                 <div class="nav_dropdown_meta">
                   <span class="nav_dropdown_title">NatureDose</span>
@@ -182,7 +182,7 @@ permalink: /about/
         /img/jm-profile-halftone@2x.png 880w" alt="James Madson"/>
       </div>
       <img class="image_waves" height="594" width="975"
-        src="/img/waves@2x.webp" alt="Wavy Lines"/>
+        src="/img/waves@2x.webp" alt="" aria-hidden="true"/>
     </div>
     <div class="container">
       <div class="grid_9 color_block yellow"></div>
@@ -190,7 +190,7 @@ permalink: /about/
     <div class="container">
       <div class="grid_7 push_2 color_block orange"></div>
     </div>
-    <svg class="yellow_dots" width="524" height="264" viewBox="0 0 524 264" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg class="yellow_dots" width="524" height="264" viewBox="0 0 524 264" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <circle cx="2" cy="2" r="2" fill="#FFC200"/>
       <circle cx="106" cy="2" r="2" fill="#FFC200"/>
       <circle cx="210" cy="2" r="2" fill="#FFC200"/>
