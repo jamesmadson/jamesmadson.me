@@ -1798,6 +1798,22 @@ html.theme-light body .about_meta_links {
 .about_clients h4 {
   margin-bottom: 0.75rem;
 }
+@media (max-width: 1279px) {
+  .about_clients .container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .about_clients .container .grid_3:first-child {
+    grid-column: span 3;
+  }
+}
+@media (max-width: 768px) {
+  .about_clients .container {
+    grid-template-columns: 1fr;
+  }
+  .about_clients .container .grid_3:first-child {
+    grid-column: span 1;
+  }
+}
 
 .about_services .services_list {
   display: flex;
@@ -6042,6 +6058,24 @@ html.theme-light .zine_swatch.active {
   outline-color: rgba(0, 0, 0, 0.45);
 }
 
+.zine_swatch--coming-soon {
+  cursor: default;
+  opacity: 0.35;
+  pointer-events: none;
+}
+.zine_swatch--coming-soon .zine_coming_soon_label {
+  bottom: 0.6rem;
+  color: rgba(0, 0, 0, 0.5);
+  font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
+  font-size: 0.5rem;
+  left: 50%;
+  letter-spacing: 0.1em;
+  position: absolute;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
 .zine_item {
   border-radius: 6px;
   cursor: pointer;
@@ -6298,6 +6332,14 @@ a:visited {
 @media (max-width: 1280px) {
   .archive_grid {
     columns: 3;
+  }
+}
+@media (max-width: 768px) {
+  .yellow_dots {
+    transform: scale(1);
+  }
+  .color_block.yellow {
+    right: 0;
   }
 }
 @media (max-width: 768px) {
