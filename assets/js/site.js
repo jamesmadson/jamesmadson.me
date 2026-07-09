@@ -983,46 +983,6 @@ function smoothScrollTo(targetY, duration) {
 
 
 // ============================================================
-// Page Transitions
-// ============================================================
-(function () {
-  // Trigger fade-in now that page is ready
-  document.body.classList.add('page-loaded');
-
-  document.addEventListener('click', function (e) {
-    var link = e.target.closest('a[href]');
-    if (!link) return;
-
-    var href = link.getAttribute('href');
-    if (!href) return;
-
-    // Skip: pure anchors, external URLs, mailto/tel, new-tab, downloads
-    if (href.charAt(0) === '#' ||
-        href.indexOf('://') > -1 ||
-        href.indexOf('mailto:') === 0 ||
-        href.indexOf('tel:') === 0 ||
-        link.target === '_blank' ||
-        link.hasAttribute('download')) return;
-
-    // Skip: same-page hash links (e.g. /#recent_work from homepage)
-    // These do an in-page scroll — no reload means page-leaving would stick forever
-    try {
-      var dest_url = new URL(href, window.location.href);
-      if (dest_url.pathname === window.location.pathname && dest_url.hash) return;
-    } catch (ex) {}
-
-    e.preventDefault();
-    document.body.classList.add('page-leaving');
-
-    var dest = href;
-    setTimeout(function () {
-      window.location.href = dest;
-    }, 280);
-  });
-}());
-
-
-// ============================================================
 // Footer tagline — rainbow wave on hover
 // ============================================================
 (function () {
@@ -1064,4 +1024,26 @@ function smoothScrollTo(targetY, duration) {
     clearTimeout(sparkleTimer);
     sparkleTimer = null;
   });
+}());
+
+
+// ============================================================
+// Work page — staggered card reveal
+// ============================================================
+(function () {
+  var grids = Array.prototype.slice.call(document.querySelectorAll('.work_page_section .home_work_grid'));
+  if (!grids.length) return;
+
+  var revealObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      var cards = Array.prototype.slice.call(entry.target.querySelectorAll('.hwc'));
+      cards.forEach(function (card, i) {
+        setTimeout(function () { card.classList.add('wp_visible'); }, i * 90);
+      });
+      revealObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0.15 });
+
+  grids.forEach(function (grid) { revealObserver.observe(grid); });
 }());
