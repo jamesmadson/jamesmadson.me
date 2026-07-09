@@ -1,31 +1,58 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="color-scheme" content="light dark">
-  <title>404 – Page Not Found – James Madson</title>
+  <title>Digital Health App – James Madson</title>
+  <meta name="description" content="Digital health app in progress — product design work under NDA by James Madson.">
+  <meta name="author" content="James Madson">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex">
+
+  <link rel="canonical" href="https://jamesmadson.me/projects/digital-health-app/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jamesmadson.me/projects/digital-health-app/">
+  <meta property="og:title" content="Digital Health App – James Madson">
+  <meta property="og:description" content="Digital health app in progress — product design work under NDA by James Madson.">
+  <meta property="og:image" content="https://jamesmadson.me/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="James Madson">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Digital Health App – James Madson">
+  <meta name="twitter:description" content="Digital health app in progress — product design work under NDA by James Madson.">
+  <meta name="twitter:image" content="https://jamesmadson.me/img/og-image.png">
 
   <link rel="shortcut icon" type="image/x-icon" href="/icons/favicon-32x32.png">
   <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
   <link rel="manifest" href="/icons/site.webmanifest">
+  <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#282829">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" type="text/css" href="/assets/css/styles.css?v=1783620858842" />
+  <link rel="stylesheet" type="text/css" href="/assets/css/styles.css?v=1783620858842">
 
-  <!-- Theme: runs sync before render to prevent flash -->
   <script>!function(){var e=document.documentElement,t=localStorage.getItem("theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");e.className=e.className.replace(/\btheme-\S+/g,"");e.classList.add("theme-"+t)}();</script>
-</head>
 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HL3TB4H7XS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-HL3TB4H7XS');
+  </script>
+</head>
 <body>
-  <a href="#main-content" class="skip-nav">Skip to main content</a>
+  
+    <a href="#main-content" class="skip-nav">Skip to main content</a>
   <div class="site_header fadeIn">
     <a href="/" class="site_name">James Madson</a>
     <div class="nav_container">
@@ -33,8 +60,14 @@
         <ul>
           <li><a href="/about/">About</a></li>
           <li class="nav_dropdown_trigger">
-            <a href="/#recent_work" aria-haspopup="true" aria-expanded="false" aria-controls="nav-work-dropdown">Work</a>
+            <a href="/work/" class="active" aria-haspopup="true" aria-expanded="false" aria-controls="nav-work-dropdown">Work</a>
             <div class="nav_dropdown" id="nav-work-dropdown">
+              <a href="/work/#case-studies" class="nav_dropdown_item nav_dropdown_item--section">
+                <div class="nav_dropdown_meta">
+                  <span class="nav_dropdown_title">All work</span>
+                  <span class="nav_dropdown_company">Case studies &amp; projects</span>
+                </div>
+              </a>
               <a href="/case_studies/naturedose/" class="nav_dropdown_item">
                 <div class="nav_dropdown_meta">
                   <span class="nav_dropdown_title">NatureDose</span>
@@ -53,12 +86,12 @@
                   <span class="nav_dropdown_company">St. Jude Children's Research Hospital</span>
                 </div>
               </a>
-              <div class="nav_dropdown_item nav_dropdown_item--nda">
+              <a href="/projects/digital-health-app/" class="nav_dropdown_item">
                 <div class="nav_dropdown_meta">
-                  <span class="nav_dropdown_title">Health Platform</span>
-                  <span class="nav_dropdown_company">Under NDA</span>
+                  <span class="nav_dropdown_title">Digital Health App</span>
+                  <span class="nav_dropdown_company">Under NDA · In progress</span>
                 </div>
-              </div>
+              </a>
             </div>
           </li>
           <li><a href="/contact/">Contact</a></li>
@@ -72,7 +105,6 @@
       </button>
     </div>
   </div>
-
   <nav class="mobile_nav_menu" id="mobilenavmenu" aria-hidden="true">
     <div class="mobile_nav_inner">
       <ul>
@@ -84,9 +116,13 @@
             <svg class="mobile_nav_chevron" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <ul class="mobile_nav_accordion_panel" aria-hidden="true">
+            <li><a href="/work/" class="active">All work</a></li>
             <li><a href="/case_studies/naturedose/">NatureDose</a></li>
             <li><a href="/case_studies/pecan/">PeCan</a></li>
             <li><a href="/case_studies/visualization_community/">Visualization Community</a></li>
+            <li><a href="/projects/digital-health-app/">Digital Health App</a></li>
+            <li><a href="/projects/naturequant/">NatureQuant</a></li>
+            <li><a href="/projects/naturescore/">NatureScore</a></li>
           </ul>
         </li>
         <li><a href="/contact/">Contact</a></li>
@@ -99,26 +135,51 @@
     </div>
   </nav>
 
-  <header class="fadeIn">
+
+  <header class="fadeIn about_header">
     <div class="container">
-      <div class="grid_6">
-        <h1 class="jm_title" style="font-size: clamp(2rem, 4vw + 1rem, 3.5rem);">You shall not pass!</h1>
-        <p class="about_me" style="margin-top: 1.5rem;">
-          I'm sorry this page can't be found. If you have a moment, email me and I'll do my best to fix this error for a better experience!
-        </p>
-        <a class="error_email_btn"
-           data-e="amFtZXM="
-           data-d="amFtZXNtYWRzb24ubWU="
-           data-s="404+Error+on+Your+Site"
-           href="#">Email James about this 404</a>
+      <div class="grid_3">
+        <h1 class="fadeIn jm_title">Digital Health App</h1>
       </div>
-      <div class="grid_4">
-        <img src="/img/gandalf.png" class="error_photo" alt="A wizard studying a laptop, equally perplexed" />
+      <div class="grid_9 about_header_meta">
+        <p class="about_meta">Under NDA · In Progress</p>
       </div>
     </div>
   </header>
 
-<footer class="site_footer">
+  <main class="fadeIn project_preview" id="main-content">
+    <div class="container">
+      <div class="grid_12">
+        <p class="project_preview_back"><a href="/work/#projects" class="view_project">← All projects</a></p>
+      </div>
+    </div>
+    <div class="container project_preview_grid">
+      <article class="hwc health hwc_soon hwc_nda hwc_preview" aria-label="Digital Health App">
+  <div class="hwc_img hwc_img--empty">
+    
+    <div class="hwc_nda_visual">
+      <span class="hwc_nda_icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M16 3C9.373 3 4 8.373 4 15s5.373 12 12 12 12-5.373 12-12S22.627 3 16 3z" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.4"/>
+          <path d="M16 10v6M16 19v.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+        </svg>
+      </span>
+    </div>
+    
+  </div>
+  <div class="hwc_info">
+    <span class="hwc_company">Under NDA</span>
+    <span class="hwc_title">Digital Health App</span>
+    
+    <span class="hwc_nda_label"><span class="hwc_nda_dot"></span>In Progress</span>
+    
+  </div>
+</article>
+
+    </div>
+  </main>
+
+  <footer class="site_footer">
   <div class="container">
     <span class="site_footer_name">James Madson <span id="footer_year"></span></span>
     <span class="site_footer_tagline">Make something beautiful today.</span>
@@ -147,7 +208,6 @@
     </div>
   </div>
 </footer>
-
 
   <script src="/assets/js/site.js?v=1783620858842" defer></script>
 </body>

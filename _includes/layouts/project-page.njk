@@ -1,31 +1,28 @@
----
-permalink: /work/
----
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="color-scheme" content="light dark">
-  <title>Work – James Madson</title>
-  <meta name="description" content="Case studies and in-progress projects by James Madson — product design for health, research, and data platforms.">
+  <title>{{ pageTitle }}</title>
+  <meta name="description" content="{{ description }}">
   <meta name="author" content="James Madson">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="canonical" href="https://jamesmadson.me/work/">
+  <link rel="canonical" href="https://jamesmadson.me{{ page.url }}">
 
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://jamesmadson.me/work/">
-  <meta property="og:title" content="Work – James Madson">
-  <meta property="og:description" content="Case studies and in-progress projects by James Madson — product design for health, research, and data platforms.">
+  <meta property="og:url" content="https://jamesmadson.me{{ page.url }}">
+  <meta property="og:title" content="{{ pageTitle }}">
+  <meta property="og:description" content="{{ description }}">
   <meta property="og:image" content="https://jamesmadson.me/img/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:site_name" content="James Madson">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Work – James Madson">
-  <meta name="twitter:description" content="Case studies and in-progress projects by James Madson — product design for health, research, and data platforms.">
+  <meta name="twitter:title" content="{{ pageTitle }}">
+  <meta name="twitter:description" content="{{ description }}">
   <meta name="twitter:image" content="https://jamesmadson.me/img/og-image.png">
 
   <link rel="shortcut icon" type="image/x-icon" href="/icons/favicon-32x32.png">
@@ -53,7 +50,6 @@ permalink: /work/
     gtag('config', 'G-HL3TB4H7XS');
   </script>
 </head>
-
 <body>
   {% set activeNav = 'work' %}
   {% include "partials/site-nav.njk" %}
@@ -61,42 +57,23 @@ permalink: /work/
   <header class="fadeIn about_header">
     <div class="container">
       <div class="grid_3">
-        <h1 class="fadeIn jm_title">Work</h1>
+        <h1 class="fadeIn jm_title">{{ title }}</h1>
       </div>
       <div class="grid_9 about_header_meta">
-        <p class="about_meta">Case studies and projects in progress.</p>
+        <p class="about_meta">{{ company }}{% if status %} · {{ status }}{% endif %}</p>
       </div>
     </div>
   </header>
 
-  <main class="fadeIn" id="main-content">
-
-    <section class="home_work work_page_section" id="case-studies">
-      <div class="container">
-        <div class="grid_12">
-          <h2 class="home_work_title">Case Studies</h2>
-        </div>
+  <main class="fadeIn project_preview" id="main-content">
+    <div class="container">
+      <div class="grid_12">
+        <p class="project_preview_back"><a href="/work/#projects" class="view_project">← All projects</a></p>
       </div>
-      <div class="container home_work_grid">
-        {% for item in work.caseStudies %}
-          {% include "partials/work-card-case-study.njk" %}
-        {% endfor %}
-      </div>
-    </section>
-
-    <section class="home_work home_work_soon work_page_section" id="projects">
-      <div class="container">
-        <div class="grid_12">
-          <h2 class="home_work_title">Projects</h2>
-        </div>
-      </div>
-      <div class="container home_work_grid">
-        {% for item in work.projects %}
-          {% include "partials/work-card-project.njk" %}
-        {% endfor %}
-      </div>
-    </section>
-
+    </div>
+    <div class="container project_preview_grid">
+      {% include "partials/work-card-project-preview.njk" %}
+    </div>
   </main>
 
   {% include "partials/footer.njk" %}

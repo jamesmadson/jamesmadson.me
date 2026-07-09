@@ -1,0 +1,23 @@
+<a href="{{ item.href }}" class="hwc {{ item.mod }} hwc_soon{% if item.nda %} hwc_nda{% endif %}" aria-label="{{ item.title }}{% if item.company %} by {{ item.company }}{% endif %}">
+  <div class="hwc_img{% if item.nda %} hwc_img--empty{% endif %}">
+    {% if item.nda %}
+    <div class="hwc_nda_visual">
+      <span class="hwc_nda_icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M16 3C9.373 3 4 8.373 4 15s5.373 12 12 12 12-5.373 12-12S22.627 3 16 3z" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.4"/>
+          <path d="M16 10v6M16 19v.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+        </svg>
+      </span>
+    </div>
+    {% else %}
+    <img src="{{ item.image }}" srcset="{{ item.image }} 1x, {{ item.image2x }} 2x" alt="{{ item.alt }}" loading="lazy" width="600" height="600">
+    {% endif %}
+  </div>
+  <div class="hwc_info">
+    <span class="hwc_company">{{ item.company }}</span>
+    <span class="hwc_title">{{ item.title }}</span>
+    {% if item.status %}
+    <span class="hwc_nda_label"><span class="hwc_nda_dot"></span>{{ item.status }}</span>
+    {% endif %}
+  </div>
+</a>

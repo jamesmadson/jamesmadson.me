@@ -1,0 +1,62 @@
+{
+  "caseStudies": [
+    {
+      "href": "/case_studies/naturedose/",
+      "mod": "nd",
+      "company": "NatureQuant",
+      "title": "NatureDose",
+      "image": "/img/naturedose/naturedose_cover_image.png",
+      "image2x": "/img/naturedose/naturedose_cover_image@2x.png",
+      "alt": "NatureDose app",
+      "loading": "lazy"
+    },
+    {
+      "href": "/case_studies/pecan/",
+      "mod": "pecan",
+      "company": "St. Jude Children's Research Hospital",
+      "title": "PeCan",
+      "image": "/img/pecan/pecan_cover.png",
+      "image2x": "/img/pecan/pecan_cover@2x.png",
+      "alt": "PeCan knowledge base",
+      "loading": "lazy"
+    },
+    {
+      "href": "/case_studies/visualization_community/",
+      "mod": "viz",
+      "company": "St. Jude Children's Research Hospital",
+      "title": "Visualization Community",
+      "image": "/img/visualization_community/visualization_community_cover.png",
+      "image2x": "/img/visualization_community/visualization_community_cover@2x.png",
+      "alt": "Visualization Community",
+      "loading": "lazy"
+    }
+  ],
+  "projects": [
+    {
+      "href": "/projects/digital-health-app/",
+      "mod": "health",
+      "company": "Under NDA",
+      "title": "Digital Health App",
+      "nda": true,
+      "status": "In Progress"
+    },
+    {
+      "href": "/projects/naturequant/",
+      "mod": "nq",
+      "company": "NatureQuant",
+      "title": "NatureQuant",
+      "image": "/img/naturequant/naturequant_cover_image.png",
+      "image2x": "/img/naturequant/naturequant_cover_image@2x.png",
+      "alt": "NatureQuant"
+    },
+    {
+      "href": "/projects/naturescore/",
+      "mod": "ns",
+      "company": "NatureQuant",
+      "title": "NatureScore",
+      "image": "/img/naturescore/naturescore_cover_image.png",
+      "image2x": "/img/naturescore/naturescore_cover_image@2x.png",
+      "alt": "NatureScore"
+    }
+  ]
+}

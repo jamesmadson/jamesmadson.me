@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dev",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": ["-c", "npx eleventy --serve --port=$PORT"],
+      "port": 8080,
+      "autoPort": true
+    }
+  ]
+}
