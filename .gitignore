@@ -21,3 +21,6 @@ bin/*
 # Claude Code
 .claude/_site/src/
 .claude/worktrees/
+
+# Build output
+_site/
