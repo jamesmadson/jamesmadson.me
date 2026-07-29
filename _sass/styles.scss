@@ -5542,3 +5542,52 @@ html.theme-light .colophon_code {
     color: rgba($dark-default, 0.85);
   }
 }
+
+.colophon_history {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    border-top: 1px solid rgba($white, 0.08);
+    display: flex;
+    gap: 1.5rem;
+    padding: 0.75rem 0;
+
+    &:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.colophon_history_year {
+  color: rgba($white, 0.4);
+  flex-shrink: 0;
+  font-family: $mono;
+  font-size: 0.875rem;
+  width: 5rem;
+}
+
+@media (max-width: 768px) {
+  .colophon_history li {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .colophon_history_year {
+    width: auto;
+  }
+}
+
+html.theme-light .colophon_history li {
+  border-top-color: rgba($dark-default, 0.1);
+}
+
+html.theme-light .colophon_history_year {
+  color: rgba($dark-default, 0.4);
+}

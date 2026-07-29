@@ -6517,3 +6517,47 @@ html.theme-light .colophon_code {
 html.theme-light .colophon_code code {
   color: rgba(31, 32, 28, 0.85);
 }
+
+.colophon_history {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.colophon_history li {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  gap: 1.5rem;
+  padding: 0.75rem 0;
+}
+.colophon_history li:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+.colophon_history p {
+  margin: 0;
+}
+
+.colophon_history_year {
+  color: rgba(255, 255, 255, 0.4);
+  flex-shrink: 0;
+  font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
+  font-size: 0.875rem;
+  width: 5rem;
+}
+
+@media (max-width: 768px) {
+  .colophon_history li {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .colophon_history_year {
+    width: auto;
+  }
+}
+html.theme-light .colophon_history li {
+  border-top-color: rgba(31, 32, 28, 0.1);
+}
+
+html.theme-light .colophon_history_year {
+  color: rgba(31, 32, 28, 0.4);
+}
