@@ -1819,12 +1819,12 @@ html.theme-light body .about_meta_links {
   color: #FFFFFF;
 }
 
-#hero_rotating {
+#hero_shuffle_text {
   display: block;
   line-height: 1.8;
   padding-top: 26px;
 }
-#hero_rotating .highlight {
+#hero_shuffle_text .highlight {
   line-height: 1.2;
 }
 
@@ -3145,100 +3145,6 @@ sup.reg {
   .work_view_controls {
     display: none;
   }
-}
-
-.hero_progress {
-  align-items: center;
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  padding: 0.75rem 3rem 2rem;
-}
-@media (max-width: 768px) {
-  .hero_progress {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-}
-
-.hero_dots {
-  align-items: center;
-  display: flex;
-  gap: 0.45rem;
-}
-.hero_dots .hero_dot {
-  background: rgba(255, 255, 255, 0.25);
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  height: 6px;
-  padding: 0;
-  transition: background 0.2s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  width: 6px;
-}
-.hero_dots .hero_dot.active {
-  background: #FFFFFF;
-  transform: scale(1.5);
-}
-.hero_dots .hero_dot:focus {
-  outline: none;
-}
-.hero_dots .hero_dot:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.8);
-  outline-offset: 3px;
-}
-
-.hero_pp {
-  align-items: center;
-  display: flex;
-  gap: 0.15rem;
-}
-.hero_pp .hero_pp_btn {
-  align-items: center;
-  background: none;
-  border: none;
-  color: rgba(255, 255, 255, 0.3);
-  cursor: pointer;
-  display: flex;
-  height: 22px;
-  justify-content: center;
-  padding: 0;
-  transition: color 0.15s ease;
-  width: 22px;
-}
-.hero_pp .hero_pp_btn svg {
-  height: 11px;
-  width: 11px;
-}
-.hero_pp .hero_pp_btn.active {
-  color: rgba(255, 255, 255, 0.85);
-}
-.hero_pp .hero_pp_btn:hover {
-  color: rgba(255, 255, 255, 0.65);
-}
-.hero_pp .hero_pp_btn:focus {
-  outline: none;
-}
-.hero_pp .hero_pp_btn:focus-visible {
-  border-radius: 0.25rem;
-  outline: 2px solid rgba(255, 255, 255, 0.8);
-  outline-offset: 2px;
-}
-
-html.theme-light .hero_dot {
-  background: rgba(31, 32, 28, 0.15);
-}
-html.theme-light .hero_dot.active {
-  background: #1F201C;
-}
-html.theme-light .hero_pp_btn {
-  color: rgba(31, 32, 28, 0.25);
-}
-html.theme-light .hero_pp_btn.active {
-  color: rgba(31, 32, 28, 0.75);
-}
-html.theme-light .hero_pp_btn:hover {
-  color: rgba(31, 32, 28, 0.5);
 }
 
 .work_view_toggle {
@@ -5792,7 +5698,7 @@ html.theme-dark .site_footer .site_footer_link:hover {
   header .jm_subtitle {
     font-size: clamp(1.6rem, 3vw + 0.75rem, 2.75rem);
   }
-  #hero_rotating {
+  #hero_shuffle_text {
     line-height: 1.85;
   }
 }
@@ -5879,7 +5785,7 @@ html.theme-dark .site_footer .site_footer_link:hover {
     font-size: clamp(1.4rem, 4.5vw + 0.5rem, 2rem);
     line-height: 1.4;
   }
-  #hero_rotating {
+  #hero_shuffle_text {
     line-height: 1.8;
   }
   .more_work .more_work_grid {
@@ -6612,4 +6518,71 @@ html.theme-light .colophon_history_year {
 }
 .colophon_repo_links .view_project {
   margin-top: 0;
+}
+
+.hero_headline {
+  font-family: "Space Grotesk", "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+}
+
+.hero_shuffle_row {
+  align-items: center;
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.hero_shuffle_btn {
+  align-items: center;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  display: flex;
+  flex-shrink: 0;
+  height: 40px;
+  justify-content: center;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  width: 40px;
+}
+.hero_shuffle_btn:hover {
+  background: #FFFFFF;
+  border-color: #FFFFFF;
+  color: #1F201C;
+}
+.hero_shuffle_btn:focus {
+  outline: none;
+}
+.hero_shuffle_btn:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 3px;
+}
+
+html.theme-light .hero_shuffle_btn {
+  border-color: rgba(31, 32, 28, 0.28);
+  color: rgba(31, 32, 28, 0.6);
+}
+html.theme-light .hero_shuffle_btn:hover {
+  background: #1F201C;
+  border-color: #1F201C;
+  color: #FFFFFF;
+}
+html.theme-light .hero_shuffle_btn:focus-visible {
+  outline-color: rgba(31, 32, 28, 0.8);
+}
+
+@media (max-width: 1024px) {
+  .hero_headline {
+    font-size: clamp(1.9rem, 3.2vw + 0.75rem, 3rem);
+  }
+}
+@media (max-width: 768px) {
+  .hero_headline {
+    font-size: clamp(1.7rem, 5vw + 0.5rem, 2.25rem);
+    line-height: 1.15;
+  }
+  .hero_shuffle_row {
+    margin-top: 0.5rem;
+  }
 }
