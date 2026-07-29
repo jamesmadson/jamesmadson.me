@@ -1,0 +1,115 @@
+---
+permalink: /colophon/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="color-scheme" content="light dark">
+  <title>Colophon – James Madson</title>
+  <meta name="description" content="How jamesmadson.me is built: the stack, the decisions behind it, and a look at the code.">
+  <meta name="author" content="James Madson">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="canonical" href="https://jamesmadson.me/colophon/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jamesmadson.me/colophon/">
+  <meta property="og:title" content="Colophon – James Madson">
+  <meta property="og:description" content="How jamesmadson.me is built: the stack, the decisions behind it, and a look at the code.">
+  <meta property="og:image" content="https://jamesmadson.me/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="James Madson">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Colophon – James Madson">
+  <meta name="twitter:description" content="How jamesmadson.me is built: the stack, the decisions behind it, and a look at the code.">
+  <meta name="twitter:image" content="https://jamesmadson.me/img/og-image.png">
+
+  <link rel="shortcut icon" type="image/x-icon" href="/icons/favicon-32x32.png">
+  <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+  <link rel="manifest" href="/icons/site.webmanifest">
+  <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#282829">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/styles.css?v={{ build.version }}">
+
+  <script>!function(){var e=document.documentElement,t=localStorage.getItem("theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");e.className=e.className.replace(/\btheme-\S+/g,"");e.classList.add("theme-"+t)}();</script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HL3TB4H7XS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-HL3TB4H7XS');
+  </script>
+</head>
+
+<body>
+  {% set activeNav = 'colophon' %}
+  {% include "partials/site-nav.njk" %}
+
+  <header class="fadeIn about_header">
+    <div class="container">
+      <div class="grid_3">
+        <h1 class="fadeIn jm_title">Colophon</h1>
+      </div>
+      <div class="grid_9 about_header_meta">
+        <p class="about_meta">How this site is built, and why.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="fadeIn" id="main-content">
+
+    <section class="colophon_section">
+      <div class="container">
+        <div class="grid_3">
+          <h3>Stack</h3>
+        </div>
+        <div class="grid_9">
+          <div class="colophon_stack">
+            <div class="colophon_stack_item">
+              <span class="colophon_stack_item_label">Framework</span>
+              <p>Eleventy (11ty), Nunjucks templates</p>
+            </div>
+            <div class="colophon_stack_item">
+              <span class="colophon_stack_item_label">Styles</span>
+              <p>Hand-rolled Sass, compiled with the Dart Sass CLI. Still built on the vendored Bourbon/Neat grid mixins rather than an npm package — old-school, and I know it.</p>
+            </div>
+            <div class="colophon_stack_item">
+              <span class="colophon_stack_item_label">JavaScript</span>
+              <p>Vanilla JS, no framework</p>
+            </div>
+            <div class="colophon_stack_item">
+              <span class="colophon_stack_item_label">Fonts</span>
+              <p>Google Fonts (IBM Plex Mono, Instrument Sans) — not self-hosted yet</p>
+            </div>
+            <div class="colophon_stack_item">
+              <span class="colophon_stack_item_label">Hosting</span>
+              <p>GitHub Actions build → FTP deploy to shared hosting</p>
+            </div>
+            <div class="colophon_stack_item">
+              <span class="colophon_stack_item_label">Analytics</span>
+              <p>Google Analytics</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  {% include "partials/footer.njk" %}
+  <script src="/assets/js/site.js?v={{ build.version }}" defer></script>
+</body>
+</html>

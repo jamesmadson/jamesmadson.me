@@ -6435,3 +6435,46 @@ a:visited {
     display: none;
   }
 }
+.colophon_section {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 3rem 0;
+}
+.colophon_section:first-of-type {
+  border-top: none;
+  padding-top: 1rem;
+}
+
+.colophon_stack {
+  display: grid;
+  gap: 1.5rem 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.colophon_stack_item p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.colophon_stack_item_label {
+  color: rgba(255, 255, 255, 0.4);
+  display: block;
+  font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .colophon_stack {
+    grid-template-columns: 1fr;
+  }
+}
+html.theme-light .colophon_section {
+  border-top-color: rgba(31, 32, 28, 0.1);
+}
+
+html.theme-light .colophon_stack_item_label {
+  color: rgba(31, 32, 28, 0.4);
+}

@@ -5449,3 +5449,52 @@ a:visited { color: inherit; opacity: 0.8; }
   .archive_intro_inner { gap: 0.75rem; }
   .archive_desc { display: none; }
 }
+
+
+// ============================================================
+// Colophon page
+// ============================================================
+
+.colophon_section {
+  border-top: 1px solid rgba($white, 0.08);
+  padding: 3rem 0;
+
+  &:first-of-type {
+    border-top: none;
+    padding-top: 1rem;
+  }
+}
+
+.colophon_stack {
+  display: grid;
+  gap: 1.5rem 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.colophon_stack_item p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.colophon_stack_item_label {
+  color: rgba($white, 0.4);
+  display: block;
+  font-family: $mono;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .colophon_stack { grid-template-columns: 1fr; }
+}
+
+html.theme-light .colophon_section {
+  border-top-color: rgba($dark-default, 0.1);
+}
+
+html.theme-light .colophon_stack_item_label {
+  color: rgba($dark-default, 0.4);
+}
