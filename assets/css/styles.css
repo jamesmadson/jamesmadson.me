@@ -5573,6 +5573,7 @@ html.theme-light .about_values .value_connector {
   color: rgba(255, 255, 255, 0.35);
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
   font-size: 0.875rem;
+  font-weight: normal;
   letter-spacing: 0.04em;
   text-decoration: none;
   transition: color 0.2s ease;
