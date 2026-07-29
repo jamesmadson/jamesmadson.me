@@ -24,3 +24,10 @@ bin/*
 
 # Build output
 _site/
+
+# Local planning docs (specs/plans) — not site content, kept local-only
+docs/
+.superpowers/
+.agents/
+.claude/skills/
+skills-lock.json
