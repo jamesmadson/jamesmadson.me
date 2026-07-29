@@ -117,7 +117,7 @@ permalink: /colophon/
           <div class="colophon_decision">
             <h4>Flash-free theme switching</h4>
             <p>The theme toggle needs to know the visitor's preference before the page paints, or you get a flash of the wrong theme. This script runs synchronously in <code>&lt;head&gt;</code>, before anything renders, reading <code>localStorage</code> and falling back to <code>prefers-color-scheme</code>:</p>
-            <pre class="colophon_code"><code>!function () {
+            <pre class="colophon_code" tabindex="0" role="region" aria-label="Code snippet"><code>!function () {
   var el = document.documentElement,
       theme = localStorage.getItem("theme") ||
         (window.matchMedia &&

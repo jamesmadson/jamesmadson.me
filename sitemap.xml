@@ -21,6 +21,11 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://jamesmadson.me/colophon/</loc>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://jamesmadson.me/case_studies/naturedose/</loc>
     <priority>0.7</priority>
     <changefreq>yearly</changefreq>

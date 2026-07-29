@@ -6,3 +6,5 @@ _layouts.jekyll.bak/
 README.html
 docs/
 .superpowers/
+.agents/
+.claude/

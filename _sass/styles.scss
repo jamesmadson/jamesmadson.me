@@ -334,6 +334,11 @@ a {
   &:hover { color: $text-muted; }
 }
 
+code {
+  font-family: $mono;
+  font-size: 0.9em;
+}
+
 ul {
   list-style: none;
   padding: 0;
@@ -4744,6 +4749,14 @@ html.theme-light .site_footer {
   }
 }
 
+html.theme-dark .site_footer .site_footer_link {
+  color: rgba($white, 0.35);
+
+  &:hover {
+    color: rgba($white, 0.7);
+  }
+}
+
 
 // ============================================================
 // Page transitions — native cross-document View Transitions.
@@ -5491,6 +5504,10 @@ a:visited { color: inherit; opacity: 0.8; }
   }
 }
 
+.colophon_section .grid_9 {
+  min-width: 0;
+}
+
 .colophon_stack {
   display: grid;
   gap: 1.5rem 2rem;
@@ -5504,7 +5521,7 @@ a:visited { color: inherit; opacity: 0.8; }
 }
 
 .colophon_stack_item_label {
-  color: rgba($white, 0.4);
+  color: rgba($white, 0.55);
   display: block;
   font-family: $mono;
   font-size: 0.8rem;
@@ -5522,7 +5539,7 @@ html.theme-light .colophon_section {
 }
 
 html.theme-light .colophon_stack_item_label {
-  color: rgba($dark-default, 0.4);
+  color: rgba($dark-default, 0.55);
 }
 
 .colophon_decision {
@@ -5556,6 +5573,7 @@ html.theme-light .colophon_stack_item_label {
 
   code {
     color: rgba($white, 0.85);
+    font-family: $mono;
     white-space: pre;
   }
 }
@@ -5592,7 +5610,7 @@ html.theme-light .colophon_code {
 }
 
 .colophon_history_year {
-  color: rgba($white, 0.4);
+  color: rgba($white, 0.55);
   flex-shrink: 0;
   font-family: $mono;
   font-size: 0.875rem;
@@ -5615,7 +5633,7 @@ html.theme-light .colophon_history li {
 }
 
 html.theme-light .colophon_history_year {
-  color: rgba($dark-default, 0.4);
+  color: rgba($dark-default, 0.55);
 }
 
 .colophon_repo_links {
