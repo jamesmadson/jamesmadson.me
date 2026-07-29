@@ -5591,3 +5591,14 @@ html.theme-light .colophon_history li {
 html.theme-light .colophon_history_year {
   color: rgba($dark-default, 0.4);
 }
+
+.colophon_repo_links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+
+  .view_project {
+    margin-top: 0;
+  }
+}

@@ -6561,3 +6561,13 @@ html.theme-light .colophon_history li {
 html.theme-light .colophon_history_year {
   color: rgba(31, 32, 28, 0.4);
 }
+
+.colophon_repo_links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+.colophon_repo_links .view_project {
+  margin-top: 0;
+}
