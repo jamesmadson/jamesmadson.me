@@ -107,6 +107,46 @@ permalink: /colophon/
       </div>
     </section>
 
+    <section class="colophon_section">
+      <div class="container">
+        <div class="grid_3">
+          <h3>Decisions</h3>
+        </div>
+        <div class="grid_9">
+
+          <div class="colophon_decision">
+            <h4>Flash-free theme switching</h4>
+            <p>The theme toggle needs to know the visitor's preference before the page paints, or you get a flash of the wrong theme. This script runs synchronously in <code>&lt;head&gt;</code>, before anything renders, reading <code>localStorage</code> and falling back to <code>prefers-color-scheme</code>:</p>
+            <pre class="colophon_code"><code>!function () {
+  var el = document.documentElement,
+      theme = localStorage.getItem("theme") ||
+        (window.matchMedia &&
+         window.matchMedia("(prefers-color-scheme: dark)").matches
+           ? "dark" : "light");
+  el.className = el.className.replace(/\btheme-\S+/g, "");
+  el.classList.add("theme-" + theme);
+}();</code></pre>
+          </div>
+
+          <div class="colophon_decision">
+            <h4>No framework</h4>
+            <p>The site is a handful of pages with light interactivity — a theme toggle, a mobile menu, a marquee, some scroll-triggered reveals. None of that needed React or a build pipeline beyond Eleventy itself. Vanilla JS keeps the payload small and the code easy to read top to bottom.</p>
+          </div>
+
+          <div class="colophon_decision">
+            <h4>Accessible marquee</h4>
+            <p>The client-logo marquee is duplicated so it can scroll continuously. The repeated copies are marked <code>aria-hidden</code> with <code>tabindex="-1"</code>, so screen readers and keyboard users only ever encounter each logo once. A small script clones further copies at runtime to fill wide viewports, and those clones inherit the same attributes automatically.</p>
+          </div>
+
+          <div class="colophon_decision">
+            <h4>Vendored Sass over an npm grid package</h4>
+            <p>The layout grid still runs on Bourbon and Neat, vendored directly into the repo rather than installed from npm. That's a decision from an earlier version of the site that never got revisited — it works, so replacing it hasn't been worth the churn yet.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
   </main>
 
   {% include "partials/footer.njk" %}

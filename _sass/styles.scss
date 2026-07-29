@@ -5498,3 +5498,47 @@ html.theme-light .colophon_section {
 html.theme-light .colophon_stack_item_label {
   color: rgba($dark-default, 0.4);
 }
+
+.colophon_decision {
+  margin-bottom: 2rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  h4 {
+    margin: 0 0 0.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+.colophon_code {
+  background: rgba($white, 0.04);
+  border: 1px solid rgba($white, 0.08);
+  border-radius: 0.5rem;
+  font-family: $mono;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  margin: 1rem 0;
+  overflow-x: auto;
+  padding: 1rem 1.25rem;
+
+  code {
+    color: rgba($white, 0.85);
+    white-space: pre;
+  }
+}
+
+html.theme-light .colophon_code {
+  background: rgba($dark-default, 0.04);
+  border-color: rgba($dark-default, 0.1);
+
+  code {
+    color: rgba($dark-default, 0.85);
+  }
+}

@@ -6478,3 +6478,42 @@ html.theme-light .colophon_section {
 html.theme-light .colophon_stack_item_label {
   color: rgba(31, 32, 28, 0.4);
 }
+
+.colophon_decision {
+  margin-bottom: 2rem;
+}
+.colophon_decision:last-child {
+  margin-bottom: 0;
+}
+.colophon_decision h4 {
+  margin: 0 0 0.5rem;
+}
+.colophon_decision p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.colophon_code {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.5rem;
+  font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  margin: 1rem 0;
+  overflow-x: auto;
+  padding: 1rem 1.25rem;
+}
+.colophon_code code {
+  color: rgba(255, 255, 255, 0.85);
+  white-space: pre;
+}
+
+html.theme-light .colophon_code {
+  background: rgba(31, 32, 28, 0.04);
+  border-color: rgba(31, 32, 28, 0.1);
+}
+html.theme-light .colophon_code code {
+  color: rgba(31, 32, 28, 0.85);
+}
