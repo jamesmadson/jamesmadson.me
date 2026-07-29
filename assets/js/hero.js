@@ -11,12 +11,12 @@
   var WORD_GAP = 80;   // extra pause before the next highlighted word starts
 
   var SENTENCES = [
-    'I <a href="/about/" class="highlight jm">design</a> interfaces that make hard things feel approachable. I\'ve helped researchers <a href="/case_studies/pecan/" class="highlight pecan">navigate</a> cancer data and people <a href="/case_studies/naturedose/" class="highlight nd">connect</a> with nature.',
-    'I <a href="/about/" class="highlight jm">embed</a> with teams, <a href="/case_studies/visualization_community/" class="highlight viz">design</a> the interfaces, and <a href="/case_studies/naturedose/" class="highlight nd">build</a> the systems behind them. I\'ve done it for cancer research platforms and consumer wellness apps.',
-    'I\'ve <a href="/case_studies/naturedose/" class="highlight nd">built</a> brand identity from the ground up — logo, iconography, product pages, App Store screens — and kept it consistent as the product grew.',
-    'Some days it\'s a <a href="/case_studies/pecan/" class="highlight pecan">design system</a>. Some days it\'s a landing page, an icon set, or a motion study. I go where the product needs me.',
-    'I <a href="/about/" class="highlight jm">prototype</a> with real data, <a href="/case_studies/pecan/" class="highlight pecan">build</a> design systems that scale, and <a href="/case_studies/naturescore/" class="highlight ns">brand</a> the companies behind the product.',
-    'I <a href="/about/" class="highlight jm">work</a> at the intersection of strategy and craft. My job is making sure what gets <a href="/case_studies/pecan/" class="highlight pecan">designed</a> is worth what it took to <a href="/case_studies/naturedose/" class="highlight nd">build</a>.'
+    'I <a href="/case_studies/naturedose/" class="highlight nd">built</a> NatureDose\'s brand identity from the ground up — logo, iconography, App Store screens.',
+    'I <a href="/case_studies/pecan/" class="highlight pecan">designed</a> PeCan so researchers can navigate complex cancer genomics data.',
+    'I <a href="/case_studies/visualization_community/" class="highlight viz">built</a> visualization tools for St. Jude, now cited in academic papers.',
+    'I <a href="/projects/naturequant/" class="highlight nq">lead</a> design for NatureQuant end to end — brand, product, and system.',
+    'I <a href="/projects/naturescore/" class="highlight ns">designed</a> NatureScore, a system that quantifies time spent outdoors.',
+    'I <a href="/about/" class="highlight jm">work</a> at the intersection of strategy and craft — brand, systems, and code.'
   ];
 
   // After a sentence renders, type each highlighted word character by character

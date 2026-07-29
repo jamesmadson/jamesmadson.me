@@ -5578,9 +5578,10 @@ html.theme-light .colophon_history_year {
 }
 
 .hero_shuffle_row {
-  align-items: center;
+  align-items: flex-start;
   display: flex;
-  gap: 0.75rem;
+  flex-direction: column;
+  gap: 0.85rem;
   margin-top: 0.75rem;
 }
 
