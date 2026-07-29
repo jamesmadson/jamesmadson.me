@@ -4677,6 +4677,25 @@ html.theme-light .about_values {
   }
 }
 
+.site_footer_left {
+  align-items: center;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.site_footer_link {
+  color: rgba($white, 0.35);
+  font-family: $mono;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: rgba($white, 0.7);
+  }
+}
+
 .tl_sparkle {
   animation: tlSparkle 0.6s ease forwards;
   font-size: 0.65rem;
@@ -4716,6 +4735,12 @@ html.theme-light .site_footer {
 
   .site_footer_name  { color: rgba($dark-default, 0.35); }
   .site_footer_tagline { color: rgba($dark-default, 0.25); }
+
+  .site_footer_link {
+    color: rgba($dark-default, 0.35);
+
+    &:hover { color: rgba($dark-default, 0.7); }
+  }
 }
 
 
