@@ -52,8 +52,16 @@
   // Measure tallest sentence at plain HTML to lock height — no layout shift.
   // Re-run on resize (debounced) so the lock stays accurate after the
   // viewport changes (e.g. window resize, phone rotation).
-  var measureTimeout = null;
+  //
+  // The measurement loop overwrites textEl.innerHTML for each sentence, then
+  // restores the captured HTML — which reparses into brand-new DOM nodes. If
+  // the per-character typing animation is still running at that moment, its
+  // pending timeouts are closured over the OLD (now-discarded) <span>
+  // elements, so they never touch the new ones and some characters can be
+  // left stuck at opacity:0 forever. Track whether typing is in flight and,
+  // if so, restart it against the freshly-restored DOM.
   function measureMaxHeight() {
+    var wasTyping = pendingCharTimeouts.length > 0;
     var maxH = 0;
     var currentHTML = textEl.innerHTML;
     SENTENCES.forEach(function (html) {
@@ -62,7 +70,12 @@
     });
     textEl.innerHTML = currentHTML;
     textEl.style.minHeight = maxH + 'px';
+    if (wasTyping) {
+      animateHighlights(0);
+    }
   }
+
+  var measureTimeout = null;
 
   measureMaxHeight();
 
