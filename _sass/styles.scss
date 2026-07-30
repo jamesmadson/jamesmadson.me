@@ -1312,32 +1312,32 @@ html.theme-light body .about_meta_links {
   &.jm {
     &:hover, &:active { background-color: $orange; color: $white; box-shadow: 0 0 0 1px $orange; }
     &::before { background-color: $orange; animation: bgShimmer 2.5s ease-in-out; }
-    &::after { background-color: color.adjust($orange, $lightness: -10%); content: "About"; animation: labelReveal 2.5s ease-in-out; }
+    &::after { background-color: color.adjust($orange, $lightness: -10%); content: "About ↗"; animation: labelReveal 2.5s ease-in-out; }
   }
   &.viz {
     &:hover, &:active { background-color: $blue; color: $white; box-shadow: 0 0 0 1px $blue; }
     &::before { background-color: $blue; animation: bgShimmer 2.5s ease-in-out 0.4s; }
-    &::after { background-color: color.adjust($blue, $lightness: -10%); content: "Viz"; animation: labelReveal 2.5s ease-in-out 0.4s; }
+    &::after { background-color: color.adjust($blue, $lightness: -10%); content: "Viz ↗"; animation: labelReveal 2.5s ease-in-out 0.4s; }
   }
   &.pecan {
     &:hover, &:active { background-color: $cyan; color: $white; box-shadow: 0 0 0 1px $cyan; }
     &::before { background-color: $cyan; animation: bgShimmer 2.5s ease-in-out 0.7s; }
-    &::after { background-color: color.adjust($cyan, $lightness: -10%); content: "PeCan"; animation: labelReveal 2.5s ease-in-out 0.7s; }
+    &::after { background-color: color.adjust($cyan, $lightness: -10%); content: "PeCan ↗"; animation: labelReveal 2.5s ease-in-out 0.7s; }
   }
   &.nq {
     &:hover, &:active { background-color: $green; color: $white; box-shadow: 0 0 0 1px $green; }
     &::before { background-color: $green; animation: bgShimmer 2.5s ease-in-out 1s; }
-    &::after { background-color: color.adjust($green, $lightness: -10%); content: "NatureQuant"; animation: labelReveal 2.5s ease-in-out 1s; }
+    &::after { background-color: color.adjust($green, $lightness: -10%); content: "NatureQuant ↗"; animation: labelReveal 2.5s ease-in-out 1s; }
   }
   &.ns {
     &:hover, &:active { background-color: $lime; color: $white; box-shadow: 0 0 0 1px $lime; }
     &::before { background-color: $lime; animation: bgShimmer 2.5s ease-in-out 1.3s; }
-    &::after { background-color: color.adjust($lime, $lightness: -10%); color: $white; content: "NatureScore"; animation: labelReveal 2.5s ease-in-out 1.3s; }
+    &::after { background-color: color.adjust($lime, $lightness: -10%); color: $white; content: "NatureScore ↗"; animation: labelReveal 2.5s ease-in-out 1.3s; }
   }
   &.nd {
     &:hover, &:active { background-color: $green; color: $white; box-shadow: 0 0 0 1px $green; }
     &::before { background-color: $green; animation: bgShimmer 2.5s ease-in-out 1.6s; }
-    &::after { background-color: color.adjust($green, $lightness: -10%); content: "NatureDose"; animation: labelReveal 2.5s ease-in-out 1.6s; }
+    &::after { background-color: color.adjust($green, $lightness: -10%); content: "NatureDose ↗"; animation: labelReveal 2.5s ease-in-out 1.6s; }
   }
 }
 
