@@ -1821,8 +1821,10 @@ html.theme-light body .about_meta_links {
 
 #hero_shuffle_text {
   display: block;
+  font-size: clamp(1.15rem, 0.5vw + 1rem, 1.35rem);
   line-height: 1.8;
   padding-top: 26px;
+  box-sizing: border-box;
 }
 #hero_shuffle_text .highlight {
   line-height: 1.2;
@@ -5699,6 +5701,7 @@ html.theme-dark .site_footer .site_footer_link:hover {
     font-size: clamp(1.6rem, 3vw + 0.75rem, 2.75rem);
   }
   #hero_shuffle_text {
+    font-size: clamp(1.05rem, 1.2vw + 0.75rem, 1.25rem);
     line-height: 1.85;
   }
 }
@@ -5786,6 +5789,7 @@ html.theme-dark .site_footer .site_footer_link:hover {
     line-height: 1.4;
   }
   #hero_shuffle_text {
+    font-size: clamp(1rem, 2vw + 0.6rem, 1.15rem);
     line-height: 1.8;
   }
   .more_work .more_work_grid {
@@ -6518,6 +6522,18 @@ html.theme-light .colophon_history_year {
 }
 .colophon_repo_links .view_project {
   margin-top: 0;
+}
+
+.sr-only {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
 
 .hero_headline {

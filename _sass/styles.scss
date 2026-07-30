@@ -1214,14 +1214,26 @@ html.theme-light body .about_meta_links {
 #hero_shuffle_text {
   // Transition set inline by JS, but ensure the element is a stable block
   display: block;
+  // `.jm_subtitle` (the class this element also carries) has no font-size
+  // of its own outside the two responsive media queries below — without an
+  // explicit rule here, this element would fall back to the browser default
+  // (~16px) above 1024px, far smaller than the .hero_headline it sits under.
+  font-size: clamp(1.15rem, 0.5vw + 1rem, 1.35rem);
   // Extra line-height (beats .jm_subtitle's via id specificity) reserves
   // room for the highlight tag popovers so they never overlap the line above.
   line-height: 1.8;
-  // `header` sets overflow-x: hidden, which per spec forces overflow-y to
-  // compute as auto — clipping the popover on the first line (and the
-  // highlight pill's outer box-shadow ring) since it sits flush with the
-  // header's content edge.
+  // Note: this used to also guard against `header`'s overflow-x: hidden
+  // (which forces overflow-y: auto per spec) clipping the highlight-tag
+  // popover, back when this element was the first thing in the header.
+  // Now that it sits below .hero_headline there's ample clearance above it
+  // for the popover regardless of this value (verified: no clipping with or
+  // without it) — this padding is kept purely for visual breathing room
+  // between the headline and the shuffled line (the row's own margin-top
+  // alone reads as too tight).
   padding-top: 26px;
+  // min-height (set by JS from offsetHeight) should match the content box,
+  // not include this padding — keep padding out of the locked height.
+  box-sizing: border-box;
 
   // Tighter button height — hug the text instead of inheriting the
   // paragraph's (much larger) line-height.
@@ -4793,7 +4805,7 @@ html.theme-dark .site_footer .site_footer_link {
 
   // Smaller heading type needs relatively more line-height to keep the
   // highlight tag popovers clear of the line above (see #hero_shuffle_text).
-  #hero_shuffle_text { line-height: 1.85; }
+  #hero_shuffle_text { font-size: clamp(1.05rem, 1.2vw + 0.75rem, 1.25rem); line-height: 1.85; }
 }
 
 
@@ -4872,7 +4884,7 @@ html.theme-dark .site_footer .site_footer_link {
     .jm_subtitle { font-size: clamp(1.4rem, 4.5vw + 0.5rem, 2rem); line-height: 1.4; }
   }
 
-  #hero_shuffle_text { line-height: 1.8; }
+  #hero_shuffle_text { font-size: clamp(1rem, 2vw + 0.6rem, 1.15rem); line-height: 1.8; }
 
   // mobile_nav_menu font-size is set within the component via clamp()
 
@@ -5566,6 +5578,22 @@ html.theme-light .colophon_history_year {
   .view_project {
     margin-top: 0;
   }
+}
+
+// ============================================================
+// Utility — visually hidden but accessible
+// ============================================================
+
+.sr-only {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
 
 // ============================================================
