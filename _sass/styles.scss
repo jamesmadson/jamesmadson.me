@@ -1224,10 +1224,9 @@ html.theme-light body .about_meta_links {
   // popover, back when this element was the first thing in the header.
   // Now that it sits below .hero_headline there's ample clearance above it
   // for the popover regardless of this value (verified: no clipping with or
-  // without it) — this padding is kept purely for visual breathing room
-  // between the headline and the shuffled line (the row's own margin-top
-  // alone reads as too tight).
-  padding-top: 26px;
+  // without it) — kept small purely so the popover has a little room to
+  // render without visually merging into .hero_headline above.
+  padding-top: 6px;
   // min-height (set by JS from offsetHeight) should match the content box,
   // not include this padding — keep padding out of the locked height.
   box-sizing: border-box;
@@ -1285,6 +1284,10 @@ html.theme-light body .about_meta_links {
   }
 
   &::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M5 11L11 5M11 5H6M11 5V10' stroke='white' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+    background-position: right 0.5em center;
+    background-repeat: no-repeat;
+    background-size: 0.65em 0.65em;
     border-radius: 0.3em;
     bottom: 100%;
     color: $white;
@@ -1296,7 +1299,7 @@ html.theme-light body .about_meta_links {
     line-height: 1.2;
     margin-bottom: 4px;
     opacity: 0;
-    padding: 0.18em 0.55em;
+    padding: 0.18em 1.3em 0.18em 0.55em;
     position: absolute;
     text-transform: uppercase;
     transform: translateY(6px);
@@ -1312,32 +1315,32 @@ html.theme-light body .about_meta_links {
   &.jm {
     &:hover, &:active { background-color: $orange; color: $white; box-shadow: 0 0 0 1px $orange; }
     &::before { background-color: $orange; animation: bgShimmer 2.5s ease-in-out; }
-    &::after { background-color: color.adjust($orange, $lightness: -10%); content: "About ↗"; animation: labelReveal 2.5s ease-in-out; }
+    &::after { background-color: color.adjust($orange, $lightness: -10%); content: "About"; animation: labelReveal 2.5s ease-in-out; }
   }
   &.viz {
     &:hover, &:active { background-color: $blue; color: $white; box-shadow: 0 0 0 1px $blue; }
     &::before { background-color: $blue; animation: bgShimmer 2.5s ease-in-out 0.4s; }
-    &::after { background-color: color.adjust($blue, $lightness: -10%); content: "Viz ↗"; animation: labelReveal 2.5s ease-in-out 0.4s; }
+    &::after { background-color: color.adjust($blue, $lightness: -10%); content: "Viz"; animation: labelReveal 2.5s ease-in-out 0.4s; }
   }
   &.pecan {
     &:hover, &:active { background-color: $cyan; color: $white; box-shadow: 0 0 0 1px $cyan; }
     &::before { background-color: $cyan; animation: bgShimmer 2.5s ease-in-out 0.7s; }
-    &::after { background-color: color.adjust($cyan, $lightness: -10%); content: "PeCan ↗"; animation: labelReveal 2.5s ease-in-out 0.7s; }
+    &::after { background-color: color.adjust($cyan, $lightness: -10%); content: "PeCan"; animation: labelReveal 2.5s ease-in-out 0.7s; }
   }
   &.nq {
     &:hover, &:active { background-color: $green; color: $white; box-shadow: 0 0 0 1px $green; }
     &::before { background-color: $green; animation: bgShimmer 2.5s ease-in-out 1s; }
-    &::after { background-color: color.adjust($green, $lightness: -10%); content: "NatureQuant ↗"; animation: labelReveal 2.5s ease-in-out 1s; }
+    &::after { background-color: color.adjust($green, $lightness: -10%); content: "NatureQuant"; animation: labelReveal 2.5s ease-in-out 1s; }
   }
   &.ns {
     &:hover, &:active { background-color: $lime; color: $white; box-shadow: 0 0 0 1px $lime; }
     &::before { background-color: $lime; animation: bgShimmer 2.5s ease-in-out 1.3s; }
-    &::after { background-color: color.adjust($lime, $lightness: -10%); color: $white; content: "NatureScore ↗"; animation: labelReveal 2.5s ease-in-out 1.3s; }
+    &::after { background-color: color.adjust($lime, $lightness: -10%); color: $white; content: "NatureScore"; animation: labelReveal 2.5s ease-in-out 1.3s; }
   }
   &.nd {
     &:hover, &:active { background-color: $green; color: $white; box-shadow: 0 0 0 1px $green; }
     &::before { background-color: $green; animation: bgShimmer 2.5s ease-in-out 1.6s; }
-    &::after { background-color: color.adjust($green, $lightness: -10%); content: "NatureDose ↗"; animation: labelReveal 2.5s ease-in-out 1.6s; }
+    &::after { background-color: color.adjust($green, $lightness: -10%); content: "NatureDose"; animation: labelReveal 2.5s ease-in-out 1.6s; }
   }
 }
 
@@ -5602,7 +5605,7 @@ html.theme-light .colophon_history_year {
   // class is also used on the shuffle line's <p> — both need identical
   // sizing regardless of element type.
   font-size: clamp(2.5rem, 4vw + 1rem, 4.5rem);
-  font-family: "Space Grotesk", $font;
+  font-family: $font;
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.1;
@@ -5612,12 +5615,22 @@ html.theme-light .hero_headline {
   color: $dark-default;
 }
 
+// The shuffle line shares .hero_headline's size/font but reads as
+// secondary via color, not size — grey rather than full white/black.
+#hero_shuffle_text {
+  color: rgba($white, 0.5);
+}
+
+html.theme-light #hero_shuffle_text {
+  color: rgba($dark-default, 0.5);
+}
+
 .hero_shuffle_row {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
-  margin-top: 0.75rem;
+  gap: 0.6rem;
+  margin-top: 0;
 }
 
 .hero_shuffle_btn {

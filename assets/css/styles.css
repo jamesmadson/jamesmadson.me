@@ -1,4 +1,3 @@
-@charset "UTF-8";
 :root {
   color-scheme: light dark;
 }
@@ -1823,7 +1822,7 @@ html.theme-light body .about_meta_links {
 #hero_shuffle_text {
   display: block;
   line-height: 1.25;
-  padding-top: 26px;
+  padding-top: 6px;
   box-sizing: border-box;
 }
 #hero_shuffle_text .highlight {
@@ -1893,6 +1892,10 @@ html.theme-light body .about_meta_links {
   z-index: -1;
 }
 .highlight::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M5 11L11 5M11 5H6M11 5V10' stroke='white' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+  background-position: right 0.5em center;
+  background-repeat: no-repeat;
+  background-size: 0.65em 0.65em;
   border-radius: 0.3em;
   bottom: 100%;
   color: #FFFFFF;
@@ -1904,7 +1907,7 @@ html.theme-light body .about_meta_links {
   line-height: 1.2;
   margin-bottom: 4px;
   opacity: 0;
-  padding: 0.18em 0.55em;
+  padding: 0.18em 1.3em 0.18em 0.55em;
   position: absolute;
   text-transform: uppercase;
   transform: translateY(6px);
@@ -1926,7 +1929,7 @@ html.theme-light body .about_meta_links {
 }
 .highlight.jm::after {
   background-color: rgb(182.8915662651, 62.8192771084, 15.1084337349);
-  content: "About ↗";
+  content: "About";
   animation: labelReveal 2.5s ease-in-out;
 }
 .highlight.viz:hover, .highlight.viz:active {
@@ -1940,7 +1943,7 @@ html.theme-light body .about_meta_links {
 }
 .highlight.viz::after {
   background-color: rgb(18.9836065574, 91.7540983607, 174.0163934426);
-  content: "Viz ↗";
+  content: "Viz";
   animation: labelReveal 2.5s ease-in-out 0.4s;
 }
 .highlight.pecan:hover, .highlight.pecan:active {
@@ -1954,7 +1957,7 @@ html.theme-light body .about_meta_links {
 }
 .highlight.pecan::after {
   background-color: rgb(22.512195122, 143.7317073171, 190.487804878);
-  content: "PeCan ↗";
+  content: "PeCan";
   animation: labelReveal 2.5s ease-in-out 0.7s;
 }
 .highlight.nq:hover, .highlight.nq:active {
@@ -1968,7 +1971,7 @@ html.theme-light body .about_meta_links {
 }
 .highlight.nq::after {
   background-color: #006622;
-  content: "NatureQuant ↗";
+  content: "NatureQuant";
   animation: labelReveal 2.5s ease-in-out 1s;
 }
 .highlight.ns:hover, .highlight.ns:active {
@@ -1983,7 +1986,7 @@ html.theme-light body .about_meta_links {
 .highlight.ns::after {
   background-color: rgb(114.75, 153, 0);
   color: #FFFFFF;
-  content: "NatureScore ↗";
+  content: "NatureScore";
   animation: labelReveal 2.5s ease-in-out 1.3s;
 }
 .highlight.nd:hover, .highlight.nd:active {
@@ -1997,7 +2000,7 @@ html.theme-light body .about_meta_links {
 }
 .highlight.nd::after {
   background-color: #006622;
-  content: "NatureDose ↗";
+  content: "NatureDose";
   animation: labelReveal 2.5s ease-in-out 1.6s;
 }
 
@@ -6531,7 +6534,7 @@ html.theme-light .colophon_history_year {
 .hero_headline {
   color: #FFFFFF;
   font-size: clamp(2.5rem, 4vw + 1rem, 4.5rem);
-  font-family: "Space Grotesk", "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.1;
@@ -6541,12 +6544,20 @@ html.theme-light .hero_headline {
   color: #1F201C;
 }
 
+#hero_shuffle_text {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+html.theme-light #hero_shuffle_text {
+  color: rgba(31, 32, 28, 0.5);
+}
+
 .hero_shuffle_row {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
-  margin-top: 0.75rem;
+  gap: 0.6rem;
+  margin-top: 0;
 }
 
 .hero_shuffle_btn {
