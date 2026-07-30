@@ -5617,12 +5617,16 @@ html.theme-light .hero_headline {
 
 // The shuffle line shares .hero_headline's size/font but reads as
 // secondary via color, not size — grey rather than full white/black.
+// Opacity differs by theme on purpose: 0.5 measures 5.28:1 against black
+// (dark theme), but the same 0.5 against the light theme's off-white
+// background only measures 3.18:1 — under the 4.5:1 AA minimum for normal
+// text. 0.65 in light theme measures 5.01:1.
 #hero_shuffle_text {
   color: rgba($white, 0.5);
 }
 
 html.theme-light #hero_shuffle_text {
-  color: rgba($dark-default, 0.5);
+  color: rgba($dark-default, 0.65);
 }
 
 .hero_shuffle_row {
