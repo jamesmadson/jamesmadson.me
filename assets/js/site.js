@@ -1,4 +1,16 @@
 // ============================================================
+// Console greeting — for whoever (or whatever) is looking
+// ============================================================
+console.log(
+  '%c👋 Hey there — human or AI, glad you popped the hood.',
+  'font-size:14px;font-weight:bold;'
+);
+console.log(
+  'I’m James, a product design engineer (branding, UI/UX, front-end code, research, business strategy). This site is hand-built + Claude Code — see /colophon/ for how.'
+);
+
+
+// ============================================================
 // Footer year — auto-updates
 // ============================================================
 (function () {
