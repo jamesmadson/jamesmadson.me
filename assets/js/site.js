@@ -328,6 +328,23 @@ console.log(
 }());
 
 // ============================================================
+// Spectrum — scroll-triggered reveal
+// ============================================================
+(function () {
+  var section = document.querySelector('.spectrum');
+  if (!section) return;
+
+  var observer = new IntersectionObserver(function (entries) {
+    if (!entries[0].isIntersecting) return;
+    section.classList.add('spectrum--visible');
+    observer.disconnect();
+  }, { threshold: 0.5 });
+
+  observer.observe(section);
+}());
+
+
+// ============================================================
 // Work cards — carousel controls
 // ============================================================
 (function () {

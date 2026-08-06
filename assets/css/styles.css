@@ -6614,3 +6614,108 @@ html.theme-light .hero_shuffle_btn:focus-visible {
     margin-top: 0.5rem;
   }
 }
+.spectrum {
+  margin-top: 1rem;
+}
+
+.spectrum_title {
+  color: rgba(255, 255, 255, 0.5);
+  font-family: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 0 0 3.5rem;
+}
+
+.spectrum_track {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  height: 1px;
+  position: relative;
+  width: 100%;
+}
+
+.spectrum_point {
+  position: absolute;
+  top: -1px;
+  transform: translateX(-50%);
+}
+.spectrum_point::before {
+  background: #FFC200;
+  border-radius: 50%;
+  content: "";
+  display: block;
+  height: 6px;
+  left: 50%;
+  position: absolute;
+  top: -3px;
+  transform: translateX(-50%) scale(1);
+  width: 6px;
+}
+.spectrum_point::after {
+  background: #FFFFFF;
+  content: "";
+  height: 40px;
+  left: 50%;
+  position: absolute;
+  top: -42px;
+  transform: translateX(-50%) scaleY(1);
+  transform-origin: bottom;
+  width: 1px;
+}
+
+.spectrum_label {
+  color: #FFFFFF;
+  font-family: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  left: 50%;
+  position: absolute;
+  top: -70px;
+  transform: translateX(-50%) translateY(0);
+  white-space: nowrap;
+}
+
+.spectrum_axis {
+  color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  font-size: 0.8rem;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .spectrum_point::before {
+    transition: opacity 0.3s ease 0.5s, transform 0.3s ease 0.5s;
+  }
+  .spectrum_point::after {
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .spectrum_label {
+    transition: opacity 0.35s ease 0.7s, transform 0.35s ease 0.7s;
+  }
+  .spectrum:not(.spectrum--visible) .spectrum_point::before {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.4);
+  }
+  .spectrum:not(.spectrum--visible) .spectrum_point::after {
+    transform: translateX(-50%) scaleY(0);
+  }
+  .spectrum:not(.spectrum--visible) .spectrum_label {
+    opacity: 0;
+    transform: translateX(-50%) translateY(6px);
+  }
+}
+html.theme-light .spectrum_title {
+  color: rgba(31, 32, 28, 0.5);
+}
+html.theme-light .spectrum_track {
+  border-top-color: rgba(31, 32, 28, 0.15);
+}
+html.theme-light .spectrum_axis {
+  color: rgba(31, 32, 28, 0.5);
+}
+html.theme-light .spectrum_label {
+  color: #1F201C;
+}
+html.theme-light .spectrum_point::after {
+  background: #1F201C;
+}
