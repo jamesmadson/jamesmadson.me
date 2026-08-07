@@ -2045,46 +2045,6 @@ html.theme-light body .about_meta_links {
 }
 
 // ============================================================
-// 6th Man hover photo
-// ============================================================
-
-.sixth_man_photo,
-.cursor_hover_photo {
-  border: 6px solid $white;
-  border-bottom-width: 22px;
-  border-radius: 2px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-  object-fit: cover;
-  object-position: center top;
-  opacity: 0;
-  pointer-events: none;
-  position: fixed;
-  transform-origin: bottom center;
-  transition: opacity 0.25s ease;
-  z-index: 9999;
-
-  &.is-visible {
-    opacity: 1;
-  }
-}
-
-.sixth_man_photo {
-  height: 288px;
-  rotate: 10deg;
-  width: 202px;
-
-  @media (max-width: 768px) { height: 160px; width: 112px; border-width: 4px; border-bottom-width: 14px; }
-}
-
-.cursor_hover_photo {
-  height: 300px;
-  width: 510px;
-
-  @media (max-width: 768px) { height: 160px; width: 270px; border-width: 4px; border-bottom-width: 14px; }
-}
-
-
-// ============================================================
 // Contact Page
 // ============================================================
 
