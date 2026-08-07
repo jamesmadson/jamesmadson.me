@@ -1785,24 +1785,22 @@ html.theme-light body .about_meta_links {
 .about_clients {
   padding-bottom: 5rem;
 }
-.about_clients h4 {
-  margin-bottom: 0.75rem;
+.about_clients .clients_list {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 2rem;
+  row-gap: 0.75rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
-@media (max-width: 1279px) {
-  .about_clients .container {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .about_clients .container .grid_3:first-child {
-    grid-column: span 3;
-  }
+.about_clients .clients_list li {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
 }
-@media (max-width: 768px) {
-  .about_clients .container {
-    grid-template-columns: 1fr;
-  }
-  .about_clients .container .grid_3:first-child {
-    grid-column: span 1;
-  }
+
+html.theme-light .about_clients .clients_list li {
+  color: rgba(31, 32, 28, 0.7);
 }
 
 .about_services .services_list {
