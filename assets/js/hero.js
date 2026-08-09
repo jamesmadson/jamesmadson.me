@@ -21,7 +21,7 @@
     'I <a href="/case_studies/naturescore/" class="highlight ns">designed</a> the UI and UX for NatureScore, which scores how much nature a place offers.',
     'I <a href="/case_studies/pecan/" class="highlight pecan">mentor</a> designers and set direction through systems: design systems for people, skills and digital personas for testing fast with AI.',
     'I <a href="/about/" class="highlight jm">work</a> at the intersection of strategy and craft, spanning brand, systems, and code.',
-    'I <a href="/about/" class="highlight jm">prototype</a> internal design tools with Claude, Cursor, and Figma, moving from concept straight into production code.'
+    'I <a href="/about/" class="highlight jm">prototype</a> internal design tools at Pfizer with Claude, Cursor, and Figma, moving from concept straight into production code.'
   ];
 
   var pendingCharTimeouts = [];
