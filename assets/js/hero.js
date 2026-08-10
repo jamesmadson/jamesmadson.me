@@ -142,5 +142,48 @@
     }, FADE_MS + 20);
   }
 
-  btn.addEventListener('click', shuffle);
+  btn.addEventListener('click', function () {
+    shuffle();
+    scheduleAutoAdvance();
+  });
+
+  // Auto-advance every 5s. Fully disabled under prefers-reduced-motion (not
+  // just the transition — the auto-updating itself), and pauses on
+  // hover/focus of the row so it satisfies WCAG 2.2.2 (Pause, Stop, Hide)
+  // for auto-updating content that runs longer than 5s.
+  var AUTO_ADVANCE_MS = 5000;
+  var autoAdvanceTimer = null;
+  var autoAdvancePaused = false;
+
+  function scheduleAutoAdvance() {
+    clearTimeout(autoAdvanceTimer);
+    if (prefersReducedMotion || autoAdvancePaused) return;
+    autoAdvanceTimer = setTimeout(function () {
+      shuffle();
+      scheduleAutoAdvance();
+    }, AUTO_ADVANCE_MS);
+  }
+
+  if (!prefersReducedMotion) {
+    var shuffleRow = document.querySelector('.hero_shuffle_row');
+    if (shuffleRow) {
+      shuffleRow.addEventListener('mouseenter', function () {
+        autoAdvancePaused = true;
+        clearTimeout(autoAdvanceTimer);
+      });
+      shuffleRow.addEventListener('mouseleave', function () {
+        autoAdvancePaused = false;
+        scheduleAutoAdvance();
+      });
+      shuffleRow.addEventListener('focusin', function () {
+        autoAdvancePaused = true;
+        clearTimeout(autoAdvanceTimer);
+      });
+      shuffleRow.addEventListener('focusout', function () {
+        autoAdvancePaused = false;
+        scheduleAutoAdvance();
+      });
+    }
+    scheduleAutoAdvance();
+  }
 }());
