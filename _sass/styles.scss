@@ -3421,14 +3421,20 @@ html.theme-light .btn {
   margin-top: 1.5rem;
 }
 
-.cs_review--featured {
-  border-color: rgba($green, 0.4);
-  box-shadow: 0 0 0 1px rgba($green, 0.12), 0 4px 24px rgba($green, 0.08);
+// Chained onto .cs_review (not just .cs_review--featured alone) so this beats
+// the base .cs_review border shorthand defined below it — equal specificity
+// otherwise means source order decides, and the base rule was always winning,
+// silently killing the featured treatment in both themes.
+.cs_review.cs_review--featured {
+  background: rgba($green, 0.06);
+  border-color: rgba($green, 0.55);
+  box-shadow: 0 0 0 1px rgba($green, 0.2), 0 4px 28px rgba($green, 0.12);
 }
 
-html.theme-light .cs_review--featured {
-  border-color: rgba($green, 0.35);
-  box-shadow: 0 0 0 1px rgba($green, 0.1), 0 4px 24px rgba($green, 0.06);
+html.theme-light .cs_review.cs_review--featured {
+  background: rgba($green, 0.05);
+  border-color: rgba($green, 0.45);
+  box-shadow: 0 0 0 1px rgba($green, 0.15), 0 4px 28px rgba($green, 0.08);
 }
 
 .project--compact > .cs_content:first-child {
@@ -3473,8 +3479,10 @@ html.theme-light .cs_review--featured {
 
 html.theme-light {
   .cs_app_rating .cs_rating_score { color: $dark-default; }
+  .cs_app_rating .cs_rating_stars { color: rgba($dark-default, 0.5); }
   .cs_app_rating .cs_rating_meta { color: rgba($dark-default, 0.5); }
   .cs_review { background: rgba($dark-default, 0.03); border-color: rgba($dark-default, 0.1); }
+  .cs_review .cs_review_stars { color: rgba($dark-default, 0.45); }
   .cs_review .cs_review_title { color: $dark-default; }
   .cs_review .cs_review_meta { color: rgba($dark-default, 0.4); }
   .cs_review .cs_review_body { color: rgba($dark-default, 0.75); }
@@ -3669,6 +3677,7 @@ html.theme-light .cs_next_project {
   border-top-color: rgba($dark-default, 0.1);
 
   .cs_next_label { color: rgba($dark-default, 0.4); }
+  .cs_next_title { color: $dark-default; }
   .cs_next_desc { color: rgba($dark-default, 0.6); }
   .cs_next_link {
     border-color: rgba($dark-default, 0.35);
@@ -4062,6 +4071,10 @@ blockquote {
   }
 
   footer {
+    // Reset the global `footer { background-color: #000 }` rule — this is a
+    // <footer> reused semantically for the citation, not the page footer,
+    // but it still matches that bare element selector.
+    background: none;
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
