@@ -1833,6 +1833,9 @@ html.theme-light .about_clients .clients_list li {
 #hero_shuffle_text .highlight:hover, #hero_shuffle_text .highlight:active {
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35);
 }
+#hero_shuffle_text a.highlight:first-child {
+  margin-left: -0.41em;
+}
 
 @keyframes bgShimmer {
   0% {

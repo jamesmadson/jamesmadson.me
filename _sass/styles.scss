@@ -1247,6 +1247,15 @@ html.theme-light .about_clients .clients_list li {
       box-shadow: 0 0 0 1px rgba($white, 0.35);
     }
   }
+
+  // Every sentence starts with a literal "I " before the chip, which pushes
+  // the chip's left edge out of alignment with .hero_headline/.site_name
+  // above it — the chip is the first visual "block" on the line, so it reads
+  // as misaligned even though the offset is really just "I "'s width. Em-based
+  // so it scales with the chip's own responsive font-size.
+  a.highlight:first-child {
+    margin-left: -0.41em;
+  }
 }
 
 
