@@ -33,14 +33,6 @@
   ],
   "projects": [
     {
-      "href": "/projects/digital-health-app/",
-      "mod": "health",
-      "company": "Under NDA",
-      "title": "Digital Health App",
-      "nda": true,
-      "status": "In Progress"
-    },
-    {
       "href": "/projects/naturequant/",
       "mod": "nq",
       "company": "NatureQuant",
