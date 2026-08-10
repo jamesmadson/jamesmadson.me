@@ -1131,7 +1131,15 @@ header.about_header {
     .about_me {
       font-size: 1rem;
       line-height: 1.6;
-      margin: 1.25rem 0 0;
+      margin: 0;
+
+      // Space between stacked paragraphs, but not before the first one —
+      // the lead and body now live in separate grid columns, so a paragraph
+      // that's the first child of its own column shouldn't inherit spacing
+      // meant to separate it from a sibling above it.
+      & + & {
+        margin-top: 1.25rem;
+      }
 
       // Without this, the highlight chips' own line-height inflates the
       // line box only on the lines that contain them, making paragraph

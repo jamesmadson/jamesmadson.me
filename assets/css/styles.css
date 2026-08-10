@@ -1754,7 +1754,10 @@ header.about_header .about_bio .about_me--lead {
 header.about_header .about_bio .about_me {
   font-size: 1rem;
   line-height: 1.6;
-  margin: 1.25rem 0 0;
+  margin: 0;
+}
+header.about_header .about_bio .about_me + header.about_header .about_bio .about_me {
+  margin-top: 1.25rem;
 }
 header.about_header .about_bio .about_me .highlight {
   line-height: 1.2;
