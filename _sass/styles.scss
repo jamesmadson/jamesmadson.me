@@ -1235,7 +1235,18 @@ html.theme-light .about_clients .clients_list li {
 
   // Tighter button height — hug the text instead of inheriting the
   // paragraph's (much larger) line-height.
-  .highlight { line-height: 1.2; }
+  .highlight {
+    line-height: 1.2;
+
+    // The border was dropped from .highlight sitewide per feedback, but at
+    // hero scale (chip matches the huge headline font) it reads better with
+    // one. Scoped here instead of restoring it globally.
+    box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 50%, transparent);
+
+    &:hover, &:active {
+      box-shadow: 0 0 0 1px rgba($white, 0.35);
+    }
+  }
 }
 
 
