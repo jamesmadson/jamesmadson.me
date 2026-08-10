@@ -1117,6 +1117,19 @@ header.about_header {
   .grid_3 { align-self: end; }
   .jm_title { margin: 0; padding-bottom: 0.35rem; }
 
+  // Below the grid's collapse breakpoint the container goes single-column,
+  // which stacked the title above the meta block with awkward dead space.
+  // Keep them on one row instead: title left, time/links right, bottoms
+  // aligned so "About" sits inline with the meta.
+  @media (max-width: 1279px) {
+    .container:not(.about_bio) {
+      align-items: end;
+      grid-template-columns: auto 1fr;
+
+      .grid_3, .grid_9 { grid-column: auto; }
+    }
+  }
+
   .about_bio {
     padding-top: 3rem;
 
@@ -1133,18 +1146,20 @@ header.about_header {
       line-height: 1.6;
       margin: 0;
 
-      // Space between stacked paragraphs, but not before the first one —
-      // the lead and body now live in separate grid columns, so a paragraph
-      // that's the first child of its own column shouldn't inherit spacing
-      // meant to separate it from a sibling above it.
-      & + & {
-        margin-top: 1.25rem;
-      }
-
       // Without this, the highlight chips' own line-height inflates the
       // line box only on the lines that contain them, making paragraph
       // spacing look uneven line to line.
       .highlight { line-height: 1.2; }
+    }
+
+    // Space between stacked paragraphs, but not before the first one —
+    // the lead and body live in separate grid columns, so a paragraph
+    // that's the first child of its own column shouldn't inherit spacing
+    // meant to separate it from a sibling above it. (Written explicitly
+    // rather than as a nested `& + &`, which expands the full ancestor
+    // chain on both sides of the combinator and never matches.)
+    .about_me + .about_me {
+      margin-top: 1.25rem;
     }
   }
 }
@@ -1224,6 +1239,9 @@ html.theme-light .about_clients .clients_list li {
 #hero_shuffle_text {
   // Transition set inline by JS, but ensure the element is a stable block
   display: block;
+  // It's a <p> at headline scale — the browser-default 1em bottom margin
+  // (~37px here) was silently pushing the shuffle button far below the text.
+  margin-bottom: 0;
   // Shares .hero_headline's font-family/size/color (same class) — this
   // element only needs its own line-height/padding/box-sizing tweaks.
   // Slightly looser than .hero_headline's inherited h1 line-height (1.1) to
@@ -1237,8 +1255,9 @@ html.theme-light .about_clients .clients_list li {
   // without it) — kept small purely so the popover has a little room to
   // render without visually merging into .hero_headline above.
   padding-top: 6px;
-  // min-height (set by JS from offsetHeight) should match the content box,
-  // not include this padding — keep padding out of the locked height.
+  // Height reservation lives on .hero_shuffle_row (set by JS from the
+  // tallest sentence) so the button hugs the current text; keep this
+  // element's box predictable for that measurement.
   box-sizing: border-box;
 
   // Tighter button height — hug the text instead of inheriting the
@@ -5627,7 +5646,7 @@ html.theme-light #hero_shuffle_text {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.75rem;
   margin-top: 0;
 }
 

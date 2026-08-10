@@ -65,12 +65,20 @@
     var wasTyping = pendingCharTimeouts.length > 0;
     var maxH = 0;
     var currentHTML = textEl.innerHTML;
+    // Reserve the tallest-sentence height on the row rather than the text
+    // element itself: the shuffle button then hugs the current sentence
+    // (instead of sitting below empty reserved lines), while the row's
+    // total height stays constant so nothing below shifts on shuffle.
+    // Measure the whole row (text margins, flex gap, button included) so
+    // the reservation is exact for every sentence.
+    var row = btn.parentElement;
+    row.style.minHeight = '';
     SENTENCES.forEach(function (html) {
       textEl.innerHTML = html;
-      maxH = Math.max(maxH, textEl.offsetHeight);
+      maxH = Math.max(maxH, row.offsetHeight);
     });
     textEl.innerHTML = currentHTML;
-    textEl.style.minHeight = maxH + 'px';
+    row.style.minHeight = maxH + 'px';
     if (wasTyping) {
       animateHighlights(0);
     }
