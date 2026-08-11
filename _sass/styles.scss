@@ -1486,6 +1486,10 @@ html.theme-light .about_now {
       justify-content: center;
       height: 6rem;
       transform: scale(0.5);
+      // The 0.5 scale renders each logo at half its 300px layout width,
+      // leaving ~75px of invisible dead space per side. Pull neighbors
+      // in to roughly halve the visual spacing between logos.
+      margin: 0 -3rem;
     }
 
     li svg {
@@ -1518,6 +1522,8 @@ html.theme-light .about_now {
       li {
         height: 5rem;
         transform: scale(0.6);
+        // Same dead-space compensation as desktop, scaled for the 0.6 factor.
+        margin: 0 -2rem;
       }
     }
   }
