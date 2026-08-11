@@ -1815,6 +1815,39 @@ html.theme-light .about_clients .clients_list li {
   color: rgba(31, 32, 28, 0.7);
 }
 
+.about_now .now_list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.about_now .now_list li {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.about_now .now_list li strong {
+  color: #FFFFFF;
+  display: block;
+  font-weight: 500;
+}
+.about_now .now_note {
+  color: rgba(255, 255, 255, 0.45);
+  margin-top: 1.5rem;
+}
+
+html.theme-light .about_now .now_list li {
+  color: rgba(31, 32, 28, 0.7);
+}
+html.theme-light .about_now .now_list li strong {
+  color: #1F201C;
+}
+html.theme-light .about_now .now_note {
+  color: rgba(31, 32, 28, 0.45);
+}
+
 .about_services .services_list {
   display: flex;
   flex-wrap: wrap;
