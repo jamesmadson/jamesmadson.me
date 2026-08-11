@@ -1133,15 +1133,18 @@ header.about_header {
   .about_bio {
     padding-top: 3rem;
 
-    // Same size/weight as the homepage hero headline (smaller than the
-    // page's jm_title) so the lead reads at the same level site-wide.
+    // Sized for its half-width column, not the homepage hero: display
+    // sizes need wide containers and 1-3 line sentences; in a 656px
+    // column this paragraph needs ~24-32px to keep a readable measure
+    // and to stay visually subordinate to the page title above it.
     .about_me--lead {
       color: $white;
-      font-size: clamp(2.5rem, 4vw + 1rem, 4.5rem);
+      font-size: clamp(1.5rem, 1vw + 1rem, 2rem);
       font-weight: 500;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
       margin: 0;
+      text-wrap: pretty;
     }
 
     .about_me {
@@ -1149,6 +1152,7 @@ header.about_header {
       font-weight: 500;
       line-height: 1.5;
       margin: 0;
+      text-wrap: pretty;
 
       // Without this, the highlight chips' own line-height inflates the
       // line box only on the lines that contain them, making paragraph

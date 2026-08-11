@@ -1755,17 +1755,19 @@ header.about_header .about_bio {
 }
 header.about_header .about_bio .about_me--lead {
   color: #FFFFFF;
-  font-size: clamp(2.5rem, 4vw + 1rem, 4.5rem);
+  font-size: clamp(1.5rem, 1vw + 1rem, 2rem);
   font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
   margin: 0;
+  text-wrap: pretty;
 }
 header.about_header .about_bio .about_me {
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 1.5;
   margin: 0;
+  text-wrap: pretty;
 }
 header.about_header .about_bio .about_me .highlight {
   line-height: 1.2;
