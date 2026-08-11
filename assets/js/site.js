@@ -11,6 +11,33 @@ console.log(
 
 
 // ============================================================
+// Haptic feedback on button/link presses — Vibration API
+// Progressive enhancement: fires a short tick on touch devices that
+// support navigator.vibrate (Android). iOS WebKit has no Vibration
+// API, so iPhones silently no-op. Pointerdown, not click, so the
+// tick lands at the moment of touch like a native control.
+// ============================================================
+(function () {
+  if (!('vibrate' in navigator)) return;
+
+  var SELECTOR = [
+    'a', 'button', 'input', 'select', 'summary',
+    '[role="button"]'
+  ].join(',');
+
+  document.addEventListener('pointerdown', function (e) {
+    if (e.pointerType !== 'touch') return;
+    var target = e.target;
+    if (!target || typeof target.closest !== 'function') return;
+    if (!target.closest(SELECTOR)) return;
+    // Respect reduced-motion as a proxy for "calm interactions"
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    navigator.vibrate(8);
+  }, { passive: true });
+}());
+
+
+// ============================================================
 // Footer year — auto-updates
 // ============================================================
 (function () {
