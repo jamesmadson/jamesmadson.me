@@ -14,7 +14,7 @@
     window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
   var SENTENCES = [
-    'I <a href="/case_studies/naturedose/" class="highlight nd">built</a> NatureDose\'s brand identity from the ground up, including logo, iconography, and App Store screens.',
+    'I <a href="/case_studies/naturedose/" class="highlight nd">built</a> NatureDose\'s brand from the ground up. Apple has featured it 3 times.',
     'I <a href="/case_studies/pecan/" class="highlight pecan">designed</a> PeCan so researchers can navigate complex cancer genomics data.',
     'I <a href="/case_studies/visualization_community/" class="highlight viz">built</a> visualization tools for St. Jude, now cited in academic papers.',
     'I <a href="/case_studies/naturequant/" class="highlight nq">lead</a> design for NatureQuant end to end, covering brand, product, and system.',
