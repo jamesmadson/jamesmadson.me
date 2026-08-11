@@ -1923,6 +1923,13 @@ html.theme-light .about_now .now_note {
     transform: translateY(6px);
   }
 }
+@media (pointer: coarse) and (prefers-reduced-motion: no-preference) {
+  a:active,
+  button:active,
+  [role=button]:active {
+    transform: scale(0.96);
+  }
+}
 .highlight {
   background-color: transparent;
   border-radius: 0.25em;

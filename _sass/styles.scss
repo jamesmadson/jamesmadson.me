@@ -1341,6 +1341,22 @@ html.theme-light .about_now {
   100% { opacity: 0; transform: translateY(6px); }
 }
 
+// ============================================================
+// Touch press feedback — visual companion to the haptic tick in
+// site.js. iOS has no Vibration API, so the press-down scale is
+// what carries the "felt" response there. Coarse-pointer only:
+// desktop mouse interactions keep their hover styles unchanged.
+// Press is instant (like native controls); release inherits any
+// transition the element already has.
+// ============================================================
+@media (pointer: coarse) and (prefers-reduced-motion: no-preference) {
+  a:active,
+  button:active,
+  [role="button"]:active {
+    transform: scale(0.96);
+  }
+}
+
 .highlight {
   background-color: transparent;
   border-radius: 0.25em;
