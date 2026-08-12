@@ -150,12 +150,19 @@ html {
   // Blockquote — no background, just text
 
 
-  // Project detail page headers — light mode (accent at top-right, fades to tan)
-  .about.about_naturedose  { background: linear-gradient(to bottom left, rgba(#009933, 0.4) 0%, $tan 100%); }
-  .about.about_pecan       { background: linear-gradient(to bottom left, rgba(#145674, 0.4) 0%, $tan 100%); }
-  .about.about_naturescore { background: linear-gradient(to bottom left, rgba(#365800, 0.4) 0%, $tan 100%); }
-  .about.about_naturequant { background: linear-gradient(to bottom left, rgba(#0A4E22, 0.4) 0%, $tan 100%); }
-  .about.about_viz         { background: linear-gradient(to bottom left, rgba(#1E4490, 0.4) 0%, $tan 100%); }
+  // Case study heroes share one recipe (see .about hero block); light
+  // mode swaps the base, un-lifts the wash, and darkens the text.
+  .about.cs_hero {
+    background-color: $tan;
+    background-image: linear-gradient(
+      to bottom left,
+      color-mix(in srgb, var(--project-accent) 45%, transparent) 0%,
+      transparent 80%
+    );
+  }
+  .about .cs_hero_back a { color: rgba($dark-default, 0.55); }
+  .about .cs_hero_back a:hover { color: $dark-default; }
+  .about .cs_hero_fact { color: rgba($dark-default, 0.75); }
 
   --bg-neutral: #{$tan};
 }
@@ -1625,14 +1632,35 @@ html.theme-light .about_now {
     &.hero_carousel_section .work_carousel_btn { top: 50%; }
   }
 
-  &.about_pecan, &.about_naturedose, &.about_naturescore, &.about_naturequant, &.about_viz, &.about-stjude {
+  // ── Case study hero: one shared recipe ─────────────────────
+  // Each project sets only its accent; the wash, geometry, and type
+  // treatment are identical across all six pages and both themes.
+  // The accent is the same hue the project's card artwork carries, so
+  // card → page keeps hue continuity at a much lower volume than the
+  // old full-saturation 155deg bands.
+  &.about_naturedose  { --project-accent: #009933; }
+  &.about_pecan       { --project-accent: #145674; }
+  &.about_naturescore { --project-accent: #365800; }
+  &.about_naturequant { --project-accent: #0A4E22; }
+  &.about_viz         { --project-accent: #1E4490; }
+  &.about-stjude      { --project-accent: #1E4490; }
+
+  &.cs_hero {
+    background-color: $dark-bg;
+    // The accents are dark-leaning hues, so over the near-black base
+    // they'd vanish at plain alpha. Lift them toward off-white first,
+    // then fade; light mode overrides with the un-lifted version since
+    // tan needs no help.
+    background-image: linear-gradient(
+      to bottom left,
+      color-mix(in srgb, color-mix(in srgb, var(--project-accent) 70%, $white) 55%, transparent) 0%,
+      transparent 80%
+    );
+    background-attachment: scroll;
     margin-top: -5rem;
     padding-top: 13rem;
-  }
 
-  &.about_naturedose {
-    background: linear-gradient(155deg, #009933 0%, #001a0a 100%);
-
+    // Project logos in the hero sit directly on the wash — no glass card.
     .client_logo_wrap {
       -webkit-backdrop-filter: none;
       backdrop-filter: none;
@@ -1654,47 +1682,29 @@ html.theme-light .about_now {
     }
   }
 
-  &.about_pecan {
-    background: linear-gradient(155deg, #145674 0%, #030E14 100%);
+  .cs_hero_back {
+    margin: 0 0 2.5rem;
 
-    .client_logo_wrap {
-      -webkit-backdrop-filter: none;
-      backdrop-filter: none;
-      background: none;
-      border: none;
-      box-shadow: none;
-      padding: 0;
-      width: auto;
-      height: auto;
+    a {
+      color: rgba($white, 0.55);
+      font-family: $mono;
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.15s ease;
 
-      &::before { display: none; }
+      &:hover { color: $white; }
     }
-
-    .client_logo { filter: none; height: auto; width: 80px; }
   }
 
-  &.about_naturescore { background: linear-gradient(155deg, #365800 0%, #0E1800 100%); }
-  &.about_naturequant { background: linear-gradient(155deg, #0A4E22 0%, #020C07 100%); }
-
-  &.about_viz {
-    background: linear-gradient(155deg, #1E4490 0%, #060A20 100%);
-
-    .client_logo_wrap {
-      -webkit-backdrop-filter: none;
-      backdrop-filter: none;
-      background: none;
-      border: none;
-      box-shadow: none;
-      padding: 0;
-      width: auto;
-      height: auto;
-
-      &::before { display: none; }
-    }
-
-    .client_logo { filter: none; height: auto; width: 80px; }
+  .cs_hero_fact {
+    color: rgba($white, 0.7);
+    font-size: clamp(1rem, 1vw + 0.5rem, 1.25rem);
+    line-height: 1.5;
+    margin: 1.25rem 0 0;
+    max-width: 40em;
   }
-  &.about-stjude { background-color: $dark-bg; background-attachment: scroll; }
 
   .project_title {
     font-size: clamp(2rem, 3.5vw + 1rem, 4rem); // ~32–64px

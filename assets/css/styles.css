@@ -230,20 +230,18 @@ html.theme-light body .music_link {
 html.theme-light body .music_soon {
   color: rgba(51, 53, 46, 0.3);
 }
-html.theme-light body .about.about_naturedose {
-  background: linear-gradient(to bottom left, rgba(0, 153, 51, 0.4) 0%, #F2F2ED 100%);
+html.theme-light body .about.cs_hero {
+  background-color: #F2F2ED;
+  background-image: linear-gradient(to bottom left, color-mix(in srgb, var(--project-accent) 45%, transparent) 0%, transparent 80%);
 }
-html.theme-light body .about.about_pecan {
-  background: linear-gradient(to bottom left, rgba(20, 86, 116, 0.4) 0%, #F2F2ED 100%);
+html.theme-light body .about .cs_hero_back a {
+  color: rgba(51, 53, 46, 0.55);
 }
-html.theme-light body .about.about_naturescore {
-  background: linear-gradient(to bottom left, rgba(54, 88, 0, 0.4) 0%, #F2F2ED 100%);
+html.theme-light body .about .cs_hero_back a:hover {
+  color: #33352E;
 }
-html.theme-light body .about.about_naturequant {
-  background: linear-gradient(to bottom left, rgba(10, 78, 34, 0.4) 0%, #F2F2ED 100%);
-}
-html.theme-light body .about.about_viz {
-  background: linear-gradient(to bottom left, rgba(30, 68, 144, 0.4) 0%, #F2F2ED 100%);
+html.theme-light body .about .cs_hero_fact {
+  color: rgba(51, 53, 46, 0.75);
 }
 html.theme-light body {
   --bg-neutral: #F2F2ED;
@@ -466,20 +464,18 @@ body.theme-light .music_link {
 body.theme-light .music_soon {
   color: rgba(51, 53, 46, 0.3);
 }
-body.theme-light .about.about_naturedose {
-  background: linear-gradient(to bottom left, rgba(0, 153, 51, 0.4) 0%, #F2F2ED 100%);
+body.theme-light .about.cs_hero {
+  background-color: #F2F2ED;
+  background-image: linear-gradient(to bottom left, color-mix(in srgb, var(--project-accent) 45%, transparent) 0%, transparent 80%);
 }
-body.theme-light .about.about_pecan {
-  background: linear-gradient(to bottom left, rgba(20, 86, 116, 0.4) 0%, #F2F2ED 100%);
+body.theme-light .about .cs_hero_back a {
+  color: rgba(51, 53, 46, 0.55);
 }
-body.theme-light .about.about_naturescore {
-  background: linear-gradient(to bottom left, rgba(54, 88, 0, 0.4) 0%, #F2F2ED 100%);
+body.theme-light .about .cs_hero_back a:hover {
+  color: #33352E;
 }
-body.theme-light .about.about_naturequant {
-  background: linear-gradient(to bottom left, rgba(10, 78, 34, 0.4) 0%, #F2F2ED 100%);
-}
-body.theme-light .about.about_viz {
-  background: linear-gradient(to bottom left, rgba(30, 68, 144, 0.4) 0%, #F2F2ED 100%);
+body.theme-light .about .cs_hero_fact {
+  color: rgba(51, 53, 46, 0.75);
 }
 body.theme-light {
   --bg-neutral: #F2F2ED;
@@ -2196,14 +2192,32 @@ html.theme-light .about_now .now_note {
 .about.work.hero_carousel_section .work_carousel_btn {
   top: 50%;
 }
-.about.about_pecan, .about.about_naturedose, .about.about_naturescore, .about.about_naturequant, .about.about_viz, .about.about-stjude {
+.about.about_naturedose {
+  --project-accent: #009933;
+}
+.about.about_pecan {
+  --project-accent: #145674;
+}
+.about.about_naturescore {
+  --project-accent: #365800;
+}
+.about.about_naturequant {
+  --project-accent: #0A4E22;
+}
+.about.about_viz {
+  --project-accent: #1E4490;
+}
+.about.about-stjude {
+  --project-accent: #1E4490;
+}
+.about.cs_hero {
+  background-color: #171814;
+  background-image: linear-gradient(to bottom left, color-mix(in srgb, color-mix(in srgb, var(--project-accent) 70%, #EDEEE8) 55%, transparent) 0%, transparent 80%);
+  background-attachment: scroll;
   margin-top: -5rem;
   padding-top: 13rem;
 }
-.about.about_naturedose {
-  background: linear-gradient(155deg, #009933 0%, #001a0a 100%);
-}
-.about.about_naturedose .client_logo_wrap {
+.about.cs_hero .client_logo_wrap {
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
   background: none;
@@ -2213,66 +2227,36 @@ html.theme-light .about_now .now_note {
   width: auto;
   height: auto;
 }
-.about.about_naturedose .client_logo_wrap::before {
+.about.cs_hero .client_logo_wrap::before {
   display: none;
 }
-.about.about_naturedose .client_logo {
+.about.cs_hero .client_logo {
   filter: none;
   height: auto;
   object-fit: initial;
   width: 80px;
 }
-.about.about_pecan {
-  background: linear-gradient(155deg, #145674 0%, #030E14 100%);
+.about .cs_hero_back {
+  margin: 0 0 2.5rem;
 }
-.about.about_pecan .client_logo_wrap {
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
-  background: none;
-  border: none;
-  box-shadow: none;
-  padding: 0;
-  width: auto;
-  height: auto;
+.about .cs_hero_back a {
+  color: rgba(237, 238, 232, 0.55);
+  font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.15s ease;
 }
-.about.about_pecan .client_logo_wrap::before {
-  display: none;
+.about .cs_hero_back a:hover {
+  color: #EDEEE8;
 }
-.about.about_pecan .client_logo {
-  filter: none;
-  height: auto;
-  width: 80px;
-}
-.about.about_naturescore {
-  background: linear-gradient(155deg, #365800 0%, #0E1800 100%);
-}
-.about.about_naturequant {
-  background: linear-gradient(155deg, #0A4E22 0%, #020C07 100%);
-}
-.about.about_viz {
-  background: linear-gradient(155deg, #1E4490 0%, #060A20 100%);
-}
-.about.about_viz .client_logo_wrap {
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
-  background: none;
-  border: none;
-  box-shadow: none;
-  padding: 0;
-  width: auto;
-  height: auto;
-}
-.about.about_viz .client_logo_wrap::before {
-  display: none;
-}
-.about.about_viz .client_logo {
-  filter: none;
-  height: auto;
-  width: 80px;
-}
-.about.about-stjude {
-  background-color: #171814;
-  background-attachment: scroll;
+.about .cs_hero_fact {
+  color: rgba(237, 238, 232, 0.7);
+  font-size: clamp(1rem, 1vw + 0.5rem, 1.25rem);
+  line-height: 1.5;
+  margin: 1.25rem 0 0;
+  max-width: 40em;
 }
 .about .project_title {
   font-size: clamp(2rem, 3.5vw + 1rem, 4rem);
