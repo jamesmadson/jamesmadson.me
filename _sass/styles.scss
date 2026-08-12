@@ -404,7 +404,12 @@ ul {
   display: flex;
   justify-content: space-between;
   left: 0;
-  padding: 1rem 3rem;
+  // Horizontal padding mirrors .container's at every breakpoint so the
+  // JM wordmark left-aligns with page content below it; the max() term
+  // keeps that true past .container's 1800px cap on ultra-wide screens.
+  padding: 1rem max(3rem, calc((100% - 1800px) / 2 + 3rem));
+
+  @media (max-width: 1279px) { padding-inline: 2rem; }
   position: fixed;
   right: 0;
   top: 0;

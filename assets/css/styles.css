@@ -923,7 +923,14 @@ ul li {
   display: flex;
   justify-content: space-between;
   left: 0;
-  padding: 1rem 3rem;
+  padding: 1rem max(3rem, (100% - 1800px) / 2 + 3rem);
+}
+@media (max-width: 1279px) {
+  .site_header {
+    padding-inline: 2rem;
+  }
+}
+.site_header {
   position: fixed;
   right: 0;
   top: 0;
