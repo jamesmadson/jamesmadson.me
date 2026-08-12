@@ -4290,8 +4290,17 @@ html.theme-light .about_meta { color: rgba($dark-default, 0.5); }
     gap: 1rem;
     margin-bottom: 3rem;
 
-    // Flex items, not running text — see .services_list note.
-    .highlight { margin-block: 0; }
+    // Flex items, not running text — see .services_list note. Same
+    // outline as the hero and Services chips: these link to case
+    // studies too, so they should read as pressable.
+    .highlight {
+      box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 50%, transparent);
+      margin-block: 0;
+
+      &:hover, &:active {
+        box-shadow: 0 0 0 1px rgba($white, 0.35);
+      }
+    }
   }
 
   .value_word {
@@ -4328,6 +4337,8 @@ html.theme-light .about_meta { color: rgba($dark-default, 0.5); }
 html.theme-light .about_values {
   .value_word { color: $dark-default; }
   .value_connector { background: rgba($dark-default, 0.2); }
+  .values_row .highlight:hover,
+  .values_row .highlight:active { box-shadow: 0 0 0 1px rgba($dark-default, 0.35); }
 }
 
 

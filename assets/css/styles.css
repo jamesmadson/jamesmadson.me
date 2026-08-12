@@ -5012,7 +5012,11 @@ html.theme-light .about_meta {
   margin-bottom: 3rem;
 }
 .about_values .values_row .highlight {
+  box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 50%, transparent);
   margin-block: 0;
+}
+.about_values .values_row .highlight:hover, .about_values .values_row .highlight:active {
+  box-shadow: 0 0 0 1px rgba(237, 238, 232, 0.35);
 }
 .about_values .value_word {
   color: #EDEEE8;
@@ -5065,6 +5069,10 @@ html.theme-light .about_values .value_word {
 }
 html.theme-light .about_values .value_connector {
   background: rgba(51, 53, 46, 0.2);
+}
+html.theme-light .about_values .values_row .highlight:hover,
+html.theme-light .about_values .values_row .highlight:active {
+  box-shadow: 0 0 0 1px rgba(51, 53, 46, 0.35);
 }
 
 .site_footer {
