@@ -1461,6 +1461,7 @@ html.theme-light .about_now .now_note {
 }
 .about_services .services_list .highlight {
   color: #EDEEE8;
+  margin-block: 0;
 }
 
 #hero_shuffle_text {
@@ -1532,6 +1533,7 @@ html.theme-light .about_now .now_note {
   font-weight: inherit;
   isolation: isolate;
   line-height: inherit;
+  margin-block: -0.5em;
   padding: 0.08em 0.3em;
   vertical-align: baseline;
   position: relative;
@@ -4988,6 +4990,9 @@ html.theme-light .about_meta {
   display: flex;
   gap: 1rem;
   margin-bottom: 3rem;
+}
+.about_values .values_row .highlight {
+  margin-block: 0;
 }
 .about_values .value_word {
   color: #EDEEE8;
