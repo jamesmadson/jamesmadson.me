@@ -78,6 +78,8 @@ html {
   header .about_me--lead { color: $dark-default; }
   header.about_header .about_bio .about_me--lead { color: $dark-default; }
   .about_services .services_list .highlight { color: $dark-default; }
+  .about_services .services_list .highlight:hover,
+  .about_services .services_list .highlight:active { box-shadow: 0 0 0 1px rgba($dark-default, 0.35); }
 
   .about.work .container { background-color: rgba($dark-default, 0.03); border-color: rgba($dark-default, 0.08); }
   .about.work a, .about.work h3 { color: $dark-default; }
@@ -666,11 +668,13 @@ html.theme-light #navlink { color: $dark-default; }
     padding: 5rem 2rem 2rem;
   }
 
-  // Top-level nav list
+  // Top-level nav list — right-aligned so links sit under the Menu
+  // button that opened them: less pointer/thumb travel on every device.
   > .mobile_nav_inner > ul {
     list-style: none;
     margin: 0;
     padding: 0;
+    text-align: right;
 
     > li {
       border-bottom: 1px solid rgba($white, 0.07);
@@ -949,7 +953,17 @@ html.theme-light .about_now {
 
     // Chips here are flex items, not words in running text — the
     // prose-only negative margin-block would eat the row gap.
-    .highlight { color: $white; margin-block: 0; }
+    // Same outline treatment as the hero chips: these are buttons that
+    // link out to case studies, and should read as pressable.
+    .highlight {
+      box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 50%, transparent);
+      color: $white;
+      margin-block: 0;
+
+      &:hover, &:active {
+        box-shadow: 0 0 0 1px rgba($white, 0.35);
+      }
+    }
   }
 }
 

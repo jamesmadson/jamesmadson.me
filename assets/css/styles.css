@@ -83,6 +83,10 @@ html.theme-light body header.about_header .about_bio .about_me--lead {
 html.theme-light body .about_services .services_list .highlight {
   color: #33352E;
 }
+html.theme-light body .about_services .services_list .highlight:hover,
+html.theme-light body .about_services .services_list .highlight:active {
+  box-shadow: 0 0 0 1px rgba(51, 53, 46, 0.35);
+}
 html.theme-light body .about.work .container {
   background-color: rgba(51, 53, 46, 0.03);
   border-color: rgba(51, 53, 46, 0.08);
@@ -314,6 +318,10 @@ body.theme-light header.about_header .about_bio .about_me--lead {
 }
 body.theme-light .about_services .services_list .highlight {
   color: #33352E;
+}
+body.theme-light .about_services .services_list .highlight:hover,
+body.theme-light .about_services .services_list .highlight:active {
+  box-shadow: 0 0 0 1px rgba(51, 53, 46, 0.35);
 }
 body.theme-light .about.work .container {
   background-color: rgba(51, 53, 46, 0.03);
@@ -1197,6 +1205,7 @@ html.theme-light #navlink {
   list-style: none;
   margin: 0;
   padding: 0;
+  text-align: right;
 }
 .mobile_nav_menu > .mobile_nav_inner > ul > li {
   border-bottom: 1px solid rgba(237, 238, 232, 0.07);
@@ -1460,8 +1469,12 @@ html.theme-light .about_now .now_note {
   line-height: 1.3;
 }
 .about_services .services_list .highlight {
+  box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 50%, transparent);
   color: #EDEEE8;
   margin-block: 0;
+}
+.about_services .services_list .highlight:hover, .about_services .services_list .highlight:active {
+  box-shadow: 0 0 0 1px rgba(237, 238, 232, 0.35);
 }
 
 #hero_shuffle_text {
