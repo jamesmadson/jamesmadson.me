@@ -5,13 +5,17 @@
 // Variables
 // ============================================================
 
-$tan:             #F9F9F7;
-$dark-default:    #1F201C;
-$dark-bg:         #000000;
-$white:           #FFFFFF;
+// Softened from pure #000/#FFF poles (Bureau VA reference: their text
+// is #33353A on #BDC1BB — nothing sits at an extreme). Ours keeps the
+// site's warm green cast: dark bg lifts to a warm near-black, white
+// text drops to a warm off-white, light-mode text eases off near-black.
+$tan:             #F2F2ED;
+$dark-default:    #33352E;
+$dark-bg:         #171814;
+$white:           #EDEEE8;
 $text-secondary:  #D4D5D0;
 $text-muted:      #666666;
-$text-dark:       #1b1b1b;
+$text-dark:       #2A2B26;
 $text-light:      #f2f2f2;
 
 // Brand colors
@@ -1991,7 +1995,7 @@ html.theme-light .about_now {
 
     .client_logo { filter: none; height: auto; width: 80px; }
   }
-  &.about-stjude { background-color: #000000; background-attachment: scroll; }
+  &.about-stjude { background-color: $dark-bg; background-attachment: scroll; }
 
   .project_title {
     font-size: clamp(2rem, 3.5vw + 1rem, 4rem); // ~32–64px
@@ -4541,7 +4545,7 @@ html.theme-light body {
 // ============================================================
 
 footer {
-  background-color: #000;
+  background-color: $dark-bg;
   margin: 0;
   padding: 100px 0 0;
   position: relative;
