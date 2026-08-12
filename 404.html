@@ -28,73 +28,7 @@ permalink: /404.html
 </head>
 
 <body>
-  <a href="#main-content" class="skip-nav">Skip to main content</a>
-  <div class="site_header fadeIn">
-    <a href="/" class="site_name">James Madson</a>
-    <div class="nav_container">
-      <nav class="nav_large">
-        <ul>
-          <li><a href="/about/">About</a></li>
-          <li class="nav_dropdown_trigger">
-            <a href="/#recent_work" aria-haspopup="true" aria-expanded="false" aria-controls="nav-work-dropdown">Work</a>
-            <div class="nav_dropdown" id="nav-work-dropdown">
-              <a href="/case_studies/naturedose/" class="nav_dropdown_item">
-                <div class="nav_dropdown_meta">
-                  <span class="nav_dropdown_title">NatureDose</span>
-                  <span class="nav_dropdown_company">NatureQuant</span>
-                </div>
-              </a>
-              <a href="/case_studies/pecan/" class="nav_dropdown_item">
-                <div class="nav_dropdown_meta">
-                  <span class="nav_dropdown_title">PeCan</span>
-                  <span class="nav_dropdown_company">St. Jude Children's Research Hospital</span>
-                </div>
-              </a>
-              <a href="/case_studies/visualization_community/" class="nav_dropdown_item">
-                <div class="nav_dropdown_meta">
-                  <span class="nav_dropdown_title">Visualization Community</span>
-                  <span class="nav_dropdown_company">St. Jude Children's Research Hospital</span>
-                </div>
-              </a>
-            </div>
-          </li>
-          <li><a href="/contact/">Contact</a></li>
-        </ul>
-      </nav>
-      <button id="navlink" aria-controls="mobilenavmenu" aria-expanded="false" aria-label="Toggle menu"><span class="navlink_icon"><span class="navlink_bar navlink_bar1"></span><span class="navlink_bar navlink_bar2"></span></span><span class="navlink_label">Menu</span></button>
-    </div>
-    <div class="nav_cta_wrapper">
-      <button id="light_switch" aria-label="Toggle light/dark mode">
-        <span class="toggle-track"><span class="toggle-thumb"></span></span>
-      </button>
-    </div>
-  </div>
-
-  <nav class="mobile_nav_menu" id="mobilenavmenu" aria-hidden="true">
-    <div class="mobile_nav_inner">
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about/">About</a></li>
-        <li class="mobile_nav_accordion">
-          <button class="mobile_nav_accordion_btn" aria-expanded="false">
-            Work
-            <svg class="mobile_nav_chevron" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <ul class="mobile_nav_accordion_panel" aria-hidden="true">
-            <li><a href="/case_studies/naturedose/">NatureDose</a></li>
-            <li><a href="/case_studies/pecan/">PeCan</a></li>
-            <li><a href="/case_studies/visualization_community/">Visualization Community</a></li>
-          </ul>
-        </li>
-        <li><a href="/contact/">Contact</a></li>
-      </ul>
-      <div class="mobile_nav_footer">
-        <button id="light_switch_mobile" aria-label="Toggle light/dark mode">
-          <span class="toggle-track"><span class="toggle-thumb"></span></span>
-        </button>
-      </div>
-    </div>
-  </nav>
+  {% include "partials/site-nav.njk" %}
 
   <header class="fadeIn">
     <div class="container">

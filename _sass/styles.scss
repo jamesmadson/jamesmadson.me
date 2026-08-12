@@ -63,21 +63,12 @@ html {
   .site_name:hover { opacity: 1; }
   .nav_title { color: rgba($dark-default, 0.5); }
   .nav_title:hover { color: $dark-default; }
-  .nav_large li a { color: $dark-default; opacity: 0.5; text-decoration: none; }
-  .nav_large li a:hover { background: rgba($dark-default, 0.1); color: $dark-default; opacity: 1; text-decoration: none; }
-  .nav_large li a.active { background: rgba($dark-default, 0.1); color: $dark-default; opacity: 1; text-decoration: none; }
-  .nav_large li a:focus-visible { outline-color: rgba($dark-default, 0.8); }
-  #light_switch:focus-visible, #light_switch_mobile:focus-visible { outline-color: rgba($dark-default, 0.8); }
-  .nav_container { background: rgba($dark-default, 0.06); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06); }
-  .nav_cta { border-color: rgba($dark-default, 0.25); color: $dark-default; }
-  .nav_cta:hover { background: $dark-default; border-color: $dark-default; color: $white; }
+  #light_switch:focus-visible { outline-color: rgba($dark-default, 0.8); }
   .mobile_nav_menu { background-color: rgba($tan, 0.82); border-color: rgba($dark-default, 0.08); }
   .mobile_nav_menu ul li { border-bottom-color: rgba($dark-default, 0.08); }
   .mobile_nav_menu ul li a { color: rgba($dark-default, 0.4); }
   .mobile_nav_menu ul li a.active,
   .mobile_nav_menu ul li a:hover { color: $dark-default; }
-  .mobile_nav_menu .mobile_nav_footer .nav_contact { color: rgba($dark-default, 0.5); }
-  .mobile_nav_menu .mobile_nav_footer .nav_contact:hover { color: $dark-default; }
 
   header .jm_title { color: $dark-default; }
   header .jm_subtitle { color: $dark-default; }
@@ -184,8 +175,6 @@ body.theme-light       { @include light-theme; }
   a:hover { color: $white; }
   a.view_project:hover { color: $dark-default; }
 
-  // Nav links already white in base, but re-assert for specificity
-  .nav_large li a { color: $white; }
   .nav_title { color: rgba($white, 0.5); }
   .nav_title:hover { color: $white; }
 
@@ -462,8 +451,10 @@ ul {
 }
 
 .nav_cta_wrapper {
+  align-items: center;
   display: flex;
   flex: 1;
+  gap: 0.75rem;
   justify-content: flex-end;
 }
 
@@ -485,72 +476,7 @@ ul {
   }
 }
 
-// Glass pill — now sits inside .site_header, not sticky itself
-.nav_container {
-  align-items: center;
-  -webkit-backdrop-filter: blur(28px) saturate(2);
-  backdrop-filter: blur(28px) saturate(2);
-  background: rgba($white, 0.1);
-  border-radius: 2rem;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
-  box-sizing: border-box;
-  display: flex;
-  isolation: isolate;
-  padding: 0.5rem 0.75rem;
-}
-
-.nav_large {
-  color: $white;
-  list-style: none;
-
-  ul {
-    align-items: center;
-    display: flex;
-    gap: 0.5rem;
-    margin: 0;
-    padding: 0;
-  }
-
-  li {
-    display: inline-flex;
-    align-items: center;
-    font-family: $font;
-    font-size: 1rem;
-
-    a {
-      border-radius: 2rem;
-      color: $white;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-      opacity: 0.5;
-      padding: 0.5rem 0.85rem;
-      text-decoration: none;
-      transition: background 0.2s ease, opacity 0.2s ease, color 0.2s ease;
-      will-change: opacity;
-
-      &:hover {
-        background: rgba($white, 0.15);
-        opacity: 1;
-      }
-
-      &.active {
-        background: rgba($white, 0.15);
-        opacity: 1;
-      }
-
-      &:focus { outline: none; }
-      &:focus-visible {
-        opacity: 1;
-        outline: 2px solid rgba($white, 0.8);
-        outline-offset: 2px;
-      }
-    }
-
-  }
-}
-
-#light_switch,
-#light_switch_mobile {
+#light_switch {
   all: unset;
   cursor: pointer;
   display: flex;
@@ -614,42 +540,9 @@ ul {
 
 
 // Toggle thumb position by theme
-html.theme-dark #light_switch .toggle-thumb,
-html.theme-dark #light_switch_mobile .toggle-thumb  { transform: translateX(1.25rem); }
-html.theme-light #light_switch .toggle-track        { background: rgba($dark-default, 0.1); border-color: rgba($dark-default, 0.3); }
-html.theme-light #light_switch .toggle-thumb        { background: $dark-default; }
-html.theme-light #light_switch_mobile .toggle-track { background: rgba($dark-default, 0.1); border-color: rgba($dark-default, 0.3); }
-html.theme-light #light_switch_mobile .toggle-thumb { background: $dark-default; }
-
-// Mobile toggle — always dark context inside dark nav overlay
-#light_switch_mobile {
-  all: unset;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-
-  .toggle-track {
-    background: rgba($white, 0.2);
-    border: 1.5px solid rgba($white, 0.35);
-    border-radius: 2rem;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    height: 1.5rem;
-    padding: 0.18rem;
-    width: 2.75rem;
-    transition: background 0.3s ease;
-
-    .toggle-thumb {
-      background: $white;
-      border-radius: 50%;
-      height: 1rem;
-      width: 1rem;
-      flex-shrink: 0;
-      transition: transform 0.25s ease;
-    }
-  }
-}
+html.theme-dark #light_switch .toggle-thumb  { transform: translateX(1.25rem); }
+html.theme-light #light_switch .toggle-track { background: rgba($dark-default, 0.1); border-color: rgba($dark-default, 0.3); }
+html.theme-light #light_switch .toggle-thumb { background: $dark-default; }
 
 #navlink {
   all: unset;
@@ -659,9 +552,9 @@ html.theme-light #light_switch_mobile .toggle-thumb { background: $dark-default;
   min-width: 44px;
   color: $white;
   cursor: pointer;
-  display: none;
+  // Persistent on every viewport — this is the site's only nav entry point.
+  display: flex;
   gap: 0.5rem;
-  margin-left: auto;
 
   .navlink_icon {
     align-items: center;
@@ -701,140 +594,6 @@ html.theme-light #light_switch_mobile .toggle-thumb { background: $dark-default;
 }
 
 html.theme-light #navlink { color: $dark-default; }
-
-.nav_container > a {
-  text-decoration: none;
-}
-
-
-// ============================================================
-// Nav Dropdown
-// ============================================================
-
-.nav_dropdown_trigger {
-  position: relative;
-
-  // Invisible bridge: prevents the dropdown from closing when
-  // moving the mouse from the link down to the panel
-  &::after {
-    background: transparent;
-    bottom: -0.75rem;
-    content: '';
-    display: block;
-    height: 0.75rem;
-    left: -1rem;
-    position: absolute;
-    right: -1rem;
-  }
-
-
-}
-
-.nav_dropdown {
-  -webkit-backdrop-filter: blur(28px) saturate(1.8);
-  backdrop-filter: blur(28px) saturate(1.8);
-  background: rgba(#0b0b0b, 0.88);
-  border-radius: 1rem;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba($white, 0.1);
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  left: 50%;
-  min-width: 290px;
-  opacity: 0;
-  padding: 0.375rem;
-  pointer-events: none;
-  position: absolute;
-  top: calc(100% + 0.75rem);
-  transform: translateX(-50%) translateY(-6px);
-  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
-  visibility: hidden;
-  z-index: 100;
-
-  .nav_dropdown_trigger:hover &,
-  .nav_dropdown_trigger[data-open="true"] & {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateX(-50%) translateY(0);
-    visibility: visible;
-  }
-}
-
-.nav_dropdown_item {
-  align-items: center;
-  border-radius: 0.625rem;
-  color: inherit;
-  display: flex;
-  gap: 0.75rem;
-  opacity: 1;
-  padding: 0.5rem 0.625rem;
-  text-decoration: none;
-  transition: background 0.18s ease, opacity 0.18s ease;
-
-  &:hover,
-  &.active { background: rgba($white, 0.08); }
-
-  &:focus { outline: none; }
-  &:focus-visible {
-    background: rgba($white, 0.08);
-    outline: 2px solid rgba($white, 0.7);
-    outline-offset: -2px;
-  }
-
-  img {
-    border-radius: 0.375rem;
-    flex-shrink: 0;
-    height: 2.25rem;
-    object-fit: contain;
-    width: 2.25rem;
-  }
-
-  &--nda {
-    cursor: default;
-    opacity: 0.35;
-    pointer-events: none;
-  }
-}
-
-.nav_dropdown_icon_placeholder {
-  background: rgba($white, 0.12);
-  border-radius: 0.375rem;
-  flex-shrink: 0;
-  height: 2.25rem;
-  width: 2.25rem;
-}
-
-.nav_dropdown_meta {
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
-  min-width: 0;
-}
-
-.nav_dropdown_title {
-  color: $white;
-  font-size: 0.8rem;
-  font-weight: 500;
-  line-height: 1.3;
-}
-
-.nav_dropdown_company {
-  color: rgba($white, 0.5);
-  font-size: 0.8rem;
-  line-height: 1.3;
-}
-
-html.theme-light {
-  .nav_dropdown {
-    background: rgba($tan, 0.94);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba($white, 0.8);
-  }
-  .nav_dropdown_item:hover,
-  .nav_dropdown_item.active { background: rgba($dark-default, 0.06); }
-  .nav_dropdown_icon_placeholder { background: rgba($dark-default, 0.1); }
-  .nav_dropdown_title { color: $dark-default; }
-  .nav_dropdown_company { color: rgba($dark-default, 0.5); }
-}
 
 .nav_title {
   color: rgba($white, 0.5);
@@ -944,81 +703,6 @@ html.theme-light {
     }
   }
 
-  // Work accordion
-  .mobile_nav_accordion_btn {
-    all: unset;
-    align-items: center;
-    box-sizing: border-box;
-    color: rgba($white, 0.5);
-    cursor: pointer;
-    display: flex;
-    font-size: 1.5rem;
-    font-weight: 500;
-    justify-content: space-between;
-    letter-spacing: -0.01em;
-    min-height: 44px;
-    padding: 0.9rem 0;
-    transition: color 0.15s ease;
-    width: 100%;
-
-    &.active,
-    &[aria-expanded="true"] { color: $white; }
-    &:hover { color: $white; }
-
-    .mobile_nav_chevron {
-      color: rgba($white, 0.35);
-      flex-shrink: 0;
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.15s ease;
-    }
-
-    &[aria-expanded="true"] .mobile_nav_chevron {
-      color: rgba($white, 0.6);
-      transform: rotate(180deg);
-    }
-  }
-
-  // Accordion panel
-  .mobile_nav_accordion_panel {
-    list-style: none;
-    margin: 0;
-    max-height: 0;
-    overflow: hidden;
-    padding: 0;
-    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-
-    &.is-open { max-height: 30rem; }
-
-    li a {
-      color: rgba($white, 0.38);
-      display: block;
-      font-size: 1.1rem;
-      font-weight: 400;
-      letter-spacing: 0;
-      padding: 0.5rem 0 0.5rem 1rem;
-      text-decoration: none;
-      transition: color 0.15s ease;
-
-      &:hover { color: rgba($white, 0.8); }
-    }
-
-    li:last-child { padding-bottom: 0.5rem; }
-  }
-
-  // Footer row (close + theme toggle)
-  .mobile_nav_footer {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    opacity: 0;
-    padding-top: 1.5rem;
-    transition: opacity 0.3s ease;
-  }
-
-  &.is-open .mobile_nav_footer {
-    opacity: 1;
-    transition-delay: 0.32s;
-  }
-
 }
 
 // Light mode overrides
@@ -1036,18 +720,6 @@ body.theme-light .mobile_nav_menu {
       color: rgba($dark-default, 0.45);
       &.active, &:hover { color: $dark-default; }
     }
-  }
-
-  .mobile_nav_accordion_btn {
-    color: rgba($dark-default, 0.45);
-    &.active, &[aria-expanded="true"], &:hover { color: $dark-default; }
-    .mobile_nav_chevron { color: rgba($dark-default, 0.3); }
-    &[aria-expanded="true"] .mobile_nav_chevron { color: rgba($dark-default, 0.55); }
-  }
-
-  .mobile_nav_accordion_panel li a {
-    color: rgba($dark-default, 0.38);
-    &:hover { color: rgba($dark-default, 0.8); }
   }
 }
 
@@ -4421,12 +4093,6 @@ html.theme-light body .home_work_soon .home_work_title {
   }
 }
 
-.nav_dropdown_item--section {
-  border-bottom: 1px solid rgba($white, 0.08);
-  margin-bottom: 0.35rem;
-  padding-bottom: 0.65rem;
-}
-
 html.theme-light body {
   .home_work_title { color: rgba($dark-default, 0.4); }
 
@@ -4895,9 +4561,6 @@ html.theme-dark .site_footer .site_footer_link {
 // ============================================================
 
 @media (max-width: 768px) {
-  .nav_large { display: none; }
-  #navlink { display: flex; }
-  .nav_cta_wrapper { display: none; }
   .site_header { padding-left: 1.25rem; padding-right: 1.25rem; }
   .cs_body_cols { column-count: 1; }
   .case_study_nav {
@@ -4918,16 +4581,6 @@ html.theme-dark .site_footer .site_footer_link {
       white-space: nowrap;
     }
   }
-  .nav_container,
-  html.theme-light body .nav_container {
-    background: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border-radius: 0;
-    box-shadow: none;
-    padding: 0;
-  }
-
   // Stack all grid columns to single column
   [class^="grid_"] { grid-column: span 1 !important; }
 
@@ -5355,7 +5008,6 @@ html.theme-light .zine_swatch.active { outline-color: rgba(0, 0, 0, 0.45); }
 // Visited link state
 // ============================================================
 a:visited { color: inherit; opacity: 0.8; }
-.nav_large a:visited,
 .mobile_nav_menu a:visited,
 .work_card:visited,
 .wli:visited { opacity: 1; }

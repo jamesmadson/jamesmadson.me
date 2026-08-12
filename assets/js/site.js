@@ -167,21 +167,9 @@ console.log(
     trigger.getAttribute('aria-expanded') === 'true' ? close() : open();
   });
 
-  // Close on nav links — but not the accordion button
+  // Close on nav links
   nav.addEventListener('click', function (e) {
-    if (e.target.closest('.mobile_nav_accordion_btn')) return;
     if (e.target.closest('a')) close();
-  });
-
-  // Accordion
-  Array.prototype.slice.call(nav.querySelectorAll('.mobile_nav_accordion_btn')).forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var expanded = btn.getAttribute('aria-expanded') === 'true';
-      var panel = btn.nextElementSibling;
-      btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-      panel.setAttribute('aria-hidden', expanded ? 'true' : 'false');
-      panel.classList.toggle('is-open', !expanded);
-    });
   });
 
   // Focus trap — keep Tab cycling within the open nav
@@ -208,85 +196,6 @@ console.log(
 
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && nav.classList.contains('is-open')) close();
-  });
-}());
-
-
-// ============================================================
-// Desktop nav dropdown — keyboard support
-// ============================================================
-(function () {
-  var trigger = document.querySelector('.nav_dropdown_trigger > a[aria-haspopup]');
-  var dropdown = document.getElementById('nav-work-dropdown');
-  if (!trigger || !dropdown) return;
-
-  var li = trigger.closest('.nav_dropdown_trigger');
-
-  function openDropdown() {
-    li.setAttribute('data-open', 'true');
-    trigger.setAttribute('aria-expanded', 'true');
-  }
-
-  function closeDropdown() {
-    li.removeAttribute('data-open');
-    trigger.setAttribute('aria-expanded', 'false');
-  }
-
-  // Enter on the trigger opens dropdown instead of following href
-  trigger.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      if (li.getAttribute('data-open') === 'true') {
-        closeDropdown();
-      } else {
-        openDropdown();
-        var first = dropdown.querySelector('a');
-        if (first) first.focus();
-      }
-    }
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      openDropdown();
-      var first = dropdown.querySelector('a');
-      if (first) first.focus();
-    }
-    if (e.key === 'Escape') closeDropdown();
-  });
-
-  // Arrow key navigation within dropdown
-  dropdown.addEventListener('keydown', function (e) {
-    var items = Array.prototype.slice.call(dropdown.querySelectorAll('a'));
-    var idx = items.indexOf(document.activeElement);
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      var next = items[idx + 1] || items[0];
-      if (next) next.focus();
-    }
-    if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      var prev = items[idx - 1];
-      if (prev) { prev.focus(); } else { closeDropdown(); trigger.focus(); }
-    }
-    if (e.key === 'Escape') {
-      closeDropdown();
-      trigger.focus();
-    }
-    if (e.key === 'Tab' && !e.shiftKey && idx === items.length - 1) {
-      closeDropdown();
-    }
-    if (e.key === 'Tab' && e.shiftKey && idx === 0) {
-      closeDropdown();
-    }
-  });
-
-  // Close when focus leaves the trigger+dropdown entirely
-  li.addEventListener('focusout', function (e) {
-    if (!li.contains(e.relatedTarget)) closeDropdown();
-  });
-
-  // Close on outside click
-  document.addEventListener('click', function (e) {
-    if (!li.contains(e.target)) closeDropdown();
   });
 }());
 

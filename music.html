@@ -59,59 +59,7 @@ permalink: /music/
 </head>
 
 <body>
-  <a href="#main-content" class="skip-nav">Skip to main content</a>
-  <div class="nav_container fadeIn">
-    <nav class="nav_large nav_left">
-      <ul>
-        <li><a href="/about/">About</a></li>
-        <li><a href="/#recent_work">Work</a></li>
-      </ul>
-    </nav>
-    <a href="index.html">
-      <h1 class="nav_title">J<span class="nav_expand"><span>ames </span></span>M<span class="nav_expand"><span>adson</span></span></h1>
-    </a>
-    <nav class="nav_large nav_right">
-      <ul>
-        <li><a href="/music/" class="active">Music</a></li>
-        <li><a href="/contact/">Contact</a></li>
-        <li>
-          <button id="light_switch" aria-label="Toggle light/dark mode">
-            <span class="toggle-track"><span class="toggle-thumb"></span></span>
-          </button>
-        </li>
-      </ul>
-    </nav>
-    <button id="navlink" aria-controls="mobilenavmenu" aria-expanded="false" aria-label="Toggle menu"><span class="navlink_icon"><span class="navlink_bar navlink_bar1"></span><span class="navlink_bar navlink_bar2"></span></span><span class="navlink_label">Menu</span></button>
-  </div>
-
-  <nav class="mobile_nav_menu" id="mobilenavmenu" aria-hidden="true">
-    <div class="mobile_nav_inner">
-      <ul>
-        <li><a href="/index.html">Home</a></li>
-        <li><a href="/about.html">About</a></li>
-        <li class="mobile_nav_accordion">
-          <button class="mobile_nav_accordion_btn" aria-expanded="false">
-            Work
-            <svg class="mobile_nav_chevron" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <ul class="mobile_nav_accordion_panel" aria-hidden="true">
-          <li><a href="/case_studies/naturedose/">NatureDose</a></li>
-          <li><a href="/case_studies/naturescore/">NatureScore</a></li>
-          <li><a href="/case_studies/naturequant/">NatureQuant</a></li>
-          <li><a href="/case_studies/pecan/">PeCan</a></li>
-          <li><a href="/case_studies/visualization_community/">Visualization Community</a></li>
-          <li><a href="/case_studies/stjudecloud/">St. Jude Cloud</a></li>
-          </ul>
-        </li>
-        <li><a href="/contact/">Contact</a></li>
-      </ul>
-      <div class="mobile_nav_footer">
-        <button id="light_switch_mobile" aria-label="Toggle light/dark mode">
-          <span class="toggle-track"><span class="toggle-thumb"></span></span>
-        </button>
-      </div>
-    </div>
-  </nav>
+  {% include "partials/site-nav.njk" %}
 
   <header class="fadeIn">
     <div class="container">
