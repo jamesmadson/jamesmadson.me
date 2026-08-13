@@ -221,10 +221,6 @@ html.theme-light body .music_link {
 html.theme-light body .music_soon {
   color: rgba(51, 53, 46, 0.3);
 }
-html.theme-light body .about.cs_hero {
-  background-color: #F2F2ED;
-  background-image: linear-gradient(to bottom left, color-mix(in srgb, var(--project-accent) 45%, transparent) 0%, transparent 80%);
-}
 html.theme-light body .about .cs_hero_back a {
   color: rgba(51, 53, 46, 0.55);
 }
@@ -445,10 +441,6 @@ body.theme-light .music_link {
 }
 body.theme-light .music_soon {
   color: rgba(51, 53, 46, 0.3);
-}
-body.theme-light .about.cs_hero {
-  background-color: #F2F2ED;
-  background-image: linear-gradient(to bottom left, color-mix(in srgb, var(--project-accent) 45%, transparent) 0%, transparent 80%);
 }
 body.theme-light .about .cs_hero_back a {
   color: rgba(51, 53, 46, 0.55);
@@ -1239,6 +1231,17 @@ html.theme-light #navlink {
   transform: translateY(0);
   transition-delay: 0.26s;
 }
+.mobile_nav_menu .mobile_nav_footer {
+  display: flex;
+  justify-content: flex-end;
+  opacity: 0;
+  padding-top: 1.25rem;
+  transition: opacity 0.3s ease;
+}
+.mobile_nav_menu.is-open .mobile_nav_footer {
+  opacity: 1;
+  transition-delay: 0.3s;
+}
 
 html.theme-light .mobile_nav_menu,
 body.theme-light .mobile_nav_menu {
@@ -1868,30 +1871,15 @@ html.theme-light .about_now .now_note {
   padding: 1rem 0 6rem;
   position: relative;
 }
-.about.about_naturedose {
-  --project-accent: #009933;
-}
-.about.about_pecan {
-  --project-accent: #145674;
-}
-.about.about_naturescore {
-  --project-accent: #365800;
-}
-.about.about_naturequant {
-  --project-accent: #0A4E22;
-}
-.about.about_viz {
-  --project-accent: #1E4490;
-}
-.about.about-stjude {
-  --project-accent: #1E4490;
-}
 .about.cs_hero {
-  background-color: #171814;
-  background-image: linear-gradient(to bottom left, color-mix(in srgb, color-mix(in srgb, var(--project-accent) 70%, #EDEEE8) 55%, transparent) 0%, transparent 80%);
-  background-attachment: scroll;
+  background: none;
   margin-top: -5rem;
   padding-top: 13rem;
+}
+@media (max-width: 768px) {
+  .about.cs_hero {
+    padding-top: 8.5rem;
+  }
 }
 .about.cs_hero .client_logo_wrap {
   -webkit-backdrop-filter: none;
@@ -2226,6 +2214,48 @@ sup.reg {
   vertical-align: super;
 }
 
+.cs_cover {
+  margin-bottom: 3rem;
+}
+.cs_cover .cs_cover_img {
+  aspect-ratio: 2/1;
+  border-radius: 1rem;
+  display: block;
+  height: auto;
+  object-fit: cover;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .cs_cover .cs_cover_img {
+    aspect-ratio: 4/3;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+  .hwc.nd .hwc_img img,
+  .cs_cover_img.vt-nd {
+    view-transition-name: vt-nd;
+  }
+  .hwc.viz .hwc_img img,
+  .cs_cover_img.vt-viz {
+    view-transition-name: vt-viz;
+  }
+  .hwc.ns .hwc_img img,
+  .cs_cover_img.vt-ns {
+    view-transition-name: vt-ns;
+  }
+  .hwc.nq .hwc_img img,
+  .cs_cover_img.vt-nq {
+    view-transition-name: vt-nq;
+  }
+  .hwc.pecan .hwc_img img,
+  .cs_cover_img.vt-pecan {
+    view-transition-name: vt-pecan;
+  }
+}
 .case_study_nav {
   -webkit-backdrop-filter: blur(28px) saturate(2);
   backdrop-filter: blur(28px) saturate(2);
@@ -2234,7 +2264,14 @@ sup.reg {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: safe center;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.case_study_nav::-webkit-scrollbar {
+  display: none;
+}
+.case_study_nav {
   gap: 0.2rem;
   list-style: none;
   margin: 0;
@@ -2243,6 +2280,11 @@ sup.reg {
   top: 0;
   transform: translateZ(0);
   width: 100%;
+}
+.case_study_nav li {
+  flex-shrink: 0;
+}
+.case_study_nav {
   will-change: transform;
   z-index: 200;
 }
@@ -2988,26 +3030,20 @@ body.image-feed .case_study_nav {
 .project #overview .stats-container .stat:first-child {
   border-left: none;
 }
-.project #overview .stats-container .stat .stat_label {
-  color: rgba(237, 238, 232, 0.5);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
 .project #overview .stats-container .stat .stat_number {
   color: #EDEEE8;
-  font-size: 3.25rem;
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  font-size: clamp(3rem, 2.5vw + 1.75rem, 4.5rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
   line-height: 1;
-  margin: 0.15rem 0;
+  margin: 0 0 0.5rem;
 }
 .project #overview .stats-container .stat .stat_info {
   color: rgba(237, 238, 232, 0.55);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   line-height: 1.5;
   margin: 0;
+  max-width: 16em;
 }
 .project #overview .stats-container .stat p {
   margin: 0;
@@ -3178,9 +3214,6 @@ html.theme-light .stats-container {
 }
 html.theme-light .stats-container .stat {
   border-left-color: rgba(51, 53, 46, 0.12);
-}
-html.theme-light .stats-container .stat_label {
-  color: rgba(51, 53, 46, 0.5);
 }
 html.theme-light .stats-container .stat_number {
   color: #33352E;
@@ -3399,9 +3432,6 @@ html.theme-light .project #overview .stats-container {
 }
 html.theme-light .project #overview .stats-container .stat {
   border-left-color: rgba(51, 53, 46, 0.12);
-}
-html.theme-light .project #overview .stats-container .stat .stat_label {
-  color: rgba(51, 53, 46, 0.45);
 }
 html.theme-light .project #overview .stats-container .stat .stat_number {
   color: #33352E;

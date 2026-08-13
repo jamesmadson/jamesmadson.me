@@ -144,16 +144,8 @@ html {
   // Blockquote — no background, just text
 
 
-  // Case study heroes share one recipe (see .about hero block); light
-  // mode swaps the base, un-lifts the wash, and darkens the text.
-  .about.cs_hero {
-    background-color: $tan;
-    background-image: linear-gradient(
-      to bottom left,
-      color-mix(in srgb, var(--project-accent) 45%, transparent) 0%,
-      transparent 80%
-    );
-  }
+  // Case study heroes sit on the plain page background; light mode
+  // only needs the text colors darkened.
   .about .cs_hero_back a { color: rgba($dark-default, 0.55); }
   .about .cs_hero_back a:hover { color: $dark-default; }
   .about .cs_hero_fact { color: rgba($dark-default, 0.75); }
@@ -711,6 +703,21 @@ html.theme-light #navlink { color: $dark-default; }
       transform: translateY(0);
       transition-delay: #{0.06 + ($i - 1) * 0.05}s;
     }
+  }
+
+  // Footer row — the theme toggle lives in the menu, aligned with the
+  // right-aligned links above it. Fades in after the links land.
+  .mobile_nav_footer {
+    display: flex;
+    justify-content: flex-end;
+    opacity: 0;
+    padding-top: 1.25rem;
+    transition: opacity 0.3s ease;
+  }
+
+  &.is-open .mobile_nav_footer {
+    opacity: 1;
+    transition-delay: 0.3s;
   }
 
 }
@@ -1363,33 +1370,16 @@ html.theme-light .about_now {
 
   }
 
-  // ── Case study hero: one shared recipe ─────────────────────
-  // Each project sets only its accent; the wash, geometry, and type
-  // treatment are identical across all six pages and both themes.
-  // The accent is the same hue the project's card artwork carries, so
-  // card → page keeps hue continuity at a much lower volume than the
-  // old full-saturation 155deg bands.
-  &.about_naturedose  { --project-accent: #009933; }
-  &.about_pecan       { --project-accent: #145674; }
-  &.about_naturescore { --project-accent: #365800; }
-  &.about_naturequant { --project-accent: #0A4E22; }
-  &.about_viz         { --project-accent: #1E4490; }
-  &.about-stjude      { --project-accent: #1E4490; }
-
+  // ── Case study hero: typography on the page background ─────
+  // No project-color wash: the hero is plain page background in both
+  // themes, and continuity with the card comes from the shared cover
+  // image (view transition) directly below instead.
   &.cs_hero {
-    background-color: $dark-bg;
-    // The accents are dark-leaning hues, so over the near-black base
-    // they'd vanish at plain alpha. Lift them toward off-white first,
-    // then fade; light mode overrides with the un-lifted version since
-    // tan needs no help.
-    background-image: linear-gradient(
-      to bottom left,
-      color-mix(in srgb, color-mix(in srgb, var(--project-accent) 70%, $white) 55%, transparent) 0%,
-      transparent 80%
-    );
-    background-attachment: scroll;
+    background: none;
     margin-top: -5rem;
     padding-top: 13rem;
+
+    @media (max-width: 768px) { padding-top: 8.5rem; }
 
     // Project logos in the hero sit directly on the wash — no glass card.
     .client_logo_wrap {
@@ -1759,6 +1749,38 @@ sup.reg {
 // Case studies navigation
 // ============================================================
 
+// ── Case study cover — the card's artwork, carried onto the page ──
+.cs_cover {
+  margin-bottom: 3rem;
+
+  .cs_cover_img {
+    aspect-ratio: 2 / 1;
+    border-radius: 1rem;
+    display: block;
+    height: auto;
+    object-fit: cover;
+    width: 100%;
+
+    @media (max-width: 768px) { aspect-ratio: 4 / 3; }
+  }
+}
+
+// Shared-element transition: the work-page card image morphs into the
+// case study's cover on navigation (cross-document view transitions;
+// browsers without support just navigate normally).
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  @each $mod in nd, viz, ns, nq, pecan {
+    .hwc.#{$mod} .hwc_img img,
+    .cs_cover_img.vt-#{$mod} {
+      view-transition-name: vt-#{$mod};
+    }
+  }
+}
+
 .case_study_nav {
   -webkit-backdrop-filter: blur(28px) saturate(2);
   backdrop-filter: blur(28px) saturate(2);
@@ -1767,7 +1789,12 @@ sup.reg {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  // Never clip section links: scroll horizontally when they don't fit,
+  // center when they do ("safe" keeps the start reachable on overflow).
+  justify-content: safe center;
+  overflow-x: auto;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
   gap: 0.2rem;
   list-style: none;
   margin: 0;
@@ -1776,6 +1803,8 @@ sup.reg {
   top: 0;
   transform: translateZ(0);
   width: 100%;
+
+  li { flex-shrink: 0; }
   will-change: transform;
   z-index: 200;
 
@@ -2424,28 +2453,23 @@ body.image-feed {
 
         &:first-child { border-left: none; }
 
-        .stat_label {
-          color: rgba($white, 0.5);
-          font-size: 0.8rem;
-          font-weight: 600;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-        }
-
+        // Fiasco-style: one light, large numeral with a quiet caption
+        // below it. No uppercase heading — the caption says everything.
         .stat_number {
           color: $white;
-          font-size: 3.25rem;
-          font-weight: 700;
-          letter-spacing: -0.03em;
+          font-size: clamp(3rem, 2.5vw + 1.75rem, 4.5rem);
+          font-weight: 400;
+          letter-spacing: -0.02em;
           line-height: 1;
-          margin: 0.15rem 0;
+          margin: 0 0 0.5rem;
         }
 
         .stat_info {
           color: rgba($white, 0.55);
-          font-size: 0.85rem;
+          font-size: 0.9rem;
           line-height: 1.5;
           margin: 0;
+          max-width: 16em;
         }
 
         p { margin: 0; }
@@ -2621,7 +2645,6 @@ html.theme-light {
     color: $dark-default;
 
     .stat { border-left-color: rgba($dark-default, 0.12); }
-    .stat_label { color: rgba($dark-default, 0.5); }
     .stat_number { color: $dark-default; }
     .stat_info { color: rgba($dark-default, 0.55); }
   }
@@ -2838,7 +2861,6 @@ html.theme-light .project #overview {
     .stat {
       border-left-color: rgba($dark-default, 0.12);
 
-      .stat_label { color: rgba($dark-default, 0.45); }
       .stat_number { color: $dark-default; }
       .stat_info { color: $text-muted; }
       p { color: $text-muted; margin: 0; }

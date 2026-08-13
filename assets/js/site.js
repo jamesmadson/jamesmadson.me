@@ -376,9 +376,11 @@ function smoothScrollTo(targetY, duration) {
       csBtns = Array.prototype.slice.call(viewToggle.querySelectorAll('.cs_view_btn'));
     }
 
-    // Place nav inside main, directly after the hero section
-    if (projectHeader) {
-      projectHeader.insertAdjacentElement('afterend', csNav);
+    // Place nav inside main, after the cover image when the page has
+    // one (hero → cover → nav → content), else directly after the hero
+    var coverEl = mainEl && mainEl.querySelector('.cs_cover');
+    if (coverEl || projectHeader) {
+      (coverEl || projectHeader).insertAdjacentElement('afterend', csNav);
     } else if (mainEl) {
       mainEl.insertBefore(csNav, mainEl.firstChild);
     }

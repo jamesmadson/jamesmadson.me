@@ -2,9 +2,6 @@
   <div class="site_header fadeIn">
     <a href="/" class="site_name">James Madson</a>
     <div class="nav_cta_wrapper">
-      <button id="light_switch" aria-label="Toggle light/dark mode">
-        <span class="toggle-track"><span class="toggle-thumb"></span></span>
-      </button>
       <button id="navlink" aria-controls="mobilenavmenu" aria-expanded="false" aria-label="Toggle menu"><span class="navlink_icon"><span class="navlink_bar navlink_bar1"></span><span class="navlink_bar navlink_bar2"></span></span><span class="navlink_label">Menu</span></button>
     </div>
   </div>
@@ -16,5 +13,10 @@
         <li><a href="/work/"{% if activeNav == 'work' %} class="active"{% endif %}>Work</a></li>
         <li><a href="/contact/"{% if activeNav == 'contact' %} class="active"{% endif %}>Contact</a></li>
       </ul>
+      <div class="mobile_nav_footer">
+        <button id="light_switch" aria-label="Toggle light/dark mode">
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+        </button>
+      </div>
     </div>
   </nav>
