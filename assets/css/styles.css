@@ -2456,8 +2456,13 @@ html.theme-light .canon_changelog_date {
   margin-top: 5rem;
 }
 .practice_ai .leadin {
-  margin: 0 0 1.5rem;
-  max-width: 34em;
+  color: #EDEEE8;
+  font-size: clamp(1.25rem, 0.5vw + 1.1rem, 1.375rem);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1.5;
+  margin: 0 0 1.75rem;
+  max-width: 32em;
 }
 .practice_ai .about_me {
   font-size: 1.125rem;
@@ -2474,6 +2479,9 @@ html.theme-light .practice_intro .practice_lead {
 }
 html.theme-light .practice_intro p {
   color: rgba(51, 53, 46, 0.75);
+}
+html.theme-light .practice_ai .leadin {
+  color: #33352E;
 }
 
 .practice_work {

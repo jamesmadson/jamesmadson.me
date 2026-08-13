@@ -2000,9 +2000,17 @@ html.theme-light {
   // stacked paragraphs, which were running together.
   .container + .container { margin-top: 5rem; }
 
+  // Section opener: same medium-weight voice as the page lead, one step
+  // down. It was inheriting a bare .leadin with no size or line-height,
+  // so it rendered smaller and tighter than the body beneath it.
   .leadin {
-    margin: 0 0 1.5rem;
-    max-width: 34em;
+    color: $white;
+    font-size: clamp(1.25rem, 0.5vw + 1.1rem, 1.375rem);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    line-height: 1.5;
+    margin: 0 0 1.75rem;
+    max-width: 32em;
   }
 
   .about_me {
@@ -2018,6 +2026,7 @@ html.theme-light {
 html.theme-light {
   .practice_intro .practice_lead { color: $dark-default; }
   .practice_intro p { color: rgba($dark-default, 0.75); }
+  .practice_ai .leadin { color: $dark-default; }
 }
 
 // AI practice page — text-forward work list
