@@ -155,6 +155,10 @@ html.theme-light body .case_study_nav a.active {
   background: #33352E;
   color: #EDEEE8;
 }
+html.theme-light body .case_study_nav.sections-open a.active {
+  background: none;
+  color: #33352E;
+}
 html.theme-light body .project h1, html.theme-light body .project h2, html.theme-light body .project h3, html.theme-light body .project h4 {
   color: #33352E;
 }
@@ -371,6 +375,10 @@ body.theme-light .case_study_nav a:hover {
 body.theme-light .case_study_nav a.active {
   background: #33352E;
   color: #EDEEE8;
+}
+body.theme-light .case_study_nav.sections-open a.active {
+  background: none;
+  color: #33352E;
 }
 body.theme-light .project h1, body.theme-light .project h2, body.theme-light .project h3, body.theme-light .project h4 {
   color: #33352E;
@@ -4975,15 +4983,15 @@ html.theme-dark .site_footer .site_footer_link:hover {
     cursor: pointer;
     display: flex;
     font-family: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     font-weight: 500;
     gap: 0.35rem;
     justify-content: center;
-    letter-spacing: 0.02em;
+    letter-spacing: 0;
     margin: 0 auto;
     min-height: 44px;
     padding: 0 0.5rem;
-    text-transform: uppercase;
+    text-transform: none;
     width: 100%;
   }
   .case_study_nav .cs_nav_disclosure svg {
@@ -4994,6 +5002,22 @@ html.theme-dark .site_footer .site_footer_link:hover {
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+  .case_study_nav .cs_nav_back {
+    order: 1;
+    margin-right: 0.25rem;
+  }
+  .case_study_nav .cs_nav_disclosure {
+    order: 2;
+  }
+  .case_study_nav .cs_nav_view {
+    order: 3;
+  }
+  .case_study_nav li:not(.cs_nav_back):not(.cs_nav_view):not(.cs_nav_disclosure) {
+    order: 4;
+  }
+  .case_study_nav.sections-open {
+    padding-bottom: 0.5rem;
+  }
   .case_study_nav.sections-open .cs_nav_disclosure svg {
     transform: rotate(180deg);
   }
@@ -5001,18 +5025,36 @@ html.theme-dark .site_footer .site_footer_link:hover {
     display: block;
   }
   .case_study_nav.sections-open a {
+    border-radius: 0.5rem;
     display: flex;
+    font-size: 1rem;
+    font-weight: 500;
     justify-content: flex-start;
+    letter-spacing: 0;
     min-height: 44px;
+    padding: 0.5rem 0.75rem;
+    text-transform: none;
     width: 100%;
+  }
+  .case_study_nav.sections-open a::before {
+    display: none;
+  }
+  .case_study_nav.sections-open a.active {
+    background: none;
+    color: #EDEEE8;
+    font-weight: 500;
+  }
+  .case_study_nav.sections-open .cs_nav_label {
+    font-family: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
   }
   .case_study_nav a {
     font-size: 0.75rem;
     padding: 0.4rem 0.65rem;
     white-space: nowrap;
-  }
-  .case_study_nav .cs_nav_back {
-    margin-right: 0.25rem;
   }
   [class^=grid_] {
     grid-column: span 1 !important;

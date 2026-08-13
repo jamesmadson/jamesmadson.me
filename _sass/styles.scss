@@ -108,6 +108,7 @@ html {
   .case_study_nav a             { color: rgba($dark-default, 0.55); }
   .case_study_nav a:hover       { background: rgba($dark-default, 0.12); color: $dark-default; }
   .case_study_nav a.active      { background: $dark-default; color: $white; }
+  .case_study_nav.sections-open a.active { background: none; color: $dark-default; }
 
   // Project/case study content areas — after hero scrolls away, body is $tan
   .project {
@@ -4422,15 +4423,15 @@ html.theme-dark .site_footer .site_footer_link {
         cursor: pointer;
         display: flex;
         font-family: $font;
-        font-size: 0.8rem;
+        font-size: 0.95rem;
         font-weight: 500;
         gap: 0.35rem;
         justify-content: center;
-        letter-spacing: 0.02em;
+        letter-spacing: 0;
         margin: 0 auto;
         min-height: 44px;
         padding: 0 0.5rem;
-        text-transform: uppercase;
+        text-transform: none;
         width: 100%;
       }
 
@@ -4443,18 +4444,52 @@ html.theme-dark .site_footer .site_footer_link {
       white-space: nowrap;
     }
 
+    // Bar order stays fixed even when the list wraps below it:
+    // back, current section, view switcher, then the opened list.
+    .cs_nav_back      { order: 1; margin-right: 0.25rem; }
+    .cs_nav_disclosure { order: 2; }
+    .cs_nav_view      { order: 3; }
+    li:not(.cs_nav_back):not(.cs_nav_view):not(.cs_nav_disclosure) { order: 4; }
+
     &.sections-open {
+      padding-bottom: 0.5rem;
+
       .cs_nav_disclosure svg { transform: rotate(180deg); }
 
       li:not(.cs_nav_back):not(.cs_nav_view):not(.cs_nav_disclosure) {
         display: block;
       }
 
+      // Sentence case, medium weight, quiet rows. The old treatment
+      // was uppercase with a full-width filled pill on the active row,
+      // which shouted and broke the page's typographic voice.
       a {
+        border-radius: 0.5rem;
         display: flex;
+        font-size: 1rem;
+        font-weight: 500;
         justify-content: flex-start;
+        letter-spacing: 0;
         min-height: 44px;
+        padding: 0.5rem 0.75rem;
+        text-transform: none;
         width: 100%;
+
+        &::before { display: none; }
+
+        &.active {
+          background: none;
+          color: $white;
+          font-weight: 500;
+        }
+      }
+
+      .cs_nav_label {
+        font-family: $font;
+        font-size: 1rem;
+        font-weight: 500;
+        letter-spacing: 0;
+        text-transform: none;
       }
     }
 
@@ -4463,8 +4498,6 @@ html.theme-dark .site_footer .site_footer_link {
       padding: 0.4rem 0.65rem;
       white-space: nowrap;
     }
-
-    .cs_nav_back { margin-right: 0.25rem; }
   }
   // Stack all grid columns to single column
   [class^="grid_"] { grid-column: span 1 !important; }

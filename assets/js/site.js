@@ -272,7 +272,8 @@ console.log(
         if (match) {
           match.link.classList.add('active');
           // Keep the mobile disclosure label showing where you are
-          var current = csNav.querySelector('.cs_nav_current');
+          // (this IIFE scopes the element as `nav`, not `csNav`)
+          var current = nav.querySelector('.cs_nav_current');
           if (current) current.textContent = match.link.textContent.trim();
         }
       }
