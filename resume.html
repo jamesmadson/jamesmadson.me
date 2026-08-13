@@ -256,7 +256,8 @@ permalink: /resume/
       footer, .site_footer { display: none !important; }
 
       /* Base reset */
-      *, *::before, *::after { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      *, *::before, *::after { -webkit-print-color-adjust: exact; print-color-adjust: exact; animation: none !important; transition: none !important; }
+      .fadeIn { opacity: 1 !important; transform: none !important; }
       html, body { background: white !important; color: black; font-size: 10pt; margin: 0; padding: 0; }
       main { padding: 0 !important; }
       .container { display: block !important; max-width: none !important; padding: 0 !important; }
@@ -287,7 +288,9 @@ permalink: /resume/
       .resume_summary { color: rgba(0,0,0,0.72); font-size: 9pt; line-height: 1.5; margin: 0; max-width: none; }
 
       /* Jobs */
-      .resume_job { padding: 5pt 0; page-break-inside: avoid; }
+      .resume_job { break-inside: auto; padding: 5pt 0; }
+      .resume_job_header { break-after: avoid; break-inside: avoid; }
+      .resume_job_body { orphans: 3; widows: 3; }
       .resume_job:first-child { padding-top: 0; }
       .resume_job_header { gap: 2pt 8pt; margin-bottom: 3pt; }
       .resume_job_title { color: black; font-size: 10pt; font-weight: 600; }
@@ -295,12 +298,12 @@ permalink: /resume/
       .resume_job_meta { color: rgba(0,0,0,0.4); font-size: 7pt; letter-spacing: 0.02em; margin-left: auto; }
       .resume_job_body { color: rgba(0,0,0,0.68); font-size: 8.5pt; line-height: 1.45; margin: 0 0 3pt; max-width: none; }
       .resume_job_body:last-child { margin-bottom: 0; }
-      .resume_bullets { color: rgba(0,0,0,0.6); font-size: 8pt; line-height: 1.45; margin: 3pt 0 0; padding-left: 12pt; }
-      .resume_bullets li { margin-bottom: 1.5pt; }
+      .resume_bullets { color: rgba(0,0,0,0.6); font-size: 8pt; line-height: 1.45; margin: 3pt 0 0; max-width: none; padding-left: 12pt; }
+      .resume_bullets li { break-inside: avoid; font-size: 8pt; line-height: 1.45; margin-bottom: 1.5pt; }
 
       /* Skills */
       .resume_skills { gap: 3pt; }
-      .resume_skills li { border: 0.75pt solid rgba(0,0,0,0.18); color: rgba(0,0,0,0.6); font-size: 7.5pt; padding: 1pt 5pt; }
+      .resume_skills li { border: 0.75pt solid rgba(0,0,0,0.18); box-shadow: none; color: rgba(0,0,0,0.6); font-size: 7.5pt; padding: 1pt 5pt; }
 
       .cs_body_cols { column-count: 1; }
     }
