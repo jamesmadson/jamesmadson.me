@@ -2157,10 +2157,9 @@ body.image-feed {
   #overview .grid_12 { display: block !important; }
   #overview .grid_12 > *:not(.cs_meta_row) { display: none !important; }
   .cs_image_feed { display: block !important; }
-  // Keep the nav: it now hosts the view toggle (the only way back to
-  // case-study view). Collapse it to the back link + toggle, since the
-  // section links point at hidden content in feed mode.
-  .case_study_nav li:not(.cs_nav_back):not(.cs_nav_view) { display: none !important; }
+  // Keep the full nav: it hosts the view toggle (the only way back),
+  // and clicking a section link exits feed mode first (site.js), so
+  // every item stays functional in both views.
 }
 
 

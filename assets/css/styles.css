@@ -2631,9 +2631,6 @@ body.image-feed #overview .grid_12 > *:not(.cs_meta_row) {
 body.image-feed .cs_image_feed {
   display: block !important;
 }
-body.image-feed .case_study_nav li:not(.cs_nav_back):not(.cs_nav_view) {
-  display: none !important;
-}
 
 .case_studies_nav {
   padding-bottom: 100px;

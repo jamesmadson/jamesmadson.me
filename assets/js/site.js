@@ -562,17 +562,29 @@ function smoothScrollTo(targetY, duration) {
   });
 
   // --- Toggle handler (saves preference, updates aria-pressed) ---
-  csBtns.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var isImageFeed = btn.dataset.view === 'image-feed';
-      document.body.classList.toggle('image-feed', isImageFeed);
-      csBtns.forEach(function (b) {
-        var isActive = b === btn;
-        b.classList.toggle('active', isActive);
-        b.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-      });
-      try { localStorage.setItem('csView', btn.dataset.view); } catch (e) {}
+  function applyCsView(view) {
+    var isImageFeed = view === 'image-feed';
+    document.body.classList.toggle('image-feed', isImageFeed);
+    csBtns.forEach(function (b) {
+      var isActive = b.dataset.view === view;
+      b.classList.toggle('active', isActive);
+      b.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     });
+    try { localStorage.setItem('csView', view); } catch (e) {}
+  }
+
+  csBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () { applyCsView(btn.dataset.view); });
+  });
+
+  // Section links exit feed mode first, so the anchor they point at
+  // actually exists on screen when the browser scrolls to it
+  csNav.addEventListener('click', function (e) {
+    var link = e.target.closest('a[href^="#"]');
+    if (!link) return;
+    if (document.body.classList.contains('image-feed')) {
+      applyCsView('case-study');
+    }
   });
 
   // --- Hide primary nav when case study nav is stuck at top ---

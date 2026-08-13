@@ -40,15 +40,6 @@
       "image": "/img/naturequant/naturequant_cover_image.png",
       "image2x": "/img/naturequant/naturequant_cover_image@2x.png",
       "alt": "NatureQuant"
-    },
-    {
-      "href": "/projects/naturescore/",
-      "mod": "ns",
-      "company": "NatureQuant",
-      "title": "NatureScore",
-      "image": "/img/naturescore/naturescore_cover_image.png",
-      "image2x": "/img/naturescore/naturescore_cover_image@2x.png",
-      "alt": "NatureScore"
     }
   ]
 }
