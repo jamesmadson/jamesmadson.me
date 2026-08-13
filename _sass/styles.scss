@@ -1417,15 +1417,26 @@ html.theme-light .about_now {
     margin: 0 0 2.5rem;
 
     a {
-      color: rgba($white, 0.55);
-      font-family: $mono;
-      font-size: 0.8rem;
-      letter-spacing: 0.04em;
+      align-items: center;
+      color: rgba($white, 0.6);
+      display: inline-flex;
+      font-family: $font;
+      font-size: 0.95rem;
+      font-weight: 500;
+      gap: 0.45rem;
       text-decoration: none;
-      text-transform: uppercase;
       transition: color 0.15s ease;
 
-      &:hover { color: $white; }
+      &:hover {
+        color: $white;
+
+        .cs_hero_back_arrow { transform: translateX(-3px); }
+      }
+    }
+
+    .cs_hero_back_arrow {
+      display: block;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
   }
 
