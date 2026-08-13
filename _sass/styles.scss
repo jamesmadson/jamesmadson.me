@@ -87,8 +87,7 @@ html {
   .about h4 { color: $dark-default; }
   .about p { color: $text-muted; }
 
-  .select_clients { background-color: rgba($dark-default, 0.07); color: $dark-default; }
-  .logo_scroller { border-color: rgba($dark-default, 0.1); }
+  .select_clients { color: $dark-default; }
   .logo_scroller svg { filter: invert(1); }
   .experience p { color: $text-muted; }
   .experience_company { color: $dark-default; }
@@ -1156,14 +1155,11 @@ html.theme-light .about_now {
 // ============================================================
 
 .select_clients {
-  background-color: rgba($white, 0.1);
   color: $white;
-  font-size: 0.8rem;
-  line-height: 0.8rem;
-  padding: 0.5rem 0.6rem;
-  margin: 0;
-  letter-spacing: 0.06rem;
-  text-transform: uppercase;
+  font-size: clamp(1.5rem, 1.5vw + 0.75rem, 2.25rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin: 0 0 1rem;
   width: max-content;
 }
 
@@ -1173,8 +1169,6 @@ html.theme-light .about_now {
 }
 
 .logo_scroller {
-  border-bottom: 1px solid rgba($white, 0.1);
-  border-top: 1px solid rgba($white, 0.1);
   padding: 0.5rem 0;
   overflow: hidden;
   position: relative;
@@ -3267,13 +3261,12 @@ blockquote {
 }
 
 .home_work_title {
-  color: rgba($white, 0.5);
-  font-size: clamp(0.75rem, 0.5vw + 0.5rem, 0.85rem);
-  font-family: $mono;
-  font-weight: 400;
-  letter-spacing: 0.1em;
+  color: $white;
+  font-size: clamp(1.5rem, 1.5vw + 0.75rem, 2.25rem);
+  font-family: $font;
+  font-weight: 500;
+  letter-spacing: -0.02em;
   margin-bottom: 2rem;
-  text-transform: uppercase;
 }
 
 .home_work_grid {
@@ -3391,11 +3384,7 @@ blockquote {
 .home_work_soon {
   padding-top: 0;
 
-  .home_work_title {
-    color: $white;
-    font-size: clamp(0.9rem, 0.6vw + 0.6rem, 1.05rem);
-    opacity: 1;
-  }
+
 }
 
 html.theme-light body .home_work_soon .home_work_title {
@@ -3470,7 +3459,7 @@ html.theme-light body .home_work_soon .home_work_title {
 }
 
 html.theme-light body {
-  .home_work_title { color: rgba($dark-default, 0.4); }
+  .home_work_title { color: $dark-default; }
 
   .hwc_img {
     background: rgba($dark-default, 0.05);
