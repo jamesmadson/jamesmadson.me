@@ -11,19 +11,53 @@ console.log(
 
 
 // ============================================================
-// Haptic feedback on button/link presses — Vibration API
-// Progressive enhancement: fires a short tick on touch devices that
-// support navigator.vibrate (Android). iOS WebKit has no Vibration
-// API, so iPhones silently no-op. Pointerdown, not click, so the
-// tick lands at the moment of touch like a native control.
+// Haptic feedback on button/link presses
+// Two paths, because the platforms differ:
+//   Android — navigator.vibrate(), a real API.
+//   iOS     — WebKit never shipped Vibration, but Safari 17.4+ plays
+//             the system switch haptic when a checkbox with the
+//             `switch` attribute is toggled by a user gesture. A
+//             hidden switch inside a label gives us that tick. It
+//             only fires inside the gesture's own task, so it runs
+//             synchronously in the pointerdown handler.
+// Either way this is enhancement: no support means no tick, and
+// reduced-motion opts out entirely.
 // ============================================================
 (function () {
-  if (!('vibrate' in navigator)) return;
-
   var SELECTOR = [
     'a', 'button', 'input', 'select', 'summary',
     '[role="button"]'
   ].join(',');
+
+  var canVibrate = 'vibrate' in navigator;
+  var iosSwitch = null;
+
+  // Feature-detect the iOS switch control rather than sniffing UA
+  function supportsSwitchHaptic() {
+    var probe = document.createElement('input');
+    probe.type = 'checkbox';
+    return 'switch' in probe;
+  }
+
+  function makeIosSwitch() {
+    var label = document.createElement('label');
+    label.setAttribute('aria-hidden', 'true');
+    label.style.cssText =
+      'position:absolute;width:1px;height:1px;overflow:hidden;' +
+      'clip:rect(0 0 0 0);clip-path:inset(50%);pointer-events:none;';
+    var input = document.createElement('input');
+    input.type = 'checkbox';
+    input.setAttribute('switch', '');
+    input.tabIndex = -1;
+    label.appendChild(input);
+    document.body.appendChild(label);
+    return input;
+  }
+
+  if (!canVibrate && supportsSwitchHaptic()) {
+    iosSwitch = makeIosSwitch();
+  }
+  if (!canVibrate && !iosSwitch) return;
 
   document.addEventListener('pointerdown', function (e) {
     if (e.pointerType !== 'touch') return;
@@ -32,7 +66,13 @@ console.log(
     if (!target.closest(SELECTOR)) return;
     // Respect reduced-motion as a proxy for "calm interactions"
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    navigator.vibrate(8);
+
+    if (canVibrate) {
+      navigator.vibrate(8);
+    } else if (iosSwitch) {
+      // Toggling within the gesture task is what produces the tick
+      iosSwitch.checked = !iosSwitch.checked;
+    }
   }, { passive: true });
 }());
 

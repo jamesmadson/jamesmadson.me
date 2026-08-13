@@ -350,7 +350,9 @@ ul {
   gap: 2rem;
   max-width: 1800px;
   margin: 0 auto;
-  padding: 0 3rem;
+  // Gutters clear the notch/rounded corners in landscape on iOS
+  padding-left: max(3rem, env(safe-area-inset-left));
+  padding-right: max(3rem, env(safe-area-inset-right));
   box-sizing: border-box;
 }
 
@@ -360,7 +362,8 @@ ul {
   gap: 2rem;
   width: 100%;
   margin: 0 auto;
-  padding: 0 3rem;
+  padding-left: max(3rem, env(safe-area-inset-left));
+  padding-right: max(3rem, env(safe-area-inset-right));
   box-sizing: border-box;
 }
 
@@ -377,7 +380,8 @@ ul {
   .container,
   .container_fluid {
     grid-template-columns: 1fr;
-    padding: 0 2rem;
+    padding-left: max(2rem, env(safe-area-inset-left));
+    padding-right: max(2rem, env(safe-area-inset-right));
     column-count: 1;
     overflow: hidden;
   }
@@ -402,9 +406,15 @@ ul {
   // Horizontal padding mirrors .container's at every breakpoint so the
   // JM wordmark left-aligns with page content below it; the max() term
   // keeps that true past .container's 1800px cap on ultra-wide screens.
-  padding: 1rem max(3rem, calc((100% - 1800px) / 2 + 3rem));
+  // Safe-area insets keep it clear of the notch in landscape.
+  padding: max(1rem, env(safe-area-inset-top)) max(3rem, calc((100% - 1800px) / 2 + 3rem));
+  padding-left: max(3rem, calc((100% - 1800px) / 2 + 3rem), env(safe-area-inset-left));
+  padding-right: max(3rem, calc((100% - 1800px) / 2 + 3rem), env(safe-area-inset-right));
 
-  @media (max-width: 1279px) { padding-inline: 2rem; }
+  @media (max-width: 1279px) {
+    padding-left: max(2rem, env(safe-area-inset-left));
+    padding-right: max(2rem, env(safe-area-inset-right));
+  }
   position: fixed;
   right: 0;
   top: 0;
@@ -422,6 +432,14 @@ ul {
   color: $white;
   flex: 1;
   font-size: 1.25rem;
+
+  // Full tap height on touch without changing how it looks
+  @media (pointer: coarse) {
+    align-items: center;
+    display: inline-flex;
+    min-height: 44px;
+  }
+
   font-weight: 600;
   letter-spacing: 0.01em;
   opacity: 0.65;
@@ -1802,6 +1820,44 @@ sup.reg {
   max-width: 65ch;
 }
 
+// AI practice page — text-forward work list
+.practice_work { margin-top: 4rem; }
+
+.practice_list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    border-top: 1px solid rgba($white, 0.1);
+    padding: 1.75rem 0;
+
+    &:first-child { border-top: none; padding-top: 0; }
+  }
+
+  h4 {
+    color: $white;
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.5rem;
+  }
+
+  p {
+    color: rgba($white, 0.65);
+    font-size: 1rem;
+    line-height: 1.65;
+    margin: 0;
+    max-width: 68ch;
+  }
+}
+
+html.theme-light .practice_list {
+  li { border-top-color: rgba($dark-default, 0.12); }
+  h4 { color: $dark-default; }
+  p { color: rgba($dark-default, 0.7); }
+}
+
 // ── Case study cover — the card's artwork, carried onto the page ──
 .cs_cover {
   margin-bottom: 3rem;
@@ -1885,6 +1941,16 @@ sup.reg {
   width: 100%;
 
   li { flex-shrink: 0; }
+
+  // Coarse pointers get full-height taps without changing the desktop
+  // pill proportions.
+  @media (pointer: coarse) {
+    a {
+      align-items: center;
+      display: inline-flex;
+      min-height: 44px;
+    }
+  }
 
   // View switcher lives at the end of the section nav
   .cs_nav_view {
@@ -2046,6 +2112,10 @@ sup.reg {
   overflow: hidden;
 
   .cs_view_btn {
+    // Icon buttons stay compact visually; touch devices get the full
+    // 44px minimum target.
+    @media (pointer: coarse) { min-height: 44px; min-width: 44px; }
+
     align-items: center;
     background: none;
     border: none;
@@ -2915,6 +2985,9 @@ html.theme-light {
 }
 
 .cs_next_project + .site_footer {
+  // Clear the iOS home indicator
+  padding-bottom: max(0px, env(safe-area-inset-bottom));
+
   border-top: none;
   margin-top: 0;
 }
@@ -3866,6 +3939,13 @@ html.theme-light .about_values {
   text-decoration: none;
   transition: color 0.2s ease;
 
+  // Full-height tap target on touch without adding visual weight
+  @media (pointer: coarse) {
+    align-items: center;
+    display: inline-flex;
+    min-height: 44px;
+  }
+
   &:hover {
     color: rgba($white, 0.7);
   }
@@ -4083,7 +4163,8 @@ html.theme-dark .site_footer .site_footer_link {
   .container,
   .container_fluid {
     grid-template-columns: 1fr;
-    padding: 0 1.25rem;
+    padding-left: max(1.25rem, env(safe-area-inset-left));
+    padding-right: max(1.25rem, env(safe-area-inset-right));
     gap: 1rem;
   }
 
@@ -4229,7 +4310,7 @@ html.theme-dark .site_footer .site_footer_link {
 // ============================================================
 
 .zines_page {
-  min-height: 100vh;
+  min-height: 100svh;
 }
 
 .zines_header {
@@ -4517,7 +4598,7 @@ a:visited { color: inherit; opacity: 0.8; }
 
 .archive_page {
   background: $dark-bg;
-  min-height: 100vh;
+  min-height: 100svh;
   padding-top: 5rem;
 }
 
@@ -4893,6 +4974,18 @@ html.theme-light #hero_shuffle_text {
   &:focus-visible {
     outline: 2px solid rgba($white, 0.8);
     outline-offset: 3px;
+  }
+
+  // The circle reads better small, but 32px is under the 44px minimum
+  // touch target — extend the hit area invisibly instead of resizing.
+  &::after {
+    content: '';
+    height: 44px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
   }
 }
 

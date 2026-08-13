@@ -27,5 +27,6 @@ In his own words: "I'm the 6th man: solid the whole game, and right there when t
 - [About](https://jamesmadson.me/about/)
 - [Work](https://jamesmadson.me/work/)
 - [Resume](https://jamesmadson.me/resume/)
+- [AI Practice](https://jamesmadson.me/practice/) — how he designs and builds with Claude, Cursor, and Figma Make
 - [Contact](https://jamesmadson.me/contact/)
 - [Colophon — how this site is built](https://jamesmadson.me/colophon/)

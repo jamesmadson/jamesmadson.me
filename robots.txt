@@ -2,7 +2,6 @@ User-agent: *
 Allow: /
 
 Disallow: /music/
-Disallow: /practice/
 Disallow: /art/
 Disallow: /feed/
 
