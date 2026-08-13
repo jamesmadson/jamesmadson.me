@@ -4846,91 +4846,16 @@ html.theme-light .hero_headline {
 
 // The shuffle line shares .hero_headline's size/font but reads as
 // secondary via color, not size — grey rather than full white/black.
-// Opacity differs by theme on purpose: 0.5 measures 5.28:1 against black
-// (dark theme), but the same 0.5 against the light theme's off-white
-// background only measures 3.18:1 — under the 4.5:1 AA minimum for normal
-// text. 0.65 in light theme measures 5.01:1.
-// Countdown ring around the shuffle button: the stroke drains over
-// the auto-advance interval (restarted by hero.js each cycle, removed
-// while paused). Sits just outside the button's own border.
-.hero_shuffle_btn {
-  position: relative;
-}
-
-.hero_shuffle_ring {
-  height: calc(100% + 8px);
-  left: -4px;
-  pointer-events: none;
-  position: absolute;
-  top: -4px;
-  width: calc(100% + 8px);
-
-  circle {
-    fill: none;
-    opacity: 0;
-    stroke: currentColor;
-    stroke-dasharray: 100.53; /* 2πr, r=16 in the 36-unit viewBox */
-    stroke-dashoffset: 100.53;
-    stroke-linecap: round;
-    stroke-width: 1.5;
-    transform: rotate(-90deg);
-    transform-origin: center;
-  }
-
-  &.is_counting circle {
-    animation: heroRingDrain var(--ring-ms, 5000ms) linear forwards;
-    opacity: 0.35;
-  }
-}
-
-@keyframes heroRingDrain {
-  from { stroke-dashoffset: 100.53; }
-  to   { stroke-dashoffset: 0; }
-}
-
+// Opacity differs by theme on purpose, measured against the current
+// softened palette: 0.5 on the dark background gives 4.67:1, and 0.65
+// on the light background gives 4.02:1. Both clear the 3:1 AA floor
+// for large text (this renders 40–72px); a flat 0.5 in light theme
+// would fall to 2.9:1 and fail.
 #hero_shuffle_text {
   color: rgba($white, 0.5);
 }
 
-html.theme-light // Countdown ring around the shuffle button: the stroke drains over
-// the auto-advance interval (restarted by hero.js each cycle, removed
-// while paused). Sits just outside the button's own border.
-.hero_shuffle_btn {
-  position: relative;
-}
-
-.hero_shuffle_ring {
-  height: calc(100% + 8px);
-  left: -4px;
-  pointer-events: none;
-  position: absolute;
-  top: -4px;
-  width: calc(100% + 8px);
-
-  circle {
-    fill: none;
-    opacity: 0;
-    stroke: currentColor;
-    stroke-dasharray: 100.53; /* 2πr, r=16 in the 36-unit viewBox */
-    stroke-dashoffset: 100.53;
-    stroke-linecap: round;
-    stroke-width: 1.5;
-    transform: rotate(-90deg);
-    transform-origin: center;
-  }
-
-  &.is_counting circle {
-    animation: heroRingDrain var(--ring-ms, 5000ms) linear forwards;
-    opacity: 0.35;
-  }
-}
-
-@keyframes heroRingDrain {
-  from { stroke-dashoffset: 100.53; }
-  to   { stroke-dashoffset: 0; }
-}
-
-#hero_shuffle_text {
+html.theme-light #hero_shuffle_text {
   color: rgba($dark-default, 0.65);
 }
 

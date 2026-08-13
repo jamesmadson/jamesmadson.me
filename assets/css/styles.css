@@ -5421,83 +5421,11 @@ html.theme-light .hero_headline {
   color: #33352E;
 }
 
-.hero_shuffle_btn {
-  position: relative;
-}
-
-.hero_shuffle_ring {
-  height: calc(100% + 8px);
-  left: -4px;
-  pointer-events: none;
-  position: absolute;
-  top: -4px;
-  width: calc(100% + 8px);
-}
-.hero_shuffle_ring circle {
-  fill: none;
-  opacity: 0;
-  stroke: currentColor;
-  stroke-dasharray: 100.53; /* 2πr, r=16 in the 36-unit viewBox */
-  stroke-dashoffset: 100.53;
-  stroke-linecap: round;
-  stroke-width: 1.5;
-  transform: rotate(-90deg);
-  transform-origin: center;
-}
-.hero_shuffle_ring.is_counting circle {
-  animation: heroRingDrain var(--ring-ms, 5000ms) linear forwards;
-  opacity: 0.35;
-}
-
-@keyframes heroRingDrain {
-  from {
-    stroke-dashoffset: 100.53;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
 #hero_shuffle_text {
   color: rgba(237, 238, 232, 0.5);
 }
 
-html.theme-light .hero_shuffle_btn {
-  position: relative;
-}
-
-.hero_shuffle_ring {
-  height: calc(100% + 8px);
-  left: -4px;
-  pointer-events: none;
-  position: absolute;
-  top: -4px;
-  width: calc(100% + 8px);
-}
-.hero_shuffle_ring circle {
-  fill: none;
-  opacity: 0;
-  stroke: currentColor;
-  stroke-dasharray: 100.53; /* 2πr, r=16 in the 36-unit viewBox */
-  stroke-dashoffset: 100.53;
-  stroke-linecap: round;
-  stroke-width: 1.5;
-  transform: rotate(-90deg);
-  transform-origin: center;
-}
-.hero_shuffle_ring.is_counting circle {
-  animation: heroRingDrain var(--ring-ms, 5000ms) linear forwards;
-  opacity: 0.35;
-}
-
-@keyframes heroRingDrain {
-  from {
-    stroke-dashoffset: 100.53;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-#hero_shuffle_text {
+html.theme-light #hero_shuffle_text {
   color: rgba(51, 53, 46, 0.65);
 }
 
