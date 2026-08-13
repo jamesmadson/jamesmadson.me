@@ -826,11 +826,17 @@ header.about_header {
     }
 
     .about_me {
+      // Editorial two-column flow for the bio body text; single column
+      // once the page grid collapses.
+      columns: 2;
+      column-gap: 2.5rem;
       font-size: 1.25rem;
       font-weight: 500;
       line-height: 1.5;
       margin: 0;
       text-wrap: pretty;
+
+      @media (max-width: 1279px) { columns: 1; }
 
       // Without this, the highlight chips' own line-height inflates the
       // line box only on the lines that contain them, making paragraph

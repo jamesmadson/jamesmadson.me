@@ -95,7 +95,6 @@ permalink: /about/
     <div class="container">
       <div class="grid_3 about_header_side">
         <h1 class="fadeIn jm_title">About</h1>
-        <p class="about_meta" id="seattle_time"></p>
         <div class="about_meta_links">
           <a href="https://github.com/jamesmadson" target="_blank" rel="noreferrer" class="view_project" style="margin-top:0">GitHub <span class="arrow">↗</span></a>
           <a href="https://www.linkedin.com/in/james-madson-6794781a1/" target="_blank" rel="noreferrer" class="view_project" style="margin-top:0">LinkedIn <span class="arrow">↗</span></a>
@@ -166,8 +165,7 @@ permalink: /about/
         <span class="value_connector"></span>
         <a href="/case_studies/pecan/" class="value_word highlight pecan">Lasting</a>
       </div>
-      <p class="about_me">Things I've always cared about and tried to bring to every project. If the work isn't useful, nothing else really matters, but if it's also clear and built to last, that's when it starts to feel right.</p>
-      <p class="about_me">I love solving a real need with something beautiful. Working with a great team to get there makes it better every time. I try to think big, move fast, and care about the details, always with an eye toward actually helping the people using it.</p>
+      <p class="about_me">Things I've always cared about and tried to bring to every project.</p>
     </div>
   </div>
 </section>
@@ -178,8 +176,7 @@ permalink: /about/
       <h3>Process</h3>
     </div>
     <div class="grid_9">
-      <p class="about_me">The tools change every year. Good judgment doesn't. My job has always been thinking clearly and strategically about what's actually worth building, then building it without wasting time, energy, or money getting there. That means making high quality decisions fast, especially on complex problems, and being honest the moment something isn't working.</p>
-      <p class="about_me">I was blending design and engineering before AI made it fashionable. People called me a UX engineer years ago, because I'd go straight into the UI and the code myself when that was the fastest way to get an interaction right. AI multiplies that now. I can prototype, write, and ship more in a day than I used to in a week, without losing the taste and judgment that made the work good in the first place. I pitch ideas early, facilitate feedback often, and stay adaptive and resilient in a field that keeps moving.</p>
+      <p class="about_me">The tools change every year. Good judgment doesn't.</p>
     </div>
   </div>
 </section>
@@ -308,47 +305,6 @@ permalink: /about/
 
 {% include "partials/footer.njk" %}
 
-<script>
-(function () {
-  var el = document.getElementById('seattle_time');
-  if (!el) return;
-
-  var weatherStr = '';
-
-  function wxCode(code) {
-    if (code === 0) return '☀️';
-    if (code <= 2) return '🌤';
-    if (code === 3) return '☁️';
-    if (code <= 48) return '🌫';
-    if (code <= 57) return '🌦';
-    if (code <= 67) return '🌧';
-    if (code <= 77) return '❄️';
-    if (code <= 82) return '🌦';
-    return '⛈';
-  }
-
-  function fetchWeather() {
-    fetch('https://api.open-meteo.com/v1/forecast?latitude=47.6062&longitude=-122.3321&current=temperature_2m,weather_code&temperature_unit=fahrenheit&timezone=America%2FLos_Angeles')
-      .then(function(r) { return r.json(); })
-      .then(function(d) {
-        var temp = Math.round(d.current.temperature_2m);
-        var icon = wxCode(d.current.weather_code);
-        weatherStr = ' · ' + icon + ' ' + temp + '°F';
-      })
-      .catch(function() {});
-  }
-
-  function tick() {
-    var t = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/Los_Angeles', hour12: true });
-    el.textContent = t + ' · Seattle' + weatherStr;
-  }
-
-  fetchWeather();
-  setInterval(fetchWeather, 1800000); // refresh every 30 min
-  tick();
-  setInterval(tick, 1000);
-}());
-</script>
 <script src="/assets/js/site.js?v={{ build.version }}" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>

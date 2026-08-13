@@ -1334,11 +1334,18 @@ header.about_header .about_bio .about_me--lead {
   text-wrap: pretty;
 }
 header.about_header .about_bio .about_me {
+  columns: 2;
+  column-gap: 2.5rem;
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 1.5;
   margin: 0;
   text-wrap: pretty;
+}
+@media (max-width: 1279px) {
+  header.about_header .about_bio .about_me {
+    columns: 1;
+  }
 }
 header.about_header .about_bio .about_me .highlight {
   line-height: 1.2;
