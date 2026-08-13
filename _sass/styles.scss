@@ -1750,22 +1750,28 @@ sup.reg {
 .cs_cover {
   margin-bottom: 3rem;
 
-  // The grid cell is the clipped frame; the image drifts and scales
-  // inside it (parallax in site.js) without ever showing an edge.
+  // The grid cell is the letterboxed frame; the image keeps its full
+  // square aspect and pans vertically through the frame as you scroll
+  // (site.js), so the entire artwork gets seen by the bottom of the
+  // travel. Reduced motion pins it to the vertical center instead.
   .grid_12 {
+    aspect-ratio: 2 / 1;
     border-radius: 1rem;
     overflow: hidden;
+
+    @media (max-width: 768px) { aspect-ratio: 4 / 3; }
   }
 
   .cs_cover_img {
-    aspect-ratio: 2 / 1;
+    aspect-ratio: 1 / 1;
     display: block;
     height: auto;
-    object-fit: cover;
     width: 100%;
     will-change: transform;
+  }
 
-    @media (max-width: 768px) { aspect-ratio: 4 / 3; }
+  @media (prefers-reduced-motion: reduce) {
+    .cs_cover_img { transform: translateY(-25%); }
   }
 }
 
@@ -1895,10 +1901,10 @@ sup.reg {
 
   .cs_nav_label {
     color: inherit;
-    font-family: $mono;
+    font-family: $font;
     font-size: 0.8rem;
-    font-weight: 400;
-    letter-spacing: 0.07em;
+    font-weight: 500;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
     white-space: nowrap;
   }

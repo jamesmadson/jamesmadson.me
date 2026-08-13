@@ -677,42 +677,40 @@ function smoothScrollTo(targetY, duration) {
 }());
 
 // ============================================================
-// Case study cover — gentle parallax inside its clipped frame
-// The image starts slightly oversized (scale 1.08) so a small
-// vertical drift and a subtle further enlargement on scroll never
-// reveal an edge. Eased with a lerp toward the target each frame.
+// Case study cover — the full square artwork pans through its
+// letterboxed frame as you scroll, so the whole image gets seen.
+// Lerp-eased per frame; reduced-motion users get a centered crop
+// via CSS instead.
 // ============================================================
 (function () {
   var img = document.querySelector('.cs_cover_img');
   if (!img) return;
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  var BASE_SCALE = 1.08;   // headroom for the drift
-  var DRIFT = 0.05;        // max vertical drift, as a fraction of image height
-  var GROW = 0.04;         // extra scale gained across the scroll-through
-  var EASE = 0.1;          // lerp factor per frame — lower is calmer
+  var EASE = 0.1; // lerp factor per frame — lower is calmer
 
-  var currentY = 0, targetY = 0;
-  var currentS = BASE_SCALE, targetS = BASE_SCALE;
-  var raf = null;
+  var frame = img.parentElement;
+  var currentY = 0, targetY = 0, raf = null;
 
   function retarget() {
-    var r = img.getBoundingClientRect();
-    var vh = window.innerHeight || 1;
-    // -1 when the image center is below the viewport, +1 when above
-    var p = 1 - 2 * ((r.top + r.height / 2) / vh);
-    p = Math.max(-1, Math.min(1, p));
-    targetY = p * r.height * DRIFT;
-    targetS = BASE_SCALE + GROW * ((p + 1) / 2);
+    var overflow = img.offsetHeight - frame.offsetHeight;
+    if (overflow <= 0) { targetY = 0; }
+    else {
+      var fr = frame.getBoundingClientRect();
+      var vh = window.innerHeight || 1;
+      // 0 when the frame enters at the bottom, 1 as it exits the top
+      var p = (vh - fr.top) / (vh + fr.height);
+      p = Math.max(0, Math.min(1, p));
+      targetY = -p * overflow;
+    }
     if (!raf) raf = requestAnimationFrame(tick);
   }
 
   function tick() {
     raf = null;
     currentY += (targetY - currentY) * EASE;
-    currentS += (targetS - currentS) * EASE;
-    img.style.transform = 'translateY(' + currentY.toFixed(2) + 'px) scale(' + currentS.toFixed(4) + ')';
-    if (Math.abs(targetY - currentY) > 0.05 || Math.abs(targetS - currentS) > 0.0004) {
+    img.style.transform = 'translateY(' + currentY.toFixed(2) + 'px)';
+    if (Math.abs(targetY - currentY) > 0.05) {
       raf = requestAnimationFrame(tick);
     }
   }

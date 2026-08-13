@@ -2205,20 +2205,25 @@ sup.reg {
   margin-bottom: 3rem;
 }
 .cs_cover .grid_12 {
+  aspect-ratio: 2/1;
   border-radius: 1rem;
   overflow: hidden;
 }
+@media (max-width: 768px) {
+  .cs_cover .grid_12 {
+    aspect-ratio: 4/3;
+  }
+}
 .cs_cover .cs_cover_img {
-  aspect-ratio: 2/1;
+  aspect-ratio: 1/1;
   display: block;
   height: auto;
-  object-fit: cover;
   width: 100%;
   will-change: transform;
 }
-@media (max-width: 768px) {
+@media (prefers-reduced-motion: reduce) {
   .cs_cover .cs_cover_img {
-    aspect-ratio: 4/3;
+    transform: translateY(-25%);
   }
 }
 
@@ -2349,10 +2354,10 @@ sup.reg {
 }
 .case_study_nav .cs_nav_label {
   color: inherit;
-  font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
+  font-family: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 0.8rem;
-  font-weight: 400;
-  letter-spacing: 0.07em;
+  font-weight: 500;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   white-space: nowrap;
 }
