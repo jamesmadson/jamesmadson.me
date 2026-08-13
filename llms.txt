@@ -14,7 +14,7 @@
 
 - Pfizer (contract): prototyping internal AI tools that help product teams design and build faster.
 - NatureQuant: automating design testing for Juniper, the design system behind NatureDose.
-- Canon: a gallery of design skills for working with AI.
+- Canon: a curated gallery of design skills and design skill kits.
 - A solo album and an improvisational metal guitar project.
 
 ## How he works

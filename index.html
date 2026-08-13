@@ -250,7 +250,7 @@ permalink: /index.html
   <section class="home_work" id="recent_work">
     <div class="container">
       <div class="grid_12 home_work_heading">
-        <h2 class="home_work_title">Case Studies</h2>
+        <h2 class="home_work_title">Work</h2>
       </div>
     </div>
     <div class="container home_work_grid">
@@ -258,16 +258,6 @@ permalink: /index.html
         {% set loadingOverride = 'eager' %}
         {% include "partials/work-card-case-study.njk" %}
       {% endfor %}
-    </div>
-  </section>
-
-  <section class="home_work home_work_soon">
-    <div class="container">
-      <div class="grid_12 home_work_heading">
-        <h2 class="home_work_title">Projects</h2>
-      </div>
-    </div>
-    <div class="container home_work_grid">
       {% for item in work.projects %}
         {% include "partials/work-card-project.njk" %}
       {% endfor %}

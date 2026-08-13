@@ -70,26 +70,11 @@ permalink: /work/
 
   <main class="fadeIn" id="main-content">
 
-    <section class="home_work work_page_section" id="case-studies">
-      <div class="container">
-        <div class="grid_12">
-          <h2 class="home_work_title">Case Studies</h2>
-        </div>
-      </div>
+    <section class="home_work work_page_section" id="work">
       <div class="container home_work_grid">
         {% for item in work.caseStudies %}
           {% include "partials/work-card-case-study.njk" %}
         {% endfor %}
-      </div>
-    </section>
-
-    <section class="home_work home_work_soon work_page_section" id="projects">
-      <div class="container">
-        <div class="grid_12">
-          <h2 class="home_work_title">Projects</h2>
-        </div>
-      </div>
-      <div class="container home_work_grid">
         {% for item in work.projects %}
           {% include "partials/work-card-project.njk" %}
         {% endfor %}
