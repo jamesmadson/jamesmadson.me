@@ -1854,6 +1854,20 @@ sup.reg {
   text-transform: uppercase;
 }
 
+.canon_subhead {
+  color: $white;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin: 2.5rem 0 0;
+}
+
+.canon_early {
+  color: rgba($white, 0.55);
+  margin-top: 2rem;
+  max-width: 62ch;
+}
+
 // Hairline-separated definition list, used for features and open questions
 .canon_list {
   list-style: none;
@@ -1937,6 +1951,8 @@ sup.reg {
 
 html.theme-light {
   .canon_chip { color: rgba($dark-default, 0.75); }
+  .canon_subhead { color: $dark-default; }
+  .canon_early { color: rgba($dark-default, 0.6); }
   .canon_status_meta,
   .canon_asof { color: rgba($dark-default, 0.5); }
   .canon_list li { border-top-color: rgba($dark-default, 0.12); }
@@ -2744,6 +2760,21 @@ body.image-feed {
       grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       margin-top: 2.5rem;
 
+      // Fixed two-up on small screens. auto-fit made the column count
+      // unknowable, so the "first in row" divider reset could not be
+      // expressed and rows 2+ kept a stray left border.
+      @media (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+
+        .stat {
+          padding: 1.5rem 1rem;
+
+          // Left rule only between the pair, top rule between rows
+          &:nth-child(odd) { border-left: none; padding-left: 0; }
+          &:nth-child(n + 3) { border-top: 1px solid rgba($white, 0.12); }
+        }
+      }
+
       .stat {
         border-left: 1px solid rgba($white, 0.12);
         display: flex;
@@ -2948,6 +2979,7 @@ html.theme-light {
     color: $dark-default;
 
     .stat { border-left-color: rgba($dark-default, 0.12); }
+    .stat:nth-child(n + 3) { border-top-color: rgba($dark-default, 0.12); }
     .stat_number { color: $dark-default; }
     .stat_info { color: rgba($dark-default, 0.55); }
   }

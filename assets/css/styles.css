@@ -2296,6 +2296,20 @@ sup.reg {
   text-transform: uppercase;
 }
 
+.canon_subhead {
+  color: #EDEEE8;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin: 2.5rem 0 0;
+}
+
+.canon_early {
+  color: rgba(237, 238, 232, 0.55);
+  margin-top: 2rem;
+  max-width: 62ch;
+}
+
 .canon_list {
   list-style: none;
   margin: 1.5rem 0 0;
@@ -2376,6 +2390,12 @@ sup.reg {
 
 html.theme-light .canon_chip {
   color: rgba(51, 53, 46, 0.75);
+}
+html.theme-light .canon_subhead {
+  color: #33352E;
+}
+html.theme-light .canon_early {
+  color: rgba(51, 53, 46, 0.6);
 }
 html.theme-light .canon_status_meta,
 html.theme-light .canon_asof {
@@ -3291,6 +3311,21 @@ body.image-feed .cs_image_feed {
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   margin-top: 2.5rem;
 }
+@media (max-width: 768px) {
+  .project #overview .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .project #overview .stats-container .stat {
+    padding: 1.5rem 1rem;
+  }
+  .project #overview .stats-container .stat:nth-child(odd) {
+    border-left: none;
+    padding-left: 0;
+  }
+  .project #overview .stats-container .stat:nth-child(n+3) {
+    border-top: 1px solid rgba(237, 238, 232, 0.12);
+  }
+}
 .project #overview .stats-container .stat {
   border-left: 1px solid rgba(237, 238, 232, 0.12);
   display: flex;
@@ -3486,6 +3521,9 @@ html.theme-light .stats-container {
 }
 html.theme-light .stats-container .stat {
   border-left-color: rgba(51, 53, 46, 0.12);
+}
+html.theme-light .stats-container .stat:nth-child(n+3) {
+  border-top-color: rgba(51, 53, 46, 0.12);
 }
 html.theme-light .stats-container .stat_number {
   color: #33352E;

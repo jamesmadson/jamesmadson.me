@@ -92,7 +92,7 @@ permalink: /case_studies/canon/
           <span class="canon_chip">In progress</span>
           <span class="canon_status_meta">Self-initiated · Updated August 2026</span>
         </p>
-        <p class="cs_hero_fact">Building in the open. The gallery works; kits are landing now. Notes below are current as of this week and will change.</p>
+        <p class="cs_hero_fact">Encoding design judgment into agent plugins, so the craft travels with the tools.</p>
       </div>
     </div>
   </section>
@@ -142,7 +142,27 @@ permalink: /case_studies/canon/
             </ul>
           </div>
         </div>
-        <p class="leadin">Designers have started handing instructions to AI agents: SKILL.md files that tell Claude, Cursor, or Codex how to think about motion, accessibility, or typography. Finding good ones means trawling GitHub. Canon is the editorial answer, hand-picked, license-verified, and written up with a point of view. Sidebar.io meets an awesome-list, not a scraped registry.</p>
+        <p class="leadin">Designers have started handing instructions to AI agents: plugin files that tell Claude, Cursor, or Codex how to think about motion, accessibility, or typography. Finding good ones means trawling GitHub. Canon is the editorial answer, hand-picked, license-verified, and written up with a point of view.</p>
+
+        <p>I built it because I kept re-explaining the same judgment to the same tools. An agent will happily animate everything, ship a 32px tap target, or invent a fifth grey, and it will do it fast. The fix is not more prompting, it is encoding the decision once and handing it over. That is what these plugins are, and once they exist they are worth sharing rather than hoarding.</p>
+
+        <h4 class="canon_subhead">What a plugin actually enforces</h4>
+        <ul class="canon_list">
+          <li>
+            <h4>A gate before the animation</h4>
+            <p>The motion plugin asks whether the thing should animate at all before it asks how. Most of the time the answer is no, and that question is the part people skip.</p>
+          </li>
+          <li>
+            <h4>Hit areas and keyboard paths, checked before ship</h4>
+            <p>The accessibility plugin holds the 44px minimum, real focus states, and a working tab order. It flags them while the work is in progress, not after somebody complains.</p>
+          </li>
+          <li>
+            <h4>The brand, encoded once</h4>
+            <p>The brand plugin carries the actual palette, type scale, and logo rules, so every later pass inherits them instead of improvising a near-miss.</p>
+          </li>
+        </ul>
+
+        <p class="canon_early">Early days. The gallery works today, kits are landing now, and the open questions further down are genuinely open. This page will look different in a month.</p>
 
         <div class="stats-container canon_stats">
           <div class="stat">
