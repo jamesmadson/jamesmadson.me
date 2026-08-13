@@ -2431,6 +2431,51 @@ html.theme-light .canon_changelog_date {
   color: rgba(51, 53, 46, 0.45);
 }
 
+.practice_intro .practice_lead {
+  color: #EDEEE8;
+  font-size: clamp(1.5rem, 1vw + 1rem, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  margin: 0 0 1.5rem;
+  max-width: 30em;
+  text-wrap: pretty;
+}
+.practice_intro p {
+  color: rgba(237, 238, 232, 0.7);
+  font-size: 1.125rem;
+  line-height: 1.65;
+  margin: 0;
+  max-width: 34em;
+}
+
+.practice_ai {
+  padding: 2rem 0 6rem;
+}
+.practice_ai .container + .container {
+  margin-top: 5rem;
+}
+.practice_ai .leadin {
+  margin: 0 0 1.5rem;
+  max-width: 34em;
+}
+.practice_ai .about_me {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  margin: 0 0 1.75rem;
+  max-width: 34em;
+}
+.practice_ai .about_me:last-child {
+  margin-bottom: 0;
+}
+
+html.theme-light .practice_intro .practice_lead {
+  color: #33352E;
+}
+html.theme-light .practice_intro p {
+  color: rgba(51, 53, 46, 0.75);
+}
+
 .practice_work {
   margin-top: 4rem;
 }
@@ -2442,7 +2487,7 @@ html.theme-light .canon_changelog_date {
 }
 .practice_list li {
   border-top: 1px solid rgba(237, 238, 232, 0.1);
-  padding: 1.75rem 0;
+  padding: 2rem 0;
 }
 .practice_list li:first-child {
   border-top: none;
@@ -2457,10 +2502,10 @@ html.theme-light .canon_changelog_date {
 }
 .practice_list p {
   color: rgba(237, 238, 232, 0.65);
-  font-size: 1rem;
-  line-height: 1.65;
+  font-size: 1.0625rem;
+  line-height: 1.7;
   margin: 0;
-  max-width: 68ch;
+  max-width: 34em;
 }
 
 html.theme-light .practice_list li {
@@ -3130,7 +3175,7 @@ body.image-feed .cs_image_feed {
   font-size: 1.6rem;
 }
 .project .cs_body_cols {
-  column-count: 2;
+  columns: 22rem 2;
   column-gap: 3rem;
 }
 .project .cs_body_cols p {
@@ -4887,9 +4932,6 @@ html.theme-dark .site_footer .site_footer_link:hover {
   .site_header {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
-  }
-  .cs_body_cols {
-    column-count: 1;
   }
   .case_study_nav {
     align-items: center;
