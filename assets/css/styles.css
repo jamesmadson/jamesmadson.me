@@ -2204,13 +2204,17 @@ sup.reg {
 .cs_cover {
   margin-bottom: 3rem;
 }
+.cs_cover .grid_12 {
+  border-radius: 1rem;
+  overflow: hidden;
+}
 .cs_cover .cs_cover_img {
   aspect-ratio: 2/1;
-  border-radius: 1rem;
   display: block;
   height: auto;
   object-fit: cover;
   width: 100%;
+  will-change: transform;
 }
 @media (max-width: 768px) {
   .cs_cover .cs_cover_img {
@@ -2241,6 +2245,15 @@ sup.reg {
   .hwc.pecan .hwc_img img,
   .cs_cover_img.vt-pecan {
     view-transition-name: vt-pecan;
+  }
+  ::view-transition-group(*) {
+    animation-duration: 0.5s;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.3s;
+    animation-timing-function: ease;
   }
 }
 .case_study_nav {

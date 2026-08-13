@@ -1747,13 +1747,20 @@ sup.reg {
 .cs_cover {
   margin-bottom: 3rem;
 
+  // The grid cell is the clipped frame; the image drifts and scales
+  // inside it (parallax in site.js) without ever showing an edge.
+  .grid_12 {
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
   .cs_cover_img {
     aspect-ratio: 2 / 1;
-    border-radius: 1rem;
     display: block;
     height: auto;
     object-fit: cover;
     width: 100%;
+    will-change: transform;
 
     @media (max-width: 768px) { aspect-ratio: 4 / 3; }
   }
@@ -1772,6 +1779,20 @@ sup.reg {
     .cs_cover_img.vt-#{$mod} {
       view-transition-name: vt-#{$mod};
     }
+  }
+
+  // Ease the whole transition: a soft settling curve on the morphing
+  // elements, and a slightly quicker crossfade underneath, so pages
+  // hand off gently instead of snapping.
+  ::view-transition-group(*) {
+    animation-duration: 0.5s;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.3s;
+    animation-timing-function: ease;
   }
 }
 

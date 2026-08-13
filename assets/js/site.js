@@ -464,7 +464,7 @@ function smoothScrollTo(targetY, duration) {
   lb.innerHTML =
     '<button class="cs_lb_close" aria-label="Close lightbox">&#x2715;</button>' +
     '<button class="cs_lb_prev" aria-label="Previous image">&#x2039;</button>' +
-    '<img class="cs_lb_img" src="" alt="">' +
+    '<img class="cs_lb_img" alt="">' +
     '<p class="cs_lb_caption" aria-live="polite"></p>' +
     '<button class="cs_lb_next" aria-label="Next image">&#x203A;</button>';
   document.body.appendChild(lb);
@@ -654,4 +654,50 @@ function smoothScrollTo(targetY, duration) {
   }, { threshold: 0.15 });
 
   grids.forEach(function (grid) { revealObserver.observe(grid); });
+}());
+
+// ============================================================
+// Case study cover — gentle parallax inside its clipped frame
+// The image starts slightly oversized (scale 1.08) so a small
+// vertical drift and a subtle further enlargement on scroll never
+// reveal an edge. Eased with a lerp toward the target each frame.
+// ============================================================
+(function () {
+  var img = document.querySelector('.cs_cover_img');
+  if (!img) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var BASE_SCALE = 1.08;   // headroom for the drift
+  var DRIFT = 0.05;        // max vertical drift, as a fraction of image height
+  var GROW = 0.04;         // extra scale gained across the scroll-through
+  var EASE = 0.1;          // lerp factor per frame — lower is calmer
+
+  var currentY = 0, targetY = 0;
+  var currentS = BASE_SCALE, targetS = BASE_SCALE;
+  var raf = null;
+
+  function retarget() {
+    var r = img.getBoundingClientRect();
+    var vh = window.innerHeight || 1;
+    // -1 when the image center is below the viewport, +1 when above
+    var p = 1 - 2 * ((r.top + r.height / 2) / vh);
+    p = Math.max(-1, Math.min(1, p));
+    targetY = p * r.height * DRIFT;
+    targetS = BASE_SCALE + GROW * ((p + 1) / 2);
+    if (!raf) raf = requestAnimationFrame(tick);
+  }
+
+  function tick() {
+    raf = null;
+    currentY += (targetY - currentY) * EASE;
+    currentS += (targetS - currentS) * EASE;
+    img.style.transform = 'translateY(' + currentY.toFixed(2) + 'px) scale(' + currentS.toFixed(4) + ')';
+    if (Math.abs(targetY - currentY) > 0.05 || Math.abs(targetS - currentS) > 0.0004) {
+      raf = requestAnimationFrame(tick);
+    }
+  }
+
+  window.addEventListener('scroll', retarget, { passive: true });
+  window.addEventListener('resize', retarget);
+  retarget();
 }());
