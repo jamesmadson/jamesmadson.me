@@ -2272,6 +2272,11 @@ sup.reg {
 .case_study_nav li {
   flex-shrink: 0;
 }
+.case_study_nav .cs_nav_view {
+  align-items: center;
+  display: flex;
+  margin-left: 0.75rem;
+}
 .case_study_nav {
   will-change: transform;
   z-index: 200;
@@ -2342,37 +2347,20 @@ sup.reg {
 }
 
 .cs_meta_row {
-  display: grid;
-  gap: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 3rem;
   grid-column: 1/-1;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-}
-@media (max-width: 600px) {
-  .cs_meta_row {
-    grid-template-columns: 1fr;
-  }
 }
 
 .cs_meta_item {
-  border-left: 1px solid rgba(237, 238, 232, 0.1);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding: 0 1.5rem;
-}
-.cs_meta_item:first-child {
-  border-left: none;
-  padding-left: 0;
 }
 @media (max-width: 600px) {
   .cs_meta_item {
-    border-left: none;
-    border-top: 1px solid rgba(237, 238, 232, 0.1);
-    padding: 1rem 0;
-  }
-  .cs_meta_item:first-child {
-    border-top: none;
-    padding-top: 0;
+    flex-basis: 100%;
   }
 }
 .cs_meta_item > p {
@@ -2874,7 +2862,7 @@ body.image-feed .case_study_nav {
 .project .cs_tags_inline {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem;
+  gap: 0.4rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -3037,17 +3025,18 @@ body.image-feed .case_study_nav {
   margin: 0;
 }
 .project #overview .tag {
-  background-color: rgba(237, 238, 232, 0.5);
-  border-radius: 0.2rem;
-  color: #33352E;
+  background: none;
+  border-radius: 2rem;
+  box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 35%, transparent);
+  color: rgba(237, 238, 232, 0.7);
   display: inline-block;
   font-family: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  margin: 0.3rem 0.1rem;
-  padding: 0.25em 0.65em;
-  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  margin: 0.15rem 0.05rem;
+  padding: 0.25rem 0.7rem;
+  text-transform: none;
 }
 .project .client_logo {
   margin-top: 15px;
@@ -3214,6 +3203,9 @@ html.theme-light .cs_meta_row {
 }
 html.theme-light .cs_meta_item .role {
   color: rgba(51, 53, 46, 0.4);
+}
+html.theme-light .cs_tags_inline .tag {
+  color: rgba(51, 53, 46, 0.7);
 }
 
 .nd_screens_grid {
@@ -3414,6 +3406,9 @@ html.theme-light .project #overview .cs_meta_item .role {
 }
 html.theme-light .project #overview .cs_meta_item p, html.theme-light .project #overview .cs_meta_item a {
   color: #666666;
+}
+html.theme-light .project #overview .tag {
+  color: rgba(51, 53, 46, 0.7);
 }
 html.theme-light .project #overview .stats-container {
   border-top-color: rgba(51, 53, 46, 0.12);

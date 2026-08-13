@@ -1805,6 +1805,13 @@ sup.reg {
   width: 100%;
 
   li { flex-shrink: 0; }
+
+  // View switcher lives at the end of the section nav
+  .cs_nav_view {
+    align-items: center;
+    display: flex;
+    margin-left: 0.75rem;
+  }
   will-change: transform;
   z-index: 200;
 
@@ -1879,33 +1886,22 @@ sup.reg {
   padding: 1.5rem 0;
 }
 
+// Consolidated project info: label/value pairs sized to their content,
+// no divider borders. Stacks cleanly on small screens.
 .cs_meta_row {
-  display: grid;
-  gap: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 3rem;
   grid-column: 1 / -1;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-
-  @media (max-width: 600px) { grid-template-columns: 1fr; }
 }
 
 .cs_meta_item {
-  border-left: 1px solid rgba($white, 0.1);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding: 0 1.5rem;
-
-  &:first-child {
-    border-left: none;
-    padding-left: 0;
-  }
 
   @media (max-width: 600px) {
-    border-left: none;
-    border-top: 1px solid rgba($white, 0.1);
-    padding: 1rem 0;
-
-    &:first-child { border-top: none; padding-top: 0; }
+    flex-basis: 100%;
   }
 
   // Value text (extracted <p> elements)
@@ -2323,7 +2319,7 @@ body.image-feed {
   .cs_tags_inline {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.35rem;
+    gap: 0.4rem;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -2476,18 +2472,21 @@ body.image-feed {
       }
     }
 
+    // Quiet outline pills in the site's chip language — no filled
+    // boxes, no uppercase shouting.
     .tag {
-      background-color: rgba($white, 0.5);
-      border-radius: 0.2rem;
-      color: $dark-default;
+      background: none;
+      border-radius: 2rem;
+      box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 35%, transparent);
+      color: rgba($white, 0.7);
       display: inline-block;
       font-family: $font;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      margin: 0.3rem 0.1rem;
-      padding: 0.25em 0.65em;
-      text-transform: uppercase;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0;
+      margin: 0.15rem 0.05rem;
+      padding: 0.25rem 0.7rem;
+      text-transform: none;
     }
   }
 
@@ -2651,6 +2650,7 @@ html.theme-light {
 
   .cs_meta_row { border-bottom-color: rgba($dark-default, 0.1); }
   .cs_meta_item .role { color: rgba($dark-default, 0.4); }
+  .cs_tags_inline .tag { color: rgba($dark-default, 0.7); }
 }
 
 
@@ -2854,6 +2854,8 @@ html.theme-light .project #overview {
     .role { color: rgba($dark-default, 0.4); }
     p, a { color: $text-muted; }
   }
+
+  .tag { color: rgba($dark-default, 0.7); }
 
   .stats-container {
     border-top-color: rgba($dark-default, 0.12);

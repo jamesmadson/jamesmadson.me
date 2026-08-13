@@ -370,11 +370,21 @@ function smoothScrollTo(targetY, duration) {
   var projectHeader = mainEl && mainEl.querySelector('section.about');
 
   if (hasCsContent) {
-    // Find the toggle already in the overview HTML
-    var viewToggle = document.querySelector('.cs_view_toggle');
-    if (viewToggle) {
-      csBtns = Array.prototype.slice.call(viewToggle.querySelectorAll('.cs_view_btn'));
-    }
+    // Build the case-study/image-feed view toggle inside the section
+    // nav (it used to live in the Overview meta row)
+    var toggleLi = document.createElement('li');
+    toggleLi.className = 'cs_nav_view';
+    toggleLi.innerHTML =
+      '<div class="cs_view_toggle" role="group" aria-label="Toggle case study view">' +
+        '<button class="cs_view_btn" data-view="case-study" aria-pressed="true" aria-label="Case study view">' +
+          '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><line x1="2" y1="4" x2="12" y2="4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="2" y1="7" x2="12" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="2" y1="10" x2="12" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>' +
+        '</button>' +
+        '<button class="cs_view_btn" data-view="image-feed" aria-pressed="false" aria-label="Image grid view">' +
+          '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2" y="2" width="4" height="4" rx="0.5" fill="currentColor"/><rect x="8" y="2" width="4" height="4" rx="0.5" fill="currentColor"/><rect x="2" y="8" width="4" height="4" rx="0.5" fill="currentColor"/><rect x="8" y="8" width="4" height="4" rx="0.5" fill="currentColor"/></svg>' +
+        '</button>' +
+      '</div>';
+    csNav.appendChild(toggleLi);
+    csBtns = Array.prototype.slice.call(toggleLi.querySelectorAll('.cs_view_btn'));
 
     // Place nav inside main, after the cover image when the page has
     // one (hero → cover → nav → content), else directly after the hero
