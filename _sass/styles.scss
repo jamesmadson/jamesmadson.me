@@ -1820,6 +1820,135 @@ sup.reg {
   max-width: 65ch;
 }
 
+// ── Canon case study — quiet, typographic, monochrome ──
+.canon_status {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.25rem 0 0;
+}
+
+.canon_chip {
+  border-radius: 2rem;
+  box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 40%, transparent);
+  color: rgba($white, 0.7);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.25rem 0.7rem;
+}
+
+.canon_status_meta {
+  color: rgba($white, 0.45);
+  font-family: $mono;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+}
+
+.canon_asof {
+  color: rgba($white, 0.4);
+  font-family: $mono;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  margin: 0.75rem 0 0;
+  text-transform: uppercase;
+}
+
+// Hairline-separated definition list, used for features and open questions
+.canon_list {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+
+  li {
+    border-top: 1px solid rgba($white, 0.1);
+    padding: 1.5rem 0;
+
+    &:last-child { padding-bottom: 0; }
+  }
+
+  h4 {
+    color: $white;
+    font-size: 1.05rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.4rem;
+  }
+
+  p {
+    color: rgba($white, 0.65);
+    font-size: 1rem;
+    line-height: 1.65;
+    margin: 0;
+    max-width: 62ch;
+  }
+}
+
+.canon_code_intro {
+  color: rgba($white, 0.65);
+  margin-top: 2.5rem;
+}
+
+.canon_code {
+  background: rgba($white, 0.04);
+  border-radius: 0.75rem;
+  color: rgba($white, 0.75);
+  font-family: $mono;
+  font-size: 0.8rem;
+  line-height: 1.7;
+  margin: 1rem 0 0;
+  overflow-x: auto;
+  padding: 1.25rem 1.5rem;
+
+  code { font-family: inherit; }
+}
+
+.canon_changelog {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    border-top: 1px solid rgba($white, 0.1);
+    color: rgba($white, 0.65);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1rem;
+    gap: 0.5rem 1.5rem;
+    line-height: 1.6;
+    padding: 0.9rem 0;
+  }
+}
+
+.canon_changelog_date {
+  color: rgba($white, 0.4);
+  flex-shrink: 0;
+  font-family: $mono;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  min-width: 6rem;
+}
+
+.canon_closing {
+  color: rgba($white, 0.65);
+  margin-top: 1.75rem;
+  max-width: 62ch;
+}
+
+html.theme-light {
+  .canon_chip { color: rgba($dark-default, 0.75); }
+  .canon_status_meta,
+  .canon_asof { color: rgba($dark-default, 0.5); }
+  .canon_list li { border-top-color: rgba($dark-default, 0.12); }
+  .canon_list h4 { color: $dark-default; }
+  .canon_list p,
+  .canon_code_intro,
+  .canon_closing { color: rgba($dark-default, 0.7); }
+  .canon_code { background: rgba($dark-default, 0.04); color: rgba($dark-default, 0.8); }
+  .canon_changelog li { border-top-color: rgba($dark-default, 0.12); color: rgba($dark-default, 0.7); }
+  .canon_changelog_date { color: rgba($dark-default, 0.45); }
+}
+
 // AI practice page — text-forward work list
 .practice_work { margin-top: 4rem; }
 
@@ -1882,6 +2011,16 @@ html.theme-light .practice_list {
     will-change: transform;
   }
 
+  // A composed, typographic cover has no spare image to pan through —
+  // it matches the frame and stays put.
+  .cs_cover_img--flat {
+    aspect-ratio: 2 / 1;
+    transform: none !important;
+    will-change: auto;
+
+    @media (max-width: 768px) { aspect-ratio: 2 / 1; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .cs_cover_img { transform: translateY(-25%); }
   }
@@ -1895,7 +2034,7 @@ html.theme-light .practice_list {
     navigation: auto;
   }
 
-  @each $mod in nd, viz, ns, nq, pecan {
+  @each $mod in nd, viz, ns, nq, pecan, canon {
     .hwc.#{$mod} .hwc_img img,
     .cs_cover_img.vt-#{$mod} {
       view-transition-name: vt-#{$mod};

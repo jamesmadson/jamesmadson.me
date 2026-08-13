@@ -29,6 +29,16 @@
       "image2x": "/img/visualization_community/visualization_community_cover@2x.png",
       "alt": "Visualization Community",
       "loading": "lazy"
+    },
+    {
+      "href": "/case_studies/canon/",
+      "mod": "canon",
+      "company": "Self-initiated",
+      "title": "Canon",
+      "image": "/img/canon/canon_cover.png",
+      "image2x": "/img/canon/canon_cover@2x.png",
+      "alt": "Canon, a curated gallery of design skills for AI agents",
+      "loading": "lazy"
     }
   ],
   "projects": [

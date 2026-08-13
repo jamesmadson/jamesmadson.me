@@ -735,7 +735,7 @@ function smoothScrollTo(targetY, duration) {
 // via CSS instead.
 // ============================================================
 (function () {
-  var img = document.querySelector('.cs_cover_img');
+  var img = document.querySelector('.cs_cover_img:not(.cs_cover_img--flat)');
   if (!img) return;
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 

@@ -1,0 +1,326 @@
+---
+permalink: /case_studies/canon/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="color-scheme" content="light dark">
+  <title>Canon Case Study – James Madson</title>
+  <meta name="description" content="Canon is a curated gallery of design skills for AI agents: hand-picked, license-verified, and written up with a point of view. A build log in progress by James Madson.">
+  <meta name="author" content="James Madson">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <link rel="canonical" href="https://jamesmadson.me/case_studies/canon/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://jamesmadson.me/case_studies/canon/">
+  <meta property="og:title" content="Canon Case Study – James Madson">
+  <meta property="og:description" content="A curated gallery of design skills for AI agents: hand-picked, license-verified, and written up with a point of view. Building in the open.">
+  <meta property="og:image" content="https://jamesmadson.me/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="James Madson">
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Canon Case Study – James Madson">
+  <meta name="twitter:description" content="A curated gallery of design skills for AI agents. Building in the open.">
+  <meta name="twitter:image" content="https://jamesmadson.me/img/og-image.png">
+
+  <link rel="icon" href="../icons/favicon.ico?v={{ build.version }}" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg?v={{ build.version }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="../icons/apple-touch-icon.png?v={{ build.version }}">
+  <link rel="manifest" href="../icons/site.webmanifest">
+  <link rel="mask-icon" href="../icons/safari-pinned-tab.svg" color="#282829">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/styles.css?v={{ build.version }}" />
+
+  <!-- Google tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HL3TB4H7XS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-HL3TB4H7XS');
+  </script>
+  <script>!function(){var e=document.documentElement,t=localStorage.getItem("theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");e.className=e.className.replace(/\btheme-\S+/g,"");e.classList.add("theme-"+t)}();</script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "A curated gallery of design skills for AI agents.",
+    "name": "Canon Case Study",
+    "url": "https://jamesmadson.me/case_studies/canon/",
+    "author": {
+      "@type": "Person",
+      "name": "James Madson",
+      "url": "https://jamesmadson.me",
+      "jobTitle": "Product Design Engineer"
+    },
+    "about": {
+      "@type": "SoftwareApplication",
+      "name": "Canon",
+      "applicationCategory": "DesignApplication"
+    },
+    "description": "Canon is a self-initiated, in-progress curated gallery of design skills for AI agents: 16 skills read in full and license-verified, 4 composed kits with generated install scripts, structure maps generated from real repositories, and 114 tests. Built in Astro with schema-validated content collections."
+  }
+  </script>
+</head>
+
+<body>
+  {% include "partials/site-nav.njk" %}
+
+<main id="main-content">
+  <section class="about cs_hero canon_hero fadeIn">
+    <div class="container">
+      <div class="grid_12">
+        <h1 class="project_title">
+          <span class="case_study_label">Canon</span>
+          A curated gallery of design skills for AI agents.
+        </h1>
+        <p class="canon_status">
+          <span class="canon_chip">In progress</span>
+          <span class="canon_status_meta">Self-initiated · Updated August 2026</span>
+        </p>
+        <p class="cs_hero_fact">Building in the open. The gallery works; kits are landing now. Notes below are current as of this week and will change.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container cs_cover">
+    <div class="grid_12">
+      <img class="cs_cover_img cs_cover_img--flat vt-canon" src="/img/canon/canon_cover_wide.png" srcset="/img/canon/canon_cover_wide.png 1x, /img/canon/canon_cover_wide@2x.png 2x" alt="Canon cover artwork" width="1600" height="800">
+    </div>
+  </div>
+
+  <ul class="case_study_nav">
+    <li><a href="#overview" id="overview_link">Overview</a></li>
+    <li><a href="#problem" id="problem_link">Problem</a></li>
+    <li><a href="#now" id="now_link">Where it is</a></li>
+    <li><a href="#designing" id="designing_link">Designing it</a></li>
+    <li><a href="#dogfooding" id="dogfooding_link">Dogfooding</a></li>
+    <li><a href="#built" id="built_link">How it is built</a></li>
+    <li><a href="#open" id="open_link">Open questions</a></li>
+    <li><a href="#top" id="top_link">Back to Top</a></li>
+  </ul>
+
+  <section class="project">
+    <div class="container cs_content" id="overview">
+      <div class="grid_12">
+        <h3>Overview</h3>
+        <div class="cs_meta_row">
+          <div class="cs_meta_item">
+            <span class="role">Client</span>
+            <p>Self-initiated</p>
+          </div>
+          <div class="cs_meta_item">
+            <span class="role">Role</span>
+            <p>Design and build, end to end</p>
+          </div>
+          <div class="cs_meta_item">
+            <span class="role">Status</span>
+            <p>In progress, coming soon at canon.design</p>
+          </div>
+          <div class="cs_meta_item">
+            <span class="role">Tags</span>
+            <ul class="cs_tags_inline">
+              <li class="tag">Editorial Curation</li>
+              <li class="tag">Product Design</li>
+              <li class="tag">Design Systems</li>
+              <li class="tag">Front-End Development</li>
+              <li class="tag">AI Tooling</li>
+            </ul>
+          </div>
+        </div>
+        <p class="leadin">Designers have started handing instructions to AI agents: SKILL.md files that tell Claude, Cursor, or Codex how to think about motion, accessibility, or typography. Finding good ones means trawling GitHub. Canon is the editorial answer, hand-picked, license-verified, and written up with a point of view. Sidebar.io meets an awesome-list, not a scraped registry.</p>
+
+        <div class="stats-container canon_stats">
+          <div class="stat">
+            <div class="stat_number">16</div>
+            <p class="stat_info">Curated skills, each read in full</p>
+          </div>
+          <div class="stat">
+            <div class="stat_number">4</div>
+            <p class="stat_info">Kits composed for a job</p>
+          </div>
+          <div class="stat">
+            <div class="stat_number">114</div>
+            <p class="stat_info">Tests across content, filters, and install scripts</p>
+          </div>
+          <div class="stat">
+            <div class="stat_number">0</div>
+            <p class="stat_info">Colors in the finished palette</p>
+          </div>
+        </div>
+        <p class="canon_asof">As of August 2026</p>
+      </div>
+    </div>
+
+    <div class="container cs_content" id="problem">
+      <div class="grid_3">
+        <h3>The problem</h3>
+      </div>
+      <div class="grid_9">
+        <div class="cs_body_cols">
+          <p>The directories that existed were aggregators: thousands of entries, one-line descriptions, view counts, no judgment. They tell you a skill exists.</p>
+          <p>They do not tell you whether it is any good, what is actually inside it, or whether you are allowed to use it. And nothing showed you what you were installing until after you installed it.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container cs_content" id="now">
+      <div class="grid_3">
+        <h3>Where it is now</h3>
+      </div>
+      <div class="grid_9">
+        <p>Sixteen skills, each read in full, license-checked, and given an original write-up with an honest gotcha section. Every entry shows which agents it works with, what is inside the package, and where it came from.</p>
+        <p>Three things no other directory does:</p>
+        <ul class="canon_list">
+          <li>
+            <h4>Structure maps</h4>
+            <p>An interactive diagram of every skill's actual file tree and internal outline, generated from the real GitHub repo, so you can see what you are installing before you install it.</p>
+          </li>
+          <li>
+            <h4>Kits</h4>
+            <p>Skills composed for a job: a full redesign, a marketing site, a product UI, a mobile review. Each one phased in working order, with a generated one-command install script and a portable digest for tools that cannot run skills natively.</p>
+          </li>
+          <li>
+            <h4>An editorial voice</h4>
+            <p>Ratings that mean something, and entries I turned down for not being good enough.</p>
+          </li>
+        </ul>
+
+        <p class="canon_code_intro">The site is data, not pages. A skill entry, abbreviated:</p>
+        <pre class="canon_code"><code>slug: design-motion-principles
+name: Design Motion Principles
+tagline: &gt;-
+  Three named motion philosophies, weighted by project context,
+  with a frequency gate that decides whether it should animate at all.
+sourceUrl: https://github.com/kylezantos/design-motion-principles
+sourceAuthor: Kyle Zantos
+tools: [claude-code, cursor, generic]
+categories: [motion]
+rating: 5
+lastVerified: 2026-08-11
+fileTree:                 # generated from the real repo
+  - path: SKILL.md
+    type: file
+  - path: references/emil-kowalski.md
+    type: file
+contentOutline:           # parsed from the skill's own headings
+  - title: The Frequency Gate
+    subsections: [Duration Guidelines, The Golden Rule]</code></pre>
+
+        <p class="canon_code_intro">And a kit, which is just composition with reasons attached:</p>
+        <pre class="canon_code"><code>slug: full-redesign
+name: Full Redesign
+tagline: Brand foundation through pre-ship audits, the long arc, in working order.
+phases:
+  - title: Brand foundation
+    entries:
+      - skill: brand-guidelines
+        why: Encode the real palette, type, and logo rules once so every
+             later pass inherits them instead of improvising.
+      - skill: frontend-design
+        why: Forces a named point of view before pixels.
+  - title: Pre-ship audits
+    entries:
+      - skill: better-accessibility
+        why: Keyboard paths and hit areas checked before launch, not after
+             a complaint.
+digestPath: /kits/full-redesign-digest.md</code></pre>
+      </div>
+    </div>
+
+    <div class="container cs_content" id="designing">
+      <div class="grid_3">
+        <h3>Designing it</h3>
+      </div>
+      <div class="grid_9">
+        <div class="cs_body_cols">
+          <p>The visual system went through three passes: a Swiss-modernist grid direction (Aicher, Müller-Brockmann, the Vignelli Canon the project is named for), then an are.na-influenced density pass that turned cards into flush hairline tiles, then a final strip to full monochrome.</p>
+          <p>Color kept doing compositional work that type and value should have been doing, so it went. That includes hover and focus, which now shift value instead of hue.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container cs_content" id="dogfooding">
+      <div class="grid_3">
+        <h3>Dogfooding</h3>
+      </div>
+      <div class="grid_9">
+        <div class="cs_body_cols">
+          <p>Canon curates a mobile-review skill suite, so I installed it and pointed it at Canon. It found twelve objective platform defects and five design decisions I had been avoiding: sub-44px tap targets, iOS input zoom, a filter panel that pushed every result below the fold on a phone.</p>
+          <p>I fixed the defects and made the calls. The best proof a curation site can offer is that its curator uses the things.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container cs_content" id="built">
+      <div class="grid_3">
+        <h3>How it is built</h3>
+      </div>
+      <div class="grid_9">
+        <div class="cs_body_cols">
+          <p>Astro with schema-validated content collections, so a malformed entry fails the build instead of shipping.</p>
+          <p>Every feature runs spec, then plan, then implementation, with review gates at each step. 114 tests cover the content corpus, the filter engine, and the install-script generator.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container cs_content" id="open">
+      <div class="grid_3">
+        <h3>Open questions</h3>
+      </div>
+      <div class="grid_9">
+        <p>The parts I have not settled, kept here on purpose:</p>
+        <ul class="canon_list">
+          <li>
+            <h4>Where curation stops</h4>
+            <p>Sixteen entries is small enough to read everything. It will not stay that way, and "curated" stops meaning anything past some number I have not found yet.</p>
+          </li>
+          <li>
+            <h4>Whether the digest travels</h4>
+            <p>Kits ship a one-file digest for tools that cannot run skills. Figma accepts single-file skills natively, so the same file may work in two places. Unverified.</p>
+          </li>
+          <li>
+            <h4>What happens when the format moves</h4>
+            <p>An open packaging standard is forming, backed by several of the big agent vendors. Betting on it early is either free portability or a rewrite.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container cs_content" id="changelog">
+      <div class="grid_3">
+        <h3>Changelog</h3>
+      </div>
+      <div class="grid_9">
+        <ul class="canon_changelog">
+          <li><span class="canon_changelog_date">Aug 2026</span> Kits: four curated bundles with generated install scripts.</li>
+          <li><span class="canon_changelog_date">Aug 2026</span> Stripped the palette to monochrome; hover and focus now shift value, not hue.</li>
+          <li><span class="canon_changelog_date">Aug 2026</span> Ran the site's own mobile-review skills against it; fixed twelve defects.</li>
+          <li><span class="canon_changelog_date">Jul 2026</span> First eleven skills, structure maps, faceted gallery.</li>
+        </ul>
+        <p class="canon_closing">Still building. The gallery works today, kits land next, and the parts above are genuinely undecided.</p>
+        <p class="canon_closing"><a href="https://canon.design" class="inline_link" target="_blank" rel="noreferrer">Coming soon at canon.design</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+{% include "partials/footer.njk" %}
+
+<script src="/assets/js/site.js?v={{ build.version }}" defer></script>
+</body>
+</html>

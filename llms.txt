@@ -8,13 +8,14 @@
 - [PeCan](https://jamesmadson.me/case_studies/pecan/): Redesign of St. Jude Cloud's pediatric cancer knowledge base — data from 9,000+ patient samples, used by researchers worldwide. Visual identity, UX flows, design system, and front-end code shipped as one release.
 - [Visualization Community](https://jamesmadson.me/case_studies/visualization_community/): A platform where St. Jude researchers publish and share interactive genomic visualizations. 80+ published visualizations; the top community piece has 68k views.
 - [NatureScore](https://jamesmadson.me/case_studies/naturescore/): UI/UX for a 0–100 nature rating covering every US address. NatureQuant's engineering team built the scoring model; James made it legible through maps and data visualization. Foundation for NatureDose and the open data tools.
+- [Canon](https://jamesmadson.me/case_studies/canon/): Self-initiated and in progress. A curated gallery of design skills for AI agents: 16 skills read in full and license-verified, 4 composed kits with generated install scripts, structure maps generated from real repositories, 114 tests, monochrome by decision. Built in Astro with schema-validated content collections.
 - [St. Jude Cloud](https://jamesmadson.me/case_studies/stjudecloud/): Design clarity and cohesion across the research suite behind PeCan and the Visualization Community.
 
 ## Currently working on
 
 - Pfizer (contract): designing and building internal AI tools that help product teams move faster.
 - NatureQuant: automating design testing for Juniper, the design system behind NatureDose.
-- Canon: a curated gallery of design skills and design skill kits.
+- Canon: a curated gallery of design skills and design skill kits, building in the open at canon.design.
 - A solo album and an improvisational metal guitar project.
 
 ## How he works
