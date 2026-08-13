@@ -233,7 +233,10 @@ body {
   color: $text-muted;
   font-family: $font;
   margin: 0;
-  overflow-x: hidden;
+  // clip, not hidden: overflow-x hidden turns body into a scroll
+  // container, which breaks position: sticky for every descendant
+  // (the case study section nav stopped sticking because of it).
+  overflow-x: clip;
   padding-top: 5rem;
   position: relative;
   transition: background-color 0.5s ease;
@@ -1908,13 +1911,6 @@ sup.reg {
     text-transform: uppercase;
     white-space: nowrap;
   }
-
-  @media (max-width: 768px) { display: none; }
-}
-
-// View toggle bar (legacy — no longer used as standalone)
-.cs_view_toggle_bar {
-  padding: 0 0 0.75rem;
 }
 
 // Meta bar — sits below the project title, contains toggle + overview fields
@@ -2161,7 +2157,10 @@ body.image-feed {
   #overview .grid_12 { display: block !important; }
   #overview .grid_12 > *:not(.cs_meta_row) { display: none !important; }
   .cs_image_feed { display: block !important; }
-  .case_study_nav { display: none !important; }
+  // Keep the nav: it now hosts the view toggle (the only way back to
+  // case-study view). Collapse it to the back link + toggle, since the
+  // section links point at hidden content in feed mode.
+  .case_study_nav li:not(.cs_nav_back):not(.cs_nav_view) { display: none !important; }
 }
 
 
@@ -2465,6 +2464,12 @@ body.image-feed {
 
   #overview {
     h2, h3, h4, h5, li, a, .leadin { color: $white; }
+
+    // The ID-scoped link color above outranks the global hover rules,
+    // which flip these pills to a light background — pair the text
+    // color at the same specificity or it stays white-on-white.
+    a.view_project:hover,
+    a.btn:hover { color: $dark-default; }
 
     a p { transition: all 0.4s ease; }
     a:hover p { color: $white; transition: all 0.4s ease; }
@@ -2884,6 +2889,11 @@ html.theme-light .cs_next_project {
 // Light mode overrides for #overview — all dark-mode colors become readable on light bg
 html.theme-light .project #overview {
   h2, h3, h4, h5, li, a, .leadin { color: $dark-default; }
+
+  // Mirror of the dark-mode pairing: light hover flips pills to a dark
+  // background, so the ID-scoped text must go light.
+  a.view_project:hover,
+  a.btn:hover { color: $white; }
   p { color: $text-muted; }
 
   .cs_meta_row { border-bottom-color: rgba($dark-default, 0.1); }

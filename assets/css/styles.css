@@ -568,7 +568,7 @@ body {
   color: #666666;
   font-family: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin: 0;
-  overflow-x: hidden;
+  overflow-x: clip;
   padding-top: 5rem;
   position: relative;
   transition: background-color 0.5s ease;
@@ -2361,15 +2361,6 @@ sup.reg {
   text-transform: uppercase;
   white-space: nowrap;
 }
-@media (max-width: 768px) {
-  .case_study_nav {
-    display: none;
-  }
-}
-
-.cs_view_toggle_bar {
-  padding: 0 0 0.75rem;
-}
 
 .cs_meta_bar {
   border-bottom: 1px solid rgba(237, 238, 232, 0.12);
@@ -2640,7 +2631,7 @@ body.image-feed #overview .grid_12 > *:not(.cs_meta_row) {
 body.image-feed .cs_image_feed {
   display: block !important;
 }
-body.image-feed .case_study_nav {
+body.image-feed .case_study_nav li:not(.cs_nav_back):not(.cs_nav_view) {
   display: none !important;
 }
 
@@ -3009,6 +3000,10 @@ body.image-feed .case_study_nav {
 }
 .project #overview h2, .project #overview h3, .project #overview h4, .project #overview h5, .project #overview li, .project #overview a, .project #overview .leadin {
   color: #EDEEE8;
+}
+.project #overview a.view_project:hover,
+.project #overview a.btn:hover {
+  color: #33352E;
 }
 .project #overview a p {
   transition: all 0.4s ease;
@@ -3425,6 +3420,10 @@ html.theme-light .cs_next_project .cs_next_link:hover {
 
 html.theme-light .project #overview h2, html.theme-light .project #overview h3, html.theme-light .project #overview h4, html.theme-light .project #overview h5, html.theme-light .project #overview li, html.theme-light .project #overview a, html.theme-light .project #overview .leadin {
   color: #33352E;
+}
+html.theme-light .project #overview a.view_project:hover,
+html.theme-light .project #overview a.btn:hover {
+  color: #EDEEE8;
 }
 html.theme-light .project #overview p {
   color: #666666;
