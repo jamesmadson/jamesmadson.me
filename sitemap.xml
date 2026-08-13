@@ -16,11 +16,6 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://jamesmadson.me/music/</loc>
-    <priority>0.6</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
     <loc>https://jamesmadson.me/colophon/</loc>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
@@ -54,5 +49,11 @@
     <loc>https://jamesmadson.me/case_studies/visualization_community/</loc>
     <priority>0.7</priority>
     <changefreq>yearly</changefreq>
+  </url>
+  <url>
+    <loc>https://jamesmadson.me/resume/</loc>
+  </url>
+  <url>
+    <loc>https://jamesmadson.me/contact/</loc>
   </url>
 </urlset>

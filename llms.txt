@@ -1,0 +1,31 @@
+# James Madson — Product Design Engineer
+
+> Personal portfolio of James Madson, a multi-disciplinary product design engineer and builder in Seattle. 20 years across brand, UI/UX, design systems, data visualization, and front-end development. Builder first: prototypes in code rather than static screens, and works with AI tooling (Claude, Cursor, Figma) from concept through production.
+
+## Selected work and outcomes
+
+- [NatureDose](https://jamesmadson.me/case_studies/naturedose/): NatureQuant's nature-prescription app, taken from zero to launch — brand identity through production screens. Featured 3 times by Apple on the App Store; 79% of its iOS reviews are 5 stars (4.6 average).
+- [PeCan](https://jamesmadson.me/case_studies/pecan/): Redesign of St. Jude Cloud's pediatric cancer knowledge base — data from 9,000+ patient samples, used by researchers worldwide. Visual identity, UX flows, design system, and front-end code shipped as one release.
+- [Visualization Community](https://jamesmadson.me/case_studies/visualization_community/): A platform where St. Jude researchers publish and share interactive genomic visualizations. 80+ published visualizations; the top community piece has 68k views.
+- [NatureScore](https://jamesmadson.me/case_studies/naturescore/): UI/UX for a 0–100 nature rating covering every US address. NatureQuant's engineering team built the scoring model; James made it legible through maps and data visualization. Foundation for NatureDose and the open data tools.
+- [St. Jude Cloud](https://jamesmadson.me/case_studies/stjudecloud/): Design clarity and cohesion across the research suite behind PeCan and the Visualization Community.
+
+## Currently working on
+
+- Pfizer (contract): prototyping internal AI tools that help product teams design and build faster.
+- NatureQuant: automating design testing for Juniper, the design system behind NatureDose.
+- Canon: a gallery of design skills for working with AI.
+- A solo album and an improvisational metal guitar project.
+
+## How he works
+
+In his own words: "I'm the 6th man: not always in the spotlight, but reliable enough that teams move faster because of it." Values, as listed on the site: useful, clear, resonant, lasting. Leads through systems and mentorship rather than title, pitches ideas early, facilitates feedback often, and credits collaborators explicitly (the NatureScore case study names the engineering team behind the model). The 404 page quotes Gandalf.
+
+## Pages
+
+- [Home](https://jamesmadson.me/)
+- [About](https://jamesmadson.me/about/)
+- [Work](https://jamesmadson.me/work/)
+- [Resume](https://jamesmadson.me/resume/)
+- [Contact](https://jamesmadson.me/contact/)
+- [Colophon — how this site is built](https://jamesmadson.me/colophon/)
