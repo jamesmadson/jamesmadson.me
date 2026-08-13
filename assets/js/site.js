@@ -269,7 +269,12 @@ console.log(
       if (entry.isIntersecting) {
         links.forEach(function (l) { l.classList.remove('active'); });
         var match = sections.find(function (s) { return s.el === entry.target; });
-        if (match) match.link.classList.add('active');
+        if (match) {
+          match.link.classList.add('active');
+          // Keep the mobile disclosure label showing where you are
+          var current = csNav.querySelector('.cs_nav_current');
+          if (current) current.textContent = match.link.textContent.trim();
+        }
       }
     });
   }, { rootMargin: '-5% 0px -60% 0px', threshold: 0 });
@@ -409,6 +414,33 @@ function smoothScrollTo(targetY, duration) {
   var mainEl = document.querySelector('main');
   var projectHeader = mainEl && mainEl.querySelector('section.about');
 
+  // On phones the section list becomes a disclosure: the bar shows the
+  // current section, tapping opens the full list. Horizontal scrolling
+  // a row of pills hid most of the sections and felt broken.
+  function buildSectionDisclosure() {
+    var toggle = document.createElement('li');
+    toggle.className = 'cs_nav_disclosure';
+    toggle.innerHTML =
+      '<button type="button" aria-expanded="false">' +
+        '<span class="cs_nav_current">Sections</span>' +
+        '<svg width="12" height="12" viewBox="0 0 18 18" fill="none" aria-hidden="true">' +
+          '<path d="M4.5 6.75 9 11.25l4.5-4.5" stroke="currentColor" stroke-width="1.75" ' +
+          'stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+      '</button>';
+    var btn = toggle.querySelector('button');
+    btn.addEventListener('click', function () {
+      var open = csNav.classList.toggle('sections-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    csNav.addEventListener('click', function (e) {
+      if (e.target.closest('a')) {
+        csNav.classList.remove('sections-open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+    return toggle;
+  }
+
   // Case studies get a "← Work" link at the start of the section nav
   // (the hero stays clean; the way back rides the sticky nav instead)
   if (window.location.pathname.indexOf('/case_studies/') === 0) {
@@ -417,6 +449,7 @@ function smoothScrollTo(targetY, duration) {
     backLi.innerHTML =
       '<a href="/work/"><svg width="13" height="13" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M14 7.5H2M7 2 2 7.5 7 13" stroke="currentColor" stroke-width="1.8" stroke-linejoin="miter"/></svg>Work</a>';
     csNav.insertBefore(backLi, csNav.firstChild);
+    csNav.insertBefore(buildSectionDisclosure(), backLi.nextSibling);
   }
 
   if (hasCsContent) {
@@ -627,17 +660,22 @@ function smoothScrollTo(targetY, duration) {
     }
   });
 
-  // --- Hide primary nav when case study nav is stuck at top ---
+  // --- Hide the primary header the moment the section nav reaches it ---
+  // Measured live on every scroll rather than cached at load: the old
+  // version stored the nav's document position once, which went stale
+  // as soon as an image finished loading or the window resized, and it
+  // only fired after the nav had already stuck — so the two bars
+  // collided on the way up.
   var siteHdr = document.querySelector('.site_header');
   if (siteHdr) {
-    var navOriginalTop = csNav.getBoundingClientRect().top + window.pageYOffset;
-    window.addEventListener('scroll', function () {
-      if (window.pageYOffset >= navOriginalTop) {
-        siteHdr.classList.add('cs-nav-stuck');
-      } else {
-        siteHdr.classList.remove('cs-nav-stuck');
-      }
-    }, { passive: true });
+    var syncHeader = function () {
+      var navTop = csNav.getBoundingClientRect().top;
+      var hdrH = siteHdr.offsetHeight || 0;
+      siteHdr.classList.toggle('cs-nav-stuck', navTop <= hdrH);
+    };
+    window.addEventListener('scroll', syncHeader, { passive: true });
+    window.addEventListener('resize', syncHeader);
+    syncHeader();
   }
 
   // --- Dot nav scroll spy ---

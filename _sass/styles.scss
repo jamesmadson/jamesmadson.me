@@ -422,6 +422,10 @@ ul {
   z-index: 300;
 
   &.cs-nav-stuck {
+    // The page-load animation uses fill-mode forwards, which pins
+    // transform and opacity to its end frame and outranks plain
+    // declarations. Clearing the animation lets the hide apply.
+    animation: none;
     opacity: 0;
     pointer-events: none;
     transform: translateY(-100%);
@@ -1869,12 +1873,14 @@ sup.reg {
 }
 
 // Hairline-separated definition list, used for features and open questions
-.canon_list {
+.canon_list,
+.project .canon_list {
   list-style: none;
   margin: 1.5rem 0 0;
   padding: 0;
 
   li {
+    list-style: none;
     border-top: 1px solid rgba($white, 0.1);
     padding: 1.5rem 0;
 
@@ -2114,7 +2120,10 @@ html.theme-light .practice_list {
     margin-left: 0.75rem;
   }
 
-  // "← Work" rides the sticky nav so the hero stays clean
+  // Mobile section disclosure: hidden on desktop, where the full row fits
+  .cs_nav_disclosure { display: none; }
+
+    // "← Work" rides the sticky nav so the hero stays clean
   .cs_nav_back {
     margin-right: 0.75rem;
 
@@ -4310,23 +4319,88 @@ html.theme-dark .site_footer .site_footer_link {
 @media (max-width: 768px) {
   .site_header { padding-left: 1.25rem; padding-right: 1.25rem; }
   .cs_body_cols { column-count: 1; }
+  // Phones get a disclosure instead of a scrolling pill row: the bar
+  // shows where you are, tapping reveals the full list. Scrolling
+  // horizontally kept most sections off-screen with no affordance.
   .case_study_nav {
-    -webkit-overflow-scrolling: touch;
-    flex-wrap: nowrap;
+    align-items: center;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    gap: 0.25rem;
     justify-content: flex-start;
-    overflow-x: auto;
-    padding: 0.4rem 1.25rem;
-    scrollbar-width: none;
-
-    &::-webkit-scrollbar { display: none; }
+    overflow: visible;
+    padding: 0.35rem 0.75rem;
+    row-gap: 0;
+    width: 100%;
 
     li { flex-shrink: 0; }
 
+    .cs_nav_view { margin-left: 0; }
+
+    // Section links collapse behind the disclosure
+    li:not(.cs_nav_back):not(.cs_nav_view):not(.cs_nav_disclosure) {
+      display: none;
+      width: 100%;
+    }
+
+    .cs_nav_disclosure {
+      display: block;
+      // Take the leftover space, and be willing to give it back so the
+      // back link and view toggle always stay on screen.
+      flex: 1 1 auto;
+      min-width: 0;
+
+      button {
+        align-items: center;
+        background: none;
+        border: none;
+        color: inherit;
+        cursor: pointer;
+        display: flex;
+        font-family: $font;
+        font-size: 0.8rem;
+        font-weight: 500;
+        gap: 0.35rem;
+        justify-content: center;
+        letter-spacing: 0.02em;
+        margin: 0 auto;
+        min-height: 44px;
+        padding: 0 0.5rem;
+        text-transform: uppercase;
+        width: 100%;
+      }
+
+      svg { transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+    }
+
+    .cs_nav_current {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &.sections-open {
+      .cs_nav_disclosure svg { transform: rotate(180deg); }
+
+      li:not(.cs_nav_back):not(.cs_nav_view):not(.cs_nav_disclosure) {
+        display: block;
+      }
+
+      a {
+        display: flex;
+        justify-content: flex-start;
+        min-height: 44px;
+        width: 100%;
+      }
+    }
+
     a {
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       padding: 0.4rem 0.65rem;
       white-space: nowrap;
     }
+
+    .cs_nav_back { margin-right: 0.25rem; }
   }
   // Stack all grid columns to single column
   [class^="grid_"] { grid-column: span 1 !important; }
