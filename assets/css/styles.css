@@ -1379,6 +1379,11 @@ header.about_header .about_bio .about_me + .about_me {
   margin-top: 1.25rem;
 }
 
+.about_header_meta {
+  align-self: end;
+  padding-bottom: 0.6rem;
+}
+
 .about_header_side {
   display: flex;
   flex-direction: column;
@@ -2782,12 +2787,12 @@ html.theme-light .practice_list p {
 
 .cs_view_toggle {
   align-self: flex-start;
-  background: rgba(237, 238, 232, 0.07);
-  border: 1px solid rgba(237, 238, 232, 0.12);
-  border-radius: 2rem;
+  background: none;
+  border: none;
+  border-radius: 0;
   display: grid;
+  gap: 0.25rem;
   grid-template-columns: 1fr 1fr;
-  overflow: hidden;
 }
 @media (pointer: coarse) {
   .cs_view_toggle .cs_view_btn {
@@ -2811,13 +2816,17 @@ html.theme-light .practice_list p {
   display: block;
   pointer-events: none;
 }
+.cs_view_toggle .cs_view_btn:hover {
+  color: rgba(237, 238, 232, 0.8);
+}
 .cs_view_toggle .cs_view_btn.active {
-  background: rgba(237, 238, 232, 0.14);
+  background: none;
   color: #EDEEE8;
 }
 .cs_view_toggle .cs_view_btn:focus-visible {
+  border-radius: 0.4rem;
   outline: 2px solid rgba(237, 238, 232, 0.6);
-  outline-offset: -2px;
+  outline-offset: 0;
 }
 
 .theme-light .cs_meta_label {
@@ -2830,10 +2839,6 @@ html.theme-light .practice_list p {
   border-color: rgba(51, 53, 46, 0.15);
   color: rgba(51, 53, 46, 0.7);
 }
-.theme-light .cs_view_toggle {
-  background: rgba(51, 53, 46, 0.06);
-  border-color: rgba(51, 53, 46, 0.1);
-}
 .theme-light .cs_view_btn {
   color: rgba(51, 53, 46, 0.4);
 }
@@ -2841,7 +2846,7 @@ html.theme-light .practice_list p {
   outline-color: rgba(51, 53, 46, 0.5);
 }
 .theme-light .cs_view_btn.active {
-  background: rgba(51, 53, 46, 0.1);
+  background: none;
   color: #33352E;
 }
 

@@ -883,6 +883,14 @@ header.about_header {
 }
 
 // About page meta — right column (time/weather + links)
+// Work page header: page title left, one-line description right,
+// aligned to the bottom of the row so it sits on the title's baseline
+// instead of floating in the middle of an oversized column.
+.about_header_meta {
+  align-self: end;
+  padding-bottom: 0.6rem;
+}
+
 // About header left column: title with time/weather and links
 // stacked beneath it. No separator line.
 .about_header_side {
@@ -2327,14 +2335,16 @@ html.theme-light .practice_list {
   text-transform: uppercase;
 }
 
+// Two plain icons, no pill or segmented-control chrome. State reads
+// from the icon's own value rather than a filled container.
 .cs_view_toggle {
   align-self: flex-start;
-  background: rgba($white, 0.07);
-  border: 1px solid rgba($white, 0.12);
-  border-radius: 2rem;
+  background: none;
+  border: none;
+  border-radius: 0;
   display: grid;
+  gap: 0.25rem;
   grid-template-columns: 1fr 1fr;
-  overflow: hidden;
 
   .cs_view_btn {
     // Icon buttons stay compact visually; touch devices get the full
@@ -2354,14 +2364,17 @@ html.theme-light .practice_list {
 
     svg { display: block; pointer-events: none; }
 
+    &:hover { color: rgba($white, 0.8); }
+
     &.active {
-      background: rgba($white, 0.14);
+      background: none;
       color: $white;
     }
 
     &:focus-visible {
+      border-radius: 0.4rem;
       outline: 2px solid rgba($white, 0.6);
-      outline-offset: -2px;
+      outline-offset: 0;
     }
   }
 }
@@ -2371,9 +2384,8 @@ html.theme-light .practice_list {
   .cs_meta_label                { color: rgba($dark-default, 0.55); }
   .cs_meta_item > p             { color: rgba($dark-default, 0.8); }
   .cs_meta_item > ul li         { border-color: rgba($dark-default, 0.15); color: rgba($dark-default, 0.7); }
-  .cs_view_toggle               { background: rgba($dark-default, 0.06); border-color: rgba($dark-default, 0.1); }
   .cs_view_btn                  { color: rgba($dark-default, 0.4); &:focus-visible { outline-color: rgba($dark-default, 0.5); } }
-  .cs_view_btn.active           { background: rgba($dark-default, 0.1); color: $dark-default; }
+  .cs_view_btn.active           { background: none; color: $dark-default; }
 }
 
 
