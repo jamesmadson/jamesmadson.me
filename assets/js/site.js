@@ -731,3 +731,29 @@ function smoothScrollTo(targetY, duration) {
   window.addEventListener('resize', retarget);
   retarget();
 }());
+
+// ============================================================
+// Services list — staggered rise on scroll (About page)
+// CSS-driven: JS only marks readiness and entry, so content is never
+// hidden without JS and reduced-motion skips the whole thing.
+// ============================================================
+(function () {
+  var section = document.querySelector('.about_services');
+  if (!section) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) return;
+
+  var items = section.querySelectorAll('.services_list li');
+  items.forEach(function (li, i) { li.style.setProperty('--stagger-i', i); });
+  section.classList.add('stagger_ready');
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        section.classList.add('in_view');
+        io.disconnect();
+      }
+    });
+  }, { threshold: 0.15 });
+  io.observe(section);
+}());

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 :root {
   color-scheme: light dark;
 }
@@ -1423,6 +1424,16 @@ html.theme-light .about_now .now_note {
   color: rgba(51, 53, 46, 0.45);
 }
 
+.about_services.stagger_ready .services_list li {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--stagger-i, 0) * 70ms);
+}
+.about_services.stagger_ready.in_view .services_list li {
+  opacity: 1;
+  transform: none;
+}
 .about_services .services_list {
   display: flex;
   flex-wrap: wrap;
@@ -1445,6 +1456,42 @@ html.theme-light .about_now .now_note {
   box-shadow: 0 0 0 1px rgba(237, 238, 232, 0.35);
 }
 
+.hero_shuffle_btn {
+  position: relative;
+}
+
+.hero_shuffle_ring {
+  height: calc(100% + 8px);
+  left: -4px;
+  pointer-events: none;
+  position: absolute;
+  top: -4px;
+  width: calc(100% + 8px);
+}
+.hero_shuffle_ring circle {
+  fill: none;
+  opacity: 0;
+  stroke: currentColor;
+  stroke-dasharray: 100.53; /* 2πr, r=16 in the 36-unit viewBox */
+  stroke-dashoffset: 100.53;
+  stroke-linecap: round;
+  stroke-width: 1.5;
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+.hero_shuffle_ring.is_counting circle {
+  animation: heroRingDrain var(--ring-ms, 5000ms) linear forwards;
+  opacity: 0.35;
+}
+
+@keyframes heroRingDrain {
+  from {
+    stroke-dashoffset: 100.53;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
 #hero_shuffle_text {
   display: block;
   margin-bottom: 0;
@@ -4454,8 +4501,23 @@ html.theme-dark .site_footer .site_footer_link:hover {
     opacity: 1;
   }
 }
+@keyframes fadeRise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
 .fadeIn {
-  animation: fadeIn 0.6s ease-out forwards;
+  animation: fadeRise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .fadeIn {
+    animation: fadeIn 0.4s ease-out forwards;
+  }
 }
 
 @keyframes fadeOut {
@@ -5359,11 +5421,83 @@ html.theme-light .hero_headline {
   color: #33352E;
 }
 
+.hero_shuffle_btn {
+  position: relative;
+}
+
+.hero_shuffle_ring {
+  height: calc(100% + 8px);
+  left: -4px;
+  pointer-events: none;
+  position: absolute;
+  top: -4px;
+  width: calc(100% + 8px);
+}
+.hero_shuffle_ring circle {
+  fill: none;
+  opacity: 0;
+  stroke: currentColor;
+  stroke-dasharray: 100.53; /* 2πr, r=16 in the 36-unit viewBox */
+  stroke-dashoffset: 100.53;
+  stroke-linecap: round;
+  stroke-width: 1.5;
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+.hero_shuffle_ring.is_counting circle {
+  animation: heroRingDrain var(--ring-ms, 5000ms) linear forwards;
+  opacity: 0.35;
+}
+
+@keyframes heroRingDrain {
+  from {
+    stroke-dashoffset: 100.53;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
 #hero_shuffle_text {
   color: rgba(237, 238, 232, 0.5);
 }
 
-html.theme-light #hero_shuffle_text {
+html.theme-light .hero_shuffle_btn {
+  position: relative;
+}
+
+.hero_shuffle_ring {
+  height: calc(100% + 8px);
+  left: -4px;
+  pointer-events: none;
+  position: absolute;
+  top: -4px;
+  width: calc(100% + 8px);
+}
+.hero_shuffle_ring circle {
+  fill: none;
+  opacity: 0;
+  stroke: currentColor;
+  stroke-dasharray: 100.53; /* 2πr, r=16 in the 36-unit viewBox */
+  stroke-dashoffset: 100.53;
+  stroke-linecap: round;
+  stroke-width: 1.5;
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+.hero_shuffle_ring.is_counting circle {
+  animation: heroRingDrain var(--ring-ms, 5000ms) linear forwards;
+  opacity: 0.35;
+}
+
+@keyframes heroRingDrain {
+  from {
+    stroke-dashoffset: 100.53;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+#hero_shuffle_text {
   color: rgba(51, 53, 46, 0.65);
 }
 

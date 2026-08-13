@@ -306,33 +306,5 @@ permalink: /about/
 {% include "partials/footer.njk" %}
 
 <script src="/assets/js/site.js?v={{ build.version }}" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
-<script>
-(function () {
-  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-  gsap.registerPlugin(ScrollTrigger);
-
-  // Services list items — stagger fade-up on scroll
-  var serviceItems = gsap.utils.toArray('.about_services .services_list li');
-  if (serviceItems.length) {
-    gsap.fromTo(serviceItems,
-      { opacity: 0, y: 28 },
-      {
-        opacity: 1, y: 0,
-        duration: 0.55,
-        ease: 'power2.out',
-        stagger: 0.08,
-        scrollTrigger: {
-          trigger: '.about_services',
-          start: 'top 85%',
-          toggleActions: 'play none none none'
-        }
-      }
-    );
-  }
-
-}());
-</script>
 </body>
 </html>

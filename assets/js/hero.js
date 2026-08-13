@@ -161,9 +161,35 @@
   var autoAdvanceTimer = null;
   var autoAdvancePaused = false;
 
+  // Countdown ring around the button — a thin stroke drains over the
+  // auto-advance interval, restarting with each cycle
+  var ring = null;
+  if (!prefersReducedMotion) {
+    ring = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    ring.setAttribute('class', 'hero_shuffle_ring');
+    ring.setAttribute('viewBox', '0 0 36 36');
+    ring.setAttribute('aria-hidden', 'true');
+    ring.innerHTML = '<circle cx="18" cy="18" r="16"/>';
+    btn.appendChild(ring);
+  }
+
+  function ringStart() {
+    if (!ring) return;
+    ring.style.setProperty('--ring-ms', AUTO_ADVANCE_MS + 'ms');
+    ring.classList.remove('is_counting');
+    // Reflow so removing and re-adding the class restarts the animation
+    void ring.getBoundingClientRect();
+    ring.classList.add('is_counting');
+  }
+
+  function ringStop() {
+    if (ring) ring.classList.remove('is_counting');
+  }
+
   function scheduleAutoAdvance() {
     clearTimeout(autoAdvanceTimer);
-    if (prefersReducedMotion || autoAdvancePaused) return;
+    if (prefersReducedMotion || autoAdvancePaused) { ringStop(); return; }
+    ringStart();
     autoAdvanceTimer = setTimeout(function () {
       shuffle();
       scheduleAutoAdvance();
@@ -176,6 +202,7 @@
       shuffleRow.addEventListener('mouseenter', function () {
         autoAdvancePaused = true;
         clearTimeout(autoAdvanceTimer);
+        ringStop();
       });
       shuffleRow.addEventListener('mouseleave', function () {
         autoAdvancePaused = false;
@@ -184,6 +211,7 @@
       shuffleRow.addEventListener('focusin', function () {
         autoAdvancePaused = true;
         clearTimeout(autoAdvanceTimer);
+        ringStop();
       });
       shuffleRow.addEventListener('focusout', function () {
         autoAdvancePaused = false;
