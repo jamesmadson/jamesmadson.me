@@ -369,6 +369,16 @@ function smoothScrollTo(targetY, duration) {
   var mainEl = document.querySelector('main');
   var projectHeader = mainEl && mainEl.querySelector('section.about');
 
+  // Case studies get a "← Work" link at the start of the section nav
+  // (the hero stays clean; the way back rides the sticky nav instead)
+  if (window.location.pathname.indexOf('/case_studies/') === 0) {
+    var backLi = document.createElement('li');
+    backLi.className = 'cs_nav_back';
+    backLi.innerHTML =
+      '<a href="/work/"><svg width="13" height="13" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M14 7.5H2M7 2 2 7.5 7 13" stroke="currentColor" stroke-width="1.8" stroke-linejoin="miter"/></svg>Work</a>';
+    csNav.insertBefore(backLi, csNav.firstChild);
+  }
+
   if (hasCsContent) {
     // Build the case-study/image-feed view toggle inside the section
     // nav (it used to live in the Overview meta row)

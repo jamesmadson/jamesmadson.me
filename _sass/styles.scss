@@ -1411,10 +1411,12 @@ html.theme-light .about_now {
 
   .cs_hero_fact {
     color: rgba($white, 0.7);
-    font-size: clamp(1rem, 1vw + 0.5rem, 1.25rem);
-    line-height: 1.5;
-    margin: 1.25rem 0 0;
-    max-width: 40em;
+    font-size: clamp(1.25rem, 1vw + 0.85rem, 1.75rem);
+    font-weight: 400;
+    line-height: 1.45;
+    margin: 1.5rem 0 0;
+    max-width: 32em;
+    text-wrap: pretty;
   }
 
   .project_title {
@@ -1728,6 +1730,22 @@ sup.reg {
 // Case studies navigation
 // ============================================================
 
+// Reading measure: case study prose was running the full 1800px
+// container (~130 characters per line at desktop). Cap body text at a
+// readable measure; tighter caps set elsewhere (stat captions, meta
+// values) still apply.
+.project p,
+.project .leadin {
+  max-width: 72ch;
+}
+
+// About's full-width sections get the same courtesy. The two-column
+// bio is exempt: its columns already set the measure.
+.about_values .about_me,
+.about_process .about_me {
+  max-width: 65ch;
+}
+
 // ── Case study cover — the card's artwork, carried onto the page ──
 .cs_cover {
   margin-bottom: 3rem;
@@ -1811,6 +1829,20 @@ sup.reg {
     align-items: center;
     display: flex;
     margin-left: 0.75rem;
+  }
+
+  // "← Work" rides the sticky nav so the hero stays clean
+  .cs_nav_back {
+    margin-right: 0.75rem;
+
+    a {
+      align-items: center;
+      display: inline-flex;
+      gap: 0.35rem;
+
+      svg { transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+      &:hover svg { transform: translateX(-2px); }
+    }
   }
   will-change: transform;
   z-index: 200;

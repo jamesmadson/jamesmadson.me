@@ -1901,10 +1901,12 @@ html.theme-light .about_now .now_note {
 }
 .about .cs_hero_fact {
   color: rgba(237, 238, 232, 0.7);
-  font-size: clamp(1rem, 1vw + 0.5rem, 1.25rem);
-  line-height: 1.5;
-  margin: 1.25rem 0 0;
-  max-width: 40em;
+  font-size: clamp(1.25rem, 1vw + 0.85rem, 1.75rem);
+  font-weight: 400;
+  line-height: 1.45;
+  margin: 1.5rem 0 0;
+  max-width: 32em;
+  text-wrap: pretty;
 }
 .about .project_title {
   font-size: clamp(2rem, 3.5vw + 1rem, 4rem);
@@ -2189,6 +2191,16 @@ sup.reg {
   vertical-align: super;
 }
 
+.project p,
+.project .leadin {
+  max-width: 72ch;
+}
+
+.about_values .about_me,
+.about_process .about_me {
+  max-width: 65ch;
+}
+
 .cs_cover {
   margin-bottom: 3rem;
 }
@@ -2276,6 +2288,20 @@ sup.reg {
   align-items: center;
   display: flex;
   margin-left: 0.75rem;
+}
+.case_study_nav .cs_nav_back {
+  margin-right: 0.75rem;
+}
+.case_study_nav .cs_nav_back a {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.35rem;
+}
+.case_study_nav .cs_nav_back a svg {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.case_study_nav .cs_nav_back a:hover svg {
+  transform: translateX(-2px);
 }
 .case_study_nav {
   will-change: transform;
