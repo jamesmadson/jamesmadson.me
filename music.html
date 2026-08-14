@@ -136,15 +136,7 @@ permalink: /music/
     </section>
   </main>
 
-  <footer id="contact">
-    <div class="footer_wordmark">
-      <h3>James Madson</h3>
-    </div>
-    <div class="colophon">
-      <p>Copyright © <script>document.write(new Date().getFullYear())</script> James Madson.</p>
-      <p>Design and code by James Madson. Typeset in <a href="https://fonts.google.com/specimen/Instrument+Sans" target="_blank" rel="noreferrer">Instrument Sans</a> by Google Fonts. Built with <a href="https://www.11ty.dev" target="_blank" rel="noreferrer">Eleventy</a>.</p>
-    </div>
-  </footer>
+  {% include "partials/footer.njk" %}
 
   <script src="/assets/js/site.js?v={{ build.version }}" defer></script>
 

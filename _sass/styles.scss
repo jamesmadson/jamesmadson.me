@@ -3207,8 +3207,8 @@ html.theme-light {
 }
 
 .cs_next_project + .site_footer {
-  // Clear the iOS home indicator
-  padding-bottom: max(0px, env(safe-area-inset-bottom));
+  // Keep the footer's own bottom padding and clear the iOS home indicator
+  padding-bottom: calc(2rem + env(safe-area-inset-bottom));
 
   border-top: none;
   margin-top: 0;
@@ -3984,25 +3984,6 @@ footer {
   padding: 100px 0 0;
   position: relative;
   z-index: 11;
-
-  a { color: $white; font-family: $font; font-size: 1.2rem; text-decoration: none; }
-  h3 { font-weight: normal; }
-  h6 { color: $white; font-family: $font; font-size: 1.5rem; font-weight: bold; letter-spacing: 0; }
-}
-
-.footer_wordmark {
-  padding: 3rem 3rem 0;
-
-  h3 {
-    color: rgba($white, 0.15);
-    font-size: clamp(3.5rem, 9vw, 9rem);
-    font-weight: normal;
-    letter-spacing: 0.08em;
-    line-height: 1;
-    margin: 0;
-    padding-bottom: 2rem;
-    text-transform: uppercase;
-  }
 }
 
 .about_meta {
@@ -4090,86 +4071,126 @@ html.theme-light .about_values {
 .site_footer {
   background-color: rgba($white, 0.03);
   border-top: 1px solid rgba($white, 0.08);
-  margin-top: 4rem;
-  padding: 2rem 0;
-
-  .container {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  #toptal_badge {
-    flex-shrink: 0;
-    overflow: visible;
-    transform: scale(0.4);
-    transform-origin: center center;
-    // Negative margins collapse the layout space from the natural size (~221px tall,
-    // ~212px wide) down to the rendered size (natural × 0.4), so flex align-items:center
-    // centers the visual badge correctly. Formula: (scale - 1) / 2 × natural_size
-    margin: -4.15rem -3.975rem;
-  }
-
-  @media (max-width: 768px) {
-    .container {
-      flex-direction: column;
-      gap: 0.5rem;
-      text-align: center;
-    }
-
-    #toptal_badge { display: none; }
-  }
-
-  .site_footer_name {
-    color: rgba($white, 0.35);
-    font-family: $mono;
-    font-size: 0.875rem;
-    letter-spacing: 0.04em;
-  }
-
-  .site_footer_tagline {
-    color: rgba($white, 0.25);
-    cursor: default;
-    font-family: $mono;
-    font-size: 0.875rem;
-    letter-spacing: 0.04em;
-
-    .tl_ch {
-      display: inline-block;
-      transition: color 0.2s ease, transform 0.3s ease;
-    }
-
-    &.tl_rainbow .tl_ch {
-      animation: tlBounce 0.6s ease calc(var(--i) * 0.04s) both,
-                 tlRainbow 2.4s linear calc(var(--i) * 0.04s) infinite;
-    }
-  }
+  margin-top: 6rem;
+  padding: 4rem 0 2rem;
 }
 
-.site_footer_left {
-  align-items: center;
+.site_footer_main {
+  align-items: start;
+  padding-bottom: 3rem;
+}
+
+.site_footer_brand {
   display: flex;
-  gap: 0.75rem;
+  flex-direction: column;
+  gap: 0.35rem;
 }
 
-.site_footer_link {
-  color: rgba($white, 0.35);
-  font-family: $mono;
-  font-size: 0.875rem;
-  font-weight: normal;
-  letter-spacing: 0.04em;
-  text-decoration: none;
-  transition: color 0.2s ease;
+.site_footer_name {
+  color: $white;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
 
-  // Full-height tap target on touch without adding visual weight
-  @media (pointer: coarse) {
-    align-items: center;
-    display: inline-flex;
-    min-height: 44px;
+.site_footer_role {
+  color: rgba($white, 0.5);
+  font-size: 0.9375rem;
+  margin: 0;
+}
+
+.site_footer_tagline {
+  color: rgba($white, 0.3);
+  cursor: default;
+  font-size: 0.9375rem;
+  margin-top: 0.75rem;
+
+  .tl_ch {
+    display: inline-block;
+    transition: color 0.2s ease, transform 0.3s ease;
   }
 
-  &:hover {
-    color: rgba($white, 0.7);
+  &.tl_rainbow .tl_ch {
+    animation: tlBounce 0.6s ease calc(var(--i) * 0.04s) both,
+               tlRainbow 2.4s linear calc(var(--i) * 0.04s) infinite;
+  }
+}
+
+.site_footer_nav {
+  display: grid;
+  gap: 2rem 2.5rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  @media (max-width: 520px) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.site_footer_col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+
+  a {
+    align-items: center;
+    color: rgba($white, 0.6);
+    display: inline-flex;
+    font-size: 0.9375rem;
+    // Global `a` is bold; footer links should sit lighter than their headings
+    font-weight: 400;
+    gap: 0.3rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    width: fit-content;
+
+    &:hover { color: $white; }
+
+    // Full tap target on touch without changing the visual rhythm
+    @media (pointer: coarse) { min-height: 44px; }
+  }
+
+  .ext_arrow {
+    opacity: 0.5;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  a:hover .ext_arrow {
+    opacity: 1;
+    transform: translate(1px, -1px);
+  }
+}
+
+.site_footer_heading {
+  color: rgba($white, 0.35);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin: 0 0 0.25rem;
+}
+
+// Overrides .container's 12-col grid: a two-item bar shouldn't depend on
+// column spans that collapse to a single column below 1280px.
+.site_footer_base {
+  align-items: baseline;
+  border-top: 1px solid rgba($white, 0.07);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 2rem;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+
+  .site_footer_copy,
+  .site_footer_credential {
+    color: rgba($white, 0.3);
+    font-size: 0.875rem;
+  }
+
+  .site_footer_credential a {
+    color: rgba($white, 0.45);
+    font-weight: 400;
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover { color: $white; }
   }
 }
 
@@ -4210,21 +4231,28 @@ html.theme-light .site_footer {
   background-color: rgba($dark-default, 0.03);
   border-top-color: rgba($dark-default, 0.1);
 
-  .site_footer_name  { color: rgba($dark-default, 0.35); }
-  .site_footer_tagline { color: rgba($dark-default, 0.25); }
+  .site_footer_name    { color: $dark-default; }
+  .site_footer_role    { color: rgba($dark-default, 0.55); }
+  .site_footer_tagline { color: rgba($dark-default, 0.35); }
+  .site_footer_heading { color: rgba($dark-default, 0.4); }
 
-  .site_footer_link {
-    color: rgba($dark-default, 0.35);
+  .site_footer_col a {
+    color: rgba($dark-default, 0.65);
 
-    &:hover { color: rgba($dark-default, 0.7); }
+    &:hover { color: $dark-default; }
   }
-}
 
-html.theme-dark .site_footer .site_footer_link {
-  color: rgba($white, 0.35);
+  .site_footer_base {
+    border-top-color: rgba($dark-default, 0.09);
 
-  &:hover {
-    color: rgba($white, 0.7);
+    .site_footer_copy,
+    .site_footer_credential { color: rgba($dark-default, 0.35); }
+
+    .site_footer_credential a {
+      color: rgba($dark-default, 0.5);
+
+      &:hover { color: $dark-default; }
+    }
   }
 }
 
