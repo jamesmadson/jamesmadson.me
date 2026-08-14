@@ -15,7 +15,7 @@
 
 - Pfizer (contract): designing and building internal AI tools that help product teams move faster.
 - NatureQuant: automating design testing for Juniper, the design system behind NatureDose.
-- Canon: a curated gallery of design skills and design skill kits, building in the open at canon.design.
+- Canon: a curated gallery of design skills and design skill kits, building in the open at https://jamesmadson.github.io/canon/.
 - A solo album and an improvisational metal guitar project.
 
 ## How he works
