@@ -30,6 +30,9 @@ html.theme-light body a {
 html.theme-light body a:hover {
   color: #666666;
 }
+html.theme-light body .site_header {
+  background-color: #F2F2ED;
+}
 html.theme-light body .site_name {
   color: #33352E;
   opacity: 0.65;
@@ -250,6 +253,9 @@ body.theme-light a {
 }
 body.theme-light a:hover {
   color: #666666;
+}
+body.theme-light .site_header {
+  background-color: #F2F2ED;
 }
 body.theme-light .site_name {
   color: #33352E;
@@ -894,6 +900,7 @@ ul li {
 }
 .site_header {
   align-items: center;
+  background-color: #171814;
   display: flex;
   justify-content: space-between;
   left: 0;
@@ -4930,8 +4937,8 @@ html.theme-light .site_footer .site_footer_base .site_footer_credential a:hover 
     display: none;
   }
   .about {
-    padding-bottom: 3rem;
-    padding-top: 2rem;
+    padding-bottom: 1.25rem;
+    padding-top: 1rem;
     margin-top: 0;
   }
   .about .container {

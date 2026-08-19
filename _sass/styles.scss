@@ -59,6 +59,7 @@ html {
   a { color: $dark-default; }
   a:hover { color: $text-muted; }
 
+  .site_header { background-color: $tan; }
   .site_name { color: $dark-default; opacity: 0.65; }
   .site_name:hover { opacity: 1; }
   .nav_title { color: rgba($dark-default, 0.5); }
@@ -401,6 +402,12 @@ ul {
 // Full-width fixed header row
 .site_header {
   align-items: center;
+  // Solid, not blurred: a backdrop-filter glass nav was tried and
+  // rejected earlier as too "AI-y." Flat fill is enough to stop
+  // scrolled headings from visually colliding with the wordmark.
+  // Matches body.theme-dark's actual bg ($dark-bg via the dark-theme
+  // mixin), not the plain body{} fallback color ($dark-default).
+  background-color: $dark-bg;
   display: flex;
   justify-content: space-between;
   left: 0;
@@ -4359,8 +4366,12 @@ html.theme-light .site_footer {
   }
 
   .about {
-    padding-bottom: 3rem;
-    padding-top: 2rem;
+    // Adjacent .about-based sections (Values, Process, Services...) sit
+    // flush with no shared margin, so each one's own top+bottom padding
+    // stacks at the seam. Trimmed from 2rem/3rem, which read as dead
+    // space between short sections on a single-column mobile layout.
+    padding-bottom: 1.25rem;
+    padding-top: 1rem;
     margin-top: 0;
     .container { padding: 2rem; }
   }
