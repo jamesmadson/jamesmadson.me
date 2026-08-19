@@ -4,8 +4,8 @@
 
 ## Selected work and outcomes
 
-- [NatureDose](https://jamesmadson.me/case_studies/naturedose/): NatureQuant's nature-prescription app, taken from zero to launch — brand identity through production screens. Featured 3 times by Apple on the App Store; 79% of its iOS reviews are 5 stars (4.6 average).
-- [PeCan](https://jamesmadson.me/case_studies/pecan/): Redesign of St. Jude Cloud's pediatric cancer knowledge base — data from 9,000+ patient samples, used by researchers worldwide. Visual identity, UX flows, design system, and front-end code shipped as one release.
+- [NatureDose](https://jamesmadson.me/case_studies/naturedose/): NatureQuant's nature-prescription app, taken from zero to launch, brand identity through production screens. Featured 3 times by Apple on the App Store; 79% of its iOS reviews are 5 stars (4.6 average).
+- [PeCan](https://jamesmadson.me/case_studies/pecan/): Redesign of St. Jude Cloud's pediatric cancer knowledge base: data from 9,000+ patient samples, used by researchers worldwide. Visual identity, UX flows, design system, and front-end code shipped as one release.
 - [Visualization Community](https://jamesmadson.me/case_studies/visualization_community/): A platform where St. Jude researchers publish and share interactive genomic visualizations. 80+ published visualizations; the top community piece has 68k views.
 - [NatureScore](https://jamesmadson.me/case_studies/naturescore/): UI/UX for a 0–100 nature rating covering every US address. NatureQuant's engineering team built the scoring model; James made it legible through maps and data visualization. Foundation for NatureDose and the open data tools.
 - [Canon](https://jamesmadson.me/case_studies/canon/): Self-initiated and in progress. A curated gallery of design skills for AI agents: 16 skills read in full and license-verified, 4 composed kits with generated install scripts, structure maps generated from real repositories, 114 tests, monochrome by decision. Built in Astro with schema-validated content collections.
@@ -28,6 +28,6 @@ In his own words: "I'm the 6th man: solid the whole game, and right there when t
 - [About](https://jamesmadson.me/about/)
 - [Work](https://jamesmadson.me/work/)
 - [Resume](https://jamesmadson.me/resume/)
-- [AI Practice](https://jamesmadson.me/practice/) — how he designs and builds with Claude, Cursor, and Figma Make
+- [AI Practice](https://jamesmadson.me/practice/): how he designs and builds with Claude, Cursor, and Figma Make
 - [Contact](https://jamesmadson.me/contact/)
-- [Colophon — how this site is built](https://jamesmadson.me/colophon/)
+- [Colophon: how this site is built](https://jamesmadson.me/colophon/)

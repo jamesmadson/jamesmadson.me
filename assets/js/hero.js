@@ -18,8 +18,7 @@
     'I <a href="/case_studies/pecan/" class="highlight pecan">designed</a> PeCan so researchers can navigate 9,000+ pediatric cancer samples.',
     'I <a href="/case_studies/visualization_community/" class="highlight viz">built</a> visualization tools for St. Jude, now cited in academic papers.',
     'I <a href="/case_studies/naturequant/" class="highlight nq">lead</a> design for NatureQuant end to end, covering brand, product, and system.',
-    'I <a href="/case_studies/naturescore/" class="highlight ns">designed</a> the UI and UX for NatureScore, which scores how much nature a place offers.',
-    'I <a href="/about/" class="highlight jm">work</a> at the intersection of strategy and craft, spanning brand, systems, and code.'
+    'I <a href="/case_studies/naturescore/" class="highlight ns">designed</a> the UI and UX for NatureScore, which scores how much nature a place offers.'
   ];
 
   var pendingCharTimeouts = [];
