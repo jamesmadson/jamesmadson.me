@@ -5,9 +5,9 @@
       "mod": "nd",
       "company": "NatureQuant",
       "title": "NatureDose",
-      "image": "/img/naturedose/naturedose_cover_image.png",
-      "image2x": "/img/naturedose/naturedose_cover_image@2x.png",
-      "alt": "NatureDose app",
+      "image": "/img/covers/naturedose.png",
+      "image2x": "/img/covers/naturedose@2x.png",
+      "alt": "NatureDose: Nature, prescribed. The app taken from zero to launch. Featured 3 times by Apple, 79 percent five-star reviews, 4.6 average rating.",
       "loading": "lazy"
     },
     {
@@ -15,9 +15,9 @@
       "mod": "pecan",
       "company": "St. Jude Children's Research Hospital",
       "title": "PeCan",
-      "image": "/img/pecan/pecan_cover.png",
-      "image2x": "/img/pecan/pecan_cover@2x.png",
-      "alt": "PeCan knowledge base",
+      "image": "/img/covers/pecan.png",
+      "image2x": "/img/covers/pecan@2x.png",
+      "alt": "PeCan: Every sample, one map. Pediatric cancer data researchers can actually navigate. 9,000 plus patient samples.",
       "loading": "lazy"
     },
     {
@@ -25,9 +25,9 @@
       "mod": "viz",
       "company": "St. Jude Children's Research Hospital",
       "title": "Visualization Community",
-      "image": "/img/visualization_community/visualization_community_cover.png",
-      "image2x": "/img/visualization_community/visualization_community_cover@2x.png",
-      "alt": "Visualization Community",
+      "image": "/img/covers/visualization_community.png",
+      "image2x": "/img/covers/visualization_community@2x.png",
+      "alt": "Visualization Community: Genomic data, shared live. A platform for researchers to publish and explore visualizations. 80 plus published, top piece 68K views.",
       "loading": "lazy"
     },
     {
@@ -37,7 +37,7 @@
       "title": "Canon",
       "image": "/img/canon/canon_cover.png",
       "image2x": "/img/canon/canon_cover@2x.png",
-      "alt": "Canon, a curated gallery of design skills for AI agents",
+      "alt": "Canon: Skills, curated. A gallery of design skills for AI agents. 16 skills, 4 kits, 114 tests, 0 colors.",
       "loading": "lazy"
     }
   ],
@@ -47,9 +47,9 @@
       "mod": "nq",
       "company": "NatureQuant",
       "title": "NatureQuant",
-      "image": "/img/naturequant/naturequant_cover_image.png",
-      "image2x": "/img/naturequant/naturequant_cover_image@2x.png",
-      "alt": "NatureQuant"
+      "image": "/img/covers/naturequant.png",
+      "image2x": "/img/covers/naturequant@2x.png",
+      "alt": "NatureQuant: Design, end to end. Brand, product, and the system behind NatureDose. Leading design since 2019."
     }
   ]
 }

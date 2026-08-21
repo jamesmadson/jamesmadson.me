@@ -1,0 +1,93 @@
+/* ============================================================
+   COVER — flat text card, Canon geometry
+   All sizes are in cqw (1cqw = 1% of card width), so the card
+   is resolution-independent: identical at 1200, 600, or 320px.
+   Reference grid is the 1200px Canon artboard.
+
+   Source of truth for the work-card cover images. Edit here,
+   then run export.sh to regenerate /img/covers/*.png.
+   ============================================================ */
+
+.cover {
+  container-type: inline-size;
+  aspect-ratio: 1 / 1;
+  background: var(--bg);
+  color: #EDEEE8;
+  padding: 8cqw;                 /* 96px margin, all sides */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- top row: label / status ------------------------------- */
+.cover__top {
+  display: flex;
+  justify-content: space-between;
+  gap: 4cqw;
+}
+.cover__label,
+.cover__status {
+  font: 500 2.3333cqw/1 "IBM Plex Mono", ui-monospace, monospace;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  opacity: .45;
+  white-space: nowrap;
+}
+
+/* --- headline --------------------------------------------- */
+.cover__headline {
+  margin: 13.533cqw 0 0;         /* lands cap-height at y=302 */
+  font: 700 11.6667cqw/.943 "Instrument Sans", system-ui, sans-serif;
+  letter-spacing: -.026em;
+  text-wrap: balance;
+}
+
+/* --- subhead ---------------------------------------------- */
+.cover__subhead {
+  margin: 3.058cqw 0 0;
+  max-width: 84cqw;              /* 1008px content width */
+  font: 500 3.6667cqw/1.318 "Instrument Sans", system-ui, sans-serif;
+  opacity: .6;
+  text-wrap: balance;
+}
+
+/* --- footer: rule + stats, pinned to bottom margin -------- */
+.cover__foot { margin-top: auto; }
+
+.cover__rule {
+  height: 1px;
+  background: currentColor;
+  opacity: .18;
+}
+
+.cover__stats {
+  display: flex;
+  gap: 4.6667cqw;                /* 56px between columns */
+  margin-top: 3.283cqw;
+}
+.cover__stat b {
+  display: block;
+  font: 700 6.3333cqw/1 "Instrument Sans", system-ui, sans-serif;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.cover__stat span {
+  display: block;
+  margin-top: 1.075cqw;
+  font: 500 2.1667cqw/1 "IBM Plex Mono", ui-monospace, monospace;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  opacity: .4;
+  white-space: nowrap;
+}
+
+/* --- solo variant: one stat, stated large ------------------ */
+/* A lone stat under the full-width rule reads as two stats
+   gone missing. Scaling the numeral ~1.5x makes one stat a
+   deliberate choice instead of an accident. */
+.cover__stats--solo .cover__stat b {
+  font-size: 9.5cqw;
+}
+.cover__stats--solo .cover__stat span {
+  margin-top: 1.5cqw;
+}
