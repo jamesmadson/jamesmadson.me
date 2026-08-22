@@ -2652,7 +2652,43 @@ body.image-feed {
     }
   }
 
-  ul { list-style: initial; li { color: $text-muted; } }
+  ul {
+    list-style: initial;
+    margin: 1rem 0 0;
+
+    li {
+      color: $text-muted;
+
+      // <li><p>...</p></li> shows up across every case study (bullets
+      // authored as paragraphs). The nested <p> kept its own default
+      // top/bottom margin on top of the <ul>'s, stacking into a gap
+      // wildly bigger than the space between any other two paragraphs
+      // on the page — most visible right after a "the challenges
+      // were:" lead-in, where the list reads as disconnected from it.
+      p { margin: 0; }
+      & + li { margin-top: 0.75rem; }
+    }
+  }
+
+  // Chapter rhythm for h4 sub-topics inside a long h3 section (e.g.
+  // Contributions' five sub-heads on PeCan, spanning ~9000px on its
+  // own). h3-level sections already get a consistent 4rem/4rem via
+  // .cs_content; h4 had nothing beyond the sitewide `margin: 0`, so a
+  // long section read as one undifferentiated scroll with occasional
+  // bold text, not a series of chapters. First h4 is exempted — it
+  // sits right under the h3 and already gets that spacing for free.
+  h4 {
+    border-top: 1px solid rgba($white, 0.08);
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+  }
+
+  .grid_12 > h4:first-child,
+  h3 + h4 {
+    border-top: none;
+    margin-top: 1.5rem;
+    padding-top: 0;
+  }
 
   // Left spacer column — aligns content with hero title on desktop, hidden on mobile
   .cs_spacer {

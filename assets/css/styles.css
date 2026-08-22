@@ -3183,9 +3183,27 @@ body.image-feed .cs_image_feed {
 }
 .project ul {
   list-style: initial;
+  margin: 1rem 0 0;
 }
 .project ul li {
   color: #666666;
+}
+.project ul li p {
+  margin: 0;
+}
+.project ul li + li {
+  margin-top: 0.75rem;
+}
+.project h4 {
+  border-top: 1px solid rgba(237, 238, 232, 0.08);
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+}
+.project .grid_12 > h4:first-child,
+.project h3 + h4 {
+  border-top: none;
+  margin-top: 1.5rem;
+  padding-top: 0;
 }
 @media (max-width: 1279px) {
   .project .cs_spacer {

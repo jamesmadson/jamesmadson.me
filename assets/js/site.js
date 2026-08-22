@@ -517,37 +517,53 @@ function smoothScrollTo(targetY, duration) {
   });
 
   // --- Build masonry feed ---
+  // `items` above is cheap: it just reads the `src` string off images that
+  // already exist on the page, no extra request. Actually building the feed
+  // means creating a fresh <img> per item and assigning its src, which the
+  // browser fetches the instant it's assigned — a full second download of
+  // every design image on the page, whether or not the feed is ever shown.
+  // Deferred to first use: either the toggle click, or immediately below if
+  // the visitor's saved preference already has grid view on.
   var feedSection = document.createElement('section');
   feedSection.className = 'cs_image_feed';
 
   var masonry = document.createElement('div');
   masonry.className = 'cs_masonry';
-
-  items.forEach(function (item, idx) {
-    var figure = document.createElement('figure');
-    figure.className = 'cs_masonry_item';
-    figure.dataset.idx = idx;
-    figure.setAttribute('tabindex', '0');
-    figure.setAttribute('role', 'button');
-    figure.setAttribute('aria-label', 'View image' + (item.caption ? ': ' + item.caption : ''));
-    var img = document.createElement('img');
-    img.src = item.src;
-    img.alt = item.caption || '';
-    figure.appendChild(img);
-    if (item.caption) {
-      var cap = document.createElement('figcaption');
-      cap.textContent = item.caption;
-      figure.appendChild(cap);
-    }
-    masonry.appendChild(figure);
-  });
-
   feedSection.appendChild(masonry);
 
   var project = document.querySelector('.project');
   if (project) {
     overview.insertAdjacentElement('afterend', feedSection);
   }
+
+  var masonryBuilt = false;
+  function buildMasonryFeed() {
+    if (masonryBuilt) return;
+    masonryBuilt = true;
+    items.forEach(function (item, idx) {
+      var figure = document.createElement('figure');
+      figure.className = 'cs_masonry_item';
+      figure.dataset.idx = idx;
+      figure.setAttribute('tabindex', '0');
+      figure.setAttribute('role', 'button');
+      figure.setAttribute('aria-label', 'View image' + (item.caption ? ': ' + item.caption : ''));
+      var img = document.createElement('img');
+      img.src = item.src;
+      img.alt = item.caption || '';
+      figure.appendChild(img);
+      if (item.caption) {
+        var cap = document.createElement('figcaption');
+        cap.textContent = item.caption;
+        figure.appendChild(cap);
+      }
+      masonry.appendChild(figure);
+    });
+  }
+
+  // Returning visitor whose saved preference already has grid view on —
+  // build now so there's no flash of an empty feed. `savedCsView` is set
+  // above, before `items` exists yet, so it can't call this any earlier.
+  if (savedCsView === 'image-feed') buildMasonryFeed();
 
   // --- Build lightbox ---
   var lb = document.createElement('div');
@@ -638,6 +654,7 @@ function smoothScrollTo(targetY, duration) {
   // --- Toggle handler (saves preference, updates aria-pressed) ---
   function applyCsView(view) {
     var isImageFeed = view === 'image-feed';
+    if (isImageFeed) buildMasonryFeed();
     document.body.classList.toggle('image-feed', isImageFeed);
     csBtns.forEach(function (b) {
       var isActive = b.dataset.view === view;
