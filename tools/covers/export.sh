@@ -17,7 +17,7 @@ CHROME="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 OUT="../../img/covers"
 mkdir -p "$OUT"
 
-for name in naturedose pecan visualization_community naturequant; do
+for name in naturedose pecan visualization_community naturequant canon; do
   "$CHROME" --headless --disable-gpu --hide-scrollbars \
     --force-device-scale-factor=1 --window-size=1392,1392 \
     --screenshot="$OUT/$name@2x.png" --virtual-time-budget=4000 \

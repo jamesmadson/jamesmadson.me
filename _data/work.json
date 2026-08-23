@@ -35,8 +35,8 @@
       "mod": "canon",
       "company": "Self-initiated",
       "title": "Canon",
-      "image": "/img/canon/canon_cover.png",
-      "image2x": "/img/canon/canon_cover@2x.png",
+      "image": "/img/covers/canon.png",
+      "image2x": "/img/covers/canon@2x.png",
       "alt": "Canon: Skills, curated. A gallery of design skills for AI agents. 16 skills, 4 kits, 114 tests, 0 colors.",
       "loading": "lazy"
     }
