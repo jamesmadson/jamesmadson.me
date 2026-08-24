@@ -6,7 +6,7 @@
       "company": "NatureQuant",
       "title": "NatureDose",
       "cover": {
-        "bg": "#1C5F32",
+        "bg": "#0E7A33",
         "label": "NatureDose",
         "status": "NatureQuant",
         "headline": "Nature,<br>prescribed.",
@@ -39,7 +39,7 @@
       "company": "St. Jude Children's Research Hospital",
       "title": "PeCan",
       "cover": {
-        "bg": "#1C4C5F",
+        "bg": "#11708C",
         "label": "PeCan",
         "status": "St. Jude Cloud",
         "headline": "Every sample,<br>one map.",
@@ -64,7 +64,7 @@
       "company": "St. Jude Children's Research Hospital",
       "title": "Visualization Community",
       "cover": {
-        "bg": "#1C3B5F",
+        "bg": "#1D5AA8",
         "label": "Visualization Community",
         "status": "St. Jude Cloud",
         "headline": "Genomic data,<br>shared live.",
@@ -93,7 +93,7 @@
       "company": "Self-initiated",
       "title": "Canon",
       "cover": {
-        "bg": "#2B2B28",
+        "bg": "#33332C",
         "label": "Canon",
         "status": "Self-initiated",
         "headline": "Skills,<br>curated.",
