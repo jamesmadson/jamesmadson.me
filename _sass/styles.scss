@@ -1146,6 +1146,100 @@ html.theme-light .cs_hero::before {
   opacity: 0.5;
 }
 
+// Hero chips carry their project color at rest, and deepen on hover
+#hero_shuffle_text .highlight {
+  &.nd, &.nq { background-color: $green; }
+  &.pecan    { background-color: $cyan; }
+  &.viz      { background-color: $blue; }
+  &.ns       { background-color: $lime; }
+  &.canon    { background-color: $white; }
+
+  &.nd:hover, &.nd:active, &.nq:hover, &.nq:active {
+    background-color: color.adjust($green, $lightness: -7%);
+    box-shadow: none;
+    color: $dark-bg;
+  }
+  &.pecan:hover, &.pecan:active {
+    background-color: color.adjust($cyan, $lightness: -9%);
+    box-shadow: none;
+    color: $dark-bg;
+  }
+  &.viz:hover, &.viz:active {
+    background-color: color.adjust($blue, $lightness: -7%);
+    box-shadow: none;
+    color: $white;
+  }
+  &.canon:hover, &.canon:active {
+    background-color: color.adjust($white, $lightness: -8%);
+    box-shadow: none;
+    color: $dark-bg;
+  }
+}
+
+// Hero chip tag fan — the project name plus its work-card taxonomy,
+// springing up on hover. Lives in a sibling span rather than inside the
+// <a>, because animateHighlights() rewrites the anchor's innerHTML for
+// the per-character typing effect and would otherwise wipe these out.
+.hl_wrap {
+  display: inline-block;
+  position: relative;
+}
+
+.hl_tags {
+  bottom: calc(100% + 0.15em);
+  display: flex;
+  gap: 0.28em;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  white-space: nowrap;
+
+  i {
+    background: rgba($dark-bg, 0.82);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    border-radius: 99em;
+    box-shadow: 0 0 0 1px rgba($white, 0.16), 0 4px 14px -6px rgba(#000, 0.6);
+    color: rgba($white, 0.82);
+    font-family: $mono;
+    font-size: 0.2em;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    line-height: 1;
+    opacity: 0;
+    padding: 0.6em 1.05em 0.5em;
+    text-transform: uppercase;
+    transform: translateY(0.5em);
+    transition: opacity 0.2s ease, transform 0.44s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    // The project name leads the set and reads as the primary label
+    &.is_name {
+      background: $white;
+      box-shadow: 0 4px 14px -6px rgba(#000, 0.6);
+      color: $dark-bg;
+      font-weight: 600;
+    }
+  }
+
+  @for $i from 1 through 4 {
+    i:nth-child(#{$i}) { transition-delay: #{($i - 1) * 55}ms; }
+  }
+}
+
+.hl_wrap:hover .hl_tags i,
+.hl_wrap:focus-within .hl_tags i {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hl_tags i { transition: opacity 0.15s ease; transform: none; }
+}
+
+// The old single ::after label is replaced by the fan
+#hero_shuffle_text .highlight::after { content: none; }
+
 // Project accent for the ring, keyed off the sentence currently shown.
 // Same colors the highlight chips use for these mods.
 .hero_shuffle_btn[data-accent="nd"],
@@ -1189,10 +1283,16 @@ html.theme-light .cs_hero::before {
   .highlight {
     line-height: 1.2;
 
-    // The border was dropped from .highlight sitewide per feedback, but at
-    // hero scale (chip matches the huge headline font) it reads better with
-    // one. Scoped here instead of restoring it globally.
-    box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 50%, transparent);
+    // Filled at rest, not outlined: the chip was the last outlined
+    // element left once the card stat rows went away, and a solid
+    // project color reads as a real object you can press. The per-mod
+    // rules below supply the color; hover deepens it via the shared
+    // :hover state.
+    box-shadow: none;
+    // Dark ink on the bright project color: white on $cyan is ~2.3:1 and
+    // fails even the large-text floor, and this is now the resting state,
+    // not a hover flash. Dark text clears 3.6:1 (blue) to 7.4:1 (cyan).
+    color: $dark-bg;
 
     &:hover, &:active {
       box-shadow: 0 0 0 1px rgba($white, 0.35);
