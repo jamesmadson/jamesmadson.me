@@ -1683,31 +1683,31 @@ html.theme-light .cs_hero::before {
 }
 .hl_tags i:nth-child(1) {
   --r: -4deg;
-  --fx: 2.4em;
-  --fy: 1.7em;
+  --fx: 1.6em;
+  --fy: 1.5em;
   bottom: 86%;
-  right: 58%;
+  left: -0.3em;
 }
 .hl_tags i:nth-child(2) {
   --r: 3.5deg;
-  --fx: -2.2em;
-  --fy: 1.6em;
-  bottom: 92%;
-  left: 68%;
+  --fx: -2.0em;
+  --fy: 1.5em;
+  bottom: 94%;
+  left: 66%;
 }
 .hl_tags i:nth-child(3) {
   --r: -3deg;
-  --fx: -2.4em;
-  --fy: -1.5em;
+  --fx: -2.2em;
+  --fy: -1.4em;
   top: 88%;
-  left: 76%;
+  left: 74%;
 }
 .hl_tags i:nth-child(4) {
   --r: 4.5deg;
-  --fx: 2.2em;
-  --fy: -1.5em;
+  --fx: 1.4em;
+  --fy: -1.4em;
   top: 92%;
-  right: 66%;
+  left: 2%;
 }
 .hl_tags i:nth-child(2) {
   transition-delay: 45ms;

@@ -1231,10 +1231,13 @@ html.theme-light .cs_hero::before {
   }
 
   // Surround the word: top-left, top-right, bottom-right, bottom-left
-  i:nth-child(1) { --r: -4deg;  --fx:  2.4em; --fy:  1.7em; bottom: 86%; right: 58%; }
-  i:nth-child(2) { --r: 3.5deg; --fx: -2.2em; --fy:  1.6em; bottom: 92%; left: 68%; }
-  i:nth-child(3) { --r: -3deg;  --fx: -2.4em; --fy: -1.5em; top: 88%;    left: 76%; }
-  i:nth-child(4) { --r: 4.5deg; --fx:  2.2em; --fy: -1.5em; top: 92%;    right: 66%; }
+  // Anchored from the chip's LEFT edge, never extending left of it: the
+  // chip often sits at the start of a line, and a pill hung off its left
+  // side ran past the container padding and clipped at the viewport.
+  i:nth-child(1) { --r: -4deg;  --fx:  1.6em; --fy:  1.5em; bottom: 86%; left: -0.3em; }
+  i:nth-child(2) { --r: 3.5deg; --fx: -2.0em; --fy:  1.5em; bottom: 94%; left: 66%; }
+  i:nth-child(3) { --r: -3deg;  --fx: -2.2em; --fy: -1.4em; top: 88%;    left: 74%; }
+  i:nth-child(4) { --r: 4.5deg; --fx:  1.4em; --fy: -1.4em; top: 92%;    left: 2%; }
 
   i:nth-child(2) { transition-delay: 45ms; }
   i:nth-child(3) { transition-delay: 90ms; }
