@@ -1050,7 +1050,11 @@ html.theme-light .about_now {
 
 header:has(#hero_shuffle_btn),
 .cs_hero {
-  overflow: hidden;
+  // No clipping: the frost bleeds past the hero's bounds and feathers
+  // out via its own mask instead of cutting at the section edge.
+  // (.cs_hero overrides .about's overflow-x: hidden; the page-level
+  // body { overflow-x: clip } still guards against stray scrollbars.)
+  overflow: visible;
   position: relative;
 }
 
@@ -1063,21 +1067,24 @@ header:has(#hero_shuffle_btn)::before,
   background-size: cover;
   content: '';
   filter: blur(64px) saturate(1.15) brightness(0.7);
-  // Oversized so the blur's soft edge never shows inside the frame
-  inset: -14%;
+  // Oversized so it spills past the hero, feathered to nothing at its
+  // own edges so there is no hard line anywhere
+  inset: -20% -18%;
+  -webkit-mask-image: radial-gradient(120% 95% at 50% 38%, black 45%, transparent 96%);
+  mask-image: radial-gradient(120% 95% at 50% 38%, black 45%, transparent 96%);
   pointer-events: none;
   position: absolute;
   z-index: -1;
 
   @media (prefers-reduced-motion: no-preference) {
     animation:
-      fogSettle 2.2s cubic-bezier(0.16, 1, 0.3, 1) both,
-      fogBreathe 26s ease-in-out 2.2s infinite alternate;
+      fogSettle 3.4s cubic-bezier(0.25, 0.1, 0.25, 1) both,
+      fogBreathe 26s ease-in-out 3.4s infinite alternate;
   }
 }
 
 @keyframes fogSettle {
-  from { opacity: 0; transform: scale(0.6); }
+  from { opacity: 0; transform: scale(0.86); }
   to   { opacity: var(--fog-max, 1); transform: scale(1); }
 }
 
