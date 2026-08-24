@@ -767,7 +767,7 @@ function smoothScrollTo(targetY, duration) {
 // Work page — staggered card reveal
 // ============================================================
 (function () {
-  var grids = Array.prototype.slice.call(document.querySelectorAll('.work_page_section .home_work_grid'));
+  var grids = Array.prototype.slice.call(document.querySelectorAll('.home_work_grid'));
   if (!grids.length) return;
 
   var revealObserver = new IntersectionObserver(function (entries) {

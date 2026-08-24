@@ -6,8 +6,4 @@
       <img src="{{ item.image }}" srcset="{{ item.image }} 1x, {{ item.image2x }} 2x" alt="{{ item.alt }}" loading="{{ loadingOverride | default(item.loading) | default('lazy') }}" width="600" height="600">
     {% endif %}
   </div>
-  <div class="hwc_info">
-    <span class="hwc_company">{{ item.company }}</span>
-    <span class="hwc_title">{{ item.title }}</span>
-  </div>
 </a>

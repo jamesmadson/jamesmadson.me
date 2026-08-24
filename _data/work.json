@@ -8,7 +8,7 @@
       "cover": {
         "bg": "#1C5F32",
         "label": "NatureDose",
-        "status": "Live",
+        "status": "NatureQuant",
         "headline": "Nature,<br>prescribed.",
         "subhead": "The app taken from zero to launch.",
         "artifact": "/img/naturedose/app%20mockups/naturedose-iphone@2x.png",
@@ -25,6 +25,11 @@
             "n": "4.6",
             "label": "Avg Rating"
           }
+        ],
+        "tags": [
+          "Brand",
+          "Mobile App",
+          "UX"
         ]
       }
     },
@@ -45,6 +50,11 @@
             "n": "9,000+",
             "label": "Patient Samples"
           }
+        ],
+        "tags": [
+          "UX",
+          "Data Viz",
+          "Design System"
         ]
       }
     },
@@ -69,6 +79,11 @@
             "n": "68K",
             "label": "Top-Piece Views"
           }
+        ],
+        "tags": [
+          "Platform",
+          "Data Viz",
+          "Front-End"
         ]
       }
     },
@@ -80,7 +95,7 @@
       "cover": {
         "bg": "#2B2B28",
         "label": "Canon",
-        "status": "In Progress",
+        "status": "Self-initiated",
         "headline": "Skills,<br>curated.",
         "subhead": "A gallery of design skills for AI agents.",
         "stats": [
@@ -101,7 +116,12 @@
             "label": "Colors"
           }
         ],
-        "artifact": "/img/covers/artifacts/canon_gallery.png"
+        "artifact": "/img/covers/artifacts/canon_gallery.png",
+        "tags": [
+          "In Progress",
+          "AI Tooling",
+          "Curation"
+        ]
       }
     }
   ],
@@ -114,7 +134,7 @@
       "cover": {
         "bg": "#009933",
         "label": "NatureQuant",
-        "status": "In Progress",
+        "status": "Since 2019",
         "headline": "Design,<br>end to end.",
         "subhead": "Brand, product, and the system behind NatureDose.",
         "stats": [
@@ -122,6 +142,11 @@
             "n": "2019",
             "label": "Leading Design Since"
           }
+        ],
+        "tags": [
+          "In Progress",
+          "Brand",
+          "Design System"
         ]
       }
     }

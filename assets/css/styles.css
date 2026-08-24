@@ -4389,6 +4389,30 @@ blockquote span {
   width: 64cqw;
 }
 
+.wc_tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.8cqw;
+  list-style: none;
+  margin: auto 0 0;
+  padding: 0;
+  position: relative;
+  z-index: 2;
+}
+.wc_tags li {
+  box-shadow: 0 0 0 0.22cqw rgba(237, 238, 232, 0.3);
+  border-radius: 99cqw;
+  color: rgba(237, 238, 232, 0.75);
+  font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
+  font-size: 2.3cqw;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  padding: 1.4cqw 2.8cqw 1.2cqw;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
 .hwc_nda_visual {
   align-items: center;
   display: flex;
@@ -4484,32 +4508,33 @@ html.theme-light body .home_work_soon .home_work_title {
 .work_page_section {
   padding-top: 2rem;
 }
-.work_page_section .hwc {
+
+.home_work .hwc {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(28px);
+  transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.work_page_section .hwc.wp_visible {
+.home_work .hwc.wp_visible {
   opacity: 1;
   transform: translateY(0);
 }
-.work_page_section .hwc.wp_visible:hover {
-  transform: translateY(-4px);
+.home_work .hwc.wp_visible:hover {
+  transform: translateY(-6px);
 }
-.work_page_section .hwc_img {
-  transition: box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+.home_work .hwc_img {
+  transition: box-shadow 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.work_page_section .hwc:hover .hwc_img {
-  box-shadow: 0 24px 48px -20px rgba(23, 24, 20, 0.5);
+.home_work .hwc:hover .hwc_img {
+  box-shadow: 0 28px 56px -22px rgba(23, 24, 20, 0.55);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .work_page_section .hwc {
+  .home_work .hwc {
     opacity: 1;
     transform: none;
     transition: none;
   }
-  .work_page_section .hwc.wp_visible:hover {
+  .home_work .hwc.wp_visible:hover {
     transform: none;
   }
 }

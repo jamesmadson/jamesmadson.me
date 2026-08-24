@@ -12,4 +12,9 @@
   {% if item.cover.artifact %}
     <img class="wc_artifact" src="{{ item.cover.artifact }}" alt="" loading="lazy">
   {% endif %}
+  {% if item.cover.tags %}
+  <ul class="wc_tags">
+    {% for t in item.cover.tags %}<li>{{ t }}</li>{% endfor %}
+  </ul>
+  {% endif %}
 </div>
