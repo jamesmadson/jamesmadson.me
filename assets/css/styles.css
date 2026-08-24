@@ -1504,6 +1504,96 @@ html.theme-light .about_now .now_note {
   opacity: 0.6;
 }
 
+header:has(#hero_shuffle_btn),
+.cs_hero {
+  position: relative;
+}
+
+header:has(#hero_shuffle_btn)::before,
+.cs_hero::before {
+  aspect-ratio: 1;
+  background: radial-gradient(closest-side, var(--fog, transparent), transparent 72%);
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  right: -12%;
+  top: -32%;
+  width: 72%;
+  z-index: -1;
+}
+@media (prefers-reduced-motion: no-preference) {
+  header:has(#hero_shuffle_btn)::before,
+  .cs_hero::before {
+    animation: fogSettle 2.2s cubic-bezier(0.16, 1, 0.3, 1) both, fogBreathe 26s ease-in-out 2.2s infinite alternate;
+  }
+}
+
+@keyframes fogSettle {
+  from {
+    opacity: 0;
+    transform: scale(1.3);
+  }
+  to {
+    opacity: var(--fog-max, 1);
+    transform: scale(1);
+  }
+}
+@keyframes fogBreathe {
+  to {
+    transform: scale(1.07);
+  }
+}
+header:has([data-accent=nd])::before,
+header:has([data-accent=nq])::before {
+  --fog: rgba(0, 153, 51, 0.18);
+}
+
+header:has([data-accent=pecan])::before {
+  --fog: rgba(35, 175, 229, 0.16);
+}
+
+header:has([data-accent=viz])::before {
+  --fog: rgba(24, 116, 220, 0.18);
+}
+
+header:has([data-accent=ns])::before {
+  --fog: rgba(153, 204, 0, 0.14);
+}
+
+header:has([data-accent=canon])::before {
+  --fog: rgba(237, 238, 232, 0.1);
+}
+
+body:has(.vt-nd) .cs_hero::before {
+  --fog: rgba(0, 153, 51, 0.18);
+}
+
+body:has(.vt-pecan) .cs_hero::before {
+  --fog: rgba(35, 175, 229, 0.16);
+}
+
+body:has(.vt-viz) .cs_hero::before {
+  --fog: rgba(24, 116, 220, 0.18);
+}
+
+body:has(.vt-nq) .cs_hero::before {
+  --fog: rgba(0, 153, 51, 0.18);
+}
+
+body:has(.vt-ns) .cs_hero::before {
+  --fog: rgba(153, 204, 0, 0.14);
+}
+
+body:has(.vt-canon) .cs_hero::before {
+  --fog: rgba(237, 238, 232, 0.1);
+}
+
+html.theme-light header:has(#hero_shuffle_btn)::before,
+html.theme-light .cs_hero::before {
+  --fog-max: 0.55;
+  opacity: 0.55;
+}
+
 .hero_shuffle_btn[data-accent=nd],
 .hero_shuffle_btn[data-accent=nq] {
   --hero-accent: #009933;
