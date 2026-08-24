@@ -1199,20 +1199,21 @@ html.theme-light .cs_hero::before {
     border-radius: 99em;
     box-shadow: 0 6px 18px -8px rgba(#000, 0.75);
     color: $dark-bg;
-    font-family: $mono;
+    font-family: $font;
     font-size: 0.22em;
     font-style: normal;
     font-weight: 700;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.03em;
     line-height: 1;
     opacity: 0;
     padding: 0.62em 1.1em 0.54em;
     position: absolute;
     text-transform: uppercase;
     white-space: nowrap;
-    // Morph out from behind the chip: scaled down and unrotated at
-    // rest, springing to full size at its resting angle
-    transform: scale(0.5) rotate(0deg);
+    // Fly out from behind the chip: each pill sits tucked at the chip's
+    // center at rest (--fx/--fy pull it back toward the middle) and
+    // travels to its corner as it scales up and takes its angle.
+    transform: translate(var(--fx, 0), var(--fy, 0)) scale(0.35) rotate(0deg);
     transform-origin: center;
     transition: opacity 0.18s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
@@ -1223,17 +1224,17 @@ html.theme-light .cs_hero::before {
   // pill size; the card grounds clear 7:1.
   i.is_name {
     background: var(--client-bg, #{$dark-bg});
-    box-shadow: 0 0 0 1.5px rgba($white, 0.22), 0 8px 22px -8px rgba(#000, 0.8);
+    box-shadow: 0 8px 22px -8px rgba(#000, 0.8);
     color: $white;
     font-size: 0.26em;
     z-index: 2;
   }
 
   // Surround the word: top-left, top-right, bottom-right, bottom-left
-  i:nth-child(1) { --r: -4deg;  bottom: 86%; right: 58%; }
-  i:nth-child(2) { --r: 3.5deg; bottom: 92%; left: 68%; }
-  i:nth-child(3) { --r: -3deg;  top: 88%;    left: 76%; }
-  i:nth-child(4) { --r: 4.5deg; top: 92%;    right: 66%; }
+  i:nth-child(1) { --r: -4deg;  --fx:  2.4em; --fy:  1.7em; bottom: 86%; right: 58%; }
+  i:nth-child(2) { --r: 3.5deg; --fx: -2.2em; --fy:  1.6em; bottom: 92%; left: 68%; }
+  i:nth-child(3) { --r: -3deg;  --fx: -2.4em; --fy: -1.5em; top: 88%;    left: 76%; }
+  i:nth-child(4) { --r: 4.5deg; --fx:  2.2em; --fy: -1.5em; top: 92%;    right: 66%; }
 
   i:nth-child(2) { transition-delay: 45ms; }
   i:nth-child(3) { transition-delay: 90ms; }
@@ -1243,7 +1244,7 @@ html.theme-light .cs_hero::before {
 .hl_wrap:hover .hl_tags i,
 .hl_wrap:focus-within .hl_tags i {
   opacity: 1;
-  transform: scale(1) rotate(var(--r));
+  transform: translate(0, 0) scale(1) rotate(var(--r));
 }
 
 // Client pill grounds, matched to each project's work card
