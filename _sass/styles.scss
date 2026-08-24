@@ -3802,7 +3802,7 @@ blockquote {
 .wc_top {
   display: flex;
   font-family: $mono;
-  font-size: 2.5cqw;
+  font-size: 2.8cqw;
   font-weight: 500;
   justify-content: space-between;
   letter-spacing: 0.05em;
@@ -3870,16 +3870,18 @@ blockquote {
   width: 52cqw;
 }
 
+.hwc.canon .wc_artifact {
+  border-radius: 1cqw;
+  bottom: 24cqw;
+  opacity: 0.6;
+  right: -14cqw;
+  width: 64cqw;
+}
+
 .wc_foot {
   margin-top: auto;
   position: relative;
   z-index: 2;
-}
-
-.wc_rule {
-  background: currentColor;
-  height: 1px;
-  opacity: 0.18;
 }
 
 .wc_stats {
@@ -3899,7 +3901,7 @@ blockquote {
   span {
     display: block;
     font-family: $mono;
-    font-size: 2.1cqw;
+    font-size: 2.4cqw;
     font-weight: 500;
     letter-spacing: 0.05em;
     line-height: 1;

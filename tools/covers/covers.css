@@ -28,7 +28,7 @@
 }
 .cover__label,
 .cover__status {
-  font: 500 2.3333cqw/1 "IBM Plex Mono", ui-monospace, monospace;
+  font: 500 2.6cqw/1 "IBM Plex Mono", ui-monospace, monospace;
   letter-spacing: .05em;
   text-transform: uppercase;
   opacity: .45;
@@ -55,11 +55,7 @@
 /* --- footer: rule + stats, pinned to bottom margin -------- */
 .cover__foot { margin-top: auto; }
 
-.cover__rule {
-  height: 1px;
-  background: currentColor;
-  opacity: .18;
-}
+.cover__rule { display: none; }
 
 .cover__stats {
   display: flex;
@@ -74,7 +70,7 @@
 .cover__stat span {
   display: block;
   margin-top: 1.075cqw;
-  font: 500 2.1667cqw/1 "IBM Plex Mono", ui-monospace, monospace;
+  font: 500 2.4cqw/1 "IBM Plex Mono", ui-monospace, monospace;
   letter-spacing: .05em;
   text-transform: uppercase;
   opacity: .4;
