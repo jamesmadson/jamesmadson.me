@@ -676,6 +676,14 @@ function smoothScrollTo(targetY, duration) {
     if (document.body.classList.contains('image-feed')) {
       applyCsView('case-study');
     }
+    // "Back to Top" points at #top, but no case study has an element
+    // with that id, and the browser's native #top fallback never fires
+    // here — clicking it did nothing. Scroll explicitly instead.
+    if (link.getAttribute('href') === '#top') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      history.replaceState(null, '', location.pathname);
+    }
   });
 
   // --- Hide the primary header the moment the section nav reaches it ---

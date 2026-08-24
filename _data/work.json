@@ -11,7 +11,6 @@
         "status": "NatureQuant",
         "headline": "Nature,<br>prescribed.",
         "subhead": "The app taken from zero to launch.",
-        "artifact": "/img/naturedose/app%20mockups/naturedose-iphone@2x.png",
         "stats": [
           {
             "n": "3",
@@ -44,7 +43,6 @@
         "status": "St. Jude Cloud",
         "headline": "Every sample,<br>one map.",
         "subhead": "Pediatric cancer data researchers can actually navigate.",
-        "artifact": "/img/covers/artifacts/pecan_ontology_map.png",
         "stats": [
           {
             "n": "9,000+",
@@ -69,7 +67,6 @@
         "status": "St. Jude Cloud",
         "headline": "Genomic data,<br>shared live.",
         "subhead": "A platform for researchers to publish and explore visualizations.",
-        "artifact": "/img/covers/artifacts/viz_code_editor.png",
         "stats": [
           {
             "n": "80+",
@@ -116,7 +113,6 @@
             "label": "Colors"
           }
         ],
-        "artifact": "/img/covers/artifacts/canon_gallery.png",
         "tags": [
           "In Progress",
           "AI Tooling",
@@ -144,7 +140,7 @@
           }
         ],
         "tags": [
-          "In Progress",
+          "Ongoing",
           "Brand",
           "Design System"
         ]

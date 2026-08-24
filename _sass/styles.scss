@@ -430,14 +430,20 @@ ul {
 
   @media (max-width: 768px) { position: fixed; }
 
-  &.cs-nav-stuck {
-    // The page-load animation uses fill-mode forwards, which pins
-    // transform and opacity to its end frame and outranks plain
-    // declarations. Clearing the animation lets the hide apply.
-    animation: none;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-100%);
+  // Only meaningful while the header is FIXED, i.e. mobile. On desktop
+  // the header is absolute and scrolls away on its own, and applying
+  // this there cancels .fadeIn's animation — so every scroll back to
+  // the top restarted fadeRise and the header visibly re-faded in.
+  @media (max-width: 768px) {
+    &.cs-nav-stuck {
+      // The page-load animation uses fill-mode forwards, which pins
+      // transform and opacity to its end frame and outranks plain
+      // declarations. Clearing the animation lets the hide apply.
+      animation: none;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-100%);
+    }
   }
 }
 
@@ -986,14 +992,31 @@ html.theme-light .about_now {
     // prose-only negative margin-block would eat the row gap.
     // Same outline treatment as the hero chips: these are buttons that
     // link out to case studies, and should read as pressable.
+    // Same behaviour as the hero chips: outlined at rest, filling with
+    // the project color on hover. Dark ink on the fill, not white —
+    // white on $cyan is ~2.3:1 and fails even the large-text floor.
     .highlight {
       box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 50%, transparent);
       color: $white;
       margin-block: 0;
+      transition: background-color 0.22s ease, color 0.22s ease,
+                  box-shadow 0.22s ease;
+
+      &.nd, &.nq { --chip: #{$green}; }
+      &.pecan    { --chip: #{$cyan}; }
+      &.viz      { --chip: #{$blue}; }
+      &.ns       { --chip: #{$lime}; }
+      &.canon    { --chip: #{$white}; }
+      &.jm       { --chip: #{$orange}; }
 
       &:hover, &:active {
-        box-shadow: 0 0 0 1px rgba($white, 0.35);
+        background-color: var(--chip);
+        box-shadow: 0 0 0 1px var(--chip);
+        color: $dark-bg;
       }
+
+      // $orange is dark enough that white ink reads better on it
+      &.jm:hover, &.jm:active { color: $white; }
     }
   }
 }
@@ -1011,12 +1034,13 @@ html.theme-light .about_now {
 }
 
 .hero_shuffle_ring {
-  height: calc(100% + 8px);
-  left: -4px;
+  // Drawn INSIDE the button, not 4px outside it. The old overhang sat
+  // exactly on .container's edge, which is overflow: hidden below
+  // 1280px, so the bottom arc was clipped. r=16 of an 18-unit radius
+  // with a 2.5 stroke keeps the whole ring within the button box.
+  inset: 0;
   pointer-events: none;
   position: absolute;
-  top: -4px;
-  width: calc(100% + 8px);
 
   circle {
     fill: none;
@@ -1050,11 +1074,15 @@ html.theme-light .about_now {
 // ============================================================
 
 header:has(#hero_shuffle_btn),
-.cs_hero {
+// .about.cs_hero, not .cs_hero: both selectors are (0,1,0) and .about
+// is declared later in this file, so a bare .cs_hero rule loses on
+// source order. That left overflow-x: hidden in place, which per spec
+// forces overflow-y to auto — turning the hero into its own scroll
+// container. Doubling the class outranks it.
+.about.cs_hero {
   // No clipping: the frost bleeds past the hero's bounds and feathers
-  // out via its own mask instead of cutting at the section edge.
-  // (.cs_hero overrides .about's overflow-x: hidden; the page-level
-  // body { overflow-x: clip } still guards against stray scrollbars.)
+  // out via its own mask instead of cutting at the section edge. The
+  // page-level body { overflow-x: clip } still guards stray scrollbars.
   overflow: visible;
   position: relative;
 }
@@ -1148,33 +1176,19 @@ html.theme-light .cs_hero::before {
 }
 
 // Hero chips carry their project color at rest, and deepen on hover
-#hero_shuffle_text .highlight {
-  &.nd, &.nq { background-color: $green; }
-  &.pecan    { background-color: $cyan; }
-  &.viz      { background-color: $blue; }
-  &.ns       { background-color: $lime; }
-  &.canon    { background-color: $white; }
+// --chip lives on the WRAPPER, not the chip: the shape layer is a
+// sibling of the <a>, and custom properties inherit down the tree, not
+// across it — set on the anchor, the path could never see it.
+.hl_wrap:has(.highlight.nd),
+.hl_wrap:has(.highlight.nq)    { --chip: #{$green}; }
+.hl_wrap:has(.highlight.pecan) { --chip: #{$cyan}; }
+.hl_wrap:has(.highlight.viz)   { --chip: #{$blue}; }
+.hl_wrap:has(.highlight.ns)    { --chip: #{$lime}; }
+.hl_wrap:has(.highlight.canon) { --chip: #{$white}; }
 
-  &.nd:hover, &.nd:active, &.nq:hover, &.nq:active {
-    background-color: color.adjust($green, $lightness: -7%);
-    box-shadow: none;
-    color: $dark-bg;
-  }
-  &.pecan:hover, &.pecan:active {
-    background-color: color.adjust($cyan, $lightness: -9%);
-    box-shadow: none;
-    color: $dark-bg;
-  }
-  &.viz:hover, &.viz:active {
-    background-color: color.adjust($blue, $lightness: -7%);
-    box-shadow: none;
-    color: $white;
-  }
-  &.canon:hover, &.canon:active {
-    background-color: color.adjust($white, $lightness: -8%);
-    box-shadow: none;
-    color: $dark-bg;
-  }
+#hero_shuffle_text .highlight {
+  background-color: var(--chip);
+
 }
 
 // Hero chip tags — Poolside-style: the set surrounds the word rather
@@ -1216,18 +1230,19 @@ html.theme-light .cs_hero::before {
     text-transform: uppercase;
     white-space: nowrap;
     // Fly out from behind the chip
-    transform: translate(var(--fx, 0), var(--fy, 0)) scale(0.35) rotate(0deg);
+    transform: translate(var(--fx, 0), var(--fy, 0)) scale(0.35);
     transform-origin: center;
-    transition: opacity 0.18s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    // Collapse is plain and quick; bounce lives on the hover rule so it
+    // never runs the return (overshoot below zero = pills poking out)
+    transition: opacity 0.14s ease, transform 0.18s cubic-bezier(0.4, 0, 1, 1);
   }
 
   // Client/project pill leads: own row above, project ground, white ink
   i.is_name {
-    --r: -3deg;
     --fx: 0.9em;
     --fy: 1.9em;
     background: var(--client-bg, #{$dark-bg});
-    bottom: 104%;
+    bottom: 100%;
     color: $white;
     font-size: 0.28em;
     left: 0;
@@ -1237,22 +1252,25 @@ html.theme-light .cs_hero::before {
 
   .hl_row {
     display: flex;
-    gap: 0.6em;
+    gap: 0.34em;
     left: 0;
     position: absolute;
-    top: 104%;
+    top: 100%;
     white-space: nowrap;
 
-    i:nth-child(1) { --r: -2.5deg; --fx:  1.2em; --fy: -1.3em; }
-    i:nth-child(2) { --r:  3deg;   --fx:  0;     --fy: -1.5em; transition-delay: 50ms; }
-    i:nth-child(3) { --r: -2deg;   --fx: -1.2em; --fy: -1.3em; transition-delay: 100ms; }
+    i:nth-child(1) { --fx:  1.2em; --fy: -1.3em; }
+    i:nth-child(2) { --fx:  0.6em; --fy: -1.5em; transition-delay: 50ms; }
+    i:nth-child(3) { --fx:  0;     --fy: -1.3em; transition-delay: 100ms; }
   }
 }
 
 .hl_wrap:hover .hl_tags i,
 .hl_wrap:focus-within .hl_tags i {
   opacity: 1;
-  transform: translate(0, 0) scale(1) rotate(var(--r));
+  transform: translate(0, 0) scale(1);
+  transition: opacity 0.18s ease,
+              transform 0.6s linear(0, 0.55 12%, 1.14 28%, 0.94 44%,
+                                    1.05 60%, 0.98 76%, 1.01 88%, 1);
 }
 
 // Vivid enough to lead the set against the dark page, dark enough that
@@ -1264,9 +1282,9 @@ html.theme-light .cs_hero::before {
 #hero_shuffle_text .highlight.canon + .hl_tags { --client-bg: #33332C; }
 
 @media (prefers-reduced-motion: reduce) {
-  .hl_tags i { transform: rotate(var(--r)); transition: opacity 0.15s ease; }
+  .hl_tags i { transform: none; transition: opacity 0.15s ease; }
   .hl_wrap:hover .hl_tags i,
-  .hl_wrap:focus-within .hl_tags i { transform: rotate(var(--r)); }
+  .hl_wrap:focus-within .hl_tags i { transform: none; }
 }
 
 // The old single ::after label is replaced by the surrounding set
@@ -1329,24 +1347,9 @@ html.theme-light .cs_hero::before {
     // curve with overshoot so it swells past its resting size and
     // settles, rather than easing flatly. Scaled slightly wider than
     // tall so it reads as a squish, not a zoom.
-    transform: scale(1) rotate(0deg);
+    transform: scaleY(1);
     transition: background-color 0.22s ease, color 0.22s ease,
-                border-radius 0.5s cubic-bezier(0.34, 1.8, 0.45, 1),
-                transform 0.55s cubic-bezier(0.34, 1.9, 0.4, 1);
-    will-change: transform;
-
-    // Morph, not a nudge: 8% was measurably firing but read as nothing
-    // next to the tags flying out. Swells hard and rounds to a pill on
-    // the way, overshooting before it settles.
-    &:hover, &:focus-visible {
-      border-radius: 99em;
-      transform: scale(1.19, 1.12);
-    }
-    &:active {
-      border-radius: 99em;
-      transform: scale(1.05, 1.03);
-      transition-duration: 0.12s;
-    }
+                transform 0.15s ease-out;
 
     @media (prefers-reduced-motion: reduce) {
       transition: background-color 0.22s ease, color 0.22s ease;
@@ -4258,21 +4261,19 @@ html.theme-light body .home_work_soon .home_work_title {
   opacity: 0.8;
 }
 
+// .hwc_soon no longer dims anything. It used to fade the card face and
+// caption to read as "not finished," but NatureQuant is six years of
+// continuous work, not something half-started — and the faded hover
+// made it the one card that dulls while every other card lifts. The
+// card states its own status in the corner; the dimming said something
+// untrue. Legacy image-based cards (no .wc) keep the old treatment.
 .hwc_soon {
-  .hwc_img {
+  .hwc_img:not(:has(.wc)) {
     opacity: 0.45;
     transition: opacity 0.35s ease, transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
-  // Live-text covers keep their true ground (James: NQ must render the
-  // actual #009933); the IN PROGRESS label and dimmed caption below
-  // already say what the old face-dimming said
-  .hwc_img:has(.wc) { opacity: 1; }
-
-  .hwc_title,
-  .hwc_company { opacity: 0.45; }
-
-  &:hover .hwc_img { opacity: 0.7; }
+  &:hover .hwc_img:not(:has(.wc)) { opacity: 0.7; }
 }
 
 .work_page_section { padding-top: 2rem; }
@@ -5736,11 +5737,11 @@ html.theme-light .colophon_history_year {
 // title was the loudest thing in the hero while the specific, alive
 // line sat at 50% grey — backwards for what the hero is meant to prove.
 .hero_eyebrow {
-  // 15px body-size text needs the full 4.5:1, not the large-text floor:
+  // 17px body-size text needs the full 4.5:1, not the large-text floor:
   // 0.55 on the dark bg ≈ 5.2:1, 0.75 on tan ≈ 5.6:1.
   color: rgba($white, 0.55);
   font-family: $mono;
-  font-size: 0.9375rem;
+  font-size: 1.0625rem;
   font-weight: 500;
   letter-spacing: 0.08em;
   margin: 0 0 1.25rem;
@@ -5792,6 +5793,13 @@ html.theme-light #hero_shuffle_text {
   from { opacity: 0; transform: translateY(14px); }
   to   { opacity: 1; transform: none; }
 }
+
+// .container turns on overflow: hidden below 1280px, and in the hero
+// that crops the shuffle button (and its ring) where the row's
+// JS-locked min-height runs past the container box. The clip isn't
+// needed here — body's overflow-x: clip is the real horizontal-scroll
+// guard — so the hero's container opts out.
+header:has(#hero_shuffle_btn) .container { overflow: visible; }
 
 .hero_shuffle_row {
   align-items: flex-start;
