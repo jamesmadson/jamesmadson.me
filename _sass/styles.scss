@@ -1328,6 +1328,27 @@ html.theme-light .cs_hero::before {
     // fails even the large-text floor, and this is now the resting state,
     // not a hover flash. Dark text clears 3.6:1 (blue) to 7.4:1 (cyan).
     color: $dark-bg;
+    // Bulge on hover, per the Rogie morph-button reference: a spring
+    // curve with overshoot so it swells past its resting size and
+    // settles, rather than easing flatly. Scaled slightly wider than
+    // tall so it reads as a squish, not a zoom.
+    transform: scale(1) rotate(0deg);
+    transition: background-color 0.22s ease, color 0.22s ease,
+                transform 0.52s cubic-bezier(0.34, 1.7, 0.5, 1);
+    will-change: transform;
+
+    &:hover, &:focus-visible {
+      transform: scale(1.085, 1.06);
+    }
+    &:active {
+      transform: scale(1.03, 1.02);
+      transition-duration: 0.12s;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: background-color 0.22s ease, color 0.22s ease;
+      &:hover, &:focus-visible, &:active { transform: none; }
+    }
 
     &:hover, &:active {
       box-shadow: 0 0 0 1px rgba($white, 0.35);

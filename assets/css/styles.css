@@ -1794,6 +1794,24 @@ html.theme-light .cs_hero::before {
   line-height: 1.2;
   box-shadow: none;
   color: #171814;
+  transform: scale(1) rotate(0deg);
+  transition: background-color 0.22s ease, color 0.22s ease, transform 0.52s cubic-bezier(0.34, 1.7, 0.5, 1);
+  will-change: transform;
+}
+#hero_shuffle_text .highlight:hover, #hero_shuffle_text .highlight:focus-visible {
+  transform: scale(1.085, 1.06);
+}
+#hero_shuffle_text .highlight:active {
+  transform: scale(1.03, 1.02);
+  transition-duration: 0.12s;
+}
+@media (prefers-reduced-motion: reduce) {
+  #hero_shuffle_text .highlight {
+    transition: background-color 0.22s ease, color 0.22s ease;
+  }
+  #hero_shuffle_text .highlight:hover, #hero_shuffle_text .highlight:focus-visible, #hero_shuffle_text .highlight:active {
+    transform: none;
+  }
 }
 #hero_shuffle_text .highlight:hover, #hero_shuffle_text .highlight:active {
   box-shadow: 0 0 0 1px rgba(237, 238, 232, 0.35);
