@@ -3878,42 +3878,6 @@ blockquote {
   width: 64cqw;
 }
 
-.wc_foot {
-  margin-top: auto;
-  position: relative;
-  z-index: 2;
-}
-
-.wc_stats {
-  display: flex;
-  gap: 4.6cqw;
-  margin: 3cqw 0 0;
-
-  b {
-    display: block;
-    font-size: 5.8cqw;
-    font-variant-numeric: lining-nums tabular-nums;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    line-height: 1;
-  }
-
-  span {
-    display: block;
-    font-family: $mono;
-    font-size: 2.4cqw;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    line-height: 1;
-    margin-top: 1.1cqw;
-    opacity: 0.45;
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
-}
-
-// One stat, stated large — reads as a choice, not two stats missing
-.wc_stats--solo b { font-size: 8.6cqw; }
 
 .hwc_nda_visual {
   align-items: center;

@@ -12,11 +12,4 @@
   {% if item.cover.artifact %}
     <img class="wc_artifact" src="{{ item.cover.artifact }}" alt="" loading="lazy">
   {% endif %}
-  <div class="wc_foot">
-    <dl class="wc_stats{% if item.cover.stats.length == 1 %} wc_stats--solo{% endif %}">
-      {% for s in item.cover.stats %}
-        <div class="wc_stat"><b>{{ s.n }}</b><span>{{ s.label }}</span></div>
-      {% endfor %}
-    </dl>
-  </div>
 </div>
