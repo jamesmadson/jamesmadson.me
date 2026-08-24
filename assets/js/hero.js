@@ -102,6 +102,14 @@
     textEl.innerHTML = SENTENCES[idx];
     var announceEl = document.getElementById('hero_shuffle_announce');
     if (announceEl) announceEl.textContent = textEl.textContent;
+    // Hand the sentence's project accent to the countdown ring
+    var hl = textEl.querySelector('a.highlight');
+    if (hl) {
+      var mod = Array.prototype.filter.call(hl.classList, function (c) {
+        return c !== 'highlight';
+      })[0];
+      if (mod) btn.setAttribute('data-accent', mod);
+    }
   }
 
   render(idx);

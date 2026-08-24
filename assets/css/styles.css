@@ -1486,17 +1486,35 @@ html.theme-light .about_now .now_note {
 .hero_shuffle_ring circle {
   fill: none;
   opacity: 0;
-  stroke: currentColor;
+  stroke: var(--hero-accent, currentColor);
   stroke-dasharray: 100.53; /* 2πr, r=16 in the 36-unit viewBox */
   stroke-dashoffset: 100.53;
   stroke-linecap: round;
-  stroke-width: 1.5;
+  stroke-width: 2.5;
   transform: rotate(-90deg);
   transform-origin: center;
+  transition: stroke 0.3s ease;
 }
 .hero_shuffle_ring.is_counting circle {
   animation: heroRingDrain var(--ring-ms, 5000ms) linear forwards;
-  opacity: 0.35;
+  opacity: 0.6;
+}
+
+.hero_shuffle_btn[data-accent=nd],
+.hero_shuffle_btn[data-accent=nq] {
+  --hero-accent: #009933;
+}
+
+.hero_shuffle_btn[data-accent=pecan] {
+  --hero-accent: #23AFE5;
+}
+
+.hero_shuffle_btn[data-accent=viz] {
+  --hero-accent: #1874dc;
+}
+
+.hero_shuffle_btn[data-accent=ns] {
+  --hero-accent: #99CC00;
 }
 
 @keyframes heroRingDrain {
@@ -5863,6 +5881,20 @@ html.theme-light .colophon_history_year {
   width: 1px;
 }
 
+.hero_eyebrow {
+  color: rgba(237, 238, 232, 0.55);
+  font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  margin: 0 0 1.25rem;
+  text-transform: uppercase;
+}
+
+html.theme-light .hero_eyebrow {
+  color: rgba(51, 53, 46, 0.75);
+}
+
 .hero_headline {
   color: #EDEEE8;
   font-size: clamp(2.5rem, 4vw + 1rem, 4.5rem);
@@ -5877,13 +5909,34 @@ html.theme-light .hero_headline {
 }
 
 #hero_shuffle_text {
-  color: rgba(237, 238, 232, 0.5);
+  color: rgba(237, 238, 232, 0.85);
 }
 
 html.theme-light #hero_shuffle_text {
-  color: rgba(51, 53, 46, 0.65);
+  color: rgba(51, 53, 46, 0.85);
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .hero_enter {
+    animation: heroRise 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .hero_shuffle_row.hero_enter {
+    animation-delay: 140ms;
+  }
+  .logo_scroller.hero_enter {
+    animation-delay: 300ms;
+  }
+}
+@keyframes heroRise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
 .hero_shuffle_row {
   align-items: flex-start;
   display: flex;
@@ -5901,10 +5954,10 @@ html.theme-light #hero_shuffle_text {
   cursor: pointer;
   display: flex;
   flex-shrink: 0;
-  height: 32px;
+  height: 36px;
   justify-content: center;
   transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-  width: 32px;
+  width: 36px;
 }
 .hero_shuffle_btn:hover {
   background: #EDEEE8;

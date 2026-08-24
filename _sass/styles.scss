@@ -1019,20 +1019,32 @@ html.theme-light .about_now {
   circle {
     fill: none;
     opacity: 0;
-    stroke: currentColor;
+    // Takes the current sentence's project color (data-accent set by
+    // hero.js on each render) so the countdown reads as part of the
+    // content, not chrome. Falls back to the button's own grey.
+    stroke: var(--hero-accent, currentColor);
     stroke-dasharray: 100.53; /* 2πr, r=16 in the 36-unit viewBox */
     stroke-dashoffset: 100.53;
     stroke-linecap: round;
-    stroke-width: 1.5;
+    stroke-width: 2.5;
     transform: rotate(-90deg);
     transform-origin: center;
+    transition: stroke 0.3s ease;
   }
 
   &.is_counting circle {
     animation: heroRingDrain var(--ring-ms, 5000ms) linear forwards;
-    opacity: 0.35;
+    opacity: 0.6;
   }
 }
+
+// Project accent for the ring, keyed off the sentence currently shown.
+// Same colors the highlight chips use for these mods.
+.hero_shuffle_btn[data-accent="nd"],
+.hero_shuffle_btn[data-accent="nq"]    { --hero-accent: #{$green}; }
+.hero_shuffle_btn[data-accent="pecan"] { --hero-accent: #{$cyan}; }
+.hero_shuffle_btn[data-accent="viz"]   { --hero-accent: #{$blue}; }
+.hero_shuffle_btn[data-accent="ns"]    { --hero-accent: #{$lime}; }
 
 @keyframes heroRingDrain {
   from { stroke-dashoffset: 100.53; }
@@ -5302,11 +5314,30 @@ html.theme-light .colophon_history_year {
 // Hero headline + shuffle
 // ============================================================
 
+// Hierarchy flip: the h1 keeps its text and semantics but renders as a
+// small mono eyebrow (same grammar as the cover cards' corner labels),
+// and the rotating proof sentences take the display size. The generic
+// title was the loudest thing in the hero while the specific, alive
+// line sat at 50% grey — backwards for what the hero is meant to prove.
+.hero_eyebrow {
+  // 15px body-size text needs the full 4.5:1, not the large-text floor:
+  // 0.55 on the dark bg ≈ 5.2:1, 0.75 on tan ≈ 5.6:1.
+  color: rgba($white, 0.55);
+  font-family: $mono;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  margin: 0 0 1.25rem;
+  text-transform: uppercase;
+}
+
+html.theme-light .hero_eyebrow {
+  color: rgba($dark-default, 0.75);
+}
+
+// Now only the shuffle line's <p> — the h1 moved to .hero_eyebrow.
 .hero_headline {
   color: $white;
-  // Explicit rather than relying on the base `h1` element rule, since this
-  // class is also used on the shuffle line's <p> — both need identical
-  // sizing regardless of element type.
   font-size: clamp(2.5rem, 4vw + 1rem, 4.5rem);
   font-family: $font;
   font-weight: 500;
@@ -5318,19 +5349,32 @@ html.theme-light .hero_headline {
   color: $dark-default;
 }
 
-// The shuffle line shares .hero_headline's size/font but reads as
-// secondary via color, not size — grey rather than full white/black.
-// Opacity differs by theme on purpose, measured against the current
-// softened palette: 0.5 on the dark background gives 4.67:1, and 0.65
-// on the light background gives 4.02:1. Both clear the 3:1 AA floor
-// for large text (this renders 40–72px); a flat 0.5 in light theme
-// would fall to 2.9:1 and fail.
+// Display text now, not a secondary line: 0.85 keeps a step of
+// hierarchy below pure white without reading as disabled. Renders
+// 40–72px, far above the AA large-text floor in both themes.
 #hero_shuffle_text {
-  color: rgba($white, 0.5);
+  color: rgba($white, 0.85);
 }
 
 html.theme-light #hero_shuffle_text {
-  color: rgba($dark-default, 0.65);
+  color: rgba($dark-default, 0.85);
+}
+
+// Staggered entrance: eyebrow, then the proof line, then the logo
+// marquee. `both` pins transform:none afterward — safe here because
+// nothing else ever transforms these three containers (the marquee
+// animates its inner track, the shuffle transition animates the <p>).
+@media (prefers-reduced-motion: no-preference) {
+  .hero_enter {
+    animation: heroRise 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .hero_shuffle_row.hero_enter { animation-delay: 140ms; }
+  .logo_scroller.hero_enter    { animation-delay: 300ms; }
+}
+
+@keyframes heroRise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
 }
 
 .hero_shuffle_row {
@@ -5350,10 +5394,12 @@ html.theme-light #hero_shuffle_text {
   cursor: pointer;
   display: flex;
   flex-shrink: 0;
-  height: 32px;
+  // 36px (was 32) so the thicker accent ring has room to register
+  // against the display-size line above it; hit area below stays 44px.
+  height: 36px;
   justify-content: center;
   transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-  width: 32px;
+  width: 36px;
 
   &:hover {
     background: $white;
