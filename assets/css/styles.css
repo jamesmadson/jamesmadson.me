@@ -1506,19 +1506,20 @@ html.theme-light .about_now .now_note {
 
 header:has(#hero_shuffle_btn),
 .cs_hero {
+  overflow: hidden;
   position: relative;
 }
 
 header:has(#hero_shuffle_btn)::before,
 .cs_hero::before {
-  aspect-ratio: 1;
-  background: radial-gradient(closest-side, var(--fog, transparent), transparent 72%);
+  background-image: linear-gradient(rgba(23, 24, 20, 0.5), rgba(23, 24, 20, 0.5)), var(--fog-img, none);
+  background-position: center;
+  background-size: cover;
   content: "";
+  filter: blur(64px) saturate(1.15) brightness(0.7);
+  inset: -14%;
   pointer-events: none;
   position: absolute;
-  right: -12%;
-  top: -32%;
-  width: 72%;
   z-index: -1;
 }
 @media (prefers-reduced-motion: no-preference) {
@@ -1531,7 +1532,7 @@ header:has(#hero_shuffle_btn)::before,
 @keyframes fogSettle {
   from {
     opacity: 0;
-    transform: scale(0.55);
+    transform: scale(0.6);
   }
   to {
     opacity: var(--fog-max, 1);
@@ -1540,58 +1541,63 @@ header:has(#hero_shuffle_btn)::before,
 }
 @keyframes fogBreathe {
   to {
-    transform: scale(1.07);
+    transform: scale(1.06);
   }
 }
-header:has([data-accent=nd])::before,
-header:has([data-accent=nq])::before {
-  --fog: rgba(0, 153, 51, 0.28);
+header:has([data-accent=nd])::before {
+  --fog-img: url('/img/covers/ambient/nd.jpg');
 }
 
 header:has([data-accent=pecan])::before {
-  --fog: rgba(35, 175, 229, 0.26);
+  --fog-img: url('/img/covers/ambient/pecan.jpg');
 }
 
 header:has([data-accent=viz])::before {
-  --fog: rgba(24, 116, 220, 0.28);
+  --fog-img: url('/img/covers/ambient/viz.jpg');
+}
+
+header:has([data-accent=nq])::before {
+  --fog-img: url('/img/covers/ambient/nq.jpg');
 }
 
 header:has([data-accent=ns])::before {
-  --fog: rgba(153, 204, 0, 0.22);
+  --fog-img: url('/img/covers/ambient/ns.jpg');
 }
 
 header:has([data-accent=canon])::before {
-  --fog: rgba(237, 238, 232, 0.16);
+  --fog-img: url('/img/covers/ambient/canon.jpg');
 }
 
 body:has(.vt-nd) .cs_hero::before {
-  --fog: rgba(0, 153, 51, 0.28);
+  --fog-img: url('/img/covers/ambient/nd.jpg');
 }
 
 body:has(.vt-pecan) .cs_hero::before {
-  --fog: rgba(35, 175, 229, 0.26);
+  --fog-img: url('/img/covers/ambient/pecan.jpg');
 }
 
 body:has(.vt-viz) .cs_hero::before {
-  --fog: rgba(24, 116, 220, 0.28);
+  --fog-img: url('/img/covers/ambient/viz.jpg');
 }
 
 body:has(.vt-nq) .cs_hero::before {
-  --fog: rgba(0, 153, 51, 0.28);
+  --fog-img: url('/img/covers/ambient/nq.jpg');
 }
 
 body:has(.vt-ns) .cs_hero::before {
-  --fog: rgba(153, 204, 0, 0.22);
+  --fog-img: url('/img/covers/ambient/ns.jpg');
 }
 
 body:has(.vt-canon) .cs_hero::before {
-  --fog: rgba(237, 238, 232, 0.16);
+  --fog-img: url('/img/covers/ambient/canon.jpg');
 }
 
 html.theme-light header:has(#hero_shuffle_btn)::before,
 html.theme-light .cs_hero::before {
-  --fog-max: 0.55;
-  opacity: 0.55;
+  --fog-max: 0.5;
+  background-image: linear-gradient(rgba(242, 242, 237, 0.55), rgba(242, 242, 237, 0.55)), var(--fog-img, none);
+  filter: blur(64px) saturate(1.05) brightness(1.2);
+  opacity: 0.5;
 }
 
 .hero_shuffle_btn[data-accent=nd],

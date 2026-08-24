@@ -1040,30 +1040,33 @@ html.theme-light .about_now {
 }
 
 // ============================================================
-// Project fog — a soft, project-colored field behind the hero.
-// Pure radial gradient (no blur filter, so no GPU memory cost),
-// soft by construction, animated on transform/opacity only. On
-// home it follows the shuffle sentence via the button's
-// data-accent; on case studies it keys off the page's cover
-// view-transition class. Settles from a slight zoom on arrival,
-// then breathes almost imperceptibly.
+// Project fog — the project's own artwork, heavily blurred, as a
+// frosted-glass field behind the hero. Sources are tiny derived
+// jpgs (480px, 6-38KB) since 64px of blur erases detail anyway; a
+// dark veil rides the same layer to keep the type at AA. Blooms
+// from center on load, then breathes. On home the artwork follows
+// the shuffle sentence; case studies key off the cover's vt class.
 // ============================================================
 
 header:has(#hero_shuffle_btn),
 .cs_hero {
+  overflow: hidden;
   position: relative;
 }
 
 header:has(#hero_shuffle_btn)::before,
 .cs_hero::before {
-  aspect-ratio: 1;
-  background: radial-gradient(closest-side, var(--fog, transparent), transparent 72%);
+  // Veil rides above the artwork in the same layer, so light-heavy
+  // sources (Viz's white panels) can't blow out under the type
+  background-image: linear-gradient(rgba($dark-bg, 0.5), rgba($dark-bg, 0.5)), var(--fog-img, none);
+  background-position: center;
+  background-size: cover;
   content: '';
+  filter: blur(64px) saturate(1.15) brightness(0.7);
+  // Oversized so the blur's soft edge never shows inside the frame
+  inset: -14%;
   pointer-events: none;
   position: absolute;
-  right: -12%;
-  top: -32%;
-  width: 72%;
   z-index: -1;
 
   @media (prefers-reduced-motion: no-preference) {
@@ -1074,36 +1077,41 @@ header:has(#hero_shuffle_btn)::before,
 }
 
 @keyframes fogSettle {
-  from { opacity: 0; transform: scale(0.55); }
+  from { opacity: 0; transform: scale(0.6); }
   to   { opacity: var(--fog-max, 1); transform: scale(1); }
 }
 
 @keyframes fogBreathe {
-  to { transform: scale(1.07); }
+  to { transform: scale(1.06); }
 }
 
-// Home: fog color rides the current sentence's accent
-header:has([data-accent="nd"])::before,
-header:has([data-accent="nq"])::before    { --fog: #{rgba($green, 0.28)}; }
-header:has([data-accent="pecan"])::before { --fog: #{rgba($cyan, 0.26)}; }
-header:has([data-accent="viz"])::before   { --fog: #{rgba($blue, 0.28)}; }
-header:has([data-accent="ns"])::before    { --fog: #{rgba($lime, 0.22)}; }
-header:has([data-accent="canon"])::before { --fog: #{rgba($white, 0.16)}; }
+// Home: artwork rides the current sentence's accent
+header:has([data-accent="nd"])::before    { --fog-img: url('/img/covers/ambient/nd.jpg'); }
+header:has([data-accent="pecan"])::before { --fog-img: url('/img/covers/ambient/pecan.jpg'); }
+header:has([data-accent="viz"])::before   { --fog-img: url('/img/covers/ambient/viz.jpg'); }
+header:has([data-accent="nq"])::before    { --fog-img: url('/img/covers/ambient/nq.jpg'); }
+header:has([data-accent="ns"])::before    { --fog-img: url('/img/covers/ambient/ns.jpg'); }
+header:has([data-accent="canon"])::before { --fog-img: url('/img/covers/ambient/canon.jpg'); }
 
-// Case studies: fixed per project, keyed off the cover's vt class
-body:has(.vt-nd) .cs_hero::before     { --fog: #{rgba($green, 0.28)}; }
-body:has(.vt-pecan) .cs_hero::before  { --fog: #{rgba($cyan, 0.26)}; }
-body:has(.vt-viz) .cs_hero::before    { --fog: #{rgba($blue, 0.28)}; }
-body:has(.vt-nq) .cs_hero::before     { --fog: #{rgba($green, 0.28)}; }
-body:has(.vt-ns) .cs_hero::before     { --fog: #{rgba($lime, 0.22)}; }
-body:has(.vt-canon) .cs_hero::before  { --fog: #{rgba($white, 0.16)}; }
+// Case studies: fixed per project
+body:has(.vt-nd) .cs_hero::before     { --fog-img: url('/img/covers/ambient/nd.jpg'); }
+body:has(.vt-pecan) .cs_hero::before  { --fog-img: url('/img/covers/ambient/pecan.jpg'); }
+body:has(.vt-viz) .cs_hero::before    { --fog-img: url('/img/covers/ambient/viz.jpg'); }
+body:has(.vt-nq) .cs_hero::before     { --fog-img: url('/img/covers/ambient/nq.jpg'); }
+body:has(.vt-ns) .cs_hero::before     { --fog-img: url('/img/covers/ambient/ns.jpg'); }
+body:has(.vt-canon) .cs_hero::before  { --fog-img: url('/img/covers/ambient/canon.jpg'); }
 
-// On the tan ground the same alphas read chalky; ease off. Routed
-// through the keyframe's end value because fogSettle's `both` fill
-// outranks a plain opacity declaration (same conflict class as the
-// sticky-header fill-mode bug).
+// Light theme: lift the veil instead of dimming — brighten the frost
+// and ease it back so tan-ground type keeps its contrast. Routed
+// through the keyframe end value because fogSettle's `both` fill
+// outranks a plain opacity declaration.
 html.theme-light header:has(#hero_shuffle_btn)::before,
-html.theme-light .cs_hero::before { --fog-max: 0.55; opacity: 0.55; }
+html.theme-light .cs_hero::before {
+  --fog-max: 0.5;
+  background-image: linear-gradient(rgba($tan, 0.55), rgba($tan, 0.55)), var(--fog-img, none);
+  filter: blur(64px) saturate(1.05) brightness(1.2);
+  opacity: 0.5;
+}
 
 // Project accent for the ring, keyed off the sentence currently shown.
 // Same colors the highlight chips use for these mods.
