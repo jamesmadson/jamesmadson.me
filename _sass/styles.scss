@@ -662,6 +662,7 @@ html.theme-light #navlink { color: $dark-default; }
     &.ns     { background-color: $lime; }
     &.nq     { background-color: $green; }
     &.viz    { background-color: $blue; }
+    &.canon  { background-color: $white; color: $dark-bg; }
   }
 }
 
@@ -1045,6 +1046,7 @@ html.theme-light .about_now {
 .hero_shuffle_btn[data-accent="pecan"] { --hero-accent: #{$cyan}; }
 .hero_shuffle_btn[data-accent="viz"]   { --hero-accent: #{$blue}; }
 .hero_shuffle_btn[data-accent="ns"]    { --hero-accent: #{$lime}; }
+.hero_shuffle_btn[data-accent="canon"] { --hero-accent: #{$white}; }
 
 @keyframes heroRingDrain {
   from { stroke-dashoffset: 100.53; }
@@ -1213,6 +1215,12 @@ html.theme-light .about_now {
     &:hover, &:active { background-color: $green; color: $white; box-shadow: 0 0 0 1px $green; }
     &::before { background-color: $green; animation: bgShimmer 2.5s ease-in-out 1.6s; }
     &::after { background-color: color.adjust($green, $lightness: -10%); content: "NatureDose"; animation: labelReveal 2.5s ease-in-out 1.6s; }
+  }
+  // Canon is the monochrome brand: its chip inverts to off-white with ink text
+  &.canon {
+    &:hover, &:active { background-color: $white; color: $dark-bg; box-shadow: 0 0 0 1px $white; }
+    &::before { background-color: $white; animation: bgShimmer 2.5s ease-in-out 1.9s; }
+    &::after { background-color: color.adjust($white, $lightness: -12%); color: $dark-bg; content: "Canon"; animation: labelReveal 2.5s ease-in-out 1.9s; }
   }
 }
 

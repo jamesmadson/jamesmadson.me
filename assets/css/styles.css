@@ -1171,6 +1171,10 @@ html.theme-light #navlink {
 .nav_title .breadcrumb.viz {
   background-color: #1874dc;
 }
+.nav_title .breadcrumb.canon {
+  background-color: #EDEEE8;
+  color: #171814;
+}
 
 .mobile_nav_menu {
   -webkit-backdrop-filter: blur(48px) saturate(2);
@@ -1517,6 +1521,10 @@ html.theme-light .about_now .now_note {
   --hero-accent: #99CC00;
 }
 
+.hero_shuffle_btn[data-accent=canon] {
+  --hero-accent: #EDEEE8;
+}
+
 @keyframes heroRingDrain {
   from {
     stroke-dashoffset: 100.53;
@@ -1716,6 +1724,21 @@ html.theme-light .about_now .now_note {
   background-color: #006622;
   content: "NatureDose";
   animation: labelReveal 2.5s ease-in-out 1.6s;
+}
+.highlight.canon:hover, .highlight.canon:active {
+  background-color: #EDEEE8;
+  color: #171814;
+  box-shadow: 0 0 0 1px #EDEEE8;
+}
+.highlight.canon::before {
+  background-color: #EDEEE8;
+  animation: bgShimmer 2.5s ease-in-out 1.9s;
+}
+.highlight.canon::after {
+  background-color: rgb(209.46, 211.99, 196.81);
+  color: #171814;
+  content: "Canon";
+  animation: labelReveal 2.5s ease-in-out 1.9s;
 }
 
 .select_clients {
