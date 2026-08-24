@@ -1176,68 +1176,97 @@ html.theme-light .cs_hero::before {
   }
 }
 
-// Hero chip tag fan — the project name plus its work-card taxonomy,
-// springing up on hover. Lives in a sibling span rather than inside the
-// <a>, because animateHighlights() rewrites the anchor's innerHTML for
-// the per-character typing effect and would otherwise wipe these out.
+// Hero chip tags — Poolside-style: the set surrounds the word rather
+// than stacking above it, each pill rotated a little and morphing
+// outward from behind the chip on hover. Client pill leads at top-left
+// in the project's own ground color; the rest are white with bold ink.
+// Lives in a sibling .hl_wrap span, not inside the <a>, because
+// animateHighlights() rewrites the anchor's innerHTML for the
+// per-character typing effect and would wipe these out.
 .hl_wrap {
   display: inline-block;
   position: relative;
 }
 
 .hl_tags {
-  bottom: calc(100% + 0.15em);
-  display: flex;
-  gap: 0.28em;
-  left: 0;
+  inset: 0;
   pointer-events: none;
   position: absolute;
-  white-space: nowrap;
 
   i {
-    background: rgba($dark-bg, 0.82);
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
+    --r: 0deg;
+    background: $white;
     border-radius: 99em;
-    box-shadow: 0 0 0 1px rgba($white, 0.16), 0 4px 14px -6px rgba(#000, 0.6);
-    color: rgba($white, 0.82);
+    box-shadow: 0 6px 18px -8px rgba(#000, 0.75);
+    color: $dark-bg;
     font-family: $mono;
-    font-size: 0.2em;
+    font-size: 0.22em;
     font-style: normal;
-    font-weight: 500;
-    letter-spacing: 0.07em;
+    font-weight: 700;
+    letter-spacing: 0.06em;
     line-height: 1;
     opacity: 0;
-    padding: 0.6em 1.05em 0.5em;
+    padding: 0.62em 1.1em 0.54em;
+    position: absolute;
     text-transform: uppercase;
-    transform: translateY(0.5em);
-    transition: opacity 0.2s ease, transform 0.44s cubic-bezier(0.34, 1.56, 0.64, 1);
-
-    // The project name leads the set and reads as the primary label
-    &.is_name {
-      background: $white;
-      box-shadow: 0 4px 14px -6px rgba(#000, 0.6);
-      color: $dark-bg;
-      font-weight: 600;
-    }
+    white-space: nowrap;
+    // Morph out from behind the chip: scaled down and unrotated at
+    // rest, springing to full size at its resting angle
+    transform: scale(0.5) rotate(0deg);
+    transform-origin: center;
+    transition: opacity 0.18s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
-  @for $i from 1 through 4 {
-    i:nth-child(#{$i}) { transition-delay: #{($i - 1) * 55}ms; }
+  // The client leads: project ground color, white ink, a touch larger.
+  // Uses the darkened card grounds rather than the raw brand hues —
+  // white on $cyan is ~2.3:1 and on $green ~3.9:1, both failing at this
+  // pill size; the card grounds clear 7:1.
+  i.is_name {
+    background: var(--client-bg, #{$dark-bg});
+    box-shadow: 0 0 0 1.5px rgba($white, 0.22), 0 8px 22px -8px rgba(#000, 0.8);
+    color: $white;
+    font-size: 0.26em;
+    z-index: 2;
   }
+
+  // Surround the word: top-left, top-right, bottom-right, bottom-left
+  i:nth-child(1) { --r: -4deg;  bottom: 86%; right: 58%; }
+  i:nth-child(2) { --r: 3.5deg; bottom: 92%; left: 68%; }
+  i:nth-child(3) { --r: -3deg;  top: 88%;    left: 76%; }
+  i:nth-child(4) { --r: 4.5deg; top: 92%;    right: 66%; }
+
+  i:nth-child(2) { transition-delay: 45ms; }
+  i:nth-child(3) { transition-delay: 90ms; }
+  i:nth-child(4) { transition-delay: 135ms; }
 }
 
 .hl_wrap:hover .hl_tags i,
 .hl_wrap:focus-within .hl_tags i {
   opacity: 1;
-  transform: translateY(0);
+  transform: scale(1) rotate(var(--r));
 }
+
+// Client pill grounds, matched to each project's work card
+// Vivid enough to lead the set against the dark page, dark enough that
+// white ink still clears 4.5:1 (4.59 blue → 7.5 grey). The card grounds
+// were too dark here: correct contrast, but the pill read as the least
+// prominent thing on screen instead of the most.
+#hero_shuffle_text .highlight.nd  + .hl_tags,
+#hero_shuffle_text .highlight.nq  + .hl_tags   { --client-bg: #0B7A2E; }
+#hero_shuffle_text .highlight.pecan + .hl_tags { --client-bg: #14708F; }
+#hero_shuffle_text .highlight.viz + .hl_tags   { --client-bg: #1874DC; }
+#hero_shuffle_text .highlight.canon + .hl_tags { --client-bg: #55554E; }
 
 @media (prefers-reduced-motion: reduce) {
-  .hl_tags i { transition: opacity 0.15s ease; transform: none; }
+  .hl_tags i {
+    transform: rotate(var(--r));
+    transition: opacity 0.15s ease;
+  }
+  .hl_wrap:hover .hl_tags i,
+  .hl_wrap:focus-within .hl_tags i { transform: rotate(var(--r)); }
 }
 
-// The old single ::after label is replaced by the fan
+// The old single ::after label is replaced by the surrounding set
 #hero_shuffle_text .highlight::after { content: none; }
 
 // Project accent for the ring, keyed off the sentence currently shown.
