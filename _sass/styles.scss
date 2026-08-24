@@ -2109,7 +2109,7 @@ html.theme-light .practice_list {
   }
 
   @each $mod in nd, viz, ns, nq, pecan, canon {
-    .hwc.#{$mod} .hwc_img img,
+    .hwc.#{$mod} .hwc_img,
     .cs_cover_img.vt-#{$mod} {
       view-transition-name: vt-#{$mod};
     }
@@ -3858,10 +3858,9 @@ blockquote {
 }
 
 .hwc.pecan .wc_artifact {
-  border-radius: 50%;
-  bottom: -10cqw;
-  right: -10cqw;
-  width: 50cqw;
+  bottom: 5cqw;
+  right: -18cqw;
+  width: 72cqw;
 }
 
 .hwc.viz .wc_artifact {
@@ -3963,6 +3962,11 @@ html.theme-light body .home_work_soon .home_work_title {
     opacity: 0.45;
     transition: opacity 0.35s ease, transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
+
+  // Live-text covers keep their true ground (James: NQ must render the
+  // actual #009933); the IN PROGRESS label and dimmed caption below
+  // already say what the old face-dimming said
+  .hwc_img:has(.wc) { opacity: 1; }
 
   .hwc_title,
   .hwc_company { opacity: 0.45; }

@@ -2572,27 +2572,27 @@ html.theme-light .practice_list p {
   @view-transition {
     navigation: auto;
   }
-  .hwc.nd .hwc_img img,
+  .hwc.nd .hwc_img,
   .cs_cover_img.vt-nd {
     view-transition-name: vt-nd;
   }
-  .hwc.viz .hwc_img img,
+  .hwc.viz .hwc_img,
   .cs_cover_img.vt-viz {
     view-transition-name: vt-viz;
   }
-  .hwc.ns .hwc_img img,
+  .hwc.ns .hwc_img,
   .cs_cover_img.vt-ns {
     view-transition-name: vt-ns;
   }
-  .hwc.nq .hwc_img img,
+  .hwc.nq .hwc_img,
   .cs_cover_img.vt-nq {
     view-transition-name: vt-nq;
   }
-  .hwc.pecan .hwc_img img,
+  .hwc.pecan .hwc_img,
   .cs_cover_img.vt-pecan {
     view-transition-name: vt-pecan;
   }
-  .hwc.canon .hwc_img img,
+  .hwc.canon .hwc_img,
   .cs_cover_img.vt-canon {
     view-transition-name: vt-canon;
   }
@@ -4347,10 +4347,9 @@ blockquote span {
 }
 
 .hwc.pecan .wc_artifact {
-  border-radius: 50%;
-  bottom: -10cqw;
-  right: -10cqw;
-  width: 50cqw;
+  bottom: 5cqw;
+  right: -18cqw;
+  width: 72cqw;
 }
 
 .hwc.viz .wc_artifact {
@@ -4447,6 +4446,9 @@ html.theme-light body .home_work_soon .home_work_title {
 .hwc_soon .hwc_img {
   opacity: 0.45;
   transition: opacity 0.35s ease, transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.hwc_soon .hwc_img:has(.wc) {
+  opacity: 1;
 }
 .hwc_soon .hwc_title,
 .hwc_soon .hwc_company {
