@@ -31,9 +31,7 @@ html.theme-light body a:hover {
   color: #666666;
 }
 html.theme-light body .site_header {
-  background-color: rgba(242, 242, 237, 0.6);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4);
-  backdrop-filter: blur(20px) saturate(1.4);
+  background-color: transparent;
 }
 html.theme-light body .site_name {
   color: #33352E;
@@ -257,9 +255,7 @@ body.theme-light a:hover {
   color: #666666;
 }
 body.theme-light .site_header {
-  background-color: rgba(242, 242, 237, 0.6);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4);
-  backdrop-filter: blur(20px) saturate(1.4);
+  background-color: transparent;
 }
 body.theme-light .site_name {
   color: #33352E;
@@ -904,9 +900,7 @@ ul li {
 }
 .site_header {
   align-items: center;
-  background-color: rgba(23, 24, 20, 0.55);
-  -webkit-backdrop-filter: blur(20px) saturate(1.6);
-  backdrop-filter: blur(20px) saturate(1.6);
+  background-color: transparent;
   display: flex;
   justify-content: space-between;
   left: 0;
@@ -921,11 +915,16 @@ ul li {
   }
 }
 .site_header {
-  position: fixed;
+  position: absolute;
   right: 0;
   top: 0;
   transition: opacity 0.3s ease, transform 0.3s ease;
   z-index: 300;
+}
+@media (max-width: 768px) {
+  .site_header {
+    position: fixed;
+  }
 }
 .site_header.cs-nav-stuck {
   animation: none;
@@ -1523,9 +1522,9 @@ header:has(#hero_shuffle_btn)::before,
   background-size: cover;
   content: "";
   filter: blur(64px) saturate(1.15) brightness(0.7);
-  inset: 0 -18% -26%;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 80px, black calc(100% - 150px), transparent 100%);
-  mask-image: linear-gradient(to bottom, transparent 0, black 80px, black calc(100% - 150px), transparent 100%);
+  inset: -5rem -18% -26%;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 150px, black calc(100% - 150px), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, black 150px, black calc(100% - 150px), transparent 100%);
   pointer-events: none;
   position: absolute;
   z-index: -1;
@@ -1681,10 +1680,10 @@ html.theme-light .cs_hero::before {
 }
 .hl_tags i.is_name {
   --r: -3deg;
-  --fx: 1.2em;
+  --fx: 0.9em;
   --fy: 1.9em;
   background: var(--client-bg, #171814);
-  bottom: 112%;
+  bottom: 104%;
   color: #EDEEE8;
   font-size: 0.28em;
   left: 0;
@@ -1696,24 +1695,24 @@ html.theme-light .cs_hero::before {
   gap: 0.6em;
   left: 0;
   position: absolute;
-  top: 112%;
+  top: 104%;
   white-space: nowrap;
 }
 .hl_tags .hl_row i:nth-child(1) {
   --r: -2.5deg;
-  --fx: 1.6em;
-  --fy: -1.7em;
+  --fx: 1.2em;
+  --fy: -1.3em;
 }
 .hl_tags .hl_row i:nth-child(2) {
   --r: 3deg;
   --fx: 0;
-  --fy: -1.9em;
+  --fy: -1.5em;
   transition-delay: 50ms;
 }
 .hl_tags .hl_row i:nth-child(3) {
   --r: -2deg;
-  --fx: -1.6em;
-  --fy: -1.7em;
+  --fx: -1.2em;
+  --fy: -1.3em;
   transition-delay: 100ms;
 }
 
@@ -1795,14 +1794,16 @@ html.theme-light .cs_hero::before {
   box-shadow: none;
   color: #171814;
   transform: scale(1) rotate(0deg);
-  transition: background-color 0.22s ease, color 0.22s ease, transform 0.52s cubic-bezier(0.34, 1.7, 0.5, 1);
+  transition: background-color 0.22s ease, color 0.22s ease, border-radius 0.5s cubic-bezier(0.34, 1.8, 0.45, 1), transform 0.55s cubic-bezier(0.34, 1.9, 0.4, 1);
   will-change: transform;
 }
 #hero_shuffle_text .highlight:hover, #hero_shuffle_text .highlight:focus-visible {
-  transform: scale(1.085, 1.06);
+  border-radius: 99em;
+  transform: scale(1.19, 1.12);
 }
 #hero_shuffle_text .highlight:active {
-  transform: scale(1.03, 1.02);
+  border-radius: 99em;
+  transform: scale(1.05, 1.03);
   transition-duration: 0.12s;
 }
 @media (prefers-reduced-motion: reduce) {

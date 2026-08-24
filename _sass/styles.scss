@@ -59,11 +59,7 @@ html {
   a { color: $dark-default; }
   a:hover { color: $text-muted; }
 
-  .site_header {
-    background-color: rgba($tan, 0.6);
-    -webkit-backdrop-filter: blur(20px) saturate(1.4);
-    backdrop-filter: blur(20px) saturate(1.4);
-  }
+  .site_header { background-color: transparent; }
   .site_name { color: $dark-default; opacity: 0.65; }
   .site_name:hover { opacity: 1; }
   .nav_title { color: rgba($dark-default, 0.5); }
@@ -406,12 +402,11 @@ ul {
 // Full-width fixed header row
 .site_header {
   align-items: center;
-  // Fogged glass: a solid bar sliced straight through the hero frost.
-  // Translucent + blurred lets the field read continuously behind it
-  // while still separating scrolled headings from the wordmark.
-  background-color: rgba($dark-bg, 0.55);
-  -webkit-backdrop-filter: blur(20px) saturate(1.6);
-  backdrop-filter: blur(20px) saturate(1.6);
+  // Fully transparent: the hero frost now bleeds up through this band,
+  // and any fill (solid or blurred glass) cut it. Desktop drops the
+  // fixed position too, so nothing floats over scrolled content —
+  // mobile keeps it pinned, where the menu needs to stay reachable.
+  background-color: transparent;
   display: flex;
   justify-content: space-between;
   left: 0;
@@ -427,11 +422,13 @@ ul {
     padding-left: max(2rem, env(safe-area-inset-left));
     padding-right: max(2rem, env(safe-area-inset-right));
   }
-  position: fixed;
+  position: absolute;
   right: 0;
   top: 0;
   transition: opacity 0.3s ease, transform 0.3s ease;
   z-index: 300;
+
+  @media (max-width: 768px) { position: fixed; }
 
   &.cs-nav-stuck {
     // The page-load animation uses fill-mode forwards, which pins
@@ -1075,14 +1072,14 @@ header:has(#hero_shuffle_btn)::before,
   // nav, whose solid background would otherwise slice the frost. Sides
   // bleed off-screen (body's overflow-x: clip catches them); the bottom
   // hangs well into the next section so the fade lands there.
-  inset: 0 -18% -26%;
+  inset: -5rem -18% -26%;
   // Explicit px stops, and the ramp must reach fully transparent AT the
   // element's own edges: the old radial was still ~45% opaque where the
   // box ended, and that abrupt stop was the hard line.
   -webkit-mask-image: linear-gradient(to bottom,
-    transparent 0, black 80px, black calc(100% - 150px), transparent 100%);
+    transparent 0, black 150px, black calc(100% - 150px), transparent 100%);
   mask-image: linear-gradient(to bottom,
-    transparent 0, black 80px, black calc(100% - 150px), transparent 100%);
+    transparent 0, black 150px, black calc(100% - 150px), transparent 100%);
   pointer-events: none;
   position: absolute;
   z-index: -1;
@@ -1227,10 +1224,10 @@ html.theme-light .cs_hero::before {
   // Client/project pill leads: own row above, project ground, white ink
   i.is_name {
     --r: -3deg;
-    --fx: 1.2em;
+    --fx: 0.9em;
     --fy: 1.9em;
     background: var(--client-bg, #{$dark-bg});
-    bottom: 112%;
+    bottom: 104%;
     color: $white;
     font-size: 0.28em;
     left: 0;
@@ -1243,12 +1240,12 @@ html.theme-light .cs_hero::before {
     gap: 0.6em;
     left: 0;
     position: absolute;
-    top: 112%;
+    top: 104%;
     white-space: nowrap;
 
-    i:nth-child(1) { --r: -2.5deg; --fx:  1.6em; --fy: -1.7em; }
-    i:nth-child(2) { --r:  3deg;   --fx:  0;     --fy: -1.9em; transition-delay: 50ms; }
-    i:nth-child(3) { --r: -2deg;   --fx: -1.6em; --fy: -1.7em; transition-delay: 100ms; }
+    i:nth-child(1) { --r: -2.5deg; --fx:  1.2em; --fy: -1.3em; }
+    i:nth-child(2) { --r:  3deg;   --fx:  0;     --fy: -1.5em; transition-delay: 50ms; }
+    i:nth-child(3) { --r: -2deg;   --fx: -1.2em; --fy: -1.3em; transition-delay: 100ms; }
   }
 }
 
@@ -1334,14 +1331,20 @@ html.theme-light .cs_hero::before {
     // tall so it reads as a squish, not a zoom.
     transform: scale(1) rotate(0deg);
     transition: background-color 0.22s ease, color 0.22s ease,
-                transform 0.52s cubic-bezier(0.34, 1.7, 0.5, 1);
+                border-radius 0.5s cubic-bezier(0.34, 1.8, 0.45, 1),
+                transform 0.55s cubic-bezier(0.34, 1.9, 0.4, 1);
     will-change: transform;
 
+    // Morph, not a nudge: 8% was measurably firing but read as nothing
+    // next to the tags flying out. Swells hard and rounds to a pill on
+    // the way, overshooting before it settles.
     &:hover, &:focus-visible {
-      transform: scale(1.085, 1.06);
+      border-radius: 99em;
+      transform: scale(1.19, 1.12);
     }
     &:active {
-      transform: scale(1.03, 1.02);
+      border-radius: 99em;
+      transform: scale(1.05, 1.03);
       transition-duration: 0.12s;
     }
 
