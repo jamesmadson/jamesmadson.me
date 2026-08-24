@@ -9,6 +9,8 @@
         </svg>
       </span>
     </div>
+    {% elif item.cover %}
+    {% include "partials/work-card-cover.njk" %}
     {% else %}
     <img src="{{ item.image }}" srcset="{{ item.image }} 1x, {{ item.image2x }} 2x" alt="{{ item.alt }}" loading="lazy" width="600" height="600">
     {% endif %}

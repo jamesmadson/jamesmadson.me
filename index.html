@@ -115,7 +115,24 @@ permalink: /index.html
 
   <main class="fadeIn" id="main-content">
 
-  <section class="logo_scroller hero_enter">
+  <section class="home_work" id="recent_work">
+    <div class="container">
+      <div class="grid_12 home_work_heading">
+        <h2 class="home_work_title">Work</h2>
+      </div>
+    </div>
+    <div class="container home_work_grid">
+      {% for item in work.caseStudies %}
+        {% set loadingOverride = 'eager' %}
+        {% include "partials/work-card-case-study.njk" %}
+      {% endfor %}
+      {% for item in work.projects %}
+        {% include "partials/work-card-project.njk" %}
+      {% endfor %}
+    </div>
+  </section>
+
+<section class="logo_scroller">
     <ul class="client_logos">
       <li>
         <a href="https://clearleft.com" target="_blank" rel="noreferrer" aria-label="Clearleft">
@@ -242,22 +259,6 @@ permalink: /index.html
     </ul>
   </section>
 
-  <section class="home_work" id="recent_work">
-    <div class="container">
-      <div class="grid_12 home_work_heading">
-        <h2 class="home_work_title">Work</h2>
-      </div>
-    </div>
-    <div class="container home_work_grid">
-      {% for item in work.caseStudies %}
-        {% set loadingOverride = 'eager' %}
-        {% include "partials/work-card-case-study.njk" %}
-      {% endfor %}
-      {% for item in work.projects %}
-        {% include "partials/work-card-project.njk" %}
-      {% endfor %}
-    </div>
-  </section>
 
   <!--
   ============================================================

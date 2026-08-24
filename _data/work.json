@@ -5,40 +5,103 @@
       "mod": "nd",
       "company": "NatureQuant",
       "title": "NatureDose",
-      "image": "/img/covers/naturedose.png",
-      "image2x": "/img/covers/naturedose@2x.png",
-      "alt": "NatureDose: Nature, prescribed. The app taken from zero to launch. Featured 3 times by Apple, 79 percent five-star reviews, 4.6 average rating.",
-      "loading": "lazy"
+      "cover": {
+        "bg": "#1E6060",
+        "label": "NatureDose",
+        "status": "Live",
+        "headline": "Nature,<br>prescribed.",
+        "subhead": "The app taken from zero to launch.",
+        "artifact": "/img/naturedose/app%20mockups/naturedose-iphone@2x.png",
+        "stats": [
+          {
+            "n": "3",
+            "label": "Featured by Apple"
+          },
+          {
+            "n": "79%",
+            "label": "5-Star Reviews"
+          },
+          {
+            "n": "4.6",
+            "label": "Avg Rating"
+          }
+        ]
+      }
     },
     {
       "href": "/case_studies/pecan/",
       "mod": "pecan",
       "company": "St. Jude Children's Research Hospital",
       "title": "PeCan",
-      "image": "/img/covers/pecan.png",
-      "image2x": "/img/covers/pecan@2x.png",
-      "alt": "PeCan: Every sample, one map. Pediatric cancer data researchers can actually navigate. 9,000 plus patient samples.",
-      "loading": "lazy"
+      "cover": {
+        "bg": "#145674",
+        "label": "PeCan",
+        "status": "St. Jude Cloud",
+        "headline": "Every sample,<br>one map.",
+        "subhead": "Pediatric cancer data researchers can actually navigate.",
+        "artifact": "/img/covers/artifacts/pecan_sunburst.png",
+        "stats": [
+          {
+            "n": "9,000+",
+            "label": "Patient Samples"
+          }
+        ]
+      }
     },
     {
       "href": "/case_studies/visualization_community/",
       "mod": "viz",
       "company": "St. Jude Children's Research Hospital",
       "title": "Visualization Community",
-      "image": "/img/covers/visualization_community.png",
-      "image2x": "/img/covers/visualization_community@2x.png",
-      "alt": "Visualization Community: Genomic data, shared live. A platform for researchers to publish and explore visualizations. 80 plus published, top piece 68K views.",
-      "loading": "lazy"
+      "cover": {
+        "bg": "#1A3462",
+        "label": "Visualization Community",
+        "status": "St. Jude Cloud",
+        "headline": "Genomic data,<br>shared live.",
+        "subhead": "A platform for researchers to publish and explore visualizations.",
+        "artifact": "/img/covers/artifacts/viz_code_editor.png",
+        "stats": [
+          {
+            "n": "80+",
+            "label": "Published"
+          },
+          {
+            "n": "68K",
+            "label": "Top-Piece Views"
+          }
+        ]
+      }
     },
     {
       "href": "/case_studies/canon/",
       "mod": "canon",
       "company": "Self-initiated",
       "title": "Canon",
-      "image": "/img/covers/canon.png",
-      "image2x": "/img/covers/canon@2x.png",
-      "alt": "Canon: Skills, curated. A gallery of design skills for AI agents. 16 skills, 4 kits, 114 tests, 0 colors.",
-      "loading": "lazy"
+      "cover": {
+        "bg": "#26271F",
+        "label": "Canon",
+        "status": "In Progress",
+        "headline": "Skills,<br>curated.",
+        "subhead": "A gallery of design skills for AI agents.",
+        "stats": [
+          {
+            "n": "16",
+            "label": "Skills"
+          },
+          {
+            "n": "4",
+            "label": "Kits"
+          },
+          {
+            "n": "114",
+            "label": "Tests"
+          },
+          {
+            "n": "0",
+            "label": "Colors"
+          }
+        ]
+      }
     }
   ],
   "projects": [
@@ -47,9 +110,19 @@
       "mod": "nq",
       "company": "NatureQuant",
       "title": "NatureQuant",
-      "image": "/img/covers/naturequant.png",
-      "image2x": "/img/covers/naturequant@2x.png",
-      "alt": "NatureQuant: Design, end to end. Brand, product, and the system behind NatureDose. Leading design since 2019."
+      "cover": {
+        "bg": "#0A4E22",
+        "label": "NatureQuant",
+        "status": "In Progress",
+        "headline": "Design,<br>end to end.",
+        "subhead": "Brand, product, and the system behind NatureDose.",
+        "stats": [
+          {
+            "n": "2019",
+            "label": "Leading Design Since"
+          }
+        ]
+      }
     }
   ]
 }

@@ -3743,14 +3743,21 @@ blockquote {
   flex-direction: column;
   text-decoration: none;
 
-  &:hover .hwc_img img { transform: scale(1.02); }
-  &:hover .hwc_title   { opacity: 1; }
+  // Direct child only: the legacy full-bleed cover image. The live-text
+  // cover's artifact <img> is nested inside .wc and gets its own hover.
+  &:hover .hwc_img > img { transform: scale(1.02); }
+  &:hover .wc_artifact   { transform: translateY(-1.5cqw); }
+  &:hover .hwc_title     { opacity: 1; }
 }
 
 .hwc_img {
   aspect-ratio: 1 / 1;
   border-radius: 1rem;
+  // cqw units inside .wc resolve against this box, so one set of
+  // proportions holds from a 335px phone card to a 555px desktop one
+  container-type: inline-size;
   overflow: hidden;
+  position: relative;
   width: 100%;
   background: rgba($white, 0.06);
 
@@ -3762,7 +3769,7 @@ blockquote {
     justify-content: center;
   }
 
-  img {
+  > img {
     display: block;
     height: 100%;
     object-fit: cover;
@@ -3770,6 +3777,141 @@ blockquote {
     width: 100%;
   }
 }
+
+// ============================================================
+// Live text cover (.wc) — the work-grid cards as real markup.
+// Replaces the pre-rendered PNG covers: same webfont and weight as the
+// rest of the site (the PNGs were set in Canon's 700-weight voice, which
+// read as a different font next to the hero), machine-readable, and
+// crisp at every density. Cards keep their brand-color ground in both
+// themes on purpose — they are self-contained objects, like the PNGs
+// were. Geometry follows the Canon cover: 8% margins, statement top,
+// stats pinned to the bottom.
+// ============================================================
+
+.wc {
+  background: var(--wc-bg);
+  color: $white;
+  display: flex;
+  flex-direction: column;
+  inset: 0;
+  padding: 8cqw;
+  position: absolute;
+}
+
+.wc_top {
+  display: flex;
+  font-family: $mono;
+  font-size: 2.5cqw;
+  font-weight: 500;
+  justify-content: space-between;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  opacity: 0.5;
+  text-transform: uppercase;
+}
+
+.wc_headline {
+  font-size: 10.8cqw;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.04;
+  margin: 10cqw 0 0;
+  text-wrap: balance;
+}
+
+.wc_subhead {
+  font-size: 3.5cqw;
+  font-weight: 500;
+  line-height: 1.35;
+  margin: 2.6cqw 0 0;
+  max-width: 62cqw;
+  opacity: 0.65;
+  text-wrap: balance;
+}
+
+// One product artifact, tinted into the card's color world: grayscale
+// plus screen blend turns each screenshot into a light drawing on the
+// brand ground — the image's structure survives, its own palette
+// doesn't, so evidence of the work returns without re-importing every
+// project's colors (the old collage problem). Screen, not luminosity:
+// these sources are dark UIs, and luminosity renders them as
+// near-black slabs on a dark ground.
+.wc_artifact {
+  border-radius: 2cqw;
+  filter: grayscale(1);
+  mix-blend-mode: screen;
+  opacity: 0.85;
+  position: absolute;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+
+  @media (prefers-reduced-motion: reduce) { transition: none; }
+}
+
+// Per-project artifact placement, keyed off the card's mod class.
+// Each bleeds off an edge and stays clear of the stat row's zone.
+.hwc.nd .wc_artifact {
+  bottom: -30cqw;
+  right: -9cqw;
+  width: 36cqw;
+}
+
+.hwc.pecan .wc_artifact {
+  border-radius: 50%;
+  bottom: -10cqw;
+  right: -10cqw;
+  width: 50cqw;
+}
+
+.hwc.viz .wc_artifact {
+  bottom: 11cqw;
+  right: -9cqw;
+  width: 52cqw;
+}
+
+.wc_foot {
+  margin-top: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.wc_rule {
+  background: currentColor;
+  height: 1px;
+  opacity: 0.18;
+}
+
+.wc_stats {
+  display: flex;
+  gap: 4.6cqw;
+  margin: 3cqw 0 0;
+
+  b {
+    display: block;
+    font-size: 5.8cqw;
+    font-variant-numeric: lining-nums tabular-nums;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+
+  span {
+    display: block;
+    font-family: $mono;
+    font-size: 2.1cqw;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    margin-top: 1.1cqw;
+    opacity: 0.45;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+}
+
+// One stat, stated large — reads as a choice, not two stats missing
+.wc_stats--solo b { font-size: 8.6cqw; }
 
 .hwc_nda_visual {
   align-items: center;
@@ -3912,6 +4054,7 @@ html.theme-light body .home_work_soon .home_work_title {
     pointer-events: none;
 
     &:hover .hwc_img img { transform: none; }
+    &:hover .wc_artifact { transform: none; }
     &:hover .hwc_title { opacity: inherit; }
   }
 }

@@ -1,6 +1,10 @@
 <a href="{{ item.href }}" class="hwc {{ item.mod }}" aria-label="{{ item.title }} by {{ item.company }}">
   <div class="hwc_img">
-    <img src="{{ item.image }}" srcset="{{ item.image }} 1x, {{ item.image2x }} 2x" alt="{{ item.alt }}" loading="{{ loadingOverride | default(item.loading) | default('lazy') }}" width="600" height="600">
+    {% if item.cover %}
+      {% include "partials/work-card-cover.njk" %}
+    {% else %}
+      <img src="{{ item.image }}" srcset="{{ item.image }} 1x, {{ item.image2x }} 2x" alt="{{ item.alt }}" loading="{{ loadingOverride | default(item.loading) | default('lazy') }}" width="600" height="600">
+    {% endif %}
   </div>
   <div class="hwc_info">
     <span class="hwc_company">{{ item.company }}</span>

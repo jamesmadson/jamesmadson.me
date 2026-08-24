@@ -1,0 +1,23 @@
+{# Live text cover — replaces the pre-rendered PNG cards. Real markup in
+   the site's own type voice; `item.cover` drives it. Cards keep their
+   brand-color ground in both themes. The artifact image is decorative
+   (alt="") — the card's visible text carries the meaning. #}
+<div class="wc" style="--wc-bg:{{ item.cover.bg }}">
+  <div class="wc_top" aria-hidden="true">
+    <span>{{ item.cover.label }}</span>
+    <span>{{ item.cover.status }}</span>
+  </div>
+  <p class="wc_headline">{{ item.cover.headline | safe }}</p>
+  <p class="wc_subhead">{{ item.cover.subhead }}</p>
+  {% if item.cover.artifact %}
+    <img class="wc_artifact" src="{{ item.cover.artifact }}" alt="" loading="lazy">
+  {% endif %}
+  <div class="wc_foot">
+    <div class="wc_rule"></div>
+    <dl class="wc_stats{% if item.cover.stats.length == 1 %} wc_stats--solo{% endif %}">
+      {% for s in item.cover.stats %}
+        <div class="wc_stat"><b>{{ s.n }}</b><span>{{ s.label }}</span></div>
+      {% endfor %}
+    </dl>
+  </div>
+</div>

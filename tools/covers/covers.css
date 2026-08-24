@@ -38,8 +38,8 @@
 /* --- headline --------------------------------------------- */
 .cover__headline {
   margin: 13.533cqw 0 0;         /* lands cap-height at y=302 */
-  font: 700 11.6667cqw/.943 "Instrument Sans", system-ui, sans-serif;
-  letter-spacing: -.026em;
+  font: 500 11cqw/1.04 "Instrument Sans", system-ui, sans-serif;
+  letter-spacing: -.02em;
   text-wrap: balance;
 }
 
@@ -68,7 +68,7 @@
 }
 .cover__stat b {
   display: block;
-  font: 700 6.3333cqw/1 "Instrument Sans", system-ui, sans-serif;
+  font: 600 6.3333cqw/1 "Instrument Sans", system-ui, sans-serif;
   font-variant-numeric: lining-nums tabular-nums;
 }
 .cover__stat span {
