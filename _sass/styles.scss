@@ -1074,7 +1074,7 @@ header:has(#hero_shuffle_btn)::before,
 }
 
 @keyframes fogSettle {
-  from { opacity: 0; transform: scale(1.3); }
+  from { opacity: 0; transform: scale(0.55); }
   to   { opacity: var(--fog-max, 1); transform: scale(1); }
 }
 
@@ -1084,19 +1084,19 @@ header:has(#hero_shuffle_btn)::before,
 
 // Home: fog color rides the current sentence's accent
 header:has([data-accent="nd"])::before,
-header:has([data-accent="nq"])::before    { --fog: #{rgba($green, 0.18)}; }
-header:has([data-accent="pecan"])::before { --fog: #{rgba($cyan, 0.16)}; }
-header:has([data-accent="viz"])::before   { --fog: #{rgba($blue, 0.18)}; }
-header:has([data-accent="ns"])::before    { --fog: #{rgba($lime, 0.14)}; }
-header:has([data-accent="canon"])::before { --fog: #{rgba($white, 0.10)}; }
+header:has([data-accent="nq"])::before    { --fog: #{rgba($green, 0.28)}; }
+header:has([data-accent="pecan"])::before { --fog: #{rgba($cyan, 0.26)}; }
+header:has([data-accent="viz"])::before   { --fog: #{rgba($blue, 0.28)}; }
+header:has([data-accent="ns"])::before    { --fog: #{rgba($lime, 0.22)}; }
+header:has([data-accent="canon"])::before { --fog: #{rgba($white, 0.16)}; }
 
 // Case studies: fixed per project, keyed off the cover's vt class
-body:has(.vt-nd) .cs_hero::before     { --fog: #{rgba($green, 0.18)}; }
-body:has(.vt-pecan) .cs_hero::before  { --fog: #{rgba($cyan, 0.16)}; }
-body:has(.vt-viz) .cs_hero::before    { --fog: #{rgba($blue, 0.18)}; }
-body:has(.vt-nq) .cs_hero::before     { --fog: #{rgba($green, 0.18)}; }
-body:has(.vt-ns) .cs_hero::before     { --fog: #{rgba($lime, 0.14)}; }
-body:has(.vt-canon) .cs_hero::before  { --fog: #{rgba($white, 0.10)}; }
+body:has(.vt-nd) .cs_hero::before     { --fog: #{rgba($green, 0.28)}; }
+body:has(.vt-pecan) .cs_hero::before  { --fog: #{rgba($cyan, 0.26)}; }
+body:has(.vt-viz) .cs_hero::before    { --fog: #{rgba($blue, 0.28)}; }
+body:has(.vt-nq) .cs_hero::before     { --fog: #{rgba($green, 0.28)}; }
+body:has(.vt-ns) .cs_hero::before     { --fog: #{rgba($lime, 0.22)}; }
+body:has(.vt-canon) .cs_hero::before  { --fog: #{rgba($white, 0.16)}; }
 
 // On the tan ground the same alphas read chalky; ease off. Routed
 // through the keyframe's end value because fogSettle's `both` fill

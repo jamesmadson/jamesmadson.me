@@ -1531,7 +1531,7 @@ header:has(#hero_shuffle_btn)::before,
 @keyframes fogSettle {
   from {
     opacity: 0;
-    transform: scale(1.3);
+    transform: scale(0.55);
   }
   to {
     opacity: var(--fog-max, 1);
@@ -1545,47 +1545,47 @@ header:has(#hero_shuffle_btn)::before,
 }
 header:has([data-accent=nd])::before,
 header:has([data-accent=nq])::before {
-  --fog: rgba(0, 153, 51, 0.18);
+  --fog: rgba(0, 153, 51, 0.28);
 }
 
 header:has([data-accent=pecan])::before {
-  --fog: rgba(35, 175, 229, 0.16);
+  --fog: rgba(35, 175, 229, 0.26);
 }
 
 header:has([data-accent=viz])::before {
-  --fog: rgba(24, 116, 220, 0.18);
+  --fog: rgba(24, 116, 220, 0.28);
 }
 
 header:has([data-accent=ns])::before {
-  --fog: rgba(153, 204, 0, 0.14);
+  --fog: rgba(153, 204, 0, 0.22);
 }
 
 header:has([data-accent=canon])::before {
-  --fog: rgba(237, 238, 232, 0.1);
+  --fog: rgba(237, 238, 232, 0.16);
 }
 
 body:has(.vt-nd) .cs_hero::before {
-  --fog: rgba(0, 153, 51, 0.18);
+  --fog: rgba(0, 153, 51, 0.28);
 }
 
 body:has(.vt-pecan) .cs_hero::before {
-  --fog: rgba(35, 175, 229, 0.16);
+  --fog: rgba(35, 175, 229, 0.26);
 }
 
 body:has(.vt-viz) .cs_hero::before {
-  --fog: rgba(24, 116, 220, 0.18);
+  --fog: rgba(24, 116, 220, 0.28);
 }
 
 body:has(.vt-nq) .cs_hero::before {
-  --fog: rgba(0, 153, 51, 0.18);
+  --fog: rgba(0, 153, 51, 0.28);
 }
 
 body:has(.vt-ns) .cs_hero::before {
-  --fog: rgba(153, 204, 0, 0.14);
+  --fog: rgba(153, 204, 0, 0.22);
 }
 
 body:has(.vt-canon) .cs_hero::before {
-  --fog: rgba(237, 238, 232, 0.1);
+  --fog: rgba(237, 238, 232, 0.16);
 }
 
 html.theme-light header:has(#hero_shuffle_btn)::before,
