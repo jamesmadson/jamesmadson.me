@@ -43,6 +43,13 @@ $type-xl:   1.5rem;     // 24px, section heads
 $type-2xl:  2.125rem;   // 34px, page heads
 // display sizes remain the existing clamp() expressions
 
+// Card elevation. Overshoot lives on transform only — never on
+// box-shadow or any property with a hard floor (border-radius, opacity)
+// which this repo has a documented history of bounce easings undershooting.
+$spring-lift: linear(0, 0.55 28%, 1.04 62%, 0.99 82%, 1); // transform only
+$lift-rest:  0 1px 2px rgba(#000, 0.06), 0 4px 12px -6px rgba(#000, 0.10);
+$lift-hover: 0 2px 4px rgba(#000, 0.08), 0 16px 32px -12px rgba(#000, 0.20);
+
 
 // ============================================================
 // Theme
@@ -199,6 +206,33 @@ body.theme-light       { @include light-theme; }
     h2, h3, h4, h5, .leadin, a { color: $white; }
     p { color: rgba($white, 0.65); }
     li { color: rgba($white, 0.65); }
+  }
+
+  // Task 2 card elevation: $lift-rest/$lift-hover read as near-invisible
+  // against dark ground, so dark theme swaps the shadow deepening for a
+  // hairline border plus a slight background lighten instead.
+  .hwc {
+    border: 1px solid rgba($white, 0.08);
+    box-shadow: none;
+
+    &:hover,
+    &:focus-visible {
+      background: color-mix(in srgb, var(--bg-neutral) 96%, $white 4%);
+      border-color: rgba($white, 0.16);
+      box-shadow: none;
+    }
+  }
+
+  // Outranks .home_work .hwc.wp_visible:hover (0,4,0 — four classes): the
+  // .theme-dark/body ancestry plus this same .home_work/.wp_visible chain
+  // adds up to more classes, so it wins without !important.
+  .home_work .hwc.wp_visible {
+    &:hover,
+    &:focus-visible {
+      background: color-mix(in srgb, var(--bg-neutral) 96%, $white 4%);
+      border-color: rgba($white, 0.16);
+      box-shadow: none;
+    }
   }
 }
 html.theme-dark body { @include dark-theme; }
@@ -4031,11 +4065,32 @@ blockquote {
   flex-direction: column;
   text-decoration: none;
 
+  // Rest/hover elevation. box-shadow eases plainly; the lift itself
+  // carries the spring overshoot (transform only, see $spring-lift).
+  box-shadow: $lift-rest;
+  transition: box-shadow 0.28s ease, transform 0.34s $spring-lift;
+
   // Direct child only: the legacy full-bleed cover image. The live-text
   // cover's artifact <img> is nested inside .wc and gets its own hover.
   &:hover .hwc_img > img { transform: scale(1.02); }
   &:hover .wc_artifact   { transform: translateY(-1.5cqw); }
   &:hover .hwc_title     { opacity: 1; }
+
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: $lift-hover;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: box-shadow 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      transform: none;
+      box-shadow: $lift-hover;
+    }
+  }
 }
 
 .hwc_img {
@@ -4302,9 +4357,17 @@ html.theme-light body .home_work_soon .home_work_title {
     &.wp_visible {
       opacity: 1;
       transform: translateY(0);
+      // Outranks the entrance transition above (extra class, later in the
+      // cascade): once a card has settled, hover uses the spring-lift
+      // timing from Task 2 instead of the one-time entrance curve.
+      transition: opacity 0.75s ease, transform 0.34s $spring-lift, box-shadow 0.28s ease;
     }
 
-    &.wp_visible:hover { transform: translateY(-6px); }
+    &.wp_visible:hover,
+    &.wp_visible:focus-visible {
+      transform: translateY(-4px);
+      box-shadow: $lift-hover;
+    }
   }
 
   .hwc_img { transition: box-shadow 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -4318,9 +4381,13 @@ html.theme-light body .home_work_soon .home_work_title {
   .home_work .hwc {
     opacity: 1;
     transform: none;
-    transition: none;
+    transition: box-shadow 0.2s ease;
 
-    &.wp_visible:hover { transform: none; }
+    &.wp_visible:hover,
+    &.wp_visible:focus-visible {
+      transform: none;
+      box-shadow: $lift-hover;
+    }
   }
 }
 
