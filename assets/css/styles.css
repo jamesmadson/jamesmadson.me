@@ -632,7 +632,7 @@ h3 {
 h3 small {
   color: #666666;
   display: block;
-  font-size: 1rem;
+  font-size: 1.125rem;
 }
 
 h4 {
@@ -650,7 +650,7 @@ h5 {
 h6 {
   color: rgba(237, 238, 232, 0.5);
   font-family: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 0.875rem;
+  font-size: 1rem;
   line-height: 1.4;
 }
 
@@ -676,7 +676,7 @@ ul {
   padding: 0;
 }
 ul li {
-  font-size: 1.1rem;
+  font-size: 1.125rem;
   line-height: 1.6;
 }
 
@@ -1427,7 +1427,7 @@ header.about_header .about_bio .about_me + .about_me {
 }
 .about_now .now_list li {
   color: rgba(237, 238, 232, 0.7);
-  font-size: 1rem;
+  font-size: 1.125rem;
   line-height: 1.6;
 }
 .about_now .now_list li strong {
@@ -2199,7 +2199,7 @@ html.theme-light .cs_hero::before {
 }
 .about p {
   color: #EDEEE8;
-  font-size: 1.1rem;
+  font-size: 1.125rem;
   line-height: 2rem;
   margin-top: 0.5rem;
   padding-right: 4rem;
@@ -2255,7 +2255,7 @@ html.theme-light .cs_hero::before {
   color: rgba(237, 238, 232, 0.6);
   display: inline-flex;
   font-family: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 500;
   gap: 0.45rem;
   text-decoration: none;
@@ -2334,7 +2334,7 @@ html.theme-light .cs_hero::before {
 .designer_shape_label {
   color: rgba(237, 238, 232, 0.45);
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.65rem;
+  font-size: 0.8125rem;
   letter-spacing: 0.08em;
   margin: 0 0 1rem;
   text-transform: uppercase;
@@ -2348,7 +2348,7 @@ html.theme-light .cs_hero::before {
 
 .designer_shape_desc {
   color: rgba(237, 238, 232, 0.5);
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   margin: 1rem 0 0;
 }
 
@@ -2372,7 +2372,7 @@ html.theme-light .cs_hero::before {
 .experience .experience_company {
   color: #EDEEE8;
   display: block;
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: bold;
   letter-spacing: 0;
   line-height: 1.4;
@@ -2381,7 +2381,7 @@ html.theme-light .cs_hero::before {
 .experience .experience_meta {
   color: rgba(237, 238, 232, 0.45);
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   line-height: 1.5;
 }
 .experience .experience_right {
@@ -2392,7 +2392,7 @@ html.theme-light .cs_hero::before {
   color: #EDEEE8;
   display: flex;
   flex-wrap: wrap;
-  font-size: 1.05rem;
+  font-size: 1.125rem;
   font-weight: bold;
   gap: 0.5rem;
   margin: 0 0 0.4rem;
@@ -2402,7 +2402,7 @@ html.theme-light .cs_hero::before {
 }
 .experience p {
   color: rgba(237, 238, 232, 0.6);
-  font-size: 1rem;
+  font-size: 1.125rem;
   line-height: 1.7;
   margin: 0;
 }
@@ -2420,7 +2420,7 @@ html.theme-light .cs_hero::before {
   cursor: pointer;
   display: inline-block;
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 1rem;
+  font-size: 1.125rem;
   letter-spacing: 0.02em;
   margin-top: 1.5rem;
   padding: 0.75rem 1.25rem;
@@ -2443,7 +2443,7 @@ html.theme-light .cs_hero::before {
 .contact_availability_label {
   color: rgba(237, 238, 232, 0.35);
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.7rem;
+  font-size: 0.8125rem;
   letter-spacing: 0.08em;
   margin: 0 0 0.5rem;
   text-transform: uppercase;
@@ -2451,7 +2451,7 @@ html.theme-light .cs_hero::before {
 
 .contact_availability {
   color: rgba(237, 238, 232, 0.7);
-  font-size: 1rem;
+  font-size: 1.125rem;
   line-height: 1.6;
   margin: 0;
 }
@@ -2481,14 +2481,14 @@ html.theme-light body .contact_availability {
 }
 .colophon p {
   color: rgba(237, 238, 232, 0.35);
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   line-height: 1.6;
   margin: 0;
 }
 .colophon a {
   color: rgba(237, 238, 232, 0.5);
   font-weight: normal;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   text-decoration: none;
 }
 .colophon a:hover {
@@ -2506,7 +2506,7 @@ html.theme-light body .contact_availability {
   display: inline-flex;
   align-items: center;
   font-family: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   font-weight: 500;
   gap: 0.4em;
   letter-spacing: 0.02em;
@@ -2527,7 +2527,7 @@ html.theme-light body .contact_availability {
   border-radius: 3rem;
   color: rgba(237, 238, 232, 0.4);
   display: inline-block;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   font-weight: bold;
   letter-spacing: 0.05em;
   margin-top: 1.5rem;
@@ -2538,7 +2538,7 @@ html.theme-light body .contact_availability {
 .work_company {
   color: rgba(237, 238, 232, 0.45);
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.7rem;
+  font-size: 0.8125rem;
   letter-spacing: 0.1em;
   margin: 0.1rem 0 0.75rem;
   text-transform: uppercase;
@@ -2574,7 +2574,7 @@ sup.reg {
   border-radius: 2rem;
   box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 40%, transparent);
   color: rgba(237, 238, 232, 0.7);
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   font-weight: 500;
   padding: 0.25rem 0.7rem;
 }
@@ -2582,14 +2582,14 @@ sup.reg {
 .canon_status_meta {
   color: rgba(237, 238, 232, 0.45);
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   letter-spacing: 0.03em;
 }
 
 .canon_asof {
   color: rgba(237, 238, 232, 0.4);
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   letter-spacing: 0.06em;
   margin: 0.75rem 0 0;
   text-transform: uppercase;
@@ -2597,7 +2597,7 @@ sup.reg {
 
 .canon_subhead {
   color: #EDEEE8;
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: 500;
   letter-spacing: 0.02em;
   margin: 2.5rem 0 0;
@@ -2628,7 +2628,7 @@ sup.reg {
 .canon_list h4,
 .project .canon_list h4 {
   color: #EDEEE8;
-  font-size: 1.05rem;
+  font-size: 1.125rem;
   font-weight: 500;
   letter-spacing: -0.01em;
   margin: 0 0 0.4rem;
@@ -2636,7 +2636,7 @@ sup.reg {
 .canon_list p,
 .project .canon_list p {
   color: rgba(237, 238, 232, 0.65);
-  font-size: 1rem;
+  font-size: 1.125rem;
   line-height: 1.65;
   margin: 0;
   max-width: 62ch;
@@ -2652,7 +2652,7 @@ sup.reg {
   border-radius: 0.75rem;
   color: rgba(237, 238, 232, 0.75);
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   line-height: 1.7;
   margin: 1rem 0 0;
   overflow-x: auto;
@@ -2672,7 +2672,7 @@ sup.reg {
   color: rgba(237, 238, 232, 0.65);
   display: flex;
   flex-wrap: wrap;
-  font-size: 1rem;
+  font-size: 1.125rem;
   gap: 0.5rem 1.5rem;
   line-height: 1.6;
   padding: 0.9rem 0;
@@ -2682,7 +2682,7 @@ sup.reg {
   color: rgba(237, 238, 232, 0.4);
   flex-shrink: 0;
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   letter-spacing: 0.03em;
   min-width: 6rem;
 }
@@ -2741,7 +2741,7 @@ html.theme-light .canon_changelog_date {
 }
 .practice_intro p {
   color: rgba(237, 238, 232, 0.7);
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   line-height: 1.65;
   margin: 0;
   max-width: 34em;
@@ -2763,7 +2763,7 @@ html.theme-light .canon_changelog_date {
   max-width: 32em;
 }
 .practice_ai .about_me {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   line-height: 1.7;
   margin: 0 0 1.75rem;
   max-width: 34em;
@@ -2808,7 +2808,7 @@ html.theme-light .practice_ai .leadin {
 }
 .practice_list p {
   color: rgba(237, 238, 232, 0.65);
-  font-size: 1.0625rem;
+  font-size: 1.125rem;
   line-height: 1.7;
   margin: 0;
   max-width: 34em;
@@ -3002,7 +3002,7 @@ html.theme-light .practice_list p {
 .case_study_nav .cs_nav_label {
   color: inherit;
   font-family: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -3034,12 +3034,12 @@ html.theme-light .practice_list p {
 }
 .cs_meta_item > p {
   color: rgba(237, 238, 232, 0.85);
-  font-size: 0.875rem;
+  font-size: 1rem;
   margin: 0;
 }
 .cs_meta_item > a.view_project {
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   padding: 0.3rem 0.85rem;
   text-align: center;
 }
@@ -3055,7 +3055,7 @@ html.theme-light .practice_list p {
   border: 1px solid rgba(237, 238, 232, 0.2);
   border-radius: 2rem;
   color: rgba(237, 238, 232, 0.8);
-  font-size: 0.65rem;
+  font-size: 0.8125rem;
   letter-spacing: 0.04em;
   padding: 0.2rem 0.65rem;
   text-transform: uppercase;
@@ -3064,7 +3064,7 @@ html.theme-light .practice_list p {
 .cs_meta_label {
   color: rgba(237, 238, 232, 0.65);
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.65rem;
+  font-size: 0.8125rem;
   font-weight: 400;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -3219,7 +3219,7 @@ html.theme-light .practice_list p {
 .cs_lightbox .cs_lb_caption {
   color: rgba(237, 238, 232, 0.45);
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.65rem;
+  font-size: 0.8125rem;
   letter-spacing: 0.05em;
   margin-top: 0.9rem;
   text-align: center;
@@ -3231,7 +3231,7 @@ html.theme-light .practice_list p {
   border-radius: 50%;
   color: #EDEEE8;
   cursor: pointer;
-  font-size: 1.1rem;
+  font-size: 1.125rem;
   height: 38px;
   line-height: 38px;
   position: absolute;
@@ -3322,7 +3322,7 @@ body.image-feed .cs_image_feed {
   background-color: #E64F13;
   color: #EDEEE8;
   display: block;
-  font-size: 0.7rem;
+  font-size: 0.8125rem;
   font-weight: bold;
   left: 0;
   letter-spacing: 0.05rem;
@@ -3473,12 +3473,12 @@ body.image-feed .cs_image_feed {
 .project p {
   color: #EDEEE8;
   font-family: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   line-height: 36px;
   padding-right: 30px;
 }
 .project p.leadin {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
 }
 .project .cs_body_cols {
   columns: 22rem 2;
@@ -3486,7 +3486,7 @@ body.image-feed .cs_image_feed {
 }
 .project .cs_body_cols p {
   break-inside: avoid;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   line-height: 36px;
   margin-top: 0;
   padding-right: 0;
@@ -3537,13 +3537,13 @@ body.image-feed .cs_image_feed {
   color: rgba(237, 238, 232, 0.4);
   display: block;
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   letter-spacing: 0.08em;
   margin-bottom: 0.3rem;
   text-transform: uppercase;
 }
 .project .cs_meta_item p, .project .cs_meta_item a {
-  font-size: 1rem;
+  font-size: 1.125rem;
   margin: 0;
 }
 .project .cs_meta_item:has(.cs_tags_inline) {
@@ -3578,7 +3578,7 @@ body.image-feed .cs_image_feed {
   font-size: 1.5rem;
 }
 .project .cs_reviews_header .cs_app_rating .cs_rating_stars {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
 }
 .project #overview {
   margin-top: 2rem;
@@ -3636,7 +3636,7 @@ body.image-feed .cs_image_feed {
   color: rgba(237, 238, 232, 0.4);
   display: block;
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   letter-spacing: 0.05em;
   margin: 0.4rem 0 0;
   text-transform: uppercase;
@@ -3661,7 +3661,7 @@ body.image-feed .cs_image_feed {
   color: rgba(237, 238, 232, 0.4);
   display: block;
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   letter-spacing: 0.05em;
   margin: 0.4rem 0 0;
   text-transform: uppercase;
@@ -3725,7 +3725,7 @@ body.image-feed .cs_image_feed {
 }
 .project #overview .stats-container .stat .stat_info {
   color: rgba(237, 238, 232, 0.55);
-  font-size: 0.9rem;
+  font-size: 1rem;
   line-height: 1.5;
   margin: 0;
   max-width: 16em;
@@ -3740,7 +3740,7 @@ body.image-feed .cs_image_feed {
   color: rgba(237, 238, 232, 0.7);
   display: inline-block;
   font-family: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   font-weight: 500;
   letter-spacing: 0;
   margin: 0.15rem 0.05rem;
@@ -3761,7 +3761,7 @@ body.image-feed .cs_image_feed {
   display: inline-flex;
   align-items: center;
   font-family: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.01em;
   margin: 1.5rem 0 0;
@@ -3805,14 +3805,14 @@ html.theme-light .btn:hover {
 }
 .cs_app_rating .cs_rating_stars {
   color: rgba(237, 238, 232, 0.5);
-  font-size: 1rem;
+  font-size: 1.125rem;
   letter-spacing: 0.05em;
   margin: 0.35rem 0 0.5rem;
 }
 .cs_app_rating .cs_rating_meta {
   color: rgba(237, 238, 232, 0.5);
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.7rem;
+  font-size: 0.8125rem;
   letter-spacing: 0.04em;
   margin: 0.15rem 0 0;
 }
@@ -3845,26 +3845,26 @@ html.theme-light .cs_review.cs_review--featured {
 }
 .cs_review .cs_review_stars {
   color: rgba(237, 238, 232, 0.45);
-  font-size: 0.9rem;
+  font-size: 1rem;
   letter-spacing: 0.05em;
   margin-bottom: 0.5rem;
 }
 .cs_review .cs_review_title {
   color: #EDEEE8;
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: 600;
   margin: 0 0 0.4rem;
 }
 .cs_review .cs_review_meta {
   color: rgba(237, 238, 232, 0.4);
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.7rem;
+  font-size: 0.8125rem;
   letter-spacing: 0.03em;
   margin: 0 0 1rem;
 }
 .cs_review .cs_review_body {
   color: rgba(237, 238, 232, 0.75);
-  font-size: 1rem;
+  font-size: 1.125rem;
   line-height: 1.65;
   margin: 0;
 }
@@ -4024,7 +4024,7 @@ html.theme-light .cs_tags_inline .tag {
 .cs_next_project .cs_next_label {
   color: rgba(237, 238, 232, 0.4);
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.7rem;
+  font-size: 0.8125rem;
   font-weight: 500;
   letter-spacing: 0.1em;
   margin: 0 0 1rem;
@@ -4032,19 +4032,19 @@ html.theme-light .cs_tags_inline .tag {
 }
 .cs_next_project .cs_next_title {
   color: #EDEEE8;
-  font-size: 2.5rem;
+  font-size: 2.125rem;
   font-weight: 700;
   line-height: 1.15;
   margin: 0 0 1rem;
 }
 @media (max-width: 768px) {
   .cs_next_project .cs_next_title {
-    font-size: 2rem;
+    font-size: 2.125rem;
   }
 }
 .cs_next_project .cs_next_desc {
   color: rgba(237, 238, 232, 0.6);
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   line-height: 1.65;
   margin: 0 0 2rem;
   max-width: 56ch;
@@ -4055,7 +4055,7 @@ html.theme-light .cs_tags_inline .tag {
   border-radius: 2rem;
   color: #EDEEE8;
   display: inline-flex;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 600;
   gap: 0.4rem;
   padding: 0.6rem 1.25rem;
@@ -4177,7 +4177,7 @@ html.theme-light .project #overview .tag {
 .cs_icon_grid .cs_icon_grid_cell .cs_icon_label {
   flex-shrink: 0;
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.7rem;
+  font-size: 0.8125rem;
   letter-spacing: 0.04em;
   opacity: 0.5;
   text-align: center;
@@ -4199,7 +4199,7 @@ html.theme-light .project #overview .tag {
     width: 100%;
   }
   .cs_icon_grid .cs_icon_grid_cell .cs_icon_label {
-    font-size: 0.65rem;
+    font-size: 0.8125rem;
   }
 }
 .cs_icon_grid--code {
@@ -4227,7 +4227,7 @@ html.theme-light .cs_icon_grid .cs_icon_grid_cell {
 .more_work h3 {
   color: rgba(237, 238, 232, 0.4);
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.7rem;
+  font-size: 0.8125rem;
   font-weight: 400;
   letter-spacing: 0.12em;
   margin: 0 0 2rem;
@@ -4284,7 +4284,7 @@ html.theme-light .cs_icon_grid .cs_icon_grid_cell {
 }
 .more_work .more_work_card h4 {
   color: #EDEEE8;
-  font-size: 1.1rem;
+  font-size: 1.125rem;
   font-weight: 600;
   margin: 0 0 0.25rem;
 }
@@ -4292,7 +4292,7 @@ html.theme-light .cs_icon_grid .cs_icon_grid_cell {
   color: rgba(237, 238, 232, 0.45);
   display: block;
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.62rem;
+  font-size: 0.8125rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -4352,7 +4352,7 @@ html.theme-light .cs_icon_grid .cs_icon_grid_cell {
 .music_index {
   color: rgba(237, 238, 232, 0.25);
   font-family: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   font-weight: bold;
   letter-spacing: 0.05em;
 }
@@ -4372,7 +4372,7 @@ html.theme-light .cs_icon_grid .cs_icon_grid_cell {
   color: rgba(237, 238, 232, 0.4);
   display: block;
   font-family: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   font-weight: bold;
   letter-spacing: 0.1em;
   margin-bottom: 0.75rem;
@@ -4382,7 +4382,7 @@ html.theme-light .cs_icon_grid .cs_icon_grid_cell {
 .music_description {
   color: rgba(237, 238, 232, 0.6);
   font-family: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1rem;
+  font-size: 1.125rem;
   line-height: 1.6;
   margin: 0 0 0.75rem;
 }
@@ -4390,7 +4390,7 @@ html.theme-light .cs_icon_grid .cs_icon_grid_cell {
 .music_link {
   color: #EDEEE8;
   font-family: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: bold;
   opacity: 0.7;
   text-decoration: none;
@@ -4403,7 +4403,7 @@ html.theme-light .cs_icon_grid .cs_icon_grid_cell {
 .music_soon {
   color: rgba(237, 238, 232, 0.3);
   font-family: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   font-style: italic;
   letter-spacing: 0.02em;
 }
@@ -4425,7 +4425,7 @@ html.theme-light .cs_icon_grid .cs_icon_grid_cell {
   cursor: pointer;
   display: inline-block;
   font-family: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: bold;
   margin-top: 2rem;
   padding: 0.75em 2em;
@@ -4450,7 +4450,7 @@ blockquote {
   padding: 0;
 }
 blockquote footer {
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   font-style: normal;
   margin-top: 1rem;
   opacity: 0.5;
@@ -4493,7 +4493,7 @@ blockquote span {
   color: inherit;
   display: block;
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   letter-spacing: 0.06em;
   opacity: 0.5;
   text-transform: uppercase;
@@ -4722,14 +4722,14 @@ blockquote span {
 
 .hwc_company {
   color: rgba(237, 238, 232, 0.4);
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 400;
   letter-spacing: 0.01em;
 }
 
 .hwc_title {
   color: #EDEEE8;
-  font-size: 1.1rem;
+  font-size: 1.125rem;
   font-weight: 500;
   opacity: 0.85;
   transition: opacity 0.2s ease;
@@ -4740,7 +4740,7 @@ blockquote span {
   color: rgba(237, 238, 232, 0.4);
   display: flex;
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   letter-spacing: 0.06em;
   margin-top: 0.25rem;
   text-transform: uppercase;
@@ -4909,7 +4909,7 @@ html.theme-light body .hwc_nda_label {
 }
 .practice_entry_meta p {
   color: rgba(237, 238, 232, 0.6);
-  font-size: 0.9rem;
+  font-size: 1rem;
   line-height: 1.6;
   margin: 0;
 }
@@ -4917,7 +4917,7 @@ html.theme-light body .hwc_nda_label {
 .practice_entry_label {
   color: #EDEEE8;
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.7rem;
+  font-size: 0.8125rem;
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -4952,7 +4952,7 @@ footer {
 .about_meta {
   color: rgba(237, 238, 232, 0.5);
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   letter-spacing: 0.03em;
   margin: 0.4rem 0 0;
 }
@@ -5057,7 +5057,7 @@ html.theme-light .about_values .values_row .highlight:active {
 
 .site_footer_name {
   color: #EDEEE8;
-  font-size: 1.0625rem;
+  font-size: 1.125rem;
   font-weight: 500;
   letter-spacing: -0.01em;
   margin: 0;
@@ -5065,14 +5065,14 @@ html.theme-light .about_values .values_row .highlight:active {
 
 .site_footer_role {
   color: rgba(237, 238, 232, 0.5);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   margin: 0;
 }
 
 .site_footer_tagline {
   color: rgba(237, 238, 232, 0.3);
   cursor: default;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   margin-top: 0.75rem;
 }
 .site_footer_tagline .tl_ch {
@@ -5103,7 +5103,7 @@ html.theme-light .about_values .values_row .highlight:active {
   align-items: center;
   color: rgba(237, 238, 232, 0.6);
   display: inline-flex;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   font-weight: 400;
   gap: 0.3rem;
   text-decoration: none;
@@ -5147,7 +5147,7 @@ html.theme-light .about_values .values_row .highlight:active {
 .site_footer_base .site_footer_copy,
 .site_footer_base .site_footer_credential {
   color: rgba(237, 238, 232, 0.3);
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 .site_footer_base .site_footer_credential a {
   color: rgba(237, 238, 232, 0.45);
@@ -5161,7 +5161,7 @@ html.theme-light .about_values .values_row .highlight:active {
 
 .tl_sparkle {
   animation: tlSparkle 0.6s ease forwards;
-  font-size: 0.65rem;
+  font-size: 0.8125rem;
   pointer-events: none;
   position: absolute;
   user-select: none;
@@ -5431,7 +5431,7 @@ html.theme-light .site_footer .site_footer_base .site_footer_credential a:hover 
     cursor: pointer;
     display: flex;
     font-family: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 500;
     gap: 0.35rem;
     justify-content: center;
@@ -5475,7 +5475,7 @@ html.theme-light .site_footer .site_footer_base .site_footer_credential a:hover 
   .case_study_nav.sections-open a {
     border-radius: 0.5rem;
     display: flex;
-    font-size: 1rem;
+    font-size: 1.125rem;
     font-weight: 500;
     justify-content: flex-start;
     letter-spacing: 0;
@@ -5494,13 +5494,13 @@ html.theme-light .site_footer .site_footer_base .site_footer_credential a:hover 
   }
   .case_study_nav.sections-open .cs_nav_label {
     font-family: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 1rem;
+    font-size: 1.125rem;
     font-weight: 500;
     letter-spacing: 0;
     text-transform: none;
   }
   .case_study_nav a {
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     padding: 0.4rem 0.65rem;
     white-space: nowrap;
   }
@@ -5645,7 +5645,7 @@ html.theme-light .site_footer .site_footer_base .site_footer_credential a:hover 
     padding: 1rem 0.85rem;
   }
   .project .overview .stats-container .stat .stat_number {
-    font-size: 2.25rem;
+    font-size: 2.125rem;
   }
   .project .overview .stats-container .stat .stat_info {
     font-size: 0.78rem;
@@ -5681,7 +5681,7 @@ html.theme-light .site_footer .site_footer_base .site_footer_credential a:hover 
 .zines_header .zines_eyebrow {
   color: rgba(237, 238, 232, 0.35);
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.65rem;
+  font-size: 0.8125rem;
   letter-spacing: 0.14em;
   margin: 0 0 0.4rem;
   text-transform: uppercase;
@@ -5805,7 +5805,7 @@ html.theme-light .zines_header .zines_desc {
   bottom: 1.8rem;
   color: rgba(0, 0, 0, 0.7);
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.5rem;
+  font-size: 0.8125rem;
   left: 50%;
   letter-spacing: 0.08em;
   padding: 0.35rem 0.65rem;
@@ -5838,7 +5838,7 @@ html.theme-light .zine_swatch.active {
   bottom: 0.6rem;
   color: rgba(0, 0, 0, 0.5);
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.5rem;
+  font-size: 0.8125rem;
   left: 50%;
   letter-spacing: 0.1em;
   position: absolute;
@@ -5912,7 +5912,7 @@ html.theme-light .zine_swatch.active {
   border-radius: 50%;
   color: #EDEEE8;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1.125rem;
   height: 36px;
   line-height: 36px;
   position: absolute;
@@ -5930,7 +5930,7 @@ html.theme-light .zine_swatch.active {
   border-radius: 50%;
   color: #EDEEE8;
   cursor: pointer;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   height: 48px;
   line-height: 48px;
   position: absolute;
@@ -5956,7 +5956,7 @@ html.theme-light .zine_swatch.active {
   bottom: 1.5rem;
   color: rgba(237, 238, 232, 0.35);
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.62rem;
+  font-size: 0.8125rem;
   left: 50%;
   letter-spacing: 0.1em;
   position: absolute;
@@ -6011,7 +6011,7 @@ a:visited {
 
 .archive_title {
   color: #EDEEE8;
-  font-size: 0.72rem;
+  font-size: 0.8125rem;
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -6021,7 +6021,7 @@ a:visited {
 
 .archive_meta {
   color: rgba(237, 238, 232, 0.35);
-  font-size: 0.72rem;
+  font-size: 0.8125rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   margin: 0;
@@ -6030,7 +6030,7 @@ a:visited {
 
 .archive_desc {
   color: rgba(237, 238, 232, 0.28);
-  font-size: 0.72rem;
+  font-size: 0.8125rem;
   margin: 0;
   line-height: 1;
   letter-spacing: 0.02em;
@@ -6074,7 +6074,7 @@ a:visited {
   bottom: 0.8rem;
   left: 0.9rem;
   color: #EDEEE8;
-  font-size: 0.62rem;
+  font-size: 0.8125rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   font-family: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -6150,7 +6150,7 @@ a:visited {
 }
 
 .colophon_stack_item p {
-  font-size: 1rem;
+  font-size: 1.125rem;
   line-height: 1.5;
   margin: 0;
 }
@@ -6159,7 +6159,7 @@ a:visited {
   color: rgba(237, 238, 232, 0.55);
   display: block;
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   letter-spacing: 0.08em;
   margin-bottom: 0.3rem;
   text-transform: uppercase;
@@ -6188,7 +6188,7 @@ html.theme-light .colophon_stack_item_label {
   margin: 0 0 0.5rem;
 }
 .colophon_decision p {
-  font-size: 1rem;
+  font-size: 1.125rem;
   line-height: 1.6;
   margin: 0;
 }
@@ -6198,7 +6198,7 @@ html.theme-light .colophon_stack_item_label {
   border: 1px solid rgba(237, 238, 232, 0.08);
   border-radius: 0.5rem;
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   line-height: 1.6;
   margin: 1rem 0;
   overflow-x: auto;
@@ -6241,7 +6241,7 @@ html.theme-light .colophon_code code {
   color: rgba(237, 238, 232, 0.55);
   flex-shrink: 0;
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 0.875rem;
+  font-size: 1rem;
   width: 5rem;
 }
 
@@ -6287,7 +6287,7 @@ html.theme-light .colophon_history_year {
 .hero_eyebrow {
   color: rgba(237, 238, 232, 0.55);
   font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
-  font-size: 1.0625rem;
+  font-size: 1.125rem;
   font-weight: 500;
   letter-spacing: 0.08em;
   margin: 0 0 1.25rem;
@@ -6422,7 +6422,7 @@ html.theme-light .hero_shuffle_btn:focus-visible {
 .spectrum_title {
   color: rgba(237, 238, 232, 0.5);
   font-family: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 500;
   margin: 0 0 3.5rem;
 }
@@ -6466,7 +6466,7 @@ html.theme-light .hero_shuffle_btn:focus-visible {
 .spectrum_label {
   color: #EDEEE8;
   font-family: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 600;
   left: 50%;
   position: absolute;
@@ -6478,7 +6478,7 @@ html.theme-light .hero_shuffle_btn:focus-visible {
 .spectrum_axis {
   color: rgba(237, 238, 232, 0.5);
   display: flex;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   justify-content: space-between;
   margin-top: 1.5rem;
 }
