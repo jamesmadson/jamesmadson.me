@@ -4192,9 +4192,15 @@ blockquote {
   justify-content: space-between;
   letter-spacing: 0.05em;
   line-height: 1;
-  opacity: 0.5;
+  // Hidden at rest, revealed on card hover/focus. The same names live
+  // in the card link's aria-label, so nothing is lost non-visually.
+  opacity: 0;
+  transition: opacity 0.25s ease;
   text-transform: uppercase;
 }
+
+.hwc:hover .wc_top,
+.hwc:focus-visible .wc_top { opacity: 0.5; }
 
 .wc_headline {
   font-size: 11.6cqw;
@@ -4210,7 +4216,7 @@ blockquote {
   font-weight: 500;
   line-height: 1.35;
   margin: 2.6cqw 0 0;
-  max-width: 62cqw;
+  max-width: 80cqw;
   opacity: 0.65;
   text-wrap: balance;
 }
@@ -4394,8 +4400,8 @@ html.theme-light body .home_work_soon .home_work_title {
 .home_work {
   .hwc {
     opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 
     &.wp_visible {
       opacity: 1;

@@ -787,7 +787,7 @@ function smoothScrollTo(targetY, duration) {
       });
       revealObserver.unobserve(entry.target);
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.05 });
 
   grids.forEach(function (grid) { revealObserver.observe(grid); });
 }());
@@ -869,6 +869,6 @@ function smoothScrollTo(targetY, duration) {
         io.disconnect();
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.05 });
   io.observe(section);
 }());
