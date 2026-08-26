@@ -2332,6 +2332,15 @@ html.theme-light .practice_list {
     overflow: hidden;
 
     @media (max-width: 768px) { aspect-ratio: 4 / 3; }
+
+    // Pages with square artwork get a taller window so the 1:1 source
+    // crops less; composed flat covers (canon) keep the 2:1 frame
+    // they were drawn at.
+    &:has(.cs_cover_img:not(.cs_cover_img--flat)) {
+      aspect-ratio: 16 / 9;
+
+      @media (max-width: 768px) { aspect-ratio: 4 / 3; }
+    }
   }
 
   .cs_cover_img {

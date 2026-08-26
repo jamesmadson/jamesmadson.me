@@ -2800,6 +2800,14 @@ html.theme-light .practice_list p {
     aspect-ratio: 4/3;
   }
 }
+.cs_cover .grid_12:has(.cs_cover_img:not(.cs_cover_img--flat)) {
+  aspect-ratio: 16/9;
+}
+@media (max-width: 768px) {
+  .cs_cover .grid_12:has(.cs_cover_img:not(.cs_cover_img--flat)) {
+    aspect-ratio: 4/3;
+  }
+}
 .cs_cover .cs_cover_img {
   aspect-ratio: 1/1;
   display: block;

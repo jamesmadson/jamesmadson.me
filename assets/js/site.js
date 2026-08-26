@@ -807,26 +807,37 @@ function smoothScrollTo(targetY, duration) {
 
   var frame = img.parentElement;
   var currentY = 0, targetY = 0, raf = null;
+  var currentO = 1, targetO = 1;
 
   function retarget() {
+    var fr = frame.getBoundingClientRect();
+    var vh = window.innerHeight || 1;
+
     var overflow = img.offsetHeight - frame.offsetHeight;
     if (overflow <= 0) { targetY = 0; }
     else {
-      var fr = frame.getBoundingClientRect();
-      var vh = window.innerHeight || 1;
       // 0 when the frame enters at the bottom, 1 as it exits the top
       var p = (vh - fr.top) / (vh + fr.height);
       p = Math.max(0, Math.min(1, p));
       targetY = -p * overflow;
     }
+
+    // Exit fade: starts the moment the frame's top crosses the top of
+    // the viewport, fully transparent by the time 3/4 of it has left.
+    // Fades the frame (not the img) so the rounded mask goes with it.
+    var exitP = fr.height > 0 ? Math.max(0, -fr.top / fr.height) : 0;
+    targetO = Math.max(0, 1 - exitP / 0.75);
+
     if (!raf) raf = requestAnimationFrame(tick);
   }
 
   function tick() {
     raf = null;
     currentY += (targetY - currentY) * EASE;
+    currentO += (targetO - currentO) * EASE;
     img.style.transform = 'translateY(' + currentY.toFixed(2) + 'px)';
-    if (Math.abs(targetY - currentY) > 0.05) {
+    frame.style.opacity = currentO.toFixed(3);
+    if (Math.abs(targetY - currentY) > 0.05 || Math.abs(targetO - currentO) > 0.002) {
       raf = requestAnimationFrame(tick);
     }
   }
