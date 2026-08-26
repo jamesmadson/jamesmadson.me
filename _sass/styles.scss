@@ -1302,11 +1302,13 @@ html.theme-light .cs_hero::before {
     text-transform: uppercase;
     white-space: nowrap;
     // Fly out from behind the chip
-    transform: translate(var(--fx, 0), var(--fy, 0)) scale(0.35);
+    transform: translate(var(--fx, 0), var(--fy, 0)) scale(0.5);
     transform-origin: center;
-    // Collapse is plain and quick; bounce lives on the hover rule so it
-    // never runs the return (overshoot below zero = pills poking out)
-    transition: opacity 0.14s ease, transform 0.18s cubic-bezier(0.4, 0, 1, 1);
+    // Collapse is plain, quick, and unstaggered; the spring and the
+    // stagger live on the hover rules only, so the return never runs
+    // either (overshoot below zero = pills poking out)
+    transition: opacity 0.12s ease, transform 0.16s cubic-bezier(0.4, 0, 1, 1);
+    transition-delay: 0s;
   }
 
   // Client/project pill leads: own row above, project ground, white ink
@@ -1331,19 +1333,28 @@ html.theme-light .cs_hero::before {
     white-space: nowrap;
 
     i:nth-child(1) { --fx:  1.2em; --fy: -1.3em; }
-    i:nth-child(2) { --fx:  0.6em; --fy: -1.5em; transition-delay: 50ms; }
-    i:nth-child(3) { --fx:  0;     --fy: -1.3em; transition-delay: 100ms; }
+    i:nth-child(2) { --fx:  0.6em; --fy: -1.5em; }
+    i:nth-child(3) { --fx:  0;     --fy: -1.3em; }
   }
 }
 
+// Entrance order: the project name leads, then the taxonomy tags land
+// 1-2-3. Delays are declared AFTER the transition shorthand (which
+// resets them), and only here, so the collapse stays instant.
 .hl_wrap:hover .hl_tags i,
 .hl_wrap:focus-within .hl_tags i {
   opacity: 1;
   transform: translate(0, 0) scale(1);
-  transition: opacity 0.18s ease,
-              transform 0.6s linear(0, 0.55 12%, 1.14 28%, 0.94 44%,
-                                    1.05 60%, 0.98 76%, 1.01 88%, 1);
+  transition: opacity 0.22s ease,
+              transform 0.45s linear(0, 0.62 26%, 1.05 54%, 0.985 78%, 1);
 }
+
+.hl_wrap:hover .hl_tags .hl_row i:nth-child(1),
+.hl_wrap:focus-within .hl_tags .hl_row i:nth-child(1) { transition-delay: 100ms; }
+.hl_wrap:hover .hl_tags .hl_row i:nth-child(2),
+.hl_wrap:focus-within .hl_tags .hl_row i:nth-child(2) { transition-delay: 170ms; }
+.hl_wrap:hover .hl_tags .hl_row i:nth-child(3),
+.hl_wrap:focus-within .hl_tags .hl_row i:nth-child(3) { transition-delay: 240ms; }
 
 // Vivid enough to lead the set against the dark page, dark enough that
 // white ink still clears 4.5:1 (5.45 green → 12.7 grey).
