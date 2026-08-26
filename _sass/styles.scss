@@ -209,19 +209,13 @@ body.theme-light       { @include light-theme; }
     li { color: rgba($white, 0.65); }
   }
 
-  // Task 2 card elevation: $lift-rest/$lift-hover read as near-invisible
-  // against dark ground, so dark theme swaps the shadow deepening for a
-  // hairline border plus a slight background lighten instead.
+  // Card elevation in dark theme: shadows are invisible on dark ground,
+  // so suppress them and let the spring lift + cover zoom carry hover.
   .hwc {
-    border: 1px solid rgba($white, 0.08);
     box-shadow: none;
 
     &:hover,
-    &:focus-visible {
-      background: color-mix(in srgb, var(--bg-neutral) 96%, $white 4%);
-      border-color: rgba($white, 0.16);
-      box-shadow: none;
-    }
+    &:focus-visible { box-shadow: none; }
   }
 
   // Outranks .home_work .hwc.wp_visible:hover (0,4,0 — four classes): the
@@ -229,11 +223,7 @@ body.theme-light       { @include light-theme; }
   // adds up to more classes, so it wins without !important.
   .home_work .hwc.wp_visible {
     &:hover,
-    &:focus-visible {
-      background: color-mix(in srgb, var(--bg-neutral) 96%, $white 4%);
-      border-color: rgba($white, 0.16);
-      box-shadow: none;
-    }
+    &:focus-visible { box-shadow: none; }
   }
 }
 html.theme-dark body { @include dark-theme; }

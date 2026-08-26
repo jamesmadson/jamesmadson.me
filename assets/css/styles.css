@@ -513,17 +513,12 @@ html.theme-dark body .overview li {
   color: rgba(237, 238, 232, 0.65);
 }
 html.theme-dark body .hwc {
-  border: 1px solid rgba(237, 238, 232, 0.08);
   box-shadow: none;
 }
 html.theme-dark body .hwc:hover, html.theme-dark body .hwc:focus-visible {
-  background: color-mix(in srgb, var(--bg-neutral) 96%, #EDEEE8 4%);
-  border-color: rgba(237, 238, 232, 0.16);
   box-shadow: none;
 }
 html.theme-dark body .home_work .hwc.wp_visible:hover, html.theme-dark body .home_work .hwc.wp_visible:focus-visible {
-  background: color-mix(in srgb, var(--bg-neutral) 96%, #EDEEE8 4%);
-  border-color: rgba(237, 238, 232, 0.16);
   box-shadow: none;
 }
 
@@ -572,17 +567,12 @@ body.theme-dark .overview li {
   color: rgba(237, 238, 232, 0.65);
 }
 body.theme-dark .hwc {
-  border: 1px solid rgba(237, 238, 232, 0.08);
   box-shadow: none;
 }
 body.theme-dark .hwc:hover, body.theme-dark .hwc:focus-visible {
-  background: color-mix(in srgb, var(--bg-neutral) 96%, #EDEEE8 4%);
-  border-color: rgba(237, 238, 232, 0.16);
   box-shadow: none;
 }
 body.theme-dark .home_work .hwc.wp_visible:hover, body.theme-dark .home_work .hwc.wp_visible:focus-visible {
-  background: color-mix(in srgb, var(--bg-neutral) 96%, #EDEEE8 4%);
-  border-color: rgba(237, 238, 232, 0.16);
   box-shadow: none;
 }
 
