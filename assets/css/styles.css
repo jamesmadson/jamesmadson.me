@@ -1593,6 +1593,103 @@ header:has(#hero_shuffle_btn),
   position: relative;
 }
 
+header:has(#hero_shuffle_btn)::before,
+.cs_hero::before {
+  background-image: linear-gradient(rgba(23, 24, 20, 0.5), rgba(23, 24, 20, 0.5)), var(--fog-img, none);
+  background-position: center;
+  background-size: cover;
+  content: "";
+  filter: blur(64px) saturate(1.15) brightness(0.7);
+  inset: -5rem -18% -26%;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 150px, black calc(100% - 150px), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, black 150px, black calc(100% - 150px), transparent 100%);
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+}
+@media (prefers-reduced-motion: no-preference) {
+  header:has(#hero_shuffle_btn)::before,
+  .cs_hero::before {
+    animation: fogSettle 3.4s cubic-bezier(0.25, 0.1, 0.25, 1) both, fogBreathe 26s ease-in-out 3.4s infinite alternate;
+  }
+}
+
+@keyframes fogSettle {
+  from {
+    opacity: 0;
+    transform: scale(0.86);
+  }
+  to {
+    opacity: var(--fog-max, 1);
+    transform: scale(1);
+  }
+}
+@keyframes fogBreathe {
+  to {
+    transform: scale(1.06);
+  }
+}
+.cs_hero::before {
+  -webkit-mask-image: radial-gradient(58% 62% at 22% 22%, black 0%, transparent 72%), radial-gradient(52% 56% at 76% 32%, black 0%, transparent 70%), radial-gradient(64% 52% at 44% 60%, black 0%, transparent 74%), radial-gradient(44% 46% at 86% 74%, black 0%, transparent 70%);
+  mask-image: radial-gradient(58% 62% at 22% 22%, black 0%, transparent 72%), radial-gradient(52% 56% at 76% 32%, black 0%, transparent 70%), radial-gradient(64% 52% at 44% 60%, black 0%, transparent 74%), radial-gradient(44% 46% at 86% 74%, black 0%, transparent 70%);
+}
+
+header:has([data-accent=nd])::before {
+  --fog-img: url('/img/covers/ambient/nd.jpg');
+}
+
+header:has([data-accent=pecan])::before {
+  --fog-img: url('/img/covers/ambient/pecan.jpg');
+}
+
+header:has([data-accent=viz])::before {
+  --fog-img: url('/img/covers/ambient/viz.jpg');
+}
+
+header:has([data-accent=nq])::before {
+  --fog-img: url('/img/covers/ambient/nq.jpg');
+}
+
+header:has([data-accent=ns])::before {
+  --fog-img: url('/img/covers/ambient/ns.jpg');
+}
+
+header:has([data-accent=canon])::before {
+  --fog-img: url('/img/covers/ambient/canon.jpg');
+}
+
+body:has(.vt-nd) .cs_hero::before {
+  --fog-img: url('/img/covers/ambient/nd.jpg');
+}
+
+body:has(.vt-pecan) .cs_hero::before {
+  --fog-img: url('/img/covers/ambient/pecan.jpg');
+}
+
+body:has(.vt-viz) .cs_hero::before {
+  --fog-img: url('/img/covers/ambient/viz.jpg');
+}
+
+body:has(.vt-nq) .cs_hero::before {
+  --fog-img: url('/img/covers/ambient/nq.jpg');
+}
+
+body:has(.vt-ns) .cs_hero::before {
+  --fog-img: url('/img/covers/ambient/ns.jpg');
+}
+
+body:has(.vt-canon) .cs_hero::before {
+  --fog-img: url('/img/covers/ambient/canon.jpg');
+}
+
+html.theme-light header:has(#hero_shuffle_btn)::before,
+html.theme-light .cs_hero::before {
+  --fog-max: 0.5;
+  background-image: linear-gradient(rgba(242, 242, 237, 0.55), rgba(242, 242, 237, 0.55)), var(--fog-img, none);
+  filter: blur(64px) saturate(1.05) brightness(1.2);
+  opacity: 0.5;
+}
+
 .hl_wrap:has(.highlight.nd),
 .hl_wrap:has(.highlight.nq) {
   --chip: #009933;
