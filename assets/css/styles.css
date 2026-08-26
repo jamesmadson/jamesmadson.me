@@ -4602,9 +4602,6 @@ blockquote span {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 4px 12px -6px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.28s ease, transform 0.34s linear(0, 0.55 28%, 1.04 62%, 0.99 82%, 1);
 }
-.hwc:hover .hwc_img > img {
-  transform: scale(1.02);
-}
 .hwc:hover .wc_artifact {
   transform: translateY(-1.5cqw);
 }
@@ -4612,8 +4609,9 @@ blockquote span {
   opacity: 1;
 }
 .hwc:hover, .hwc:focus-visible {
-  transform: translateY(-4px);
+  transform: scale(1.05);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 16px 32px -12px rgba(0, 0, 0, 0.2);
+  z-index: 2;
 }
 @media (prefers-reduced-motion: reduce) {
   .hwc {
@@ -4681,7 +4679,7 @@ blockquote span {
 }
 
 .wc_subhead {
-  font-size: 4cqw;
+  font-size: 4.6cqw;
   font-weight: 500;
   line-height: 1.35;
   margin: 2.6cqw 0 0;
@@ -4742,15 +4740,15 @@ blockquote span {
   z-index: 2;
 }
 .wc_tags li {
-  box-shadow: 0 0 0 0.22cqw rgba(237, 238, 232, 0.3);
+  background: rgba(237, 238, 232, 0.94);
   border-radius: 99cqw;
-  color: rgba(237, 238, 232, 0.75);
-  font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
+  color: var(--wc-bg, #171814);
+  font-family: inherit;
   font-size: 2.7cqw;
-  font-weight: 500;
-  letter-spacing: 0.05em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   line-height: 1;
-  padding: 1.5cqw 3cqw 1.3cqw;
+  padding: 1.6cqw 3cqw 1.4cqw;
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -4855,8 +4853,9 @@ html.theme-light body .home_work_soon .home_work_title {
   transition: opacity 0.75s ease, transform 0.34s linear(0, 0.55 28%, 1.04 62%, 0.99 82%, 1), box-shadow 0.28s ease;
 }
 .home_work .hwc.wp_visible:hover, .home_work .hwc.wp_visible:focus-visible {
-  transform: translateY(-4px);
+  transform: scale(1.05);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 16px 32px -12px rgba(0, 0, 0, 0.2);
+  z-index: 2;
 }
 .home_work .hwc_img {
   transition: box-shadow 0.7s cubic-bezier(0.16, 1, 0.3, 1);
@@ -6453,6 +6452,11 @@ html.theme-light #hero_shuffle_text {
   }
 }
 header:has(#hero_shuffle_btn) .container {
+  overflow: visible;
+}
+
+.home_work .container,
+.work_page_section .container {
   overflow: visible;
 }
 

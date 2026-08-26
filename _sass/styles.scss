@@ -4099,16 +4099,18 @@ blockquote {
   box-shadow: $lift-rest;
   transition: box-shadow 0.28s ease, transform 0.34s $spring-lift;
 
-  // Direct child only: the legacy full-bleed cover image. The live-text
-  // cover's artifact <img> is nested inside .wc and gets its own hover.
-  &:hover .hwc_img > img { transform: scale(1.02); }
+  // The whole card grows on hover; no separate inner-image zoom, which
+  // would compound with the outer scale.
   &:hover .wc_artifact   { transform: translateY(-1.5cqw); }
   &:hover .hwc_title     { opacity: 1; }
 
   &:hover,
   &:focus-visible {
-    transform: translateY(-4px);
+    transform: scale(1.05);
     box-shadow: $lift-hover;
+    // Grid items take z-index without position; the grown card must
+    // overlap its neighbors and the section above, not slide under.
+    z-index: 2;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -4193,7 +4195,7 @@ blockquote {
 }
 
 .wc_subhead {
-  font-size: 4cqw;
+  font-size: 4.6cqw;
   font-weight: 500;
   line-height: 1.35;
   margin: 2.6cqw 0 0;
@@ -4262,15 +4264,16 @@ blockquote {
   z-index: 2;
 
   li {
-    box-shadow: 0 0 0 0.22cqw rgba($white, 0.3);
+    // Filled, with the label knocked out in the card's own ground color
+    background: rgba($white, 0.94);
     border-radius: 99cqw;
-    color: rgba($white, 0.75);
-    font-family: $mono;
+    color: var(--wc-bg, $dark-bg);
+    font-family: inherit;
     font-size: 2.7cqw;
-    font-weight: 500;
-    letter-spacing: 0.05em;
+    font-weight: 700;
+    letter-spacing: 0.04em;
     line-height: 1;
-    padding: 1.5cqw 3cqw 1.3cqw;
+    padding: 1.6cqw 3cqw 1.4cqw;
     text-transform: uppercase;
     white-space: nowrap;
   }
@@ -4394,8 +4397,9 @@ html.theme-light body .home_work_soon .home_work_title {
 
     &.wp_visible:hover,
     &.wp_visible:focus-visible {
-      transform: translateY(-4px);
+      transform: scale(1.05);
       box-shadow: $lift-hover;
+      z-index: 2;
     }
   }
 
@@ -5947,6 +5951,12 @@ html.theme-light #hero_shuffle_text {
 // needed here — body's overflow-x: clip is the real horizontal-scroll
 // guard — so the hero's container opts out.
 header:has(#hero_shuffle_btn) .container { overflow: visible; }
+
+// Same opt-out for the work grids: the hover scale grows cards past the
+// container box, and the sub-1280px overflow: hidden would crop the top
+// row. Horizontal scroll stays guarded by body's overflow-x: clip.
+.home_work .container,
+.work_page_section .container { overflow: visible; }
 
 .hero_shuffle_row {
   align-items: flex-start;
