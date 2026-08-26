@@ -96,6 +96,7 @@ html {
   header .about_me a { color: $dark-default; }
   header .about_me--lead { color: $dark-default; }
   header.about_header .about_bio .about_me--lead { color: $dark-default; }
+  header.about_header .about_bio .about_eyebrow { color: rgba($dark-default, 0.75); }
   .about_services .services_list .highlight { color: $dark-default; }
   .about_services .services_list .highlight:hover,
   .about_services .services_list .highlight:active { box-shadow: 0 0 0 1px rgba($dark-default, 0.35); }
@@ -897,6 +898,19 @@ header.about_header {
 
   .about_bio {
 
+    // Greeting block eyebrow, same register as the home hero's
+    // .hero_eyebrow but scoped here rather than shared: that class is
+    // tied to the home hero's own entrance timing.
+    .about_eyebrow {
+      color: rgba($white, 0.55);
+      font-family: $mono;
+      font-size: $type-xs;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      margin: 0 0 1rem;
+      text-transform: uppercase;
+    }
+
     // Sized for its half-width column, not the homepage hero: display
     // sizes need wide containers and 1-3 line sentences; in a 656px
     // column this paragraph needs ~24-32px to keep a readable measure
@@ -968,6 +982,28 @@ header.about_header {
 }
 
 .about_now {
+  // Two labeled columns (Now / Off hours). Single column once the page
+  // grid collapses, matching the mobile threshold used sitewide.
+  .now_columns {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: repeat(2, 1fr);
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  .now_column_label {
+    color: rgba($white, 0.45);
+    font-size: $type-xs;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin: 0 0 1.1rem;
+    text-transform: uppercase;
+  }
+
   .now_list {
     display: flex;
     flex-direction: column;
@@ -996,6 +1032,7 @@ header.about_header {
 }
 
 html.theme-light .about_now {
+  .now_column_label { color: rgba($dark-default, 0.45); }
   .now_list li {
     color: rgba($dark-default, 0.7);
     strong { color: $dark-default; }
@@ -2034,13 +2071,6 @@ sup.reg {
 .project p,
 .project .leadin {
   max-width: 72ch;
-}
-
-// About's full-width sections get the same courtesy. The two-column
-// bio is exempt: its columns already set the measure.
-.about_values .about_me,
-.about_process .about_me {
-  max-width: 65ch;
 }
 
 // ── Canon case study — quiet, typographic, monochrome ──
@@ -4452,7 +4482,7 @@ footer {
 html.theme-light .about_meta { color: rgba($dark-default, 0.5); }
 
 // ============================================================
-// Values section animation
+// Values section animation + How I work grid
 // ============================================================
 
 .about_values {
@@ -4460,6 +4490,40 @@ html.theme-light .about_meta { color: rgba($dark-default, 0.5); }
 
   // Value words are large enough — suppress the floating tooltip label
   .value_word::after { content: none; }
+
+  // "How I work" 2x2 grid, 1 column at mobile. The about page's grouped
+  // content (Background/.experience_item) uses a hairline top rule per
+  // item rather than card surfaces, so these cells match that flat
+  // treatment instead of the Task 2 shadow/lift card system.
+  .how_work_grid {
+    display: grid;
+    gap: 2rem 2.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 1rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .how_work_cell {
+    border-top: 1px solid rgba($white, 0.12);
+    padding-top: 1.25rem;
+
+    h4 {
+      color: $white;
+      font-size: $type-base;
+      font-weight: 500;
+      margin: 0 0 0.5rem;
+    }
+
+    p {
+      color: rgba($white, 0.65);
+      font-size: $type-md;
+      line-height: 1.6;
+      margin: 0;
+    }
+  }
 
   .values_row {
     align-items: center;
@@ -4516,6 +4580,12 @@ html.theme-light .about_values {
   .value_connector { background: rgba($dark-default, 0.2); }
   .values_row .highlight:hover,
   .values_row .highlight:active { box-shadow: 0 0 0 1px rgba($dark-default, 0.35); }
+
+  .how_work_cell {
+    border-top-color: rgba($dark-default, 0.12);
+    h4 { color: $dark-default; }
+    p { color: rgba($dark-default, 0.65); }
+  }
 }
 
 

@@ -84,6 +84,9 @@ html.theme-light body header .about_me--lead {
 html.theme-light body header.about_header .about_bio .about_me--lead {
   color: #33352E;
 }
+html.theme-light body header.about_header .about_bio .about_eyebrow {
+  color: rgba(51, 53, 46, 0.75);
+}
 html.theme-light body .about_services .services_list .highlight {
   color: #33352E;
 }
@@ -307,6 +310,9 @@ body.theme-light header .about_me--lead {
 }
 body.theme-light header.about_header .about_bio .about_me--lead {
   color: #33352E;
+}
+body.theme-light header.about_header .about_bio .about_eyebrow {
+  color: rgba(51, 53, 46, 0.75);
 }
 body.theme-light .about_services .services_list .highlight {
   color: #33352E;
@@ -1395,6 +1401,15 @@ header.about_header .jm_title {
   margin: 0;
   padding-bottom: 0.35rem;
 }
+header.about_header .about_bio .about_eyebrow {
+  color: rgba(237, 238, 232, 0.55);
+  font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+}
 header.about_header .about_bio .about_me--lead {
   color: #EDEEE8;
   font-size: clamp(1.5rem, 1vw + 1rem, 2rem);
@@ -1445,6 +1460,25 @@ header.about_header .about_bio .about_me + .about_me {
   margin-top: 0.85rem;
 }
 
+.about_now .now_columns {
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (max-width: 768px) {
+  .about_now .now_columns {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+.about_now .now_column_label {
+  color: rgba(237, 238, 232, 0.45);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin: 0 0 1.1rem;
+  text-transform: uppercase;
+}
 .about_now .now_list {
   display: flex;
   flex-direction: column;
@@ -1468,6 +1502,9 @@ header.about_header .about_bio .about_me + .about_me {
   margin-top: 1.5rem;
 }
 
+html.theme-light .about_now .now_column_label {
+  color: rgba(51, 53, 46, 0.45);
+}
 html.theme-light .about_now .now_list li {
   color: rgba(51, 53, 46, 0.7);
 }
@@ -2486,11 +2523,6 @@ sup.reg {
 .project p,
 .project .leadin {
   max-width: 72ch;
-}
-
-.about_values .about_me,
-.about_process .about_me {
-  max-width: 65ch;
 }
 
 .canon_status {
@@ -4916,6 +4948,33 @@ html.theme-light .about_meta {
 .about_values .value_word::after {
   content: none;
 }
+.about_values .how_work_grid {
+  display: grid;
+  gap: 2rem 2.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 1rem;
+}
+@media (max-width: 768px) {
+  .about_values .how_work_grid {
+    grid-template-columns: 1fr;
+  }
+}
+.about_values .how_work_cell {
+  border-top: 1px solid rgba(237, 238, 232, 0.12);
+  padding-top: 1.25rem;
+}
+.about_values .how_work_cell h4 {
+  color: #EDEEE8;
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin: 0 0 0.5rem;
+}
+.about_values .how_work_cell p {
+  color: rgba(237, 238, 232, 0.65);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+}
 .about_values .values_row {
   align-items: center;
   display: flex;
@@ -4984,6 +5043,15 @@ html.theme-light .about_values .value_connector {
 html.theme-light .about_values .values_row .highlight:hover,
 html.theme-light .about_values .values_row .highlight:active {
   box-shadow: 0 0 0 1px rgba(51, 53, 46, 0.35);
+}
+html.theme-light .about_values .how_work_cell {
+  border-top-color: rgba(51, 53, 46, 0.12);
+}
+html.theme-light .about_values .how_work_cell h4 {
+  color: #33352E;
+}
+html.theme-light .about_values .how_work_cell p {
+  color: rgba(51, 53, 46, 0.65);
 }
 
 .site_footer {

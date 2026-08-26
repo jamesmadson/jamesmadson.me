@@ -94,7 +94,6 @@ permalink: /about/
   <header class="fadeIn about_header">
     <div class="container">
       <div class="grid_3 about_header_side">
-        <h1 class="fadeIn jm_title">About</h1>
         <div class="about_meta_links">
           <a href="https://github.com/jamesmadson" target="_blank" rel="noreferrer" class="view_project" style="margin-top:0">GitHub <span class="arrow">↗</span></a>
           <a href="https://www.linkedin.com/in/james-madson-6794781a1/" target="_blank" rel="noreferrer" class="view_project" style="margin-top:0">LinkedIn <span class="arrow">↗</span></a>
@@ -102,8 +101,9 @@ permalink: /about/
         </div>
       </div>
       <div class="grid_9 about_bio">
-        <h2 class="about_me--lead">Design and engineering are the same job to me. I've spent twenty years working the seam between them.</h2>
-        <p class="about_me">It means I can take something from a brand sketch to a live prototype without a handoff, and it means I'm useful in the messy middle where most product decisions actually get made. These days I build with AI daily: internal tooling at Pfizer, automated design tests for NatureQuant's design system, and Canon, where I encode design judgment into agent plugins so the craft travels with the tools.</p>
+        <p class="about_eyebrow">James Madson · Product Design Engineer · Seattle</p>
+        <h1 class="fadeIn jm_title">Design and engineering are the same job to me.</h1>
+        <p class="about_me">Twenty years working the seam between them means I can take a brand sketch to a live prototype without a handoff, and I'm useful in the messy middle where product decisions actually get made. I build with AI daily: internal tools at Pfizer, design-test automation at NatureQuant, and Canon, where design judgment travels with the tools.</p>
       </div>
       {#
         Spectrum hidden for now — the linear Design↔Engineering axis undersells
@@ -137,13 +137,24 @@ permalink: /about/
       <h3>In progress</h3>
     </div>
     <div class="grid_9">
-      <ul class="now_list">
-        <li><strong>Pfizer</strong> Designing and building internal AI tools that help product teams move faster.</li>
-        <li><strong>NatureQuant</strong> Automating design testing for Juniper, the design system behind NatureDose.</li>
-        <li><strong>Canon</strong> A curated gallery of design skills and design skill kits.</li>
-        <li><strong>Volunteer</strong> Website maintenance and design updates for a non-profit community space.</li>
-        <li><strong>Solo album</strong> Mixing the recordings, with an art project collaboration alongside it.</li>
-      </ul>
+      <div class="now_columns">
+        <div class="now_column">
+          <h4 class="now_column_label">Now</h4>
+          <ul class="now_list">
+            <li><strong>Pfizer</strong> Internal AI tools that help product teams move faster.</li>
+            <li><strong>NatureQuant</strong> Automating design testing for Juniper, the system behind NatureDose.</li>
+            <li><strong>Canon</strong> A curated gallery of design skills for AI agents.</li>
+          </ul>
+        </div>
+        <div class="now_column">
+          <h4 class="now_column_label">Off hours</h4>
+          <ul class="now_list">
+            <li><strong>Solo album</strong> Mixing the recordings, with an art project alongside.</li>
+            <li><strong>Coding camp</strong> Summer volunteer teaching kids to code in Arizona, with design smuggled in.</li>
+            <li><strong>Community</strong> Site maintenance and design for a non-profit space.</li>
+          </ul>
+        </div>
+      </div>
       <p class="about_me now_note">A lot of different things.</p>
     </div>
   </div>
@@ -152,7 +163,7 @@ permalink: /about/
 <section class="about about_values">
   <div class="container">
     <div class="grid_3">
-      <h3>Values</h3>
+      <h3>How I work</h3>
     </div>
     <div class="grid_9">
       <div class="values_row">
@@ -164,18 +175,24 @@ permalink: /about/
         <span class="value_connector"></span>
         <a href="/case_studies/pecan/" class="value_word highlight pecan">Lasting</a>
       </div>
-      <p class="about_me">Things I've always cared about and tried to bring to every project. If the work isn't useful, nothing else really matters, but when it's also clear and built to last, it starts to feel right. I love solving a real need with something beautiful, and getting there with a great team makes it better every time.</p>
-    </div>
-  </div>
-</section>
-
-<section class="about about_process">
-  <div class="container">
-    <div class="grid_3">
-      <h3>Process</h3>
-    </div>
-    <div class="grid_9">
-      <p class="about_me">The tools change every year. Good judgment doesn't. Most of my job is deciding what's actually worth building, then building it without wasting time, energy, or money, and being honest the moment something isn't working. AI has made me faster at the building. The judgment still has to be mine.</p>
+      <div class="how_work_grid">
+        <div class="how_work_cell">
+          <h4>Useful first</h4>
+          <p>If the work isn't useful, nothing else matters. Clear and lasting come next.</p>
+        </div>
+        <div class="how_work_cell">
+          <h4>Judgment over tools</h4>
+          <p>The tools change every year. Good judgment doesn't. Most of the job is deciding what's worth building at all.</p>
+        </div>
+        <div class="how_work_cell">
+          <h4>Prototype in code</h4>
+          <p>Real prototypes over static screens. The answer shows up faster when it runs.</p>
+        </div>
+        <div class="how_work_cell">
+          <h4>Honest early</h4>
+          <p>Say it the moment something isn't working. It costs less than saying it later.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
