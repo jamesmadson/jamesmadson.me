@@ -1,0 +1,455 @@
+/* ============================================================
+   Graft — conversation curation prototype
+   Loaded only on /graft/. Scoped under .graft_page.
+   Tokens mirror styles.scss values; themed via html.theme-*.
+   ============================================================ */
+
+.graft_page {
+  --g-bg:        #171814;
+  --g-ink:       #EDEEE8;
+  --g-ink-2:     #D4D5D0;
+  --g-muted:     rgba(237, 238, 232, 0.55);
+  --g-rule:      rgba(237, 238, 232, 0.14);
+  --g-panel:     rgba(237, 238, 232, 0.04);
+  --g-panel-2:   rgba(237, 238, 232, 0.07);
+  --g-accent:    #009933;
+  --g-accent-2:  #99CC00;
+  --g-user:      rgba(237, 238, 232, 0.09);
+  --g-keep:      #0E7A33;
+  --g-ghost:     rgba(237, 238, 232, 0.35);
+  --g-flash:     rgba(153, 204, 0, 0.22);
+}
+
+html.theme-light .graft_page {
+  --g-bg:        #F2F2ED;
+  --g-ink:       #2A2B26;
+  --g-ink-2:     #33352E;
+  --g-muted:     rgba(42, 43, 38, 0.55);
+  --g-rule:      rgba(42, 43, 38, 0.16);
+  --g-panel:     rgba(42, 43, 38, 0.04);
+  --g-panel-2:   rgba(42, 43, 38, 0.07);
+  --g-accent:    #009933;
+  --g-accent-2:  #6B8F00;
+  --g-user:      rgba(42, 43, 38, 0.08);
+  --g-keep:      #0E7A33;
+  --g-ghost:     rgba(42, 43, 38, 0.35);
+  --g-flash:     rgba(0, 153, 51, 0.16);
+}
+
+.graft_page { color: var(--g-ink); }
+
+/* ---------- header ---------- */
+
+.graft_head { padding-top: 7rem; padding-bottom: 1.5rem; }
+
+.graft_eyebrow {
+  color: var(--g-muted);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.75rem;
+  text-transform: uppercase;
+}
+
+.graft_title {
+  font-size: clamp(2.5rem, 4vw + 1rem, 4.5rem);
+  line-height: 1.02;
+  margin: 0 0 0.75rem;
+}
+
+.graft_lead {
+  color: var(--g-ink-2);
+  font-size: 1.25rem;
+  line-height: 1.45;
+  margin: 0 0 1rem;
+  max-width: 34em;
+}
+
+.graft_honesty {
+  align-items: baseline;
+  color: var(--g-muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.875rem;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.graft_reset {
+  background: none;
+  border: 1px solid var(--g-rule);
+  border-radius: 99em;
+  color: var(--g-muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8125rem;
+  padding: 0.2em 0.9em;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+.graft_reset:hover, .graft_reset:focus-visible { border-color: var(--g-accent); color: var(--g-ink); }
+
+/* ---------- app frame ---------- */
+
+.graft_app { padding-bottom: 3rem; }
+.graft_app .grid_12 { display: block; }
+
+.graft_panel_label {
+  color: var(--g-muted);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.8125rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+/* ---------- tree band ---------- */
+
+.graft_tree_band {
+  background: var(--g-panel);
+  border: 1px solid var(--g-rule);
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.9rem 1.1rem 0.4rem;
+}
+
+.graft_tree_head {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.graft_tree_hint { color: var(--g-muted); font-size: 0.8125rem; }
+
+.graft_tree_scroll { overflow-x: auto; }
+
+.graft_tree { display: block; height: 150px; min-width: 640px; width: 100%; }
+
+.graft_tree .g_edge        { fill: none; stroke: var(--g-rule); stroke-width: 2; }
+.graft_tree .g_edge.active { stroke: var(--g-accent); }
+.graft_tree .g_edge.ghost  { stroke: var(--g-ghost); stroke-dasharray: 3 5; stroke-width: 1.5; }
+
+.graft_tree .g_node { cursor: pointer; }
+.graft_tree .g_node circle {
+  fill: var(--g-bg);
+  stroke: var(--g-muted);
+  stroke-width: 2;
+  transition: stroke 0.18s ease, r 0.18s ease;
+}
+.graft_tree .g_node.active circle { stroke: var(--g-accent); }
+.graft_tree .g_node.current circle { fill: var(--g-accent); stroke: var(--g-accent); }
+.graft_tree .g_node:hover circle, .graft_tree .g_node:focus-visible circle { stroke: var(--g-accent-2); }
+.graft_tree .g_node.flash circle { fill: var(--g-accent-2); stroke: var(--g-accent-2); }
+
+.graft_tree .g_label {
+  fill: var(--g-ink-2);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+.graft_tree .g_label.ghostlabel { fill: var(--g-ghost); }
+.graft_tree .g_ghost_hit { cursor: pointer; }
+.graft_tree .g_ghost_hit:hover .g_label.ghostlabel,
+.graft_tree .g_ghost_hit:focus-visible .g_label.ghostlabel { fill: var(--g-accent-2); }
+
+/* ---------- columns ---------- */
+
+.graft_columns {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr) 340px;
+}
+
+/* ---------- thread ---------- */
+
+.graft_thread_col {
+  background: var(--g-panel);
+  border: 1px solid var(--g-rule);
+  border-radius: 1rem;
+  min-width: 0;
+  padding: 1rem 1.1rem;
+}
+
+.graft_thread_toolbar {
+  align-items: center;
+  border-bottom: 1px solid var(--g-rule);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+}
+
+.graft_branch_pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+.graft_pill {
+  background: none;
+  border: 1px solid var(--g-rule);
+  border-radius: 99em;
+  color: var(--g-ink-2);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8125rem;
+  padding: 0.25em 0.9em;
+  transition: border-color 0.18s ease, background-color 0.18s ease, color 0.18s ease;
+}
+.graft_pill[aria-selected="true"] {
+  background: var(--g-accent);
+  border-color: var(--g-accent);
+  color: #F2F2ED;
+}
+.graft_pill:hover:not([aria-selected="true"]), .graft_pill:focus-visible { border-color: var(--g-accent); }
+
+.graft_compare_toggle {
+  background: none;
+  border: 1px solid var(--g-rule);
+  border-radius: 99em;
+  color: var(--g-ink-2);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 0.25em 1em;
+}
+.graft_compare_toggle[aria-pressed="true"] {
+  background: var(--g-ink);
+  border-color: var(--g-ink);
+  color: var(--g-bg);
+}
+
+.graft_turn { margin-bottom: 1rem; }
+
+.graft_turn_role {
+  color: var(--g-muted);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.35rem;
+  text-transform: uppercase;
+}
+
+.graft_turn_body {
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.55;
+  padding: 0.85rem 1rem;
+}
+.graft_turn.user .graft_turn_body { background: var(--g-user); }
+.graft_turn.assistant .graft_turn_body { background: var(--g-panel-2); }
+
+.graft_turn.inherited { opacity: 0.62; }
+.graft_turn.flashsrc .graft_turn_body { animation: graftFlash 1.6s ease; }
+@keyframes graftFlash { 0% { background-color: var(--g-flash); } 100% {} }
+
+.graft_turn p { margin: 0 0 0.6rem; }
+.graft_turn p:last-child { margin-bottom: 0; }
+
+/* keepable blocks inside assistant turns */
+.graft_block {
+  align-items: baseline;
+  border: 1px solid var(--g-rule);
+  border-radius: 0.6rem;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+  padding: 0.6rem 0.75rem;
+  transition: border-color 0.18s ease;
+}
+.graft_block:hover { border-color: var(--g-accent); }
+.graft_block_text { font-size: 1rem; }
+.graft_block.kept { border-color: var(--g-keep); }
+
+.graft_keep {
+  background: none;
+  border: 1px solid var(--g-rule);
+  border-radius: 99em;
+  color: var(--g-ink-2);
+  cursor: pointer;
+  flex: none;
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.2em 0.8em;
+  text-transform: uppercase;
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+.graft_keep:hover, .graft_keep:focus-visible { border-color: var(--g-keep); color: var(--g-ink); }
+.graft_block.kept .graft_keep { background: var(--g-keep); border-color: var(--g-keep); color: #F2F2ED; }
+
+/* fork affordance */
+.graft_forkrow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.6rem 0 0;
+}
+
+.graft_forkrow_label {
+  color: var(--g-muted);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  padding-top: 0.35em;
+  text-transform: uppercase;
+}
+
+.graft_fork {
+  background: none;
+  border: 1px dashed var(--g-ghost);
+  border-radius: 99em;
+  color: var(--g-ink-2);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8125rem;
+  padding: 0.22em 0.9em;
+  transition: border-color 0.18s ease, color 0.18s ease, background-color 0.18s ease;
+}
+.graft_fork:hover, .graft_fork:focus-visible { border-color: var(--g-accent-2); border-style: solid; color: var(--g-ink); }
+.graft_fork.taken { border-style: solid; border-color: var(--g-rule); color: var(--g-muted); }
+
+/* ---------- compare ---------- */
+
+.graft_compare_pickers {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.85rem;
+}
+.graft_compare_pickers label {
+  align-items: center;
+  color: var(--g-muted);
+  display: flex;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.8125rem;
+  gap: 0.4rem;
+}
+.graft_compare_pickers select {
+  background: var(--g-panel-2);
+  border: 1px solid var(--g-rule);
+  border-radius: 0.5rem;
+  color: var(--g-ink);
+  font: inherit;
+  font-size: 0.875rem;
+  padding: 0.3em 0.5em;
+}
+
+.graft_compare_cols {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+}
+.graft_compare_col { border-left: 2px solid var(--g-rule); min-width: 0; padding-left: 0.9rem; }
+.graft_compare_col .graft_col_name {
+  color: var(--g-ink-2);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.8125rem;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.75rem;
+  text-transform: uppercase;
+}
+
+/* ---------- master ---------- */
+
+.graft_master_col {
+  align-self: start;
+  background: var(--g-panel);
+  border: 1px solid var(--g-rule);
+  border-radius: 1rem;
+  padding: 1rem 1.1rem;
+  position: sticky;
+  top: 1rem;
+}
+
+.graft_master_head {
+  align-items: center;
+  border-bottom: 1px solid var(--g-rule);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.7rem;
+}
+
+.graft_copy {
+  background: none;
+  border: 1px solid var(--g-rule);
+  border-radius: 99em;
+  color: var(--g-ink-2);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8125rem;
+  padding: 0.22em 0.9em;
+  transition: border-color 0.18s ease, color 0.18s ease;
+}
+.graft_copy:not(:disabled):hover, .graft_copy:focus-visible { border-color: var(--g-accent); color: var(--g-ink); }
+.graft_copy:disabled { cursor: default; opacity: 0.45; }
+
+.graft_master_empty { color: var(--g-muted); font-size: 0.9375rem; line-height: 1.55; margin: 0; }
+
+.graft_kept {
+  border: 1px solid var(--g-rule);
+  border-radius: 0.6rem;
+  margin-bottom: 0.6rem;
+  padding: 0.7rem 0.8rem;
+}
+.graft_kept_text { font-size: 0.9375rem; line-height: 1.5; margin: 0 0 0.55rem; }
+
+.graft_kept_meta {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+}
+
+.graft_prov {
+  background: none;
+  border: 1px solid var(--g-rule);
+  border-radius: 99em;
+  color: var(--g-muted);
+  cursor: pointer;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  padding: 0.18em 0.75em;
+  transition: border-color 0.18s ease, color 0.18s ease;
+}
+.graft_prov:hover, .graft_prov:focus-visible { border-color: var(--g-accent-2); color: var(--g-ink); }
+
+.graft_kept_actions { display: flex; flex: none; gap: 0.25rem; }
+.graft_kept_actions button {
+  background: none;
+  border: none;
+  border-radius: 0.35rem;
+  color: var(--g-muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8125rem;
+  line-height: 1;
+  padding: 0.3em 0.4em;
+}
+.graft_kept_actions button:hover, .graft_kept_actions button:focus-visible { background: var(--g-panel-2); color: var(--g-ink); }
+
+/* ---------- writeup ---------- */
+
+.graft_writeup { padding-bottom: 5rem; }
+.graft_writeup h2 { font-size: 1.5rem; margin: 2.5rem 0 0.75rem; }
+.graft_writeup p { color: var(--g-ink-2); font-size: 1.125rem; line-height: 1.6; margin: 0 0 1rem; max-width: 44em; }
+.graft_decisions { margin: 0 0 1rem; max-width: 44em; padding-left: 1.2rem; }
+.graft_decisions li { color: var(--g-ink-2); font-size: 1.125rem; line-height: 1.6; margin-bottom: 0.75rem; }
+.graft_colophon_note { color: var(--g-muted); font-size: 0.9375rem; }
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 900px) {
+  .graft_columns { grid-template-columns: 1fr; }
+  .graft_master_col { position: static; }
+  .graft_compare_cols { grid-template-columns: 1fr; }
+  .graft_head { padding-top: 5.5rem; }
+}
+
+/* ---------- reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .graft_page * { animation: none !important; transition: none !important; }
+}

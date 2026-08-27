@@ -1,0 +1,125 @@
+---
+permalink: /graft/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="color-scheme" content="light dark">
+  <title>Graft – James Madson</title>
+  <meta name="description" content="Graft is an interactive prototype for curating AI conversations: fork a thread, compare branches side by side, and keep the best pieces without losing where they came from.">
+  <meta name="author" content="James Madson">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <link rel="canonical" href="https://jamesmadson.me/graft/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jamesmadson.me/graft/">
+  <meta property="og:title" content="Graft – James Madson">
+  <meta property="og:description" content="Fork, compare, and keep the best of an AI conversation without losing where it came from. An interaction design prototype.">
+  <meta property="og:site_name" content="James Madson">
+
+  <link rel="icon" href="../icons/favicon.ico?v={{ build.version }}" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg?v={{ build.version }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="../icons/apple-touch-icon.png?v={{ build.version }}">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/styles.css?v={{ build.version }}" />
+  <link rel="stylesheet" type="text/css" href="/assets/css/graft.css?v={{ build.version }}" />
+
+  <script>!function(){var e=document.documentElement,t=localStorage.getItem("theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");e.className=e.className.replace(/\btheme-\S+/g,"");e.classList.add("theme-"+t)}();</script>
+</head>
+
+<body>
+  {% include "partials/site-nav.njk" %}
+
+<main id="main-content" class="graft_page">
+
+  <header class="container graft_head">
+    <div class="grid_12">
+      <p class="graft_eyebrow">Lab · Interaction prototype</p>
+      <h1 class="graft_title">Graft</h1>
+      <p class="graft_lead">Fork, compare, and keep the best of an AI conversation without losing where it came from.</p>
+      <p class="graft_honesty">Scripted demo, no AI behind this box. The interaction design is the point. <button type="button" id="graft_reset" class="graft_reset">Reset demo</button></p>
+    </div>
+  </header>
+
+  <section class="container graft_app" id="graft_app" aria-label="Graft prototype">
+    <div class="grid_12">
+
+      <div class="graft_tree_band">
+        <div class="graft_tree_head">
+          <span class="graft_panel_label">Exploration map</span>
+          <span class="graft_tree_hint" id="graft_tree_hint">Dashed stubs are directions you haven't taken yet. Click one to fork.</span>
+        </div>
+        <div class="graft_tree_scroll">
+          <svg id="graft_tree" class="graft_tree" role="group" aria-label="Branch map of the conversation"></svg>
+        </div>
+      </div>
+
+      <div class="graft_columns">
+
+        <div class="graft_thread_col">
+          <div class="graft_thread_toolbar">
+            <div class="graft_branch_pills" id="graft_branch_pills" role="tablist" aria-label="Branches"></div>
+            <button type="button" class="graft_compare_toggle" id="graft_compare_toggle" aria-pressed="false">Compare</button>
+          </div>
+
+          <div class="graft_thread" id="graft_thread" aria-live="polite"></div>
+
+          <div class="graft_compare" id="graft_compare" hidden>
+            <div class="graft_compare_pickers">
+              <label>A <select id="graft_cmp_a"></select></label>
+              <label>B <select id="graft_cmp_b"></select></label>
+            </div>
+            <div class="graft_compare_cols">
+              <div class="graft_compare_col" id="graft_cmp_col_a"></div>
+              <div class="graft_compare_col" id="graft_cmp_col_b"></div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="graft_master_col" aria-label="Master document">
+          <div class="graft_master_head">
+            <span class="graft_panel_label">Master document</span>
+            <button type="button" id="graft_copy" class="graft_copy" disabled>Copy markdown</button>
+          </div>
+          <div class="graft_master" id="graft_master">
+            <p class="graft_master_empty" id="graft_master_empty">Nothing kept yet. Fork the first reply, then keep what's worth keeping. Every piece remembers its branch.</p>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="container graft_writeup">
+    <div class="grid_12">
+      <h2>Why this exists</h2>
+      <p>When making things gets cheap, managing what's made becomes the scarce thing. AI conversations are the newest place that problem shows up: the good ideas are in there somewhere, scattered across regenerations and dead ends, and the interface gives you one long scroll and a copy button.</p>
+      <p>Graft is a sketch of the missing layer. You fork a conversation at the turn where it should have gone differently, the map keeps every path visible, and the pieces you keep carry a marker back to the exact branch and turn they came from. Curation without amnesia.</p>
+
+      <h2>Three decisions</h2>
+      <ul class="graft_decisions">
+        <li><strong>Provenance over tidiness.</strong> Every kept block wears its origin. A master document you can't trace is just another artifact you'll re-litigate later.</li>
+        <li><strong>Fork at the turn, not at the end.</strong> The place a conversation goes wrong is rarely its last message. The map treats the whole thread as forkable material.</li>
+        <li><strong>Honest scripting.</strong> There is no model behind this demo and it says so. The fork directions are authored. Faking inference to demo interaction design would be the exact noise this tool exists to cut.</li>
+      </ul>
+
+      <h2>What's next</h2>
+      <p>Paste in your own exported conversation instead of the scripted one. Same map, same grafting, your actual work. That version needs real parsing and real empty states, so it ships after this one earns its keep.</p>
+      <p class="graft_colophon_note">Hand-built with Claude Code. Part of <a href="/">jamesmadson.me</a>.</p>
+    </div>
+  </section>
+
+</main>
+
+  {% include "partials/footer.njk" %}
+  <script src="/assets/js/site.js?v={{ build.version }}"></script>
+  <script src="/assets/js/graft.js?v={{ build.version }}"></script>
+</body>
+</html>
