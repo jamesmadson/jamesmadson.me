@@ -84,11 +84,19 @@ Tokens:
 - Trunk: horizontal 2px line, a 6px-radius circle node per user turn
   (assistant turns don't get nodes — they're the line between).
 - Forks (subagents): depart with a single shallow cubic sweep,
-  `C fx,(y0+(y1-y0)*.55) (fx+33),y1 (fx+60),y1`, one node, label after.
-- Compactions: small ink diamond on the trunk, label "compacted".
-- Hover/focus a node: show that turn's summary text in a fixed panel below
-  the map (no tooltips floating over the tree). Nodes are
-  `tabindex="0"` with `aria-label`; hit area ≥44px via transparent circle.
+  `C fx,(y0+(y1-y0)*.55) (fx+33),y1 (fx+60),y1`, one open-circle node,
+  label after in mono. **Labels must never overlap**: truncate to ~26
+  chars with an ellipsis, then lane-pack per row — greedy interval
+  packing where each fork occupies `[fx, fx + 60 + labelWidth]` and takes
+  the first lane whose previous occupant ends before it. Row pitch grows
+  to fit that row's lane count; rows without forks stay tight. Compute
+  the SVG width from the widest fork label extent, not just the trunk.
+- Compactions: small ink diamond on the trunk with a `<title>`.
+- Hover/focus a node: show that turn's summary in a detail panel that is
+  `position: sticky; bottom: 1rem` with an OPAQUE background, so feedback
+  is visible while hovering any row of a tall map. Also give each node an
+  SVG `<title>` as a native-tooltip fallback. Nodes are `tabindex="0"`
+  with `aria-label`; hit area ≥44px via transparent circle.
 - Long sessions wrap the trunk into rows (like text) rather than scrolling
   horizontally forever: break every ~14 nodes, connect row-ends with a
   quiet return curve.
