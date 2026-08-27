@@ -4802,6 +4802,18 @@ html.theme-light .about_values {
   }
 }
 
+.site_footer_tag {
+  border: 1px solid rgba($white, 0.25);
+  border-radius: 99em;
+  font-family: $mono;
+  font-size: $type-xs;
+  margin-left: 0.35em;
+  opacity: 0.7;
+  padding: 0.05em 0.55em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
 .site_footer_heading {
   color: rgba($white, 0.35);
   font-size: $type-xs;

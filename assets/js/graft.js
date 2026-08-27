@@ -149,6 +149,12 @@
   var cmpA = document.getElementById('graft_cmp_a');
   var cmpB = document.getElementById('graft_cmp_b');
   var comparing = false;
+  var announceEl = document.getElementById('graft_announce');
+  var countEl = document.getElementById('graft_count');
+
+  function announce(msg) {
+    if (announceEl) announceEl.textContent = msg;
+  }
 
   function renderAll() {
     renderTree();
@@ -159,45 +165,74 @@
     save();
   }
 
-  // --- tree: horizontal trunk with fork rows, ghosts for untaken paths
+  // --- tree: horizontal trunk with fork rows. Curves leave the trunk
+  // with a long, shallow sweep (depart slow, land flat) instead of the
+  // old tight S-kink. Ghost stubs end in an open-circle terminator: an
+  // unopened door, not a broken line.
   function renderTree() {
     var NS = 'http://www.w3.org/2000/svg';
     treeEl.innerHTML = '';
 
-    var X0 = 24, STEP = 96, Y_MAIN = 44, ROW = 46, R = 7;
+    var X0 = 28, STEP = 88, Y_MAIN = 40, ROW = 48, R = 6, RUN = 60;
     var rows = { main: Y_MAIN };
     var order = ['shorter', 'warmer', 'honest'];
     var nextRow = 1;
     order.forEach(function (id) {
-      if (state.discovered.indexOf(id) !== -1) { rows[id] = Y_MAIN + ROW * nextRow++; }
+      if (state.discovered.indexOf(id) !== -1) rows[id] = Y_MAIN + ROW * nextRow++;
     });
-    // ghost rows sit below discovered ones
     order.forEach(function (id) {
-      if (!(id in rows)) { rows[id] = Y_MAIN + ROW * nextRow++; }
+      if (!(id in rows)) rows[id] = Y_MAIN + ROW * nextRow++;
     });
 
-    var height = Y_MAIN + ROW * nextRow + 8;
+    var height = Y_MAIN + ROW * nextRow + 6;
     treeEl.setAttribute('viewBox', '0 0 760 ' + Math.max(150, height));
     treeEl.style.height = Math.max(150, height) + 'px';
 
-    function xFor(globalIndex) { return X0 + STEP * globalIndex; }
-
+    function xFor(i) { return X0 + STEP * i; }
     function mkEl(tag, attrs) {
       var el = document.createElementNS(NS, tag);
       for (var k in attrs) el.setAttribute(k, attrs[k]);
       return el;
     }
+    // one shallow sweep: vertical ease out of the trunk, flat landing
+    function sweep(fx, y) {
+      var mid = fx + RUN * 0.55;
+      return 'M ' + fx + ' ' + Y_MAIN +
+             ' C ' + fx + ' ' + (Y_MAIN + (y - Y_MAIN) * 0.55) + ', ' +
+             mid + ' ' + y + ', ' + (fx + RUN) + ' ' + y;
+    }
+    function mkLabel(text, x, y, ghost) {
+      var t = mkEl('text', { 'class': 'g_label' + (ghost ? ' ghostlabel' : ''), x: x, y: y });
+      t.textContent = text;
+      return t;
+    }
+    function mkNode(cx, cy, branch, turnIndex) {
+      var g = mkEl('g', {
+        'class': 'g_node' + (state.active === branch ? ' active' : ''),
+        tabindex: '0', role: 'button'
+      });
+      g.setAttribute('data-node', branch + ':' + turnIndex);
+      g.setAttribute('aria-label', 'Go to ' + SCRIPT[branch].name + ', turn ' + (turnIndex + 1));
+      g.appendChild(mkEl('circle', { 'class': 'g_hit', cx: cx, cy: cy, r: 20 }));
+      g.appendChild(mkEl('circle', { 'class': 'g_dot', cx: cx, cy: cy, r: R }));
+      g.addEventListener('click', function () { setActive(branch); scrollToTurn(branch, turnIndex); });
+      g.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setActive(branch);
+          scrollToTurn(branch, turnIndex, false, true); // keyboard: no animation
+        }
+      });
+      return g;
+    }
 
-    // main trunk
     var mainTurns = SCRIPT.main.turns;
-    var trunkEnd = xFor(mainTurns.length - 1);
     treeEl.appendChild(mkEl('path', {
       'class': 'g_edge' + (state.active === 'main' ? ' active' : ''),
-      d: 'M ' + X0 + ' ' + Y_MAIN + ' H ' + trunkEnd
+      d: 'M ' + X0 + ' ' + Y_MAIN + ' H ' + (xFor(mainTurns.length - 1) + 18)
     }));
-    treeEl.appendChild(mkTreeLabel('main', X0, Y_MAIN - 18, false));
+    treeEl.appendChild(mkLabel('main', X0, Y_MAIN - 16, false));
 
-    // branches: discovered get solid rows; untaken get ghost stubs
     order.forEach(function (id) {
       var b = SCRIPT[id];
       var discovered = state.discovered.indexOf(id) !== -1;
@@ -205,25 +240,22 @@
       var fx = xFor(b.forkTurn);
 
       if (discovered) {
-        var endX = fx + STEP * b.turns.length;
+        var endX = fx + RUN + STEP * (b.turns.length - 1);
         treeEl.appendChild(mkEl('path', {
           'class': 'g_edge' + (state.active === id ? ' active' : ''),
-          d: 'M ' + fx + ' ' + Y_MAIN + ' C ' + fx + ' ' + (Y_MAIN + 26) + ', ' + (fx + 30) + ' ' + y + ', ' + (fx + 44) + ' ' + y + ' H ' + endX
+          d: sweep(fx, y) + ' H ' + (endX + 18)
         }));
-        treeEl.appendChild(mkTreeLabel(b.name, fx + 44, y - 14, false, id));
+        treeEl.appendChild(mkLabel(b.name, fx + RUN, y - 14, false));
         for (var i = 0; i < b.turns.length; i++) {
-          treeEl.appendChild(mkNode(fx + 44 + STEP * i + (i === 0 ? 0 : 0), y, id, i));
+          treeEl.appendChild(mkNode(fx + RUN + STEP * i, y, id, i));
         }
       } else {
-        var stubX = fx + 46;
         var ghost = mkEl('g', { 'class': 'g_ghost_hit', tabindex: '0', role: 'button' });
         ghost.setAttribute('aria-label', 'Fork: ' + forkDirFor(id) + ' — take this path');
-        ghost.appendChild(mkEl('path', {
-          'class': 'g_edge ghost',
-          d: 'M ' + fx + ' ' + Y_MAIN + ' C ' + fx + ' ' + (Y_MAIN + 26) + ', ' + (fx + 26) + ' ' + y + ', ' + (fx + 38) + ' ' + y + ' H ' + stubX
-        }));
-        var gl = mkTreeLabel(forkDirFor(id) + ' ?', fx + 46, y + 4, true);
-        ghost.appendChild(gl);
+        ghost.appendChild(mkEl('circle', { 'class': 'g_hit', cx: fx + RUN * 0.7, cy: y, r: 22 }));
+        ghost.appendChild(mkEl('path', { 'class': 'g_edge ghost', d: sweep(fx, y) }));
+        ghost.appendChild(mkEl('circle', { 'class': 'g_term', cx: fx + RUN + 8, cy: y, r: 4.5 }));
+        ghost.appendChild(mkLabel(forkDirFor(id), fx + RUN + 20, y + 4, true));
         ghost.addEventListener('click', function () { fork(id); });
         ghost.addEventListener('keydown', function (e) {
           if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fork(id); }
@@ -232,31 +264,8 @@
       }
     });
 
-    // trunk nodes drawn last so they sit above edges
     for (var i = 0; i < mainTurns.length; i++) {
       treeEl.appendChild(mkNode(xFor(i), Y_MAIN, 'main', i));
-    }
-
-    function mkNode(cx, cy, branch, turnIndex) {
-      var g = mkEl('g', {
-        'class': 'g_node' + (state.active === branch ? ' active' : ''),
-        tabindex: '0', role: 'button'
-      });
-      g.setAttribute('data-node', branch + ':' + turnIndex);
-      g.setAttribute('aria-label', 'Go to ' + SCRIPT[branch].name + ', turn ' + (turnIndex + 1));
-      g.appendChild(mkEl('circle', { cx: cx, cy: cy, r: R }));
-      function go() { setActive(branch); scrollToTurn(branch, turnIndex); }
-      g.addEventListener('click', go);
-      g.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); }
-      });
-      return g;
-    }
-
-    function mkTreeLabel(text, x, y, ghost, branchId) {
-      var t = mkEl('text', { 'class': 'g_label' + (ghost ? ' ghostlabel' : ''), x: x, y: y });
-      t.textContent = text;
-      return t;
     }
   }
 
@@ -363,6 +372,10 @@
     masterEl.querySelectorAll('.graft_kept').forEach(function (n) { n.remove(); });
     masterEmpty.hidden = state.kept.length > 0;
     copyBtn.disabled = state.kept.length === 0;
+    if (countEl) {
+      countEl.hidden = state.kept.length === 0;
+      countEl.textContent = '· ' + state.kept.length + ' kept';
+    }
 
     state.kept.forEach(function (blockId, idx) {
       var found = findBlock(blockId);
@@ -464,7 +477,10 @@
   }
 
   function fork(branchId) {
-    if (state.discovered.indexOf(branchId) === -1) state.discovered.push(branchId);
+    if (state.discovered.indexOf(branchId) === -1) {
+      state.discovered.push(branchId);
+      announce('Forked: ' + SCRIPT[branchId].name);
+    }
     state.active = branchId;
     renderAll();
     var own = turnsFor(branchId).filter(function (r) { return !r.inherited; });
@@ -473,14 +489,20 @@
 
   function toggleKeep(blockId) {
     var at = state.kept.indexOf(blockId);
-    if (at === -1) state.kept.push(blockId); else state.kept.splice(at, 1);
+    if (at === -1) {
+      state.kept.push(blockId);
+      announce('Kept. ' + state.kept.length + ' in the master document.');
+    } else {
+      state.kept.splice(at, 1);
+      announce('Removed. ' + state.kept.length + ' in the master document.');
+    }
     renderAll();
   }
 
-  function scrollToTurn(branch, index, flash) {
+  function scrollToTurn(branch, index, flash, instant) {
     var el = threadEl.querySelector('[data-turn="' + branch + ':' + index + '"]');
     if (!el) return;
-    el.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'center' });
+    el.scrollIntoView({ behavior: (prefersReduced || instant) ? 'auto' : 'smooth', block: 'center' });
     if (flash && !prefersReduced) {
       el.classList.remove('flashsrc');
       void el.offsetWidth;

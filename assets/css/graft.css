@@ -38,6 +38,22 @@ html.theme-light .graft_page {
 
 .graft_page { color: var(--g-ink); }
 
+/* One visible focus ring, checked against panels and the tree alike */
+.graft_page :focus-visible { outline: 2px solid var(--g-ink); outline-offset: 2px; border-radius: 4px; }
+.graft_page svg :focus-visible { outline: none; } /* ring drawn on the circle instead */
+
+.graft_announce {
+  clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; width: 1px;
+  margin: 0; overflow: hidden; position: absolute; white-space: nowrap;
+}
+
+.graft_count {
+  color: var(--g-muted);
+  font-variant-numeric: tabular-nums;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
 /* ---------- header ---------- */
 
 .graft_head { padding-top: 7rem; padding-bottom: 1.5rem; }
@@ -126,20 +142,23 @@ html.theme-light .graft_page {
 .graft_tree { display: block; height: 150px; min-width: 640px; width: 100%; }
 
 .graft_tree .g_edge        { fill: none; stroke: var(--g-rule); stroke-width: 2; }
-.graft_tree .g_edge.active { stroke: var(--g-accent); }
+.graft_tree .g_edge.active { stroke: var(--g-accent); stroke-width: 2.5; }
 .graft_tree .g_edge.ghost  { stroke: var(--g-ghost); stroke-dasharray: 3 5; stroke-width: 1.5; }
 
 .graft_tree .g_node { cursor: pointer; }
-.graft_tree .g_node circle {
+.graft_tree .g_node .g_dot {
   fill: var(--g-bg);
   stroke: var(--g-muted);
   stroke-width: 2;
-  transition: stroke 0.18s ease, r 0.18s ease;
+  transition: stroke 0.18s ease, stroke-width 0.18s ease;
 }
-.graft_tree .g_node.active circle { stroke: var(--g-accent); }
-.graft_tree .g_node.current circle { fill: var(--g-accent); stroke: var(--g-accent); }
-.graft_tree .g_node:hover circle, .graft_tree .g_node:focus-visible circle { stroke: var(--g-accent-2); }
-.graft_tree .g_node.flash circle { fill: var(--g-accent); stroke: var(--g-accent); }
+.graft_tree .g_node.active .g_dot { stroke: var(--g-accent); }
+.graft_tree .g_node.current .g_dot { fill: var(--g-accent); stroke: var(--g-accent); }
+.graft_tree .g_node:hover .g_dot, .graft_tree .g_node:focus-visible .g_dot { stroke: var(--g-accent); stroke-width: 3; }
+.graft_tree .g_hit { fill: transparent; stroke: none; }
+.graft_tree .g_term { fill: none; stroke: var(--g-ghost); stroke-width: 1.5; }
+.graft_tree .g_ghost_hit:hover .g_term, .graft_tree .g_ghost_hit:focus-visible .g_term { stroke: var(--g-accent); }
+.graft_tree .g_node.flash .g_dot { fill: var(--g-accent); stroke: var(--g-accent); }
 
 .graft_tree .g_label {
   fill: var(--g-ink-2);
@@ -230,7 +249,7 @@ html.theme-light .graft_page {
 }
 
 .graft_turn_body {
-  border-radius: 0.75rem;
+  border-radius: 10px;
   font-size: 1rem;
   line-height: 1.55;
   padding: 0.85rem 1rem;
@@ -239,7 +258,7 @@ html.theme-light .graft_page {
 .graft_turn.assistant .graft_turn_body { background: var(--g-panel-2); }
 
 .graft_turn.inherited { opacity: 0.62; }
-.graft_turn.flashsrc .graft_turn_body { animation: graftFlash 1.6s ease; }
+.graft_turn.flashsrc .graft_turn_body { animation: graftFlash 1.2s ease; }
 @keyframes graftFlash { 0% { background-color: var(--g-flash); } 100% {} }
 
 .graft_turn p { margin: 0 0 0.6rem; }
@@ -249,7 +268,7 @@ html.theme-light .graft_page {
 .graft_block {
   align-items: baseline;
   border: 1px solid var(--g-rule);
-  border-radius: 0.6rem;
+  border-radius: 6px;
   display: flex;
   gap: 0.75rem;
   justify-content: space-between;
@@ -328,7 +347,7 @@ html.theme-light .graft_page {
 .graft_compare_pickers select {
   background: var(--g-panel-2);
   border: 1px solid var(--g-rule);
-  border-radius: 0.5rem;
+  border-radius: 6px;
   color: var(--g-ink);
   font: inherit;
   font-size: 0.875rem;
@@ -389,7 +408,7 @@ html.theme-light .graft_page {
 
 .graft_kept {
   border: 1px solid var(--g-rule);
-  border-radius: 0.6rem;
+  border-radius: 6px;
   margin-bottom: 0.6rem;
   padding: 0.7rem 0.8rem;
 }
@@ -404,6 +423,7 @@ html.theme-light .graft_page {
 
 .graft_prov {
   background: none;
+  font-variant-numeric: tabular-nums;
   border: 1px solid var(--g-rule);
   border-radius: 99em;
   color: var(--g-muted);

@@ -69,7 +69,7 @@ permalink: /graft/
             <button type="button" class="graft_compare_toggle" id="graft_compare_toggle" aria-pressed="false">Compare</button>
           </div>
 
-          <div class="graft_thread" id="graft_thread" aria-live="polite"></div>
+          <div class="graft_thread" id="graft_thread"></div>
 
           <div class="graft_compare" id="graft_compare" hidden>
             <div class="graft_compare_pickers">
@@ -85,7 +85,7 @@ permalink: /graft/
 
         <aside class="graft_master_col" aria-label="Master document">
           <div class="graft_master_head">
-            <span class="graft_panel_label">Master document</span>
+            <span class="graft_panel_label">Master document <span class="graft_count" id="graft_count" hidden></span></span>
             <button type="button" id="graft_copy" class="graft_copy" disabled>Copy markdown</button>
           </div>
           <div class="graft_master" id="graft_master">
@@ -116,6 +116,7 @@ permalink: /graft/
     </div>
   </section>
 
+  <p class="graft_announce" id="graft_announce" aria-live="polite"></p>
 </main>
 
   {% include "partials/footer.njk" %}
