@@ -12,12 +12,12 @@
   --g-rule:      rgba(237, 238, 232, 0.14);
   --g-panel:     rgba(237, 238, 232, 0.04);
   --g-panel-2:   rgba(237, 238, 232, 0.07);
-  --g-accent:    #009933;
-  --g-accent-2:  #99CC00;
+  --g-accent:    #EDEEE8;
+  --g-accent-2:  rgba(237, 238, 232, 0.8);
   --g-user:      rgba(237, 238, 232, 0.09);
-  --g-keep:      #0E7A33;
+  --g-keep:      #EDEEE8;
   --g-ghost:     rgba(237, 238, 232, 0.35);
-  --g-flash:     rgba(153, 204, 0, 0.22);
+  --g-flash:     rgba(237, 238, 232, 0.18);
 }
 
 html.theme-light .graft_page {
@@ -28,12 +28,12 @@ html.theme-light .graft_page {
   --g-rule:      rgba(42, 43, 38, 0.16);
   --g-panel:     rgba(42, 43, 38, 0.04);
   --g-panel-2:   rgba(42, 43, 38, 0.07);
-  --g-accent:    #009933;
-  --g-accent-2:  #6B8F00;
+  --g-accent:    #2A2B26;
+  --g-accent-2:  rgba(42, 43, 38, 0.8);
   --g-user:      rgba(42, 43, 38, 0.08);
-  --g-keep:      #0E7A33;
+  --g-keep:      #2A2B26;
+  --g-flash:     rgba(42, 43, 38, 0.12);
   --g-ghost:     rgba(42, 43, 38, 0.35);
-  --g-flash:     rgba(0, 153, 51, 0.16);
 }
 
 .graft_page { color: var(--g-ink); }
@@ -139,7 +139,7 @@ html.theme-light .graft_page {
 .graft_tree .g_node.active circle { stroke: var(--g-accent); }
 .graft_tree .g_node.current circle { fill: var(--g-accent); stroke: var(--g-accent); }
 .graft_tree .g_node:hover circle, .graft_tree .g_node:focus-visible circle { stroke: var(--g-accent-2); }
-.graft_tree .g_node.flash circle { fill: var(--g-accent-2); stroke: var(--g-accent-2); }
+.graft_tree .g_node.flash circle { fill: var(--g-accent); stroke: var(--g-accent); }
 
 .graft_tree .g_label {
   fill: var(--g-ink-2);
@@ -197,7 +197,7 @@ html.theme-light .graft_page {
 .graft_pill[aria-selected="true"] {
   background: var(--g-accent);
   border-color: var(--g-accent);
-  color: #F2F2ED;
+  color: var(--g-bg);
 }
 .graft_pill:hover:not([aria-selected="true"]), .graft_pill:focus-visible { border-color: var(--g-accent); }
 
@@ -277,7 +277,7 @@ html.theme-light .graft_page {
   transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
 }
 .graft_keep:hover, .graft_keep:focus-visible { border-color: var(--g-keep); color: var(--g-ink); }
-.graft_block.kept .graft_keep { background: var(--g-keep); border-color: var(--g-keep); color: #F2F2ED; }
+.graft_block.kept .graft_keep { background: var(--g-keep); border-color: var(--g-keep); color: var(--g-bg); }
 
 /* fork affordance */
 .graft_forkrow {
