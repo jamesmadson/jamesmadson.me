@@ -502,7 +502,13 @@
   function scrollToTurn(branch, index, flash, instant) {
     var el = threadEl.querySelector('[data-turn="' + branch + ':' + index + '"]');
     if (!el) return;
-    el.scrollIntoView({ behavior: (prefersReduced || instant) ? 'auto' : 'smooth', block: 'center' });
+    // Scroll the thread's own scroller, not the page: the map and the
+    // master stay put while the thread moves to the turn.
+    var target = el.offsetTop - (threadEl.clientHeight - el.offsetHeight) / 2;
+    threadEl.scrollTo({
+      top: Math.max(0, target),
+      behavior: (prefersReduced || instant) ? 'auto' : 'smooth'
+    });
     if (flash && !prefersReduced) {
       el.classList.remove('flashsrc');
       void el.offsetWidth;

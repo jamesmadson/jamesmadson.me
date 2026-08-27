@@ -120,11 +120,16 @@ html.theme-light .graft_page {
 /* ---------- tree band ---------- */
 
 .graft_tree_band {
-  background: var(--g-panel);
+  /* Sticky within the app section; opaque so content scrolls under,
+     not through. color-mix collapses the translucent panel tint. */
+  background: color-mix(in srgb, var(--g-ink) 5%, var(--g-bg));
   border: 1px solid var(--g-rule);
   border-radius: 1rem;
   margin-bottom: 1rem;
   padding: 0.9rem 1.1rem 0.4rem;
+  position: sticky;
+  top: 0.75rem;
+  z-index: 5;
 }
 
 .graft_tree_head {
@@ -187,6 +192,15 @@ html.theme-light .graft_page {
   border-radius: 1rem;
   min-width: 0;
   padding: 1rem 1.1rem;
+}
+
+/* The thread scrolls inside its panel: jumping to a turn moves this
+   scroller, never the page, so the map stays exactly where you are. */
+.graft_thread, .graft_compare {
+  max-height: 58vh;
+  overflow-y: auto;
+  position: relative;
+  scrollbar-width: thin;
 }
 
 .graft_thread_toolbar {
@@ -377,8 +391,12 @@ html.theme-light .graft_page {
   border: 1px solid var(--g-rule);
   border-radius: 1rem;
   padding: 1rem 1.1rem;
-  position: sticky;
-  top: 1rem;
+}
+
+.graft_master {
+  max-height: 58vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
 }
 
 .graft_master_head {
@@ -463,9 +481,11 @@ html.theme-light .graft_page {
 
 @media (max-width: 900px) {
   .graft_columns { grid-template-columns: 1fr; }
-  .graft_master_col { position: static; }
   .graft_compare_cols { grid-template-columns: 1fr; }
   .graft_head { padding-top: 5.5rem; }
+  /* Natural page flow on phones: no sticky band, no nested scrollers */
+  .graft_tree_band { position: static; }
+  .graft_thread, .graft_compare, .graft_master { max-height: none; overflow: visible; }
 }
 
 /* ---------- reduced motion ---------- */
