@@ -2937,27 +2937,27 @@ html.theme-light .practice_list p {
     navigation: auto;
   }
   .hwc.nd .hwc_img,
-  .cs_cover_img.vt-nd {
+  .cs_cover .grid_12:has(.cs_cover_img.vt-nd) {
     view-transition-name: vt-nd;
   }
   .hwc.viz .hwc_img,
-  .cs_cover_img.vt-viz {
+  .cs_cover .grid_12:has(.cs_cover_img.vt-viz) {
     view-transition-name: vt-viz;
   }
   .hwc.ns .hwc_img,
-  .cs_cover_img.vt-ns {
+  .cs_cover .grid_12:has(.cs_cover_img.vt-ns) {
     view-transition-name: vt-ns;
   }
   .hwc.nq .hwc_img,
-  .cs_cover_img.vt-nq {
+  .cs_cover .grid_12:has(.cs_cover_img.vt-nq) {
     view-transition-name: vt-nq;
   }
   .hwc.pecan .hwc_img,
-  .cs_cover_img.vt-pecan {
+  .cs_cover .grid_12:has(.cs_cover_img.vt-pecan) {
     view-transition-name: vt-pecan;
   }
   .hwc.canon .hwc_img,
-  .cs_cover_img.vt-canon {
+  .cs_cover .grid_12:has(.cs_cover_img.vt-canon) {
     view-transition-name: vt-canon;
   }
   ::view-transition-group(*) {

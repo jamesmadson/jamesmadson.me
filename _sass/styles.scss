@@ -2471,8 +2471,11 @@ html.theme-light .practice_list {
   }
 
   @each $mod in nd, viz, ns, nq, pecan, canon {
+    // Both ends of the morph are the rounded CLIPPING FRAMES, never the
+    // raw img: snapshots keep their captured rounding, so naming the
+    // unclipped cover img flashed a square snapshot mid-transition.
     .hwc.#{$mod} .hwc_img,
-    .cs_cover_img.vt-#{$mod} {
+    .cs_cover .grid_12:has(.cs_cover_img.vt-#{$mod}) {
       view-transition-name: vt-#{$mod};
     }
   }
