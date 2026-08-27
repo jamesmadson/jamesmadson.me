@@ -477,6 +477,18 @@ html.theme-light .graft_page {
 .graft_decisions li { color: var(--g-ink-2); font-size: 1.125rem; line-height: 1.6; margin-bottom: 0.75rem; }
 .graft_colophon_note { color: var(--g-muted); font-size: 0.9375rem; }
 
+.graft_install {
+  background: var(--g-panel-2);
+  border: 1px solid var(--g-rule);
+  border-radius: 10px;
+  margin: 0 0 1rem;
+  max-width: 44em;
+  overflow-x: auto;
+  padding: 0.85rem 1rem;
+}
+.graft_install code { font-family: "IBM Plex Mono", monospace; font-size: 0.8125rem; }
+.graft_writeup code { font-family: "IBM Plex Mono", monospace; font-size: 0.9em; }
+
 /* ---------- responsive ---------- */
 
 @media (max-width: 900px) {
