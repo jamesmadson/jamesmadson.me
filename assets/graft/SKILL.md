@@ -1,5 +1,6 @@
 ---
 name: graft
+license: MIT
 description: Visualize the current project's Claude Code session history as a Graft-style branch map. Parses the session transcript (never into context), renders trunk + subagent forks + compaction markers as a self-contained HTML tree in the Graft visual language, and delivers the file. Use when the user asks to /graft, map, or visualize their chat/session history.
 ---
 
