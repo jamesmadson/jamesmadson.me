@@ -1447,7 +1447,7 @@ header.about_header .about_bio .about_me + .about_me {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-top: -0.4em;
+  margin-top: -5px;
 }
 
 .about_now .now_columns {

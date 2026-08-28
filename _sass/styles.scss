@@ -968,11 +968,11 @@ header.about_header {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  // Top-aligns the chip row with the eyebrow line across the gutter.
-  // The 0.85rem offset was for the removed "About" title above; the
-  // -0.4em nudge compensates for the pills' own padding so their text
-  // sits on the eyebrow's optical line, not below it.
-  margin-top: -0.4em;
+  // Baseline-aligns the chip text with the eyebrow across the gutter
+  // (measured with inline probes at desktop width; both faces are fixed
+  // rem sizes, so a px offset holds). The old 0.85rem cleared a title
+  // that no longer exists above.
+  margin-top: -5px;
 }
 
 .about_now {
