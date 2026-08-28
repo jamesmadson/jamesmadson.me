@@ -884,7 +884,10 @@ header {
 header.about_header {
   padding-top: 4rem;
   .grid_3 { align-self: start; }
-  .jm_title { margin: 0; padding-bottom: 0.35rem; }
+  // Display line breathes before the bio: at this size the descenders
+  // sit deep, so 0.35rem read as touching. Roughly half a display
+  // line-height of air keeps the paragraph subordinate, not stacked.
+  .jm_title { margin: 0; padding-bottom: 2rem; }
 
   .about_bio {
 
