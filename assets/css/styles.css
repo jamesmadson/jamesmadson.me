@@ -4663,7 +4663,7 @@ blockquote span {
 
 .wc {
   background: var(--wc-bg);
-  color: #EDEEE8;
+  color: var(--wc-ink, #EDEEE8);
   display: flex;
   flex-direction: column;
   inset: 0;
@@ -4760,7 +4760,7 @@ blockquote span {
   z-index: 2;
 }
 .wc_tags li {
-  background: rgba(237, 238, 232, 0.94);
+  background: var(--wc-ink, rgba(237, 238, 232, 0.94));
   border-radius: 99cqw;
   color: var(--wc-bg, #171814);
   font-family: inherit;

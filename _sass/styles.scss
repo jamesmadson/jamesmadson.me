@@ -4186,7 +4186,9 @@ blockquote {
 
 .wc {
   background: var(--wc-bg);
-  color: $white;
+  // Default ink is site-white; a light cover (Graft) sets --wc-ink to
+  // dark and the tag knockout inverts for free since it borrows --wc-bg.
+  color: var(--wc-ink, #{$white});
   display: flex;
   flex-direction: column;
   inset: 0;
@@ -4291,8 +4293,8 @@ blockquote {
   z-index: 2;
 
   li {
-    // Filled, with the label knocked out in the card's own ground color
-    background: rgba($white, 0.94);
+    // Filled with the card's ink, label knocked out in the ground color
+    background: var(--wc-ink, #{rgba($white, 0.94)});
     border-radius: 99cqw;
     color: var(--wc-bg, $dark-bg);
     font-family: inherit;

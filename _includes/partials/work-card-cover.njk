@@ -2,7 +2,7 @@
    the site's own type voice; `item.cover` drives it. Cards keep their
    brand-color ground in both themes. The artifact image is decorative
    (alt="") — the card's visible text carries the meaning. #}
-<div class="wc" style="--wc-bg:{{ item.cover.bg }}">
+<div class="wc" style="--wc-bg:{{ item.cover.bg }}{% if item.cover.ink %};--wc-ink:{{ item.cover.ink }}{% endif %}">
   <div class="wc_top" aria-hidden="true">
     <span>{{ item.cover.label }}</span>
     <span>{{ item.cover.status }}</span>

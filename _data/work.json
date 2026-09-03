@@ -119,6 +119,25 @@
           "Curation"
         ]
       }
+    },
+    {
+      "href": "/graft/",
+      "mod": "graft",
+      "company": "Lab",
+      "title": "Graft",
+      "cover": {
+        "bg": "#EDEEE8",
+        "ink": "#171814",
+        "label": "Graft",
+        "status": "Lab",
+        "headline": "Fork,<br>compare, keep.",
+        "subhead": "A tool for curating AI conversations.",
+        "tags": [
+          "Live",
+          "AI Tooling",
+          "Prototype"
+        ]
+      }
     }
   ],
   "projects": [
