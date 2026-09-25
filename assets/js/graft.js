@@ -229,6 +229,7 @@
     var mainTurns = SCRIPT.main.turns;
     treeEl.appendChild(mkEl('path', {
       'class': 'g_edge' + (state.active === 'main' ? ' active' : ''),
+      'pathLength': 1,
       d: 'M ' + X0 + ' ' + Y_MAIN + ' H ' + (xFor(mainTurns.length - 1) + 18)
     }));
     treeEl.appendChild(mkLabel('main', X0, Y_MAIN - 16, false));
@@ -243,6 +244,7 @@
         var endX = fx + RUN + STEP * (b.turns.length - 1);
         treeEl.appendChild(mkEl('path', {
           'class': 'g_edge' + (state.active === id ? ' active' : ''),
+          'pathLength': 1,
           d: sweep(fx, y) + ' H ' + (endX + 18)
         }));
         treeEl.appendChild(mkLabel(b.name, fx + RUN, y - 14, false));
@@ -561,4 +563,9 @@
   });
 
   renderAll();
+
+  // First render only: the map draws itself in, then the hook retires so
+  // forks and branch switches repaint without replaying the entrance.
+  treeEl.classList.add('g_draw');
+  setTimeout(function () { treeEl.classList.remove('g_draw'); }, 1600);
 }());
