@@ -971,11 +971,13 @@ header.about_header {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+
   // Baseline-aligns the chip text with the eyebrow across the gutter
   // (measured with inline probes at desktop width; both faces are fixed
-  // rem sizes, so a px offset holds). The old 0.85rem cleared a title
-  // that no longer exists above.
-  margin-top: -5px;
+  // rem sizes, so a px offset holds). Desktop only: once the columns
+  // stack there is no shared baseline, and the negative margin pushes
+  // the links above the container's clip edge instead.
+  @media (min-width: 1280px) { margin-top: -5px; }
 }
 
 .about_now {
@@ -2261,6 +2263,296 @@ sup.reg {
   margin-top: 2.5rem;
 }
 
+// ---- Canon case study v2: figures, chips, the evidence-bar demo ----
+
+// Film cover: poster paints first, the video fades in over it once it
+// can play, and playback only runs while the cover is on screen.
+// Top-level on purpose: the cover sits outside .project.
+.cs_cover_video {
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+  position: relative;
+
+  video {
+    display: block;
+    height: auto;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    width: 100%;
+  }
+  &.is_ready video { opacity: 1; }
+
+  // Inline figure variant: rounded to match the figure imagery it replaces.
+  &--fig,
+  &--fig video { border-radius: 10px; }
+}
+
+.cs_film_toggle {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  bottom: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  display: flex;
+  height: 44px;
+  justify-content: center;
+  padding: 0;
+  position: absolute;
+  right: 1rem;
+  width: 44px;
+
+  svg { height: 12px; width: 12px; }
+  .f_play { display: none; }
+  &[aria-pressed="true"] .f_pause { display: none; }
+  &[aria-pressed="true"] .f_play { display: block; }
+  &:hover, &:focus-visible { border-color: #fff; color: #fff; }
+}
+
+// Digits hold their column everywhere numbers sit side by side.
+.stat_number,
+.canon_count,
+.graft_count { font-variant-numeric: tabular-nums; }
+
+// Bold stat numerals, page-scoped (Saddles). The sitewide Fiasco-style
+// light numeral stays the default elsewhere. The #overview selector is
+// needed because the base stat rule carries that ID.
+.stats-container.cv2_stats_bold .stat_number,
+.project .stats-container.cv2_stats_bold .stat_number,
+.project #overview .stats-container.cv2_stats_bold .stat .stat_number {
+  font-weight: 700;
+}
+
+// The GPX course map: three overlaid routes, legend highlights one.
+.cv2_routes { display: grid; gap: 1.25rem; }
+.cv2_routes_svg {
+  display: block;
+  height: auto;
+  width: 100%;
+
+  .r { fill: none; stroke-linecap: round; stroke-linejoin: round; transition: opacity 0.5s ease; }
+  // Course colors sampled from the race's artwork: console UI blue, bib yellow, 666 red
+  .r100 { stroke: #2d84eb; stroke-width: 3; }
+  .r50 { stroke: #f9ef94; stroke-width: 2.5; }
+  .r666 { stroke: #ee422e; stroke-width: 4; }
+  .rstart { fill: $white; }
+}
+.cv2_routes.sel100 .r:not(.r100),
+.cv2_routes.sel50 .r:not(.r50),
+.cv2_routes.sel666 .r:not(.r666) { opacity: 0.12; }
+
+.cv2_route_btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  button {
+    align-items: center;
+    background: none;
+    border: 1px solid rgba($white, 0.25);
+    border-radius: 99em;
+    color: rgba($white, 0.8);
+    cursor: pointer;
+    display: inline-flex;
+    font: inherit;
+    font-family: $mono;
+    font-size: $type-sm;
+    gap: 0.5em;
+    padding: 0.3em 1em;
+    transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease, scale 0.15s ease;
+
+    &::before { background: var(--rc, $white); border-radius: 50%; content: ""; height: 0.5em; width: 0.5em; }
+    &[data-route="100"] { --rc: #2d84eb; }
+    &[data-route="50"] { --rc: #f9ef94; }
+    &[data-route="666"] { --rc: #ee422e; }
+
+    &:hover, &:focus-visible { border-color: $white; color: $white; }
+    &:active { scale: 0.96; }
+    &[aria-pressed="true"] { border-color: var(--rc, $white); color: $white; }
+  }
+}
+
+.cv2_fig { margin: 2.5rem 0; }
+
+.cv2_figcap {
+  color: rgba($white, 0.45);
+  display: flex;
+  flex-wrap: wrap;
+  font-family: $mono;
+  font-size: $type-sm;
+  gap: 0.5rem 1.5rem;
+  justify-content: space-between;
+  letter-spacing: 0.07em;
+  margin-top: 0.75rem;
+  text-transform: uppercase;
+}
+.cv2_figtag { color: rgba($white, 0.8); }
+
+.cv2_panel {
+  background: rgba($white, 0.04);
+  border-radius: 1rem;
+  padding: 1.25rem;
+}
+.cv2_panel--shot img { border-radius: 10px; display: block; height: auto; width: 100%; }
+
+// Two shots in one panel, 4:3 beside 16:9; 3fr:4fr keeps their heights equal
+.cv2_pair {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: 3fr 4fr;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cv2_plugins {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.cv2_plugin {
+  background: rgba($white, 0.04);
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+
+  h4 {
+    font-family: $mono;
+    font-size: $type-sm;
+    letter-spacing: 0.06em;
+    margin: 0 0 0.4rem;
+  }
+  p { color: rgba($white, 0.65); font-size: $type-sm; line-height: 1.55; margin: 0; }
+}
+
+.cv2_evbar { display: grid; gap: 1rem; }
+
+.cv2_evbar_controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  button {
+    background: none;
+    border: 1px solid rgba($white, 0.25);
+    border-radius: 99em;
+    color: $white;
+    cursor: pointer;
+    font: inherit;
+    font-size: $type-sm;
+    padding: 0.3em 1em;
+    transition: border-color 0.15s ease, opacity 0.15s ease, scale 0.15s ease;
+
+    &:hover:not(:disabled), &:focus-visible { border-color: $white; }
+    &:active:not(:disabled) { scale: 0.96; }
+    &:disabled { cursor: default; opacity: 0.35; }
+  }
+}
+
+.cv2_evbar_quotes {
+  display: grid;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    border-left: 2px solid rgba($white, 0.25);
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.15rem 0 0.15rem 0.85rem;
+
+    &.is_stakeholder { border-left-style: dashed; }
+  }
+}
+.cv2_voice { color: rgba($white, 0.5); flex: none; font-family: $mono; font-size: $type-sm; }
+.cv2_said { color: rgba($white, 0.8); font-size: $type-base; }
+
+.cv2_evbar_verdict {
+  border-top: 1px solid rgba($white, 0.12);
+  color: $white;
+  font-size: $type-base;
+  margin: 0;
+  padding-top: 0.9rem;
+}
+
+.cv2_ladder {
+  margin: 1rem 0;
+  padding-left: 1.3rem;
+
+  li { color: rgba($white, 0.75); margin-bottom: 0.5rem; }
+}
+
+.cv2_ledger {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+
+  li {
+    align-items: baseline;
+    border-top: 1px solid rgba($white, 0.1);
+    color: rgba($white, 0.7);
+    display: flex;
+    gap: 0.9rem;
+    padding: 0.9rem 0;
+  }
+}
+
+.cv2_chip {
+  border: 1px solid rgba($white, 0.3);
+  border-radius: 99em;
+  color: rgba($white, 0.85);
+  flex: none;
+  font-family: $mono;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  padding: 0.14em 0.7em;
+  text-transform: uppercase;
+}
+.cv2_chip--committed { background: $white; border-color: $white; color: #171814; }
+.cv2_chip--held { border-style: dashed; color: rgba($white, 0.55); }
+
+.cv2_sdlc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+
+  .cv2_stage {
+    background: rgba($white, 0.05);
+    border-radius: 10px;
+    flex: 1 1 150px;
+    padding: 0.9rem 1rem;
+    position: relative;
+
+    h4 {
+      font-family: $mono;
+      font-size: $type-sm;
+      letter-spacing: 0.06em;
+      margin: 0 0 0.3rem;
+      text-transform: uppercase;
+    }
+    p { color: rgba($white, 0.6); font-size: $type-sm; line-height: 1.5; margin: 0; }
+
+    &:not(:last-child)::after {
+      color: rgba($white, 0.4);
+      content: "→";
+      position: absolute;
+      right: -0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+  .cv2_stage--loop::before {
+    color: rgba($white, 0.4);
+    content: "↻";
+    position: absolute;
+    right: 0.8rem;
+    top: 0.7rem;
+  }
+}
+
 .canon_code {
   background: rgba($white, 0.04);
   border-radius: 0.75rem;
@@ -2320,6 +2612,31 @@ html.theme-light {
   .canon_closing { color: rgba($dark-default, 0.7); }
   .canon_code { background: rgba($dark-default, 0.04); color: rgba($dark-default, 0.8); }
   .canon_changelog li { border-top-color: rgba($dark-default, 0.12); color: rgba($dark-default, 0.7); }
+
+  // Canon case study v2 components
+  .cv2_figcap { color: rgba($dark-default, 0.5); }
+  .cv2_figtag { color: rgba($dark-default, 0.8); }
+  .cv2_panel, .cv2_plugin, .cv2_sdlc .cv2_stage { background: rgba($dark-default, 0.05); }
+  .cv2_plugin h4 { color: $dark-default; }
+  .cv2_plugin p { color: rgba($dark-default, 0.7); }
+  .cv2_evbar_controls button {
+    border-color: rgba($dark-default, 0.3);
+    color: $dark-default;
+    &:hover:not(:disabled), &:focus-visible { border-color: $dark-default; }
+  }
+  .cv2_evbar_quotes li { border-left-color: rgba($dark-default, 0.3); }
+  .cv2_voice { color: rgba($dark-default, 0.5); }
+  .cv2_said { color: rgba($dark-default, 0.8); }
+  .cv2_evbar_verdict { border-top-color: rgba($dark-default, 0.12); color: $dark-default; }
+  .cv2_ladder li { color: rgba($dark-default, 0.75); }
+  .cv2_ledger li { border-top-color: rgba($dark-default, 0.12); color: rgba($dark-default, 0.7); }
+  .cv2_chip { border-color: rgba($dark-default, 0.35); color: rgba($dark-default, 0.85); }
+  .cv2_chip--committed { background: $dark-default; border-color: $dark-default; color: $white; }
+  .cv2_chip--held { color: rgba($dark-default, 0.55); }
+  .cv2_sdlc .cv2_stage h4 { color: $dark-default; }
+  .cv2_sdlc .cv2_stage p { color: rgba($dark-default, 0.6); }
+  .cv2_sdlc .cv2_stage:not(:last-child)::after,
+  .cv2_sdlc .cv2_stage--loop::before { color: rgba($dark-default, 0.4); }
   .canon_changelog_date { color: rgba($dark-default, 0.45); }
 }
 
@@ -2443,6 +2760,14 @@ html.theme-light .practice_list {
       aspect-ratio: 16 / 9;
 
       @media (max-width: 768px) { aspect-ratio: 4 / 3; }
+    }
+
+    // A film cover brings its own aspect; reserving an image-shaped
+    // frame around it just manufactures empty space below the video.
+    &:has(.cs_cover_video) {
+      aspect-ratio: auto;
+
+      @media (max-width: 768px) { aspect-ratio: auto; }
     }
   }
 
@@ -3004,16 +3329,20 @@ body.image-feed {
   img { max-width: 100%; }
 
   h1 { color: $white; font-family: $font; }
-  h2 { color: $white; }
-  h3 { color: $white; }
-  h4 { color: $white; }
+  h2 { color: $white; text-wrap: balance; }
+  h3 { color: $white; text-wrap: balance; }
+  h4 { color: $white; text-wrap: balance; }
 
   p {
     color: $white;
     font-family: $font;
     font-size: $type-lg;
     line-height: 36px;
+    // Prose holds a readable measure even in a wide column, and wraps
+    // without orphans. Short strings (meta, stats) are unaffected.
+    max-width: 62ch;
     padding-right: 30px;
+    text-wrap: pretty;
 
     &.leadin { font-size: $type-xl; }
   }
@@ -3071,6 +3400,14 @@ body.image-feed {
   h3 + h4 {
     border-top: none;
     margin-top: 1.5rem;
+    padding-top: 0;
+  }
+
+  // An h4 inside a ruled list item (canon_list and kin): the li already
+  // draws the divider, so the chapter rule here doubles it.
+  li h4 {
+    border-top: none;
+    margin-top: 0;
     padding-top: 0;
   }
 
@@ -3169,6 +3506,10 @@ body.image-feed {
 
     @media (max-width: 1279px) {
       display: block;
+
+      // Stacked mode: the title loses its own column, so it needs the
+      // breathing room the column gap was providing.
+      > h3 { margin-bottom: 1.25rem; }
     }
   }
 
@@ -4752,23 +5093,6 @@ html.theme-light .about_values {
   margin: 0;
 }
 
-.site_footer_tagline {
-  color: rgba($white, 0.3);
-  cursor: default;
-  font-size: $type-md;
-  margin-top: 0.75rem;
-
-  .tl_ch {
-    display: inline-block;
-    transition: color 0.2s ease, transform 0.3s ease;
-  }
-
-  &.tl_rainbow .tl_ch {
-    animation: tlBounce 0.6s ease calc(var(--i) * 0.04s) both,
-               tlRainbow 2.4s linear calc(var(--i) * 0.04s) infinite;
-  }
-}
-
 .site_footer_nav {
   display: grid;
   gap: 2rem 2.5rem;
@@ -4858,38 +5182,6 @@ html.theme-light .about_values {
   }
 }
 
-.tl_sparkle {
-  animation: tlSparkle 0.6s ease forwards;
-  font-size: $type-xs;
-  pointer-events: none;
-  position: absolute;
-  user-select: none;
-  z-index: 9999;
-}
-
-@keyframes tlSparkle {
-  0%   { opacity: 1; transform: translate(0, 0) scale(1); }
-  100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0.3); }
-}
-
-@keyframes tlBounce {
-  0%   { transform: translateY(0); }
-  30%  { transform: translateY(-6px); }
-  55%  { transform: translateY(2px); }
-  75%  { transform: translateY(-2px); }
-  100% { transform: translateY(0); }
-}
-
-@keyframes tlRainbow {
-  0%   { color: #ff4e4e; }
-  14%  { color: #ff9a00; }
-  28%  { color: #ffe600; }
-  42%  { color: #4cff72; }
-  57%  { color: #00d4ff; }
-  71%  { color: #7b6cff; }
-  85%  { color: #ff6ef7; }
-  100% { color: #ff4e4e; }
-}
 
 html.theme-light .site_footer {
   background-color: rgba($dark-default, 0.03);
@@ -4897,7 +5189,6 @@ html.theme-light .site_footer {
 
   .site_footer_name    { color: $dark-default; }
   .site_footer_role    { color: rgba($dark-default, 0.55); }
-  .site_footer_tagline { color: rgba($dark-default, 0.35); }
   .site_footer_heading { color: rgba($dark-default, 0.4); }
 
   .site_footer_col a {

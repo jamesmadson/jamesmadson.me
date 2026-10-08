@@ -1,0 +1,401 @@
+---
+permalink: /case_studies/saddles100/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="color-scheme" content="light dark">
+  <title>Saddles 100 Case Study – James Madson</title>
+  <meta name="description" content="A projected data wall and a bib-scanning console: an installation built for the Saddles 100 ultramarathon in Prescott, AZ. By James Madson.">
+  <meta name="author" content="James Madson">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <link rel="canonical" href="https://jamesmadson.me/case_studies/saddles100/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://jamesmadson.me/case_studies/saddles100/">
+  <meta property="og:title" content="Saddles 100 Case Study – James Madson">
+  <meta property="og:description" content="A projected wall built from the race's data, and a scanner at the finish that reads your bib and pulls up your race data. An installation for an ultramarathon.">
+  <meta property="og:image" content="https://jamesmadson.me/img/saddles/wall-hero.jpg">
+  <meta property="og:site_name" content="James Madson">
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Saddles 100 Case Study – James Madson">
+  <meta name="twitter:description" content="An installation for an ultramarathon.">
+  <meta name="twitter:image" content="https://jamesmadson.me/img/saddles/wall-hero.jpg">
+
+  <link rel="icon" href="../icons/favicon.ico?v={{ build.version }}" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg?v={{ build.version }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="../icons/apple-touch-icon.png?v={{ build.version }}">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/styles.css?v={{ build.version }}" />
+
+  <!-- Google tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HL3TB4H7XS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-HL3TB4H7XS');
+  </script>
+  <script>!function(){var e=document.documentElement,t=localStorage.getItem("theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");e.className=e.className.replace(/\btheme-\S+/g,"");e.classList.add("theme-"+t)}();</script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "An installation for an ultramarathon.",
+    "name": "Saddles 100 Case Study",
+    "url": "https://jamesmadson.me/case_studies/saddles100/",
+    "author": {
+      "@type": "Person",
+      "name": "James Madson",
+      "url": "https://jamesmadson.me",
+      "jobTitle": "Product Designer"
+    },
+    "description": "A projected data wall built from the course's own terrain and results, and a camera console that reads bibs and serves each runner a personal card. Built for the Saddles 100 in Prescott, AZ."
+  }
+  </script>
+</head>
+
+<body>
+  {% include "partials/site-nav.njk" %}
+
+<main id="main-content">
+  <section class="about cs_hero fadeIn">
+    <div class="container">
+      <div class="grid_12">
+        <h1 class="project_title">
+          <span class="case_study_label">Saddles 100</span>
+          An installation for an ultramarathon.
+        </h1>
+        <p class="canon_status">
+          <span class="canon_chip">Field</span>
+          <span class="canon_status_meta">Prescott, AZ · October 2026</span>
+        </p>
+        <p class="cs_hero_fact">A projected wall built from the race's data, and a scanner at the finish that reads your bib and pulls up your race data.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container cs_cover">
+    <div class="grid_12">
+      <div class="cs_cover_video" id="sad_film" style="background-image: url('/img/saddles/montage-poster.jpg')">
+        <video id="sad_film_v" playsinline muted loop preload="metadata" poster="/img/saddles/montage-poster.jpg" width="1920" height="816" aria-label="A silent 25 second film: fog over the finish area, the projected wall's scenes, the console scanning a skeleton figure, and a runner finishing through the smoke with arms raised">
+          <source src="/assets/video/saddles-montage.mp4" type="video/mp4">
+        </video>
+        <button type="button" class="cs_film_toggle" id="sad_film_btn" aria-pressed="false" aria-label="Pause the film">
+          <svg class="f_pause" viewBox="0 0 12 12" aria-hidden="true"><rect x="1.5" width="3" height="12" rx="1" fill="currentColor"/><rect x="7.5" width="3" height="12" rx="1" fill="currentColor"/></svg>
+          <svg class="f_play" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1.2v9.6c0 .9 1 1.5 1.8 1L11 7c.8-.5.8-1.6 0-2L3.8.2C3-.3 2 .3 2 1.2z" fill="currentColor"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <ul class="case_study_nav">
+    <li><a href="#overview" id="overview_link">Overview</a></li>
+    <li><a href="#wall" id="wall_link">The wall</a></li>
+    <li><a href="#console" id="console_link">The console</a></li>
+    <li><a href="#data" id="data_link">The data</a></li>
+    <li><a href="#field" id="field_link">Field notes</a></li>
+    <li><a href="#top" id="top_link">Back to Top</a></li>
+  </ul>
+
+  <section class="project">
+    <div class="container cs_content" id="overview">
+      <div class="grid_12">
+        <h3>Overview</h3>
+        <div class="cs_meta_row">
+          <div class="cs_meta_item">
+            <span class="role">For</span>
+            <p>The Saddles 100, an ultramarathon in Prescott, AZ</p>
+          </div>
+          <div class="cs_meta_item">
+            <span class="role">Role</span>
+            <p>Installation, data, and code</p>
+          </div>
+          <div class="cs_meta_item">
+            <span class="role">Status</span>
+            <p>Ran at the 2026 race</p>
+          </div>
+          <div class="cs_meta_item">
+            <span class="role">Tags</span>
+            <ul class="cs_tags_inline">
+              <li class="tag">Installation</li>
+              <li class="tag">Data Visualization</li>
+              <li class="tag">Computer Vision</li>
+              <li class="tag">TouchDesigner</li>
+            </ul>
+          </div>
+        </div>
+        <p class="leadin">The Saddles 100 is an ultramarathon in Prescott. I built two things for it: a TouchDesigner data visualization projected at the finish line, and an interactive display that uses a screen and camera to scan runners' bibs and load a sci-fi interface card they can download at a hosted URL.</p>
+        <p>I've been learning TouchDesigner for a few years now, mostly for audio-reactive concert visuals. This pushed me into a new zone: creating a somewhat immersive environment, pulling in data for over 300 runners, and updating it live throughout the race so spectators at the finish line could stay updated. My part was the wall, the scanner, the cards, and the code.</p>
+
+        <div class="stats-container canon_stats cv2_stats_bold">
+          <div class="stat">
+            <div class="stat_number">36</div>
+            <p class="stat_info">Scenes in the wall loop, seamless</p>
+          </div>
+          <div class="stat">
+            <div class="stat_number">3</div>
+            <p class="stat_info">Race distances: 100, 50, and 6.66 miles</p>
+          </div>
+          <div class="stat">
+            <div class="stat_number">9:37</div>
+            <p class="stat_info">Loop runtime, built to play from a USB stick</p>
+          </div>
+          <div class="stat">
+            <div class="stat_number">300+</div>
+            <p class="stat_info">Runners' data, updated through the race</p>
+          </div>
+        </div>
+        <p class="canon_asof">As run, October 2026</p>
+      </div>
+    </div>
+
+    <div class="container cs_content" id="wall">
+      <div class="grid_12">
+        <h3>The wall</h3>
+        <p class="leadin">A projected loop for the finish area, indigo on black with a CRT treatment, built from the race's own data: the elevation model, the GPX routes, the entrant list, then the results. Thirty-six scenes over nine and a half minutes.</p>
+        <div class="cs_body_cols">
+          <p>The look comes straight from the race's theme: CRT scanlines, radar sweeps, classified-looking reports. I built it in TouchDesigner and vibe coded the Python pipeline with Claude Code: fetching elevation data, baking routes, merging the start list.</p>
+          <p>On race night it's just a video file playing off a USB stick. No network, no laptop to fall asleep, nothing to crash.</p>
+        </div>
+
+        <figure class="cv2_fig">
+          <div class="cv2_panel">
+            <div class="cs_cover_video cs_cover_video--fig" style="background-image: url('/img/saddles/wall-demo-poster.jpg')">
+              <video playsinline muted loop preload="none" poster="/img/saddles/wall-demo-poster.jpg" width="1920" height="1080" aria-label="Three scenes from the wall loop: a radar sweep, a terrain bloom analysis, and the Willow Lake course map, indigo on black">
+                <source src="/assets/video/saddles-wall-demo.mp4" type="video/mp4">
+              </video>
+              <button type="button" class="cs_film_toggle" aria-pressed="false" aria-label="Pause the loop">
+                <svg class="f_pause" viewBox="0 0 12 12" aria-hidden="true"><rect x="1.5" width="3" height="12" rx="1" fill="currentColor"/><rect x="7.5" width="3" height="12" rx="1" fill="currentColor"/></svg>
+                <svg class="f_play" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1.2v9.6c0 .9 1 1.5 1.8 1L11 7c.8-.5.8-1.6 0-2L3.8.2C3-.3 2 .3 2 1.2z" fill="currentColor"/></svg>
+              </button>
+            </div>
+          </div>
+          <figcaption class="cv2_figcap">
+            <span><span class="cv2_figtag">Fig. 01 · Evidence</span> · Three of the thirty-six scenes</span>
+            <span>From the loop itself</span>
+          </figcaption>
+        </figure>
+
+        <p>Scene 14 is a Borges quote about a labyrinth that consists of a single straight line.</p>
+      </div>
+    </div>
+
+    <div class="container cs_content" id="console">
+      <div class="grid_12">
+        <h3>The console</h3>
+        <p class="leadin">A TV at the finish with a camera on top. It scans a runner's bib and loads their sci-fi interface card, which they can download at a hosted URL and keep. Before the race the card had their stats from UltraSignup; after, their results: split times at the aid stations, place in the race.</p>
+
+        <figure class="cv2_fig">
+          <div class="cv2_panel">
+            <div class="cs_cover_video cs_cover_video--fig" style="background-image: url('/img/saddles/console-demo-poster.jpg')">
+              <video playsinline muted loop preload="none" poster="/img/saddles/console-demo-poster.jpg" width="1280" height="720" aria-label="The console demo, end to end: the Saddles lockup, lifeform detected, a skeleton scan, identity confirmed, then the roster lookup builds the runner's card with aid station splits">
+                <source src="/assets/video/saddles-console-demo.mp4" type="video/mp4">
+              </video>
+              <button type="button" class="cs_film_toggle" aria-pressed="false" aria-label="Pause the loop">
+                <svg class="f_pause" viewBox="0 0 12 12" aria-hidden="true"><rect x="1.5" width="3" height="12" rx="1" fill="currentColor"/><rect x="7.5" width="3" height="12" rx="1" fill="currentColor"/></svg>
+                <svg class="f_play" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1.2v9.6c0 .9 1 1.5 1.8 1L11 7c.8-.5.8-1.6 0-2L3.8.2C3-.3 2 .3 2 1.2z" fill="currentColor"/></svg>
+              </button>
+            </div>
+          </div>
+          <figcaption class="cv2_figcap">
+            <span><span class="cv2_figtag">Fig. 02 · Evidence</span> · Scan to card, the whole sequence</span>
+            <span>From the demo capture</span>
+          </figcaption>
+        </figure>
+
+        <figure class="cv2_fig">
+          <div class="cv2_plugins">
+            <div class="cv2_panel cv2_panel--shot"><img src="/img/saddles/card-1.jpg" alt="Runner card variant: voxel astronaut with skull visor over waveform terrain" loading="lazy"></div>
+            <div class="cv2_panel cv2_panel--shot"><img src="/img/saddles/card-2.jpg" alt="Runner card variant: voxel astronaut with a face, over waveform terrain" loading="lazy"></div>
+            <div class="cv2_panel cv2_panel--shot"><img src="/img/saddles/card-4.jpg" alt="Runner card variant: dotted skeleton figure" loading="lazy"></div>
+            <div class="cv2_panel cv2_panel--shot"><img src="/img/saddles/card-5.jpg" alt="Runner card variant: contour-lined head in profile" loading="lazy"></div>
+          </div>
+          <figcaption class="cv2_figcap">
+            <span><span class="cv2_figtag">Fig. 03 · Evidence</span> · Four of the card figures</span>
+            <span>Rendered by the console</span>
+          </figcaption>
+        </figure>
+
+        <div class="cs_body_cols">
+          <p>If there were errors in the scan, runners could also just go to the URL and type their bib number. The URL is printed on the screen the whole time.</p>
+          <p>The card leans into the race's horror and sci-fi theme: your splits drawn as terrain, your name and number in the race's numerals. Everyone who finishes gets one.</p>
+        </div>
+
+        <figure class="cv2_fig">
+          <div class="cv2_panel cv2_panel--shot cv2_pair">
+            <img src="/img/saddles/bib-50.jpg" alt="A Saddles 50 bib, number 401: distressed lockup, three moon phases, the race's italic numerals" loading="lazy">
+            <img src="/img/saddles/console-attract.jpg" alt="The console's attract screen: hold your bib up to the screen when you cross the line, or collect your card any time at the printed URL" loading="lazy">
+          </div>
+          <figcaption class="cv2_figcap">
+            <span><span class="cv2_figtag">Fig. 04 · Context</span> · The bib, and the screen that asks for it</span>
+            <span>At the finish line</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="container cs_content" id="data">
+      <div class="grid_12">
+        <h3>The data</h3>
+
+        <figure class="cv2_fig">
+          <div class="cv2_panel cv2_routes" id="cv2_routes">
+            <svg class="cv2_routes_svg" viewBox="0 0 1200 1214" role="img" aria-label="The three Saddles courses drawn from their GPX files over Prescott: the 100 mile in blue, the 50 mile in yellow, the 6.66 mile in red">
+              <path class="r r100" d="M669,623L663,686L651,706L626,799L613,822L596,817L579,825L571,830L559,840L550,849L538,847L530,853L527,865L520,872L505,863L489,876L481,879L468,875L462,874L462,874L462,874L450,876L442,889L428,895L414,898L398,904L385,891L374,894L363,893L373,888L375,888L375,887L375,887L377,883L380,873L381,864L378,857L374,852L379,847L378,840L375,833L370,835L368,842L366,845L365,837L364,829L361,827L358,823L346,817L344,818L334,817L322,815L308,816L301,824L292,833L282,839L277,845L274,856L267,865L257,868L250,868L239,864L237,864L237,864L237,864L238,858L239,850L239,842L235,836L230,831L224,819L219,815L218,815L215,811L216,801L210,795L211,785L211,785L211,785L211,783L204,780L200,773L200,765L194,762L190,756L189,749L187,746L194,747L197,743L200,736L206,732L213,727L217,722L219,717L217,710L216,703L220,696L221,688L226,681L228,671L239,663L243,657L248,650L251,646L247,634L249,624L254,620L260,623L263,621L272,625L278,618L284,616L285,615L285,615L285,615L285,614L293,607L298,600L296,595L301,590L311,587L310,580L309,572L316,577L322,578L324,568L324,557L330,565L330,559L330,550L325,547L324,547L319,555L312,557L301,556L301,553L314,552L317,544L316,538L308,532L299,537L288,538L281,537L275,536L271,539L266,534L261,525L260,520L258,517L256,509L248,512L243,506L248,501L253,493L256,484L250,473L247,464L238,462L228,470L222,483L222,482L225,470L224,463L221,455L226,446L227,434L220,426L185,415L167,424L146,419L131,409L138,390L126,379L120,398L103,406L95,388L89,370L79,355L61,354L49,342L40,326L49,319L61,319L68,324L78,320L83,312L90,303L102,304L102,309L110,315L119,305L125,303L126,316L133,326L142,320L152,326L153,334L158,323L164,310L155,305L155,305L155,305L149,303L148,297L144,291L176,266L258,185L263,188L264,187L273,188L274,184L279,176L287,171L291,162L297,151L308,146L317,136L323,128L326,125L331,122L340,118L347,107L354,96L356,91L364,84L371,76L373,65L385,59L386,48L389,43L402,41L404,50L411,62L417,73L420,86L413,98L410,111L414,125L416,138L405,141L403,155L402,168L402,179L391,174L376,174L364,181L350,181L348,196L350,211L352,226L353,239L363,243L360,257L366,269L398,285L451,313L515,330L535,257L578,227L621,206L664,172L693,187L711,203L733,246L782,231L837,228L843,251L860,266L862,290L857,316L896,332L934,309L964,321L959,355L864,436L859,448L848,465L838,479L831,493L839,490L851,485L850,492L852,498L863,496L863,499L872,495L882,497L889,507L900,521L912,532L922,524L926,515L929,526L937,538L937,532L940,547L927,553L921,558L915,566L927,566L936,561L938,567L933,574L924,581L918,586L922,590L910,595L913,605L923,617L924,630L919,632L912,619L902,632L895,629L887,618L877,635L887,635L871,638L865,639L858,647L847,648L849,653L849,658L836,659L841,667L852,678L841,681L842,691L847,696L836,698L836,713L832,723L840,734L848,744L857,734L864,741L864,751L875,758L887,748L891,742L898,750L905,742L914,751L925,751L931,741L939,736L945,742L945,731L948,720L959,712L965,705L955,702L950,705L955,695L963,688L969,680L969,670L972,670L985,672L997,670L1006,662L1002,648L1012,640L1017,644L1023,651L1029,659L1036,665L1041,675L1048,675L1059,674L1059,681L1062,691L1064,703L1064,706L1056,713L1054,723L1056,738L1054,752L1056,761L1063,765L1057,777L1060,788L1058,803L1062,809L1069,820L1075,821L1075,821L1079,828L1086,821L1097,827L1100,840L1100,843L1096,850L1092,855L1102,866L1106,879L1105,889L1113,896L1122,906L1130,906L1134,905L1137,899L1142,908L1142,922L1148,931L1151,942L1159,958L1153,965L1151,978L1148,983L1144,985L1142,986L1130,989L1124,996L1123,1004L1121,1014L1121,1022L1122,1033L1114,1034L1102,1030L1098,1044L1094,1049L1088,1055L1083,1057L1072,1052L1064,1041L1055,1038L1044,1034L1034,1034L1022,1047L1006,1043L1008,1056L1009,1062L1009,1063L1009,1074L1004,1084L1005,1102L1008,1114L1002,1128L973,1126L815,1100L807,1106L808,1095L812,1089L804,1085L794,1083L791,1080L784,1074L780,1067L781,1066L785,1064L784,1057L780,1051L781,1048L781,1048L778,1038L783,1024L793,1012L797,998L793,988L795,981L796,970L795,957L795,947L795,937L795,927L788,925L782,918L776,916L767,915L765,914L762,919L755,929L746,935L748,929L747,919L748,920L747,919L748,919L740,919L735,914L732,910L722,907L716,909L710,908L705,900L698,891L695,889L702,886L701,883L704,871L704,859L704,845L700,837L698,838L691,827L685,822L679,817L668,823L659,827L655,824L646,825L639,829L636,830L631,824L628,817L628,815L625,808L626,792L625,785L620,779L618,770L613,754L615,740L620,724L634,714L650,707L662,699L662,691L669,682L668,666L669,651L669,637L669,624"/>
+              <path class="r r50" d="M669,623L665,687L663,686L661,687L651,706L617,734L626,802L621,817L613,822L603,824L595,818L588,825L579,824L573,824L570,830L562,834L558,839L554,844L550,847L543,849L537,846L535,846L529,854L524,857L528,867L525,876L518,873L512,867L502,864L495,873L487,877L485,873L480,881L475,874L465,874L462,874L462,874L462,874L462,874L462,874L462,876L455,879L446,877L442,883L441,893L432,895L424,893L417,896L411,900L403,904L394,902L389,895L383,895L377,897L370,892L361,895L367,890L373,888L374,887L375,888L375,887L375,887L375,887L375,887L375,887L375,885L377,879L379,874L380,871L380,866L382,861L379,858L377,856L375,853L376,851L378,848L379,844L378,840L378,837L376,834L373,831L370,834L369,838L369,842L367,845L366,845L365,842L365,838L365,833L364,830L364,826L362,827L359,830L358,824L351,819L346,817L347,817L345,818L339,822L334,817L329,814L322,815L315,816L308,816L303,819L301,825L297,830L292,833L286,837L282,839L279,840L277,846L275,850L274,856L271,862L267,865L262,866L257,868L255,871L249,868L244,865L238,864L237,864L237,864L237,864L237,864L237,864L237,864L238,861L239,857L238,853L239,849L239,845L239,841L237,838L234,835L231,832L230,830L227,823L222,818L219,816L219,815L218,815L218,815L217,813L215,809L218,804L213,801L211,796L210,792L211,787L211,785L211,785L211,785L211,785L211,785L211,785L209,782L205,780L202,780L201,776L199,769L200,765L198,764L195,763L192,760L191,757L190,754L190,750L187,749L187,747L191,747L194,747L195,747L197,744L198,740L199,737L202,734L206,733L209,730L212,728L215,726L216,723L219,720L219,717L219,713L217,710L216,707L216,703L219,701L220,697L219,693L221,689L223,685L226,681L227,677L228,671L232,665L239,663L243,662L243,657L244,655L248,650L250,646L251,646L250,639L247,633L248,629L249,624L250,619L254,620L258,621L261,623L265,625L263,621L269,622L272,625L276,623L279,618L282,617L285,615L285,615L285,615L285,615L285,615L285,615L285,615L285,615L286,614L288,609L294,606L297,603L297,599L294,597L297,595L300,592L303,589L307,588L312,587L311,583L309,578L309,575L310,572L315,574L318,578L320,579L321,576L324,571L323,565L324,559L325,558L329,563L332,566L331,563L330,557L330,552L328,547L325,547L325,547L325,547L321,548L319,553L318,558L314,557L309,556L303,556L301,556L300,554L306,553L312,552L315,550L317,545L319,541L317,539L313,535L308,534L304,532L299,536L295,539L289,538L287,538L283,537L278,535L275,535L273,539L271,540L269,538L266,535L263,530L261,526L261,523L260,520L261,520L259,517L257,514L256,509L253,509L249,513L243,508L242,506L247,504L248,501L252,499L253,493L253,489L256,483L253,477L250,473L247,468L247,463L242,460L237,462L231,464L228,471L225,477L222,484L221,486L223,482L225,476L225,469L224,465L225,461L220,459L222,454L223,450L226,445L225,438L228,432L225,427L219,426L214,425L182,415L174,421L164,424L154,419L142,419L132,416L132,406L133,395L139,385L133,377L124,382L123,392L116,400L108,407L100,404L96,394L96,383L92,374L86,367L82,358L75,354L66,354L58,353L51,346L48,337L42,328L41,323L47,321L53,318L58,321L63,320L67,323L70,323L76,320L81,319L82,315L82,308L88,304L95,302L100,302L99,306L101,308L104,311L109,315L112,311L118,306L123,301L126,301L123,310L128,314L129,321L133,324L136,324L141,320L146,323L152,325L151,331L151,335L155,330L158,324L158,317L163,311L160,305L155,305L155,305L155,305L155,305L155,305L153,305L149,303L149,301L148,298L146,295L144,291L149,284L176,267L226,217L258,186L261,189L263,188L264,188L265,188L269,192L273,188L273,184L274,183L276,180L280,175L284,173L288,171L289,166L292,162L295,156L298,151L303,148L310,146L315,142L318,136L321,130L323,128L325,127L327,125L329,123L332,121L336,118L343,117L344,111L348,105L351,99L355,94L355,92L357,91L362,87L366,83L369,78L372,75L370,68L375,63L382,59L386,59L387,52L387,44L388,43L392,42L400,41L406,40L406,46L404,54L409,60L411,65L416,70L419,76L420,83L420,91L415,96L411,102L409,109L411,116L412,123L415,130L417,136L412,137L406,139L405,146L404,153L403,160L402,167L404,172L403,179L396,179L392,174L385,173L378,173L372,177L365,180L358,180L351,180L349,188L348,195L349,202L350,210L351,217L352,225L353,232L352,239L359,237L362,243L361,250L360,256L362,263L366,269L372,271L398,285L427,304L451,313L473,328L515,329L529,303L536,257L558,237L579,225L603,224L624,204L649,180L664,174L677,179L688,189L686,201L711,209L715,234L739,242L754,232L783,226"/>
+              <path class="r r666" d="M810,220L810,220L808,220L805,220L804,220L804,220L804,220L803,221L803,221L803,221L802,220L802,219L801,218L800,217L799,217L799,217L799,217L796,216L796,216L796,216L796,216L795,216L795,216L795,216L795,217L795,217L794,217L794,217L794,217L793,217L793,218L792,219L792,219L792,219L793,221L793,221L793,221L793,222L793,222L793,222L794,222L794,223L794,223L794,224L794,224L794,224L794,226L794,226L793,227L792,227L792,227L791,227L789,226L788,225L788,225L788,225L787,225L787,226L787,226L787,226L787,227L787,227L787,227L787,228L787,228L787,228L787,228L787,228L788,228L788,228L789,229L789,230L789,230L789,230L789,230L790,230L791,230L791,231L791,231L792,231L794,232L794,232L794,232L794,232L794,232L794,233L792,235L792,235L792,235L792,236L792,237L793,237L793,237L795,237L795,237L796,238L797,239L797,239L797,239L797,239L796,239L796,239L796,239L796,240L794,240L788,241L788,241L787,241L784,239L784,239L784,239L784,239L784,239L783,239L783,239L782,238L780,237L780,236L779,236L777,235L776,234L775,233L775,233L773,233L773,233L773,233L771,232L771,232L771,232L771,233L770,234L770,234L770,235L770,236L771,237L771,237L773,239L773,239L774,240L775,240L775,240L775,240L775,241L774,242L773,243L773,243L773,243L773,244L773,244L773,245L773,245L773,245L773,246L772,247L772,249L771,250L770,251L769,251L768,252L768,252L768,252L768,252L768,253L768,253L769,254L769,254L769,254L771,256L773,257L773,257L774,258L775,259L775,259L776,259L776,259L776,259L777,261L778,263L780,262L782,261L783,259L783,260L783,259L783,259L783,259L783,259L785,259L788,260L789,260L789,260L790,260L789,262L786,264L784,266L783,267L781,271L781,274L781,275L781,275L781,276L782,276L782,276L782,276L783,276L785,275L785,275L786,276L787,276L787,276L787,276L788,278L788,279L787,282L786,283L786,284L786,285L785,286L785,286L785,286L786,287L789,286L792,286L792,286L792,286L793,286L794,286L796,287L799,288L800,288L801,288L806,288L809,287L811,287L817,286L819,286L821,287L821,287L822,285L823,285L827,285L828,286L828,286L828,286L829,287L829,287L829,287L830,290L831,291L831,291L831,291L831,292L833,292L833,293L832,295L832,299L832,300L832,300L831,303L831,304L831,304L831,308L831,308L831,308L831,309L832,310L832,312L833,313L837,317L837,317L837,317L839,316L841,316L841,316L843,316L844,316L844,317L845,317L845,317L846,318L847,317L848,317L851,316L851,316L854,316L854,316L854,316L855,316L857,317L857,316L859,315L860,313L862,309L862,308L861,308L861,308L861,308L861,308L861,308L861,308L861,307L857,307L857,306L857,306L856,306L856,306L857,305L856,305L856,303L856,302L856,302L856,302L856,302L856,302L856,302L855,302L854,301L853,301L853,301L852,300L851,300L851,299L851,299L852,298L852,298L853,298L853,298L853,297L854,297L854,296L854,295L855,293L855,292L853,291L853,292L853,291L853,291L853,291L853,289L853,288L856,287L857,287L858,288L858,288L859,288L859,290L859,291L859,292L859,292L859,292L860,292L861,291L862,291L862,290L864,289L864,289L865,290L865,290L866,290L866,289L866,289L866,289L866,289L866,285L865,284L865,284L862,282L862,281L862,281L860,280L860,279L860,278L860,278L860,277L859,273L859,273L858,273L858,273L858,273L860,270L861,269L863,268L863,268L863,268L863,268L863,268L863,266L863,265L863,265L863,265L863,265L863,265L863,265L862,266L861,266L861,266L861,267L860,267L859,267L859,267L858,267L857,267L857,267L856,268L856,269L856,269L856,269L855,270L855,270L855,270L854,270L853,271L853,272L852,273L853,272L852,272L849,271L849,271L848,270L847,268L847,267L847,266L847,266L846,266L846,265L848,262L848,261L848,261L848,261L846,259L846,259L846,259L845,259L843,259L843,259L842,258L842,258L841,258L841,258L841,258L840,257L841,256L841,256L841,256L841,255L841,255L841,254L841,254L841,254L842,254L841,253L841,253L841,253L841,252L841,251L841,251L842,251L843,251L843,250L843,250L844,249L844,249L844,248L844,248L844,248L845,247L845,246L846,246L846,247L846,247L847,247L847,246L848,246L848,246L849,247L849,247L850,246L850,246L850,245L850,245L849,245L849,244L849,244L848,244L848,244L847,244L847,244L847,243L847,243L847,243L847,243L847,242L847,242L847,242L847,241L846,241L846,241L846,240L846,240L846,240L846,239L846,238L847,238L847,238L847,238L847,237L848,237L848,237L848,237L848,237L849,237L850,236L850,235L850,235L850,235L850,235L852,236L853,237L854,237L854,237L855,237L856,236L856,235L855,234L856,234L856,233L857,234L858,234L858,234L858,235L859,235L859,235L859,235L859,235L859,234L859,233L859,233L859,233L859,232L859,232L860,231L860,231L859,231L858,231L857,231L856,229L856,229L855,228L855,228L855,228L854,227L854,227L854,227L854,227L855,225L855,225L856,224L856,224L856,224L855,223L857,220L857,220L857,219L857,218L857,218L857,217L858,216L859,216L859,216L859,216L859,216L859,216L859,216L859,216L859,216L859,214L858,214L855,213L855,213L855,213L854,213L853,213L853,213L851,213L850,213L848,214L848,215L848,215L848,215L847,216L846,216L846,216L846,216L844,216L844,216L843,217L843,217L843,218L842,218L842,219L842,220L842,221L842,221L842,222L842,222L842,223L843,223L843,223L843,224L842,224L842,224L842,224L841,225L841,225L841,225L841,225L840,225L839,226L839,226L840,226L840,228L841,229L841,230L841,230L841,231L841,231L841,231L841,230L841,231L841,231L841,231L840,232L840,232L840,233L840,233L840,233L840,233L840,233L839,233L839,233L839,233L839,233L839,233L839,232L839,232L839,231L839,231L839,231L838,230L839,229L839,229L839,229L838,229L838,229L837,228L837,227L837,226L837,226L837,226L837,226L836,225L836,225L835,224L835,224L835,224L833,224L833,224L830,224L830,224L830,225L829,225L829,226L829,226L829,226L829,226L829,226L829,226L828,227L828,227L828,227L828,227L826,227L826,227L826,227L825,227L825,228L825,228L825,228L824,229L824,229L824,229L824,229L824,229L824,229L823,229L823,229L823,229L822,229L819,229L819,229L818,229L818,229L818,229L818,229L818,229L818,229L818,229L818,228L818,228L818,228L818,228L818,228L818,228L818,228L818,228L818,228L818,228L818,228L818,228L818,228L818,228L818,228L818,228L818,228L818,228L818,228L818,228L818,228L818,228L818,228L818,228L818,227L818,227L818,227L818,227L818,227L818,227L818,227L818,227L818,227L818,227L817,226L817,225L817,225L817,225L817,225L817,225L817,225L816,225L816,225L816,225L816,225L816,225L816,224L816,224L816,224L816,224L816,224L816,223L816,223L816,223L816,223L814,222L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L809,220L809,220L809,220L809,220L809,220L809,220L809,220L809,220L809,220L809,220L809,220L809,220L809,220L809,220L809,220L809,220L809,220L809,220L809,220L809,220L809,220L809,220L809,220L809,221L809,221L809,221L809,221L809,221L809,221L809,221L809,221L809,221L809,221L809,221L809,221L809,221L809,221L809,221L809,221L809,221L809,221L809,221L809,221L809,221L809,221L809,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L810,221L811,221L811,221L811,221L811,221L811,221L811,221L811,221L811,221L811,221L811,221L811,221L811,221L811,221L811,221L811,221L811,221L811,221L811,221L811,221L811,221L811,221L811,221L811,221L811,221L811,221L811,221L811,221L811,221L811,220L811,220L811,220L811,220L811,220L811,220L811,220L811,220L811,220L811,220L811,220L811,220L811,220L811,220L811,220L811,220L811,220L811,220L811,220L811,220L811,220L811,220L811,220L811,220L811,220L811,220L811,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220L810,220"/>
+              <circle class="rstart" cx="669" cy="623" r="7"/>
+            </svg>
+            <div class="cv2_route_btns" role="group" aria-label="Highlight a course">
+              <button type="button" data-route="100" aria-pressed="false">100 mi</button>
+              <button type="button" data-route="50" aria-pressed="false">50 mi</button>
+              <button type="button" data-route="666" aria-pressed="false">6.66 mi</button>
+            </div>
+          </div>
+          <figcaption class="cv2_figcap">
+            <span><span class="cv2_figtag">Fig. 05 · Working figure</span> · Three courses, one map</span>
+            <span>Drawn from the race's GPX files</span>
+          </figcaption>
+        </figure>
+
+        <div class="cs_body_cols">
+          <p>Before the race, everything ran on UltraSignup data: who was coming, what they'd run before. The wall's entrant scenes and the early cards came from that.</p>
+          <p>After the race, the official results took over: finish times, places, split times at the aid stations. The same card at the same URL updated with what happened.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container cs_content" id="field">
+      <div class="grid_12">
+        <h3>Field notes</h3>
+        <ul class="canon_list">
+          <li>
+            <h4>The USB stick is the uptime strategy</h4>
+            <p>No laptop to sleep, no app to crash, no cable to kick.</p>
+          </li>
+          <li>
+            <h4>Fix it from your side of the lens</h4>
+            <p>The bibs were already printed, so every scanning fix had to come from my side: the code, the lighting, or what the screen asked people to do.</p>
+          </li>
+          <li>
+            <h4>Out of the comfort zone</h4>
+            <p>This was my first installation. On the web I know where things break. Out here I didn't, so I kept making everything simpler until I trusted it.</p>
+          </li>
+        </ul>
+        <p class="canon_closing">Race production, bibs, and branding by the Saddles 100 crew. The wall, the console, the cards, and the film, designed and built by me.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+{% include "partials/footer.njk" %}
+
+<script src="/assets/js/site.js?v={{ build.version }}" defer></script>
+<script>
+(function () {
+  /* Every film on the page shares one contract: fade in when playable,
+     play only while on screen, never autoplay under reduced motion.
+     Figure videos use preload="none", so nothing downloads until the
+     reader scrolls to it and the observer calls play(). */
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll('.cs_cover_video').forEach(function (wrap) {
+    var v = wrap.querySelector('video');
+    var btn = wrap.querySelector('.cs_film_toggle');
+    if (!v || !btn) return;
+    var userPaused = reduced;
+
+    function syncBtn() {
+      var paused = v.paused;
+      btn.setAttribute('aria-pressed', String(paused));
+      btn.setAttribute('aria-label', paused ? 'Play the film' : 'Pause the film');
+    }
+
+    function markReady() { wrap.classList.add('is_ready'); }
+    v.addEventListener('canplay', markReady, { once: true });
+    // Fast loads can fire canplay before this script attaches; check state too.
+    if (v.readyState >= 3) markReady();
+    v.addEventListener('play', syncBtn);
+    v.addEventListener('pause', syncBtn);
+
+    btn.addEventListener('click', function () {
+      if (v.paused) { userPaused = false; v.play(); }
+      else { userPaused = true; v.pause(); }
+    });
+
+    if (!reduced && 'IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) {
+          if (!userPaused) v.play().catch(function () {});
+        } else {
+          v.pause();
+        }
+      }, { threshold: 0.25 });
+      io.observe(v);
+    }
+    syncBtn();
+  });
+}());
+
+(function () {
+  /* The course map cycles through the three races while on screen;
+     a click takes the wheel and the cycle stays stopped. */
+  var wrap = document.getElementById('cv2_routes');
+  if (!wrap) return;
+  var btns = Array.prototype.slice.call(wrap.querySelectorAll('.cv2_route_btns button'));
+  var keys = ['100', '50', '666'];
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var idx = -1, timer = null, manual = false;
+
+  function show(key) {
+    wrap.classList.remove('sel100', 'sel50', 'sel666');
+    btns.forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+    if (key) {
+      wrap.classList.add('sel' + key);
+      btns.forEach(function (x) {
+        if (x.getAttribute('data-route') === key) x.setAttribute('aria-pressed', 'true');
+      });
+    }
+  }
+  function tick() {
+    idx = (idx + 1) % (keys.length + 1); /* the fourth beat shows all three */
+    show(idx < keys.length ? keys[idx] : null);
+  }
+  function start() {
+    if (timer || manual || reduced.matches) return;
+    timer = setInterval(tick, 2800);
+  }
+  function stop() { clearInterval(timer); timer = null; }
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { e.isIntersecting ? start() : stop(); });
+    }, { threshold: 0.35 }).observe(wrap);
+  }
+  reduced.addEventListener('change', function (e) {
+    if (e.matches) { manual = false; stop(); show(null); }
+  });
+
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      manual = true; stop();
+      var on = b.getAttribute('aria-pressed') === 'true';
+      show(on ? null : b.getAttribute('data-route'));
+    });
+  });
+}());
+</script>
+</body>
+</html>
