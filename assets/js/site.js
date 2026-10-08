@@ -727,51 +727,6 @@ function smoothScrollTo(targetY, duration) {
 
 
 // ============================================================
-// Footer tagline — rainbow wave on hover
-// ============================================================
-(function () {
-  var tagline = document.querySelector('.site_footer_tagline');
-  if (!tagline) return;
-
-  var text = tagline.textContent;
-  tagline.setAttribute('aria-label', text);
-  tagline.innerHTML = text.split('').map(function (ch, i) {
-    if (ch === ' ') return '<span class="tl_ch" aria-hidden="true">&nbsp;</span>';
-    return '<span class="tl_ch" style="--i:' + i + '" aria-hidden="true">' + ch + '</span>';
-  }).join('');
-
-  function spawnSparkle() {
-    var s = document.createElement('span');
-    s.className = 'tl_sparkle';
-    s.textContent = ['✦','✧','★','⋆','·'][Math.floor(Math.random() * 5)];
-    var rect = tagline.getBoundingClientRect();
-    s.style.left = (rect.left + Math.random() * rect.width) + 'px';
-    s.style.top  = (rect.top + window.scrollY + Math.random() * rect.height) + 'px';
-    s.style.setProperty('--dx', (Math.random() * 60 - 30) + 'px');
-    s.style.setProperty('--dy', -(Math.random() * 50 + 15) + 'px');
-    s.style.animationDuration = (Math.random() * 0.4 + 0.5) + 's';
-    document.body.appendChild(s);
-    s.addEventListener('animationend', function () { s.parentNode && s.parentNode.removeChild(s); });
-  }
-
-  var sparkleTimer = null;
-  tagline.addEventListener('mouseenter', function () {
-    tagline.classList.add('tl_rainbow');
-    (function burst() {
-      spawnSparkle();
-      spawnSparkle();
-      sparkleTimer = setTimeout(burst, 160);
-    }());
-  });
-  tagline.addEventListener('mouseleave', function () {
-    tagline.classList.remove('tl_rainbow');
-    clearTimeout(sparkleTimer);
-    sparkleTimer = null;
-  });
-}());
-
-
-// ============================================================
 // Work page — staggered card reveal
 // ============================================================
 (function () {
