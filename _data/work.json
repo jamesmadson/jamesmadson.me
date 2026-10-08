@@ -93,19 +93,19 @@
         "bg": "#33332C",
         "label": "Canon",
         "status": "Self-initiated",
-        "headline": "Skills,<br>curated.",
-        "subhead": "A gallery of design skills for AI agents.",
+        "headline": "Judgment,<br>published.",
+        "subhead": "A design practice for AI agents: gallery, tools, workbench.",
         "stats": [
           {
-            "n": "16",
+            "n": "20",
             "label": "Skills"
           },
           {
             "n": "4",
-            "label": "Kits"
+            "label": "Plugins"
           },
           {
-            "n": "114",
+            "n": "118",
             "label": "Tests"
           },
           {

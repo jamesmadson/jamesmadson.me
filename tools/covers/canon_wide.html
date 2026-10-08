@@ -1,0 +1,115 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Canon wide cover</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; }
+  .wide {
+    background: #171814;
+    box-sizing: border-box;
+    color: #EDEEE8;
+    display: flex;
+    flex-direction: column;
+    font-family: "IBM Plex Mono", monospace;
+    height: 800px;
+    justify-content: center;
+    overflow: hidden;
+    padding: 90px 110px;
+    position: relative;
+    width: 1600px;
+  }
+  .frame {
+    border: 1px solid rgba(237, 238, 232, 0.14);
+    inset: 44px;
+    pointer-events: none;
+    position: absolute;
+  }
+  .reg {
+    color: rgba(237, 238, 232, 0.35);
+    font-size: 18px;
+    position: absolute;
+  }
+  .reg--tl { left: 36px; top: 30px; }
+  .reg--tr { right: 36px; top: 30px; }
+  .reg--bl { left: 36px; bottom: 30px; }
+  .reg--br { right: 36px; bottom: 30px; }
+  .names {
+    font-size: 58px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .names .dot { opacity: 0.3; padding: 0 24px; }
+  .rule {
+    background: rgba(237, 238, 232, 0.14);
+    height: 1px;
+    margin: 52px 0 44px;
+  }
+  .ledger {
+    column-gap: 56px;
+    columns: 4;
+    color: rgba(237, 238, 232, 0.34);
+    font-size: 13.5px;
+    letter-spacing: 0.02em;
+    line-height: 2.15;
+  }
+  .ledger div { break-inside: avoid; white-space: nowrap; }
+  .ledger b { color: rgba(237, 238, 232, 0.52); font-weight: 400; padding-right: 0.8em; }
+  .sub {
+    color: rgba(237, 238, 232, 0.5);
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    margin-top: 48px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+</style>
+<article class="wide">
+  <div class="frame"></div>
+  <span class="reg reg--tl">+</span>
+  <span class="reg reg--tr">+</span>
+  <span class="reg reg--bl">+</span>
+  <span class="reg reg--br">+</span>
+  <div class="names">canon<span class="dot">·</span>graft<span class="dot">·</span>strata<span class="dot">·</span>deter</div>
+  <div class="rule"></div>
+  <div class="ledger">
+    <div><b>D-01</b>Monochrome, no accent</div>
+    <div><b>D-02</b>Curate, never scrape</div>
+    <div><b>D-03</b>The scope fence holds</div>
+    <div><b>D-04</b>Licenses, never hand-typed</div>
+    <div><b>D-05</b>Hidden everywhere</div>
+    <div><b>D-06</b>Notify, don't ask</div>
+    <div><b>D-07</b>Launch the argument</div>
+    <div><b>D-08</b>Under its own name</div>
+    <div><b>D-09</b>Skills static, records grow</div>
+    <div><b>D-10</b>Said, meant, decided</div>
+    <div><b>D-11</b>Pseudonymize at intake</div>
+    <div><b>D-12</b>Three, or say the count</div>
+    <div><b>D-13</b>Reviews remove</div>
+    <div><b>D-14</b>Tributes, rendered exactly</div>
+    <div><b>D-15</b>References, not copies</div>
+    <div><b>D-16</b>Judgment is the moat</div>
+    <div><b>D-17</b>Personal accounts first</div>
+    <div><b>D-18</b>Dark mode day one</div>
+    <div><b>D-20</b>A person triggers every run</div>
+    <div><b>D-21</b>One script tag</div>
+    <div><b>D-22</b>Select what is visible</div>
+    <div><b>D-23</b>Read as products</div>
+    <div><b>D-24</b>A link plus context</div>
+    <div><b>D-25</b>Intake grows in rings</div>
+    <div><b>D-26</b>Kill collecting features</div>
+    <div><b>D-27</b>Clean room, always</div>
+    <div><b>D-28</b>Structure over styling</div>
+    <div><b>D-29</b>The log becomes a skill</div>
+    <div><b>D-30</b>Captured, never mirrored</div>
+    <div><b>D-31</b>Held until cleared</div>
+    <div><b>D-32</b>Keep canvas, kill entropy</div>
+    <div><b>D-33</b>Both ways, after alpha</div>
+    <div><b>D-34</b>Every stage commits</div>
+    <div><b>D-35</b>Horizon wide, aperture narrow</div>
+  </div>
+  <div class="sub">Decisions, logged in the open</div>
+</article>

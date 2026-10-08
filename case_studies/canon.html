@@ -8,7 +8,7 @@ permalink: /case_studies/canon/
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="color-scheme" content="light dark">
   <title>Canon Case Study – James Madson</title>
-  <meta name="description" content="Canon is a curated gallery of design skills for AI agents: hand-picked, license-verified, and written up with a point of view. A build log in progress by James Madson.">
+  <meta name="description" content="Canon began as a curated gallery of design skills for AI agents and grew into a design practice that publishes: twenty curated skills, four plugins, and a workbench thesis. A build log in progress by James Madson.">
   <meta name="author" content="James Madson">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
@@ -18,7 +18,7 @@ permalink: /case_studies/canon/
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://jamesmadson.me/case_studies/canon/">
   <meta property="og:title" content="Canon Case Study – James Madson">
-  <meta property="og:description" content="A curated gallery of design skills for AI agents: hand-picked, license-verified, and written up with a point of view. Building in the open.">
+  <meta property="og:description" content="A design practice that publishes: twenty curated skills, four plugins, and a workbench thesis. Building in the open.">
   <meta property="og:image" content="https://jamesmadson.me/img/covers/canon@2x.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="1200">
@@ -27,7 +27,7 @@ permalink: /case_studies/canon/
   <!-- Twitter / X Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Canon Case Study – James Madson">
-  <meta name="twitter:description" content="A curated gallery of design skills for AI agents. Building in the open.">
+  <meta name="twitter:description" content="A design practice that publishes. Building in the open.">
   <meta name="twitter:image" content="https://jamesmadson.me/img/covers/canon@2x.png">
 
   <link rel="icon" href="../icons/favicon.ico?v={{ build.version }}" sizes="32x32">
@@ -58,7 +58,7 @@ permalink: /case_studies/canon/
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "A curated gallery of design skills for AI agents.",
+    "headline": "A design practice that publishes.",
     "name": "Canon Case Study",
     "url": "https://jamesmadson.me/case_studies/canon/",
     "author": {
@@ -72,7 +72,7 @@ permalink: /case_studies/canon/
       "name": "Canon",
       "applicationCategory": "DesignApplication"
     },
-    "description": "Canon is a self-initiated, in-progress curated gallery of design skills for AI agents: 16 skills read in full and license-verified, 4 composed kits with generated install scripts, structure maps generated from real repositories, and 114 tests. Built in Astro with schema-validated content collections."
+    "description": "Canon began as a curated gallery of design skills for AI agents and grew into a design practice that publishes: twenty curated skills read in full and license-verified, four plugins in its marketplace, and a workbench thesis documented in a public decision log. Built in Astro with schema-validated content collections."
   }
   </script>
   <!-- Fog sources: preloaded so the frost never pops in after its fade begins -->
@@ -88,13 +88,13 @@ permalink: /case_studies/canon/
       <div class="grid_12">
         <h1 class="project_title">
           <span class="case_study_label">Canon</span>
-          A curated gallery of design skills for AI agents.
+          A design practice that publishes.
         </h1>
         <p class="canon_status">
           <span class="canon_chip">In progress</span>
-          <span class="canon_status_meta">Self-initiated · Updated August 2026</span>
+          <span class="canon_status_meta">Self-initiated · Updated October 2026</span>
         </p>
-        <p class="cs_hero_fact">Encoding design judgment into agent plugins, so the craft travels with the tools.</p>
+        <p class="cs_hero_fact">It started as a curated gallery of design skills for AI agents. Now it ships its own tools, and the tools point at a workbench.</p>
       </div>
     </div>
   </section>
@@ -108,10 +108,10 @@ permalink: /case_studies/canon/
   <ul class="case_study_nav">
     <li><a href="#overview" id="overview_link">Overview</a></li>
     <li><a href="#problem" id="problem_link">Problem</a></li>
-    <li><a href="#now" id="now_link">Where it is</a></li>
-    <li><a href="#designing" id="designing_link">Designing it</a></li>
-    <li><a href="#dogfooding" id="dogfooding_link">Dogfooding</a></li>
-    <li><a href="#built" id="built_link">How it is built</a></li>
+    <li><a href="#curate" id="curate_link">Curate</a></li>
+    <li><a href="#author" id="author_link">Author</a></li>
+    <li><a href="#workbench" id="workbench_link">Workbench</a></li>
+    <li><a href="#decides" id="decides_link">How it decides</a></li>
     <li><a href="#open" id="open_link">Open questions</a></li>
     <li><a href="#top" id="top_link">Back to Top</a></li>
   </ul>
@@ -144,7 +144,7 @@ permalink: /case_studies/canon/
             </ul>
           </div>
         </div>
-        <p class="leadin">Designers have started handing instructions to AI agents: plugin files that tell Claude, Cursor, or Codex how to think about motion, accessibility, or typography. Finding good ones means trawling GitHub. Canon is the editorial answer, hand-picked, license-verified, and written up with a point of view.</p>
+        <p class="leadin">Designers have started handing instructions to AI agents: plugin files that tell Claude, Cursor, or Codex how to think about motion, accessibility, or typography. Finding good ones means trawling GitHub. Canon started as the editorial answer, hand-picked, license-verified, and written up with a point of view. Since then it has become a practice that ships its own tools and logs its decisions in public.</p>
 
         <p>I built it because I kept re-explaining the same judgment to the same tools. An agent will happily animate everything, ship a 32px tap target, or invent a fifth grey, and it will do it fast. The fix is not more prompting, it is encoding the decision once and handing it over. That is what these plugins are, and once they exist they are worth sharing rather than hoarding.</p>
 
@@ -164,27 +164,25 @@ permalink: /case_studies/canon/
           </li>
         </ul>
 
-        <p class="canon_early">Early days. The gallery and kits work today, the whole catalog installs as a Claude Code plugin in one command, and the open questions further down are genuinely open. This page will look different in a month.</p>
-
         <div class="stats-container canon_stats">
           <div class="stat">
-            <div class="stat_number">16</div>
+            <div class="stat_number">20</div>
             <p class="stat_info">Curated skills, each read in full</p>
           </div>
           <div class="stat">
             <div class="stat_number">4</div>
-            <p class="stat_info">Kits composed for a job</p>
+            <p class="stat_info">Plugins in Canon's marketplace</p>
           </div>
           <div class="stat">
-            <div class="stat_number">114</div>
-            <p class="stat_info">Tests across content, filters, and install scripts</p>
+            <div class="stat_number">118</div>
+            <p class="stat_info">Tests across content, filters, and installs</p>
           </div>
           <div class="stat">
             <div class="stat_number">0</div>
             <p class="stat_info">Colors in the finished palette</p>
           </div>
         </div>
-        <p class="canon_asof">As of August 2026</p>
+        <p class="canon_asof">As of October 2026</p>
       </div>
     </div>
 
@@ -193,16 +191,27 @@ permalink: /case_studies/canon/
         <h3>The problem</h3>
         <div class="cs_body_cols">
           <p>The directories that existed were aggregators: thousands of entries, one-line descriptions, view counts, no judgment. They tell you a skill exists.</p>
-          <p>They do not tell you whether it is any good, what is actually inside it, or whether you are allowed to use it. And nothing showed you what you were installing until after you installed it.</p>
+          <p>They do not tell you whether it is any good, what is actually inside it, or whether you are allowed to use it. And nothing showed you what you were installing until after you installed it. That was the first problem. Solving it surfaced a second one, further down this page.</p>
         </div>
       </div>
     </div>
 
-    <div class="container cs_content" id="now">
+    <div class="container cs_content" id="curate">
       <div class="grid_12">
-        <h3>Where it is now</h3>
-        <p>Sixteen skills, each read in full, license-checked, and given an original write-up with an honest gotcha section. Every entry shows which agents it works with, what is inside the package, and where it came from.</p>
-        <p>Four things no other directory does:</p>
+        <h3>Act I<br>Curate</h3>
+        <p class="leadin">The founding rule, from Canon's decision log: curate, never scrape. Judgment is the product; a scraped list is the competitor category, not the aspiration. Every entry is read in full, license-checked, and given an original write-up with an honest gotcha section.</p>
+
+        <figure class="cv2_fig">
+          <div class="cv2_panel cv2_panel--shot">
+            <img src="/img/canon/gallery_live@2x.png" alt="The live Canon homepage: Teach your AI what good design actually looks like, with the Canon in Use demo below" width="1600" height="1100" loading="lazy">
+          </div>
+          <figcaption class="cv2_figcap">
+            <span><span class="cv2_figtag">Fig. 01 · Evidence</span> · The live site, October 2026</span>
+            <span>Captured from jamesmadson.github.io/canon</span>
+          </figcaption>
+        </figure>
+
+        <h4>Four things no other directory does</h4>
         <ul class="canon_list">
           <li>
             <h4>Structure maps</h4>
@@ -218,9 +227,30 @@ permalink: /case_studies/canon/
           </li>
           <li>
             <h4>One-command install</h4>
-            <p>The catalog ships as a Claude Code plugin: add the marketplace once and a router skill comes with it. The router stays dormant until called, reads the task, and pulls in the kit that applies. The first skill published under Canon's own name, <a href="/graft/" class="inline_link">Graft</a>, ships through the same marketplace.</p>
+            <p>The catalog ships as a Claude Code plugin: add the marketplace once and a router skill comes with it. The router stays dormant until called, reads the task, and pulls in the kit that applies. The marketplace now carries four plugins: the router and three tools Canon authored, covered in Act II.</p>
           </li>
         </ul>
+
+        <h4>Licenses are facts, not vibes</h4>
+        <p>Two of the log's earliest rulings are about permission. The license field is derived from the GitHub API, never hand-typed, because a hand-typed claim shipped wrong exactly once. And a skill with no license is hidden everywhere, not just unlisted: no page, no listing, no generated install command. A hidden card with a live clone script would be compliance theater. Reversal is one status field the moment a license lands.</p>
+
+        <h4>Monochrome, by ruling</h4>
+        <div class="cs_body_cols">
+          <p>The visual system went through three passes: a Swiss-modernist grid direction (Aicher, Müller-Brockmann, the Vignelli Canon the project is named for), then an are.na-influenced density pass, then a final strip to full monochrome. Orange was considered, tried, and removed entirely.</p>
+          <p>Color kept doing compositional work that type and value should have been doing, so it went. Hover and focus shift value, never hue. The log states the rule so it can be tested: any color is a defect.</p>
+        </div>
+
+        <h4>Dogfooding</h4>
+        <div class="cs_body_cols">
+          <p>Canon curates a mobile-review skill suite, so I installed it and pointed it at Canon. It found twelve objective platform defects and five design decisions I had been avoiding: sub-44px tap targets, iOS input zoom, a filter panel that pushed every result below the fold on a phone.</p>
+          <p>I fixed the defects and made the calls. The best proof a curation site can offer is that its curator uses the things.</p>
+        </div>
+
+        <h4>Built like it preaches</h4>
+        <div class="cs_body_cols">
+          <p>Astro with schema-validated content collections, so a malformed entry fails the build instead of shipping. Every feature runs spec, then plan, then implementation, with review gates at each step.</p>
+          <p>The test suite covers the content corpus, the filter engine, the install-script generator, and the marketplace manifest, so the honesty rules above are assertions, not intentions.</p>
+        </div>
 
         <p class="canon_code_intro">The site is data, not pages. A skill entry, abbreviated:</p>
         <pre class="canon_code"><code>slug: design-motion-principles
@@ -264,33 +294,155 @@ digestPath: /kits/full-redesign-digest.md</code></pre>
       </div>
     </div>
 
-    <div class="container cs_content" id="designing">
+    <div class="container cs_content" id="author">
       <div class="grid_12">
-        <h3>Designing it</h3>
-        <div class="cs_body_cols">
-          <p>The visual system went through three passes: a Swiss-modernist grid direction (Aicher, Müller-Brockmann, the Vignelli Canon the project is named for), then an are.na-influenced density pass that turned cards into flush hairline tiles, then a final strip to full monochrome.</p>
-          <p>Color kept doing compositional work that type and value should have been doing, so it went. That includes hover and focus, which now shift value instead of hue.</p>
-        </div>
+        <h3>Act II<br>Author</h3>
+        <p class="leadin">Reading twenty skills closely teaches you what a good one looks like. In August the positioning moved, in the log's words, from aggregator to practice that publishes. Canon's own skills are labeled as Canon's, never slipped in as peers of the curated work.</p>
+
+        <figure class="cv2_fig">
+          <div class="cv2_plugins">
+            <div class="cv2_plugin">
+              <h4>canon</h4>
+              <p>The router. Reads the task, pulls in the kit that applies, stays dormant until called.</p>
+            </div>
+            <div class="cv2_plugin">
+              <h4>graft</h4>
+              <p>Maps an agent session as branches: trunk, forks, compactions. A live prototype runs at <a href="/graft/" class="inline_link">jamesmadson.me/graft</a>.</p>
+            </div>
+            <div class="cv2_plugin">
+              <h4>strata</h4>
+              <p>A record of what users actually said, in layers. Verbatim kept apart from interpretation.</p>
+            </div>
+            <div class="cv2_plugin">
+              <h4>deter</h4>
+              <p>Less, but better. A review that removes, and never an unrequested rewrite.</p>
+            </div>
+          </div>
+          <figcaption class="cv2_figcap">
+            <span><span class="cv2_figtag">Fig. 02 · Evidence</span> · The marketplace's four plugins</span>
+            <span>Descriptions from the manifest</span>
+          </figcaption>
+        </figure>
+
+        <h4>Graft, and its laws</h4>
+        <p>Graft draws a session as it actually happened: the main thread as a trunk, subagents as forks, context compactions as diamonds. Its hard rules travel with it. A transcript is never read into context; parsing happens in a subprocess and only a summary returns. A map contains conversation excerpts, so a generated map is as private as the session it maps. And from the renderer spec now on its bench: truncate for display, never at the source.</p>
+
+        <h4>Strata, and the evidence bar</h4>
+        <p>Strata files feedback the way a researcher would, not the way a Slack scroll does. Said, meant, and decided stay separate, because verbatim, interpretation, and action are different epistemic states. Its hardest rule is the evidence bar: one is a quote, two is a possible pattern said aloud, three is a pattern. The same person twice is persistence, not pattern. Stakeholders never pool with users.</p>
+
+        <figure class="cv2_fig">
+          <div class="cv2_panel cv2_evbar" id="cv2_evbar">
+            <div class="cv2_evbar_controls" role="group" aria-label="Add scripted testimony">
+              <button type="button" data-voice="P-07" data-quote="I lost track of which version we reviewed by Thursday.">Add P-07</button>
+              <button type="button" data-voice="P-07" data-quote="Again this sprint: the link in the deck was three builds old.">Add P-07 again</button>
+              <button type="button" data-voice="P-12" data-quote="The latest build lives somewhere in a Slack scroll.">Add P-12</button>
+              <button type="button" data-voice="P-31" data-quote="I annotate screenshots because the prototype moved on without them.">Add P-31</button>
+              <button type="button" data-voice="S-02" data-stakeholder="true" data-quote="Leadership wants one link that is always current.">Add S-02, a stakeholder</button>
+              <button type="button" id="cv2_evbar_reset">Reset</button>
+            </div>
+            <ul class="cv2_evbar_quotes" id="cv2_evbar_quotes" aria-label="Filed testimony"></ul>
+            <p class="cv2_evbar_verdict" id="cv2_evbar_verdict" aria-live="polite">Nothing filed yet.</p>
+          </div>
+          <figcaption class="cv2_figcap">
+            <span><span class="cv2_figtag">Fig. 03 · Working figure</span> · The evidence bar, felt</span>
+            <span>Scripted demo. The rule is D-12 in the log.</span>
+          </figcaption>
+        </figure>
+
+        <h4>Deter, and the removals</h4>
+        <p>Deter reviews by taking away. Every finding is priced against the surface's job, one thing is kept and said out loud, at most one thing may be missing, and the unrequested rewrite, the baseline failure of AI reviews, is banned outright. Even its name follows a ruling: tribute names rendered exactly, so Rams is quoted as less, but better, and the rename from its earlier spelling got a redirect for a URL that was live for hours.</p>
+
+        <p>The act closes where it points next: the practice now logs every call it makes, with the rejected options kept visible. The log is itself becoming a skill that encodes how its author decides. Working name: Cairn, stones stacked to mark the route taken.</p>
       </div>
     </div>
 
-    <div class="container cs_content" id="dogfooding">
+    <div class="container cs_content" id="workbench">
       <div class="grid_12">
-        <h3>Dogfooding</h3>
-        <div class="cs_body_cols">
-          <p>Canon curates a mobile-review skill suite, so I installed it and pointed it at Canon. It found twelve objective platform defects and five design decisions I had been avoiding: sub-44px tap targets, iOS input zoom, a filter panel that pushed every result below the fold on a phone.</p>
-          <p>I fixed the defects and made the calls. The best proof a curation site can offer is that its curator uses the things.</p>
-        </div>
+        <h3>Act III<br>The workbench</h3>
+        <p class="leadin">Here is the second problem. Generation is solved; the mess it produces is not. Teams using AI to prototype now generate faster than they can track: branches nobody can find, Figma files nobody links, feedback in threads nobody can cite. Every tool in the audit ships opinions about making; nothing manages what got made.</p>
+
+        <p>Canon v2 is the answer the first two acts earned, and it fits in one sentence from the product brief: prototypes in one place, feedback that becomes evidence.</p>
+
+        <h4>The aperture</h4>
+        <p>The brief holds a wide horizon and a narrow build, in the log's words: the horizon can be wide; the build aperture cannot. The alpha is two jobs, a prototype manager and a feedback facilitator, plus a single skill run that tests whether reviews change real decisions. Everything else stays sequenced or held until the assumption ladder clears it.</p>
+
+        <h4>References, not copies</h4>
+        <p>Canon indexes and annotates; the work stays in GitHub and Figma. No code storage. That one ruling is the security story and the lean story at once, and it echoes how the gallery treats curated skills: point at the source, never redistribute it.</p>
+
+        <h4>The riskiest assumptions, in build order</h4>
+        <ol class="cv2_ladder">
+          <li>Teams will select which branches are prototypes when they connect a repo.</li>
+          <li>Feedback filed at the prototype beats feedback in Slack.</li>
+          <li>Skill runs on real prototypes produce findings a lead acts on.</li>
+          <li>A team will connect a private repo to a solo-maintained alpha.</li>
+        </ol>
+        <p>Each alpha week answers one before the next layer gets built. These are open bets, and the page says so on purpose.</p>
+
+        <h4>Changed in the open</h4>
+        <p>The first version required teams to rename branches with a prototype prefix to be indexed. Superseded: connecting a repo now lists every branch and the person chooses what appears, because requiring a rename to be indexed is adoption friction dressed as tidiness. The log keeps the old decision visible beside the new one. The change of mind is data, not embarrassment.</p>
+
+        <h4>The ledger</h4>
+        <ul class="cv2_ledger">
+          <li><span class="cv2_chip cv2_chip--committed">Committed</span> The annotation layer: one script tag, comments anchored to real page elements, each filing as Strata evidence.</li>
+          <li><span class="cv2_chip cv2_chip--sequenced">Sequenced</span> Survey: space maps beside Graft's time maps, screens captured from the running prototype so the canvas cannot drift.</li>
+          <li><span class="cv2_chip cv2_chip--held">Held</span> Component promotion: a prototype-proven component scaffolds a PR into the team's own system. Held until the ladder clears it.</li>
+          <li><span class="cv2_chip cv2_chip--held">Held</span> Linear, both ways: issues in as evidence under full pseudonymization, reviews out as comments. A mention is a person triggering, so the no-surprise-runs rule holds.</li>
+        </ul>
+
+        <p class="canon_code_intro">The core model, from the brief:</p>
+        <pre class="canon_code"><code>Account (personal at alpha; teams are a later layer, not a rename)
+ └─ Project
+     ├─ Sources        a Git repo (read-only), a Figma file (by URL)
+     ├─ Prototypes     selected branches, attached Figma frames
+     ├─ Feedback       Strata entries: pseudonymized, Said/Meant/Decided
+     ├─ Maps           Graft renders: branch history, session history
+     └─ Reviews        skill runs against a prototype: deter, access</code></pre>
+
+        <figure class="cv2_fig">
+          <div class="cv2_panel cv2_sdlc" role="img" aria-label="The SDLC loop: Strata and the decision log feed Plan, prototypes are Build artifacts, review runs are Test, PR graduation is Deploy, staleness flags are Maintain, feeding back to Plan">
+            <div class="cv2_stage"><h4>Plan</h4><p>Strata evidence, the decision log</p></div>
+            <div class="cv2_stage"><h4>Build</h4><p>Prototypes</p></div>
+            <div class="cv2_stage"><h4>Test</h4><p>Review runs</p></div>
+            <div class="cv2_stage"><h4>Deploy</h4><p>PR graduation</p></div>
+            <div class="cv2_stage cv2_stage--loop"><h4>Maintain</h4><p>Staleness flags, feeding Plan</p></div>
+          </div>
+          <figcaption class="cv2_figcap">
+            <span><span class="cv2_figtag">Fig. 04 · Abstraction</span> · The design lane of the AI-native SDLC</span>
+            <span>Structure only</span>
+          </figcaption>
+        </figure>
+
+        <p>The whole act answers to one principle, adopted into the log from Anthropic's AI-native SDLC playbook: every stage commits an artifact the next stage can read. Canon's own development already runs that cycle. This page was written from those artifacts, which is the only proof of the principle that counts.</p>
       </div>
     </div>
 
-    <div class="container cs_content" id="built">
+    <div class="container cs_content" id="decides">
       <div class="grid_12">
-        <h3>How it is built</h3>
-        <div class="cs_body_cols">
-          <p>Astro with schema-validated content collections, so a malformed entry fails the build instead of shipping.</p>
-          <p>Every feature runs spec, then plan, then implementation, with review gates at each step. 114 tests cover the content corpus, the filter engine, and the install-script generator.</p>
-        </div>
+        <h3>How it decides</h3>
+        <p>The log opens by extracting the pattern from its own entries. Five of the nine, verbatim in spirit:</p>
+        <ul class="canon_list">
+          <li>
+            <h4>Field evidence before features</h4>
+            <p>Ideas arrive as links, get filed as entries, and graduate to scope only when the evidence bar clears.</p>
+          </li>
+          <li>
+            <h4>Honesty outranks polish</h4>
+            <p>Scripted-preview labels on every mock, counts said out loud. When a mechanism could mislead, it is removed rather than softened.</p>
+          </li>
+          <li>
+            <h4>Names carry the ethos</h4>
+            <p>One-word field terms, puns that work twice, attributions rendered exactly.</p>
+          </li>
+          <li>
+            <h4>Constrain before critique; remove before add</h4>
+            <p>The default question is what should go, and additions must survive being the single missing item.</p>
+          </li>
+          <li>
+            <h4>Change your mind in the open</h4>
+            <p>Supersede, never rewrite. The superseded call stays visible beside its replacement.</p>
+          </li>
+        </ul>
+        <p>The full log, all thirty-five decisions with their rejections, is public in <a href="https://github.com/jamesmadson/canon/blob/main/docs/DECISIONS.md" class="inline_link" target="_blank" rel="noreferrer">the Canon repo</a>.</p>
       </div>
     </div>
 
@@ -301,11 +453,15 @@ digestPath: /kits/full-redesign-digest.md</code></pre>
         <ul class="canon_list">
           <li>
             <h4>Where curation stops</h4>
-            <p>Sixteen entries is small enough to read everything. It will not stay that way, and "curated" stops meaning anything past some number I have not found yet.</p>
+            <p>Twenty entries is still small enough to read everything. It will not stay that way, and curated stops meaning anything past some number I have not found yet.</p>
           </li>
           <li>
-            <h4>Whether the digest travels</h4>
-            <p>Kits ship a one-file digest for tools that cannot run skills, and canon-all now bundles every kit plus the router into a single file for surfaces like Figma Make. Whether it behaves there the way it does in Claude Code is still unverified.</p>
+            <h4>Whether people comment where the work lives</h4>
+            <p>The workbench bets that feedback filed at the prototype beats feedback in Slack. It is assumption two on the ladder, and it is genuinely untested.</p>
+          </li>
+          <li>
+            <h4>Whether trust arrives before track record</h4>
+            <p>Connecting a private repo to a solo-maintained alpha asks for real trust. Read-only scopes and a clean security story are the mitigation, not the proof.</p>
           </li>
           <li>
             <h4>What happens when the format moves</h4>
@@ -319,6 +475,9 @@ digestPath: /kits/full-redesign-digest.md</code></pre>
       <div class="grid_12">
         <h3>Changelog</h3>
         <ul class="canon_changelog">
+          <li><span class="canon_changelog_date">Sep 2026</span> Graft renderer spec: output becomes a function of the input, and a decisions rail joins the map. Graft's skill gains its privacy rule.</li>
+          <li><span class="canon_changelog_date">Aug 2026</span> The v2 PRD and the decision log: the workbench thesis, thirty-five decisions with their rejections kept visible.</li>
+          <li><span class="canon_changelog_date">Aug 2026</span> Strata and Deter join Graft: three tools published under Canon's own name, four plugins in the marketplace.</li>
           <li><span class="canon_changelog_date">Aug 2026</span> Graft: the first Canon-authored skill, a session cartography tool with a live prototype at <a href="/graft/" class="inline_link">jamesmadson.me/graft</a>.</li>
           <li><span class="canon_changelog_date">Aug 2026</span> Canon router: the catalog as an installable Claude Code plugin, one marketplace add, kits routed by task.</li>
           <li><span class="canon_changelog_date">Aug 2026</span> Kits: four curated bundles with generated install scripts.</li>
@@ -326,7 +485,7 @@ digestPath: /kits/full-redesign-digest.md</code></pre>
           <li><span class="canon_changelog_date">Aug 2026</span> Ran the site's own mobile-review skills against it; fixed twelve defects.</li>
           <li><span class="canon_changelog_date">Jul 2026</span> First eleven skills, structure maps, faceted gallery.</li>
         </ul>
-        <p class="canon_closing">Still building. The gallery, kits, and router are live, and the parts above are genuinely undecided.</p>
+        <p class="canon_closing">Still building. Acts I and II are shipped and live; Act III is a thesis with a ladder to climb, and the open questions above are genuinely open.</p>
         <p class="canon_closing"><a href="https://jamesmadson.github.io/canon/" class="inline_link" target="_blank" rel="noreferrer">Browse Canon at jamesmadson.github.io/canon</a></p>
       </div>
     </div>
@@ -336,5 +495,54 @@ digestPath: /kits/full-redesign-digest.md</code></pre>
 {% include "partials/footer.njk" %}
 
 <script src="/assets/js/site.js?v={{ build.version }}" defer></script>
+<script>
+(function () {
+  /* Fig. 03: the evidence bar, scripted. The rule is D-12 in Canon's log. */
+  var root = document.getElementById('cv2_evbar');
+  if (!root) return;
+  var quotesEl = document.getElementById('cv2_evbar_quotes');
+  var verdictEl = document.getElementById('cv2_evbar_verdict');
+  var resetBtn = document.getElementById('cv2_evbar_reset');
+  var buttons = Array.prototype.slice.call(root.querySelectorAll('button[data-voice]'));
+
+  var filed = []; /* {voice, stakeholder} */
+
+  function verdict() {
+    var users = filed.filter(function (f) { return !f.stakeholder; });
+    var voices = [];
+    users.forEach(function (f) { if (voices.indexOf(f.voice) === -1) voices.push(f.voice); });
+    var hasStakeholder = filed.some(function (f) { return f.stakeholder; });
+    var line;
+    if (filed.length === 0) line = 'Nothing filed yet.';
+    else if (voices.length === 0) line = 'A stakeholder quote. Stakeholders never pool with users.';
+    else if (voices.length === 1 && users.length === 1) line = 'A quote. One voice.';
+    else if (voices.length === 1) line = 'Persistence, not pattern. Still one voice.';
+    else if (voices.length === 2) line = 'A possible pattern, said aloud. Two independent voices.';
+    else line = 'A pattern. Three independent voices.';
+    if (hasStakeholder && voices.length > 0) line += ' The stakeholder quote is filed, and it does not change the count.';
+    verdictEl.textContent = line;
+  }
+
+  buttons.forEach(function (b) {
+    b.addEventListener('click', function () {
+      filed.push({ voice: b.getAttribute('data-voice'), stakeholder: b.hasAttribute('data-stakeholder') });
+      var li = document.createElement('li');
+      li.className = b.hasAttribute('data-stakeholder') ? 'is_stakeholder' : '';
+      li.innerHTML = '<span class="cv2_voice">' + b.getAttribute('data-voice') + '</span>' +
+        '<span class="cv2_said">' + b.getAttribute('data-quote') + '</span>';
+      quotesEl.appendChild(li);
+      b.disabled = true;
+      verdict();
+    });
+  });
+
+  resetBtn.addEventListener('click', function () {
+    filed = [];
+    quotesEl.innerHTML = '';
+    buttons.forEach(function (b) { b.disabled = false; });
+    verdict();
+  });
+})();
+</script>
 </body>
 </html>
