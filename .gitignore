@@ -27,6 +27,7 @@ _site/
 
 # Local planning docs (specs/plans) — not site content, kept local-only
 docs/
+CLAUDE.md
 .superpowers/
 .agents/
 .claude/skills/

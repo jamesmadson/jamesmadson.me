@@ -1,0 +1,706 @@
+---
+templateEngineOverride: false
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Figure system prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/vendor/dialkit/dialkit.css">
+<style>
+  /* Replica lives on this machine; local() renders it here, everyone else falls back. */
+  @font-face { font-family: "Replica Web"; src: local("Replica-Light"), local("Replica Light"); font-weight: 300; }
+  @font-face { font-family: "Replica Web"; src: local("Replica"), local("Replica-Regular"); font-weight: 400; }
+  @font-face { font-family: "Replica Web"; src: local("Replica-Bold"), local("Replica Bold"); font-weight: 700; }
+  @font-face { font-family: "Replica Mono Web"; src: local("Replica-Mono"), local("ReplicaMono"), local("Replica Mono"); font-weight: 400; }
+
+  :root {
+    --sans: "Replica Web", "Instrument Sans", system-ui, sans-serif;
+    --mono: "Replica Mono Web", "IBM Plex Mono", monospace;
+    --ground: #121310;
+    --ink: #EDEEE8;
+    --ink-muted: #9A9B92;
+    --line: #26271F;
+    --nd: #0E7A33;
+    /* NatureDose palette, sampled from exported pixels */
+    --app-bg: #041B1A;
+    --app-track: #485050;
+    --app-lime: #A5CB3B;
+    --app-text: #F8F8F8;
+    --app-muted: #6E9390;
+    /* NatureScore leaf scale, sampled */
+    --leaf-1: #B04430;
+    --leaf-2: #EE9432;
+    --leaf-3: #EFD343;
+    --leaf-4: #A6C43A;
+    --leaf-5: #427223;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --ground: #EDEEE8;
+      --ink: #171814;
+      --ink-muted: #5C5D55;
+      --line: #D6D7CE;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.5;
+    padding: clamp(28px, 6vw, 88px) clamp(16px, 4vw, 48px) 120px;
+  }
+  .wrap { max-width: 1000px; margin: 0 auto; }
+
+  header.intro { margin-bottom: clamp(48px, 8vw, 96px); max-width: 640px; }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-muted); margin: 0 0 18px;
+  }
+  h1 {
+    font-size: clamp(32px, 5vw, 52px); font-weight: 300; line-height: 1.08;
+    letter-spacing: -0.01em; margin: 0 0 16px; text-wrap: balance;
+  }
+  .intro p { color: var(--ink-muted); font-size: 16px; margin: 0; text-wrap: pretty; max-width: 54ch; }
+
+  figure.fig { margin: 0 0 clamp(56px, 8vw, 104px); }
+  .panel {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    isolation: isolate;
+  }
+  /* film grain on every panel */
+  .panel::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 3;
+    opacity: var(--grain, 0.05);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  figcaption {
+    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    padding: 12px 4px 0;
+    font-family: var(--mono);
+    font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  figcaption .tag { color: var(--ink); }
+
+  /* FIG 01 - the screen, large, no chrome */
+  .hero_panel {
+    background:
+      radial-gradient(120% 90% at 50% 0%, #10352A 0%, #0B1D16 48%, #08110D 100%);
+    padding: clamp(48px, 7vw, 84px) clamp(24px, 6vw, 72px) 0;
+    align-items: flex-end;
+    min-height: 560px;
+  }
+  .hero_shot {
+    width: min(470px, 82%); height: auto;
+    border-radius: 26px 26px 0 0;
+    display: block;
+    box-shadow: 0 -2px 0 rgba(255,255,255,0.06), 0 34px 90px rgba(0,0,0,0.55);
+    position: relative; z-index: 1;
+  }
+  .hero_glow {
+    position: absolute; z-index: 0; inset: auto 0 -10% 0; height: 70%;
+    background: radial-gradient(60% 60% at 50% 40%, rgba(165,203,59,0.13), transparent 70%);
+    filter: blur(30px);
+  }
+
+  /* FIG 02 - the leaf-scale deck */
+  .deck_panel {
+    background: radial-gradient(110% 100% at 50% 10%, #191B15 0%, #0E100C 70%);
+    padding: clamp(56px, 8vw, 96px) 24px;
+    min-height: 420px;
+  }
+  .deck {
+    perspective: 1300px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .deck_inner { transform-style: preserve-3d; display: flex; }
+  .card {
+    width: 150px; height: 196px; border-radius: 16px;
+    padding: 16px 15px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    transform: rotateY(-35deg);
+    transform-style: preserve-3d;
+    transition: transform 0.45s cubic-bezier(0.3, 0.7, 0.25, 1), filter 0.45s;
+  }
+  .card + .card { margin-left: calc(var(--deck-overlap, 10px) * -1); }
+  .card:hover { transform: rotateY(-22deg) translateY(-12px); filter: none !important; }
+  .card .range { font-family: var(--sans); font-weight: 700; font-size: 14.5px; letter-spacing: 0.01em; line-height: 1.25; margin-bottom: 5px; }
+  .card .hex { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; opacity: 0.8; line-height: 1.6; }
+  .card .leafdot { width: 22px; height: 22px; border-radius: 50% 50% 50% 4px; transform: rotate(45deg); align-self: flex-end; }
+
+  /* FIG 03 - the working ring */
+  .ring_panel {
+    background: radial-gradient(120% 100% at 50% 0%, #0F2C22 0%, #091712 55%, #070E0B 100%);
+    padding: clamp(48px, 7vw, 80px) 24px;
+  }
+  .stage { position: relative; display: flex; flex-direction: column; align-items: center; gap: 22px; z-index: 1; }
+  .stage::before {
+    content: ""; position: absolute; top: -40px; left: 50%; transform: translateX(-50%);
+    width: 420px; height: 420px; border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(165,203,59,0.14), transparent 72%);
+    filter: blur(26px); z-index: -1;
+  }
+  .ring_wrap { position: relative; width: 272px; height: 272px; }
+  .ring_wrap svg { display: block; width: 100%; height: 100%; }
+  .ring_track { stroke: var(--app-track); opacity: 0.45; }
+  .ring_prog { stroke: var(--app-lime); transition: stroke-dashoffset 0.9s cubic-bezier(0.3, 0.7, 0.25, 1); }
+  .ring_center {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center; gap: 6px;
+  }
+  .ring_val { font-family: var(--sans); font-weight: 300; font-size: 54px; letter-spacing: -0.02em; color: var(--app-text); line-height: 1; }
+  .ring_goal { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em; color: var(--app-muted); white-space: pre-line; }
+  .ring_pill {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em;
+    background: var(--app-lime); color: var(--app-bg);
+    padding: 4px 12px; border-radius: 999px; margin-top: 8px;
+    opacity: 0; transform: translateY(4px); transition: opacity 0.4s, transform 0.4s;
+  }
+  .ring_pill.on { opacity: 1; transform: none; }
+  .chapter { font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; color: var(--app-muted); min-height: 18px; margin: 0; }
+  .segs { display: flex; gap: 12px; width: min(360px, 100%); }
+  .seg {
+    flex: 1; background: none; border: 0; padding: 10px 0 14px; cursor: pointer;
+    display: flex; flex-direction: column; gap: 9px; color: var(--app-muted);
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em;
+  }
+  .seg .bar { height: 2px; border-radius: 2px; background: rgba(110,147,144,0.3); overflow: hidden; }
+  .seg .fill { display: block; height: 100%; width: 0%; background: var(--app-lime); }
+  .seg.donefill .fill { width: 100%; }
+  .seg.active { color: var(--app-text); }
+  .seg.active .fill { animation: segfill 5s linear forwards; }
+  .paused .seg.active .fill { animation-play-state: paused; }
+  @keyframes segfill { from { width: 0%; } to { width: 100%; } }
+  .pausebtn {
+    position: absolute; top: 18px; right: 18px; z-index: 4;
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1px solid rgba(237,238,232,0.22);
+    background: rgba(0,0,0,0.2); color: rgba(237,238,232,0.75); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .pausebtn:hover { color: #EDEEE8; }
+  .pausebtn svg { width: 11px; height: 11px; }
+  .pausebtn .play { display: none; }
+  .paused .pausebtn .pause { display: none; }
+  .paused .pausebtn .play { display: block; }
+
+  /* FIG 04 - evidence pair: device + detail crop */
+  .pair_panel { background: none; overflow: visible; gap: 20px; align-items: stretch; flex-wrap: wrap; }
+  .pair_panel::after { content: none; }
+  .cell {
+    position: relative; border-radius: 20px; overflow: hidden; isolation: isolate;
+    flex: 1 1 300px; min-height: 460px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cell::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 3;
+    opacity: var(--grain, 0.05);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .cell_device { background: radial-gradient(120% 100% at 50% 0%, #12281F 0%, #0A130E 75%); }
+  .cell_device img {
+    width: min(198px, 56%); height: auto; aspect-ratio: auto;
+    filter: drop-shadow(0 6px 14px rgba(0,0,0,0.4)) drop-shadow(0 30px 60px rgba(0,0,0,0.45));
+  }
+  .cell_detail { background: #E8E4D8; }
+  .cell_detail .crop { position: absolute; inset: 0; }
+  .cell_detail .crop img {
+    position: absolute; width: 600px; height: auto !important;
+    left: 50%; top: 50%; transform: translate(-50%, -68%);
+    border-radius: 30px;
+    box-shadow: 0 30px 70px rgba(23, 24, 20, 0.35);
+  }
+
+  /* FIG 05 - evidence rail: native scroll + fluid stepper */
+  .rail_panel {
+    background: radial-gradient(120% 100% at 50% 0%, #10251D 0%, #0A140F 70%);
+    padding: clamp(40px, 6vw, 64px) 0 clamp(28px, 4vw, 40px);
+    flex-direction: column; gap: 26px;
+  }
+  .rail {
+    display: flex; gap: clamp(20px, 3vw, 34px);
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    padding: 10px max(24px, calc(50% - var(--slide-w, 250px) / 2)) 22px;
+    width: 100%; scrollbar-width: none;
+  }
+  .rail::-webkit-scrollbar { display: none; }
+  .slide {
+    flex: 0 0 auto; width: var(--slide-w, 250px); scroll-snap-align: center;
+    will-change: transform, opacity;
+  }
+  .slide img {
+    width: 100%; height: auto; display: block;
+    filter: drop-shadow(0 8px 18px rgba(0,0,0,0.4)) drop-shadow(0 28px 60px rgba(0,0,0,0.4));
+  }
+  .fstep {
+    display: flex; align-items: center; gap: var(--fs-gap, 7px);
+    padding: 7px;
+    background: var(--fs-container, rgba(255,255,255,0.07));
+    border: 1px solid var(--fs-border, rgba(255,255,255,0.1));
+    border-radius: 999px;
+    position: relative; z-index: 2;
+  }
+  .fstep button {
+    width: var(--fs-dot, 8px); height: var(--fs-dot, 8px);
+    border-radius: 999px; border: 0; padding: 0; cursor: pointer;
+    background: var(--fs-bg, rgba(237,238,232,0.28));
+    transition: width 0.5s cubic-bezier(0.215, 0.61, 0.355, 1), background 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .fstep button[aria-selected="true"] {
+    width: var(--fs-active-w, 28px);
+    background: var(--fs-active-bg, rgba(237,238,232,0.92));
+  }
+  .fstep .fsfill {
+    position: absolute; inset: 0; width: 0%;
+    background: var(--fs-fill, rgba(4,27,26,0.35));
+    border-radius: inherit; pointer-events: none;
+  }
+  .fstep button[aria-selected="true"] .fsfill.run { animation: fsfill var(--fs-dur, 4s) linear forwards; }
+  @keyframes fsfill { from { width: 0%; } to { width: 100%; } }
+  @media (prefers-reduced-motion: reduce) {
+    .fstep button { transition: none; }
+    .fstep .fsfill.run { animation: none; }
+    .rail { scroll-behavior: auto; }
+  }
+
+  /* FIG 06 - abstraction */
+  .abs_panel { background: color-mix(in oklab, var(--nd) 6%, var(--ground)); border: 1px solid var(--line); padding: clamp(36px, 5vw, 60px) 24px; }
+  .abstract { display: flex; gap: clamp(20px, 4vw, 44px); justify-content: center; flex-wrap: wrap; }
+  .mini { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .mini .frame {
+    width: 114px; height: 208px; border-radius: 16px;
+    border: 1px solid color-mix(in oklab, var(--ink) 32%, transparent);
+    position: relative; display: flex; flex-direction: column; align-items: center; padding: 18px 14px; gap: 10px;
+  }
+  .mini .dot { width: 52px; height: 52px; border-radius: 50%; border: 3px solid var(--ink); }
+  .mini .row { width: 100%; height: 9px; border-radius: 3px; background: color-mix(in oklab, var(--ink) 14%, transparent); }
+  .mini .row.strong { background: color-mix(in oklab, var(--ink) 30%, transparent); }
+  .mini .smalldot { width: 20px; height: 20px; border-radius: 50%; border: 2px solid color-mix(in oklab, var(--ink) 45%, transparent); position: absolute; left: 14px; top: 16px; }
+  .mini .tabs { position: absolute; bottom: 12px; left: 14px; right: 14px; height: 7px; border-radius: 3px; background: color-mix(in oklab, var(--ink) 14%, transparent); }
+  .mini .label { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; color: var(--ink-muted); text-transform: uppercase; }
+  .mini.chosen .label { color: var(--ink); }
+  .mini.ghost .frame { border-style: dashed; opacity: 0.6; }
+
+  .rules { border-top: 1px solid var(--line); padding-top: 28px; max-width: 640px; }
+  .rules h2 { font-family: var(--sans); font-size: 14px; font-weight: 700; letter-spacing: 0.02em; margin: 0 0 14px; }
+  .rules ul { margin: 0; padding: 0; list-style: none; }
+  .rules li {
+    font-family: var(--mono); font-size: 12px; color: var(--ink-muted);
+    padding: 6px 0; border-bottom: 1px dashed color-mix(in oklab, var(--line) 70%, transparent);
+  }
+
+  :focus-visible { outline: 2px solid var(--app-lime); outline-offset: 3px; border-radius: 4px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ring_prog, .ring_pill, .card { transition: none; }
+    .seg.active .fill { animation: none; width: 100%; }
+  }
+  @media (max-width: 680px) {
+    .deck_inner { gap: 14px; }
+    .card { width: 104px; height: 150px; padding: 12px 10px; }
+    .card .range { font-size: 12px; }
+    .hero_shot { width: min(340px, 92%); }
+    .cell_detail .crop img { width: 560px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="intro">
+    <p class="eyebrow">Prototype v2 · Figure system · NatureDose</p>
+    <h1>One system, three fidelities</h1>
+    <p>Case-study figures sourced from the NatureQuant Figma. Evidence is exported pixels, working figures are rebuilt in code, abstractions carry structure only. Set in Replica and Replica Mono where installed.</p>
+  </header>
+
+  <figure class="fig">
+    <div class="panel hero_panel">
+      <div class="hero_glow"></div>
+      <img class="hero_shot" src="/img/figures/naturedose-home-raw.png" width="1284" height="2778"
+        alt="NatureDose home screen at full scale: a lime progress ring showing 73 minutes toward a 120 minute weekly nature goal">
+    </div>
+    <figcaption>
+      <span><span class="tag">Fig. 01 · Evidence</span> · The shipped screen, no chrome</span>
+      <span>Exported from Figma, exact pixels</span>
+    </figcaption>
+  </figure>
+
+  <figure class="fig">
+    <div class="panel deck_panel">
+      <div class="deck">
+        <div class="deck_inner" id="deckInner"></div>
+      </div>
+    </div>
+    <figcaption>
+      <span><span class="tag">Fig. 02 · Working figure</span> · The NatureScore scale, five bands</span>
+      <span>Colors sampled from the product</span>
+    </figcaption>
+  </figure>
+
+  <figure class="fig">
+    <div class="panel ring_panel" id="playerPanel">
+      <button class="pausebtn" id="pauseBtn" aria-label="Pause the figure" aria-pressed="false">
+        <svg class="pause" viewBox="0 0 12 12" aria-hidden="true"><rect x="1.5" width="3" height="12" rx="1" fill="currentColor"/><rect x="7.5" width="3" height="12" rx="1" fill="currentColor"/></svg>
+        <svg class="play" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1.2v9.6c0 .9 1 1.5 1.8 1L11 7c.8-.5.8-1.6 0-2L3.8.2C3-.3 2 .3 2 1.2z" fill="currentColor"/></svg>
+      </button>
+      <div class="stage" role="region" aria-label="The weekly ring across one week, interactive figure">
+        <div class="ring_wrap">
+          <svg viewBox="0 0 240 240" aria-hidden="true">
+            <circle class="ring_track" cx="120" cy="120" r="100" fill="none" stroke-width="18"></circle>
+            <circle class="ring_prog" id="ringProg" cx="120" cy="120" r="100" fill="none" stroke-width="18"
+              stroke-linecap="round" stroke-dasharray="628.32" stroke-dashoffset="628.32"
+              transform="rotate(-90 120 120)"></circle>
+          </svg>
+          <div class="ring_center">
+            <span class="ring_val" id="ringVal">0min</span>
+            <span class="ring_goal">Weekly Goal
+120min</span>
+            <span class="ring_pill" id="ringPill">Goal met</span>
+          </div>
+        </div>
+        <p class="chapter" id="chapterNote" aria-live="polite"></p>
+        <div class="segs" id="segs"></div>
+      </div>
+    </div>
+    <figcaption>
+      <span><span class="tag">Fig. 03 · Working figure</span> · The ring earns the week</span>
+      <span>Rebuilt for this page, interactive</span>
+    </figcaption>
+  </figure>
+
+  <figure class="fig">
+    <div class="panel pair_panel">
+      <div class="cell cell_device">
+        <img src="/img/figures/naturedose-naturescore@2x.png" width="554" height="1200"
+          alt="NatureScore screen in device: five leaves from red to deep green rate the current location">
+      </div>
+      <div class="cell cell_detail">
+        <div class="crop">
+          <img src="/img/figures/naturedose-naturescore@2x.png" width="554" height="1200" aria-hidden="true" alt="">
+        </div>
+      </div>
+    </div>
+    <figcaption>
+      <span><span class="tag">Fig. 04 · Evidence</span> · The screen, then the detail</span>
+      <span>One export, two distances</span>
+    </figcaption>
+  </figure>
+
+  <figure class="fig">
+    <div class="panel rail_panel">
+      <div class="rail" id="rail" role="group" aria-roledescription="carousel" aria-label="NatureDose evidence screens">
+        <div class="slide"><img src="/img/figures/naturedose-home-ring@2x.png" width="554" height="1200" alt="NatureDose home: 58 minutes toward the 120 minute weekly goal"></div>
+        <div class="slide"><img src="/img/figures/naturedose-naturescore@2x.png" width="554" height="1200" alt="NatureScore: five leaves rate the current location, Nature Rich 71.4"></div>
+        <div class="slide"><img src="/img/figures/naturedose-week-chart@2x.png" width="615" height="1240" alt="This Week: daily bars comparing outdoor and NatureDose minutes, 73 of 120"></div>
+      </div>
+      <div class="fstep" id="railStep" role="tablist" aria-label="Choose screen"></div>
+    </div>
+    <figcaption>
+      <span><span class="tag">Fig. 05 · Working figure</span> · The evidence rail</span>
+      <span>Native scroll, one fluid stepper</span>
+    </figcaption>
+  </figure>
+
+  <figure class="fig">
+    <div class="panel abs_panel">
+      <div class="abstract">
+        <div class="mini chosen">
+          <div class="frame">
+            <div class="dot"></div>
+            <div class="row strong" style="width: 70%;"></div>
+            <div class="row" style="width: 52%;"></div>
+            <div class="tabs"></div>
+          </div>
+          <span class="label">Front and center</span>
+        </div>
+        <div class="mini ghost">
+          <div class="frame">
+            <div class="smalldot"></div>
+            <div class="row" style="margin-top: 42px;"></div>
+            <div class="row"></div>
+            <div class="row"></div>
+            <div class="tabs"></div>
+          </div>
+          <span class="label">A stat among stats</span>
+        </div>
+        <div class="mini ghost">
+          <div class="frame">
+            <div class="row strong"></div>
+            <div class="row"></div>
+            <div class="row"></div>
+            <div class="tabs"></div>
+          </div>
+          <span class="label">One tab away</span>
+        </div>
+      </div>
+    </div>
+    <figcaption>
+      <span><span class="tag">Fig. 06 · Abstraction</span> · Where the ring lives</span>
+      <span>Structure only</span>
+    </figcaption>
+  </figure>
+
+  <section class="rules">
+    <h2>The system</h2>
+    <ul>
+      <li>Evidence is exported pixels, never redrawn. Big crop first, device second.</li>
+      <li>Working figures are rebuilt in code and labeled as rebuilt. One or two per study.</li>
+      <li>Abstractions are monochrome and carry structure only.</li>
+      <li>Panels are self-grounded like photographs. Page chrome follows the theme; figures keep their own light.</li>
+      <li>Type is Replica and Replica Mono, loaded locally for now. Web license before shipping.</li>
+      <li>Grain at 5%, one glow per panel, reduced motion honored, keyboard reachable.</li>
+    </ul>
+  </section>
+
+</div>
+
+<script src="/assets/vendor/dialkit/dialkit.js"></script>
+<script>
+/* DialKit tuning panels: one root shows every registered panel */
+var __dialRoot = window.DialKit ? DialKit.createDialRoot() : null;
+
+(function () {
+  /* leaf-scale deck */
+  var BANDS = [
+    { name: "Nature Deficient", range: "0 - 19.9", hex: "#B04430" },
+    { name: "Nature Light", range: "20 - 39.9", hex: "#EE9432" },
+    { name: "Nature Adequate", range: "40 - 59.9", hex: "#EFD343" },
+    { name: "Nature Rich", range: "60 - 79.9", hex: "#A6C43A" },
+    { name: "Nature Utopia", range: "80 - 100", hex: "#427223" }
+  ];
+  var deck = document.getElementById("deckInner");
+  BANDS.forEach(function (b, i) {
+    var d = document.createElement("div");
+    d.className = "card";
+    var far = BANDS.length - 1 - i;
+    d.style.background = "linear-gradient(160deg, color-mix(in oklab, " + b.hex + " 52%, #12140F) 0%, color-mix(in oklab, " + b.hex + " 30%, #0E100C) 100%)";
+    d.style.border = "1px solid color-mix(in oklab, " + b.hex + " 60%, transparent)";
+    d.style.color = "color-mix(in oklab, " + b.hex + " 55%, #F4F5EE)";
+    d.style.boxShadow = "0 24px 50px rgba(0,0,0,0.45)";
+    d.innerHTML = '<div><div class="range">' + b.name + '</div><div class="hex">' + b.range + '</div><div class="hex">' + b.hex + "</div></div>" +
+      '<div class="leafdot" style="background:' + b.hex + '"></div>';
+    deck.appendChild(d);
+  });
+
+  var deckCards = Array.prototype.slice.call(deck.children);
+  function layoutDeck(p) {
+    deck.style.setProperty("--deck-overlap", p.overlap + "px");
+    deckCards.forEach(function (d, i) {
+      var far = deckCards.length - 1 - i;
+      d.style.transform = "rotateY(" + (-p.rotate) + "deg) translateZ(" + (-far * p.depth) + "px)";
+      d.style.filter = far > 0 ? "blur(" + (far * p.blur) + "px) brightness(" + (1 - far * p.dim) + ")" : "none";
+    });
+  }
+  layoutDeck({ rotate: 35, depth: 58, overlap: 10, blur: 0.7, dim: 0.07 });
+  if (window.DialKit) {
+    var deckKit = DialKit.createDialKit("Deck", {
+      rotate: [35, 0, 60],
+      depth: [58, 0, 120],
+      overlap: [10, -20, 60],
+      blur: [0.7, 0, 2],
+      dim: [0.07, 0, 0.2]
+    });
+    deckKit.subscribe(function (v) { layoutDeck(v); });
+  }
+
+  /* ring player */
+  var STATES = [
+    { label: "Monday. A walk after work.", min: 12 },
+    { label: "Midweek. On pace.", min: 73 },
+    { label: "Sunday. Goal met.", min: 120, done: true }
+  ];
+  var C = 628.32;
+  var GOAL = 120;
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var prog = document.getElementById("ringProg");
+  var val = document.getElementById("ringVal");
+  var pill = document.getElementById("ringPill");
+  var note = document.getElementById("chapterNote");
+  var segsEl = document.getElementById("segs");
+  var panel = document.getElementById("playerPanel");
+  var pauseBtn = document.getElementById("pauseBtn");
+
+  var current = -1;
+  var paused = false;
+
+  STATES.forEach(function (s, i) {
+    var b = document.createElement("button");
+    b.className = "seg";
+    b.type = "button";
+    b.setAttribute("aria-label", "Show " + s.min + " minutes");
+    b.innerHTML = '<span class="bar"><span class="fill"></span></span><span>' + s.min + "min</span>";
+    b.addEventListener("click", function () { go(i, true); });
+    segsEl.appendChild(b);
+  });
+  var segBtns = Array.prototype.slice.call(segsEl.children);
+
+  function go(i, byUser) {
+    current = i;
+    var s = STATES[i];
+    prog.style.strokeDashoffset = String(C * (1 - Math.min(s.min / GOAL, 1)));
+    val.textContent = s.min + "min";
+    note.textContent = s.label;
+    pill.classList.toggle("on", Boolean(s.done));
+    segBtns.forEach(function (b, j) {
+      b.classList.toggle("active", j === i);
+      b.classList.toggle("donefill", j < i);
+      if (j === i) {
+        var f = b.querySelector(".fill");
+        f.style.animation = "none";
+        void f.offsetWidth;
+        f.style.animation = "";
+      }
+      b.setAttribute("aria-current", j === i ? "true" : "false");
+    });
+    if (byUser && !reduced) setPaused(true);
+  }
+
+  function setPaused(p) {
+    paused = p;
+    panel.classList.toggle("paused", p);
+    pauseBtn.setAttribute("aria-pressed", String(p));
+    pauseBtn.setAttribute("aria-label", p ? "Resume the figure" : "Pause the figure");
+  }
+
+  pauseBtn.addEventListener("click", function () { setPaused(!paused); });
+
+  segsEl.addEventListener("animationend", function () {
+    if (reduced || paused) return;
+    go((current + 1) % STATES.length, false);
+  });
+
+  if (window.DialKit) {
+    var stageKit = DialKit.createDialKit("Stage", {
+      duration: [0.9, 0.1, 2],
+      stroke: [18, 8, 28],
+      grain: [0.05, 0, 0.15]
+    });
+    var circles = Array.prototype.slice.call(document.querySelectorAll(".ring_wrap circle"));
+    stageKit.subscribe(function (v) {
+      prog.style.transitionDuration = v.duration + "s";
+      circles.forEach(function (c) { c.setAttribute("stroke-width", String(v.stroke)); });
+      document.documentElement.style.setProperty("--grain", String(v.grain));
+    });
+  }
+
+  if (reduced) { go(1, false); setPaused(true); }
+  else { go(0, false); }
+})();
+
+(function () {
+  /* evidence rail: native scroll-snap + fluid stepper, no dependencies */
+  var rail = document.getElementById("rail");
+  var stepEl = document.getElementById("railStep");
+  var slides = Array.prototype.slice.call(rail.children);
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var AUTO_MS = 4000;
+  var autoOn = !reduced;
+  var active = 0;
+  var railP = { scale: 0.16, fade: 0.8 };
+  if (window.DialKit) {
+    var railKit = DialKit.createDialKit("Rail", {
+      slide: [250, 180, 340],
+      scale: [0.16, 0, 0.4],
+      fade: [0.8, 0, 1]
+    });
+    railKit.subscribe(function (v) {
+      railP.scale = v.scale;
+      railP.fade = v.fade;
+      document.documentElement.style.setProperty("--slide-w", v.slide + "px");
+      rail.dispatchEvent(new Event("scroll"));
+    });
+  }
+
+  slides.forEach(function (_, i) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.setAttribute("role", "tab");
+    b.setAttribute("aria-label", "Screen " + (i + 1) + " of " + slides.length);
+    b.innerHTML = '<span class="fsfill"></span>';
+    b.addEventListener("click", function () { stopAuto(); goTo(i, true); });
+    stepEl.appendChild(b);
+  });
+  var pills = Array.prototype.slice.call(stepEl.children);
+
+  stepEl.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight") { stopAuto(); goTo((active + 1) % slides.length, true); pills[active].focus(); }
+    if (e.key === "ArrowLeft") { stopAuto(); goTo((active - 1 + slides.length) % slides.length, true); pills[active].focus(); }
+  });
+
+  function centerOf(el) { return el.offsetLeft + el.offsetWidth / 2; }
+
+  function goTo(i, scroll) {
+    active = i;
+    pills.forEach(function (p, j) {
+      p.setAttribute("aria-selected", j === i ? "true" : "false");
+      p.tabIndex = j === i ? 0 : -1;
+      var f = p.querySelector(".fsfill");
+      f.classList.remove("run");
+      if (j === i && autoOn) { void f.offsetWidth; f.classList.add("run"); }
+    });
+    if (scroll) {
+      rail.scrollTo({ left: centerOf(slides[i]) - rail.clientWidth / 2, behavior: reduced ? "auto" : "smooth" });
+    }
+  }
+
+  function nearest() {
+    var mid = rail.scrollLeft + rail.clientWidth / 2;
+    var best = 0, bd = Infinity;
+    slides.forEach(function (s, i) {
+      var d = Math.abs(centerOf(s) - mid);
+      if (d < bd) { bd = d; best = i; }
+    });
+    return best;
+  }
+
+  var raf = null;
+  rail.addEventListener("scroll", function () {
+    if (raf) return;
+    raf = requestAnimationFrame(function () {
+      raf = null;
+      var mid = rail.scrollLeft + rail.clientWidth / 2;
+      if (!reduced) {
+        slides.forEach(function (s) {
+          var d = Math.min(Math.abs(centerOf(s) - mid) / rail.clientWidth, 0.5);
+          s.style.transform = "scale(" + (1 - d * railP.scale) + ")";
+          s.style.opacity = String(1 - d * railP.fade);
+        });
+      }
+      var n = nearest();
+      if (n !== active) goTo(n, false);
+    });
+  });
+
+  rail.addEventListener("pointerdown", stopAuto);
+
+  var timer = null;
+  function stopAuto() {
+    autoOn = false;
+    if (timer) { clearInterval(timer); timer = null; }
+    pills.forEach(function (p) { p.querySelector(".fsfill").classList.remove("run"); });
+  }
+  if (autoOn) {
+    timer = setInterval(function () { goTo((active + 1) % slides.length, true); }, AUTO_MS);
+    document.documentElement.style.setProperty("--fs-dur", AUTO_MS + "ms");
+  }
+
+  goTo(0, false);
+  rail.dispatchEvent(new Event("scroll"));
+})();
+</script>
+</body>
+</html>
