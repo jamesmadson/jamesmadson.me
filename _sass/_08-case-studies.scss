@@ -1075,7 +1075,7 @@ body.image-feed {
       text-transform: uppercase;
     }
 
-    &.viz { background-image: url("/img/visualization_community/visualization_community_title_bg@2x.png"); }
+    &.viz { background-image: url("/img/visualization_community/visualization_community_title_bg@2x.webp"); }
     &.viz .client_name { background-color: $blue; }
   }
 
@@ -1134,12 +1134,14 @@ body.image-feed {
       transition: all 0.4s ease;
     }
 
-    &.nq    { background-blend-mode: soft-light; background-color: $green; background-image: url("/img/naturequant/naturequant_title_bg@2x.png"); }
+    // The title_bg texture was referenced but never committed; the image
+    // 404ed silently for months and the green carried the hero alone.
+    &.nq    { background-color: $green; }
     &.nd    { background-color: $green; }
-    &.ns    { background-blend-mode: soft-light; background-color: $lime;  background-image: url("/img/naturescore/naturescore_title_bg@2x.png"); }
+    &.ns    { background-blend-mode: soft-light; background-color: $lime;  background-image: url("/img/naturescore/naturescore_title_bg@2x.webp"); }
     &.sj    { background-color: $blue; }
-    &.pecan { background-blend-mode: soft-light; background-color: $cyan;  background-image: url("/img/pecan/pecan_title_bg@2x.png"); }
-    &.viz   { background-blend-mode: soft-light; background-color: $blue;  background-image: url("/img/visualization_community/visualization_community_title_bg@2x.png"); }
+    &.pecan { background-blend-mode: soft-light; background-color: $cyan;  background-image: url("/img/pecan/pecan_title_bg@2x.webp"); }
+    &.viz   { background-blend-mode: soft-light; background-color: $blue;  background-image: url("/img/visualization_community/visualization_community_title_bg@2x.webp"); }
   }
 }
 
