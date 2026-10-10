@@ -1995,7 +1995,7 @@ html.theme-light .cs_hero::before {
   bottom: 100%;
   color: #EDEEE8;
   display: block;
-  font-size: 0.25em;
+  font-size: max(0.25em, 0.6875rem);
   font-weight: bold;
   left: 0;
   letter-spacing: 0.06em;
@@ -7184,18 +7184,55 @@ html.theme-light #hero_shuffle_text a.highlight.jm:hover, html.theme-light #hero
     transform: none;
   }
 }
-.about_values .value_word.highlight:hover, .about_values .value_word.highlight:active,
+.about_values .value_word.highlight,
+.about_services .services_list .highlight {
+  background-color: rgba(237, 238, 232, 0.07);
+  box-shadow: none;
+  padding: 0.22em 0.6em;
+}
+.about_values .value_word.highlight.nd, .about_values .value_word.highlight.nq,
+.about_services .services_list .highlight.nd,
+.about_services .services_list .highlight.nq {
+  --chip: #009933;
+}
+.about_values .value_word.highlight.pecan,
+.about_services .services_list .highlight.pecan {
+  --chip: #23AFE5;
+}
+.about_values .value_word.highlight.viz,
+.about_services .services_list .highlight.viz {
+  --chip: #1874dc;
+}
+.about_values .value_word.highlight.jm,
+.about_services .services_list .highlight.jm {
+  --chip: #E64F13;
+}
+.about_values .value_word.highlight:hover, .about_values .value_word.highlight:active, .about_values .value_word.highlight:focus-visible,
 .about_services .services_list .highlight:hover,
-.about_services .services_list .highlight:active {
-  background-color: rgba(237, 238, 232, 0.09);
-  box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 50%, transparent);
+.about_services .services_list .highlight:active,
+.about_services .services_list .highlight:focus-visible {
+  background-color: var(--chip, #EDEEE8);
+  box-shadow: none;
   color: #EDEEE8;
 }
+@media (hover: none) {
+  .about_values .value_word.highlight,
+  .about_services .services_list .highlight {
+    padding-block: 0.55em;
+  }
+}
 
-html.theme-light .about_values .value_word.highlight:hover, html.theme-light .about_values .value_word.highlight:active,
-html.theme-light .about_services .services_list .highlight:hover,
-html.theme-light .about_services .services_list .highlight:active {
-  background-color: rgba(51, 53, 46, 0.06);
-  box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 50%, transparent);
+html.theme-light .about_values .value_word.highlight,
+html.theme-light .about_services .services_list .highlight {
+  background-color: rgba(51, 53, 46, 0.05);
+  box-shadow: none;
   color: #33352E;
+}
+html.theme-light .about_values .value_word.highlight:hover, html.theme-light .about_values .value_word.highlight:active, html.theme-light .about_values .value_word.highlight:focus-visible,
+html.theme-light .about_services .services_list .highlight:hover,
+html.theme-light .about_services .services_list .highlight:active,
+html.theme-light .about_services .services_list .highlight:focus-visible {
+  background-color: var(--chip, #33352E);
+  box-shadow: none;
+  color: #EDEEE8;
 }

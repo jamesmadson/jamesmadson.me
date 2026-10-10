@@ -1544,7 +1544,8 @@ html.theme-light .cs_hero::before {
     bottom: 100%;
     color: $white;
     display: block;
-    font-size: 0.25em;
+    // Floored: 0.25em of a services pill is unreadably small
+    font-size: max(0.25em, 0.6875rem);
     font-weight: bold;
     left: 0;
     letter-spacing: 0.06em;
@@ -6580,23 +6581,42 @@ html.theme-light #hero_shuffle_text a.highlight.jm {
   .about_services .services_list .highlight:active { transform: none; }
 }
 
-// About pill hover, per James (2026-10-09): ink stays put, no border
-// flash, a quiet frost instead of the project-color fill. The border
-// repeats the rest formula exactly so hover never jumps it; the colored
-// mini-label above the pill stays the project-color carrier.
+// About pills, per James (2026-10-10, superseding the frost version he
+// rejected): no border in any state, rest is a faint white fill, hover
+// floods with the project color, ink stays white on the flood.
 .about_values .value_word.highlight,
 .about_services .services_list .highlight {
-  &:hover, &:active {
-    background-color: rgba($white, 0.09);
-    box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 50%, transparent);
+  background-color: rgba($white, 0.07);
+  box-shadow: none;
+  // The fill exposed the base chip's 0.08em padding as cramped; filled
+  // pills need real room. Touch keeps its 44px floor below.
+  padding: 0.22em 0.6em;
+
+  // The chip map lives here too: the services-scoped copy never reached
+  // the values row, and an unmapped mod fell back to a white flood with
+  // white ink (the invisible "Clear" bug).
+  &.nd, &.nq { --chip: #{$green}; }
+  &.pecan    { --chip: #{$cyan}; }
+  &.viz      { --chip: #{$blue}; }
+  &.jm       { --chip: #{$orange}; }
+
+  &:hover, &:active, &:focus-visible {
+    background-color: var(--chip, #{$white});
+    box-shadow: none;
     color: $white;
   }
+
+  @media (hover: none) { padding-block: 0.55em; }
 }
 html.theme-light .about_values .value_word.highlight,
 html.theme-light .about_services .services_list .highlight {
-  &:hover, &:active {
-    background-color: rgba($dark-default, 0.06);
-    box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 50%, transparent);
-    color: $dark-default;
+  background-color: rgba($dark-default, 0.05);
+  box-shadow: none;
+  color: $dark-default;
+
+  &:hover, &:active, &:focus-visible {
+    background-color: var(--chip, #{$dark-default});
+    box-shadow: none;
+    color: $white;
   }
 }
