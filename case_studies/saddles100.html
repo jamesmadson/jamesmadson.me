@@ -90,7 +90,7 @@ permalink: /case_studies/saddles100/
     <div class="grid_12">
       <div class="cs_cover_video" id="sad_film" style="background-image: url('/img/saddles/montage-poster.jpg')">
         <video id="sad_film_v" playsinline muted loop preload="metadata" poster="/img/saddles/montage-poster.jpg" width="1920" height="816" aria-label="A silent 25 second film: fog over the finish area, the projected wall's scenes, the console scanning a skeleton figure, and a runner finishing through the smoke with arms raised">
-          <source src="/assets/video/saddles-montage.mp4" type="video/mp4">
+          <source src="/assets/video/saddles-montage.mp4" data-mobile="/assets/video/saddles-montage-mobile.mp4" type="video/mp4">
         </video>
         <button type="button" class="cs_film_toggle" id="sad_film_btn" aria-pressed="false" aria-label="Pause the film">
           <svg class="f_pause" viewBox="0 0 12 12" aria-hidden="true"><rect x="1.5" width="3" height="12" rx="1" fill="currentColor"/><rect x="7.5" width="3" height="12" rx="1" fill="currentColor"/></svg>
@@ -174,7 +174,7 @@ permalink: /case_studies/saddles100/
           <div class="cv2_panel">
             <div class="cs_cover_video cs_cover_video--fig" style="background-image: url('/img/saddles/wall-demo-poster.jpg')">
               <video playsinline muted loop preload="none" poster="/img/saddles/wall-demo-poster.jpg" width="1920" height="1080" aria-label="Three scenes from the wall loop: a radar sweep, a terrain bloom analysis, and the Willow Lake course map, indigo on black">
-                <source src="/assets/video/saddles-wall-demo.mp4" type="video/mp4">
+                <source src="/assets/video/saddles-wall-demo.mp4" data-mobile="/assets/video/saddles-wall-demo-mobile.mp4" type="video/mp4">
               </video>
               <button type="button" class="cs_film_toggle" aria-pressed="false" aria-label="Pause the loop">
                 <svg class="f_pause" viewBox="0 0 12 12" aria-hidden="true"><rect x="1.5" width="3" height="12" rx="1" fill="currentColor"/><rect x="7.5" width="3" height="12" rx="1" fill="currentColor"/></svg>
@@ -310,11 +310,15 @@ permalink: /case_studies/saddles100/
      Figure videos use preload="none", so nothing downloads until the
      reader scrolls to it and the observer calls play(). */
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var mobile = window.matchMedia('(max-width: 768px)').matches;
 
   document.querySelectorAll('.cs_cover_video').forEach(function (wrap) {
     var v = wrap.querySelector('video');
     var btn = wrap.querySelector('.cs_film_toggle');
     if (!v || !btn) return;
+    /* Phones get the lighter rendition; swap before any bytes move. */
+    var src = v.querySelector('source');
+    if (mobile && src && src.dataset.mobile) { src.src = src.dataset.mobile; v.load(); }
     var userPaused = reduced;
 
     function syncBtn() {
