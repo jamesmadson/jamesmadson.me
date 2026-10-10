@@ -98,6 +98,80 @@ excludeFromSitemap: true
   <h1>System</h1>
   <p class="sub">The working tokens and contracts behind jamesmadson.me, drawn from _sass/styles.scss and docs/ui-decisions.md. A reference sheet, not a spec: the stylesheet is the source of truth, the decision log is the law.</p>
 
+  <h2>Dials</h2>
+  <p class="law">The system, playable. These write real custom properties and persist as you browse the whole site; every page shows a reset chip while they're engaged. Canon is the absence of overrides.</p>
+  <div class="dials">
+    <label>Card radius <output id="o_radius">16px</output>
+      <input type="range" id="d_radius" min="0" max="28" step="1" value="16"></label>
+    <label>Type scale <output id="o_type">1.00</output>
+      <input type="range" id="d_type" min="0.92" max="1.12" step="0.01" value="1"></label>
+    <label>Fog <output id="o_fog">1.0×</output>
+      <input type="range" id="d_fog" min="0" max="2" step="0.05" value="1"></label>
+    <label>Spring
+      <select id="d_spring">
+        <option value="">canon (one soft overshoot)</option>
+        <option value="cubic-bezier(0.25, 0.1, 0.25, 1)">calm (no overshoot)</option>
+        <option value="linear(0, 0.6 20%, 1.12 55%, 0.95 78%, 1.02 92%, 1)">springy (double bounce)</option>
+      </select></label>
+    <button type="button" id="d_reset">Reset to canon</button>
+  </div>
+  <style>
+    .dials { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); align-items: end; }
+    .dials label { color: var(--ink2); display: grid; font-size: 0.875rem; gap: 0.5rem; }
+    .dials output { color: var(--muted); font-family: "IBM Plex Mono", monospace; font-size: 0.8125rem; justify-self: end; margin-top: -1.35rem; }
+    .dials input[type=range] { accent-color: var(--ink); width: 100%; }
+    .dials select, .dials button {
+      background: none; border: 1px solid rgba(237,238,232,0.25); border-radius: 8px;
+      color: var(--ink); font: inherit; font-size: 0.875rem; padding: 0.45em 0.7em;
+    }
+    .dials button { cursor: pointer; }
+    .dials button:hover, .dials select:hover { border-color: var(--ink); }
+  </style>
+  <script>
+  (function () {
+    var KEY = 'jm_dials';
+    var els = { radius: d_radius, type: d_type, fog: d_fog, spring: d_spring };
+    var outs = { radius: o_radius, type: o_type, fog: o_fog };
+    function read() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
+    function save(d) { try { Object.keys(d).length ? localStorage.setItem(KEY, JSON.stringify(d)) : localStorage.removeItem(KEY); } catch (e) {} }
+    function apply(d) {
+      var r = document.documentElement.style;
+      r.setProperty('--radius-card', (d.radius != null ? d.radius : 16) + 'px');
+      r.setProperty('--radius-fig', Math.max(4, Math.round((d.radius != null ? d.radius : 16) * 0.6)) + 'px');
+      r.setProperty('--type-scale', d.type != null ? d.type : 1);
+      r.setProperty('--fog-blur-card', Math.round(34 * (d.fog != null ? d.fog : 1)) + 'px');
+      r.setProperty('--fog-blur-hero', Math.round(64 * (d.fog != null ? d.fog : 1)) + 'px');
+      if (d.spring) r.setProperty('--spring', d.spring); else r.removeProperty('--spring');
+    }
+    function sync(d) {
+      els.radius.value = d.radius != null ? d.radius : 16;
+      els.type.value = d.type != null ? d.type : 1;
+      els.fog.value = d.fog != null ? d.fog : 1;
+      els.spring.value = d.spring || '';
+      outs.radius.value = els.radius.value + 'px';
+      outs.type.value = (+els.type.value).toFixed(2);
+      outs.fog.value = (+els.fog.value).toFixed(1) + '\u00d7';
+    }
+    var state = read();
+    sync(state); apply(state);
+    ['radius', 'type', 'fog'].forEach(function (k) {
+      els[k].addEventListener('input', function () {
+        state[k] = +els[k].value;
+        // storing canon values is the same as not storing them
+        if (k === 'radius' && state[k] === 16) delete state[k];
+        if (k === 'type' && state[k] === 1) delete state[k];
+        if (k === 'fog' && state[k] === 1) delete state[k];
+        sync(state); apply(state); save(state);
+      });
+    });
+    els.spring.addEventListener('change', function () {
+      if (els.spring.value) state.spring = els.spring.value; else delete state.spring;
+      apply(state); save(state);
+    });
+    d_reset.addEventListener('click', function () { state = {}; save(state); sync(state); apply(state); });
+  }());
+  </script>
+
   <h2>Grounds</h2>
   <div class="grounds">
     <div class="ground" style="background:#171814;color:#EDEEE8">

@@ -4,7 +4,21 @@
 
 :root { color-scheme: light dark; }
 
+// Runtime dials (the playable system, 2026-10-10): these custom
+// properties are the bridge between the compiled Sass tokens and the
+// dials on /tools/system/. Defaults mirror the canon values; site.js
+// applies stored overrides on every page and shows the reset chip.
+:root {
+  --radius-card: 1rem;
+  --radius-fig: 10px;
+  --spring: #{$spring-lift};
+  --fog-blur-hero: 64px;
+  --fog-blur-card: 34px;
+  --type-scale: 1;
+}
+
 html {
+  font-size: calc(100% * var(--type-scale));
   overflow-x: hidden;
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;

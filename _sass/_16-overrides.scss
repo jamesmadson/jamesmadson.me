@@ -29,7 +29,7 @@ html.theme-light #hero_shuffle_text a.highlight.jm {
 // lift in, settle on press. Color feedback stays on the fast 150ms lane.
 .about_services .services_list .highlight {
   transition: background-color 0.15s ease, color 0.15s ease,
-              box-shadow 0.15s ease, transform 0.34s $spring-lift;
+              box-shadow 0.15s ease, transform 0.34s var(--spring);
 
   &:hover, &:focus-visible { transform: translateY(-3px); }
   &:active { transform: translateY(-1px); }
@@ -100,8 +100,8 @@ html.theme-light .about_services .services_list .highlight {
   opacity: 0;
   pointer-events: none;
   position: absolute;
-  transition: left 0.32s $spring-lift, top 0.32s $spring-lift,
-              width 0.32s $spring-lift, height 0.32s $spring-lift,
+  transition: left 0.32s var(--spring), top 0.32s var(--spring),
+              width 0.32s var(--spring), height 0.32s var(--spring),
               opacity 0.18s ease;
   z-index: 0;
 }
@@ -109,4 +109,31 @@ html.theme-light .about_services .services_list .highlight {
 html.theme-light .glide_pill { background: rgba($dark-default, 0.07); }
 @media (prefers-reduced-motion: reduce) {
   .glide_pill { transition: opacity 0.18s ease; }
+}
+
+// The honesty chip: whenever stored dial overrides are active, every
+// page says so and offers the way back to canon.
+.dials_chip {
+  background: rgba($dark-bg, 0.82);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba($white, 0.2);
+  border-radius: 99em;
+  bottom: 1rem;
+  color: rgba($white, 0.85);
+  cursor: pointer;
+  font-family: $mono;
+  font-size: 0.75rem;
+  left: 1rem;
+  letter-spacing: 0.04em;
+  padding: 0.5em 1em;
+  position: fixed;
+  z-index: 90;
+
+  span { text-decoration: underline; text-underline-offset: 2px; }
+  &:hover, &:focus-visible { border-color: rgba($white, 0.55); color: $white; }
+}
+html.theme-light .dials_chip {
+  background: rgba($tan, 0.85);
+  border-color: rgba($dark-default, 0.3);
+  color: $dark-default;
 }

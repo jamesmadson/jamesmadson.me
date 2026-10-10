@@ -189,7 +189,7 @@ html.theme-light .about_meta { color: rgba($dark-default, 0.5); }
     // CSS and hover-exit can't run the stagger backwards. Transform
     // rides the house spring: one soft overshoot on arrival, and the
     // same curve the work cards lift with on hover.
-    transition: opacity 0.45s ease, transform 0.34s $spring-lift,
+    transition: opacity 0.45s ease, transform 0.34s var(--spring),
                 background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
     white-space: nowrap;
 

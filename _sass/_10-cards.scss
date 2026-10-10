@@ -35,7 +35,7 @@
   // Rest/hover elevation. box-shadow eases plainly; the lift itself
   // carries the spring overshoot (transform only, see $spring-lift).
   box-shadow: $lift-rest;
-  transition: box-shadow 0.28s ease, transform 0.34s $spring-lift;
+  transition: box-shadow 0.28s ease, transform 0.34s var(--spring);
 
   // The whole card grows on hover; no separate inner-image zoom, which
   // would compound with the outer scale.
@@ -64,7 +64,7 @@
 
 .hwc_img {
   aspect-ratio: 1 / 1;
-  border-radius: 1rem;
+  border-radius: var(--radius-card);
   // cqw units inside .wc resolve against this box, so one set of
   // proportions holds from a 335px phone card to a 555px desktop one
   container-type: inline-size;
@@ -130,7 +130,7 @@
     background-position: center;
     background-size: cover;
     content: '';
-    filter: blur(34px) saturate(1.1);
+    filter: blur(var(--fog-blur-card)) saturate(1.1);
     inset: -12%;
     pointer-events: none;
     position: absolute;
@@ -372,7 +372,7 @@ html.theme-light body .home_work_soon .home_work_title {
       // Outranks the entrance transition above (extra class, later in the
       // cascade): once a card has settled, hover uses the spring-lift
       // timing from Task 2 instead of the one-time entrance curve.
-      transition: opacity 0.75s ease, transform 0.34s $spring-lift, box-shadow 0.28s ease;
+      transition: opacity 0.75s ease, transform 0.34s var(--spring), box-shadow 0.28s ease;
     }
 
     &.wp_visible:hover,

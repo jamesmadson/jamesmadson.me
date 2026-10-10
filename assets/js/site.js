@@ -1,4 +1,43 @@
 // ============================================================
+// Dials (the playable system) — /tools/system/ writes jm_dials;
+// every page applies it before paint-adjacent work and shows the
+// reset chip. Canon is the absence of the key.
+// ============================================================
+(function () {
+  var KEY = 'jm_dials';
+  var raw = null;
+  try { raw = localStorage.getItem(KEY); } catch (e) {}
+  if (!raw) return;
+  var d;
+  try { d = JSON.parse(raw); } catch (e) { return; }
+  var r = document.documentElement.style;
+  if (d.radius != null) {
+    r.setProperty('--radius-card', d.radius + 'px');
+    r.setProperty('--radius-fig', Math.max(4, Math.round(d.radius * 0.6)) + 'px');
+  }
+  if (d.type != null) r.setProperty('--type-scale', d.type);
+  if (d.fog != null) {
+    r.setProperty('--fog-blur-card', Math.round(34 * d.fog) + 'px');
+    r.setProperty('--fog-blur-hero', Math.round(64 * d.fog) + 'px');
+  }
+  if (d.spring) r.setProperty('--spring', d.spring);
+  function chip() {
+    var b = document.createElement('button');
+    b.className = 'dials_chip';
+    b.type = 'button';
+    b.setAttribute('aria-label', 'Design dials are engaged; reset to canon');
+    b.innerHTML = 'Dials engaged \u00b7 <span>reset</span>';
+    b.addEventListener('click', function () {
+      try { localStorage.removeItem(KEY); } catch (e) {}
+      location.reload();
+    });
+    document.body.appendChild(b);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', chip);
+  else chip();
+}());
+
+// ============================================================
 // Shared helpers (cleanup plan P3) — one reduced-motion source and one
 // IntersectionObserver wrapper, so features stop hand-rolling both.
 // window.JM because each feature below is its own IIFE.

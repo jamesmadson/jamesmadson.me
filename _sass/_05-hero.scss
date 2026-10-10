@@ -343,7 +343,7 @@ header:has(#hero_shuffle_btn)::before,
   background-position: center;
   background-size: cover;
   content: '';
-  filter: blur(64px) saturate(1.15) brightness(0.7);
+  filter: blur(var(--fog-blur-hero)) saturate(1.15) brightness(0.7);
   // Top starts at the hero's own top edge — i.e. just under the fixed
   // nav, whose solid background would otherwise slice the frost. Sides
   // bleed off-screen (body's overflow-x: clip catches them); the bottom
