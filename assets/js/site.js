@@ -107,6 +107,7 @@
       '    <option value="editorial">editorial \u00b7 serif cut, hairlines</option>' +
       '    <option value="grunge">grunge \u00b7 acid stickers</option>' +
       '    <option value="markdown">markdown \u00b7 for agents and source readers</option>' +
+      '    <option value="studio">studio \u00b7 after bd85bd85.com</option>' +
       '  </select>' +
       '  <span class="dials_rail_desc">The visual register. Editorial sets display type in a serif and squares the corners; grunge gets loud.</span></label>' +
       '<hr class="dials_rail_hr">' +
@@ -1259,6 +1260,82 @@ function smoothScrollTo(targetY, duration) {
       show(on ? null : b.getAttribute('data-route'));
     });
   });
+}());
+
+// ============================================================
+// Studio exhibition (skin: studio) — on /work/, the grid yields to a
+// full-bleed stage of each project's own ambient artwork with a
+// cycling thumbnail rail. Reads the existing cards; no new content.
+// ============================================================
+(function () {
+  var grid = document.querySelector('.home_work_grid');
+  if (!grid || !location.pathname.startsWith('/work')) return;
+  var cards = Array.prototype.slice.call(grid.querySelectorAll('.hwc')).map(function (a) {
+    var mod = (a.className.match(/hwc\s+(\w+)/) || [])[1];
+    var name = a.querySelector('.wc_headline');
+    var titleText = name ? name.innerHTML.replace(/<br[^>]*>/g, ' ').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim() : '';
+    return {
+      href: a.getAttribute('href'),
+      mod: mod,
+      title: titleText,
+      sub: (a.querySelector('.wc_subhead') || {}).textContent || '',
+      img: '/img/covers/ambient/' + mod + '.jpg'
+    };
+  }).filter(function (c) { return c.mod && c.href; });
+  if (!cards.length) return;
+
+  var stage = document.createElement('section');
+  stage.className = 'studio_stage';
+  stage.setAttribute('aria-label', 'Featured work');
+  stage.innerHTML =
+    '<a class="studio_feature" href="#">' +
+    '  <span class="studio_title"></span>' +
+    '  <span class="studio_sub"></span>' +
+    '</a>' +
+    '<div class="studio_rail" role="tablist" aria-label="Projects"></div>';
+  grid.parentElement.insertBefore(stage, grid);
+
+  var feature = stage.querySelector('.studio_feature');
+  var title = stage.querySelector('.studio_title');
+  var sub = stage.querySelector('.studio_sub');
+  var railEl = stage.querySelector('.studio_rail');
+  var idx = 0;
+
+  cards.forEach(function (c, i) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.style.backgroundImage = 'url(' + c.img + ')';
+    b.setAttribute('aria-label', c.title);
+    b.addEventListener('click', function () { show(i); });
+    railEl.appendChild(b);
+  });
+  var thumbs = railEl.children;
+
+  function show(i) {
+    idx = i;
+    var c = cards[i];
+    feature.href = c.href;
+    feature.style.backgroundImage = 'url(' + c.img + ')';
+    title.textContent = c.title;
+    sub.textContent = c.sub;
+    Array.prototype.forEach.call(thumbs, function (t, j) {
+      t.classList.toggle('is_active', j === i);
+    });
+  }
+  function syncHidden() {
+    var on = document.documentElement.getAttribute('data-skin') === 'studio';
+    grid.classList.toggle('is_studio_hidden', on);
+    // Inline as belt to the CSS braces; the original blocker was a
+    // display !important on the grid (removed), found via this hide.
+    grid.style.display = on ? 'none' : '';
+  }
+  new MutationObserver(syncHidden).observe(document.documentElement, { attributes: true, attributeFilter: ['data-skin'] });
+  stage.querySelector('.studio_rail').addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') show((idx + 1) % cards.length);
+    if (e.key === 'ArrowLeft') show((idx - 1 + cards.length) % cards.length);
+  });
+  show(0);
+  syncHidden();
 }());
 
 // ============================================================

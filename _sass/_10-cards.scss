@@ -16,14 +16,18 @@
   margin-bottom: 2rem;
 }
 
-.home_work_grid {
-  display: grid !important;
+// .container.home_work_grid: the double class wins the old fight with
+// .container's 12-column template honestly. The !importants that used
+// to live here were defeating every skin's attempt to restyle the grid
+// (markdown's flatten, studio's hide) — 2026-10-10.
+.container.home_work_grid {
+  display: grid;
   column-gap: 1.25rem;
   row-gap: 2.5rem;
-  grid-template-columns: repeat(3, 1fr) !important;
+  grid-template-columns: repeat(3, 1fr);
 
-  @media (max-width: 1023px) { grid-template-columns: repeat(2, 1fr) !important; }
-  @media (max-width: 600px)  { grid-template-columns: 1fr !important; row-gap: 2rem; }
+  @media (max-width: 1023px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 600px)  { grid-template-columns: 1fr; row-gap: 2rem; }
 }
 
 .hwc {

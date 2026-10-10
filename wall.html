@@ -1,0 +1,32 @@
+---
+layout: base.njk
+permalink: /wall/
+title: "Wall – James Madson"
+description: "A working wall of references and inspiration."
+robots: noindex
+excludeFromSitemap: true
+---
+  <header class="fadeIn about_header">
+    <div class="container">
+      <div class="grid_12">
+        <h1 class="fadeIn jm_title">Wall</h1>
+        <p class="about_me">A working surface, not a page. Things pinned while they're useful.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="fadeIn" id="main-content">
+    <div class="container">
+      <div class="grid_12">
+        {% if wall.length %}
+        <div class="wall_grid">
+          {% for src in wall %}
+          <img src="{{ src }}" alt="" loading="lazy">
+          {% endfor %}
+        </div>
+        {% else %}
+        <p class="wall_empty">The wall is empty. Drop images into <code>img/wall/</code> and rebuild.</p>
+        {% endif %}
+      </div>
+    </div>
+  </main>
