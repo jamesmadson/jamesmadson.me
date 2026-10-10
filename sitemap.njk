@@ -1,0 +1,15 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+{#- Generated per build from the page collection, so it can never go
+    stale the way the hand-edited file did (it was missing Saddles and
+    Graft). Pages opt out with excludeFromSitemap or robots: noindex. -#}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for p in collections.all %}
+{%- if not p.data.excludeFromSitemap and p.data.robots != 'noindex' and p.url != '/feed.html' %}
+  <url><loc>https://jamesmadson.me{{ p.url }}</loc></url>
+{%- endif %}
+{%- endfor %}
+</urlset>

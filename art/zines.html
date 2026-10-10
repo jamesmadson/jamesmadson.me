@@ -1,44 +1,9 @@
 ---
+layout: base.njk
 permalink: /art/zines/
+title: "Zines \u2013 James Madson"
+description: "Self-published zines by James Madson."
 ---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="color-scheme" content="light dark">
-  <title>Zines – James Madson</title>
-  <meta name="description" content="Self-published zines by James Madson.">
-  <meta name="author" content="James Madson">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="robots" content="noindex">
-
-  <link rel="icon" href="/icons/favicon.ico?v={{ build.version }}" sizes="32x32">
-  <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg?v={{ build.version }}">
-  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png?v={{ build.version }}">
-  <link rel="manifest" href="/icons/site.webmanifest">
-  <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#282829">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" type="text/css" href="/assets/css/styles.css?v={{ build.version }}" />
-
-  <script>!function(){var e=document.documentElement,t=localStorage.getItem("theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");e.className=e.className.replace(/\btheme-\S+/g,"");e.classList.add("theme-"+t)}();</script>
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HL3TB4H7XS"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-HL3TB4H7XS');
-  </script>
-</head>
-
-<body>
-  {% include "partials/site-nav.njk" %}
 
   <main class="fadeIn zines_page">
 
@@ -196,9 +161,6 @@ permalink: /art/zines/
 
   </main>
 
-{% include "partials/footer.njk" %}
-
-<script src="/assets/js/site.js?v={{ build.version }}" defer></script>
 <script>
 (function () {
   var grid    = document.getElementById('zines_grid');
@@ -330,5 +292,3 @@ permalink: /art/zines/
   });
 }());
 </script>
-</body>
-</html>
