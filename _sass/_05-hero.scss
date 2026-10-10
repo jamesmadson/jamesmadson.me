@@ -138,6 +138,8 @@ header.about_header {
 
 .about_meta_links {
   display: flex;
+
+  .view_project { margin-top: 0; }
   flex-wrap: wrap;
   gap: 0.5rem;
   // Below the bio now: the opening reads byline, statement, voice, and

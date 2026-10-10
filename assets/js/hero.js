@@ -10,8 +10,7 @@
   var CHAR_MS  = 42;   // ms between each character appearing
   var WORD_GAP = 80;   // extra pause before the next highlighted word starts
 
-  var prefersReducedMotion = !!(window.matchMedia &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var prefersReducedMotion = JM.reduced.matches;
 
   // Index 0 is the welcome: it always leads, then the shuffle moves to
   // the project sentences and never returns to it.

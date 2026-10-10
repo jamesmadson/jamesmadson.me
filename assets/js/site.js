@@ -1,4 +1,26 @@
 // ============================================================
+// Shared helpers (cleanup plan P3) — one reduced-motion source and one
+// IntersectionObserver wrapper, so features stop hand-rolling both.
+// window.JM because each feature below is its own IIFE.
+// ============================================================
+window.JM = {
+  reduced: window.matchMedia('(prefers-reduced-motion: reduce)'),
+  // onInView(el, { enter, exit, threshold }) — fires enter/exit on
+  // intersection changes; no-ops (calls enter once) where IO is missing.
+  onInView: function (el, opts) {
+    if (!('IntersectionObserver' in window)) { if (opts.enter) opts.enter(); return null; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { if (opts.enter) opts.enter(e); }
+        else if (opts.exit) opts.exit(e);
+      });
+    }, { threshold: opts.threshold || 0 });
+    io.observe(el);
+    return io;
+  }
+};
+
+// ============================================================
 // Console greeting — for whoever (or whatever) is looking
 // ============================================================
 console.log(
@@ -826,4 +848,103 @@ function smoothScrollTo(targetY, duration) {
     });
   }, { threshold: 0.05 });
   io.observe(section);
+}());
+
+// ============================================================
+// Case-study films + course map (moved from saddles100.html inline, P3)
+// Films: fade in when playable, play only on screen, never autoplay
+// under reduced motion. Map: cycles until a click takes the wheel.
+// Both bind by DOM presence, so any future case study gets them free.
+// ============================================================
+(function () {
+  /* Every film on the page shares one contract: fade in when playable,
+     play only while on screen, never autoplay under reduced motion.
+     Figure videos use preload="none", so nothing downloads until the
+     reader scrolls to it and the observer calls play(). */
+  var reduced = JM.reduced.matches;
+  var mobile = window.matchMedia('(max-width: 768px)').matches;
+
+  document.querySelectorAll('.cs_cover_video').forEach(function (wrap) {
+    var v = wrap.querySelector('video');
+    var btn = wrap.querySelector('.cs_film_toggle');
+    if (!v || !btn) return;
+    /* Phones get the lighter rendition; swap before any bytes move. */
+    var src = v.querySelector('source');
+    if (mobile && src && src.dataset.mobile) { src.src = src.dataset.mobile; v.load(); }
+    var userPaused = reduced;
+
+    function syncBtn() {
+      var paused = v.paused;
+      btn.setAttribute('aria-pressed', String(paused));
+      btn.setAttribute('aria-label', paused ? 'Play the film' : 'Pause the film');
+    }
+
+    function markReady() { wrap.classList.add('is_ready'); }
+    v.addEventListener('canplay', markReady, { once: true });
+    // Fast loads can fire canplay before this script attaches; check state too.
+    if (v.readyState >= 3) markReady();
+    v.addEventListener('play', syncBtn);
+    v.addEventListener('pause', syncBtn);
+
+    btn.addEventListener('click', function () {
+      if (v.paused) { userPaused = false; v.play(); }
+      else { userPaused = true; v.pause(); }
+    });
+
+    if (!reduced && 'IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) {
+          if (!userPaused) v.play().catch(function () {});
+        } else {
+          v.pause();
+        }
+      }, { threshold: 0.25 });
+      io.observe(v);
+    }
+    syncBtn();
+  });
+}());
+
+(function () {
+  /* The course map cycles through the three races while on screen;
+     a click takes the wheel and the cycle stays stopped. */
+  var wrap = document.getElementById('cv2_routes');
+  if (!wrap) return;
+  var btns = Array.prototype.slice.call(wrap.querySelectorAll('.cv2_route_btns button'));
+  var keys = ['100', '50', '666'];
+  var reduced = JM.reduced;
+  var idx = -1, timer = null, manual = false;
+
+  function show(key) {
+    wrap.classList.remove('sel100', 'sel50', 'sel666');
+    btns.forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+    if (key) {
+      wrap.classList.add('sel' + key);
+      btns.forEach(function (x) {
+        if (x.getAttribute('data-route') === key) x.setAttribute('aria-pressed', 'true');
+      });
+    }
+  }
+  function tick() {
+    idx = (idx + 1) % (keys.length + 1); /* the fourth beat shows all three */
+    show(idx < keys.length ? keys[idx] : null);
+  }
+  function start() {
+    if (timer || manual || reduced.matches) return;
+    timer = setInterval(tick, 2800);
+  }
+  function stop() { clearInterval(timer); timer = null; }
+
+  JM.onInView(wrap, { threshold: 0.35, enter: start, exit: stop });
+  reduced.addEventListener('change', function (e) {
+    if (e.matches) { manual = false; stop(); show(null); }
+  });
+
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      manual = true; stop();
+      var on = b.getAttribute('aria-pressed') === 'true';
+      show(on ? null : b.getAttribute('data-route'));
+    });
+  });
 }());
