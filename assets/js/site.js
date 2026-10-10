@@ -17,6 +17,55 @@ window.JM = {
     }, { threshold: opts.threshold || 0 });
     io.observe(el);
     return io;
+  },
+  // Shared glide highlight: one pill that travels between a host's
+  // items (see _16-overrides.scss). Rests on .active when present,
+  // fades in at first hover otherwise, returns on mouseleave.
+  glide: function (host, itemSelector) {
+    var items = Array.prototype.slice.call(host.querySelectorAll(itemSelector));
+    if (!items.length) return;
+    var pill = document.createElement('span');
+    pill.className = 'glide_pill';
+    pill.setAttribute('aria-hidden', 'true');
+    host.classList.add('glide_host');
+    host.insertBefore(pill, host.firstChild);
+    function to(el) {
+      var h = host.getBoundingClientRect(), r = el.getBoundingClientRect();
+      // Collapsed/hidden items (the nav's disclosure mode) measure 0:
+      // never glide to nothing.
+      if (r.width < 1 || r.height < 1) return false;
+      pill.style.left = (r.left - h.left + host.scrollLeft) + 'px';
+      pill.style.top = (r.top - h.top + host.scrollTop) + 'px';
+      pill.style.width = r.width + 'px';
+      pill.style.height = r.height + 'px';
+      return true;
+    }
+    function activeEl() { return host.querySelector('.active'); }
+    function rest() {
+      var a = activeEl();
+      if (a && to(a)) { host.classList.add('glide_on'); }
+      else { host.classList.remove('glide_on'); }
+    }
+    items.forEach(function (el) {
+      el.addEventListener('mouseenter', function () {
+        if (el.getBoundingClientRect().width < 1) return;
+        if (!host.classList.contains('glide_on')) {
+          // First arrival appears in place; travel is only between stops.
+          pill.style.transition = 'opacity 0.18s ease';
+          to(el);
+          void pill.offsetWidth;
+          pill.style.transition = '';
+        } else {
+          if (!to(el)) return;
+        }
+        host.classList.add('glide_on');
+      });
+    });
+    host.addEventListener('mouseleave', rest);
+    window.addEventListener('resize', function () {
+      if (host.classList.contains('glide_on')) { var a = activeEl(); if (a) to(a); }
+    });
+    rest();
   }
 };
 
@@ -947,4 +996,14 @@ function smoothScrollTo(targetY, duration) {
       show(on ? null : b.getAttribute('data-route'));
     });
   });
+}());
+
+// ============================================================
+// Glide demo wiring (James picks which surfaces keep it)
+// ============================================================
+(function () {
+  var nav = document.querySelector('.case_study_nav');
+  if (nav) JM.glide(nav, 'a');
+  var links = document.querySelector('.about_meta_links');
+  if (links) JM.glide(links, 'a');
 }());

@@ -229,6 +229,11 @@
   padding: 1.25rem;
 }
 .cv2_panel--shot img { border-radius: 10px; display: block; height: auto; width: 100%; }
+// Portrait phone shots: centered at phone width instead of a full-bleed
+// tower (the bib photo lesson, codified)
+// .project scope needed: the generic .project img max-width ties on
+// specificity and wins by source order otherwise
+.project .cv2_panel--phone img { margin-inline: auto; max-width: min(380px, 100%); }
 
 // Two shots in one panel, 4:3 beside 16:9; 3fr:4fr keeps their heights equal
 .cv2_pair {
