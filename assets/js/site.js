@@ -58,6 +58,19 @@
     else document.documentElement.removeAttribute('data-tldr');
     window.JM = window.JM || {};
     JM.lens = d.lens ? LENSES[d.lens] : null;
+    JM.lensKey = d.lens || '';
+    swapLensText();
+  }
+  // Tier two: any element carrying data-lens-<key> swaps its text while
+  // that lens is on; the original is cached and restored on canon.
+  function swapLensText() {
+    var key = window.JM && JM.lensKey;
+    var els = document.querySelectorAll('[data-lens-engineer],[data-lens-director],[data-lens-recruiter]');
+    Array.prototype.forEach.call(els, function (el) {
+      if (!el.hasAttribute('data-lens-og')) el.setAttribute('data-lens-og', el.textContent);
+      var v = key && el.getAttribute('data-lens-' + key);
+      el.textContent = v || el.getAttribute('data-lens-og');
+    });
   }
 
   var state = read();
@@ -106,7 +119,7 @@
       '    <option value="director">for a design director</option>' +
       '    <option value="recruiter">for a recruiter</option>' +
       '  </select>' +
-      '  <span class="dials_rail_desc">Re-aims the hero line for who\u2019s reading. The original is canon; lenses are visible swaps, never the source.</span></label>' +
+      '  <span class="dials_rail_desc">Re-aims the hero line, the card subheads, and case-study fact lines. The originals are canon; lenses are visible swaps, never the source.</span></label>' +
       '<label>Skin' +
       '  <select data-dial="skin">' +
       '    <option value="">canon</option>' +
@@ -274,7 +287,8 @@
     }).join('');
     document.body.insertBefore(bar, document.body.firstChild);
   }
-  function boot() { buildTabs(); build(); }
+  window.addEventListener('jm:lens', swapLensText);
+  function boot() { buildTabs(); build(); swapLensText(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
 }());
@@ -1316,9 +1330,12 @@ function smoothScrollTo(targetY, duration) {
 }());
 
 // ============================================================
-// Studio exhibition (skin: studio) — on /work/, the grid yields to a
-// full-bleed stage of each project's own ambient artwork with a
-// cycling thumbnail rail. Reads the existing cards; no new content.
+// Studio exhibition (skin: studio) — faithful to the reference's
+// mechanics: the artwork takes the whole viewport edge to edge, the
+// title lives in a breadcrumb strip (not on the art), an index
+// counts the works, thumbs pin to the bottom edge, and the wheel
+// cycles the feature while the cursor is over it. Crossfades ride a
+// fixed curve; reduced motion swaps instantly.
 // ============================================================
 (function () {
   var grid = document.querySelector('.home_work_grid');
@@ -1327,13 +1344,9 @@ function smoothScrollTo(targetY, duration) {
     var mod = (a.className.match(/hwc\s+(\w+)/) || [])[1];
     var name = a.querySelector('.wc_headline');
     var titleText = name ? name.innerHTML.replace(/<br[^>]*>/g, ' ').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim() : '';
-    return {
-      href: a.getAttribute('href'),
-      mod: mod,
-      title: titleText,
-      sub: (a.querySelector('.wc_subhead') || {}).textContent || '',
-      img: '/img/covers/ambient/' + mod + '.jpg'
-    };
+    return { href: a.getAttribute('href'), mod: mod, title: titleText,
+      sub: ((a.querySelector('.wc_subhead') || {}).textContent || '').trim(),
+      img: '/img/covers/ambient/' + mod + '.jpg' };
   }).filter(function (c) { return c.mod && c.href; });
   if (!cards.length) return;
 
@@ -1341,18 +1354,20 @@ function smoothScrollTo(targetY, duration) {
   stage.className = 'studio_stage';
   stage.setAttribute('aria-label', 'Featured work');
   stage.innerHTML =
-    '<a class="studio_feature" href="#">' +
-    '  <span class="studio_title"></span>' +
-    '  <span class="studio_sub"></span>' +
-    '</a>' +
+    '<div class="studio_strip">' +
+    '  <span class="studio_crumb"></span>' +
+    '  <span class="studio_index"></span>' +
+    '</div>' +
+    '<a class="studio_feature" href="#" aria-label=""></a>' +
     '<div class="studio_rail" role="tablist" aria-label="Projects"></div>';
   grid.parentElement.insertBefore(stage, grid);
 
   var feature = stage.querySelector('.studio_feature');
-  var title = stage.querySelector('.studio_title');
-  var sub = stage.querySelector('.studio_sub');
+  var crumb = stage.querySelector('.studio_crumb');
+  var indexEl = stage.querySelector('.studio_index');
   var railEl = stage.querySelector('.studio_rail');
-  var idx = 0;
+  var reduced = JM.reduced.matches;
+  var idx = 0, busy = false;
 
   cards.forEach(function (c, i) {
     var b = document.createElement('button');
@@ -1364,30 +1379,55 @@ function smoothScrollTo(targetY, duration) {
   });
   var thumbs = railEl.children;
 
-  function show(i) {
-    idx = i;
+  function pad(n) { return (n < 9 ? '0' : '') + (n + 1); }
+  function render(i) {
     var c = cards[i];
     feature.href = c.href;
+    feature.setAttribute('aria-label', c.title + ' \u2014 open case study');
     feature.style.backgroundImage = 'url(' + c.img + ')';
-    title.textContent = c.title;
-    sub.textContent = c.sub;
-    Array.prototype.forEach.call(thumbs, function (t, j) {
-      t.classList.toggle('is_active', j === i);
-    });
+    crumb.textContent = 'Work: ' + c.title + ' \u2014 ' + c.sub;
+    indexEl.textContent = pad(i) + ' / ' + pad(cards.length - 1);
+    Array.prototype.forEach.call(thumbs, function (t, j) { t.classList.toggle('is_active', j === i); });
   }
+  function show(i) {
+    i = (i + cards.length) % cards.length;
+    if (i === idx && feature.href !== '#') { }
+    idx = i;
+    if (reduced) { render(i); return; }
+    if (busy) return;
+    busy = true;
+    feature.classList.add('is_fading');
+    setTimeout(function () {
+      render(i);
+      feature.classList.remove('is_fading');
+      setTimeout(function () { busy = false; }, 180);
+    }, 180);
+  }
+  var wheelLock = 0;
+  stage.addEventListener('wheel', function (e) {
+    if (document.documentElement.getAttribute('data-skin') !== 'studio') return;
+    e.preventDefault();
+    var now = Date.now();
+    if (now - wheelLock < 650 || Math.abs(e.deltaY) < 8) return;
+    wheelLock = now;
+    show(idx + (e.deltaY > 0 ? 1 : -1));
+  }, { passive: false });
+  stage.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') show(idx + 1);
+    if (e.key === 'ArrowLeft') show(idx - 1);
+  });
   function syncHidden() {
     var on = document.documentElement.getAttribute('data-skin') === 'studio';
     grid.classList.toggle('is_studio_hidden', on);
-    // Inline as belt to the CSS braces; the original blocker was a
-    // display !important on the grid (removed), found via this hide.
     grid.style.display = on ? 'none' : '';
+    var pageTitle = document.querySelector('.home_work_title') || document.querySelector('main h1.jm_title, header h1.jm_title');
+    if (pageTitle) {
+      var box = pageTitle.closest('header') || pageTitle;
+      box.style.display = on ? 'none' : '';
+    }
   }
   new MutationObserver(syncHidden).observe(document.documentElement, { attributes: true, attributeFilter: ['data-skin'] });
-  stage.querySelector('.studio_rail').addEventListener('keydown', function (e) {
-    if (e.key === 'ArrowRight') show((idx + 1) % cards.length);
-    if (e.key === 'ArrowLeft') show((idx - 1 + cards.length) % cards.length);
-  });
-  show(0);
+  render(0);
   syncHidden();
 }());
 

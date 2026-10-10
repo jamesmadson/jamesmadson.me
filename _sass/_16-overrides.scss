@@ -502,6 +502,272 @@ html.theme-light .wall_empty { color: rgba($dark-default, 0.55); }
 // cycles the feature. House accent, house artwork, vanilla JS.
 html[data-skin='studio'] {
   .nav_inline a, .site_name { font-family: $mono; font-size: $type-xs; letter-spacing: 0.04em; text-transform: uppercase; }
+  .home_work_grid.is_studio_hidden { display: none; }
+  .cv2_figtag { color: #E64F13; }
+}
+
+.studio_stage {
+  display: none;
+  position: relative;
+
+  .studio_strip {
+    align-items: baseline;
+    color: $white;
+    display: flex;
+    font-family: $mono;
+    font-size: $type-xs;
+    justify-content: space-between;
+    letter-spacing: 0.05em;
+    padding: 0.65rem 1.25rem;
+    text-transform: uppercase;
+
+    .studio_crumb { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .studio_index { color: #E64F13; flex: 0 0 auto; margin-left: 1rem; }
+  }
+
+  .studio_feature {
+    background-position: center;
+    background-size: cover;
+    display: block;
+    height: calc(100svh - 160px);
+    opacity: 1;
+    transition: opacity 0.18s ease;
+    width: 100%;
+
+    &.is_fading { opacity: 0; }
+  }
+
+  .studio_rail {
+    background: $dark-bg;
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding: 0.6rem 1.25rem;
+
+    button {
+      background-position: center;
+      background-size: cover;
+      border: 2px solid transparent;
+      border-radius: 4px;
+      cursor: pointer;
+      flex: 0 0 auto;
+      height: 48px;
+      opacity: 0.55;
+      transition: opacity 0.15s ease, border-color 0.15s ease;
+      width: 76px;
+
+      &:hover, &:focus-visible { opacity: 0.85; }
+      &.is_active { border-color: #E64F13; opacity: 1; }
+    }
+  }
+}
+html.theme-light .studio_stage .studio_strip { color: $dark-default; }
+html.theme-light .studio_stage .studio_rail { background: $tan; }
+
+html[data-skin='studio'] {
+  // the exhibition takes the viewport; the page chrome steps back
+  .home_work .container:first-child, .work_page_section > .container:first-of-type { padding-top: 0; }
+  .studio_stage { display: block; margin-inline: calc(50% - 50vw); width: 100vw; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .studio_stage .studio_feature { transition: none; }
+}
+
+// Markdown: the site as a document, Obsidian-style (James's reference).
+// Layout literally flattens to one reading column, chrome hides, pages
+// become tabs in a bar the dials module injects on every page.
+html[data-skin='markdown'] {
+  --fog-blur-card: 0px;
+  --fog-blur-hero: 0px;
+  --radius-card: 4px;
+  --radius-fig: 2px;
+
+  body, .hero_headline, .wc_headline, .jm_title, h1, h2, h3, h4 {
+    font-family: $mono;
+    letter-spacing: 0;
+  }
+  .hero_headline { font-size: clamp(1.3rem, 1.6vw + 0.8rem, 1.8rem); font-weight: 500; }
+  h1::before, .jm_title::before, .home_work_title::before { content: '# '; color: rgba($white, 0.35); }
+  .project h3::before, .about h3::before, h2::before { content: '## '; color: rgba($white, 0.35); }
+
+  // chrome off: the tab bar is the navigation
+  .site_header, .mobile_nav_menu, .site_footer, footer { display: none; }
+  .md_tabs { display: flex; }
+
+  // the one column
+  .container, .container_fluid {
+    display: block;
+    margin-inline: auto;
+    max-width: 740px;
+    padding: 0 1.25rem;
+  }
+  .home_work_grid, .work_page_grid, .now_columns, .how_work_grid,
+  .cv2_plugins, .cv2_pair, .stats-container, .values_row, .graft_columns {
+    display: block;
+    > * { margin-bottom: 1rem; }
+  }
+  header.about_header, section, main { padding-top: 1rem; padding-bottom: 1rem; }
+
+  // cards are not cards here: plain document entries, zero chrome.
+  // Inks run on currentColor: the baked $white ink only worked while
+  // cards kept their dark grounds.
+  // documents don't have entrances: reveal/stagger systems neutralized
+  .hwc, .value_word, .value_connector, .services_list li {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .hwc { box-shadow: none; display: block; rotate: none; }
+  .hwc:hover { box-shadow: none; }
+  .hwc_img { aspect-ratio: auto; background: none; border-radius: 0; }
+  .wc {
+    background: none;
+    box-shadow: none;
+    color: inherit;
+    inset: auto;
+    padding: 0.5rem 0 1rem;
+    position: static;
+  }
+  .wc::before { display: none; }
+  // the headline's <br> stays: a two-line title is how the source reads
+  .wc_headline {
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.35;
+    &::before { content: '### '; font-weight: 400; opacity: 0.4; }
+  }
+  .wc_subhead { color: inherit; font-size: 0.9rem; opacity: 0.65; }
+  .wc_tags {
+    gap: 0;
+    li {
+      background: none;
+      border: 0;
+      border-radius: 0;
+      color: inherit;
+      opacity: 0.55;
+      padding: 0;
+      rotate: none;
+      text-transform: lowercase;
+    }
+    li + li::before { content: ' \00b7 '; white-space: pre; }
+  }
+  .wc_top, .wc .stats-container { display: none; }
+  .cv2_panel { background: none; box-shadow: inset 0 0 0 1px rgba($white, 0.25); }
+  .hwc:hover { transform: none; }
+  p a, .law a { text-decoration: underline; }
+}
+
+// Obsidian-style page tabs: always in the DOM (dials module injects),
+// visible only in markdown mode.
+.md_tabs {
+  background: color-mix(in srgb, $dark-bg 88%, black);
+  border-bottom: 1px solid rgba($white, 0.12);
+  display: none;
+  font-family: $mono;
+  font-size: $type-xs;
+  gap: 2px;
+  overflow-x: auto;
+  padding: 0.5rem 0.75rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+
+  a {
+    border: 1px solid transparent;
+    border-bottom: 0;
+    border-radius: 7px 7px 0 0;
+    color: rgba($white, 0.55);
+    padding: 0.55em 1.1em;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover { color: rgba($white, 0.85); }
+    &.active {
+      background: $dark-bg;
+      border-color: rgba($white, 0.12);
+      color: $white;
+    }
+  }
+}
+html.theme-light .md_tabs {
+  background: color-mix(in srgb, $tan 92%, black);
+  border-bottom-color: rgba($dark-default, 0.18);
+  a { color: rgba($dark-default, 0.6); &:hover { color: $dark-default; } &.active { background: $tan; border-color: rgba($dark-default, 0.18); color: $dark-default; } }
+}
+
+// Grunge round three: the chroma shadow read as gimmick (James), so
+// the register is David Carson now. Type collides: tight tracking,
+// line-heights under 1, uppercase cuts, stamped tags, nothing sits
+// quite straight. Legibility holds; order doesn't.
+html[data-skin='grunge'] {
+  .hero_headline, .wc_headline {
+    letter-spacing: -0.05em;
+    line-height: 0.85;
+    text-transform: uppercase;
+  }
+  .wc_headline { rotate: -1.5deg; }
+  .project h3, .home_work_title {
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+    text-transform: uppercase;
+  }
+  .cv2_figtag {
+    background: #d8ff3e;
+    color: #171814;
+    display: inline-block;
+    padding: 0 0.45em;
+    rotate: -1.2deg;
+  }
+  .cv2_figcap { rotate: 0.4deg; }
+  .project p a, .about_me a, .law a {
+    text-decoration: underline wavy #d8ff3e 2px;
+    text-underline-offset: 4px;
+  }
+  .cv2_panel { box-shadow: inset 0 0 0 1px rgba(216, 255, 62, 0.35); }
+  .wc { box-shadow: inset 0 0 0 2px rgba(216, 255, 62, 0.4); }
+  .hwc { rotate: -0.5deg; }
+  .hwc:nth-child(2n) { rotate: 0.6deg; }
+  .dials_fab { transition: rotate 0.4s var(--spring); }
+  .dials_fab:hover { rotate: 90deg; }
+  .site_footer { border-top: 2px dashed #d8ff3e; }
+}
+
+// tl;dr length lens: the site's own leadins carry each page; the
+// elaboration hides. No parallel copy exists or ever should: this is
+// a length control, not a second voice.
+html[data-tldr] {
+  .cs_body_cols,
+  .project .grid_12 > p:not(.leadin):not(.canon_closing),
+  .practice_ai .about_me:not(:last-of-type),
+  .how_work_grid p,
+  .experience_right p:not(.experience_role) {
+    display: none;
+  }
+}
+
+// The wall: masonry-lite via columns; unlinked, noindexed, a bench not
+// a destination.
+.wall_grid {
+  column-gap: 1rem;
+  columns: 3 280px;
+
+  img {
+    border-radius: var(--radius-fig);
+    display: block;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+}
+.wall_empty { color: rgba($white, 0.5); font-family: $mono; font-size: $type-sm; }
+html.theme-light .wall_empty { color: rgba($dark-default, 0.55); }
+
+// Studio: system-level read of bd85bd85.com (credited in the rail),
+// never its layout or assets. The exhibition mechanic: on /work/, the
+// grid yields to a full-bleed stage showing one project's own ambient
+// artwork, orange title set ON the work, and a thumbnail rail that
+// cycles the feature. House accent, house artwork, vanilla JS.
+html[data-skin='studio'] {
+  .nav_inline a, .site_name { font-family: $mono; font-size: $type-xs; letter-spacing: 0.04em; text-transform: uppercase; }
 
   .studio_stage { display: block; }
   .home_work_grid.is_studio_hidden { display: none; }

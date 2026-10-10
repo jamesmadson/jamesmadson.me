@@ -8,7 +8,7 @@
     <span>{{ item.cover.status }}</span>
   </div>
   <p class="wc_headline">{{ item.cover.headline | safe }}</p>
-  <p class="wc_subhead">{{ item.cover.subhead }}</p>
+  <p class="wc_subhead"{% if item.cover.subheadLens %}{% for k, v in item.cover.subheadLens %} data-lens-{{ k }}="{{ v }}"{% endfor %}{% endif %}>{{ item.cover.subhead }}</p>
   {% if item.cover.artifact %}
     <img class="wc_artifact" src="{{ item.cover.artifact }}" alt="" loading="lazy">
   {% endif %}

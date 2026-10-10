@@ -29,7 +29,10 @@
           "Brand",
           "Mobile App",
           "UX"
-        ]
+        ],
+        "subheadLens": {
+          "engineer": "Zero to launch: brand system through App Store builds."
+        }
       }
     },
     {
@@ -53,7 +56,10 @@
           "UX",
           "Data Viz",
           "Design System"
-        ]
+        ],
+        "subheadLens": {
+          "engineer": "9,000+ samples made navigable: the IA and the data viz."
+        }
       }
     },
     {
@@ -81,7 +87,10 @@
           "Platform",
           "Data Viz",
           "Front-End"
-        ]
+        ],
+        "subheadLens": {
+          "engineer": "A publishing platform for genomic visualizations, 80+ live."
+        }
       }
     },
     {
@@ -117,7 +126,10 @@
           "In Progress",
           "AI Tooling",
           "Curation"
-        ]
+        ],
+        "subheadLens": {
+          "engineer": "A skills gallery with a plugin marketplace and its own test suite."
+        }
       }
     },
     {
@@ -135,7 +147,10 @@
           "Installation",
           "Data Viz",
           "Projection"
-        ]
+        ],
+        "subheadLens": {
+          "engineer": "A TouchDesigner wall and a Python bib scanner, vibe coded with Claude Code."
+        }
       }
     },
     {
@@ -154,7 +169,10 @@
           "Live",
           "AI Tooling",
           "Prototype"
-        ]
+        ],
+        "subheadLens": {
+          "engineer": "A conversation-curation tool in vanilla JS."
+        }
       }
     }
   ],
