@@ -1301,25 +1301,34 @@ function smoothScrollTo(targetY, duration) {
 // KEW reference. Original text restored the moment the skin leaves.
 // ============================================================
 (function () {
-  var h = document.querySelector('.project h1, .cs_hero h1, h1.jm_title');
-  if (!h || !document.querySelector('.project')) return;
-  var original = h.innerHTML;
+  var targets = Array.prototype.slice.call(
+    document.querySelectorAll('.project h1, .cs_hero h1, main h1.jm_title, .wc_headline')
+  );
+  if (!targets.length) return;
+  var originals = new Map();
   var done = false;
-  function jumble() {
-    var text = h.textContent;
+  function jumbleEl(h, seed) {
+    originals.set(h, h.innerHTML);
+    var text = h.textContent.replace(/\s+/g, ' ');
     h.setAttribute('aria-label', text);
     h.innerHTML = text.split('').map(function (ch, i) {
       if (ch === ' ') return ' ';
-      // deterministic pseudo-random from index: same chaos every load
-      var r = Math.sin(i * 127.1) * 43758.5453; r = r - Math.floor(r);
-      var rot = (r * 16 - 8).toFixed(1);
-      var dy = ((r * 7919 % 1) * 0.5 - 0.25).toFixed(2);
-      var big = (i % 3 === 0) ? 1.25 : 1;
-      return '<span aria-hidden="true" style="display:inline-block;transform:rotate(' + rot + 'deg) translateY(' + dy + 'em) scale(' + big + ');">' + ch + '</span>';
+      var r = Math.sin((i + seed) * 127.1) * 43758.5453; r = r - Math.floor(r);
+      var r2 = Math.sin((i + seed) * 311.7) * 12543.21; r2 = r2 - Math.floor(r2);
+      var rot = (r * 28 - 14).toFixed(1);
+      var dy = (r2 * 0.8 - 0.4).toFixed(2);
+      var big = (i % 3 === 0) ? 1.4 : (i % 5 === 0 ? 0.8 : 1);
+      var w = r2 > 0.6 ? 800 : (r > 0.7 ? 300 : 'inherit');
+      return '<span aria-hidden="true" style="display:inline-block;font-weight:' + w + ';transform:rotate(' + rot + 'deg) translateY(' + dy + 'em) scale(' + big + ');">' + ch + '</span>';
     }).join('');
-    done = true;
   }
-  function restore() { h.innerHTML = original; h.removeAttribute('aria-label'); done = false; }
+  function jumble() { targets.forEach(function (h, k) { jumbleEl(h, k * 31); }); done = true; }
+  function restore() {
+    targets.forEach(function (h) {
+      if (originals.has(h)) { h.innerHTML = originals.get(h); h.removeAttribute('aria-label'); }
+    });
+    done = false;
+  }
   function syncJumble() {
     var on = document.documentElement.getAttribute('data-skin') === 'grunge';
     if (on && !done) jumble();

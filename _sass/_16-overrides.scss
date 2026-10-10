@@ -300,7 +300,6 @@ html[data-skin='grunge'] {
   .hl_wrap:has(.highlight) { --chip: #d8ff3e; }
   .wc_tags li { rotate: -2deg; }
   .wc_tags li:nth-child(2n) { rotate: 1.8deg; }
-  .wc_headline { letter-spacing: -0.03em; text-transform: uppercase; }
   .value_word.highlight, .about_services .services_list .highlight { --chip: #ff5ca8; }
   .value_word.highlight:hover, .about_services .services_list .highlight:hover { color: #171814; }
   .cv2_figtag { color: #d8ff3e; }
@@ -436,14 +435,12 @@ html.theme-light .md_tabs {
 html[data-skin='grunge'] {
   .hero_headline, .wc_headline {
     letter-spacing: -0.05em;
-    line-height: 0.85;
-    text-transform: uppercase;
+    line-height: 0.82;
   }
   .wc_headline { rotate: -1.5deg; }
   .project h3, .home_work_title {
     letter-spacing: -0.04em;
     line-height: 0.9;
-    text-transform: uppercase;
   }
   .cv2_figtag {
     background: #d8ff3e;
@@ -463,7 +460,6 @@ html[data-skin='grunge'] {
   .hwc:nth-child(2n) { rotate: 0.6deg; }
   .dials_fab { transition: rotate 0.4s var(--spring); }
   .dials_fab:hover { rotate: 90deg; }
-  .site_footer { border-top: 2px dashed #d8ff3e; }
 }
 
 // tl;dr length lens: the site's own leadins carry each page; the
@@ -702,14 +698,12 @@ html.theme-light .md_tabs {
 html[data-skin='grunge'] {
   .hero_headline, .wc_headline {
     letter-spacing: -0.05em;
-    line-height: 0.85;
-    text-transform: uppercase;
+    line-height: 0.82;
   }
   .wc_headline { rotate: -1.5deg; }
   .project h3, .home_work_title {
     letter-spacing: -0.04em;
     line-height: 0.9;
-    text-transform: uppercase;
   }
   .cv2_figtag {
     background: #d8ff3e;
@@ -729,7 +723,6 @@ html[data-skin='grunge'] {
   .hwc:nth-child(2n) { rotate: 0.6deg; }
   .dials_fab { transition: rotate 0.4s var(--spring); }
   .dials_fab:hover { rotate: 90deg; }
-  .site_footer { border-top: 2px dashed #d8ff3e; }
 }
 
 // tl;dr length lens: the site's own leadins carry each page; the
@@ -882,14 +875,35 @@ html[data-skin='grunge'] {
     position: absolute;
     width: min(46%, 380px);
   }
-  .home_work_grid .hwc:nth-child(1) { left: 6%;  top: 4%;   rotate: -7deg; z-index: 2; }
-  .home_work_grid .hwc:nth-child(2) { left: 42%; top: 0;    rotate: 5deg;  z-index: 3; }
-  .home_work_grid .hwc:nth-child(3) { left: 20%; top: 22%;  rotate: -2deg; z-index: 4; }
-  .home_work_grid .hwc:nth-child(4) { left: 52%; top: 26%;  rotate: 9deg;  z-index: 1; }
-  .home_work_grid .hwc:nth-child(5) { left: 2%;  top: 44%;  rotate: 4deg;  z-index: 5; }
-  .home_work_grid .hwc:nth-child(6) { left: 38%; top: 48%;  rotate: -6deg; z-index: 2; }
-  .home_work_grid .hwc:nth-child(7) { left: 22%; top: 40%;  rotate: 12deg; z-index: 0; }
+  .home_work_grid .hwc:nth-child(1) { left: 4%;  top: 2%;   rotate: -11deg; width: 44%; z-index: 2; }
+  .home_work_grid .hwc:nth-child(2) { left: 38%; top: -3%;  rotate: 8deg;   width: 52%; z-index: 3; }
+  .home_work_grid .hwc:nth-child(3) { left: 16%; top: 18%;  rotate: -4deg;  width: 38%; z-index: 4; }
+  .home_work_grid .hwc:nth-child(4) { left: 48%; top: 20%;  rotate: 14deg;  width: 46%; z-index: 1; }
+  .home_work_grid .hwc:nth-child(5) { left: -2%; top: 38%;  rotate: 6deg;   width: 50%; z-index: 5; }
+  .home_work_grid .hwc:nth-child(6) { left: 40%; top: 44%;  rotate: -9deg;  width: 42%; z-index: 2; }
+  .home_work_grid .hwc:nth-child(7) { left: 20%; top: 34%;  rotate: 17deg;  width: 40%; z-index: 0; }
   .home_work_grid .hwc:hover { rotate: 0deg; z-index: 9; }
+
+  // photocopy grain over the pile (the scratched-paper move)
+  .home_work_grid::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+    content: '';
+    inset: -4%;
+    mix-blend-mode: overlay;
+    opacity: 0.22;
+    pointer-events: none;
+    position: absolute;
+    z-index: 8;
+  }
+
+  // type blows past the scrap and crops at its edge: the cut-off move
+  .home_work_grid .wc_headline {
+    font-size: 13cqw;
+    letter-spacing: -0.06em;
+    line-height: 0.78;
+    margin-left: -0.06em;
+  }
+  .home_work_grid .hwc:nth-child(2n) .wc_headline { font-size: 15cqw; margin-top: -0.12em; }
 
   @media (max-width: 700px) {
     .home_work_grid { min-height: 120vw; }
