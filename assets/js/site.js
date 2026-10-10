@@ -59,6 +59,8 @@
     window.JM = window.JM || {};
     JM.lens = d.lens ? LENSES[d.lens] : null;
     JM.lensKey = d.lens || '';
+    if (d.lens) document.documentElement.setAttribute('data-lens', d.lens);
+    else document.documentElement.removeAttribute('data-lens');
     swapLensText();
   }
   // Tier two: any element carrying data-lens-<key> swaps its text while
@@ -75,6 +77,22 @@
 
   var state = read();
   apply(state); // always: JM.lens must exist before hero.js builds
+
+  // compact control factories for the rail
+  function seg(group, opts) {
+    return '<div class="dials_rail_seg" role="group">' + opts.map(function (o) {
+      return '<button type="button" data-seg="' + group + '" data-val="' + o[0].replace(/"/g, '&quot;') + '">' + o[1] + '</button>';
+    }).join('') + '</div>';
+  }
+  function ctl(label, tip, body, outKey) {
+    return '<div class="dials_ctl">' +
+      '<div class="dials_ctl_head">' +
+      '  <span class="dials_ctl_label">' + label + '</span>' +
+      '  <button type="button" class="dials_info" aria-label="About ' + label + '" aria-expanded="false">?</button>' +
+      (outKey ? '  <output data-out="' + outKey + '"></output>' : '') +
+      '  <span class="dials_tip" role="tooltip" hidden>' + tip + '</span>' +
+      '</div>' + body + '</div>';
+  }
 
   function build() {
     var fab = document.createElement('button');
@@ -98,176 +116,101 @@
       '  <span>Dials</span>' +
       '  <button type="button" class="dials_rail_close" aria-label="Close dials">\u2715</button>' +
       '</div>' +
-      '<p class="dials_rail_note">Live tokens and lenses. They follow you across the whole site until you reset; canon is no overrides at all.</p>' +
-      '<label>Theme' +
-      '  <div class="dials_rail_seg" role="group" aria-label="Theme">' +
-      '    <button type="button" data-theme-set="">system</button>' +
-      '    <button type="button" data-theme-set="light">light</button>' +
-      '    <button type="button" data-theme-set="dark">dark</button>' +
-      '  </div>' +
-      '  <span class="dials_rail_desc">Moved here from the menu. System follows your OS.</span></label>' +
-      '<label>Length' +
-      '  <div class="dials_rail_seg" role="group" aria-label="Length">' +
-      '    <button type="button" data-tldr-set="">full</button>' +
-      '    <button type="button" data-tldr-set="1">tl;dr</button>' +
-      '  </div>' +
-      '  <span class="dials_rail_desc">The leadins were always the summary; tl;dr hides the elaboration. No rewritten copy, just less of it.</span></label>' +
-      '<label>Lens' +
-      '  <select data-dial="lens">' +
-      '    <option value="">James, as written</option>' +
-      '    <option value="engineer">for an engineer</option>' +
-      '    <option value="director">for a design director</option>' +
-      '    <option value="recruiter">for a recruiter</option>' +
-      '  </select>' +
-      '  <span class="dials_rail_desc">Re-aims the hero line, the card subheads, and case-study fact lines. The originals are canon; lenses are visible swaps, never the source.</span></label>' +
-      '<label>Skin' +
-      '  <select data-dial="skin">' +
-      '    <option value="">canon</option>' +
-      '    <option value="editorial">editorial \u00b7 serif cut, hairlines</option>' +
-      '    <option value="grunge">grunge \u00b7 acid stickers</option>' +
-      '    <option value="markdown">markdown \u00b7 for agents and source readers</option>' +
-      '    <option value="studio">studio \u00b7 after bd85bd85.com</option>' +
-      '  </select>' +
-      '  <span class="dials_rail_desc">The visual register. Editorial sets display type in a serif and squares the corners; grunge gets loud.</span></label>' +
-      '<hr class="dials_rail_hr">' +
-      '<label>Card radius <output data-out="radius"></output>' +
-      '  <input type="range" data-dial="radius" min="0" max="28" step="1">' +
-      '  <span class="dials_rail_desc">Corner softness on cards and figures. Zero is brutalist.</span></label>' +
-      '<label>Type scale <output data-out="type"></output>' +
-      '  <input type="range" data-dial="type" min="0.92" max="1.12" step="0.01">' +
-      '  <span class="dials_rail_desc">Scales the whole rem system from the root.</span></label>' +
-      '<label>Fog <output data-out="fog"></output>' +
-      '  <input type="range" data-dial="fog" min="0" max="2" step="0.05">' +
-      '  <span class="dials_rail_desc">How far the artwork blurs behind the veils. Zero shows it raw.</span></label>' +
-      '<label>Spring' +
-      '  <select data-dial="spring">' +
-      '    <option value="">canon \u00b7 one soft overshoot</option>' +
-      '    <option value="cubic-bezier(0.25, 0.1, 0.25, 1)">calm \u00b7 no overshoot</option>' +
-      '    <option value="linear(0, 0.6 20%, 1.12 55%, 0.95 78%, 1.02 92%, 1)">springy \u00b7 double bounce</option>' +
-      '  </select>' +
-      '  <span class="dials_rail_desc">The curve every lift, flood, and this very rail ride.</span></label>' +
+      ctl('Theme', 'Follows your OS unless you pick one.',
+        seg('theme', [['', 'System'], ['light', 'Light'], ['dark', 'Dark']])) +
+      ctl('Length', 'The leadins were always the summary; Tl;dr hides the elaboration. No rewritten copy.',
+        seg('tldr', [['', 'Full'], ['1', 'Tl;dr']])) +
+      ctl('Lens', 'Re-aims the hero, card lines, and case facts for who\u2019s reading. The originals are canon; lenses are visible swaps.',
+        seg('lens', [['', 'James'], ['engineer', 'Engineer'], ['director', 'Director'], ['recruiter', 'Recruiter']])) +
+      ctl('Skin', 'The visual register. Canon is the absence of one.',
+        seg('skin', [['', 'Canon'], ['editorial', 'Editorial'], ['grunge', 'Grunge'], ['markdown', 'Markdown'], ['studio', 'Studio']])) +
+      ctl('Spring', 'The curve every lift, flood, and this rail ride.',
+        seg('spring', [['', 'Canon'], ['cubic-bezier(0.25, 0.1, 0.25, 1)', 'Calm'], ['linear(0, 0.6 20%, 1.12 55%, 0.95 78%, 1.02 92%, 1)', 'Springy']])) +
+      ctl('Radius', 'Corner softness on cards and figures. Zero is brutalist.',
+        '<input type="range" data-dial="radius" min="0" max="28" step="1">', 'radius') +
+      ctl('Type', 'Scales the whole rem system from the root.',
+        '<input type="range" data-dial="type" min="0.92" max="1.12" step="0.01">', 'type') +
+      ctl('Fog', 'How far the artwork blurs behind the veils. Zero shows it raw.',
+        '<input type="range" data-dial="fog" min="0" max="2" step="0.05">', 'fog') +
       '<button type="button" class="dials_rail_reset">Reset to canon</button>' +
-      '<a class="dials_rail_export" href="/assets/jamesmadson-system.skill.md" download>Export this system \u2193</a>' +
-      '<span class="dials_rail_desc">A skill file of the tokens and contracts, attribution included, for anyone building with an agent.</span>';
+      '<a class="dials_rail_export" href="/assets/jamesmadson-system.skill.md" download>Export this system \u2193</a>';
 
     document.body.appendChild(rail);
     document.body.appendChild(fab);
 
     var inputs = {
-      lens: rail.querySelector('[data-dial="lens"]'),
-      skin: rail.querySelector('[data-dial="skin"]'),
       radius: rail.querySelector('[data-dial="radius"]'),
       type: rail.querySelector('[data-dial="type"]'),
-      fog: rail.querySelector('[data-dial="fog"]'),
-      spring: rail.querySelector('[data-dial="spring"]')
+      fog: rail.querySelector('[data-dial="fog"]')
     };
     var outs = {
       radius: rail.querySelector('[data-out="radius"]'),
       type: rail.querySelector('[data-out="type"]'),
       fog: rail.querySelector('[data-out="fog"]')
     };
-
+    function segButtons(group) { return rail.querySelectorAll('[data-seg="' + group + '"]'); }
+    function segValue(group) {
+      if (group === 'theme') { try { return localStorage.getItem('theme') || ''; } catch (e) { return ''; } }
+      if (group === 'tldr') return state.tldr ? '1' : '';
+      return state[group] || '';
+    }
     function sync() {
       inputs.radius.value = state.radius != null ? state.radius : DEFAULTS.radius;
       inputs.type.value = state.type != null ? state.type : DEFAULTS.type;
       inputs.fog.value = state.fog != null ? state.fog : DEFAULTS.fog;
-      inputs.spring.value = state.spring || '';
-      inputs.lens.value = state.lens || '';
-      inputs.skin.value = state.skin || '';
       outs.radius.value = inputs.radius.value + 'px';
       outs.type.value = (+inputs.type.value).toFixed(2);
       outs.fog.value = (+inputs.fog.value).toFixed(2).replace(/0$/, '') + '\u00d7';
+      ['theme', 'tldr', 'lens', 'skin', 'spring'].forEach(function (g) {
+        var cur = segValue(g);
+        Array.prototype.forEach.call(segButtons(g), function (b) {
+          b.classList.toggle('is_on', b.getAttribute('data-val') === cur);
+        });
+      });
       fab.classList.toggle('is_engaged', engaged(state));
     }
-
     ['radius', 'type', 'fog'].forEach(function (k) {
       inputs[k].addEventListener('input', function () {
         state[k] = +inputs[k].value;
         if (state[k] === DEFAULTS[k]) delete state[k];
         apply(state); save(state); sync();
       });
-      // analytics on release, not per-pixel drag
       inputs[k].addEventListener('change', function () { track(k, inputs[k].value); });
     });
-    inputs.spring.addEventListener('change', function () {
-      if (inputs.spring.value) state.spring = inputs.spring.value; else delete state.spring;
-      apply(state); save(state); sync();
+    rail.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-seg]');
+      if (b) {
+        var g = b.getAttribute('data-seg'), v = b.getAttribute('data-val');
+        if (g === 'theme') { track('theme', v || 'system'); setTheme(v || null); }
+        else if (g === 'tldr') { track('length', v ? 'tldr' : 'full'); if (v) state.tldr = true; else delete state.tldr; apply(state); save(state); }
+        else {
+          track(g, v || 'canon');
+          if (v) state[g] = v; else delete state[g];
+          apply(state); save(state);
+          if (g === 'lens') window.dispatchEvent(new Event('jm:lens'));
+        }
+        sync();
+        return;
+      }
+      var info = e.target.closest('.dials_info');
+      if (info) {
+        var tip = info.parentElement.querySelector('.dials_tip');
+        var open = !tip.hidden;
+        Array.prototype.forEach.call(rail.querySelectorAll('.dials_tip'), function (t) { t.hidden = true; });
+        Array.prototype.forEach.call(rail.querySelectorAll('.dials_info'), function (i) { i.setAttribute('aria-expanded', 'false'); });
+        if (!open) { tip.hidden = false; info.setAttribute('aria-expanded', 'true'); }
+        return;
+      }
+      if (!e.target.closest('.dials_tip')) {
+        Array.prototype.forEach.call(rail.querySelectorAll('.dials_tip'), function (t) { t.hidden = true; });
+      }
     });
-    inputs.lens.addEventListener('change', function () {
-      track('lens', inputs.lens.value || 'og');
-      if (inputs.lens.value) state.lens = inputs.lens.value; else delete state.lens;
-      apply(state); save(state); sync();
-      window.dispatchEvent(new Event('jm:lens'));
-    });
-    inputs.skin.addEventListener('change', function () {
-      track('skin', inputs.skin.value || 'canon');
-      if (inputs.skin.value) state.skin = inputs.skin.value; else delete state.skin;
-      apply(state); save(state); sync();
-    });
-    Array.prototype.forEach.call(rail.querySelectorAll('[data-tldr-set]'), function (b) {
-      b.addEventListener('click', function () {
-        track('length', b.getAttribute('data-tldr-set') ? 'tldr' : 'full');
-        if (b.getAttribute('data-tldr-set')) state.tldr = true; else delete state.tldr;
-        apply(state); save(state); sync(); syncTldr();
-      });
-    });
-    function syncTldr() {
-      Array.prototype.forEach.call(rail.querySelectorAll('[data-tldr-set]'), function (b) {
-        b.classList.toggle('is_on', !!b.getAttribute('data-tldr-set') === !!state.tldr);
-      });
-    }
-    syncTldr();
-    Array.prototype.forEach.call(rail.querySelectorAll('[data-theme-set]'), function (b) {
-      b.addEventListener('click', function () {
-        track('theme', b.getAttribute('data-theme-set') || 'system');
-        setTheme(b.getAttribute('data-theme-set') || null);
-        syncTheme();
-      });
-    });
-    function syncTheme() {
-      var cur = '';
-      try { cur = localStorage.getItem('theme') || ''; } catch (e) {}
-      Array.prototype.forEach.call(rail.querySelectorAll('[data-tldr-set]'), function (b) {
-      b.addEventListener('click', function () {
-        track('length', b.getAttribute('data-tldr-set') ? 'tldr' : 'full');
-        if (b.getAttribute('data-tldr-set')) state.tldr = true; else delete state.tldr;
-        apply(state); save(state); sync(); syncTldr();
-      });
-    });
-    function syncTldr() {
-      Array.prototype.forEach.call(rail.querySelectorAll('[data-tldr-set]'), function (b) {
-        b.classList.toggle('is_on', !!b.getAttribute('data-tldr-set') === !!state.tldr);
-      });
-    }
-    syncTldr();
-    Array.prototype.forEach.call(rail.querySelectorAll('[data-theme-set]'), function (b) {
-        b.classList.toggle('is_on', (b.getAttribute('data-theme-set') || '') === cur);
-      });
-    }
-    syncTheme();
     rail.querySelector('.dials_rail_reset').addEventListener('click', function () {
       track('reset', 'canon');
       state = {};
-      apply(state); save(state); sync(); syncTldr();
+      apply(state); save(state); sync();
       window.dispatchEvent(new Event('jm:lens'));
     });
-
-    function setOpen(open) {
-      rail.classList.toggle('is_open', open);
-      fab.setAttribute('aria-expanded', String(open));
-      if (open) inputs.lens.focus();
-      else fab.focus();
-    }
-    fab.addEventListener('click', function () {
-      var opening = !rail.classList.contains('is_open');
-      if (opening) track('open', location.pathname);
-      setOpen(opening);
-    });
-    rail.querySelector('.dials_rail_close').addEventListener('click', function () { setOpen(false); });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && rail.classList.contains('is_open')) setOpen(false);
-    });
-
     rail.querySelector('.dials_rail_export').addEventListener('click', function () { track('export', 'skill'); });
     sync();
   }

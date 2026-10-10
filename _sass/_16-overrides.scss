@@ -196,6 +196,46 @@ html.theme-light .glide_pill { background: rgba($dark-default, 0.07); }
   .dials_rail_note { color: rgba($white, 0.55); font-size: $type-sm; line-height: 1.5; margin: 0; }
   .dials_rail_desc { color: rgba($white, 0.45); font-size: $type-xs; line-height: 1.5; }
   .dials_rail_hr { border: 0; border-top: 1px solid rgba($white, 0.12); margin: 0.2rem 0; width: 100%; }
+
+  .dials_ctl { display: grid; gap: 0.45rem; }
+  .dials_ctl_head {
+    align-items: center;
+    display: flex;
+    gap: 0.45rem;
+    position: relative;
+
+    .dials_ctl_label { font-size: $type-sm; font-weight: 600; }
+    output { color: rgba($white, 0.5); font-family: $mono; font-size: $type-xs; margin-left: auto; }
+  }
+  .dials_info {
+    background: none;
+    border: 1px solid rgba($white, 0.3);
+    border-radius: 50%;
+    color: rgba($white, 0.55);
+    cursor: pointer;
+    font-family: $mono;
+    font-size: 10px;
+    height: 17px;
+    line-height: 1;
+    padding: 0;
+    width: 17px;
+
+    &:hover, &:focus-visible, &[aria-expanded='true'] { border-color: rgba($white, 0.7); color: $white; }
+  }
+  .dials_tip {
+    background: color-mix(in srgb, $dark-bg 92%, black);
+    border: 1px solid rgba($white, 0.2);
+    border-radius: 8px;
+    color: rgba($white, 0.85);
+    font-size: $type-xs;
+    left: 0;
+    line-height: 1.5;
+    padding: 0.6em 0.8em;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 6px);
+    z-index: 5;
+  }
   label { display: grid; font-size: $type-sm; gap: 0.5rem; }
   output { color: rgba($white, 0.5); font-family: $mono; font-size: $type-xs; justify-self: end; margin-top: -1.35rem; }
   input[type='range'] { accent-color: $white; width: 100%; }
@@ -236,6 +276,7 @@ html.theme-light {
 
 .dials_rail_seg {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.4rem;
 
   button {
@@ -244,11 +285,12 @@ html.theme-light {
     border-radius: 99em;
     color: rgba($white, 0.75);
     cursor: pointer;
-    flex: 1;
+    flex: 0 0 auto;
     font: inherit;
     font-size: $type-xs;
-    padding: 0.4em 0;
+    padding: 0.4em 0.9em;
     &.is_on, &:hover { border-color: rgba($white, 0.7); color: $white; }
+    &.is_on { background: rgba($white, 0.1); }
   }
 }
 .dials_rail_export {
@@ -257,7 +299,9 @@ html.theme-light {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-html.theme-light .dials_rail_seg button { border-color: rgba($dark-default, 0.35); color: rgba($dark-default, 0.75); &.is_on, &:hover { border-color: $dark-default; color: $dark-default; } }
+html.theme-light .dials_rail_seg button { border-color: rgba($dark-default, 0.35); color: rgba($dark-default, 0.75); &.is_on, &:hover { border-color: $dark-default; color: $dark-default; } &.is_on { background: rgba($dark-default, 0.08); } }
+html.theme-light .dials_info { border-color: rgba($dark-default, 0.4); color: rgba($dark-default, 0.6); }
+html.theme-light .dials_tip { background: $tan; border-color: rgba($dark-default, 0.25); color: $dark-default; }
 html.theme-light .dials_rail_export { color: $dark-default; }
 
 // ============================================================
@@ -884,6 +928,18 @@ html[data-skin='grunge'] {
   .home_work_grid .hwc:nth-child(7) { left: 20%; top: 34%;  rotate: 17deg;  width: 40%; z-index: 0; }
   .home_work_grid .hwc:hover { rotate: 0deg; z-index: 9; }
 
+  // neon scraps: flat acid grounds, dark ink, fog off so they scream
+  .wc::before { display: none; }
+  .hwc .wc { color: #141414; }
+  .hwc .wc_tags li { background: #141414; }
+  .hwc.nd .wc      { background: #39ff14; } .hwc.nd .wc_tags li      { color: #39ff14; }
+  .hwc.nq .wc      { background: #39ff14; } .hwc.nq .wc_tags li      { color: #39ff14; }
+  .hwc.pecan .wc   { background: #00e5ff; } .hwc.pecan .wc_tags li   { color: #00e5ff; }
+  .hwc.viz .wc     { background: #5e7bff; } .hwc.viz .wc_tags li     { color: #5e7bff; }
+  .hwc.canon .wc   { background: #f2ff00; } .hwc.canon .wc_tags li   { color: #f2ff00; }
+  .hwc.saddles .wc { background: #b026ff; } .hwc.saddles .wc_tags li { color: #b026ff; }
+  .hwc.graft .wc   { background: #ff5ca8; } .hwc.graft .wc_tags li   { color: #ff5ca8; }
+
   // photocopy grain over the pile (the scratched-paper move)
   .home_work_grid::before {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
@@ -920,3 +976,12 @@ html[data-skin='grunge'] {
   #overview .cs_body_cols { margin-top: -2.2em; rotate: -1.4deg; }
   #overview .leadin { rotate: 0.8deg; }
 }
+
+// Lens reveals: factual asides that exist only for one reader. Hidden
+// in canon; the matching lens shows them. Resume never participates.
+[data-lens-show] { display: none; }
+html[data-lens='engineer'] [data-lens-show='engineer'],
+html[data-lens='director'] [data-lens-show='director'],
+html[data-lens='recruiter'] [data-lens-show='recruiter'] { display: block; }
+.cs_lens_aside { color: rgba($white, 0.6); font-family: $mono; font-size: $type-sm; letter-spacing: 0.03em; margin: 0 0 1rem; }
+html.theme-light .cs_lens_aside { color: rgba($dark-default, 0.6); }
