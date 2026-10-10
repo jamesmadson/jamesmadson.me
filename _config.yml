@@ -1,7 +1,0 @@
-title: "jamesmadson.me"
-baseurl: ""
-url: "http://example.com"
-
-# Build settings
-markdown: kramdown
-permalink: pretty

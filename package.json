@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "eleventy --serve",
     "build": "eleventy",
-    "build:css": "sass --no-source-map _sass/styles.scss:assets/css/styles.css",
+    "build:css": "sass --no-source-map --style=compressed _sass/styles.scss:assets/css/styles.css",
     "start": "npm run dev"
   },
   "overrides": {

@@ -1,348 +1,39 @@
 ---
+layout: base.njk
 permalink: /resume/
----
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="color-scheme" content="light dark">
-  <title>Resume – James Madson</title>
-  <meta name="description" content="Resume of James Madson, a product design engineer based in Seattle.">
-  <meta name="author" content="James Madson">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-
-  <link rel="icon" href="icons/favicon.ico?v={{ build.version }}" sizes="32x32">
-  <link rel="icon" type="image/svg+xml" href="icons/favicon.svg?v={{ build.version }}">
-  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png?v={{ build.version }}">
-  <link rel="manifest" href="icons/site.webmanifest">
-  <link rel="mask-icon" href="icons/safari-pinned-tab.svg" color="#282829">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" type="text/css" href="/assets/css/styles.css?v={{ build.version }}" />
-
-  <script>!function(){var e=document.documentElement,t=localStorage.getItem("theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");e.className=e.className.replace(/\btheme-\S+/g,"");e.classList.add("theme-"+t)}();</script>
-
-  <style>
-    .resume_header {
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      padding: 4rem 3rem 3rem;
-    }
-    .theme-light .resume_header { border-bottom-color: rgba(0,0,0,0.1); }
-
-    .resume_name {
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
-      font-weight: 500;
-      letter-spacing: -0.02em;
-      line-height: 1;
-      margin: 0 0 0.4rem;
-    }
-    .resume_title {
-      color: rgba(255,255,255,0.6);
-      font-size: 1.15rem;
-      font-weight: 400;
-      letter-spacing: 0;
-      margin: 0 0 1.5rem;
-    }
-    .theme-light .resume_title { color: rgba(0,0,0,0.45); }
-
-    .resume_contact {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.25rem 1.5rem;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    .resume_contact li {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 0.8rem;
-      font-weight: 400;
-      letter-spacing: 0.03em;
-    }
-    .resume_contact a {
-      color: rgba(255,255,255,0.7);
-      text-decoration: none;
-      transition: color 0.15s ease;
-    }
-    .resume_contact a:hover { color: rgba(255,255,255,0.95); }
-    .theme-light .resume_contact a { color: rgba(0,0,0,0.6); }
-    .theme-light .resume_contact a:hover { color: rgba(0,0,0,0.85); }
-    .resume_contact span { color: rgba(255,255,255,0.65); }
-    .theme-light .resume_contact span { color: rgba(0,0,0,0.55); }
-
-    .resume_section {
-      border-top: 1px solid rgba(255,255,255,0.1);
-      display: grid;
-      gap: 1rem 3rem;
-      grid-template-columns: 220px 1fr;
-      padding: 3rem 0;
-    }
-    .theme-light .resume_section { border-top-color: rgba(0,0,0,0.08); }
-    @media (max-width: 768px) {
-      .resume_section { grid-template-columns: 1fr; gap: 0.75rem; }
-    }
-
-    .resume_section_label {
-      color: rgba(255,255,255,0.5);
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 0.8rem;
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      padding-top: 0.3rem;
-      text-transform: uppercase;
-    }
-    .theme-light .resume_section_label { color: rgba(0,0,0,0.5); }
-
-    .resume_summary {
-      color: rgba(255,255,255,0.85);
-      font-size: 1.05rem;
-      line-height: 1.7;
-      margin: 0;
-      max-width: 34em;
-    }
-    .theme-light .resume_summary { color: rgba(0,0,0,0.75); }
-
-    .resume_job {
-      border-top: 1px solid rgba(255,255,255,0.07);
-      padding: 2rem 0;
-    }
-    .resume_job:first-child { border-top: none; padding-top: 0; }
-    .theme-light .resume_job { border-top-color: rgba(0,0,0,0.06); }
-
-    .resume_job_header {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      gap: 0.4rem 1rem;
-      margin-bottom: 0.6rem;
-    }
-    .resume_job_title {
-      color: rgba(255,255,255,0.95);
-      font-size: 1.15rem;
-      font-weight: 600;
-      margin: 0;
-    }
-    .theme-light .resume_job_title { color: rgba(0,0,0,0.85); }
-
-    .resume_job_company {
-      color: rgba(255,255,255,0.7);
-      font-size: 0.9rem;
-      font-weight: 400;
-    }
-    .theme-light .resume_job_company { color: rgba(0,0,0,0.6); }
-
-    .resume_job_meta {
-      color: rgba(255,255,255,0.6);
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 0.68rem;
-      font-weight: 400;
-      letter-spacing: 0.03em;
-      margin-left: auto;
-    }
-    .theme-light .resume_job_meta { color: rgba(0,0,0,0.5); }
-    @media (max-width: 600px) { .resume_job_meta { margin-left: 0; } }
-
-    .resume_job_body {
-      color: rgba(255,255,255,0.7);
-      font-size: 1rem;
-      line-height: 1.7;
-      margin: 0 0 0.75rem;
-      max-width: 36em;
-    }
-    .resume_job_body:last-child { margin-bottom: 0; }
-    .theme-light .resume_job_body { color: rgba(0,0,0,0.65); }
-
-    .resume_bullets {
-      color: rgba(255,255,255,0.65);
-      font-size: 1rem;
-      line-height: 1.7;
-      list-style: disc;
-      margin: 0.5rem 0 0;
-      max-width: 36em;
-      padding-left: 1.25rem;
-    }
-    .resume_bullets li { font-size: 1rem; line-height: 1.7; margin-bottom: 0.15rem; }
-    .theme-light .resume_bullets { color: rgba(0,0,0,0.55); }
-
-    .resume_skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    .resume_skills li {
-      border-radius: 2rem;
-      box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 35%, transparent);
-      color: rgba(255,255,255,0.7);
-      font-size: 0.8rem;
-      font-weight: 500;
-      padding: 0.25rem 0.7rem;
-    }
-    .theme-light .resume_skills li {
-      color: rgba(0,0,0,0.7);
-    }
-
-    .resume_actions {
-      display: flex;
-      gap: 0.6rem;
-    }
-
-    .resume_print_btn {
-      align-items: center;
-      background: none;
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 3rem;
-      color: rgba(255,255,255,0.5);
-      cursor: pointer;
-      display: inline-flex;
-      font-family: inherit;
-      font-size: 0.8rem;
-      gap: 0.4rem;
-      padding: 0.4rem 1rem;
-      text-decoration: none;
-      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
-    }
-    .resume_print_btn:hover {
-      border-color: rgba(255,255,255,0.5);
-      color: rgba(255,255,255,0.9);
-    }
-    .resume_print_btn--pdf {
-      background: rgba(255,255,255,0.1);
-      border-color: rgba(255,255,255,0.3);
-      color: rgba(255,255,255,0.8);
-    }
-    .resume_print_btn--pdf:hover {
-      background: rgba(255,255,255,0.18);
-      border-color: rgba(255,255,255,0.6);
-      color: #fff;
-    }
-    .theme-light .resume_print_btn {
-      border-color: rgba(0,0,0,0.15);
-      color: rgba(0,0,0,0.45);
-    }
-    .theme-light .resume_print_btn:hover {
-      border-color: rgba(0,0,0,0.4);
-      color: rgba(0,0,0,0.8);
-    }
-    .theme-light .resume_print_btn--pdf {
-      background: rgba(0,0,0,0.06);
-      border-color: rgba(0,0,0,0.2);
-      color: rgba(0,0,0,0.7);
-    }
-    .theme-light .resume_print_btn--pdf:hover {
-      background: rgba(0,0,0,0.1);
-      border-color: rgba(0,0,0,0.4);
-      color: rgba(0,0,0,0.9);
-    }
-
-    .resume_section--footer {
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      margin-bottom: 5rem;
-    }
-    .theme-light .resume_section--footer { border-bottom-color: rgba(0,0,0,0.08); }
-
-    @media print {
-      @page { size: letter; margin: 0.45in 0.5in; }
-
-      /* Hide chrome */
-      .site_header, .mobile_nav_menu, .resume_print_btn, .resume_actions,
-      .nav_cta_wrapper, .case_study_nav, .resume_section--footer,
-      footer, .site_footer { display: none !important; }
-
-      /* Base reset */
-      *, *::before, *::after { -webkit-print-color-adjust: exact; print-color-adjust: exact; animation: none !important; transition: none !important; }
-      .fadeIn { opacity: 1 !important; transform: none !important; }
-      html, body { background: white !important; color: black; font-size: 10pt; margin: 0; padding: 0; }
-      main { padding: 0 !important; }
-      .container { display: block !important; max-width: none !important; padding: 0 !important; }
-      .grid_12 { display: block !important; }
-
-      /* ── Type scale (all pt, ratio mirrors web rem scale) ──
-         Base:    10pt  ←→  1rem (0.9rem body)
-         Small:    8pt  ←→  0.8rem (labels, meta)
-         XSmall:   6.5pt ←→  0.65rem (section labels)
-         Large:   10.5pt ←→  ~1rem (summary, slightly above body)
-         XLarge:  11.5pt ←→  job titles
-         Display: 22pt  ←→  clamp name
-      */
-
-      /* Header */
-      .resume_header { border-bottom: 1px solid rgba(0,0,0,0.12); padding: 0 0 6pt; }
-      .resume_name { color: black; font-size: 22pt; letter-spacing: -0.02em; line-height: 1; margin: 0 0 3pt; }
-      .resume_title { color: rgba(0,0,0,0.45); font-size: 8pt; letter-spacing: 0.06em; margin: 0 0 5pt; text-transform: uppercase; }
-      .resume_contact { gap: 2pt 12pt; }
-      .resume_contact li { font-size: 7.5pt; }
-      .resume_contact a, .resume_contact span { color: rgba(0,0,0,0.5); text-decoration: none; }
-
-      /* Sections */
-      .resume_section { border-top: 1px solid rgba(0,0,0,0.1); gap: 4pt 18pt; grid-template-columns: 100pt 1fr; padding: 6pt 0; }
-      .resume_section_label { color: rgba(0,0,0,0.38); font-size: 6.5pt; letter-spacing: 0.1em; padding-top: 2pt; text-transform: uppercase; }
-
-      /* Summary */
-      .resume_summary { color: rgba(0,0,0,0.72); font-size: 9pt; line-height: 1.5; margin: 0; max-width: none; }
-
-      /* Jobs */
-      .resume_job { break-inside: auto; padding: 5pt 0; }
-      .resume_job_header { break-after: avoid; break-inside: avoid; }
-      .resume_job_body { orphans: 3; widows: 3; }
-      .resume_job:first-child { padding-top: 0; }
-      .resume_job_header { gap: 2pt 8pt; margin-bottom: 3pt; }
-      .resume_job_title { color: black; font-size: 10pt; font-weight: 600; }
-      .resume_job_company { color: rgba(0,0,0,0.55); font-size: 9pt; font-weight: 400; }
-      .resume_job_meta { color: rgba(0,0,0,0.4); font-size: 7pt; letter-spacing: 0.02em; margin-left: auto; }
-      .resume_job_body { color: rgba(0,0,0,0.68); font-size: 8.5pt; line-height: 1.45; margin: 0 0 3pt; max-width: none; }
-      .resume_job_body:last-child { margin-bottom: 0; }
-      .resume_bullets { color: rgba(0,0,0,0.6); font-size: 8pt; line-height: 1.45; margin: 3pt 0 0; max-width: none; padding-left: 12pt; }
-      .resume_bullets li { break-inside: avoid; font-size: 8pt; line-height: 1.45; margin-bottom: 1.5pt; }
-
-      /* Skills */
-      .resume_skills { gap: 3pt; }
-      .resume_skills li { border: 0.75pt solid rgba(0,0,0,0.18); box-shadow: none; color: rgba(0,0,0,0.6); font-size: 7.5pt; padding: 1pt 5pt; }
-
-      .cs_body_cols { column-count: 1; }
-    }
-  </style>
-  <script type="application/ld+json">
+title: "Resume \u2013 James Madson"
+description: "Resume of James Madson, a product design engineer based in Seattle."
+jsonld: |
   {
-    "@type": "Person",
-    "name": "James Madson",
-    "url": "https://jamesmadson.me",
-    "jobTitle": "Product Designer",
-    "sameAs": [
-      "https://github.com/jamesmadson",
-      "https://www.linkedin.com/in/james-madson-6794781a1/"
-    ],
-    "@context": "https://schema.org",
-    "description": "Resume of James Madson: 20 years across brand, product UX/UI, design systems, data visualization, and front-end development. Currently prototyping internal AI design tools at Pfizer (contract) and leading design for NatureQuant.",
-    "knowsAbout": [
-      "Branding",
-      "UI Design",
-      "UX Design",
-      "Design Systems",
-      "Data Visualization",
-      "Front-End Development",
-      "Rapid Prototyping",
-      "AI Workflow Integration",
-      "Team Mentorship"
-    ],
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Seattle",
-      "addressRegion": "WA",
-      "addressCountry": "US"
+      "@type": "Person",
+      "name": "James Madson",
+      "url": "https://jamesmadson.me",
+      "jobTitle": "Product Designer",
+      "sameAs": [
+        "https://github.com/jamesmadson",
+        "https://www.linkedin.com/in/james-madson-6794781a1/"
+      ],
+      "@context": "https://schema.org",
+      "description": "Resume of James Madson: 20 years across brand, product UX/UI, design systems, data visualization, and front-end development. Currently prototyping internal AI design tools at Pfizer (contract) and leading design for NatureQuant.",
+      "knowsAbout": [
+        "Branding",
+        "UI Design",
+        "UX Design",
+        "Design Systems",
+        "Data Visualization",
+        "Front-End Development",
+        "Rapid Prototyping",
+        "AI Workflow Integration",
+        "Team Mentorship"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Seattle",
+        "addressRegion": "WA",
+        "addressCountry": "US"
+      }
     }
-  }
-  </script>
-</head>
-
-<body>
-  {% include "partials/site-nav.njk" %}
+---
 
 <main class="fadeIn" id="main-content">
     <div class="container resume_header">
@@ -567,9 +258,4 @@ permalink: /resume/
     </div>
   </main>
 
-  {% include "partials/footer.njk" %}
-
-  <script src="/assets/js/site.js?v={{ build.version }}" defer></script>
-
-</body>
-</html>
+  

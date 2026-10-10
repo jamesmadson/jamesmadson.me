@@ -1,0 +1,199 @@
+---
+permalink: /tools/system/
+excludeFromSitemap: true
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>System – James Madson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #171814; --ink: #EDEEE8; --ink2: #D4D5D0; --muted: #666666;
+    --tan: #F2F2ED; --dark: #33352E;
+    --orange: #E64F13; --blue: #1874dc; --cyan: #23AFE5; --green: #009933;
+    --lime: #99CC00; --teal: #339999; --yellow: #FFC200; --sage: #A1B19E;
+    --spring: linear(0, 0.55 28%, 1.04 62%, 0.99 82%, 1);
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Instrument Sans", Helvetica, Arial, sans-serif;
+    line-height: 1.5; margin: 0; padding: 4rem max(1rem, 4vw) 6rem;
+  }
+  main { margin: 0 auto; max-width: 1100px; }
+  h1 { font-size: 2.125rem; font-weight: 600; margin: 0 0 0.25rem; }
+  .sub { color: var(--muted); margin: 0 0 3.5rem; max-width: 62ch; }
+  h2 {
+    border-top: 1px solid rgba(237,238,232,0.14); color: var(--ink);
+    font-size: 1rem; font-weight: 600; letter-spacing: 0.02em;
+    margin: 3.5rem 0 1.25rem; padding-top: 1.25rem;
+  }
+  .law { color: var(--ink2); font-size: 0.9375rem; max-width: 70ch; }
+  .law strong { color: var(--ink); }
+  code, .mono { font-family: "IBM Plex Mono", monospace; font-size: 0.8125rem; }
+  .tag { color: var(--muted); font-family: "IBM Plex Mono", monospace; font-size: 0.8125rem; letter-spacing: 0.05em; text-transform: uppercase; }
+
+  .grid { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); }
+  .swatch { border-radius: 10px; overflow: hidden; }
+  .swatch .chip { align-items: flex-end; display: flex; height: 92px; padding: 0.6rem 0.75rem; }
+  .swatch .meta { background: rgba(237,238,232,0.05); font-size: 0.8125rem; padding: 0.5rem 0.75rem 0.6rem; }
+  .swatch .meta .mono { color: var(--ink2); display: block; }
+  .swatch .meta .role { color: var(--muted); }
+  .inkdot { border-radius: 99px; display: inline-block; font-family: "IBM Plex Mono", monospace; font-size: 0.6875rem; padding: 0.1em 0.55em; }
+
+  .grounds { display: grid; gap: 0.75rem; grid-template-columns: 1fr 1fr; }
+  .ground { border-radius: 12px; padding: 1.25rem; }
+  .ground p { margin: 0.2rem 0; }
+  @media (max-width: 700px) { .grounds { grid-template-columns: 1fr; } }
+
+  .typerow { align-items: baseline; border-bottom: 1px dashed rgba(237,238,232,0.1); display: flex; gap: 1.5rem; padding: 0.55rem 0; }
+  .typerow .mono { color: var(--muted); min-width: 11.5rem; }
+
+  .pill {
+    background: rgba(237,238,232,0.07); border: 0; border-radius: 0.25em;
+    color: var(--ink); cursor: pointer; display: inline-block;
+    font: 500 1.5rem "Instrument Sans", sans-serif; margin: 0 0.6rem 0.6rem 0;
+    padding: 0.22em 0.6em; position: relative; text-decoration: none;
+    transition: background-color 0.15s ease, color 0.15s ease, transform 0.34s var(--spring);
+  }
+  .pill:hover { background: var(--chip); color: var(--ink); transform: translateY(-3px); }
+  .pill:active { transform: translateY(-1px); }
+  .pill[data-ink="dark"]:hover { color: var(--bg); }
+  .pill .lbl {
+    background: var(--chip); border-radius: 0.3em; bottom: 100%; color: #fff;
+    font: bold 11px/1.2 "IBM Plex Mono", monospace; left: 0; letter-spacing: 0.06em;
+    margin-bottom: 4px; opacity: 0; padding: 0.18em 0.55em; position: absolute;
+    text-transform: uppercase; transform: translateY(6px);
+    transition: opacity 0.15s ease 0.18s, transform 0.55s cubic-bezier(0.34,1.56,0.64,1) 0.18s;
+  }
+  .pill[data-ink="dark"] .lbl { color: var(--bg); }
+  .pill:hover .lbl { opacity: 1; transform: translateY(0); }
+
+  .fog {
+    border-radius: 12px; isolation: isolate; overflow: hidden;
+    padding: 2.5rem 1.5rem; position: relative;
+  }
+  .fog::before {
+    background:
+      linear-gradient(color-mix(in srgb, var(--fogbg) 62%, transparent), color-mix(in srgb, var(--fogbg) 86%, transparent)),
+      radial-gradient(at 30% 20%, #86868c, #101012);
+    content: ''; filter: blur(34px) saturate(1.1); inset: -12%;
+    position: absolute; z-index: -1;
+  }
+  table { border-collapse: collapse; font-size: 0.875rem; }
+  td, th { border-bottom: 1px solid rgba(237,238,232,0.1); padding: 0.4rem 1.25rem 0.4rem 0; text-align: left; }
+  th { color: var(--muted); font-weight: 500; }
+  td.num { font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; }
+  @media (prefers-reduced-motion: reduce) { .pill, .pill .lbl { transition: opacity 0.2s ease; } .pill:hover { transform: none; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>System</h1>
+  <p class="sub">The working tokens and contracts behind jamesmadson.me, drawn from _sass/styles.scss and docs/ui-decisions.md. A reference sheet, not a spec: the stylesheet is the source of truth, the decision log is the law.</p>
+
+  <h2>Grounds</h2>
+  <div class="grounds">
+    <div class="ground" style="background:#171814;color:#EDEEE8">
+      <span class="tag">Dark · default</span>
+      <p><strong>$dark-bg</strong> <code>#171814</code> under <strong>$white</strong> <code>#EDEEE8</code></p>
+      <p style="color:#D4D5D0">$text-secondary <code>#D4D5D0</code></p>
+      <p style="color:#666666">$text-muted <code>#666666</code></p>
+    </div>
+    <div class="ground" style="background:#F2F2ED;color:#33352E">
+      <span class="tag" style="color:#8a8a84">Light</span>
+      <p><strong>$tan</strong> <code>#F2F2ED</code> under <strong>$dark-default</strong> <code>#33352E</code></p>
+      <p style="color:#2A2B26">$text-dark <code>#2A2B26</code></p>
+      <p style="color:#666666">$text-muted <code>#666666</code></p>
+    </div>
+  </div>
+  <p class="law" style="margin-top:0.75rem">The warm cast is the identity: near-blacks lean green-brown, whites lean warm. Pure grey never appears. Cards keep their own brand grounds in both themes.</p>
+
+  <h2>Brand ramp, with each fill's earned ink</h2>
+  <div class="grid">
+    <div class="swatch"><div class="chip" style="background:#E64F13"><span class="inkdot" style="background:#171814;color:#EDEEE8">dark ink · 4.67</span></div><div class="meta"><span class="mono">$orange #E64F13</span><span class="role">jm · About</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#1874dc"><span class="inkdot" style="background:#EDEEE8;color:#171814">white ink · 3.94</span></div><div class="meta"><span class="mono">$blue #1874dc</span><span class="role">viz · the one white-ink fill</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#23AFE5"><span class="inkdot" style="background:#171814;color:#EDEEE8">dark ink · 7.08</span></div><div class="meta"><span class="mono">$cyan #23AFE5</span><span class="role">pecan</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#009933"><span class="inkdot" style="background:#171814;color:#EDEEE8">dark ink · 4.76</span></div><div class="meta"><span class="mono">$green #009933</span><span class="role">nd · nq</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#99CC00"><span class="inkdot" style="background:#171814;color:#EDEEE8">dark ink · 9.34</span></div><div class="meta"><span class="mono">$lime #99CC00</span><span class="role">ns</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#339999"></div><div class="meta"><span class="mono">$teal #339999</span><span class="role">no chip role</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#FFC200"></div><div class="meta"><span class="mono">$yellow #FFC200</span><span class="role">no chip role</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#A1B19E"></div><div class="meta"><span class="mono">$sage #A1B19E</span><span class="role">graft ambient family</span></div></div>
+  </div>
+  <p class="law" style="margin-top:0.75rem"><strong>Chip ink is decided per fill by arithmetic, never uniformly.</strong> White ink only where it clears the floor (blue, 3.94 vs dark's 3.88); everything else reads better dark. Known exception, directed: the About pill flood keeps white ink everywhere, cyan included (2.16).</p>
+
+  <h2>Type scale · eight steps, nothing below 13px</h2>
+  <div>
+    <div class="typerow"><span class="mono">$type-xs · 13px</span><span style="font-size:0.8125rem">Labels and eyebrows only</span></div>
+    <div class="typerow"><span class="mono">$type-sm · 14px</span><span style="font-size:0.875rem">Secondary, meta, captions</span></div>
+    <div class="typerow"><span class="mono">$type-md · 16px</span><span style="font-size:1rem">Tertiary body, dense UI</span></div>
+    <div class="typerow"><span class="mono">$type-base · 18px</span><span style="font-size:1.125rem">Body</span></div>
+    <div class="typerow"><span class="mono">$type-lg · 20px</span><span style="font-size:1.25rem">Leads</span></div>
+    <div class="typerow"><span class="mono">$type-xl · 24px</span><span style="font-size:1.5rem">Section heads</span></div>
+    <div class="typerow"><span class="mono">$type-2xl · 34px</span><span style="font-size:2.125rem">Page heads</span></div>
+    <div class="typerow"><span class="mono">display</span><span style="font-size:2.6rem">clamp() expressions, per surface</span></div>
+  </div>
+  <p class="law" style="margin-top:0.75rem"><strong>Instrument Sans</strong> carries voice; <strong>IBM Plex Mono</strong> is the apparatus voice (figure captions, card metadata, code), never bylines. Body measures 62ch with text-wrap: pretty; digits that align use tabular-nums.</p>
+
+  <h2>Motion</h2>
+  <p class="law"><strong>$spring-lift</strong> <code>linear(0, 0.55 28%, 1.04 62%, 0.99 82%, 1)</code> — transform only, one soft overshoot. Entrances rise 20px over 0.8s with one overshoot; exits and collapses stay plain. Color feedback lives on the 150ms lane. Hover these to feel the contract:</p>
+  <div style="margin-top:0.75rem">
+    <span class="pill" data-ink="dark" style="--chip:#009933">Clear<span class="lbl">nd</span></span>
+    <span class="pill" style="--chip:#1874dc">Useful<span class="lbl" style="color:#EDEEE8">viz</span></span>
+    <span class="pill" data-ink="dark" style="--chip:#23AFE5">Lasting<span class="lbl">pecan</span></span>
+    <span class="pill" data-ink="dark" style="--chip:#E64F13">About<span class="lbl">jm</span></span>
+  </div>
+  <p class="law">The About pill contract: no border any state, 7% white frost at rest, project flood on hover, mini-label floored at 11px, 44px touch floor under hover:none, reduced-motion keeps only an opacity fade.</p>
+
+  <h2>Motion principles</h2>
+  <table>
+    <tr><th>Frequency of encounter</th><th>Motion budget</th></tr>
+    <tr><td>Rare (a visitor sees it once)</td><td>Expressive welcome: the hero film, the fog settle</td></tr>
+    <tr><td>Occasional (per visit)</td><td>Subtle and fast: entrances, the carousel</td></tr>
+    <tr><td>Frequent (hovers, nav)</td><td>Minimal: 150ms color, one small spring</td></tr>
+    <tr><td>Keyboard-initiated</td><td>Never animates</td></tr>
+  </table>
+  <p class="law" style="margin-top:0.75rem">The standing rules: animate <strong>transform and opacity only</strong>; transitions over keyframes for interactive states so motion stays interruptible; <strong>one soft overshoot per entrance</strong>, exits plain and slightly faster; stagger delays live with the JS or the visible-state selector, never the base rule (delays on the base run the stagger backwards on the way out); ambient motion yields the moment the user shows intent (the course map stops cycling on first click); anything continuously animating is a battery decision as much as a design one. <strong>prefers-reduced-motion is a hard gate</strong>: no autoplay, no auto-cycle, no transform motion, posters still communicate.</p>
+
+  <h2>Materials · the fog</h2>
+  <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr))">
+    <div class="fog" style="--fogbg:#0E7A33"><span class="tag" style="color:#EDEEE8">card fog</span><p style="margin:0.4rem 0 0">ambient art under a 62→86% veil of the surface's own color, blur 34px</p></div>
+    <div class="fog" style="--fogbg:#05060F"><span class="tag" style="color:#EDEEE8">hero fog</span><p style="margin:0.4rem 0 0">same recipe at blur 64px with a dark veil, masked to feather at the edges</p></div>
+  </div>
+  <p class="law" style="margin-top:0.75rem">One material, three surfaces (home hero, case heroes, work cards). The veil always carries the surface's own color so self-theming and ink contrast hold. New fog accents must join the preload list or the first swap pops.</p>
+
+  <h2>Floors and contracts</h2>
+  <table>
+    <tr><th>Contract</th><th>Value</th></tr>
+    <tr><td>Touch targets</td><td class="num">44px floor, @media (hover: none)</td></tr>
+    <tr><td>Grid items</td><td class="num">min-width: 0, sitewide</td></tr>
+    <tr><td>Wide content</td><td class="num">scrolls in its own container, never the page</td></tr>
+    <tr><td>Text contrast</td><td class="num">4.5:1 body · 3:1 large, measured not eyeballed</td></tr>
+    <tr><td>Hero chip overrides</td><td class="num">must match #hero_shuffle_text (ID contract)</td></tr>
+    <tr><td>Reduced motion</td><td class="num">hard gate: no autoplay, no auto-cycle, no transform</td></tr>
+    <tr><td>Light-mode audit</td><td class="num">every new component, before ship</td></tr>
+    <tr><td>Inverted (cream) covers</td><td class="num">one, maximum; Graft owns it</td></tr>
+  </table>
+
+  <h2>Skills behind the system</h2>
+  <p class="law">Design judgment here is routed through <strong>Canon</strong> (jamesmadson.github.io/canon): the canon-all router picks a kit per task, and the installed skills carry the detail. In use on this site:</p>
+  <table>
+    <tr><th>Skill</th><th>Carries</th><th>By</th></tr>
+    <tr><td>make-interfaces-feel-better</td><td>hover states, press feedback, icon motion, transition hygiene</td><td>Jakub Krehel</td></tr>
+    <tr><td>better-writing · better-accessibility</td><td>copy floors, contrast and focus floors</td><td>Jakub Krehel</td></tr>
+    <tr><td>design-motion-principles · thumb-first</td><td>the frequency gate, touch ergonomics</td><td>Kyle Zantos</td></tr>
+    <tr><td>improve-animations · emil-design-eng</td><td>interruptibility, enters/exits, restraint</td><td>Emil Kowalski</td></tr>
+    <tr><td>web-design-guidelines</td><td>platform verification checklists</td><td>Vercel Labs</td></tr>
+    <tr><td>frontend-design · brand-guidelines</td><td>craft floor, token discipline</td><td>Anthropic</td></tr>
+    <tr><td>james-voice</td><td>the copy boundary: James drafts, the machine sweeps</td><td>house</td></tr>
+  </table>
+  <p class="law" style="margin-top:0.75rem">Canon's own law still applies: the kits carry judgment, the decision log carries house law, and law wins.</p>
+</main>
+</body>
+</html>

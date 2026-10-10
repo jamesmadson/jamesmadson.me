@@ -1,90 +1,40 @@
 ---
+layout: base.njk
 permalink: /case_studies/naturedose/
----
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="color-scheme" content="light dark">
-  <title>NatureDose Case Study – James Madson</title>
-  <meta name="description" content="How I designed NatureDose, a mobile app that tracks time outdoors and encourages more nature exposure through gamification and wellness challenges.">
-  <meta name="author" content="James Madson">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-
-  <link rel="canonical" href="https://jamesmadson.me/case_studies/naturedose/">
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="article">
-  <meta property="og:url" content="https://jamesmadson.me/case_studies/naturedose/">
-  <meta property="og:title" content="NatureDose Case Study – James Madson">
-  <meta property="og:description" content="How I designed NatureDose, a mobile app that tracks time outdoors and encourages more nature exposure through gamification and wellness challenges.">
-  <meta property="og:image" content="https://jamesmadson.me/img/covers/naturedose@2x.png">
-  <meta property="og:image:width" content="1392">
-  <meta property="og:image:height" content="1392">
-  <meta property="og:site_name" content="James Madson">
-
-  <!-- Twitter / X Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="NatureDose Case Study – James Madson">
-  <meta name="twitter:description" content="How I designed NatureDose, a mobile app that tracks time outdoors and encourages more nature exposure through gamification and wellness challenges.">
-  <meta name="twitter:image" content="https://jamesmadson.me/img/covers/naturedose@2x.png">
-
-  <link rel="icon" href="../icons/favicon.ico?v={{ build.version }}" sizes="32x32">
-  <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg?v={{ build.version }}">
-  <link rel="apple-touch-icon" sizes="180x180" href="../icons/apple-touch-icon.png?v={{ build.version }}">
-  <link rel="manifest" href="../icons/site.webmanifest">
-  <link rel="mask-icon" href="../icons/safari-pinned-tab.svg" color="#282829">
-  <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="theme-color" content="#ffffff">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" type="text/css" href="/assets/css/styles.css?v={{ build.version }}" />
-
-  <!-- Google tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HL3TB4H7XS"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-HL3TB4H7XS');
-  </script>
-  <script>!function(){var e=document.documentElement,t=localStorage.getItem("theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");e.className=e.className.replace(/\btheme-\S+/g,"");e.classList.add("theme-"+t)}();</script>
-  <script type="application/ld+json">
+title: "NatureDose Case Study \u2013 James Madson"
+description: "How I designed NatureDose, a mobile app that tracks time outdoors and encourages more nature exposure through gamification and wellness challenges."
+ogImage: "/img/covers/naturedose@2x.png"
+ogImageWidth: "1392"
+ogImageHeight: "1392"
+preloads:
+  - "/img/covers/ambient/nd.jpg"
+extraJs:
+  - "/assets/js/hero-scroll.js"
+jsonld: |
   {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "The nature prescription app, taken from zero to launch.",
-    "name": "NatureDose Case Study",
-    "url": "https://jamesmadson.me/case_studies/naturedose/",
-    "author": {
-      "@type": "Person",
-      "name": "James Madson",
-      "url": "https://jamesmadson.me",
-      "jobTitle": "Product Designer"
-    },
-    "about": {
-      "@type": "SoftwareApplication",
-      "name": "NatureDose",
-      "applicationCategory": "HealthApplication",
-      "publisher": {
-        "@type": "Organization",
-        "name": "NatureQuant"
-      }
-    },
-    "description": "James Madson led every design touchpoint for NatureDose, NatureQuant's nature-prescription app, from brand identity to production screens. Featured 3 times by Apple on the App Store; 79% of its iOS reviews are 5 stars, with a 4.6 average rating."
-  }
-  </script>
-  <!-- Fog sources: preloaded so the frost never pops in after its fade begins -->
-  <link rel="preload" as="image" href="/img/covers/ambient/nd.jpg">
-</head>
-
-<body>
-  {% include "partials/site-nav.njk" %}
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "The nature prescription app, taken from zero to launch.",
+      "name": "NatureDose Case Study",
+      "url": "https://jamesmadson.me/case_studies/naturedose/",
+      "author": {
+        "@type": "Person",
+        "name": "James Madson",
+        "url": "https://jamesmadson.me",
+        "jobTitle": "Product Designer"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "name": "NatureDose",
+        "applicationCategory": "HealthApplication",
+        "publisher": {
+          "@type": "Organization",
+          "name": "NatureQuant"
+        }
+      },
+      "description": "James Madson led every design touchpoint for NatureDose, NatureQuant's nature-prescription app, from brand identity to production screens. Featured 3 times by Apple on the App Store; 79% of its iOS reviews are 5 stars, with a 4.6 average rating."
+    }
+---
 
 <main id="main-content">
   <section class="about cs_hero about_naturedose">
@@ -373,12 +323,7 @@ permalink: /case_studies/naturedose/
   </div>
 </section>
 
-{% include "partials/footer.njk" %}
-
-
-  <script src="/assets/js/site.js?v={{ build.version }}" defer></script>
-  <script src="/assets/js/hero-scroll.js" defer></script>
-  <script>
+      <script>
     (function () {
       function makeCarousel(trackId, prevId, nextId, counterId) {
         var track = document.getElementById(trackId);
@@ -407,6 +352,3 @@ permalink: /case_studies/naturedose/
       });
     }());
   </script>
-
-</body>
-</html>

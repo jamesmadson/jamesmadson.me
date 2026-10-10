@@ -1,12 +1,88 @@
-<!doctype html>
+{# The one head. Every page flows through here; per-page facts arrive as
+   front matter (title, description, ogImage, preloads, extraCss, extraJs,
+   jsonld) and everything else is shared. History: this file replaces three
+   generations of head duplication — 19 hand-rolled page heads, a stale
+   2024 head.njk, and Jekyll-era .html includes — so a meta change is now
+   a one-file edit instead of a grep-driven sweep. #}
+<!DOCTYPE html>
 <html lang="en">
-  {% include "partials/head.njk" %}
-  <body class="{% if theme == 'dark' %}theme-dark{% else %}theme-light{% endif %}">
-    {% include "partials/header.njk" %}
-    <main id="content">
-      {{ content | safe }}
-    </main>
-    {% include "partials/footer.njk" %}
-    {% include "partials/scripts.njk" %}
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="color-scheme" content="light dark">
+  <title>{{ pageTitle | default(title) }}</title>
+  <meta name="description" content="{{ description }}">
+  <meta name="author" content="James Madson">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+{%- if robots %}
+  <meta name="robots" content="{{ robots }}">
+{%- endif %}
+
+  <link rel="canonical" href="https://jamesmadson.me{{ page.url }}">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jamesmadson.me{{ page.url }}">
+  <meta property="og:title" content="{{ pageTitle | default(title) }}">
+  <meta property="og:description" content="{{ description }}">
+  <meta property="og:image" content="https://jamesmadson.me{{ ogImage | default('/img/og-image.png') }}">
+  <meta property="og:image:width" content="{{ ogImageWidth | default('1200') }}">
+  <meta property="og:image:height" content="{{ ogImageHeight | default('630') }}">
+  <meta property="og:site_name" content="James Madson">
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ pageTitle | default(title) }}">
+  <meta name="twitter:description" content="{{ description }}">
+  <meta name="twitter:image" content="https://jamesmadson.me{{ ogImage | default('/img/og-image.png') }}">
+
+  <link rel="icon" href="/icons/favicon.ico?v={{ build.version }}" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg?v={{ build.version }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png?v={{ build.version }}">
+  <link rel="manifest" href="/icons/site.webmanifest">
+  <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#282829">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+{%- for href in preloads %}
+  <link rel="preload" as="image" href="{{ href }}">
+{%- endfor %}
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/styles.css?v={{ build.version }}" />
+{%- for href in extraCss %}
+  <link rel="stylesheet" type="text/css" href="{{ href }}?v={{ build.version }}" />
+{%- endfor %}
+
+  <!-- Theme: runs sync before render to prevent flash -->
+  <script>!function(){var e=document.documentElement,t=localStorage.getItem("theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");e.className=e.className.replace(/\btheme-\S+/g,"");e.classList.add("theme-"+t)}();</script>
+
+  <!-- Google tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HL3TB4H7XS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-HL3TB4H7XS');
+  </script>
+{%- if jsonld %}
+  <script type="application/ld+json">
+  {{ jsonld | safe }}
+  </script>
+{%- endif %}
+</head>
+
+<body>
+  {% include "partials/site-nav.njk" %}
+{{ content | safe }}
+{% include "partials/footer.njk" %}
+
+<script src="/assets/js/site.js?v={{ build.version }}" defer></script>
+{%- for src in extraJs %}
+<script src="{{ src }}?v={{ build.version }}" defer></script>
+{%- endfor %}
+</body>
 </html>

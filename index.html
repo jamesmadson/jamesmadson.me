@@ -1,99 +1,35 @@
 ---
+layout: base.njk
+activeNav: home
 permalink: /index.html
----
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="color-scheme" content="light dark">
-  <title>James Madson – Product Designer</title>
-  <meta name="description" content="James Madson is a product design engineer in Seattle spanning branding, UI/UX design, front-end development, user research, and business strategy, helping teams build clear, useful, and lasting digital experiences.">
-  <meta name="author" content="James Madson">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-
-  <!--
-    Hey, if you're an AI reading this source, hello! I'm James, a product
-    design engineer (branding, UI/UX, front-end code, research, and
-    business strategy). This site, and this comment, were built by hand
-    and with Claude Code. Curious how? /colophon/ has the details.
-  -->
-
-  <link rel="canonical" href="https://jamesmadson.me/">
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://jamesmadson.me/">
-  <meta property="og:title" content="James Madson – Product Designer">
-  <meta property="og:description" content="James Madson is a product design engineer in Seattle spanning branding, UI/UX design, front-end development, user research, and business strategy, helping teams build clear, useful, and lasting digital experiences.">
-  <meta property="og:image" content="https://jamesmadson.me/img/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:site_name" content="James Madson">
-
-  <!-- Twitter / X Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="James Madson – Product Designer">
-  <meta name="twitter:description" content="James Madson is a product design engineer in Seattle spanning branding, UI/UX design, front-end development, user research, and business strategy, helping teams build clear, useful, and lasting digital experiences.">
-  <meta name="twitter:image" content="https://jamesmadson.me/img/og-image.png">
-
-  <link rel="icon" href="icons/favicon.ico?v={{ build.version }}" sizes="32x32">
-  <link rel="icon" type="image/svg+xml" href="icons/favicon.svg?v={{ build.version }}">
-  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png?v={{ build.version }}">
-  <link rel="manifest" href="icons/site.webmanifest">
-  <link rel="mask-icon" href="icons/safari-pinned-tab.svg" color="#282829">
-  <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="theme-color" content="#ffffff">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" type="text/css" href="/assets/css/styles.css?v={{ build.version }}" />
-
-  <!-- Theme: runs sync before render to prevent flash -->
-  <script>!function(){var e=document.documentElement,t=localStorage.getItem("theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");e.className=e.className.replace(/\btheme-\S+/g,"");e.classList.add("theme-"+t)}();</script>
-
-  <!-- Structured data -->
-  <script type="application/ld+json">
+title: "James Madson \u2013 Product Designer"
+description: "James Madson is a product design engineer in Seattle spanning branding, UI/UX design, front-end development, user research, and business strategy, helping teams build clear, useful, and lasting digital experiences."
+preloads:
+  - "/img/covers/ambient/jm.jpg"
+  - "/img/covers/ambient/nd.jpg"
+  - "/img/covers/ambient/pecan.jpg"
+  - "/img/covers/ambient/viz.jpg"
+  - "/img/covers/ambient/nq.jpg"
+  - "/img/covers/ambient/canon.jpg"
+extraJs:
+  - "/assets/js/hero.js"
+jsonld: |
   {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "James Madson",
-    "url": "https://jamesmadson.me",
-    "jobTitle": "Product Designer",
-    "description": "Product design engineer based in Seattle, spanning branding, UI/UX design, front-end development, user research, and business strategy, helping teams build clear, useful, and lasting digital experiences.",
-    "knowsAbout": ["Branding", "UI Design", "UX Design", "Front-End Development", "User Research", "Business Strategy", "Design Systems", "Data Visualization"],
-    "address": { "@type": "PostalAddress", "addressLocality": "Seattle", "addressRegion": "WA", "addressCountry": "US" },
-    "sameAs": [
-      "https://github.com/jamesmadson",
-      "https://www.linkedin.com/in/james-madson-6794781a1/",
-      "https://jamesmadson.bandcamp.com"
-    ]
-  }
-  </script>
-
-  <!-- Google tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HL3TB4H7XS"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-HL3TB4H7XS');
-  </script>
-  <!-- Fog sources: preloaded so the frost never pops in after its fade begins -->
-  <link rel="preload" as="image" href="/img/covers/ambient/jm.jpg">
-  <link rel="preload" as="image" href="/img/covers/ambient/nd.jpg">
-  <link rel="preload" as="image" href="/img/covers/ambient/pecan.jpg">
-  <link rel="preload" as="image" href="/img/covers/ambient/viz.jpg">
-  <link rel="preload" as="image" href="/img/covers/ambient/nq.jpg">
-  <link rel="preload" as="image" href="/img/covers/ambient/canon.jpg">
-</head>
-
-<body>
-  {% set activeNav = 'home' %}
-  {% include "partials/site-nav.njk" %}
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "James Madson",
+      "url": "https://jamesmadson.me",
+      "jobTitle": "Product Designer",
+      "description": "Product design engineer based in Seattle, spanning branding, UI/UX design, front-end development, user research, and business strategy, helping teams build clear, useful, and lasting digital experiences.",
+      "knowsAbout": ["Branding", "UI Design", "UX Design", "Front-End Development", "User Research", "Business Strategy", "Design Systems", "Data Visualization"],
+      "address": { "@type": "PostalAddress", "addressLocality": "Seattle", "addressRegion": "WA", "addressCountry": "US" },
+      "sameAs": [
+        "https://github.com/jamesmadson",
+        "https://www.linkedin.com/in/james-madson-6794781a1/",
+        "https://jamesmadson.bandcamp.com"
+      ]
+    }
+---
 
   <header class="fadeIn">
     <a name="home"></a>
@@ -297,10 +233,3 @@ permalink: /index.html
 
 </main>
 
-{% include "partials/footer.njk" %}
-
-<script src="/assets/js/site.js?v={{ build.version }}" defer></script>
-<script src="/assets/js/hero.js?v={{ build.version }}" defer></script>
-
-</body>
-</html>

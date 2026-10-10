@@ -1,83 +1,30 @@
 ---
+layout: base.njk
 permalink: /case_studies/stjudecloud/
----
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="color-scheme" content="light dark">
-  <title>St. Jude Cloud Case Study – James Madson</title>
-  <meta name="description" content="How I brought design clarity and cohesion to St. Jude Cloud, a suite of scientific tools that accelerate global pediatric cancer research.">
-  <meta name="author" content="James Madson">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-
-  <link rel="canonical" href="https://jamesmadson.me/case_studies/stjudecloud/">
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="article">
-  <meta property="og:url" content="https://jamesmadson.me/case_studies/stjudecloud/">
-  <meta property="og:title" content="St. Jude Cloud Case Study – James Madson">
-  <meta property="og:description" content="How I brought design clarity and cohesion to St. Jude Cloud, a suite of scientific tools that accelerate global pediatric cancer research.">
-  <meta property="og:image" content="https://jamesmadson.me/img/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:site_name" content="James Madson">
-
-  <!-- Twitter / X Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="St. Jude Cloud Case Study – James Madson">
-  <meta name="twitter:description" content="How I brought design clarity and cohesion to St. Jude Cloud, a suite of scientific tools that accelerate global pediatric cancer research.">
-  <meta name="twitter:image" content="https://jamesmadson.me/img/og-image.png">
-
-  <link rel="icon" href="../icons/favicon.ico?v={{ build.version }}" sizes="32x32">
-  <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg?v={{ build.version }}">
-  <link rel="apple-touch-icon" sizes="180x180" href="../icons/apple-touch-icon.png?v={{ build.version }}">
-  <link rel="manifest" href="../icons/site.webmanifest">
-  <link rel="mask-icon" href="../icons/safari-pinned-tab.svg" color="#282829">
-  <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="theme-color" content="#ffffff">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" type="text/css" href="/assets/css/styles.css?v={{ build.version }}" />
-
-  <!-- Google tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HL3TB4H7XS"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-HL3TB4H7XS');
-  </script>
-  <script>!function(){var e=document.documentElement,t=localStorage.getItem("theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");e.className=e.className.replace(/\btheme-\S+/g,"");e.classList.add("theme-"+t)}();</script>
-  <script type="application/ld+json">
+title: "St. Jude Cloud Case Study \u2013 James Madson"
+description: "How I brought design clarity and cohesion to St. Jude Cloud, a suite of scientific tools that accelerate global pediatric cancer research."
+extraJs:
+  - "/assets/js/hero-scroll.js"
+jsonld: |
   {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Research software for the largest public archive of pediatric cancer genomics data.",
-    "name": "St. Jude Cloud Case Study",
-    "url": "https://jamesmadson.me/case_studies/stjudecloud/",
-    "author": {
-      "@type": "Person",
-      "name": "James Madson",
-      "url": "https://jamesmadson.me",
-      "jobTitle": "Product Designer"
-    },
-    "about": {
-      "@type": "Organization",
-      "name": "St. Jude Cloud"
-    },
-    "description": "Design clarity and cohesion across St. Jude Cloud's suite of research tools: the platform work behind PeCan and the Visualization Community."
-  }
-  </script>
-</head>
-
-<body>
-  {% include "partials/site-nav.njk" %}
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Research software for the largest public archive of pediatric cancer genomics data.",
+      "name": "St. Jude Cloud Case Study",
+      "url": "https://jamesmadson.me/case_studies/stjudecloud/",
+      "author": {
+        "@type": "Person",
+        "name": "James Madson",
+        "url": "https://jamesmadson.me",
+        "jobTitle": "Product Designer"
+      },
+      "about": {
+        "@type": "Organization",
+        "name": "St. Jude Cloud"
+      },
+      "description": "Design clarity and cohesion across St. Jude Cloud's suite of research tools: the platform work behind PeCan and the Visualization Community."
+    }
+---
 
 <main id="main-content">
   <section class="about cs_hero about-stjude fadeIn">
@@ -248,11 +195,5 @@ permalink: /case_studies/stjudecloud/
 
 </main>
 
-{% include "partials/footer.njk" %}
-
 <!-- JS -->
-  <script src="/assets/js/site.js?v={{ build.version }}" defer></script>
-  <script src="/assets/js/hero-scroll.js" defer></script>
-
-</body>
-</html>
+    

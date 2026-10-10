@@ -1,73 +1,25 @@
 ---
+layout: base.njk
 permalink: /case_studies/saddles100/
----
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="color-scheme" content="light dark">
-  <title>Saddles 100 Case Study – James Madson</title>
-  <meta name="description" content="A projected data wall and a bib-scanning console: an installation built for the Saddles 100 ultramarathon in Prescott, AZ. By James Madson.">
-  <meta name="author" content="James Madson">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-
-  <link rel="canonical" href="https://jamesmadson.me/case_studies/saddles100/">
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="article">
-  <meta property="og:url" content="https://jamesmadson.me/case_studies/saddles100/">
-  <meta property="og:title" content="Saddles 100 Case Study – James Madson">
-  <meta property="og:description" content="A projected wall built from the race's data, and a scanner at the finish that reads your bib and pulls up your race data. An installation for an ultramarathon.">
-  <meta property="og:image" content="https://jamesmadson.me/img/saddles/wall-hero.jpg">
-  <meta property="og:site_name" content="James Madson">
-
-  <!-- Twitter / X Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Saddles 100 Case Study – James Madson">
-  <meta name="twitter:description" content="An installation for an ultramarathon.">
-  <meta name="twitter:image" content="https://jamesmadson.me/img/saddles/wall-hero.jpg">
-
-  <link rel="icon" href="../icons/favicon.ico?v={{ build.version }}" sizes="32x32">
-  <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg?v={{ build.version }}">
-  <link rel="apple-touch-icon" sizes="180x180" href="../icons/apple-touch-icon.png?v={{ build.version }}">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" type="text/css" href="/assets/css/styles.css?v={{ build.version }}" />
-
-  <!-- Google tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HL3TB4H7XS"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-HL3TB4H7XS');
-  </script>
-  <script>!function(){var e=document.documentElement,t=localStorage.getItem("theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");e.className=e.className.replace(/\btheme-\S+/g,"");e.classList.add("theme-"+t)}();</script>
-  <script type="application/ld+json">
+title: "Saddles 100 Case Study \u2013 James Madson"
+description: "A projected data wall and a bib-scanning console: an installation built for the Saddles 100 ultramarathon in Prescott, AZ. By James Madson."
+ogImage: "/img/saddles/wall-hero.jpg"
+jsonld: |
   {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "An installation for an ultramarathon.",
-    "name": "Saddles 100 Case Study",
-    "url": "https://jamesmadson.me/case_studies/saddles100/",
-    "author": {
-      "@type": "Person",
-      "name": "James Madson",
-      "url": "https://jamesmadson.me",
-      "jobTitle": "Product Designer"
-    },
-    "description": "A projected data wall built from the course's own terrain and results, and a camera console that reads bibs and serves each runner a personal card. Built for the Saddles 100 in Prescott, AZ."
-  }
-  </script>
-</head>
-
-<body>
-  {% include "partials/site-nav.njk" %}
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "An installation for an ultramarathon.",
+      "name": "Saddles 100 Case Study",
+      "url": "https://jamesmadson.me/case_studies/saddles100/",
+      "author": {
+        "@type": "Person",
+        "name": "James Madson",
+        "url": "https://jamesmadson.me",
+        "jobTitle": "Product Designer"
+      },
+      "description": "A projected data wall built from the course's own terrain and results, and a camera console that reads bibs and serves each runner a personal card. Built for the Saddles 100 in Prescott, AZ."
+    }
+---
 
 <main id="main-content">
   <section class="about cs_hero fadeIn">
@@ -300,9 +252,6 @@ permalink: /case_studies/saddles100/
   </section>
 </main>
 
-{% include "partials/footer.njk" %}
-
-<script src="/assets/js/site.js?v={{ build.version }}" defer></script>
 <script>
 (function () {
   /* Every film on the page shares one contract: fade in when playable,
@@ -401,5 +350,3 @@ permalink: /case_studies/saddles100/
   });
 }());
 </script>
-</body>
-</html>

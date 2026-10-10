@@ -1,10 +1,2 @@
-_layouts/
-_layouts.jekyll.bak/
-.backup/
-*_layouts*/*.bak
-*.bak
-README.html
-docs/
-.superpowers/
-.agents/
-.claude/
+README.md
+assets/graft/SKILL.md
