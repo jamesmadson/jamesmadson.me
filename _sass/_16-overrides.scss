@@ -465,3 +465,16 @@ html[data-skin='grunge'] {
   .dials_fab:hover { rotate: 90deg; }
   .site_footer { border-top: 2px dashed #d8ff3e; }
 }
+
+// tl;dr length lens: the site's own leadins carry each page; the
+// elaboration hides. No parallel copy exists or ever should: this is
+// a length control, not a second voice.
+html[data-tldr] {
+  .cs_body_cols,
+  .project .grid_12 > p:not(.leadin):not(.canon_closing),
+  .practice_ai .about_me:not(:last-of-type),
+  .how_work_grid p,
+  .experience_right p:not(.experience_role) {
+    display: none;
+  }
+}

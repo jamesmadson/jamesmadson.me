@@ -48,6 +48,8 @@
     } else {
       document.documentElement.removeAttribute('data-skin');
     }
+    if (d.tldr) document.documentElement.setAttribute('data-tldr', '');
+    else document.documentElement.removeAttribute('data-tldr');
     window.JM = window.JM || {};
     JM.lens = d.lens ? LENSES[d.lens] : null;
   }
@@ -85,6 +87,12 @@
       '    <button type="button" data-theme-set="dark">dark</button>' +
       '  </div>' +
       '  <span class="dials_rail_desc">Moved here from the menu. System follows your OS.</span></label>' +
+      '<label>Length' +
+      '  <div class="dials_rail_seg" role="group" aria-label="Length">' +
+      '    <button type="button" data-tldr-set="">full</button>' +
+      '    <button type="button" data-tldr-set="1">tl;dr</button>' +
+      '  </div>' +
+      '  <span class="dials_rail_desc">The leadins were always the summary; tl;dr hides the elaboration. No rewritten copy, just less of it.</span></label>' +
       '<label>Lens' +
       '  <select data-dial="lens">' +
       '    <option value="">James, as written</option>' +
@@ -172,6 +180,18 @@
       if (inputs.skin.value) state.skin = inputs.skin.value; else delete state.skin;
       apply(state); save(state); sync();
     });
+    Array.prototype.forEach.call(rail.querySelectorAll('[data-tldr-set]'), function (b) {
+      b.addEventListener('click', function () {
+        if (b.getAttribute('data-tldr-set')) state.tldr = true; else delete state.tldr;
+        apply(state); save(state); sync(); syncTldr();
+      });
+    });
+    function syncTldr() {
+      Array.prototype.forEach.call(rail.querySelectorAll('[data-tldr-set]'), function (b) {
+        b.classList.toggle('is_on', !!b.getAttribute('data-tldr-set') === !!state.tldr);
+      });
+    }
+    syncTldr();
     Array.prototype.forEach.call(rail.querySelectorAll('[data-theme-set]'), function (b) {
       b.addEventListener('click', function () {
         setTheme(b.getAttribute('data-theme-set') || null);
@@ -181,14 +201,26 @@
     function syncTheme() {
       var cur = '';
       try { cur = localStorage.getItem('theme') || ''; } catch (e) {}
-      Array.prototype.forEach.call(rail.querySelectorAll('[data-theme-set]'), function (b) {
+      Array.prototype.forEach.call(rail.querySelectorAll('[data-tldr-set]'), function (b) {
+      b.addEventListener('click', function () {
+        if (b.getAttribute('data-tldr-set')) state.tldr = true; else delete state.tldr;
+        apply(state); save(state); sync(); syncTldr();
+      });
+    });
+    function syncTldr() {
+      Array.prototype.forEach.call(rail.querySelectorAll('[data-tldr-set]'), function (b) {
+        b.classList.toggle('is_on', !!b.getAttribute('data-tldr-set') === !!state.tldr);
+      });
+    }
+    syncTldr();
+    Array.prototype.forEach.call(rail.querySelectorAll('[data-theme-set]'), function (b) {
         b.classList.toggle('is_on', (b.getAttribute('data-theme-set') || '') === cur);
       });
     }
     syncTheme();
     rail.querySelector('.dials_rail_reset').addEventListener('click', function () {
       state = {};
-      apply(state); save(state); sync();
+      apply(state); save(state); sync(); syncTldr();
       window.dispatchEvent(new Event('jm:lens'));
     });
 
