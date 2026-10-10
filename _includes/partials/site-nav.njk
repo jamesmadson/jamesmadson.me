@@ -1,6 +1,14 @@
   <a href="#main-content" class="skip-nav">Skip to main content</a>
   <div class="site_header fadeIn">
     <a href="/" class="site_name">James Madson</a>
+    {# Desktop: inline links with the shared glide pill; the overlay stays
+       for mobile. Reverses the 2026-08 wordmark+Menu-only call on James's
+       direction (the toolbar-nav reference, 2026-10-10). #}
+    <ul class="nav_inline" aria-label="Primary">
+      <li><a href="/work/"{% if activeNav == 'work' %} class="active"{% endif %}>Work</a></li>
+      <li><a href="/about/"{% if activeNav == 'about' %} class="active"{% endif %}>About</a></li>
+      <li><a href="/contact/"{% if activeNav == 'contact' %} class="active"{% endif %}>Contact</a></li>
+    </ul>
     <div class="nav_cta_wrapper">
       <button id="navlink" aria-controls="mobilenavmenu" aria-expanded="false" aria-label="Toggle menu"><span class="navlink_icon"><span class="navlink_bar navlink_bar1"></span><span class="navlink_bar navlink_bar2"></span></span><span class="navlink_label">Menu</span></button>
     </div>
@@ -13,10 +21,5 @@
         <li><a href="/work/"{% if activeNav == 'work' %} class="active"{% endif %}>Work</a></li>
         <li><a href="/contact/"{% if activeNav == 'contact' %} class="active"{% endif %}>Contact</a></li>
       </ul>
-      <div class="mobile_nav_footer">
-        <button id="light_switch" aria-label="Toggle light/dark mode">
-          <span class="toggle-track"><span class="toggle-thumb"></span></span>
-        </button>
-      </div>
     </div>
   </nav>

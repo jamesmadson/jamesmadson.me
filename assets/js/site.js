@@ -14,6 +14,13 @@
     director:  { post: '. Twenty years across brand, product, and systems, and I keep the decision logs to prove it.' },
     recruiter: { post: ', a product designer with twenty years of shipped work. The case studies below are the resume.' }
   };
+  function setTheme(t) {
+    var doc = document.documentElement;
+    try { t ? localStorage.setItem('theme', t) : localStorage.removeItem('theme'); } catch (e) {}
+    var effective = t || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    doc.className = doc.className.replace(/\btheme-\S+/g, '').trim();
+    doc.classList.add('theme-' + effective);
+  }
   var SERIF_ID = 'jm_serif';
   function ensureSerif() {
     if (document.getElementById(SERIF_ID)) return;
@@ -71,6 +78,13 @@
       '  <button type="button" class="dials_rail_close" aria-label="Close dials">\u2715</button>' +
       '</div>' +
       '<p class="dials_rail_note">Live tokens and lenses. They follow you across the whole site until you reset; canon is no overrides at all.</p>' +
+      '<label>Theme' +
+      '  <div class="dials_rail_seg" role="group" aria-label="Theme">' +
+      '    <button type="button" data-theme-set="">system</button>' +
+      '    <button type="button" data-theme-set="light">light</button>' +
+      '    <button type="button" data-theme-set="dark">dark</button>' +
+      '  </div>' +
+      '  <span class="dials_rail_desc">Moved here from the menu. System follows your OS.</span></label>' +
       '<label>Lens' +
       '  <select data-dial="lens">' +
       '    <option value="">James, as written</option>' +
@@ -84,6 +98,7 @@
       '    <option value="">canon</option>' +
       '    <option value="editorial">editorial \u00b7 serif cut, hairlines</option>' +
       '    <option value="grunge">grunge \u00b7 acid stickers</option>' +
+      '    <option value="markdown">markdown \u00b7 for agents and source readers</option>' +
       '  </select>' +
       '  <span class="dials_rail_desc">The visual register. Editorial sets display type in a serif and squares the corners; grunge gets loud.</span></label>' +
       '<hr class="dials_rail_hr">' +
@@ -103,7 +118,9 @@
       '    <option value="linear(0, 0.6 20%, 1.12 55%, 0.95 78%, 1.02 92%, 1)">springy \u00b7 double bounce</option>' +
       '  </select>' +
       '  <span class="dials_rail_desc">The curve every lift, flood, and this very rail ride.</span></label>' +
-      '<button type="button" class="dials_rail_reset">Reset to canon</button>';
+      '<button type="button" class="dials_rail_reset">Reset to canon</button>' +
+      '<a class="dials_rail_export" href="/assets/jamesmadson-system.skill.md" download>Export this system \u2193</a>' +
+      '<span class="dials_rail_desc">A skill file of the tokens and contracts, attribution included, for anyone building with an agent.</span>';
 
     document.body.appendChild(rail);
     document.body.appendChild(fab);
@@ -155,6 +172,20 @@
       if (inputs.skin.value) state.skin = inputs.skin.value; else delete state.skin;
       apply(state); save(state); sync();
     });
+    Array.prototype.forEach.call(rail.querySelectorAll('[data-theme-set]'), function (b) {
+      b.addEventListener('click', function () {
+        setTheme(b.getAttribute('data-theme-set') || null);
+        syncTheme();
+      });
+    });
+    function syncTheme() {
+      var cur = '';
+      try { cur = localStorage.getItem('theme') || ''; } catch (e) {}
+      Array.prototype.forEach.call(rail.querySelectorAll('[data-theme-set]'), function (b) {
+        b.classList.toggle('is_on', (b.getAttribute('data-theme-set') || '') === cur);
+      });
+    }
+    syncTheme();
     rail.querySelector('.dials_rail_reset').addEventListener('click', function () {
       state = {};
       apply(state); save(state); sync();
@@ -1187,6 +1218,8 @@ function smoothScrollTo(targetY, duration) {
 (function () {
   var nav = document.querySelector('.case_study_nav');
   if (nav) JM.glide(nav, 'a');
+  var inline = document.querySelector('.nav_inline');
+  if (inline) JM.glide(inline, 'a');
   var links = document.querySelector('.about_meta_links');
   if (links) JM.glide(links, 'a');
 }());
