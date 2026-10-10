@@ -308,9 +308,9 @@ html[data-skin='grunge'] {
   .site_footer_name { rotate: -1deg; }
 }
 
-// Markdown: the site rendered like its own source. For agents, and
-// anyone who reads plaintext for pleasure. Chrome off, mono on,
-// headings wear their octothorpes.
+// Markdown: the site as a document, Obsidian-style (James's reference).
+// Layout literally flattens to one reading column, chrome hides, pages
+// become tabs in a bar the dials module injects on every page.
 html[data-skin='markdown'] {
   --fog-blur-card: 0px;
   --fog-blur-hero: 0px;
@@ -321,22 +321,102 @@ html[data-skin='markdown'] {
     font-family: $mono;
     letter-spacing: 0;
   }
-  .hero_headline { font-size: clamp(1.4rem, 2vw + 0.8rem, 2.2rem); font-weight: 500; }
-  .project h3::before, .home_work_title::before { content: '## '; color: rgba($white, 0.4); }
-  .jm_title::before { content: '# '; color: rgba($white, 0.4); }
+  .hero_headline { font-size: clamp(1.3rem, 1.6vw + 0.8rem, 1.8rem); font-weight: 500; }
+  h1::before, .jm_title::before, .home_work_title::before { content: '# '; color: rgba($white, 0.35); }
+  .project h3::before, .about h3::before, h2::before { content: '## '; color: rgba($white, 0.35); }
+
+  // chrome off: the tab bar is the navigation
+  .site_header, .mobile_nav_menu, .site_footer, footer { display: none; }
+  .md_tabs { display: flex; }
+
+  // the one column
+  .container, .container_fluid {
+    display: block;
+    margin-inline: auto;
+    max-width: 740px;
+    padding: 0 1.25rem;
+  }
+  .home_work_grid, .now_columns, .how_work_grid, .cv2_plugins, .cv2_pair,
+  .stats-container, .values_row, .graft_columns {
+    display: block;
+    > * { margin-bottom: 1rem; }
+  }
+  header.about_header, section, main { padding-top: 1rem; padding-bottom: 1rem; }
+
+  // cards become entries in the document
+  .hwc { display: block; rotate: none; }
+  .hwc_img { aspect-ratio: auto; background: none; }
+  .wc { inset: auto; padding: 1.1rem; position: static; }
   .wc::before { display: none; }
   .wc { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--wc-ink, #{$white}) 35%, transparent); }
+  .wc_headline br { display: none; }
   .cv2_panel { background: none; box-shadow: inset 0 0 0 1px rgba($white, 0.25); }
   .hwc:hover { transform: none; }
   p a, .law a { text-decoration: underline; }
 }
 
-// Grunge, grungier (round two, per James): misprint shadows, wavy acid
-// underlines, dashed rings, a button that can't sit still.
+// Obsidian-style page tabs: always in the DOM (dials module injects),
+// visible only in markdown mode.
+.md_tabs {
+  background: color-mix(in srgb, $dark-bg 88%, black);
+  border-bottom: 1px solid rgba($white, 0.12);
+  display: none;
+  font-family: $mono;
+  font-size: $type-xs;
+  gap: 2px;
+  overflow-x: auto;
+  padding: 0.5rem 0.75rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+
+  a {
+    border: 1px solid transparent;
+    border-bottom: 0;
+    border-radius: 7px 7px 0 0;
+    color: rgba($white, 0.55);
+    padding: 0.55em 1.1em;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover { color: rgba($white, 0.85); }
+    &.active {
+      background: $dark-bg;
+      border-color: rgba($white, 0.12);
+      color: $white;
+    }
+  }
+}
+html.theme-light .md_tabs {
+  background: color-mix(in srgb, $tan 92%, black);
+  border-bottom-color: rgba($dark-default, 0.18);
+  a { color: rgba($dark-default, 0.6); &:hover { color: $dark-default; } &.active { background: $tan; border-color: rgba($dark-default, 0.18); color: $dark-default; } }
+}
+
+// Grunge round three: the chroma shadow read as gimmick (James), so
+// the register is David Carson now. Type collides: tight tracking,
+// line-heights under 1, uppercase cuts, stamped tags, nothing sits
+// quite straight. Legibility holds; order doesn't.
 html[data-skin='grunge'] {
   .hero_headline, .wc_headline {
-    text-shadow: 2px 0 0 #ff5ca8, -2px 0 0 #3ef0ff;
+    letter-spacing: -0.05em;
+    line-height: 0.85;
+    text-transform: uppercase;
   }
+  .wc_headline { rotate: -1.5deg; }
+  .project h3, .home_work_title {
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+    text-transform: uppercase;
+  }
+  .cv2_figtag {
+    background: #d8ff3e;
+    color: #171814;
+    display: inline-block;
+    padding: 0 0.45em;
+    rotate: -1.2deg;
+  }
+  .cv2_figcap { rotate: 0.4deg; }
   .project p a, .about_me a, .law a {
     text-decoration: underline wavy #d8ff3e 2px;
     text-underline-offset: 4px;

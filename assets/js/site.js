@@ -206,8 +206,25 @@
 
     sync();
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
-  else build();
+  function buildTabs() {
+    if (document.querySelector('.md_tabs')) return;
+    var pages = [
+      ['/', 'index'], ['/work/', 'work'], ['/about/', 'about'],
+      ['/practice/', 'practice'], ['/contact/', 'contact'], ['/colophon/', 'colophon']
+    ];
+    var bar = document.createElement('nav');
+    bar.className = 'md_tabs';
+    bar.setAttribute('aria-label', 'Pages');
+    var here = location.pathname;
+    bar.innerHTML = pages.map(function (p) {
+      var active = here === p[0] || (p[0] !== '/' && here.indexOf(p[0]) === 0);
+      return '<a href="' + p[0] + '"' + (active ? ' class="active"' : '') + '>' + p[1] + '.md</a>';
+    }).join('');
+    document.body.insertBefore(bar, document.body.firstChild);
+  }
+  function boot() { buildTabs(); build(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
 }());
 
 // ============================================================
