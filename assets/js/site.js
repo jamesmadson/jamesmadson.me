@@ -212,6 +212,22 @@
       window.dispatchEvent(new Event('jm:lens'));
     });
     rail.querySelector('.dials_rail_export').addEventListener('click', function () { track('export', 'skill'); });
+
+    function setOpen(open) {
+      rail.classList.toggle('is_open', open);
+      fab.setAttribute('aria-expanded', String(open));
+      if (open) { var f = rail.querySelector('[data-seg]'); if (f) f.focus(); }
+      else fab.focus();
+    }
+    fab.addEventListener('click', function () {
+      var opening = !rail.classList.contains('is_open');
+      if (opening) track('open', location.pathname);
+      setOpen(opening);
+    });
+    rail.querySelector('.dials_rail_close').addEventListener('click', function () { setOpen(false); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && rail.classList.contains('is_open')) setOpen(false);
+    });
     sync();
   }
   function buildTabs() {
