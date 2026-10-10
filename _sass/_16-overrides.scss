@@ -336,20 +336,56 @@ html[data-skin='markdown'] {
     max-width: 740px;
     padding: 0 1.25rem;
   }
-  .home_work_grid, .now_columns, .how_work_grid, .cv2_plugins, .cv2_pair,
-  .stats-container, .values_row, .graft_columns {
+  .home_work_grid, .work_page_grid, .now_columns, .how_work_grid,
+  .cv2_plugins, .cv2_pair, .stats-container, .values_row, .graft_columns {
     display: block;
     > * { margin-bottom: 1rem; }
   }
   header.about_header, section, main { padding-top: 1rem; padding-bottom: 1rem; }
 
-  // cards become entries in the document
-  .hwc { display: block; rotate: none; }
-  .hwc_img { aspect-ratio: auto; background: none; }
-  .wc { inset: auto; padding: 1.1rem; position: static; }
+  // cards are not cards here: plain document entries, zero chrome.
+  // Inks run on currentColor: the baked $white ink only worked while
+  // cards kept their dark grounds.
+  // documents don't have entrances: reveal/stagger systems neutralized
+  .hwc, .value_word, .value_connector, .services_list li {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .hwc { box-shadow: none; display: block; rotate: none; }
+  .hwc:hover { box-shadow: none; }
+  .hwc_img { aspect-ratio: auto; background: none; border-radius: 0; }
+  .wc {
+    background: none;
+    box-shadow: none;
+    color: inherit;
+    inset: auto;
+    padding: 0.5rem 0 1rem;
+    position: static;
+  }
   .wc::before { display: none; }
-  .wc { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--wc-ink, #{$white}) 35%, transparent); }
-  .wc_headline br { display: none; }
+  // the headline's <br> stays: a two-line title is how the source reads
+  .wc_headline {
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.35;
+    &::before { content: '### '; font-weight: 400; opacity: 0.4; }
+  }
+  .wc_subhead { color: inherit; font-size: 0.9rem; opacity: 0.65; }
+  .wc_tags {
+    gap: 0;
+    li {
+      background: none;
+      border: 0;
+      border-radius: 0;
+      color: inherit;
+      opacity: 0.55;
+      padding: 0;
+      rotate: none;
+      text-transform: lowercase;
+    }
+    li + li::before { content: ' \00b7 '; white-space: pre; }
+  }
+  .wc_top, .wc .stats-container { display: none; }
   .cv2_panel { background: none; box-shadow: inset 0 0 0 1px rgba($white, 0.25); }
   .hwc:hover { transform: none; }
   p a, .law a { text-decoration: underline; }
