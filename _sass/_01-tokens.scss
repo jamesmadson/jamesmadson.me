@@ -1,0 +1,53 @@
+@use 'sass:math';
+@use 'sass:color';
+
+// ============================================================
+// Variables
+// ============================================================
+
+// Softened from pure #000/#FFF poles (Bureau VA reference: their text
+// is #33353A on #BDC1BB — nothing sits at an extreme). Ours keeps the
+// site's warm green cast: dark bg lifts to a warm near-black, white
+// text drops to a warm off-white, light-mode text eases off near-black.
+$tan:             #F2F2ED;
+$dark-default:    #33352E;
+$dark-bg:         #171814;
+$white:           #EDEEE8;
+$text-secondary:  #D4D5D0;
+$text-muted:      #666666;
+$text-dark:       #2A2B26;
+$text-light:      #f2f2f2;
+
+// Brand colors
+$orange:  #E64F13;
+$blue:    #1874dc;
+$cyan:    #23AFE5;
+$green:   #009933;
+$lime:    #99CC00;
+$teal:    #339999;
+$yellow:  #FFC200;
+$sage:    #A1B19E;
+
+// Typography
+$font: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$mono: "IBM Plex Mono", "Courier New", Courier, monospace;
+
+// Type scale. Eight steps, nothing below 13px. Every font-size in this
+// file must resolve to one of these (display clamps stay as written).
+$type-xs:   0.8125rem;  // 13px, labels/eyebrows only
+$type-sm:   0.875rem;   // 14px, secondary/meta
+$type-md:   1rem;       // 16px, tertiary body, dense UI
+$type-base: 1.125rem;   // 18px, body
+$type-lg:   1.25rem;    // 20px, leads
+$type-xl:   1.5rem;     // 24px, section heads
+$type-2xl:  2.125rem;   // 34px, page heads
+// display sizes remain the existing clamp() expressions
+
+// Card elevation. Overshoot lives on transform only — never on
+// box-shadow or any property with a hard floor (border-radius, opacity)
+// which this repo has a documented history of bounce easings undershooting.
+$spring-lift: linear(0, 0.55 28%, 1.04 62%, 0.99 82%, 1); // transform only
+$lift-rest:  0 1px 2px rgba(#000, 0.06), 0 4px 12px -6px rgba(#000, 0.10);
+$lift-hover: 0 2px 4px rgba(#000, 0.08), 0 16px 32px -12px rgba(#000, 0.20);
+
+

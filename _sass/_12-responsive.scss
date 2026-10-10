@@ -1,0 +1,328 @@
+// ============================================================
+// Responsive — tablet (≤1279px)
+// ============================================================
+
+@media (max-width: 1279px) {
+  .container,
+  .about.work .container { margin-left: 0; margin-right: 0; }
+
+  // case_study_nav stays visible on desktop sizes
+
+  .color_block.sage,
+  .color_block.grey-darkest { margin-top: 0; }
+
+  .color_block.yellow { display: block; position: relative; right: -20px; top: 0; }
+
+  #about_photos { overflow: hidden; }
+
+  .about_images {
+    overflow: hidden;
+    width: 100%;
+
+    .image_lead { height: 800px; width: auto; }
+    .image_waves { height: 540px; width: 900px; }
+    .image_portrait {
+      left: 300px; right: 0; top: 50px;
+      img { height: 350px; width: 350px; }
+      &::after { width: 350px; }
+    }
+    .image_film_strip { display: none; }
+  }
+
+  .about {
+    // Adjacent .about-based sections (Values, Process, Services...) sit
+    // flush with no shared margin, so each one's own top+bottom padding
+    // stacks at the seam. Trimmed from 2rem/3rem, which read as dead
+    // space between short sections on a single-column mobile layout.
+    padding-bottom: 1.25rem;
+    padding-top: 1rem;
+    margin-top: 0;
+    .container { padding: 2rem; }
+  }
+
+  footer { padding: 5rem 0 0; }
+}
+
+
+// ============================================================
+// Responsive — tablet (≤1024px)
+// ============================================================
+
+@media (max-width: 1024px) {
+  // Used by music.html's <h2 class="jm_subtitle"> header — the homepage
+  // hero no longer uses .jm_subtitle (see .hero_headline instead).
+  header .jm_subtitle {
+    font-size: clamp(1.6rem, 3vw + 0.75rem, 2.75rem);
+  }
+}
+
+
+// ============================================================
+// Responsive — mobile (≤768px)
+// ============================================================
+
+@media (max-width: 768px) {
+  .site_header { padding-left: 1.25rem; padding-right: 1.25rem; }
+  // Phones get a disclosure instead of a scrolling pill row: the bar
+  // shows where you are, tapping reveals the full list. Scrolling
+  // horizontally kept most sections off-screen with no affordance.
+  .case_study_nav {
+    align-items: center;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    justify-content: flex-start;
+    overflow: visible;
+    padding: 0.35rem 0.75rem;
+    row-gap: 0;
+    width: 100%;
+
+    li { flex-shrink: 0; }
+
+    .cs_nav_view { margin-left: 0; }
+
+    // Section links collapse behind the disclosure
+    li:not(.cs_nav_back):not(.cs_nav_view):not(.cs_nav_disclosure) {
+      display: none;
+      width: 100%;
+    }
+
+    .cs_nav_disclosure {
+      display: block;
+      // Take the leftover space, and be willing to give it back so the
+      // back link and view toggle always stay on screen.
+      flex: 1 1 auto;
+      min-width: 0;
+
+      button {
+        align-items: center;
+        background: none;
+        border: none;
+        color: inherit;
+        cursor: pointer;
+        display: flex;
+        font-family: $font;
+        font-size: $type-md;
+        font-weight: 500;
+        gap: 0.35rem;
+        justify-content: center;
+        letter-spacing: 0;
+        margin: 0 auto;
+        min-height: 44px;
+        padding: 0 0.5rem;
+        text-transform: none;
+        width: 100%;
+      }
+
+      svg { transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+    }
+
+    .cs_nav_current {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    // Bar order stays fixed even when the list wraps below it:
+    // back, current section, view switcher, then the opened list.
+    .cs_nav_back      { order: 1; margin-right: 0.25rem; }
+    .cs_nav_disclosure { order: 2; }
+    .cs_nav_view      { order: 3; }
+    li:not(.cs_nav_back):not(.cs_nav_view):not(.cs_nav_disclosure) { order: 4; }
+
+    &.sections-open {
+      padding-bottom: 0.5rem;
+
+      .cs_nav_disclosure svg { transform: rotate(180deg); }
+
+      li:not(.cs_nav_back):not(.cs_nav_view):not(.cs_nav_disclosure) {
+        display: block;
+      }
+
+      // Sentence case, medium weight, quiet rows. The old treatment
+      // was uppercase with a full-width filled pill on the active row,
+      // which shouted and broke the page's typographic voice.
+      a {
+        border-radius: 0.5rem;
+        display: flex;
+        font-size: $type-base;
+        font-weight: 500;
+        justify-content: flex-start;
+        letter-spacing: 0;
+        min-height: 44px;
+        padding: 0.5rem 0.75rem;
+        text-transform: none;
+        width: 100%;
+
+        &::before { display: none; }
+
+        &.active {
+          background: none;
+          color: $white;
+          font-weight: 500;
+        }
+      }
+
+      .cs_nav_label {
+        font-family: $font;
+        font-size: $type-base;
+        font-weight: 500;
+        letter-spacing: 0;
+        text-transform: none;
+      }
+    }
+
+    a {
+      font-size: $type-sm;
+      padding: 0.4rem 0.65rem;
+      white-space: nowrap;
+    }
+  }
+  // Stack all grid columns to single column
+  [class^="grid_"] { grid-column: span 1 !important; }
+
+  .container,
+  .container_fluid {
+    grid-template-columns: 1fr;
+    padding-left: max(1.25rem, env(safe-area-inset-left));
+    padding-right: max(1.25rem, env(safe-area-inset-right));
+    gap: 1rem;
+  }
+
+  // Work cards: stack text first, then images side by side
+  .about.work .container {
+    margin: 0 1rem 2.5rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    // Make the two image columns sit side by side on mobile
+    .grid_4:nth-child(3),
+    .grid_4:nth-child(4),
+    .grid_3:nth-child(3),
+    .grid_3:nth-child(4) {
+      display: inline-flex;
+      width: 48%;
+    }
+  }
+
+  header,
+  header.fadeIn {
+    padding: 2rem 0 2rem;
+    margin-bottom: 0;
+
+    .jm_title { margin-top: 1.5rem; width: 100%; }
+    .jm_subtitle { font-size: clamp(1.4rem, 4.5vw + 0.5rem, 2rem); line-height: 1.4; }
+  }
+
+  // #hero_shuffle_text sizing at this breakpoint comes from the shared
+  // .hero_headline class (see its own responsive rule elsewhere).
+
+  // mobile_nav_menu font-size is set within the component via clamp()
+
+  .more_work .more_work_grid { grid-template-columns: repeat(2, 1fr); }
+  .designer_shapes { grid-template-columns: 1fr; }
+
+  .error_photo { width: 240px; }
+  header .grid_6 { grid-column: span 1; }
+
+  .about_images {
+    height: 420px;
+    overflow: visible;
+
+    .image_lead {
+      height: 100% !important;
+      left: 0;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      width: 100% !important;
+      z-index: 0;
+    }
+
+    .image_portrait {
+      display: block;
+      left: 50%;
+      top: 60px;
+      transform: translateX(-50%);
+      z-index: 12;
+
+      img { height: 220px; width: 220px; }
+    }
+
+    .image_film_strip {
+      display: block;
+      left: 0;
+      right: auto;
+      top: 60px;
+      transform: rotate(-5deg);
+      z-index: 11;
+
+      img {
+        height: auto;
+        width: 190px;
+      }
+    }
+
+    .image_waves { display: none; }
+  }
+
+  .case_studies_nav { margin-top: 0 !important; }
+  .case_study { margin: 0.5rem 0; }
+
+  .about {
+    h3 { margin-top: 0.5rem; }
+    p { padding-right: 0; }
+  }
+
+  .project {
+    padding-bottom: 2rem;
+
+    .client_logo_wrap { width: 90px; height: 90px; padding: 1rem; margin-bottom: 1.5rem; }
+    .client_logo { width: 46px; }
+    .project_title { font-size: clamp(1.5rem, 6vw, 2.5rem); line-height: 1.2; }
+    p { padding-right: 0; }
+
+    .cs_meta_item { width: 100%; }
+
+    .overview {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+
+      .stats-container {
+        border-top: none;
+        gap: 0.6rem;
+        grid-template-columns: 1fr 1fr;
+      }
+      .stats-container .stat {
+        background: rgba($white, 0.05);
+        border: 1px solid rgba($white, 0.1);
+        border-left: 1px solid rgba($white, 0.1);
+        border-radius: 0.75rem;
+        padding: 1rem 0.85rem;
+
+        .stat_number { font-size: $type-2xl; }
+        .stat_info { font-size: 0.78rem; }
+      }
+    }
+  }
+
+  blockquote {
+    font-size: clamp(1rem, 1.5vw + 0.5rem, 1.5rem);
+    margin: 2rem 0;
+  }
+
+  footer { padding: 2rem 0 0; }
+
+  // Values row: wrap words, hide connectors
+  .values_row {
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    margin-bottom: 2rem;
+  }
+  .value_connector { display: none; }
+  .value_word { font-size: clamp(1.4rem, 5vw, 1.8rem); }
+}
+
+

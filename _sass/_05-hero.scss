@@ -1,0 +1,637 @@
+// ============================================================
+// Header
+// ============================================================
+
+header {
+  background-color: transparent;
+  background-attachment: fixed;
+  display: block;
+  margin-bottom: 0;
+  padding: 10px 0;
+  position: relative;
+  overflow-x: hidden;
+  width: 100%;
+
+  &.fadeIn { padding: 4rem 0 5rem; }
+
+  .about_me {
+    color: rgba($white, 0.8);
+    font-family: $font;
+    font-size: 26px;
+    line-height: 34px;
+
+    a { color: $white; }
+  }
+
+  .name {
+    color: $text-muted;
+    float: left;
+    font-family: $font;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+  }
+
+  .jm_title {
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: $white;
+    display: block;
+    font-size: clamp(3rem, 5vw + 1rem, 6rem); // ~48–96px display
+    font-weight: normal;
+    padding-bottom: 2rem;
+    margin: 6rem 0 0 0;
+
+    span { color: $text-muted; }
+  }
+
+  .jm_subtitle {
+    color: rgba($white, 0.5);
+    line-height: 1.45;
+    margin: 0;
+    text-wrap: pretty;
+
+    // Ensure inline highlight links don't break line-height consistency
+    a, .highlight {
+      line-height: inherit;
+      vertical-align: baseline;
+    }
+
+    &.location { margin: 4.6rem 0 0 0; }
+  }
+}
+
+header.about_header {
+  padding-top: 4rem;
+  .grid_3 { align-self: start; }
+  // Display line breathes before the bio: at this size the descenders
+  // sit deep, so 0.35rem read as touching. Roughly half a display
+  // line-height of air keeps the paragraph subordinate, not stacked.
+  .jm_title { margin: 0; padding-bottom: 2rem; }
+
+  .about_bio {
+
+
+    // Sized for its half-width column, not the homepage hero: display
+    // sizes need wide containers and 1-3 line sentences; in a 656px
+    // column this paragraph needs ~24-32px to keep a readable measure
+    // and to stay visually subordinate to the page title above it.
+    .about_me--lead {
+      color: $white;
+      font-size: clamp(1.5rem, 1vw + 1rem, 2rem);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+      margin: 0 0 1.5rem;
+      text-wrap: pretty;
+    }
+
+    .about_me {
+      // Editorial two-column flow for the bio body text; single column
+      // once the page grid collapses.
+      columns: 2;
+      column-gap: 2.5rem;
+      font-size: $type-lg;
+      font-weight: 500;
+      line-height: 1.5;
+      margin: 0;
+      text-wrap: pretty;
+
+      @media (max-width: 1279px) { columns: 1; }
+
+      // Without this, the highlight chips' own line-height inflates the
+      // line box only on the lines that contain them, making paragraph
+      // spacing look uneven line to line.
+      .highlight { line-height: 1.2; }
+    }
+
+    // Space between stacked paragraphs, but not before the first one —
+    // the lead and body live in separate grid columns, so a paragraph
+    // that's the first child of its own column shouldn't inherit spacing
+    // meant to separate it from a sibling above it. (Written explicitly
+    // rather than as a nested `& + &`, which expands the full ancestor
+    // chain on both sides of the combinator and never matches.)
+    .about_me + .about_me {
+      margin-top: 1.25rem;
+    }
+  }
+}
+
+// About page meta — right column (time/weather + links)
+// Work page header: page title left, one-line description right,
+// aligned to the bottom of the row so it sits on the title's baseline
+// instead of floating in the middle of an oversized column.
+.about_header_meta {
+  align-self: end;
+  padding-bottom: 0.6rem;
+}
+
+// About header left column: title with time/weather and links
+// stacked beneath it. No separator line.
+.about_header_side {
+  display: flex;
+  flex-direction: column;
+
+  .about_meta { margin-top: 1rem; }
+}
+
+.about_meta_links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  // Below the bio now: the opening reads byline, statement, voice, and
+  // the links sit where a reader reaches for them, after the pitch.
+  margin-top: 2.5rem;
+}
+
+.about_now {
+  // Two labeled columns (Now / Off hours). Single column once the page
+  // grid collapses, matching the mobile threshold used sitewide.
+  .now_columns {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: repeat(2, 1fr);
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  .now_column_label {
+    color: rgba($white, 0.45);
+    font-size: $type-xs;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin: 0 0 1.1rem;
+    text-transform: uppercase;
+  }
+
+  .now_list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      color: rgba($white, 0.7);
+      font-size: $type-base;
+      line-height: 1.6;
+
+      strong {
+        color: $white;
+        display: block;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .now_note {
+    color: rgba($white, 0.45);
+    margin-top: 1.5rem;
+  }
+}
+
+html.theme-light .about_now {
+  .now_column_label { color: rgba($dark-default, 0.45); }
+  .now_list li {
+    color: rgba($dark-default, 0.7);
+    strong { color: $dark-default; }
+  }
+  .now_note { color: rgba($dark-default, 0.45); }
+}
+
+.about_services {
+  // Scroll-reveal stagger, IntersectionObserver-driven (site.js).
+  // .stagger_ready is added by JS before observing, so content is
+  // never hidden when JS is absent; reduced-motion skips the prep.
+  &.stagger_ready .services_list li {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: calc(var(--stagger-i, 0) * 70ms);
+  }
+
+  &.stagger_ready.in_view .services_list li {
+    opacity: 1;
+    transform: none;
+  }
+
+  .services_list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-weight: 500;
+      line-height: 1.3;
+    }
+
+    // Chips here are flex items, not words in running text — the
+    // prose-only negative margin-block would eat the row gap.
+    // Same outline treatment as the hero chips: these are buttons that
+    // link out to case studies, and should read as pressable.
+    // Same behaviour as the hero chips: outlined at rest, filling with
+    // the project color on hover. Dark ink on the fill, not white —
+    // white on $cyan is ~2.3:1 and fails even the large-text floor.
+    .highlight {
+      box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 50%, transparent);
+      color: $white;
+      margin-block: 0;
+      transition: background-color 0.22s ease, color 0.22s ease,
+                  box-shadow 0.22s ease;
+
+      &.nd, &.nq { --chip: #{$green}; }
+      &.pecan    { --chip: #{$cyan}; }
+      &.viz      { --chip: #{$blue}; }
+      &.ns       { --chip: #{$lime}; }
+      &.canon    { --chip: #{$white}; }
+      &.jm       { --chip: #{$orange}; }
+
+      &:hover, &:active {
+        background-color: var(--chip);
+        box-shadow: 0 0 0 1px var(--chip);
+        color: $dark-bg;
+      }
+
+      // $orange is dark enough that white ink reads better on it
+      &.jm:hover, &.jm:active { color: $white; }
+    }
+  }
+}
+
+
+// ============================================================
+// Hero crossfade transition
+// ============================================================
+
+// Countdown ring around the shuffle button: the stroke drains over
+// the auto-advance interval (restarted by hero.js each cycle, removed
+// while paused). Sits just outside the button's own border.
+.hero_shuffle_btn {
+  position: relative;
+}
+
+.hero_shuffle_ring {
+  // Drawn INSIDE the button, not 4px outside it. The old overhang sat
+  // exactly on .container's edge, which is overflow: hidden below
+  // 1280px, so the bottom arc was clipped. r=16 of an 18-unit radius
+  // with a 2.5 stroke keeps the whole ring within the button box.
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+
+  circle {
+    fill: none;
+    opacity: 0;
+    // Takes the current sentence's project color (data-accent set by
+    // hero.js on each render) so the countdown reads as part of the
+    // content, not chrome. Falls back to the button's own grey.
+    stroke: var(--hero-accent, currentColor);
+    stroke-dasharray: 100.53; /* 2πr, r=16 in the 36-unit viewBox */
+    stroke-dashoffset: 100.53;
+    stroke-linecap: round;
+    stroke-width: 2.5;
+    transform: rotate(-90deg);
+    transform-origin: center;
+    transition: stroke 0.3s ease;
+  }
+
+  &.is_counting circle {
+    animation: heroRingDrain var(--ring-ms, 5000ms) linear forwards;
+    opacity: 0.6;
+  }
+}
+
+// ============================================================
+// Project fog — the project's own artwork, heavily blurred, as a
+// frosted-glass field behind the hero. Sources are tiny derived
+// jpgs (480px, 6-38KB) since 64px of blur erases detail anyway; a
+// dark veil rides the same layer to keep the type at AA. Blooms
+// from center on load, then breathes. On home the artwork follows
+// the shuffle sentence; case studies key off the cover's vt class.
+// ============================================================
+
+header:has(#hero_shuffle_btn),
+// .about.cs_hero, not .cs_hero: both selectors are (0,1,0) and .about
+// is declared later in this file, so a bare .cs_hero rule loses on
+// source order. That left overflow-x: hidden in place, which per spec
+// forces overflow-y to auto — turning the hero into its own scroll
+// container. Doubling the class outranks it.
+.about.cs_hero {
+  // No clipping: the frost bleeds past the hero's bounds and feathers
+  // out via its own mask instead of cutting at the section edge. The
+  // page-level body { overflow-x: clip } still guards stray scrollbars.
+  overflow: visible;
+  position: relative;
+}
+
+header:has(#hero_shuffle_btn)::before,
+.cs_hero::before {
+  // Veil rides above the artwork in the same layer, so light-heavy
+  // sources (Viz's white panels) can't blow out under the type
+  background-image: linear-gradient(rgba($dark-bg, 0.5), rgba($dark-bg, 0.5)), var(--fog-img, none);
+  background-position: center;
+  background-size: cover;
+  content: '';
+  filter: blur(64px) saturate(1.15) brightness(0.7);
+  // Top starts at the hero's own top edge — i.e. just under the fixed
+  // nav, whose solid background would otherwise slice the frost. Sides
+  // bleed off-screen (body's overflow-x: clip catches them); the bottom
+  // hangs well into the next section so the fade lands there.
+  inset: -5rem -18% -26%;
+  // Explicit px stops, and the ramp must reach fully transparent AT the
+  // element's own edges: the old radial was still ~45% opaque where the
+  // box ended, and that abrupt stop was the hard line.
+  -webkit-mask-image: linear-gradient(to bottom,
+    transparent 0, black 150px, black calc(100% - 150px), transparent 100%);
+  mask-image: linear-gradient(to bottom,
+    transparent 0, black 150px, black calc(100% - 150px), transparent 100%);
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation:
+      fogSettle 3.4s cubic-bezier(0.25, 0.1, 0.25, 1) both,
+      fogBreathe 26s ease-in-out 3.4s infinite alternate;
+  }
+}
+
+@keyframes fogSettle {
+  from { opacity: 0; transform: scale(0.86); }
+  to   { opacity: var(--fog-max, 1); transform: scale(1); }
+}
+
+@keyframes fogBreathe {
+  to { transform: scale(1.06); }
+}
+
+// Case-study heroes get a mesh falloff instead of the home hero's
+// straight horizontal ramp: four overlapping radial blobs that union
+// (default mask-composite: add) into an irregular, organic edge, so
+// nothing reads as a band sliding past the content on scroll. None of
+// the blobs reaches an edge at full opacity, so the layer still ends
+// fully transparent at its own box.
+.cs_hero::before {
+  -webkit-mask-image:
+    radial-gradient(58% 62% at 22% 22%, black 0%, transparent 72%),
+    radial-gradient(52% 56% at 76% 32%, black 0%, transparent 70%),
+    radial-gradient(64% 52% at 44% 60%, black 0%, transparent 74%),
+    radial-gradient(44% 46% at 86% 74%, black 0%, transparent 70%);
+  mask-image:
+    radial-gradient(58% 62% at 22% 22%, black 0%, transparent 72%),
+    radial-gradient(52% 56% at 76% 32%, black 0%, transparent 70%),
+    radial-gradient(64% 52% at 44% 60%, black 0%, transparent 74%),
+    radial-gradient(44% 46% at 86% 74%, black 0%, transparent 70%);
+}
+
+// Home: artwork rides the current sentence's accent
+header:has([data-accent="nd"])::before    { --fog-img: url('/img/covers/ambient/nd.jpg'); }
+header:has([data-accent="pecan"])::before { --fog-img: url('/img/covers/ambient/pecan.jpg'); }
+header:has([data-accent="viz"])::before   { --fog-img: url('/img/covers/ambient/viz.jpg'); }
+header:has([data-accent="nq"])::before    { --fog-img: url('/img/covers/ambient/nq.jpg'); }
+header:has([data-accent="ns"])::before    { --fog-img: url('/img/covers/ambient/ns.jpg'); }
+header:has([data-accent="canon"])::before { --fog-img: url('/img/covers/ambient/canon.jpg'); }
+header:has([data-accent="jm"])::before    { --fog-img: url('/img/covers/ambient/jm.jpg'); }
+
+// Case studies: fixed per project
+body:has(.vt-nd) .cs_hero::before     { --fog-img: url('/img/covers/ambient/nd.jpg'); }
+body:has(.vt-pecan) .cs_hero::before  { --fog-img: url('/img/covers/ambient/pecan.jpg'); }
+body:has(.vt-viz) .cs_hero::before    { --fog-img: url('/img/covers/ambient/viz.jpg'); }
+body:has(.vt-nq) .cs_hero::before     { --fog-img: url('/img/covers/ambient/nq.jpg'); }
+body:has(.vt-ns) .cs_hero::before     { --fog-img: url('/img/covers/ambient/ns.jpg'); }
+body:has(.vt-canon) .cs_hero::before  { --fog-img: url('/img/covers/ambient/canon.jpg'); }
+
+// Light theme: lift the veil instead of dimming — brighten the frost
+// and ease it back so tan-ground type keeps its contrast. Routed
+// through the keyframe end value because fogSettle's `both` fill
+// outranks a plain opacity declaration.
+html.theme-light header:has(#hero_shuffle_btn)::before,
+html.theme-light .cs_hero::before {
+  --fog-max: 0.5;
+  background-image: linear-gradient(rgba($tan, 0.55), rgba($tan, 0.55)), var(--fog-img, none);
+  filter: blur(64px) saturate(1.05) brightness(1.2);
+  opacity: 0.5;
+}
+
+// Hero chips carry their project color at rest, and deepen on hover
+// --chip lives on the WRAPPER, not the chip: the shape layer is a
+// sibling of the <a>, and custom properties inherit down the tree, not
+// across it — set on the anchor, the path could never see it.
+.hl_wrap:has(.highlight.nd),
+.hl_wrap:has(.highlight.nq)    { --chip: #{$green}; }
+.hl_wrap:has(.highlight.pecan) { --chip: #{$cyan}; }
+.hl_wrap:has(.highlight.viz)   { --chip: #{$blue}; }
+.hl_wrap:has(.highlight.ns)    { --chip: #{$lime}; }
+.hl_wrap:has(.highlight.canon) { --chip: #{$white}; }
+// jm is orange sitewide, but the welcome state stays monochrome on purpose:
+// chip, load shimmer, label, and hover all drop to greyscale in the hero.
+.hl_wrap:has(.highlight.jm)    { --chip: #{$white}; }
+.hero_headline .highlight.jm {
+  &::before { background-color: $white; }
+  &::after { background-color: #3a3a3c; }
+  &:hover, &:active { background-color: $white; box-shadow: 0 0 0 1px $white; color: $dark-bg; }
+}
+
+#hero_shuffle_text .highlight {
+  background-color: var(--chip);
+}
+
+// Chip ink per fill, by arithmetic (AA floors, measured 2026-10-09):
+// white clears the bar only on $blue (3.94 vs dark's 3.88); cyan, lime,
+// green, and orange all read better with dark ink (7.08 / 9.34 / 4.76 /
+// 4.67). ID-scoped: hero chip ink rules must match #hero_shuffle_text.
+#hero_shuffle_text .highlight.viz { color: $white; }
+
+// Hero chip tags — Poolside-style: the set surrounds the word rather
+// than stacking above it, each pill rotated a little and morphing
+// outward from behind the chip on hover. Client pill leads at top-left
+// in the project's own ground color; the rest are white with bold ink.
+// Lives in a sibling .hl_wrap span, not inside the <a>, because
+// animateHighlights() rewrites the anchor's innerHTML for the
+// per-character typing effect and would wipe these out.
+.hl_wrap {
+  display: inline-block;
+  position: relative;
+}
+
+.hl_tags {
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+
+  // Two rows rather than four free-floating pills. Absolutely
+  // positioning each one couldn't guarantee separation — a long project
+  // name (Viz Community) ran straight into the pill beside it. The
+  // client sits alone above; the taxonomy tags flow in a flex row below,
+  // so overlap is structurally impossible at any name length.
+  i {
+    --r: 0deg;
+    background: $white;
+    border-radius: 99em;
+    box-shadow: 0 6px 18px -8px rgba(#000, 0.75);
+    color: $dark-bg;
+    font-family: $font;
+    font-size: 0.24em;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    line-height: 1;
+    opacity: 0;
+    padding: 0.62em 1.1em 0.54em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    // Fly out from behind the chip
+    transform: translate(var(--fx, 0), var(--fy, 0)) scale(0.5);
+    transform-origin: center;
+    // Collapse is plain, quick, and unstaggered; the spring and the
+    // stagger live on the hover rules only, so the return never runs
+    // either (overshoot below zero = pills poking out)
+    transition: opacity 0.12s ease, transform 0.16s cubic-bezier(0.4, 0, 1, 1);
+    transition-delay: 0s;
+  }
+
+  // Client/project pill leads: own row above, project ground, white ink
+  i.is_name {
+    --fx: 0.9em;
+    --fy: 1.9em;
+    background: var(--client-bg, #{$dark-bg});
+    bottom: 100%;
+    color: $white;
+    font-size: 0.28em;
+    left: 0;
+    position: absolute;
+    z-index: 2;
+  }
+
+  .hl_row {
+    display: flex;
+    gap: 0.34em;
+    left: 0;
+    position: absolute;
+    top: 100%;
+    white-space: nowrap;
+
+    i:nth-child(1) { --fx:  1.2em; --fy: -1.3em; }
+    i:nth-child(2) { --fx:  0.6em; --fy: -1.5em; }
+    i:nth-child(3) { --fx:  0;     --fy: -1.3em; }
+  }
+}
+
+// Entrance order: the project name leads, then the taxonomy tags land
+// 1-2-3. Delays are declared AFTER the transition shorthand (which
+// resets them), and only here, so the collapse stays instant.
+.hl_wrap:hover .hl_tags i,
+.hl_wrap:focus-within .hl_tags i {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+  transition: opacity 0.22s ease,
+              transform 0.45s linear(0, 0.62 26%, 1.05 54%, 0.985 78%, 1);
+}
+
+.hl_wrap:hover .hl_tags .hl_row i:nth-child(1),
+.hl_wrap:focus-within .hl_tags .hl_row i:nth-child(1) { transition-delay: 100ms; }
+.hl_wrap:hover .hl_tags .hl_row i:nth-child(2),
+.hl_wrap:focus-within .hl_tags .hl_row i:nth-child(2) { transition-delay: 170ms; }
+.hl_wrap:hover .hl_tags .hl_row i:nth-child(3),
+.hl_wrap:focus-within .hl_tags .hl_row i:nth-child(3) { transition-delay: 240ms; }
+
+// Vivid enough to lead the set against the dark page, dark enough that
+// white ink still clears 4.5:1 (5.45 green → 12.7 grey).
+#hero_shuffle_text .highlight.nd  + .hl_tags,
+#hero_shuffle_text .highlight.nq  + .hl_tags   { --client-bg: #0E7A33; }
+#hero_shuffle_text .highlight.pecan + .hl_tags { --client-bg: #11708C; }
+#hero_shuffle_text .highlight.viz + .hl_tags   { --client-bg: #1D5AA8; }
+#hero_shuffle_text .highlight.canon + .hl_tags { --client-bg: #33332C; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hl_tags i { transform: none; transition: opacity 0.15s ease; }
+  .hl_wrap:hover .hl_tags i,
+  .hl_wrap:focus-within .hl_tags i { transform: none; }
+}
+
+// The old single ::after label is replaced by the surrounding set
+#hero_shuffle_text .highlight::after { content: none; }
+
+// Project accent for the ring, keyed off the sentence currently shown.
+// Same colors the highlight chips use for these mods.
+.hero_shuffle_btn[data-accent="nd"],
+.hero_shuffle_btn[data-accent="nq"]    { --hero-accent: #{$green}; }
+.hero_shuffle_btn[data-accent="pecan"] { --hero-accent: #{$cyan}; }
+.hero_shuffle_btn[data-accent="viz"]   { --hero-accent: #{$blue}; }
+.hero_shuffle_btn[data-accent="ns"]    { --hero-accent: #{$lime}; }
+.hero_shuffle_btn[data-accent="canon"] { --hero-accent: #{$white}; }
+.hero_shuffle_btn[data-accent="jm"]    { --hero-accent: #{$white}; }
+
+@keyframes heroRingDrain {
+  from { stroke-dashoffset: 100.53; }
+  to   { stroke-dashoffset: 0; }
+}
+
+#hero_shuffle_text {
+  // Transition set inline by JS, but ensure the element is a stable block
+  display: block;
+  // It's a <p> at headline scale — the browser-default 1em bottom margin
+  // (~37px here) was silently pushing the shuffle button far below the text.
+  margin-bottom: 0;
+  // Shares .hero_headline's font-family/size/color (same class) — this
+  // element only needs its own line-height/padding/box-sizing tweaks.
+  // Slightly looser than .hero_headline's inherited h1 line-height (1.1) to
+  // reserve room for the highlight-tag popovers above wrapped lines.
+  line-height: 1.25;
+  // Note: this used to also guard against `header`'s overflow-x: hidden
+  // (which forces overflow-y: auto per spec) clipping the highlight-tag
+  // popover, back when this element was the first thing in the header.
+  // Now that it sits below .hero_headline there's ample clearance above it
+  // for the popover regardless of this value (verified: no clipping with or
+  // without it) — kept small purely so the popover has a little room to
+  // render without visually merging into .hero_headline above.
+  padding-top: 6px;
+  // Height reservation lives on .hero_shuffle_row (set by JS from the
+  // tallest sentence) so the button hugs the current text; keep this
+  // element's box predictable for that measurement.
+  box-sizing: border-box;
+
+  // Tighter button height — hug the text instead of inheriting the
+  // paragraph's (much larger) line-height.
+  .highlight {
+    line-height: 1.2;
+
+    // Filled at rest, not outlined: the chip was the last outlined
+    // element left once the card stat rows went away, and a solid
+    // project color reads as a real object you can press. The per-mod
+    // rules below supply the color; hover deepens it via the shared
+    // :hover state.
+    box-shadow: none;
+    // Dark ink on the bright project color: white on $cyan is ~2.3:1 and
+    // fails even the large-text floor, and this is now the resting state,
+    // not a hover flash. Dark text clears 3.6:1 (blue) to 7.4:1 (cyan).
+    color: $dark-bg;
+    // Bulge on hover, per the Rogie morph-button reference: a spring
+    // curve with overshoot so it swells past its resting size and
+    // settles, rather than easing flatly. Scaled slightly wider than
+    // tall so it reads as a squish, not a zoom.
+    transform: scaleY(1);
+    transition: background-color 0.22s ease, color 0.22s ease,
+                transform 0.15s ease-out;
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: background-color 0.22s ease, color 0.22s ease;
+      &:hover, &:focus-visible, &:active { transform: none; }
+    }
+
+    &:hover, &:active {
+      box-shadow: 0 0 0 1px rgba($white, 0.35);
+    }
+  }
+}
+
+

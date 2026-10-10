@@ -1,0 +1,579 @@
+// ============================================================
+// Client logo scroller
+// ============================================================
+
+.select_clients {
+  color: $white;
+  font-size: clamp(1.5rem, 1.5vw + 0.75rem, 2.25rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin: 0 0 1rem;
+  width: max-content;
+}
+
+@keyframes scroll_logos {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.logo_scroller {
+  padding: 0.5rem 0;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  .client_logos {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    width: max-content;
+    animation: scroll_logos 90s linear infinite;
+
+    &:hover { animation-play-state: paused; }
+
+    li {
+      list-style: none;
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 6rem;
+      transform: scale(0.5);
+      // The 0.5 scale renders each logo at half its 300px layout width,
+      // leaving ~75px of invisible dead space per side. Pull neighbors
+      // in to roughly halve the visual spacing between logos.
+      margin: 0 -3rem;
+    }
+
+    li svg {
+      width: auto;
+      opacity: 0.5;
+      transition: all 0.3s ease-in-out;
+
+      &:hover { opacity: 1; transform: scale(1.05); }
+
+      image {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .client_logos { animation-duration: 90s; }
+  }
+
+  @media (max-width: 768px) {
+    .client_logos {
+      animation-duration: 50s;
+      gap: 1.25rem;
+
+      // No fixed width here — a fixed box doesn't match the transform-scaled
+      // SVG's actual rendered width (wide wordmarks like KIRKUS overflow it),
+      // and since transform doesn't affect layout, that overflow was painting
+      // over neighboring logos instead of just shrinking in place.
+      li {
+        height: 5rem;
+        transform: scale(0.6);
+        // Same dead-space compensation as desktop, scaled for the 0.6 factor.
+        margin: 0 -2rem;
+      }
+    }
+  }
+}
+
+
+// ============================================================
+// About page — color blocks & images
+// ============================================================
+
+.color_block {
+  &.sage    { background-color: $sage; height: 20px; margin-top: -20px; }
+  &.fuchsia { background-color: $text-muted; height: 20px; margin-top: -20px; }
+  &.yellow  { background-color: $yellow; height: 20px; margin-top: -8px; }
+  &.orange  { background-color: #E64F13; height: 20px; margin-top: -6px; }
+  &.gold    { background-color: #6E5E36; height: 20px; margin-top: -4px; }
+}
+
+.yellow_dots {
+  position: absolute;
+  margin-top: -16rem;
+  transform: scale(2);
+}
+
+.about_images {
+  display: block;
+  position: relative;
+  width: 100%;
+
+  .image_film_strip {
+    display: block;
+    overflow: visible;
+    position: absolute;
+    top: 400px;
+    right: 0;
+    z-index: 10;
+  }
+
+  .image_portrait {
+    display: block;
+    left: 50%;
+    position: absolute;
+    top: 200px;
+    z-index: 10;
+
+    img {
+      aspect-ratio: 1;
+      border-radius: 12px;
+      display: block;
+      height: 440px;
+      object-fit: cover;
+      object-position: center top;
+      width: 440px;
+    }
+
+    &::after {
+      background-color: $white;
+      content: "";
+      position: absolute;
+      display: block;
+      height: 100%;
+      opacity: 0;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: -12;
+      transform: rotate(0deg);
+    }
+  }
+
+  .image_waves {
+    bottom: 300px;
+    display: block;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: 1;
+  }
+}
+
+
+// ============================================================
+// About & Work sections
+// ============================================================
+
+.about {
+  background-attachment: fixed;
+  background-size: cover;
+  background-blend-mode: soft-light;
+  background-position: center;
+  margin-top: 4rem;
+  padding: 8rem 0 4rem;
+  overflow-x: hidden;
+  position: relative;
+  z-index: 11;
+  width: 100%;
+
+  h4 { color: $white; }
+
+  h6 {
+    background-color: rgba($white, 0.3);
+    border-radius: 1rem;
+    border: none;
+    color: $white;
+    display: unset;
+    font-family: $font;
+    height: 2rem;
+    letter-spacing: 0;
+    line-height: 1rem;
+    margin: 1rem 0;
+    opacity: 1;
+    padding: 0.4rem 0.8rem;
+    width: auto;
+    transition: all 0.4s ease;
+  }
+
+  p {
+    color: $white;
+    font-size: $type-base;
+    line-height: 2rem;
+    margin-top: 0.5rem;
+    padding-right: 4rem;
+  }
+
+  h2 { margin-top: 10px; }
+
+  ul { margin: 0; li { color: $text-secondary; } }
+
+  &.work {
+    overflow: hidden;
+    padding: 1rem 0 6rem;
+    position: relative;
+
+  }
+
+  // ── Case study hero: typography on the page background ─────
+  // No project-color wash: the hero is plain page background in both
+  // themes, and continuity with the card comes from the shared cover
+  // image (view transition) directly below instead.
+  &.cs_hero {
+    background: none;
+    margin-top: -5rem;
+    padding-top: 13rem;
+
+    @media (max-width: 768px) { padding-top: 8.5rem; }
+
+    // Project logos in the hero sit directly on the wash — no glass card.
+    .client_logo_wrap {
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+      background: none;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+      width: auto;
+      height: auto;
+
+      &::before { display: none; }
+    }
+
+    .client_logo {
+      filter: none;
+      height: auto;
+      object-fit: initial;
+      width: 80px;
+    }
+  }
+
+  .cs_hero_back {
+    margin: 0 0 2.5rem;
+
+    a {
+      align-items: center;
+      color: rgba($white, 0.6);
+      display: inline-flex;
+      font-family: $font;
+      font-size: $type-md;
+      font-weight: 500;
+      gap: 0.45rem;
+      text-decoration: none;
+      transition: color 0.15s ease;
+
+      &:hover {
+        color: $white;
+
+        .cs_hero_back_arrow { transform: translateX(-3px); }
+      }
+    }
+
+    .cs_hero_back_arrow {
+      display: block;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  }
+
+  .cs_hero_fact {
+    color: rgba($white, 0.7);
+    font-size: clamp(1.25rem, 1vw + 0.85rem, 1.75rem);
+    font-weight: 400;
+    line-height: 1.45;
+    margin: 1.5rem 0 0;
+    max-width: 32em;
+    text-wrap: pretty;
+  }
+
+  .project_title {
+    font-size: clamp(2rem, 3.5vw + 1rem, 4rem); // ~32–64px
+    line-height: 1.15;
+  }
+
+  .client_logo_wrap {
+    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    backdrop-filter: blur(20px) saturate(1.8);
+    background: linear-gradient(
+      160deg,
+      rgba($white, 0.22) 0%,
+      rgba($white, 0.08) 50%,
+      rgba($white, 0.04) 100%
+    );
+    border-radius: 28%;
+    border: 1px solid rgba($white, 0.18);
+    box-shadow:
+      0 2px 0 rgba($white, 0.3) inset,
+      0 -1px 0 rgba($white, 0.06) inset,
+      0 20px 60px rgba(0, 0, 0, 0.35),
+      0 4px 16px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 2rem;
+    padding: 1.5rem;
+    position: relative;
+    width: 120px;
+    height: 120px;
+
+    // Specular highlight sweep across the top third
+    &::before {
+      border-radius: 28% 28% 50% 50% / 20% 20% 60% 60%;
+      background: linear-gradient(
+        180deg,
+        rgba($white, 0.28) 0%,
+        rgba($white, 0.0) 100%
+      );
+      content: "";
+      inset: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+  }
+
+  .client_logo { display: block; filter: brightness(0) invert(1); margin: 0; width: 60px; height: auto; position: relative; z-index: 1; }
+}
+
+.designer_shapes {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 2rem;
+}
+
+.designer_shape_card {
+  border: 1px solid rgba($white, 0.1);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.designer_shape_label {
+  color: rgba($white, 0.45);
+  font-family: $mono;
+  font-size: $type-xs;
+  letter-spacing: 0.08em;
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+}
+
+.designer_shape_svg {
+  color: $white;
+  display: block;
+  width: 100%;
+}
+
+.designer_shape_desc {
+  color: rgba($white, 0.5);
+  font-size: $type-sm;
+  margin: 1rem 0 0;
+}
+
+
+.experience {
+  margin-bottom: 8rem;
+
+  .experience_item {
+    border-top: 1px solid rgba($white, 0.12);
+    display: grid;
+    gap: 0.5rem 2rem;
+    grid-template-columns: 1fr 2fr;
+    margin-bottom: 0;
+    padding: 2rem 0;
+
+    &:first-child { border-top: none; }
+  }
+
+  .experience_left {
+    padding-top: 0.15rem;
+  }
+
+  .experience_company {
+    color: $white;
+    display: block;
+    font-size: $type-base;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 1.4;
+    margin: 0 0 0.25rem;
+  }
+
+  .experience_meta {
+    color: rgba($white, 0.45);
+    display: block;
+    font-size: $type-sm;
+    line-height: 1.5;
+  }
+
+  .experience_right {
+    padding-top: 0.15rem;
+  }
+
+  .experience_role {
+    align-items: center;
+    color: $white;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: $type-base;
+    font-weight: bold;
+    gap: 0.5rem;
+    margin: 0 0 0.4rem;
+  }
+
+  .experience_item--current {
+    .experience_company { color: rgba($white, 0.9); }
+  }
+
+  p {
+    color: rgba($white, 0.6);
+    font-size: $type-base;
+    line-height: 1.7;
+    margin: 0;
+  }
+}
+
+// ============================================================
+// Contact Page
+// ============================================================
+
+.contact_page {
+  padding-top: 4rem;
+  padding-bottom: 8rem;
+}
+
+.contact_email_btn {
+  background: none;
+  border: 1px solid rgba($white, 0.2);
+  border-radius: 0.5rem;
+  color: $white;
+  cursor: pointer;
+  display: inline-block;
+  font-family: $mono;
+  font-size: $type-base;
+  letter-spacing: 0.02em;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.25rem;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    background: rgba($white, 0.08);
+    border-color: rgba($white, 0.4);
+  }
+
+  &:active {
+    background: rgba($white, 0.14);
+  }
+}
+
+.contact_links {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.contact_availability_label {
+  color: rgba($white, 0.35);
+  font-family: $mono;
+  font-size: $type-xs;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.5rem;
+  text-transform: uppercase;
+}
+
+.contact_availability {
+  color: rgba($white, 0.7);
+  font-size: $type-base;
+  line-height: 1.6;
+  margin: 0;
+}
+
+html.theme-light body {
+  .contact_email_btn {
+    border-color: rgba($dark-default, 0.2);
+    color: $dark-default;
+    &:hover { background: rgba($dark-default, 0.06); border-color: rgba($dark-default, 0.4); }
+  }
+  .contact_availability_label { color: rgba($dark-default, 0.35); }
+  .contact_availability { color: rgba($dark-default, 0.7); }
+}
+
+
+.colophon {
+  border-top: 1px solid rgba($white, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 2rem 3rem;
+
+  p {
+    color: rgba($white, 0.35);
+    font-size: $type-sm;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  a { color: rgba($white, 0.5); font-weight: normal; font-size: $type-sm; text-decoration: none; }
+  a:hover { color: $white; }
+}
+
+// Arrow characters — always render in IBM Plex Mono
+.arrow { font-family: $mono; }
+
+// View project link (work cards)
+.view_project {
+  border: 1px solid rgba($white, 0.28);
+  border-radius: 3rem;
+  color: rgba($white, 0.7);
+  display: inline-flex;
+  align-items: center;
+  font-family: $font;
+  font-size: $type-sm;
+  font-weight: 500;
+  gap: 0.4em;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  margin-top: 1.5rem;
+  padding: 0.7em 1.25em;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    background: $white;
+    border-color: $white;
+    color: $dark-default;
+  }
+}
+
+// Confidential / NDA badge (no link)
+.view_project_nda {
+  background-color: rgba($white, 0.08);
+  border-radius: 3rem;
+  color: rgba($white, 0.4);
+  display: inline-block;
+  font-size: $type-sm;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  margin-top: 1.5rem;
+  padding: 0.65em 1.75em;
+  text-transform: uppercase;
+}
+
+
+// Work page tags
+// Company / client label beneath project title
+.work_company {
+  color: rgba($white, 0.45);
+  font-family: $mono;
+  font-size: $type-xs;
+  letter-spacing: 0.1em;
+  margin: 0.1rem 0 0.75rem;
+  text-transform: uppercase;
+}
+
+
+// Registered trademark superscript
+sup.reg {
+  font-size: 0.5em;
+  font-weight: inherit;
+  line-height: 1;
+  top: -0.6em;
+  vertical-align: super;
+}
+
+

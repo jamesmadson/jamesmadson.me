@@ -1,0 +1,444 @@
+// ============================================================
+// Home Work Grid (.hwc)
+// ============================================================
+
+.home_work,
+.cs_more_work {
+  padding: 5rem 0 6rem;
+}
+
+.home_work_title {
+  color: $white;
+  font-size: clamp(1.5rem, 1.5vw + 0.75rem, 2.25rem);
+  font-family: $font;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+}
+
+.home_work_grid {
+  display: grid !important;
+  column-gap: 1.25rem;
+  row-gap: 2.5rem;
+  grid-template-columns: repeat(3, 1fr) !important;
+
+  @media (max-width: 1023px) { grid-template-columns: repeat(2, 1fr) !important; }
+  @media (max-width: 600px)  { grid-template-columns: 1fr !important; row-gap: 2rem; }
+}
+
+.hwc {
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+
+  // Rest/hover elevation. box-shadow eases plainly; the lift itself
+  // carries the spring overshoot (transform only, see $spring-lift).
+  box-shadow: $lift-rest;
+  transition: box-shadow 0.28s ease, transform 0.34s $spring-lift;
+
+  // The whole card grows on hover; no separate inner-image zoom, which
+  // would compound with the outer scale.
+  &:hover .wc_artifact   { transform: translateY(-1.5cqw); }
+  &:hover .hwc_title     { opacity: 1; }
+
+  &:hover,
+  &:focus-visible {
+    transform: scale(1.05);
+    box-shadow: $lift-hover;
+    // Grid items take z-index without position; the grown card must
+    // overlap its neighbors and the section above, not slide under.
+    z-index: 2;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: box-shadow 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      transform: none;
+      box-shadow: $lift-hover;
+    }
+  }
+}
+
+.hwc_img {
+  aspect-ratio: 1 / 1;
+  border-radius: 1rem;
+  // cqw units inside .wc resolve against this box, so one set of
+  // proportions holds from a 335px phone card to a 555px desktop one
+  container-type: inline-size;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  background: rgba($white, 0.06);
+
+  &.hwc_img--empty {
+    align-items: center;
+    background: radial-gradient(ellipse at 60% 40%, rgba($cyan, 0.08) 0%, rgba($white, 0.02) 70%);
+    border: 1px dashed rgba($white, 0.12);
+    display: flex;
+    justify-content: center;
+  }
+
+  > img {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    width: 100%;
+  }
+}
+
+// ============================================================
+// Live text cover (.wc) — the work-grid cards as real markup.
+// Replaces the pre-rendered PNG covers: same webfont and weight as the
+// rest of the site (the PNGs were set in Canon's 700-weight voice, which
+// read as a different font next to the hero), machine-readable, and
+// crisp at every density. Cards keep their brand-color ground in both
+// themes on purpose — they are self-contained objects, like the PNGs
+// were. Geometry follows the Canon cover: 8% margins, statement top,
+// stats pinned to the bottom.
+// ============================================================
+
+.wc {
+  background: var(--wc-bg);
+  // Default ink is site-white; a light cover (Graft) sets --wc-ink to
+  // dark and the tag knockout inverts for free since it borrows --wc-bg.
+  color: var(--wc-ink, #{$white});
+  display: flex;
+  flex-direction: column;
+  inset: 0;
+  // Keeps the negative-z fog layer above this element's own background
+  // instead of escaping behind it in the parent's stacking context.
+  isolation: isolate;
+  padding: 8cqw;
+  position: absolute;
+  // Edge definition once the ground stops being flat paint
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--wc-ink, #{$white}) 10%, transparent);
+
+  // The hero's frosted material, scaled to the grid: the project's own
+  // ambient artwork blurred under a veil of the card's color. The veil
+  // carries --wc-bg, so self-theming and ink contrast hold in both
+  // themes; it weighs heavier at the bottom to ground the tag row.
+  &::before {
+    background-image:
+      linear-gradient(
+        color-mix(in srgb, var(--wc-bg) 62%, transparent),
+        color-mix(in srgb, var(--wc-bg) 86%, transparent)),
+      var(--wc-fog, none);
+    background-position: center;
+    background-size: cover;
+    content: '';
+    filter: blur(34px) saturate(1.1);
+    inset: -12%;
+    pointer-events: none;
+    position: absolute;
+    z-index: -1;
+  }
+}
+
+// Each card's fog is its project's ambient (shared with the case heroes)
+.hwc.nd .wc      { --wc-fog: url('/img/covers/ambient/nd.jpg'); }
+.hwc.pecan .wc   { --wc-fog: url('/img/covers/ambient/pecan.jpg'); }
+.hwc.viz .wc     { --wc-fog: url('/img/covers/ambient/viz.jpg'); }
+.hwc.nq .wc      { --wc-fog: url('/img/covers/ambient/nq.jpg'); }
+.hwc.canon .wc   { --wc-fog: url('/img/covers/ambient/canon.jpg'); }
+.hwc.saddles .wc { --wc-fog: url('/img/covers/ambient/saddles.jpg'); }
+.hwc.graft .wc   { --wc-fog: url('/img/covers/ambient/graft.jpg'); }
+
+.wc_top {
+  display: flex;
+  font-family: $mono;
+  font-size: 3.1cqw;
+  font-weight: 500;
+  justify-content: space-between;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  // Hidden at rest, revealed on card hover/focus. The same names live
+  // in the card link's aria-label, so nothing is lost non-visually.
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  text-transform: uppercase;
+}
+
+.hwc:hover .wc_top,
+.hwc:focus-visible .wc_top { opacity: 0.5; }
+
+.wc_headline {
+  font-size: 11.6cqw;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.04;
+  margin: 10cqw 0 0;
+  text-wrap: balance;
+}
+
+.wc_subhead {
+  font-size: 4.6cqw;
+  font-weight: 500;
+  line-height: 1.35;
+  margin: 2.6cqw 0 0;
+  max-width: 80cqw;
+  opacity: 0.65;
+  text-wrap: balance;
+}
+
+// One product artifact, tinted into the card's color world: grayscale
+// plus screen blend turns each screenshot into a light drawing on the
+// brand ground — the image's structure survives, its own palette
+// doesn't, so evidence of the work returns without re-importing every
+// project's colors (the old collage problem). Screen, not luminosity:
+// these sources are dark UIs, and luminosity renders them as
+// near-black slabs on a dark ground.
+.wc_artifact {
+  border-radius: 2cqw;
+  filter: grayscale(1);
+  mix-blend-mode: screen;
+  opacity: 0.85;
+  position: absolute;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+
+  @media (prefers-reduced-motion: reduce) { transition: none; }
+}
+
+// Per-project artifact placement, keyed off the card's mod class.
+// Each bleeds off an edge and stays clear of the stat row's zone.
+.hwc.nd .wc_artifact {
+  bottom: -30cqw;
+  right: -9cqw;
+  width: 36cqw;
+}
+
+.hwc.pecan .wc_artifact {
+  bottom: 5cqw;
+  right: -18cqw;
+  width: 72cqw;
+}
+
+.hwc.viz .wc_artifact {
+  bottom: 11cqw;
+  right: -9cqw;
+  width: 52cqw;
+}
+
+.hwc.canon .wc_artifact {
+  border-radius: 1cqw;
+  bottom: 24cqw;
+  opacity: 0.6;
+  right: -14cqw;
+  width: 64cqw;
+}
+
+// Tag chips — the card's taxonomy, pinned to the foot where the stat
+// row used to sit. Mono small-label register, outlined pills.
+.wc_tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.8cqw;
+  list-style: none;
+  margin: auto 0 0;
+  padding: 0;
+  position: relative;
+  z-index: 2;
+
+  li {
+    // Filled with the card's ink, label knocked out in the ground color
+    background: var(--wc-ink, #{rgba($white, 0.94)});
+    border-radius: 99cqw;
+    color: var(--wc-bg, $dark-bg);
+    font-family: inherit;
+    font-size: 2.7cqw;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    padding: 1.6cqw 3cqw 1.4cqw;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+}
+
+
+.hwc_nda_visual {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.hwc_nda_icon {
+  color: rgba($white, 0.2);
+}
+
+.hwc_nda_dot {
+  animation: hwcDotPulse 2.4s ease-in-out infinite;
+  background: $cyan;
+  border-radius: 50%;
+  display: inline-block;
+  height: 5px;
+  margin-right: 0.35em;
+  vertical-align: middle;
+  width: 5px;
+}
+
+@keyframes hwcDotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.35; transform: scale(0.7); }
+}
+
+.hwc_info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.85rem 0.25rem 0;
+}
+
+.hwc_company {
+  color: rgba($white, 0.4);
+  font-size: $type-md;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.hwc_title {
+  color: $white;
+  font-size: $type-base;
+  font-weight: 500;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.hwc_nda_label {
+  align-items: center;
+  color: rgba($white, 0.4);
+  display: flex;
+  font-family: $mono;
+  font-size: $type-sm;
+  letter-spacing: 0.06em;
+  margin-top: 0.25rem;
+  text-transform: uppercase;
+}
+
+// Health NDA card — warm gradient with inner radial highlight
+.hwc.health .hwc_img--empty {
+  background:
+    radial-gradient(ellipse at 50% 35%, rgba(255, 255, 255, 0.22) 0%, transparent 62%),
+    linear-gradient(145deg, #ffd580 0%, #ffb347 35%, #ff8c69 60%, #b06ee3 100%);
+}
+
+
+// Coming Soon work cards
+.home_work_soon {
+  padding-top: 0;
+
+
+}
+
+html.theme-light body .home_work_soon .home_work_title {
+  color: $dark-default;
+  opacity: 0.8;
+}
+
+// .hwc_soon no longer dims anything. It used to fade the card face and
+// caption to read as "not finished," but NatureQuant is six years of
+// continuous work, not something half-started — and the faded hover
+// made it the one card that dulls while every other card lifts. The
+// card states its own status in the corner; the dimming said something
+// untrue. Legacy image-based cards (no .wc) keep the old treatment.
+.hwc_soon {
+  .hwc_img:not(:has(.wc)) {
+    opacity: 0.45;
+    transition: opacity 0.35s ease, transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  &:hover .hwc_img:not(:has(.wc)) { opacity: 0.7; }
+}
+
+.work_page_section { padding-top: 2rem; }
+
+// Cards fade + rise into place as their grid scrolls into view, then
+// lift on hover — one long settling curve everywhere so the grid feels
+// like one system in motion. Scoped to .home_work so the home page
+// grid gets the same treatment as the work page.
+.home_work {
+  .hwc {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &.wp_visible {
+      opacity: 1;
+      transform: translateY(0);
+      // Outranks the entrance transition above (extra class, later in the
+      // cascade): once a card has settled, hover uses the spring-lift
+      // timing from Task 2 instead of the one-time entrance curve.
+      transition: opacity 0.75s ease, transform 0.34s $spring-lift, box-shadow 0.28s ease;
+    }
+
+    &.wp_visible:hover,
+    &.wp_visible:focus-visible {
+      transform: scale(1.05);
+      box-shadow: $lift-hover;
+      z-index: 2;
+    }
+  }
+
+  .hwc_img { transition: box-shadow 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+
+  .hwc:hover .hwc_img {
+    box-shadow: 0 28px 56px -22px rgba($dark-bg, 0.55);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home_work .hwc {
+    opacity: 1;
+    transform: none;
+    transition: box-shadow 0.2s ease;
+
+    &.wp_visible:hover,
+    &.wp_visible:focus-visible {
+      transform: none;
+      box-shadow: $lift-hover;
+    }
+  }
+}
+
+.project_preview {
+  padding-bottom: 4rem;
+
+  .project_preview_back {
+    margin: 0 0 2rem;
+  }
+
+  .project_preview_grid {
+    max-width: 42rem;
+  }
+
+  .hwc_preview {
+    pointer-events: none;
+
+    &:hover .hwc_img img { transform: none; }
+    &:hover .wc_artifact { transform: none; }
+    &:hover .hwc_title { opacity: inherit; }
+  }
+}
+
+html.theme-light body {
+  .home_work_title { color: $dark-default; }
+
+  .hwc_img {
+    background: rgba($dark-default, 0.05);
+    &.hwc_img--empty {
+      background: radial-gradient(ellipse at 60% 40%, rgba($teal, 0.07) 0%, rgba($dark-default, 0.02) 70%);
+      border-color: rgba($dark-default, 0.1);
+    }
+  }
+
+  .hwc_nda_icon { color: rgba($dark-default, 0.15); }
+  .hwc_company { color: rgba($dark-default, 0.45); }
+  .hwc_title   { color: $dark-default; opacity: 0.8; }
+  .hwc_nda_label { color: rgba($dark-default, 0.4); }
+}
+
+

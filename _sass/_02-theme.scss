@@ -1,0 +1,178 @@
+// ============================================================
+// Theme
+// ============================================================
+
+:root { color-scheme: light dark; }
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+
+  @media (max-width: 768px) { scroll-padding-top: 2.5rem; }
+}
+
+// html.theme-* selectors fire as soon as the inline head script runs — no FOUC.
+// body.theme-* selectors are also supported (set by site.js once DOM is ready).
+@mixin light-theme {
+  background-color: $tan;
+  color: $text-dark;
+
+  h1, h3 { color: $dark-default; }
+  h2, h4, h5, h6 { color: rgba($dark-default, 0.5); }
+
+  a { color: $dark-default; }
+  a:hover { color: $text-muted; }
+
+  .site_header { background-color: transparent; }
+  .site_name { color: $dark-default; opacity: 0.65; }
+  .site_name:hover { opacity: 1; }
+  .nav_title { color: rgba($dark-default, 0.5); }
+  .nav_title:hover { color: $dark-default; }
+  #light_switch:focus-visible { outline-color: rgba($dark-default, 0.8); }
+  .mobile_nav_menu { background-color: rgba($tan, 0.82); border-color: rgba($dark-default, 0.08); }
+  .mobile_nav_menu ul li { border-bottom-color: rgba($dark-default, 0.08); }
+  .mobile_nav_menu ul li a { color: rgba($dark-default, 0.4); }
+  .mobile_nav_menu ul li a.active,
+  .mobile_nav_menu ul li a:hover { color: $dark-default; }
+
+  header .jm_title { color: $dark-default; }
+  header .jm_subtitle { color: $dark-default; }
+  .hero_text_card .jm_subtitle { color: rgba($dark-default, 0.6); }
+  header .about_me { color: rgba($dark-default, 0.8); }
+  header .about_me a { color: $dark-default; }
+  header .about_me--lead { color: $dark-default; }
+  header.about_header .about_bio .about_me--lead { color: $dark-default; }
+  .about_services .services_list .highlight { color: $dark-default; }
+  .about_services .services_list .highlight:hover,
+  .about_services .services_list .highlight:active { box-shadow: 0 0 0 1px rgba($dark-default, 0.35); }
+
+  .about.work .container { background-color: rgba($dark-default, 0.03); border-color: rgba($dark-default, 0.08); }
+  .about.work a, .about.work h3 { color: $dark-default; }
+  .about ul li { color: $text-muted; }
+  .about h4 { color: $dark-default; }
+  .about p { color: $text-muted; }
+
+  .select_clients { color: $dark-default; }
+  .logo_scroller svg { filter: invert(1); }
+  .experience p { color: $text-muted; }
+  .experience_company { color: $dark-default; }
+  .experience_role { color: $dark-default; }
+  .experience_meta { color: $text-muted; }
+
+  .cs_work_title { color: $dark-default; }
+  .client_logo { filter: brightness(0); }
+
+  // Designer shape diagrams
+  .designer_shape_card { border-color: rgba($dark-default, 0.12); }
+  .designer_shape_svg { color: $dark-default; }
+  .designer_shape_label { color: rgba($dark-default, 0.4); }
+  .designer_shape_desc { color: rgba($dark-default, 0.5); }
+
+  // Case study nav — light theme
+  .case_study_nav               { background: rgba($dark-default, 0.06); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06); }
+  .case_study_nav a             { color: rgba($dark-default, 0.55); }
+  .case_study_nav a:hover       { background: rgba($dark-default, 0.12); color: $dark-default; }
+  .case_study_nav a.active      { background: $dark-default; color: $white; }
+  .case_study_nav.sections-open a.active { background: none; color: $dark-default; }
+
+  // Project/case study content areas — after hero scrolls away, body is $tan
+  .project {
+    h1, h2, h3, h4 { color: $dark-default; }
+    p { color: $text-muted; }
+    a { color: $dark-default; }
+  }
+  .overview {
+    h2, h3, h4, h5, .leadin { color: $dark-default; }
+    p { color: $text-muted; }
+    a { color: $dark-default; }
+    li { color: $text-muted; }
+  }
+
+  // Buttons
+  .view_project { border-color: rgba($dark-default, 0.25); color: rgba($dark-default, 0.6); }
+  .view_project:hover { background: $dark-default; border-color: $dark-default; color: $white; }
+  .view_project_nda { background-color: rgba($dark-default, 0.06); color: rgba($dark-default, 0.4); }
+
+  // Tags (work page + case studies)
+  .tag { background-color: rgba($dark-default, 0.06); border-color: rgba($dark-default, 0.15); color: rgba($dark-default, 0.6); }
+  .work_company { color: rgba($dark-default, 0.45); }
+
+  // Music page
+  .music_item { border-top-color: rgba($dark-default, 0.1); }
+  .music_item:last-child { border-bottom-color: rgba($dark-default, 0.1); }
+  .music_index { color: rgba($dark-default, 0.25); }
+  .music_type { color: rgba($dark-default, 0.4); }
+  .music_description { color: rgba($dark-default, 0.6); }
+  .music_link { color: $dark-default; }
+  .music_soon { color: rgba($dark-default, 0.3); }
+
+  // Blockquote — no background, just text
+
+
+  // Case study heroes sit on the plain page background; light mode
+  // only needs the text colors darkened.
+  .about .cs_hero_back a { color: rgba($dark-default, 0.55); }
+  .about .cs_hero_back a:hover { color: $dark-default; }
+  .about .cs_hero_fact { color: rgba($dark-default, 0.75); }
+
+  --bg-neutral: #{$tan};
+}
+
+html.theme-light body { @include light-theme; }
+body.theme-light       { @include light-theme; }
+
+@mixin dark-theme {
+  background-color: $dark-bg;
+  color: $text-light;
+  --bg-neutral: #{$dark-bg};
+
+  // Base heading colors were set for a dark-default body — fix for true dark bg
+  h3 { color: rgba($text-light, 0.5); }
+  h4 { color: $text-light; }
+
+  // Base link color is $dark-default — invisible on dark bg
+  a { color: $text-secondary; }
+  a:hover { color: $white; }
+  a.view_project:hover { color: $dark-default; }
+
+  .nav_title { color: rgba($white, 0.5); }
+  .nav_title:hover { color: $white; }
+
+  // Highlight words are black in base styles — override to white for dark bg
+  header .highlight { color: $white; }
+
+  // Case study nav active/hover contrast overrides handled in base styles
+
+  // Project/case study content areas
+  .project {
+    h1, h2, h3, h4 { color: $text-light; }
+    p { color: rgba($text-light, 0.75); }
+  }
+  .overview {
+    h2, h3, h4, h5, .leadin, a { color: $white; }
+    p { color: rgba($white, 0.65); }
+    li { color: rgba($white, 0.65); }
+  }
+
+  // Card elevation in dark theme: shadows are invisible on dark ground,
+  // so suppress them and let the spring lift + cover zoom carry hover.
+  .hwc {
+    box-shadow: none;
+
+    &:hover,
+    &:focus-visible { box-shadow: none; }
+  }
+
+  // Outranks .home_work .hwc.wp_visible:hover (0,4,0 — four classes): the
+  // .theme-dark/body ancestry plus this same .home_work/.wp_visible chain
+  // adds up to more classes, so it wins without !important.
+  .home_work .hwc.wp_visible {
+    &:hover,
+    &:focus-visible { box-shadow: none; }
+  }
+}
+html.theme-dark body { @include dark-theme; }
+body.theme-dark       { @include dark-theme; }
+
+

@@ -1,0 +1,1483 @@
+// ============================================================
+// Case studies navigation
+// ============================================================
+
+// Reading measure: case study prose was running the full 1800px
+// container (~130 characters per line at desktop). Cap body text at a
+// readable measure; tighter caps set elsewhere (stat captions, meta
+// values) still apply.
+.project p,
+.project .leadin {
+  max-width: 72ch;
+}
+
+// ── Canon case study — quiet, typographic, monochrome ──
+.canon_status {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.25rem 0 0;
+}
+
+.canon_chip {
+  border-radius: 2rem;
+  box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 40%, transparent);
+  color: rgba($white, 0.7);
+  font-size: $type-sm;
+  font-weight: 500;
+  padding: 0.25rem 0.7rem;
+}
+
+.canon_status_meta {
+  color: rgba($white, 0.45);
+  font-family: $mono;
+  font-size: $type-sm;
+  letter-spacing: 0.03em;
+}
+
+.canon_asof {
+  color: rgba($white, 0.4);
+  font-family: $mono;
+  font-size: $type-sm;
+  letter-spacing: 0.06em;
+  margin: 0.75rem 0 0;
+  text-transform: uppercase;
+}
+
+.canon_subhead {
+  color: $white;
+  font-size: $type-base;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin: 2.5rem 0 0;
+}
+
+.canon_early {
+  color: rgba($white, 0.55);
+  margin-top: 2rem;
+  max-width: 62ch;
+}
+
+// Hairline-separated definition list, used for features and open questions
+.canon_list,
+.project .canon_list {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+
+  li {
+    list-style: none;
+    border-top: 1px solid rgba($white, 0.1);
+    padding: 1.5rem 0;
+
+    &:last-child { padding-bottom: 0; }
+  }
+
+  h4 {
+    color: $white;
+    font-size: $type-base;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.4rem;
+  }
+
+  p {
+    color: rgba($white, 0.65);
+    font-size: $type-base;
+    line-height: 1.65;
+    margin: 0;
+    max-width: 62ch;
+  }
+}
+
+.canon_code_intro {
+  color: rgba($white, 0.65);
+  margin-top: 2.5rem;
+}
+
+// ---- Canon case study v2: figures, chips, the evidence-bar demo ----
+
+// Film cover: poster paints first, the video fades in over it once it
+// can play, and playback only runs while the cover is on screen.
+// Top-level on purpose: the cover sits outside .project.
+.cs_cover_video {
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+  position: relative;
+
+  video {
+    display: block;
+    height: auto;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    width: 100%;
+  }
+  &.is_ready video { opacity: 1; }
+
+  // Inline figure variant: rounded to match the figure imagery it replaces.
+  &--fig,
+  &--fig video { border-radius: 10px; }
+}
+
+.cs_film_toggle {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  bottom: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  display: flex;
+  height: 44px;
+  justify-content: center;
+  padding: 0;
+  position: absolute;
+  right: 1rem;
+  width: 44px;
+
+  svg { height: 12px; width: 12px; }
+  .f_play { display: none; }
+  &[aria-pressed="true"] .f_pause { display: none; }
+  &[aria-pressed="true"] .f_play { display: block; }
+  &:hover, &:focus-visible { border-color: #fff; color: #fff; }
+}
+
+// Digits hold their column everywhere numbers sit side by side.
+.stat_number,
+.canon_count,
+.graft_count { font-variant-numeric: tabular-nums; }
+
+// Bold stat numerals, page-scoped (Saddles). The sitewide Fiasco-style
+// light numeral stays the default elsewhere. The #overview selector is
+// needed because the base stat rule carries that ID.
+.stats-container.cv2_stats_bold .stat_number,
+.project .stats-container.cv2_stats_bold .stat_number,
+.project #overview .stats-container.cv2_stats_bold .stat .stat_number {
+  font-weight: 700;
+}
+
+// The GPX course map: three overlaid routes, legend highlights one.
+.cv2_routes { display: grid; gap: 1.25rem; }
+.cv2_routes_svg {
+  display: block;
+  height: auto;
+  width: 100%;
+
+  .r { fill: none; stroke-linecap: round; stroke-linejoin: round; transition: opacity 0.5s ease; }
+  // Course colors sampled from the race's artwork: console UI blue, bib yellow, 666 red
+  .r100 { stroke: #2d84eb; stroke-width: 3; }
+  .r50 { stroke: #f9ef94; stroke-width: 2.5; }
+  .r666 { stroke: #ee422e; stroke-width: 4; }
+  .rstart { fill: $white; }
+}
+.cv2_routes.sel100 .r:not(.r100),
+.cv2_routes.sel50 .r:not(.r50),
+.cv2_routes.sel666 .r:not(.r666) { opacity: 0.12; }
+
+.cv2_route_btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  button {
+    align-items: center;
+    background: none;
+    border: 1px solid rgba($white, 0.25);
+    border-radius: 99em;
+    color: rgba($white, 0.8);
+    cursor: pointer;
+    display: inline-flex;
+    font: inherit;
+    font-family: $mono;
+    font-size: $type-sm;
+    gap: 0.5em;
+    padding: 0.3em 1em;
+    transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease, scale 0.15s ease;
+
+    &::before { background: var(--rc, $white); border-radius: 50%; content: ""; height: 0.5em; width: 0.5em; }
+    &[data-route="100"] { --rc: #2d84eb; }
+    &[data-route="50"] { --rc: #f9ef94; }
+    &[data-route="666"] { --rc: #ee422e; }
+
+    &:hover, &:focus-visible { border-color: $white; color: $white; }
+    &:active { scale: 0.96; }
+    &[aria-pressed="true"] { border-color: var(--rc, $white); color: $white; }
+  }
+}
+
+.cv2_fig { margin: 2.5rem 0; }
+
+.cv2_figcap {
+  color: rgba($white, 0.45);
+  display: flex;
+  flex-wrap: wrap;
+  font-family: $mono;
+  font-size: $type-sm;
+  gap: 0.5rem 1.5rem;
+  justify-content: space-between;
+  letter-spacing: 0.07em;
+  margin-top: 0.75rem;
+  text-transform: uppercase;
+}
+.cv2_figtag { color: rgba($white, 0.8); }
+
+.cv2_panel {
+  background: rgba($white, 0.04);
+  border-radius: 1rem;
+  padding: 1.25rem;
+}
+.cv2_panel--shot img { border-radius: 10px; display: block; height: auto; width: 100%; }
+
+// Two shots in one panel, 4:3 beside 16:9; 3fr:4fr keeps their heights equal
+.cv2_pair {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: 3fr 4fr;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cv2_plugins {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.cv2_plugin {
+  background: rgba($white, 0.04);
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+
+  h4 {
+    font-family: $mono;
+    font-size: $type-sm;
+    letter-spacing: 0.06em;
+    margin: 0 0 0.4rem;
+  }
+  p { color: rgba($white, 0.65); font-size: $type-sm; line-height: 1.55; margin: 0; }
+}
+
+.cv2_evbar { display: grid; gap: 1rem; }
+
+.cv2_evbar_controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  button {
+    background: none;
+    border: 1px solid rgba($white, 0.25);
+    border-radius: 99em;
+    color: $white;
+    cursor: pointer;
+    font: inherit;
+    font-size: $type-sm;
+    padding: 0.3em 1em;
+    transition: border-color 0.15s ease, opacity 0.15s ease, scale 0.15s ease;
+
+    &:hover:not(:disabled), &:focus-visible { border-color: $white; }
+    &:active:not(:disabled) { scale: 0.96; }
+    &:disabled { cursor: default; opacity: 0.35; }
+  }
+}
+
+.cv2_evbar_quotes {
+  display: grid;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    border-left: 2px solid rgba($white, 0.25);
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.15rem 0 0.15rem 0.85rem;
+
+    &.is_stakeholder { border-left-style: dashed; }
+  }
+}
+.cv2_voice { color: rgba($white, 0.5); flex: none; font-family: $mono; font-size: $type-sm; }
+.cv2_said { color: rgba($white, 0.8); font-size: $type-base; }
+
+.cv2_evbar_verdict {
+  border-top: 1px solid rgba($white, 0.12);
+  color: $white;
+  font-size: $type-base;
+  margin: 0;
+  padding-top: 0.9rem;
+}
+
+.cv2_ladder {
+  margin: 1rem 0;
+  padding-left: 1.3rem;
+
+  li { color: rgba($white, 0.75); margin-bottom: 0.5rem; }
+}
+
+.cv2_ledger {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+
+  li {
+    align-items: baseline;
+    border-top: 1px solid rgba($white, 0.1);
+    color: rgba($white, 0.7);
+    display: flex;
+    gap: 0.9rem;
+    padding: 0.9rem 0;
+  }
+}
+
+.cv2_chip {
+  border: 1px solid rgba($white, 0.3);
+  border-radius: 99em;
+  color: rgba($white, 0.85);
+  flex: none;
+  font-family: $mono;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  padding: 0.14em 0.7em;
+  text-transform: uppercase;
+}
+.cv2_chip--committed { background: $white; border-color: $white; color: #171814; }
+.cv2_chip--held { border-style: dashed; color: rgba($white, 0.55); }
+
+.cv2_sdlc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+
+  .cv2_stage {
+    background: rgba($white, 0.05);
+    border-radius: 10px;
+    flex: 1 1 150px;
+    padding: 0.9rem 1rem;
+    position: relative;
+
+    h4 {
+      font-family: $mono;
+      font-size: $type-sm;
+      letter-spacing: 0.06em;
+      margin: 0 0 0.3rem;
+      text-transform: uppercase;
+    }
+    p { color: rgba($white, 0.6); font-size: $type-sm; line-height: 1.5; margin: 0; }
+
+    &:not(:last-child)::after {
+      color: rgba($white, 0.4);
+      content: "→";
+      position: absolute;
+      right: -0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+  .cv2_stage--loop::before {
+    color: rgba($white, 0.4);
+    content: "↻";
+    position: absolute;
+    right: 0.8rem;
+    top: 0.7rem;
+  }
+}
+
+.canon_code {
+  background: rgba($white, 0.04);
+  border-radius: 0.75rem;
+  color: rgba($white, 0.75);
+  font-family: $mono;
+  font-size: $type-sm;
+  line-height: 1.7;
+  margin: 1rem 0 0;
+  overflow-x: auto;
+  padding: 1.25rem 1.5rem;
+
+  code { font-family: inherit; }
+}
+
+.canon_changelog {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    border-top: 1px solid rgba($white, 0.1);
+    color: rgba($white, 0.65);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: $type-base;
+    gap: 0.5rem 1.5rem;
+    line-height: 1.6;
+    padding: 0.9rem 0;
+  }
+}
+
+.canon_changelog_date {
+  color: rgba($white, 0.4);
+  flex-shrink: 0;
+  font-family: $mono;
+  font-size: $type-sm;
+  letter-spacing: 0.03em;
+  min-width: 6rem;
+}
+
+.canon_closing {
+  color: rgba($white, 0.65);
+  margin-top: 1.75rem;
+  max-width: 62ch;
+}
+
+html.theme-light {
+  .canon_chip { color: rgba($dark-default, 0.75); }
+  .canon_subhead { color: $dark-default; }
+  .canon_early { color: rgba($dark-default, 0.6); }
+  .canon_status_meta,
+  .canon_asof { color: rgba($dark-default, 0.5); }
+  .canon_list li { border-top-color: rgba($dark-default, 0.12); }
+  .canon_list h4 { color: $dark-default; }
+  .canon_list p,
+  .canon_code_intro,
+  .canon_closing { color: rgba($dark-default, 0.7); }
+  .canon_code { background: rgba($dark-default, 0.04); color: rgba($dark-default, 0.8); }
+  .canon_changelog li { border-top-color: rgba($dark-default, 0.12); color: rgba($dark-default, 0.7); }
+
+  // Canon case study v2 components
+  .cv2_figcap { color: rgba($dark-default, 0.5); }
+  .cv2_figtag { color: rgba($dark-default, 0.8); }
+  .cv2_panel, .cv2_plugin, .cv2_sdlc .cv2_stage { background: rgba($dark-default, 0.05); }
+  .cv2_plugin h4 { color: $dark-default; }
+  .cv2_plugin p { color: rgba($dark-default, 0.7); }
+  .cv2_evbar_controls button {
+    border-color: rgba($dark-default, 0.3);
+    color: $dark-default;
+    &:hover:not(:disabled), &:focus-visible { border-color: $dark-default; }
+  }
+  .cv2_evbar_quotes li { border-left-color: rgba($dark-default, 0.3); }
+  .cv2_voice { color: rgba($dark-default, 0.5); }
+  .cv2_said { color: rgba($dark-default, 0.8); }
+  .cv2_evbar_verdict { border-top-color: rgba($dark-default, 0.12); color: $dark-default; }
+  .cv2_ladder li { color: rgba($dark-default, 0.75); }
+  .cv2_ledger li { border-top-color: rgba($dark-default, 0.12); color: rgba($dark-default, 0.7); }
+  .cv2_chip { border-color: rgba($dark-default, 0.35); color: rgba($dark-default, 0.85); }
+  .cv2_chip--committed { background: $dark-default; border-color: $dark-default; color: $white; }
+  .cv2_chip--held { color: rgba($dark-default, 0.55); }
+  .cv2_sdlc .cv2_stage h4 { color: $dark-default; }
+  .cv2_sdlc .cv2_stage p { color: rgba($dark-default, 0.6); }
+  .cv2_sdlc .cv2_stage:not(:last-child)::after,
+  .cv2_sdlc .cv2_stage--loop::before { color: rgba($dark-default, 0.4); }
+  .canon_changelog_date { color: rgba($dark-default, 0.45); }
+}
+
+// AI practice page — intro and section rhythm
+.practice_intro {
+  .practice_lead {
+    color: $white;
+    font-size: clamp(1.5rem, 1vw + 1rem, 2rem);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    margin: 0 0 1.5rem;
+    max-width: 30em;
+    text-wrap: pretty;
+  }
+
+  p {
+    color: rgba($white, 0.7);
+    font-size: $type-lg;
+    line-height: 1.65;
+    margin: 0;
+    max-width: 34em;
+  }
+}
+
+.practice_ai {
+  padding: 2rem 0 6rem;
+
+  // Room between the label column and the prose, and between the
+  // stacked paragraphs, which were running together.
+  .container + .container { margin-top: 5rem; }
+
+  // Section opener: same medium-weight voice as the page lead, one step
+  // down. It was inheriting a bare .leadin with no size or line-height,
+  // so it rendered smaller and tighter than the body beneath it.
+  .leadin {
+    color: $white;
+    font-size: clamp(1.25rem, 0.5vw + 1.1rem, 1.375rem);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    line-height: 1.5;
+    margin: 0 0 1.75rem;
+    max-width: 32em;
+  }
+
+  .about_me {
+    font-size: $type-lg;
+    line-height: 1.7;
+    margin: 0 0 1.75rem;
+    max-width: 34em;
+
+    &:last-child { margin-bottom: 0; }
+  }
+}
+
+html.theme-light {
+  .practice_intro .practice_lead { color: $dark-default; }
+  .practice_intro p { color: rgba($dark-default, 0.75); }
+  .practice_ai .leadin { color: $dark-default; }
+}
+
+// AI practice page — text-forward work list
+.practice_work { margin-top: 4rem; }
+
+.practice_list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    border-top: 1px solid rgba($white, 0.1);
+    padding: 2rem 0;
+
+    &:first-child { border-top: none; padding-top: 0; }
+  }
+
+  h4 {
+    color: $white;
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.5rem;
+  }
+
+  p {
+    color: rgba($white, 0.65);
+    font-size: $type-base;
+    line-height: 1.7;
+    margin: 0;
+    // Same measure as the prose above so the page reads as one column
+    // of text rather than two different documents.
+    max-width: 34em;
+  }
+}
+
+html.theme-light .practice_list {
+  li { border-top-color: rgba($dark-default, 0.12); }
+  h4 { color: $dark-default; }
+  p { color: rgba($dark-default, 0.7); }
+}
+
+// ── Case study cover — the card's artwork, carried onto the page ──
+.cs_cover {
+  margin-bottom: 3rem;
+
+  // The grid cell is the letterboxed frame; the image keeps its full
+  // square aspect and pans vertically through the frame as you scroll
+  // (site.js), so the entire artwork gets seen by the bottom of the
+  // travel. Reduced motion pins it to the vertical center instead.
+  .grid_12 {
+    aspect-ratio: 2 / 1;
+    border-radius: 1rem;
+    overflow: hidden;
+
+    @media (max-width: 768px) { aspect-ratio: 4 / 3; }
+
+    // Pages with square artwork get a taller window so the 1:1 source
+    // crops less; composed flat covers (canon) keep the 2:1 frame
+    // they were drawn at.
+    &:has(.cs_cover_img:not(.cs_cover_img--flat)) {
+      aspect-ratio: 16 / 9;
+
+      @media (max-width: 768px) { aspect-ratio: 4 / 3; }
+    }
+
+    // A film cover brings its own aspect; reserving an image-shaped
+    // frame around it just manufactures empty space below the video.
+    &:has(.cs_cover_video) {
+      aspect-ratio: auto;
+
+      @media (max-width: 768px) { aspect-ratio: auto; }
+    }
+  }
+
+  .cs_cover_img {
+    aspect-ratio: 1 / 1;
+    display: block;
+    height: auto;
+    width: 100%;
+    will-change: transform;
+  }
+
+  // A composed, typographic cover has no spare image to pan through —
+  // it matches the frame and stays put.
+  .cs_cover_img--flat {
+    aspect-ratio: 2 / 1;
+    transform: none !important;
+    will-change: auto;
+
+    @media (max-width: 768px) { aspect-ratio: 2 / 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cs_cover_img { transform: translateY(-25%); }
+  }
+}
+
+// Shared-element transition: the work-page card image morphs into the
+// case study's cover on navigation (cross-document view transitions;
+// browsers without support just navigate normally).
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  @each $mod in nd, viz, ns, nq, pecan, canon {
+    // Both ends of the morph are the rounded CLIPPING FRAMES, never the
+    // raw img: snapshots keep their captured rounding, so naming the
+    // unclipped cover img flashed a square snapshot mid-transition.
+    .hwc.#{$mod} .hwc_img,
+    .cs_cover .grid_12:has(.cs_cover_img.vt-#{$mod}) {
+      view-transition-name: vt-#{$mod};
+    }
+  }
+
+  // Ease the whole transition: a soft settling curve on the morphing
+  // elements, and a slightly quicker crossfade underneath, so pages
+  // hand off gently instead of snapping.
+  ::view-transition-group(*) {
+    animation-duration: 0.5s;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.3s;
+    animation-timing-function: ease;
+  }
+}
+
+.case_study_nav {
+  -webkit-backdrop-filter: blur(28px) saturate(2);
+  backdrop-filter: blur(28px) saturate(2);
+  background: rgba($white, 0.1);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  // Never clip section links: scroll horizontally when they don't fit,
+  // center when they do ("safe" keeps the start reachable on overflow).
+  justify-content: safe center;
+  overflow-x: auto;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+  gap: 0.2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0.8rem;
+  position: sticky;
+  top: 0;
+  transform: translateZ(0);
+  width: 100%;
+
+  li { flex-shrink: 0; }
+
+  // Coarse pointers get full-height taps without changing the desktop
+  // pill proportions.
+  @media (pointer: coarse) {
+    a {
+      align-items: center;
+      display: inline-flex;
+      min-height: 44px;
+    }
+  }
+
+  // View switcher lives at the end of the section nav
+  .cs_nav_view {
+    align-items: center;
+    display: flex;
+    margin-left: 0.75rem;
+  }
+
+  // Mobile section disclosure: hidden on desktop, where the full row fits
+  .cs_nav_disclosure { display: none; }
+
+    // "← Work" rides the sticky nav so the hero stays clean
+  .cs_nav_back {
+    margin-right: 0.75rem;
+
+    a {
+      align-items: center;
+      display: inline-flex;
+      gap: 0.35rem;
+
+      svg { transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+      &:hover svg { transform: translateX(-2px); }
+    }
+  }
+  will-change: transform;
+  z-index: 200;
+
+  li {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    align-items: center;
+    border-radius: 1.5rem;
+    color: rgba($white, 0.65);
+    display: flex;
+    gap: 0;
+    padding: 0.45rem 0.9rem;
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease;
+
+    &::before {
+      background: currentColor;
+      border-radius: 50%;
+      content: '';
+      display: block;
+      flex-shrink: 0;
+      height: 4px;
+      margin-right: 0;
+      opacity: 0;
+      transition: width 0.2s ease, opacity 0.2s ease, margin-right 0.2s ease;
+      width: 0;
+    }
+
+    &:hover {
+      background: rgba($white, 0.15);
+      color: $white;
+    }
+  }
+
+  a.active {
+    background: $white;
+    color: $dark-default;
+
+    &::before {
+      margin-right: 0.45rem;
+      opacity: 1;
+      width: 4px;
+    }
+  }
+
+  .cs_nav_label {
+    color: inherit;
+    font-family: $font;
+    font-size: $type-sm;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+}
+
+// Meta bar — sits below the project title, contains toggle + overview fields
+.cs_meta_bar {
+  border-bottom: 1px solid rgba($white, 0.12);
+  border-top: 1px solid rgba($white, 0.12);
+  padding: 1.5rem 0;
+}
+
+// Consolidated project info: label/value pairs sized to their content,
+// no divider borders. Stacks cleanly on small screens.
+.cs_meta_row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 3rem;
+  grid-column: 1 / -1;
+}
+
+.cs_meta_item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  @media (max-width: 600px) {
+    flex-basis: 100%;
+  }
+
+  // Value text (extracted <p> elements)
+  > p {
+    color: rgba($white, 0.85);
+    font-size: $type-md;
+    margin: 0;
+  }
+
+  // View project link
+  > a.view_project {
+    display: block;
+    font-size: $type-sm;
+    padding: 0.3rem 0.85rem;
+    text-align: center;
+  }
+
+  // Contributions tag list — pill style
+  > ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      border: 1px solid rgba($white, 0.2);
+      border-radius: 2rem;
+      color: rgba($white, 0.8);
+      font-size: $type-xs;
+      letter-spacing: 0.04em;
+      padding: 0.2rem 0.65rem;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.cs_meta_label {
+  color: rgba($white, 0.65);
+  font-family: $mono;
+  font-size: $type-xs;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+// Two plain icons, no pill or segmented-control chrome. State reads
+// from the icon's own value rather than a filled container.
+.cs_view_toggle {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  border-radius: 0;
+  display: grid;
+  gap: 0.25rem;
+  grid-template-columns: 1fr 1fr;
+
+  .cs_view_btn {
+    // Icon buttons stay compact visually; touch devices get the full
+    // 44px minimum target.
+    @media (pointer: coarse) { min-height: 44px; min-width: 44px; }
+
+    align-items: center;
+    background: none;
+    border: none;
+    color: rgba($white, 0.45);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    padding: 0.4rem 0.65rem;
+    position: relative;
+    transition: color 0.15s ease, background 0.15s ease;
+
+    svg { display: block; pointer-events: none; }
+
+    &:hover { color: rgba($white, 0.8); }
+
+    &.active {
+      background: none;
+      color: $white;
+    }
+
+    &:focus-visible {
+      border-radius: 0.4rem;
+      outline: 2px solid rgba($white, 0.6);
+      outline-offset: 0;
+    }
+  }
+}
+
+// Light mode overrides
+.theme-light {
+  .cs_meta_label                { color: rgba($dark-default, 0.55); }
+  .cs_meta_item > p             { color: rgba($dark-default, 0.8); }
+  .cs_meta_item > ul li         { border-color: rgba($dark-default, 0.15); color: rgba($dark-default, 0.7); }
+  .cs_view_btn                  { color: rgba($dark-default, 0.4); &:focus-visible { outline-color: rgba($dark-default, 0.5); } }
+  .cs_view_btn.active           { background: none; color: $dark-default; }
+}
+
+
+// Masonry image feed
+.cs_image_feed {
+  display: none;
+  padding: 0 3rem 5rem;
+
+  @media (max-width: 768px) { padding: 0 1.25rem 3rem; }
+}
+
+.cs_masonry {
+  column-count: 3;
+  column-gap: 1.25rem;
+
+  @media (max-width: 1100px) { column-count: 2; }
+  @media (max-width: 600px)  { column-count: 1; }
+}
+
+.cs_masonry_item {
+  break-inside: avoid;
+  border-radius: 0.75rem;
+  cursor: zoom-in;
+  margin-bottom: 1.25rem;
+  overflow: hidden;
+
+  &:focus { outline: none; }
+  &:focus-visible { outline: 2px solid rgba($white, 0.7); outline-offset: 2px; }
+
+  img {
+    border-radius: 0;
+    display: block;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    width: 100%;
+  }
+
+  figcaption {
+    color: rgba($white, 0.4);
+    font-family: $mono;
+    font-size: 0.6rem;
+    letter-spacing: 0.05em;
+    padding: 0.4rem 0.75rem 0.5rem;
+    text-transform: uppercase;
+  }
+
+  &:hover img { transform: scale(1.02); }
+}
+
+// Lightbox
+.cs_lightbox {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  flex-direction: column;
+  inset: 0;
+  justify-content: center;
+  opacity: 0;
+  padding: 3rem;
+  pointer-events: none;
+  position: fixed;
+  transition: opacity 0.25s ease;
+  z-index: 1000;
+
+  &.is-open { opacity: 1; pointer-events: all; }
+
+  .cs_lb_img {
+    border-radius: 0.75rem;
+    max-height: 78vh;
+    max-width: 86vw;
+    object-fit: contain;
+  }
+
+  .cs_lb_caption {
+    color: rgba($white, 0.45);
+    font-family: $mono;
+    font-size: $type-xs;
+    letter-spacing: 0.05em;
+    margin-top: 0.9rem;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .cs_lb_close {
+    background: rgba($white, 0.1);
+    border: 1px solid rgba($white, 0.15);
+    border-radius: 50%;
+    color: $white;
+    cursor: pointer;
+    font-size: $type-base;
+    height: 38px;
+    line-height: 38px;
+    position: absolute;
+    right: 1.5rem;
+    text-align: center;
+    top: 1.5rem;
+    width: 38px;
+
+    &:hover { background: rgba($white, 0.2); }
+  }
+
+  .cs_lb_prev, .cs_lb_next {
+    background: rgba($white, 0.1);
+    border: 1px solid rgba($white, 0.15);
+    border-radius: 50%;
+    color: $white;
+    cursor: pointer;
+    font-size: 1.4rem;
+    height: 48px;
+    line-height: 48px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+
+    &:hover { background: rgba($white, 0.2); }
+    &:disabled { opacity: 0.15; pointer-events: none; }
+  }
+
+  .cs_lb_prev { left: 1.5rem; }
+  .cs_lb_next { right: 1.5rem; }
+}
+
+// Image Feed mode — hide text content, show masonry
+body.image-feed {
+  // Hide all case study content sections except overview (which holds the view toggle)
+  .cs_content:not(#overview) { display: none !important; }
+  // In overview, collapse everything except the meta row so the toggle stays reachable
+  #overview .grid_12 { display: block !important; }
+  #overview .grid_12 > *:not(.cs_meta_row) { display: none !important; }
+  .cs_image_feed { display: block !important; }
+  // Keep the full nav: it hosts the view toggle (the only way back),
+  // and clicking a section link exits feed mode first (site.js), so
+  // every item stays functional in both views.
+}
+
+
+.case_studies_nav {
+  padding-bottom: 100px;
+
+  h4 { color: $text-muted; display: block; margin: 0 0 20px; }
+  h4.faded { opacity: 1; }
+
+  .case_study_alt {
+    align-items: center;
+    background-color: $white;
+    background-position: 0 25%;
+    background-size: cover;
+    border-left: 0.2rem solid $orange;
+    color: $dark-default;
+    display: block;
+    font-family: $font;
+    margin: 1rem 0 3rem;
+    padding: 4rem 4rem 3rem;
+    position: relative;
+    text-decoration: none;
+
+    &:hover { background-color: $text-secondary; background-position: 0 35%; transition: all 0.6s ease; }
+    &:hover img { transform: scale(1.1); }
+
+    .client_name {
+      background-color: $orange;
+      color: $white;
+      display: block;
+      font-size: $type-xs;
+      font-weight: bold;
+      left: 0;
+      letter-spacing: 0.05rem;
+      line-height: 1.2rem;
+      margin: 1rem 0;
+      padding: 0.05rem 0.5rem;
+      position: absolute;
+      top: -2.2rem;
+      text-transform: uppercase;
+    }
+
+    &.viz { background-image: url("/img/visualization_community/visualization_community_title_bg@2x.png"); }
+    &.viz .client_name { background-color: $blue; }
+  }
+
+  .case_study {
+    align-items: center;
+    background-color: rgba($text-muted, 0.05);
+    background-position: 0 25%;
+    background-size: cover;
+    border-radius: 1rem;
+    display: block;
+    font-family: $font;
+    margin: 1rem 0;
+    padding: 4rem 4rem 3rem;
+    position: relative;
+    text-decoration: none;
+    transition: all 0.4s ease;
+
+    &:hover { background-color: rgba($teal, 0.5); background-position: 0 35%; transition: all 0.6s ease; }
+    &:hover img { transform: scale(1.1); }
+    &:hover span { opacity: 1; text-decoration: underline; transition: all 0.4s ease; }
+    &.case-fade-in { opacity: 1; }
+
+    h2 { color: $white; margin: 1rem 0 0; }
+
+    h6 {
+      background-color: rgba($white, 0.3);
+      border-radius: 1rem;
+      border: none;
+      color: $white;
+      display: unset;
+      font-family: $font;
+      letter-spacing: 0;
+      line-height: 1rem;
+      opacity: 1;
+      padding: 0.4rem 0.8rem;
+      transition: all 0.4s ease;
+    }
+
+    p { opacity: 0.7; width: 70%; }
+
+    img {
+      display: block;
+      filter: invert(1);
+      margin: 0 auto;
+      transform: scale(1);
+      transition: all 0.4s ease;
+    }
+
+    span {
+      color: $white;
+      display: block;
+      font-size: 1.3rem;
+      margin: 1rem 0 0;
+      opacity: 0.4;
+      text-align: left;
+      transition: all 0.4s ease;
+    }
+
+    &.nq    { background-blend-mode: soft-light; background-color: $green; background-image: url("/img/naturequant/naturequant_title_bg@2x.png"); }
+    &.nd    { background-color: $green; }
+    &.ns    { background-blend-mode: soft-light; background-color: $lime;  background-image: url("/img/naturescore/naturescore_title_bg@2x.png"); }
+    &.sj    { background-color: $blue; }
+    &.pecan { background-blend-mode: soft-light; background-color: $cyan;  background-image: url("/img/pecan/pecan_title_bg@2x.png"); }
+    &.viz   { background-blend-mode: soft-light; background-color: $blue;  background-image: url("/img/visualization_community/visualization_community_title_bg@2x.png"); }
+  }
+}
+
+
+// ============================================================
+// Project (case study) pages
+// ============================================================
+
+.homepage_work { border-radius: 1rem; margin: 0 0 2rem; }
+
+.confetti { background-color: $white; display: block; position: relative; top: auto; z-index: 10; }
+
+.project {
+  overflow: hidden;
+  padding-bottom: 8rem;
+  width: 100%;
+
+  .container { max-width: 1800px; }
+
+  img { max-width: 100%; }
+
+  h1 { color: $white; font-family: $font; }
+  h2 { color: $white; text-wrap: balance; }
+  h3 { color: $white; text-wrap: balance; }
+  h4 { color: $white; text-wrap: balance; }
+
+  p {
+    color: $white;
+    font-family: $font;
+    font-size: $type-lg;
+    line-height: 36px;
+    // Prose holds a readable measure even in a wide column, and wraps
+    // without orphans. Short strings (meta, stats) are unaffected.
+    max-width: 62ch;
+    padding-right: 30px;
+    text-wrap: pretty;
+
+    &.leadin { font-size: $type-xl; }
+  }
+
+  .cs_body_cols {
+    // Width-driven rather than count-driven: two columns only when each
+    // can hold a readable measure, one column otherwise. The old
+    // count-based rule paired with a breakpoint override that lost on
+    // specificity (.cs_body_cols vs .project .cs_body_cols), so it never
+    // actually stacked on phones.
+    columns: 22rem 2;
+    column-gap: 3rem;
+
+    p {
+      break-inside: avoid;
+      font-size: $type-lg;
+      line-height: 36px;
+      margin-top: 0;
+      padding-right: 0;
+    }
+  }
+
+  ul {
+    list-style: initial;
+    margin: 1rem 0 0;
+
+    li {
+      color: $text-muted;
+
+      // <li><p>...</p></li> shows up across every case study (bullets
+      // authored as paragraphs). The nested <p> kept its own default
+      // top/bottom margin on top of the <ul>'s, stacking into a gap
+      // wildly bigger than the space between any other two paragraphs
+      // on the page — most visible right after a "the challenges
+      // were:" lead-in, where the list reads as disconnected from it.
+      p { margin: 0; }
+      & + li { margin-top: 0.75rem; }
+    }
+  }
+
+  // Chapter rhythm for h4 sub-topics inside a long h3 section (e.g.
+  // Contributions' five sub-heads on PeCan, spanning ~9000px on its
+  // own). h3-level sections already get a consistent 4rem/4rem via
+  // .cs_content; h4 had nothing beyond the sitewide `margin: 0`, so a
+  // long section read as one undifferentiated scroll with occasional
+  // bold text, not a series of chapters. First h4 is exempted — it
+  // sits right under the h3 and already gets that spacing for free.
+  h4 {
+    border-top: 1px solid rgba($white, 0.08);
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+  }
+
+  .grid_12 > h4:first-child,
+  h3 + h4 {
+    border-top: none;
+    margin-top: 1.5rem;
+    padding-top: 0;
+  }
+
+  // An h4 inside a ruled list item (canon_list and kin): the li already
+  // draws the divider, so the chapter rule here doubles it.
+  li h4 {
+    border-top: none;
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  // Left spacer column — aligns content with hero title on desktop, hidden on mobile
+  .cs_spacer {
+    @media (max-width: 1279px) { display: none; }
+  }
+
+  // Horizontal metadata row (overview)
+  .cs_meta_row {
+    border-bottom: 1px solid rgba($white, 0.08);
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.75rem 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+
+    @media (max-width: 768px) { flex-wrap: wrap; }
+  }
+
+  .cs_meta_item {
+    .role {
+      color: rgba($white, 0.4);
+      display: block;
+      font-family: $mono;
+      font-size: $type-sm;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.3rem;
+      text-transform: uppercase;
+    }
+    p, a { font-size: $type-base; margin: 0; }
+
+    &:has(.cs_tags_inline) {
+      flex: 0 1 auto;
+    }
+  }
+
+  .cs_tags_inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  // Reviews: h3 + rating side by side
+  .cs_reviews_header {
+    align-items: baseline;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    margin-bottom: 1.5rem;
+
+    h3 { margin: 0; }
+
+    .cs_app_rating {
+      align-items: baseline;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem 0.75rem;
+      margin-top: 0;
+
+      .cs_rating_score { font-size: $type-xl; }
+      .cs_rating_stars { font-size: $type-sm; }
+    }
+  }
+
+  // Overview: no top gap; challenges flows directly after
+  #overview { margin-top: 2rem; margin-bottom: 0; }
+  #challenges { margin-top: 1.5rem; }
+
+  .cs_content {
+    margin-bottom: 4rem;
+    margin-top: 4rem;
+    scroll-margin-top: 9rem;
+
+    // Strip top margin from first element in every grid cell so section titles
+    // and adjacent paragraph text start on the same baseline
+    > [class*="grid_"] > *:first-child { margin-top: 0; }
+  }
+
+  // Two-column layout: section title on the left, content on the right
+  .cs_content .grid_12 > p:first-of-type {
+    margin-block-start: 0;
+  }
+
+  .cs_content .grid_12:has(> h3:first-child) {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    column-gap: 4rem;
+    align-items: start;
+
+    > h3 { grid-column: 1; }
+    > *:not(h3) { grid-column: 2; }
+
+    @media (max-width: 1279px) {
+      display: block;
+
+      // Stacked mode: the title loses its own column, so it needs the
+      // breathing room the column gap was providing.
+      > h3 { margin-bottom: 1.25rem; }
+    }
+  }
+
+  .cs_image_pair {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+    margin: 1rem 0;
+
+    @media (max-width: 768px) { grid-template-columns: 1fr; }
+
+    img { border-radius: 1rem; display: block; height: auto; width: 100%; }
+
+    .cs_description {
+      color: rgba($white, 0.4);
+      display: block;
+      font-family: $mono;
+      font-size: $type-sm;
+      letter-spacing: 0.05em;
+      margin: 0.4rem 0 0;
+      text-transform: uppercase;
+    }
+  }
+
+  .cs_images {
+    &.cs_smaller { padding: 0; }
+
+    img, video { border-radius: 1rem; display: block; margin: 1rem 0 0; object-fit: fill; width: 100%; }
+
+    // Inline link that matches surrounding text
+    .inline_link {
+      color: inherit;
+      font-weight: inherit;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .cs_description {
+      color: rgba($white, 0.4);
+      display: block;
+      font-family: $mono;
+      font-size: $type-sm;
+      letter-spacing: 0.05em;
+      margin: 0.4rem 0 0;
+      text-transform: uppercase;
+    }
+  }
+
+  #overview {
+    h2, h3, h4, h5, li, a, .leadin { color: $white; }
+
+    // The ID-scoped link color above outranks the global hover rules,
+    // which flip these pills to a light background — pair the text
+    // color at the same specificity or it stays white-on-white.
+    a.view_project:hover,
+    a.btn:hover { color: $dark-default; }
+
+    a p { transition: all 0.4s ease; }
+    a:hover p { color: $white; transition: all 0.4s ease; }
+
+    p { color: rgba($white, 0.6); }
+
+    .stats-container {
+      border-top: 1px solid rgba($white, 0.12);
+      color: $white;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      margin-top: 2.5rem;
+
+      // Fixed two-up on small screens. auto-fit made the column count
+      // unknowable, so the "first in row" divider reset could not be
+      // expressed and rows 2+ kept a stray left border.
+      @media (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+
+        .stat {
+          padding: 1.5rem 1rem;
+
+          // Left rule only between the pair, top rule between rows
+          &:nth-child(odd) { border-left: none; padding-left: 0; }
+          &:nth-child(n + 3) { border-top: 1px solid rgba($white, 0.12); }
+        }
+      }
+
+      .stat {
+        border-left: 1px solid rgba($white, 0.12);
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+        padding: 1.75rem 1.5rem 1.75rem 2rem;
+
+        &:first-child { border-left: none; }
+
+        // Fiasco-style: one light, large numeral with a quiet caption
+        // below it. No uppercase heading — the caption says everything.
+        .stat_number {
+          color: $white;
+          font-size: clamp(3rem, 2.5vw + 1.75rem, 4.5rem);
+          font-weight: 400;
+          letter-spacing: -0.02em;
+          line-height: 1;
+          margin: 0 0 0.5rem;
+        }
+
+        .stat_info {
+          color: rgba($white, 0.55);
+          font-size: $type-md;
+          line-height: 1.5;
+          margin: 0;
+          max-width: 16em;
+        }
+
+        p { margin: 0; }
+      }
+    }
+
+    // Quiet outline pills in the site's chip language — no filled
+    // boxes, no uppercase shouting.
+    .tag {
+      background: none;
+      border-radius: 2rem;
+      box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 35%, transparent);
+      color: rgba($white, 0.7);
+      display: inline-block;
+      font-family: $font;
+      font-size: $type-sm;
+      font-weight: 500;
+      letter-spacing: 0;
+      margin: 0.15rem 0.05rem;
+      padding: 0.25rem 0.7rem;
+      text-transform: none;
+    }
+  }
+
+  .client_logo { margin-top: 15px; padding-bottom: 20px; }
+}
+
+

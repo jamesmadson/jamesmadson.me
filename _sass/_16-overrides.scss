@@ -1,0 +1,87 @@
+// Touch ergonomics: hover reveals get a resting state and small controls
+// reach the 44px floor. Scoped to hover: none so desktop keeps its density.
+@media (hover: none) {
+  .wc_top { opacity: 0.5; }
+  .hero_shuffle_btn { height: 44px; width: 44px; }
+  .cv2_route_btns button { padding-block: 0.85em; }
+  .cv2_evbar_controls button { padding-block: 0.95em; }
+  .services_list .highlight { padding-block: 0.5em; }
+  .site_footer_nav a { display: inline-block; padding-block: 0.55em; }
+  .site_footer_credential a { display: inline-block; margin: -0.8em -0.25em; padding: 0.8em 0.25em; }
+  .cs_lb_close, .cs_lb_prev, .cs_lb_next { height: 44px; min-width: 44px; }
+}
+
+// Light theme: the welcome chip's white would sit invisible on the light
+// body (237,238,232 on 236,236,231), so it inverts to near-black. The ink
+// MUST match the #hero_shuffle_text ID: the hero's rest-ink rule is
+// ID-scoped, and no class chain outranks it (same bug class as the
+// #overview stats fight; third encounter, James caught it live).
+html.theme-light .hl_wrap:has(a.highlight.jm) { --chip: #{$dark-default}; }
+html.theme-light #hero_shuffle_text a.highlight.jm {
+  background-color: $dark-default;
+  color: $white;
+
+  &::before { background-color: $dark-default; }
+  &:hover, &:active { background-color: $dark-default; box-shadow: 0 0 0 1px $dark-default; color: $white; }
+}
+
+// The About pill families share one hover vocabulary: a small spring
+// lift in, settle on press. Color feedback stays on the fast 150ms lane.
+.about_services .services_list .highlight {
+  transition: background-color 0.15s ease, color 0.15s ease,
+              box-shadow 0.15s ease, transform 0.34s $spring-lift;
+
+  &:hover, &:focus-visible { transform: translateY(-3px); }
+  &:active { transform: translateY(-1px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about_values .value_word,
+  .about_values .value_connector,
+  .about_services .services_list .highlight { transition: opacity 0.2s ease; }
+
+  .about_values .value_word.visible:hover,
+  .about_values .value_word.visible:active,
+  .about_services .services_list .highlight:hover,
+  .about_services .services_list .highlight:active { transform: none; }
+}
+
+// About pills, per James (2026-10-10, superseding the frost version he
+// rejected): no border in any state, rest is a faint white fill, hover
+// floods with the project color, ink stays white on the flood.
+.about_values .value_word.highlight,
+.about_services .services_list .highlight {
+  background-color: rgba($white, 0.07);
+  box-shadow: none;
+  // The fill exposed the base chip's 0.08em padding as cramped; filled
+  // pills need real room. Touch keeps its 44px floor below.
+  padding: 0.22em 0.6em;
+
+  // The chip map lives here too: the services-scoped copy never reached
+  // the values row, and an unmapped mod fell back to a white flood with
+  // white ink (the invisible "Clear" bug).
+  &.nd, &.nq { --chip: #{$green}; }
+  &.pecan    { --chip: #{$cyan}; }
+  &.viz      { --chip: #{$blue}; }
+  &.jm       { --chip: #{$orange}; }
+
+  &:hover, &:active, &:focus-visible {
+    background-color: var(--chip, #{$white});
+    box-shadow: none;
+    color: $white;
+  }
+
+  @media (hover: none) { padding-block: 0.55em; }
+}
+html.theme-light .about_values .value_word.highlight,
+html.theme-light .about_services .services_list .highlight {
+  background-color: rgba($dark-default, 0.05);
+  box-shadow: none;
+  color: $dark-default;
+
+  &:hover, &:active, &:focus-visible {
+    background-color: var(--chip, #{$dark-default});
+    box-shadow: none;
+    color: $white;
+  }
+}

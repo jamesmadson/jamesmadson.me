@@ -1,0 +1,451 @@
+// ============================================================
+// Practice Page
+// ============================================================
+
+.practice_ai {
+  padding: 4rem 0 6rem;
+}
+
+.practice_feed {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+
+  @media (max-width: 1023px) { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+  @media (max-width: 600px)  { grid-template-columns: 1fr; gap: 1rem; }
+}
+
+.practice_entry {
+  background: rgba($white, 0.04);
+  border: 1px solid rgba($white, 0.08);
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: border-color 0.2s ease, background 0.2s ease;
+
+  &:hover {
+    background: rgba($white, 0.07);
+    border-color: rgba($white, 0.15);
+  }
+}
+
+.practice_entry_img {
+  aspect-ratio: 16/9;
+  background: rgba($white, 0.06);
+  overflow: hidden;
+  width: 100%;
+
+  &.practice_entry_img--placeholder {
+    background: rgba($white, 0.05);
+  }
+
+  img {
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+    width: 100%;
+  }
+
+  .practice_entry:hover & img { transform: scale(1.03); }
+}
+
+.practice_entry_meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem;
+
+  p {
+    color: rgba($white, 0.6);
+    font-size: $type-md;
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+.practice_entry_label {
+  color: $white;
+  font-family: $mono;
+  font-size: $type-xs;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+html.theme-light body {
+  .practice_entry {
+    background: rgba($dark-default, 0.03);
+    border-color: rgba($dark-default, 0.08);
+
+    &:hover {
+      background: rgba($dark-default, 0.06);
+      border-color: rgba($dark-default, 0.15);
+    }
+  }
+
+  .practice_entry_img.practice_entry_img--placeholder {
+    background: rgba($dark-default, 0.05);
+  }
+
+  .practice_entry_meta p { color: rgba($dark-default, 0.6); }
+  .practice_entry_label { color: $dark-default; }
+}
+
+
+// ============================================================
+// Footer
+// ============================================================
+
+footer {
+  background-color: $dark-bg;
+  margin: 0;
+  padding: 100px 0 0;
+  position: relative;
+  z-index: 11;
+}
+
+.about_meta {
+  color: rgba($white, 0.5);
+  font-family: $mono;
+  font-size: $type-sm;
+  letter-spacing: 0.03em;
+  margin: 0.4rem 0 0;
+}
+
+html.theme-light .about_meta { color: rgba($dark-default, 0.5); }
+
+// ============================================================
+// Values section animation + How I work grid
+// ============================================================
+
+.about_values {
+  padding-bottom: 2rem;
+
+  // Value words are large enough — suppress the floating tooltip label
+  .value_word::after { content: none; }
+
+  // "How I work" 2x2 grid, 1 column at mobile. The about page's grouped
+  // content (Background/.experience_item) uses a hairline top rule per
+  // item rather than card surfaces, so these cells match that flat
+  // treatment instead of the Task 2 shadow/lift card system.
+  .how_work_grid {
+    display: grid;
+    gap: 2rem 2.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 1rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .how_work_cell {
+    border-top: 1px solid rgba($white, 0.12);
+    padding-top: 1.25rem;
+
+    h4 {
+      color: $white;
+      font-size: $type-base;
+      font-weight: 500;
+      margin: 0 0 0.5rem;
+    }
+
+    p {
+      color: rgba($white, 0.65);
+      font-size: $type-md;
+      line-height: 1.6;
+      margin: 0;
+    }
+  }
+
+  .values_row {
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3rem;
+
+    // Flex items, not running text — see .services_list note. Same
+    // outline as the hero and Services chips: these link to case
+    // studies too, so they should read as pressable.
+    .highlight {
+      box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 50%, transparent);
+      margin-block: 0;
+
+      &:hover, &:active {
+        box-shadow: 0 0 0 1px rgba($white, 0.35);
+      }
+    }
+  }
+
+  .value_word {
+    color: $white;
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    font-weight: 500;
+    opacity: 0;
+    transform: translateX(-12px);
+    // One transition list serves entrance and hover. site.js owns the
+    // stagger (adds .visible per word on a timer), so no delays live in
+    // CSS and hover-exit can't run the stagger backwards. Transform
+    // rides the house spring: one soft overshoot on arrival, and the
+    // same curve the work cards lift with on hover.
+    transition: opacity 0.45s ease, transform 0.34s $spring-lift,
+                background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+    white-space: nowrap;
+
+    &.visible { opacity: 1; transform: translateX(0); }
+    &.visible:hover, &.visible:focus-visible { transform: translateY(-3px); }
+    &.visible:active { transform: translateY(-1px); }
+  }
+
+  .value_connector {
+    background: rgba($white, 0.18);
+    flex: 1;
+    height: 1px;
+    transform-origin: left center;
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+
+    &.visible { transform: scaleX(1); }
+  }
+}
+
+html.theme-light .about_values {
+  .value_word { color: $dark-default; }
+  .value_connector { background: rgba($dark-default, 0.2); }
+  .values_row .highlight:hover,
+  .values_row .highlight:active { box-shadow: 0 0 0 1px rgba($dark-default, 0.35); }
+
+  .how_work_cell {
+    border-top-color: rgba($dark-default, 0.12);
+    h4 { color: $dark-default; }
+    p { color: rgba($dark-default, 0.65); }
+  }
+}
+
+
+// ============================================================
+// Site Footer
+// ============================================================
+
+.site_footer {
+  background-color: rgba($white, 0.03);
+  border-top: 1px solid rgba($white, 0.08);
+  margin-top: 6rem;
+  padding: 4rem 0 2rem;
+}
+
+.site_footer_main {
+  align-items: start;
+  padding-bottom: 3rem;
+}
+
+.site_footer_brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.site_footer_name {
+  color: $white;
+  font-size: $type-base;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.site_footer_role {
+  color: rgba($white, 0.5);
+  font-size: $type-md;
+  margin: 0;
+}
+
+.site_footer_nav {
+  display: grid;
+  gap: 2rem 2.5rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  @media (max-width: 520px) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.site_footer_col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+
+  a {
+    align-items: center;
+    color: rgba($white, 0.6);
+    display: inline-flex;
+    font-size: $type-md;
+    // Global `a` is bold; footer links should sit lighter than their headings
+    font-weight: 400;
+    gap: 0.3rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    width: fit-content;
+
+    &:hover { color: $white; }
+
+    // Full tap target on touch without changing the visual rhythm
+    @media (pointer: coarse) { min-height: 44px; }
+  }
+
+  .ext_arrow {
+    opacity: 0.5;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  a:hover .ext_arrow {
+    opacity: 1;
+    transform: translate(1px, -1px);
+  }
+}
+
+.site_footer_tag {
+  border: 1px solid rgba($white, 0.25);
+  border-radius: 99em;
+  font-family: $mono;
+  font-size: $type-xs;
+  margin-left: 0.35em;
+  opacity: 0.7;
+  padding: 0.05em 0.55em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.site_footer_heading {
+  color: rgba($white, 0.35);
+  font-size: $type-xs;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin: 0 0 0.25rem;
+}
+
+// Overrides .container's 12-col grid: a two-item bar shouldn't depend on
+// column spans that collapse to a single column below 1280px.
+.site_footer_base {
+  align-items: baseline;
+  border-top: 1px solid rgba($white, 0.07);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 2rem;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+
+  .site_footer_copy,
+  .site_footer_credential {
+    color: rgba($white, 0.3);
+    font-size: $type-md;
+  }
+
+  .site_footer_credential a {
+    color: rgba($white, 0.45);
+    font-weight: 400;
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover { color: $white; }
+  }
+}
+
+
+html.theme-light .site_footer {
+  background-color: rgba($dark-default, 0.03);
+  border-top-color: rgba($dark-default, 0.1);
+
+  .site_footer_name    { color: $dark-default; }
+  .site_footer_role    { color: rgba($dark-default, 0.55); }
+  .site_footer_heading { color: rgba($dark-default, 0.4); }
+
+  .site_footer_col a {
+    color: rgba($dark-default, 0.65);
+
+    &:hover { color: $dark-default; }
+  }
+
+  .site_footer_base {
+    border-top-color: rgba($dark-default, 0.09);
+
+    .site_footer_copy,
+    .site_footer_credential { color: rgba($dark-default, 0.35); }
+
+    .site_footer_credential a {
+      color: rgba($dark-default, 0.5);
+
+      &:hover { color: $dark-default; }
+    }
+  }
+}
+
+
+// ============================================================
+// Page transitions — native cross-document View Transitions.
+// Progressive enhancement: unsupported browsers just navigate normally.
+// ============================================================
+
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-group(root) {
+  animation-duration: 0.32s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::view-transition-old(root) {
+  animation-name: vt-fade-out;
+}
+
+::view-transition-new(root) {
+  animation-name: vt-fade-in;
+}
+
+@keyframes vt-fade-out {
+  to { opacity: 0; }
+}
+
+@keyframes vt-fade-in {
+  from { opacity: 0; }
+}
+
+
+// ============================================================
+// Animations
+// ============================================================
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeRise {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.fadeIn {
+  // A short settle: rise + fade on the site's easing curve. Quick
+  // enough not to fight the view-transition crossfade on navigation.
+  animation: fadeRise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: fadeIn 0.4s ease-out forwards;
+  }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: rotateY(-90deg) translateZ(0) scale(1); }
+  to   { opacity: 0; transform: rotateY(0deg) translateZ(0) scale(1); }
+}
+
+.fadeOut {
+  transform-origin: right center;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 1.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  opacity: 0 !important;
+  animation: fadeOut 1s ease-in-out forwards;
+}
+
+

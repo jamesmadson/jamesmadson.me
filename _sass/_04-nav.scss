@@ -1,0 +1,386 @@
+// ============================================================
+// Navigation
+// ============================================================
+
+// Full-width fixed header row
+.site_header {
+  align-items: center;
+  // Fully transparent: the hero frost now bleeds up through this band,
+  // and any fill (solid or blurred glass) cut it. Desktop drops the
+  // fixed position too, so nothing floats over scrolled content —
+  // mobile keeps it pinned, where the menu needs to stay reachable.
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  left: 0;
+  // Horizontal padding mirrors .container's at every breakpoint so the
+  // JM wordmark left-aligns with page content below it; the max() term
+  // keeps that true past .container's 1800px cap on ultra-wide screens.
+  // Safe-area insets keep it clear of the notch in landscape.
+  padding: max(1rem, env(safe-area-inset-top)) max(3rem, calc((100% - 1800px) / 2 + 3rem));
+  padding-left: max(3rem, calc((100% - 1800px) / 2 + 3rem), env(safe-area-inset-left));
+  padding-right: max(3rem, calc((100% - 1800px) / 2 + 3rem), env(safe-area-inset-right));
+
+  @media (max-width: 1279px) {
+    padding-left: max(2rem, env(safe-area-inset-left));
+    padding-right: max(2rem, env(safe-area-inset-right));
+  }
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 300;
+
+  @media (max-width: 768px) { position: fixed; }
+
+  // Only meaningful while the header is FIXED, i.e. mobile. On desktop
+  // the header is absolute and scrolls away on its own, and applying
+  // this there cancels .fadeIn's animation — so every scroll back to
+  // the top restarted fadeRise and the header visibly re-faded in.
+  @media (max-width: 768px) {
+    &.cs-nav-stuck {
+      // The page-load animation uses fill-mode forwards, which pins
+      // transform and opacity to its end frame and outranks plain
+      // declarations. Clearing the animation lets the hide apply.
+      animation: none;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-100%);
+    }
+  }
+}
+
+.site_name {
+  color: $white;
+  flex: 1;
+  font-size: 1.25rem;
+
+  // Full tap height on touch without changing how it looks
+  @media (pointer: coarse) {
+    align-items: center;
+    display: inline-flex;
+    min-height: 44px;
+  }
+
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  opacity: 0.65;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+
+  .sn_char {
+    display: inline-block;
+    vertical-align: text-bottom;
+  }
+
+  .sn_ames,
+  .sn_adson {
+    display: inline-block;
+    font-size: inherit;
+    max-width: 0;
+    overflow: hidden;
+    transition: max-width 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    vertical-align: text-bottom;
+    white-space: nowrap;
+  }
+
+  &:hover {
+    opacity: 1;
+    .sn_ames { max-width: 5em; }
+    .sn_adson { max-width: 6em; transition-delay: 0.08s; }
+  }
+}
+
+.nav_cta_wrapper {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+.nav_cta {
+  border: 1px solid rgba($white, 0.3);
+  border-radius: 2rem;
+  color: $white;
+  font-family: $font;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.45rem 1.1rem;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    background: $white;
+    border-color: $white;
+    color: $dark-bg;
+  }
+}
+
+#light_switch {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 0.85rem;
+
+  &:focus { outline: none; }
+  &:focus-visible {
+    border-radius: 2rem;
+    outline: 2px solid rgba($white, 0.8);
+    outline-offset: 2px;
+  }
+
+  .toggle-track {
+    background: rgba($white, 0.2);
+    border: 1.5px solid rgba($white, 0.35);
+    border-radius: 2rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    height: 1.5rem;
+    padding: 0.18rem;
+    width: 2.75rem;
+    transition: background 0.3s ease, border-color 0.3s ease;
+
+    .toggle-thumb {
+      background: $white;
+      border-radius: 50%;
+      height: 1rem;
+      width: 1rem;
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+  }
+}
+
+// "JM" → "James Madson" expanding nav title
+// inline-grid 0fr→1fr clips rather than compresses, keeping baseline stable
+.nav_title .nav_expand {
+  display: inline-grid;
+  grid-template-columns: 0fr;
+  overflow: hidden;
+  transition: grid-template-columns 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  vertical-align: baseline;
+
+  > span {
+    min-width: 0;
+    opacity: 0;
+    transform: translateX(-0.25em);
+    transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.4s ease 0.05s;
+    white-space: nowrap;
+  }
+}
+
+.nav_title:hover .nav_expand {
+  grid-template-columns: 1fr;
+
+  > span { opacity: 1; transform: translateX(0); }
+}
+
+
+// Toggle thumb position by theme
+html.theme-dark #light_switch .toggle-thumb  { transform: translateX(1.25rem); }
+html.theme-light #light_switch .toggle-track { background: rgba($dark-default, 0.1); border-color: rgba($dark-default, 0.3); }
+html.theme-light #light_switch .toggle-thumb { background: $dark-default; }
+
+#navlink {
+  all: unset;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 44px;
+  min-width: 44px;
+  color: $white;
+  cursor: pointer;
+  // Persistent on every viewport — this is the site's only nav entry point.
+  display: flex;
+  gap: 0.5rem;
+
+  .navlink_icon {
+    align-items: center;
+    display: flex;
+    height: 16px;
+    justify-content: center;
+    position: relative;
+    width: 22px;
+  }
+
+  .navlink_bar {
+    background-color: currentColor;
+    border-radius: 2px;
+    display: block;
+    height: 1.5px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .navlink_bar1 { top: 4px; }
+  .navlink_bar2 { top: 11px; }
+
+  .navlink_label {
+    font-family: $font;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+
+  &[aria-expanded="true"] {
+    .navlink_bar1 { transform: translateY(3.5px) rotate(45deg); }
+    .navlink_bar2 { transform: translateY(-3.5px) rotate(-45deg); }
+  }
+}
+
+html.theme-light #navlink { color: $dark-default; }
+
+.nav_title {
+  color: rgba($white, 0.5);
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 1rem;
+  position: relative;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+  z-index: 10;
+
+  &:hover { color: $white; }
+
+  .breadcrumb {
+    background-color: $text-secondary;
+    bottom: 1.41rem;
+    color: $white;
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.05rem;
+    line-height: 1.2rem;
+    margin-left: 0.4rem;
+    padding: 0.16rem 0.6rem 0.12rem;
+    position: absolute;
+    text-transform: uppercase;
+    width: max-content;
+
+    &.about  { background-color: $orange; }
+    &.pecan  { background-color: $cyan; }
+    &.nd     { background-color: $green; }
+    &.ns     { background-color: $lime; }
+    &.nq     { background-color: $green; }
+    &.viz    { background-color: $blue; }
+    &.canon  { background-color: $white; color: $dark-bg; }
+  }
+}
+
+.mobile_nav_menu {
+  -webkit-backdrop-filter: blur(48px) saturate(2);
+  backdrop-filter: blur(48px) saturate(2);
+  background-color: rgba($dark-bg, 0.82);
+  border-bottom: 1px solid rgba($white, 0.1);
+  border-left: 1px solid rgba($white, 0.06);
+  border-right: 1px solid rgba($white, 0.06);
+  border-bottom-left-radius: 1.75rem;
+  border-bottom-right-radius: 1.75rem;
+  font-family: $font;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transform: translateY(-100%);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0s 0.6s;
+  visibility: hidden;
+  z-index: 250;
+
+  &.is-open {
+    transform: translateY(0);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    visibility: visible;
+  }
+
+  .mobile_nav_inner {
+    display: flex;
+    flex-direction: column;
+    padding: 5rem 2rem 2rem;
+  }
+
+  // Top-level nav list — right-aligned so links sit under the Menu
+  // button that opened them: less pointer/thumb travel on every device.
+  > .mobile_nav_inner > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+
+    > li {
+      border-bottom: 1px solid rgba($white, 0.07);
+      opacity: 0;
+      transform: translateY(-0.5rem);
+      transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+      > a {
+        color: rgba($white, 0.5);
+        display: block;
+        font-size: 1.5rem;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        padding: 0.9rem 0;
+        text-decoration: none;
+        transition: color 0.15s ease;
+
+        &.active { color: $white; }
+        &:hover  { color: $white; }
+      }
+    }
+  }
+
+  // Stagger top-level items down
+  @for $i from 1 through 5 {
+    &.is-open > .mobile_nav_inner > ul > li:nth-child(#{$i}) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: #{0.06 + ($i - 1) * 0.05}s;
+    }
+  }
+
+  // Footer row — the theme toggle lives in the menu, aligned with the
+  // right-aligned links above it. Fades in after the links land.
+  .mobile_nav_footer {
+    display: flex;
+    justify-content: flex-end;
+    opacity: 0;
+    padding-top: 1.25rem;
+    transition: opacity 0.3s ease;
+  }
+
+  &.is-open .mobile_nav_footer {
+    opacity: 1;
+    transition-delay: 0.3s;
+  }
+
+}
+
+// Light mode overrides
+html.theme-light .mobile_nav_menu,
+body.theme-light .mobile_nav_menu {
+  background-color: rgba($tan, 0.88);
+  border-bottom-color: rgba($dark-default, 0.1);
+  border-left-color: rgba($dark-default, 0.06);
+  border-right-color: rgba($dark-default, 0.06);
+
+  > .mobile_nav_inner > ul > li {
+    border-bottom-color: rgba($dark-default, 0.07);
+
+    > a {
+      color: rgba($dark-default, 0.45);
+      &.active, &:hover { color: $dark-default; }
+    }
+  }
+}
+
+
