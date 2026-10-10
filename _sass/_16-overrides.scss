@@ -130,7 +130,7 @@ html.theme-light .glide_pill { background: rgba($dark-default, 0.07); }
   position: fixed;
   right: max(1rem, env(safe-area-inset-right));
   width: 44px;
-  z-index: 96;
+  z-index: 401; // above the nav (300) and its overlay (250)
 
   &:hover, &:focus-visible { border-color: rgba($white, 0.6); color: $white; }
 
@@ -166,7 +166,7 @@ html.theme-light .glide_pill { background: rgba($dark-default, 0.07); }
   transform: translateX(102%);
   transition: transform 0.32s var(--spring);
   width: min(320px, 92vw);
-  z-index: 95;
+  z-index: 400; // covers the nav when open, per James
 
   &.is_open { transform: translateX(0); }
 
@@ -187,6 +187,8 @@ html.theme-light .glide_pill { background: rgba($dark-default, 0.07); }
     &:hover, &:focus-visible { border-color: rgba($white, 0.6); color: $white; }
   }
   .dials_rail_note { color: rgba($white, 0.55); font-size: $type-sm; line-height: 1.5; margin: 0; }
+  .dials_rail_desc { color: rgba($white, 0.45); font-size: $type-xs; line-height: 1.5; }
+  .dials_rail_hr { border: 0; border-top: 1px solid rgba($white, 0.12); margin: 0.2rem 0; width: 100%; }
   label { display: grid; font-size: $type-sm; gap: 0.5rem; }
   output { color: rgba($white, 0.5); font-family: $mono; font-size: $type-xs; justify-self: end; margin-top: -1.35rem; }
   input[type='range'] { accent-color: $white; width: 100%; }
@@ -223,4 +225,52 @@ html.theme-light {
 
 @media (prefers-reduced-motion: reduce) {
   .dials_rail { transition: none; }
+}
+
+// ============================================================
+// Skins — authored visual registers behind html[data-skin], switched
+// from the dials rail. Deliberately small, scoped blocks: these are
+// lenses on the system, not second design systems. Canon is no
+// attribute at all.
+// ============================================================
+
+// Editorial: display type drops into a serif, corners square off,
+// panels take hairlines. The serif loads on demand (site.js).
+html[data-skin='editorial'] {
+  --radius-card: 2px;
+  --radius-fig: 2px;
+  --fog-blur-card: 46px;
+
+  .hero_headline, .wc_headline, .jm_title,
+  .project h3, .home_work_title {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: 400;
+    letter-spacing: 0.005em;
+  }
+  .wc { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--wc-ink, #{$white}) 30%, transparent); }
+  .cv2_panel { box-shadow: inset 0 0 0 1px rgba($white, 0.2); }
+}
+
+// Grunge: acid stickers on the dark ground. Rotations stay subtle
+// enough to read as intent, not error; contrast holds (dark ink on
+// acid passes with room).
+html[data-skin='grunge'] {
+  --radius-card: 3px;
+  --radius-fig: 0px;
+  --spring: linear(0, 0.62 18%, 1.14 50%, 0.94 75%, 1.03 90%, 1);
+
+  ::selection { background: #d8ff3e; color: #171814; }
+
+  // ID-matched per the standing rule: hero chip overrides must carry
+  // #hero_shuffle_text or they silently lose (fourth encounter)
+  #hero_shuffle_text .highlight { background: #d8ff3e; color: #171814; rotate: -1.2deg; }
+  .hl_wrap:has(.highlight) { --chip: #d8ff3e; }
+  .wc_tags li { rotate: -2deg; }
+  .wc_tags li:nth-child(2n) { rotate: 1.8deg; }
+  .wc_headline { letter-spacing: -0.03em; text-transform: uppercase; }
+  .value_word.highlight, .about_services .services_list .highlight { --chip: #ff5ca8; }
+  .value_word.highlight:hover, .about_services .services_list .highlight:hover { color: #171814; }
+  .cv2_figtag { color: #d8ff3e; }
+  .dials_fab { border-color: #d8ff3e; color: #d8ff3e; }
+  .site_footer_name { rotate: -1deg; }
 }

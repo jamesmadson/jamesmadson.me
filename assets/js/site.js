@@ -7,6 +7,21 @@
 (function () {
   var KEY = 'jm_dials';
   var DEFAULTS = { radius: 16, type: 1, fog: 1, spring: '' };
+  // Lens copy is DRAFT, James-reviewable: client-side swaps of the hero
+  // line's tail. 'og' is his canon and the only copy in the HTML source.
+  var LENSES = {
+    developer: { post: '. I design in production code: Eleventy, vanilla JS, and a stylesheet I maintain myself.' },
+    director:  { post: '. Twenty years across brand, product, and systems, and I keep the decision logs to prove it.' },
+    recruiter: { post: ', a product designer with twenty years of shipped work. The case studies below are the resume.' }
+  };
+  var SERIF_ID = 'jm_serif';
+  function ensureSerif() {
+    if (document.getElementById(SERIF_ID)) return;
+    var l = document.createElement('link');
+    l.id = SERIF_ID; l.rel = 'stylesheet';
+    l.href = 'https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap';
+    document.head.appendChild(l);
+  }
   function read() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
   function save(d) { try { Object.keys(d).length ? localStorage.setItem(KEY, JSON.stringify(d)) : localStorage.removeItem(KEY); } catch (e) {} }
   function engaged(d) { return Object.keys(d).length > 0; }
@@ -20,10 +35,18 @@
     r.setProperty('--fog-blur-card', Math.round(34 * fog) + 'px');
     r.setProperty('--fog-blur-hero', Math.round(64 * fog) + 'px');
     if (d.spring) r.setProperty('--spring', d.spring); else r.removeProperty('--spring');
+    if (d.skin) {
+      document.documentElement.setAttribute('data-skin', d.skin);
+      if (d.skin === 'editorial') ensureSerif();
+    } else {
+      document.documentElement.removeAttribute('data-skin');
+    }
+    window.JM = window.JM || {};
+    JM.lens = d.lens ? LENSES[d.lens] : null;
   }
 
   var state = read();
-  if (engaged(state)) apply(state);
+  apply(state); // always: JM.lens must exist before hero.js builds
 
   function build() {
     var fab = document.createElement('button');
@@ -47,25 +70,47 @@
       '  <span>Dials</span>' +
       '  <button type="button" class="dials_rail_close" aria-label="Close dials">\u2715</button>' +
       '</div>' +
-      '<p class="dials_rail_note">Live tokens. They follow you across the site until reset; canon is no overrides at all.</p>' +
+      '<p class="dials_rail_note">Live tokens and lenses. They follow you across the whole site until you reset; canon is no overrides at all.</p>' +
+      '<label>Lens' +
+      '  <select data-dial="lens">' +
+      '    <option value="">James, as written</option>' +
+      '    <option value="developer">for a developer</option>' +
+      '    <option value="director">for a design director</option>' +
+      '    <option value="recruiter">for a recruiter</option>' +
+      '  </select>' +
+      '  <span class="dials_rail_desc">Re-aims the hero line for who\u2019s reading. The original is canon; lenses are visible swaps, never the source.</span></label>' +
+      '<label>Skin' +
+      '  <select data-dial="skin">' +
+      '    <option value="">canon</option>' +
+      '    <option value="editorial">editorial \u00b7 serif cut, hairlines</option>' +
+      '    <option value="grunge">grunge \u00b7 acid stickers</option>' +
+      '  </select>' +
+      '  <span class="dials_rail_desc">The visual register. Editorial sets display type in a serif and squares the corners; grunge gets loud.</span></label>' +
+      '<hr class="dials_rail_hr">' +
       '<label>Card radius <output data-out="radius"></output>' +
-      '  <input type="range" data-dial="radius" min="0" max="28" step="1"></label>' +
+      '  <input type="range" data-dial="radius" min="0" max="28" step="1">' +
+      '  <span class="dials_rail_desc">Corner softness on cards and figures. Zero is brutalist.</span></label>' +
       '<label>Type scale <output data-out="type"></output>' +
-      '  <input type="range" data-dial="type" min="0.92" max="1.12" step="0.01"></label>' +
+      '  <input type="range" data-dial="type" min="0.92" max="1.12" step="0.01">' +
+      '  <span class="dials_rail_desc">Scales the whole rem system from the root.</span></label>' +
       '<label>Fog <output data-out="fog"></output>' +
-      '  <input type="range" data-dial="fog" min="0" max="2" step="0.05"></label>' +
+      '  <input type="range" data-dial="fog" min="0" max="2" step="0.05">' +
+      '  <span class="dials_rail_desc">How far the artwork blurs behind the veils. Zero shows it raw.</span></label>' +
       '<label>Spring' +
       '  <select data-dial="spring">' +
       '    <option value="">canon \u00b7 one soft overshoot</option>' +
       '    <option value="cubic-bezier(0.25, 0.1, 0.25, 1)">calm \u00b7 no overshoot</option>' +
       '    <option value="linear(0, 0.6 20%, 1.12 55%, 0.95 78%, 1.02 92%, 1)">springy \u00b7 double bounce</option>' +
-      '  </select></label>' +
+      '  </select>' +
+      '  <span class="dials_rail_desc">The curve every lift, flood, and this very rail ride.</span></label>' +
       '<button type="button" class="dials_rail_reset">Reset to canon</button>';
 
     document.body.appendChild(rail);
     document.body.appendChild(fab);
 
     var inputs = {
+      lens: rail.querySelector('[data-dial="lens"]'),
+      skin: rail.querySelector('[data-dial="skin"]'),
       radius: rail.querySelector('[data-dial="radius"]'),
       type: rail.querySelector('[data-dial="type"]'),
       fog: rail.querySelector('[data-dial="fog"]'),
@@ -82,6 +127,8 @@
       inputs.type.value = state.type != null ? state.type : DEFAULTS.type;
       inputs.fog.value = state.fog != null ? state.fog : DEFAULTS.fog;
       inputs.spring.value = state.spring || '';
+      inputs.lens.value = state.lens || '';
+      inputs.skin.value = state.skin || '';
       outs.radius.value = inputs.radius.value + 'px';
       outs.type.value = (+inputs.type.value).toFixed(2);
       outs.fog.value = (+inputs.fog.value).toFixed(2).replace(/0$/, '') + '\u00d7';
@@ -99,15 +146,25 @@
       if (inputs.spring.value) state.spring = inputs.spring.value; else delete state.spring;
       apply(state); save(state); sync();
     });
+    inputs.lens.addEventListener('change', function () {
+      if (inputs.lens.value) state.lens = inputs.lens.value; else delete state.lens;
+      apply(state); save(state); sync();
+      window.dispatchEvent(new Event('jm:lens'));
+    });
+    inputs.skin.addEventListener('change', function () {
+      if (inputs.skin.value) state.skin = inputs.skin.value; else delete state.skin;
+      apply(state); save(state); sync();
+    });
     rail.querySelector('.dials_rail_reset').addEventListener('click', function () {
       state = {};
       apply(state); save(state); sync();
+      window.dispatchEvent(new Event('jm:lens'));
     });
 
     function setOpen(open) {
       rail.classList.toggle('is_open', open);
       fab.setAttribute('aria-expanded', String(open));
-      if (open) inputs.radius.focus();
+      if (open) inputs.lens.focus();
       else fab.focus();
     }
     fab.addEventListener('click', function () { setOpen(!rail.classList.contains('is_open')); });
@@ -125,9 +182,11 @@
 // ============================================================
 // Shared helpers (cleanup plan P3) — one reduced-motion source and one
 // IntersectionObserver wrapper, so features stop hand-rolling both.
-// window.JM because each feature below is its own IIFE.
+// window.JM because each feature below is its own IIFE. Extends the
+// namespace: the dials module above runs first and already put
+// JM.lens on it; replacing the object here clobbered that once.
 // ============================================================
-window.JM = {
+window.JM = Object.assign(window.JM || {}, {
   reduced: window.matchMedia('(prefers-reduced-motion: reduce)'),
   // onInView(el, { enter, exit, threshold }) — fires enter/exit on
   // intersection changes; no-ops (calls enter once) where IO is missing.
@@ -191,7 +250,7 @@ window.JM = {
     });
     rest();
   }
-};
+});
 
 // ============================================================
 // Console greeting — for whoever (or whatever) is looking

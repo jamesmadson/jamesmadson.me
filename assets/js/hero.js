@@ -14,8 +14,18 @@
 
   // Index 0 is the welcome: it always leads, then the shuffle moves to
   // the project sentences and never returns to it.
+  // The welcome line is lens-aware: the dials rail can re-aim it for
+  // who's reading. James's original is the default and the only copy
+  // crawlers ever see; lenses are client-side swaps around the chip.
+  var CHIP = '<span class="hl_wrap"><a href="/about/" class="highlight jm">James Madson</a><span class="hl_tags" aria-hidden="true"><i class="is_name">About</i><span class="hl_row"><i>Design</i><i>Code</i><i>20 Years</i></span></span></span>';
+  function welcomeLine() {
+    var L = (window.JM && JM.lens) || {};
+    var pre = L.pre != null ? L.pre : "Hi, I'm ";
+    var post = L.post != null ? L.post : ', a designer who wants the work to be useful, clear, and lasting.';
+    return pre + CHIP + post;
+  }
   var SENTENCES = [
-    'Hi, I\'m <span class="hl_wrap"><a href="/about/" class="highlight jm">James Madson</a><span class="hl_tags" aria-hidden="true"><i class="is_name">About</i><span class="hl_row"><i>Design</i><i>Code</i><i>20 Years</i></span></span></span>, a designer who wants the work to be useful, clear, and lasting.',
+    welcomeLine(),
     'I <span class="hl_wrap"><a href="/case_studies/naturedose/" class="highlight nd">built</a><span class="hl_tags" aria-hidden="true"><i class="is_name">NatureDose</i><span class="hl_row"><i>Brand</i><i>Mobile App</i><i>UX</i></span></span></span> NatureDose\'s brand from the ground up, simply and completely. Apple has featured it 3 times.',
     'I <span class="hl_wrap"><a href="/case_studies/pecan/" class="highlight pecan">designed</a><span class="hl_tags" aria-hidden="true"><i class="is_name">PeCan</i><span class="hl_row"><i>UX</i><i>Data Viz</i><i>Design System</i></span></span></span> PeCan so researchers can easily navigate 9,000+ pediatric cancer samples.',
     'I <span class="hl_wrap"><a href="/case_studies/visualization_community/" class="highlight viz">shaped</a><span class="hl_tags" aria-hidden="true"><i class="is_name">Viz Community</i><span class="hl_row"><i>Platform</i><i>Data Viz</i><i>Front-End</i></span></span></span> the platform where St. Jude researchers publish genomic visualizations openly. 80+ are live.',
@@ -113,6 +123,15 @@
       if (mod) btn.setAttribute('data-accent', mod);
     }
   }
+
+  window.addEventListener('jm:lens', function () {
+    SENTENCES[0] = welcomeLine();
+    measureMaxHeight();
+    if (idx === 0) {
+      render(0);
+      if (!prefersReducedMotion) animateHighlights(0);
+    }
+  });
 
   render(idx);
   if (prefersReducedMotion) {
