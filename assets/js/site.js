@@ -10,7 +10,7 @@
   // Lens copy is DRAFT, James-reviewable: client-side swaps of the hero
   // line's tail. 'og' is his canon and the only copy in the HTML source.
   var LENSES = {
-    developer: { post: '. I design in production code: Eleventy, vanilla JS, and a stylesheet I maintain myself.' },
+    engineer: { post: '. Django to Next, fifteen years on GitHub, and comfortable in your PRs. I like engineers.' },
     director:  { post: '. Twenty years across brand, product, and systems, and I keep the decision logs to prove it.' },
     recruiter: { post: ', a product designer with twenty years of shipped work. The case studies below are the resume.' }
   };
@@ -20,6 +20,12 @@
     var effective = t || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     doc.className = doc.className.replace(/\btheme-\S+/g, '').trim();
     doc.classList.add('theme-' + effective);
+  }
+  function track(control, value) {
+    // GA4 event per dial selection; label-level only, no values that
+    // could identify anyone. Answers one question: what do visitors
+    // actually touch in here.
+    if (typeof gtag === 'function') gtag('event', 'dials', { control: control, value: String(value) });
   }
   var SERIF_ID = 'jm_serif';
   function ensureSerif() {
@@ -96,7 +102,7 @@
       '<label>Lens' +
       '  <select data-dial="lens">' +
       '    <option value="">James, as written</option>' +
-      '    <option value="developer">for a developer</option>' +
+      '    <option value="engineer">for an engineer</option>' +
       '    <option value="director">for a design director</option>' +
       '    <option value="recruiter">for a recruiter</option>' +
       '  </select>' +
@@ -167,22 +173,27 @@
         if (state[k] === DEFAULTS[k]) delete state[k];
         apply(state); save(state); sync();
       });
+      // analytics on release, not per-pixel drag
+      inputs[k].addEventListener('change', function () { track(k, inputs[k].value); });
     });
     inputs.spring.addEventListener('change', function () {
       if (inputs.spring.value) state.spring = inputs.spring.value; else delete state.spring;
       apply(state); save(state); sync();
     });
     inputs.lens.addEventListener('change', function () {
+      track('lens', inputs.lens.value || 'og');
       if (inputs.lens.value) state.lens = inputs.lens.value; else delete state.lens;
       apply(state); save(state); sync();
       window.dispatchEvent(new Event('jm:lens'));
     });
     inputs.skin.addEventListener('change', function () {
+      track('skin', inputs.skin.value || 'canon');
       if (inputs.skin.value) state.skin = inputs.skin.value; else delete state.skin;
       apply(state); save(state); sync();
     });
     Array.prototype.forEach.call(rail.querySelectorAll('[data-tldr-set]'), function (b) {
       b.addEventListener('click', function () {
+        track('length', b.getAttribute('data-tldr-set') ? 'tldr' : 'full');
         if (b.getAttribute('data-tldr-set')) state.tldr = true; else delete state.tldr;
         apply(state); save(state); sync(); syncTldr();
       });
@@ -195,6 +206,7 @@
     syncTldr();
     Array.prototype.forEach.call(rail.querySelectorAll('[data-theme-set]'), function (b) {
       b.addEventListener('click', function () {
+        track('theme', b.getAttribute('data-theme-set') || 'system');
         setTheme(b.getAttribute('data-theme-set') || null);
         syncTheme();
       });
@@ -204,6 +216,7 @@
       try { cur = localStorage.getItem('theme') || ''; } catch (e) {}
       Array.prototype.forEach.call(rail.querySelectorAll('[data-tldr-set]'), function (b) {
       b.addEventListener('click', function () {
+        track('length', b.getAttribute('data-tldr-set') ? 'tldr' : 'full');
         if (b.getAttribute('data-tldr-set')) state.tldr = true; else delete state.tldr;
         apply(state); save(state); sync(); syncTldr();
       });
@@ -220,6 +233,7 @@
     }
     syncTheme();
     rail.querySelector('.dials_rail_reset').addEventListener('click', function () {
+      track('reset', 'canon');
       state = {};
       apply(state); save(state); sync(); syncTldr();
       window.dispatchEvent(new Event('jm:lens'));
@@ -231,12 +245,17 @@
       if (open) inputs.lens.focus();
       else fab.focus();
     }
-    fab.addEventListener('click', function () { setOpen(!rail.classList.contains('is_open')); });
+    fab.addEventListener('click', function () {
+      var opening = !rail.classList.contains('is_open');
+      if (opening) track('open', location.pathname);
+      setOpen(opening);
+    });
     rail.querySelector('.dials_rail_close').addEventListener('click', function () { setOpen(false); });
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && rail.classList.contains('is_open')) setOpen(false);
     });
 
+    rail.querySelector('.dials_rail_export').addEventListener('click', function () { track('export', 'skill'); });
     sync();
   }
   function buildTabs() {
@@ -1260,6 +1279,40 @@ function smoothScrollTo(targetY, duration) {
       show(on ? null : b.getAttribute('data-route'));
     });
   });
+}());
+
+// ============================================================
+// Carson title jumble (skin: grunge) — case-page titles split into
+// letters and scatter deterministically: somewhat legible, per the
+// KEW reference. Original text restored the moment the skin leaves.
+// ============================================================
+(function () {
+  var h = document.querySelector('.project h1, .cs_hero h1, h1.jm_title');
+  if (!h || !document.querySelector('.project')) return;
+  var original = h.innerHTML;
+  var done = false;
+  function jumble() {
+    var text = h.textContent;
+    h.setAttribute('aria-label', text);
+    h.innerHTML = text.split('').map(function (ch, i) {
+      if (ch === ' ') return ' ';
+      // deterministic pseudo-random from index: same chaos every load
+      var r = Math.sin(i * 127.1) * 43758.5453; r = r - Math.floor(r);
+      var rot = (r * 16 - 8).toFixed(1);
+      var dy = ((r * 7919 % 1) * 0.5 - 0.25).toFixed(2);
+      var big = (i % 3 === 0) ? 1.25 : 1;
+      return '<span aria-hidden="true" style="display:inline-block;transform:rotate(' + rot + 'deg) translateY(' + dy + 'em) scale(' + big + ');">' + ch + '</span>';
+    }).join('');
+    done = true;
+  }
+  function restore() { h.innerHTML = original; h.removeAttribute('aria-label'); done = false; }
+  function syncJumble() {
+    var on = document.documentElement.getAttribute('data-skin') === 'grunge';
+    if (on && !done) jumble();
+    if (!on && done) restore();
+  }
+  new MutationObserver(syncJumble).observe(document.documentElement, { attributes: true, attributeFilter: ['data-skin'] });
+  syncJumble();
 }());
 
 // ============================================================
