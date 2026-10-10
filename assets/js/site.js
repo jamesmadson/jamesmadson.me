@@ -1,40 +1,125 @@
 // ============================================================
-// Dials (the playable system) — /tools/system/ writes jm_dials;
-// every page applies it before paint-adjacent work and shows the
-// reset chip. Canon is the absence of the key.
+// Dials (the playable system) — a floating button on every page opens
+// a right rail of four live tokens. Overrides persist in jm_dials and
+// apply before first paint; the button wears a dot while engaged.
+// Canon is the absence of the stored key.
 // ============================================================
 (function () {
   var KEY = 'jm_dials';
-  var raw = null;
-  try { raw = localStorage.getItem(KEY); } catch (e) {}
-  if (!raw) return;
-  var d;
-  try { d = JSON.parse(raw); } catch (e) { return; }
-  var r = document.documentElement.style;
-  if (d.radius != null) {
-    r.setProperty('--radius-card', d.radius + 'px');
-    r.setProperty('--radius-fig', Math.max(4, Math.round(d.radius * 0.6)) + 'px');
+  var DEFAULTS = { radius: 16, type: 1, fog: 1, spring: '' };
+  function read() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
+  function save(d) { try { Object.keys(d).length ? localStorage.setItem(KEY, JSON.stringify(d)) : localStorage.removeItem(KEY); } catch (e) {} }
+  function engaged(d) { return Object.keys(d).length > 0; }
+  function apply(d) {
+    var r = document.documentElement.style;
+    var radius = d.radius != null ? d.radius : DEFAULTS.radius;
+    r.setProperty('--radius-card', radius + 'px');
+    r.setProperty('--radius-fig', Math.max(4, Math.round(radius * 0.6)) + 'px');
+    r.setProperty('--type-scale', d.type != null ? d.type : DEFAULTS.type);
+    var fog = d.fog != null ? d.fog : DEFAULTS.fog;
+    r.setProperty('--fog-blur-card', Math.round(34 * fog) + 'px');
+    r.setProperty('--fog-blur-hero', Math.round(64 * fog) + 'px');
+    if (d.spring) r.setProperty('--spring', d.spring); else r.removeProperty('--spring');
   }
-  if (d.type != null) r.setProperty('--type-scale', d.type);
-  if (d.fog != null) {
-    r.setProperty('--fog-blur-card', Math.round(34 * d.fog) + 'px');
-    r.setProperty('--fog-blur-hero', Math.round(64 * d.fog) + 'px');
-  }
-  if (d.spring) r.setProperty('--spring', d.spring);
-  function chip() {
-    var b = document.createElement('button');
-    b.className = 'dials_chip';
-    b.type = 'button';
-    b.setAttribute('aria-label', 'Design dials are engaged; reset to canon');
-    b.innerHTML = 'Dials engaged \u00b7 <span>reset</span>';
-    b.addEventListener('click', function () {
-      try { localStorage.removeItem(KEY); } catch (e) {}
-      location.reload();
+
+  var state = read();
+  if (engaged(state)) apply(state);
+
+  function build() {
+    var fab = document.createElement('button');
+    fab.className = 'dials_fab';
+    fab.type = 'button';
+    fab.setAttribute('aria-expanded', 'false');
+    fab.setAttribute('aria-label', 'Design dials');
+    fab.innerHTML =
+      '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">' +
+      '<path d="M1 4.5h10M14 4.5h3M1 13.5h3M7 13.5h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>' +
+      '<circle cx="12.5" cy="4.5" r="2.1" stroke="currentColor" stroke-width="1.6"/>' +
+      '<circle cx="5.5" cy="13.5" r="2.1" stroke="currentColor" stroke-width="1.6"/></svg>' +
+      '<span class="dials_fab_dot" aria-hidden="true"></span>';
+
+    var rail = document.createElement('aside');
+    rail.className = 'dials_rail';
+    rail.setAttribute('role', 'dialog');
+    rail.setAttribute('aria-label', 'Design dials');
+    rail.innerHTML =
+      '<div class="dials_rail_head">' +
+      '  <span>Dials</span>' +
+      '  <button type="button" class="dials_rail_close" aria-label="Close dials">\u2715</button>' +
+      '</div>' +
+      '<p class="dials_rail_note">Live tokens. They follow you across the site until reset; canon is no overrides at all.</p>' +
+      '<label>Card radius <output data-out="radius"></output>' +
+      '  <input type="range" data-dial="radius" min="0" max="28" step="1"></label>' +
+      '<label>Type scale <output data-out="type"></output>' +
+      '  <input type="range" data-dial="type" min="0.92" max="1.12" step="0.01"></label>' +
+      '<label>Fog <output data-out="fog"></output>' +
+      '  <input type="range" data-dial="fog" min="0" max="2" step="0.05"></label>' +
+      '<label>Spring' +
+      '  <select data-dial="spring">' +
+      '    <option value="">canon \u00b7 one soft overshoot</option>' +
+      '    <option value="cubic-bezier(0.25, 0.1, 0.25, 1)">calm \u00b7 no overshoot</option>' +
+      '    <option value="linear(0, 0.6 20%, 1.12 55%, 0.95 78%, 1.02 92%, 1)">springy \u00b7 double bounce</option>' +
+      '  </select></label>' +
+      '<button type="button" class="dials_rail_reset">Reset to canon</button>';
+
+    document.body.appendChild(rail);
+    document.body.appendChild(fab);
+
+    var inputs = {
+      radius: rail.querySelector('[data-dial="radius"]'),
+      type: rail.querySelector('[data-dial="type"]'),
+      fog: rail.querySelector('[data-dial="fog"]'),
+      spring: rail.querySelector('[data-dial="spring"]')
+    };
+    var outs = {
+      radius: rail.querySelector('[data-out="radius"]'),
+      type: rail.querySelector('[data-out="type"]'),
+      fog: rail.querySelector('[data-out="fog"]')
+    };
+
+    function sync() {
+      inputs.radius.value = state.radius != null ? state.radius : DEFAULTS.radius;
+      inputs.type.value = state.type != null ? state.type : DEFAULTS.type;
+      inputs.fog.value = state.fog != null ? state.fog : DEFAULTS.fog;
+      inputs.spring.value = state.spring || '';
+      outs.radius.value = inputs.radius.value + 'px';
+      outs.type.value = (+inputs.type.value).toFixed(2);
+      outs.fog.value = (+inputs.fog.value).toFixed(2).replace(/0$/, '') + '\u00d7';
+      fab.classList.toggle('is_engaged', engaged(state));
+    }
+
+    ['radius', 'type', 'fog'].forEach(function (k) {
+      inputs[k].addEventListener('input', function () {
+        state[k] = +inputs[k].value;
+        if (state[k] === DEFAULTS[k]) delete state[k];
+        apply(state); save(state); sync();
+      });
     });
-    document.body.appendChild(b);
+    inputs.spring.addEventListener('change', function () {
+      if (inputs.spring.value) state.spring = inputs.spring.value; else delete state.spring;
+      apply(state); save(state); sync();
+    });
+    rail.querySelector('.dials_rail_reset').addEventListener('click', function () {
+      state = {};
+      apply(state); save(state); sync();
+    });
+
+    function setOpen(open) {
+      rail.classList.toggle('is_open', open);
+      fab.setAttribute('aria-expanded', String(open));
+      if (open) inputs.radius.focus();
+      else fab.focus();
+    }
+    fab.addEventListener('click', function () { setOpen(!rail.classList.contains('is_open')); });
+    rail.querySelector('.dials_rail_close').addEventListener('click', function () { setOpen(false); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && rail.classList.contains('is_open')) setOpen(false);
+    });
+
+    sync();
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', chip);
-  else chip();
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
+  else build();
 }());
 
 // ============================================================
