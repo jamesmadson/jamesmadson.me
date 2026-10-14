@@ -102,33 +102,33 @@
         "bg": "#33332C",
         "label": "Canon",
         "status": "Self-initiated",
-        "headline": "Judgment,<br>published.",
-        "subhead": "A design practice for AI agents: gallery, tools, workbench.",
+        "headline": "Every prototype,<br>one place.",
+        "subhead": "From every tool, on one shelf you can see, open and share.",
         "stats": [
           {
-            "n": "20",
+            "n": "0",
+            "label": "Uploads"
+          },
+          {
+            "n": "3",
             "label": "Skills"
           },
           {
-            "n": "4",
-            "label": "Plugins"
-          },
-          {
-            "n": "118",
+            "n": "__TESTS__",
             "label": "Tests"
           },
           {
-            "n": "0",
-            "label": "Colors"
+            "n": "MIT",
+            "label": "License"
           }
         ],
         "tags": [
           "In Progress",
           "AI Tooling",
-          "Curation"
+          "Open Source"
         ],
         "subheadLens": {
-          "engineer": "A skills gallery with a plugin marketplace and its own test suite."
+          "engineer": "A local-first canvas app: IndexedDB, a service worker, and HTML link graphs."
         }
       }
     },

@@ -2,53 +2,52 @@
 layout: base.njk
 permalink: /case_studies/canon/
 title: "Canon Case Study \u2013 James Madson"
-description: "Canon began as a curated gallery of design skills for AI agents and grew into a design practice that publishes: twenty curated skills, four plugins, and a workbench thesis. A build log in progress by James Madson."
+description: "Canon keeps every prototype, from every tool, in one place. It started as a gallery of other people's design skills, turned into three skills of my own, and became a local-first app for the mess AI prototyping leaves behind. A build log in progress by James Madson."
 ogImage: "/img/covers/canon@2x.png"
 ogImageHeight: "1200"
 preloads:
   - "/img/covers/ambient/canon.jpg"
 jsonld: |
   {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": "A design practice that publishes.",
-      "name": "Canon Case Study",
-      "url": "https://jamesmadson.me/case_studies/canon/",
-      "author": {
-        "@type": "Person",
-        "name": "James Madson",
-        "url": "https://jamesmadson.me",
-        "jobTitle": "Product Designer"
-      },
-      "about": {
-        "@type": "SoftwareApplication",
-        "name": "Canon",
-        "applicationCategory": "DesignApplication"
-      },
-      "description": "Canon began as a curated gallery of design skills for AI agents and grew into a design practice that publishes: twenty curated skills read in full and license-verified, four plugins in its marketplace, and a workbench thesis documented in a public decision log. Built in Astro with schema-validated content collections."
-    }
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Every prototype, from every tool, in one place.",
+    "name": "Canon Case Study",
+    "url": "https://jamesmadson.me/case_studies/canon/",
+    "author": {
+      "@type": "Person",
+      "name": "James Madson",
+      "url": "https://jamesmadson.me",
+      "jobTitle": "Product Designer"
+    },
+    "about": {
+      "@type": "SoftwareApplication",
+      "name": "Canon",
+      "applicationCategory": "DesignApplication"
+    },
+    "description": "Canon is a local-first, open source app that keeps prototypes from every tool in one place: a library, a map of every multi-page prototype, and comments where the work is. It grew out of a curated gallery of design skills and three skills of James Madson's own: graft, strata and deter. Decisions are logged in public."
+  }
 ---
-
 <main id="main-content">
   <section class="about cs_hero canon_hero fadeIn">
     <div class="container">
       <div class="grid_12">
         <h1 class="project_title">
           <span class="case_study_label">Canon</span>
-          A design practice that publishes.
+          Every prototype, from every tool, in one place.
         </h1>
         <p class="canon_status">
           <span class="canon_chip">In progress</span>
           <span class="canon_status_meta">Self-initiated · Updated October 2026</span>
         </p>
-        <p class="cs_hero_fact">It started as a curated gallery of design skills for AI agents. Now it ships its own tools, and the tools point at a workbench.</p>
+        <p class="cs_hero_fact">It started as a gallery of other people's design skills. Then I wrote my own. Then I noticed the real problem was everything AI helped me make, and where it all went.</p>
       </div>
     </div>
   </section>
 
   <div class="container cs_cover">
     <div class="grid_12">
-      <img class="cs_cover_img cs_cover_img--flat vt-canon" src="/img/canon/canon_cover_wide.png" srcset="/img/canon/canon_cover_wide.png 1x, /img/canon/canon_cover_wide@2x.webp 2x" alt="Canon cover artwork" width="1600" height="800">
+      <img class="cs_cover_img cs_cover_img--flat vt-canon" src="/img/canon/canon_cover_app.webp" srcset="/img/canon/canon_cover_app.webp 1x, /img/canon/canon_cover_app@2x.webp 2x" alt="A Canon board: phone and desktop prototypes side by side on a dark canvas, with a multi-page site fanning its other pages out from behind it" width="1600" height="800">
     </div>
   </div>
 
@@ -57,7 +56,7 @@ jsonld: |
     <li><a href="#problem" id="problem_link">Problem</a></li>
     <li><a href="#curate" id="curate_link">Curate</a></li>
     <li><a href="#author" id="author_link">Author</a></li>
-    <li><a href="#workbench" id="workbench_link">Workbench</a></li>
+    <li><a href="#index" id="index_link">The index</a></li>
     <li><a href="#decides" id="decides_link">How it decides</a></li>
     <li><a href="#open" id="open_link">Open questions</a></li>
     <li><a href="#top" id="top_link">Back to Top</a></li>
@@ -78,55 +77,54 @@ jsonld: |
           </div>
           <div class="cs_meta_item">
             <span class="role">Status</span>
-            <p>In progress, live at jamesmadson.github.io/canon</p>
+            <p>Local alpha. Open source under MIT.</p>
           </div>
           <div class="cs_meta_item">
             <span class="role">Tags</span>
             <ul class="cs_tags_inline">
-              <li class="tag">Editorial Curation</li>
               <li class="tag">Product Design</li>
-              <li class="tag">Design Systems</li>
+              <li class="tag">Interaction Design</li>
               <li class="tag">Front-End Development</li>
               <li class="tag">AI Tooling</li>
+              <li class="tag">Open Source</li>
             </ul>
           </div>
         </div>
-        <p class="leadin">Designers have started handing instructions to AI agents: plugin files that tell Claude, Cursor, or Codex how to think about motion, accessibility, or typography. Finding good ones means trawling GitHub. Canon started as the editorial answer, hand-picked, license-verified, and written up with a point of view. Since then it has become a practice that ships its own tools and logs its decisions in public.</p>
+        <p class="leadin">Claude Code, v0, Lovable, Figma Make, a branch, a zip. My prototypes live everywhere now, and so do everyone else's. Canon puts them on one shelf you can see, open and share. It runs in your browser or installs as an app, and nothing gets uploaded.</p>
+        <p>It took three tries to find that. Canon began as a curated gallery of design skills for AI agents. Reading those closely taught me to write my own, so I did. Using my own on real work showed me the thing nobody was fixing: AI made prototyping cheap, and the output piles up in places nobody can find again. This page is the log of how it got here, including the parts I threw away.</p>
 
-        <p>I built it because I kept re-explaining the same judgment to the same tools. An agent will happily animate everything, ship a 32px tap target, or invent a fifth grey, and it will do it fast. The fix is not more prompting, it is encoding the decision once and handing it over. That is what these plugins are, and once they exist they are worth sharing rather than hoarding.</p>
-
-        <h4 class="canon_subhead">What a plugin actually enforces</h4>
+        <h4 class="canon_subhead">What Canon does today</h4>
         <ul class="canon_list">
           <li>
-            <h4>A gate before the animation</h4>
-            <p>The motion plugin asks whether the thing should animate at all before it asks how. Most of the time the answer is no, and that question is the part people skip.</p>
+            <h4>One library for every prototype</h4>
+            <p>Drop in an HTML file, a zipped build, a whole folder, or link a folder on your machine so it stays current. Search, sort and filter across all of it.</p>
           </li>
           <li>
-            <h4>Hit areas and keyboard paths, checked before ship</h4>
-            <p>The accessibility plugin holds the 44px minimum, real focus states, and a working tab order. It flags them while the work is in progress, not after somebody complains.</p>
+            <h4>A map for anything with more than one page</h4>
+            <p>Hover a multi-page prototype on a board and its other pages tease out from behind it. Click and it opens as its own map: every page, the links between them, and the pages nothing points to anymore.</p>
           </li>
           <li>
-            <h4>The brand, encoded once</h4>
-            <p>The brand plugin carries the actual palette, type scale, and logo rules, so every later pass inherits them instead of improvising a near-miss.</p>
+            <h4>Comments where the work is</h4>
+            <p>Pin a comment on a screen, a page, or the canvas between them. Comments ride along into the preview link too, so review happens on the prototype, not in a thread about it.</p>
           </li>
         </ul>
 
         <div class="stats-container canon_stats">
           <div class="stat">
-            <div class="stat_number">20</div>
-            <p class="stat_info">Curated skills, each read in full</p>
-          </div>
-          <div class="stat">
-            <div class="stat_number">4</div>
-            <p class="stat_info">Plugins in Canon's marketplace</p>
-          </div>
-          <div class="stat">
-            <div class="stat_number">118</div>
-            <p class="stat_info">Tests across content, filters, and installs</p>
-          </div>
-          <div class="stat">
             <div class="stat_number">0</div>
-            <p class="stat_info">Colors in the finished palette</p>
+            <p class="stat_info">Files uploaded. It all stays on your machine</p>
+          </div>
+          <div class="stat">
+            <div class="stat_number">3</div>
+            <p class="stat_info">Skills of my own in the plugin marketplace</p>
+          </div>
+          <div class="stat">
+            <div class="stat_number">__TESTS__</div>
+            <p class="stat_info">Tests across the app, the site and the plugins</p>
+          </div>
+          <div class="stat">
+            <div class="stat_number">38</div>
+            <p class="stat_info">Decisions logged in public</p>
           </div>
         </div>
         <p class="canon_asof">As of October 2026</p>
@@ -137,8 +135,8 @@ jsonld: |
       <div class="grid_12">
         <h3>The problem</h3>
         <div class="cs_body_cols">
-          <p>The directories that existed were aggregators: thousands of entries, one-line descriptions, view counts, no judgment. They tell you a skill exists.</p>
-          <p>They do not tell you whether it is any good, what is actually inside it, or whether you are allowed to use it. And nothing showed you what you were installing until after you installed it. That was the first problem. Solving it surfaced a second one, further down this page.</p>
+          <p>Generation is solved. The mess it leaves is not. A designer working with AI now has prototypes in four tools, three repos, a handful of branches and a downloads folder. A team has that times everyone.</p>
+          <p>Every tool ships opinions about making. None of them help you keep what got made, because each one only sees its own output. The question I kept asking at work, which version did we look at on Thursday, had no good answer anywhere.</p>
         </div>
       </div>
     </div>
@@ -146,112 +144,31 @@ jsonld: |
     <div class="container cs_content" id="curate">
       <div class="grid_12">
         <h3>Act I<br>Curate</h3>
-        <p class="leadin">The founding rule, from Canon's decision log: curate, never scrape. Judgment is the product; a scraped list is the competitor category, not the aspiration. Every entry is read in full, license-checked, and given an original write-up with an honest gotcha section.</p>
-
+        <p class="leadin">Canon started in July as the editorial answer to skill directories: hand-picked design skills for AI agents, each read in full, license-checked and written up with a point of view. The founding rule was curate, never scrape.</p>
         <figure class="cv2_fig">
           <div class="cv2_panel cv2_panel--shot">
-            <img src="/img/canon/gallery_live@2x.png" alt="The live Canon homepage: Teach your AI what good design actually looks like, with the Canon in Use demo below" width="1600" height="1100" loading="lazy">
+            <img src="/img/canon/gallery_live@2x.png" alt="The original Canon homepage: Teach your AI what good design actually looks like, with the Canon in Use demo below" width="1600" height="1100" loading="lazy">
           </div>
           <figcaption class="cv2_figcap">
-            <span><span class="cv2_figtag">Fig. 01 · Evidence</span> · The live site, October 2026</span>
-            <span>Captured from jamesmadson.github.io/canon</span>
+            <span><span class="cv2_figtag">Fig. 01 · Evidence</span> · The gallery, August 2026</span>
+            <span>Retired in October</span>
           </figcaption>
         </figure>
-
-        <h4>Four things no other directory does</h4>
-        <ul class="canon_list">
-          <li>
-            <h4>Structure maps</h4>
-            <p>An interactive diagram of every skill's actual file tree and internal outline, generated from the real GitHub repo, so you can see what you are installing before you install it.</p>
-          </li>
-          <li>
-            <h4>Kits</h4>
-            <p>Skills composed for a job: a full redesign, a marketing site, a product UI, a mobile review. Each one phased in working order, with a generated one-command install script and a portable digest for tools that cannot run skills natively.</p>
-          </li>
-          <li>
-            <h4>An editorial voice</h4>
-            <p>Ratings that mean something, and entries I turned down for not being good enough.</p>
-          </li>
-          <li>
-            <h4>One-command install</h4>
-            <p>The catalog ships as a Claude Code plugin: add the marketplace once and a router skill comes with it. The router stays dormant until called, reads the task, and pulls in the kit that applies. The marketplace now carries four plugins: the router and three tools Canon authored, covered in Act II.</p>
-          </li>
-        </ul>
-
-        <h4>Licenses are facts, not vibes</h4>
-        <p>Two of the log's earliest rulings are about permission. The license field is derived from the GitHub API, never hand-typed, because a hand-typed claim shipped wrong exactly once. And a skill with no license is hidden everywhere, not just unlisted: no page, no listing, no generated install command. A hidden card with a live clone script would be compliance theater. Reversal is one status field the moment a license lands.</p>
-
-        <h4>Monochrome, by ruling</h4>
+        <p>It got to twenty skills, structure maps of every skill's real file tree, composed kits, and a plugin you could install in one command. A few rulings from that stretch still hold: licenses come from the GitHub API, never hand-typed, and anything without a license is hidden everywhere, not just unlisted.</p>
+        <h4>Why it's gone</h4>
         <div class="cs_body_cols">
-          <p>The visual system went through three passes: a Swiss-modernist grid direction (Aicher, Müller-Brockmann, the Vignelli Canon the project is named for), then an are.na-influenced density pass, then a final strip to full monochrome. Orange was considered, tried, and removed entirely.</p>
-          <p>Color kept doing compositional work that type and value should have been doing, so it went. Hover and focus shift value, never hue. The log states the rule so it can be tested: any color is a defect.</p>
+          <p>Curating other people's work has a ceiling. Twenty entries is small enough to read everything, and it was never going to stay that way. The kits were distilled from other authors' skills, which made them good and made them not mine.</p>
+          <p>In October I cut the gallery, the router and the kits. Canon's skills are now only the ones I wrote. The gallery did its job: it taught me what a good skill looks like.</p>
         </div>
-
-        <h4>Dogfooding</h4>
-        <div class="cs_body_cols">
-          <p>Canon curates a mobile-review skill suite, so I installed it and pointed it at Canon. It found twelve objective platform defects and five design decisions I had been avoiding: sub-44px tap targets, iOS input zoom, a filter panel that pushed every result below the fold on a phone.</p>
-          <p>I fixed the defects and made the calls. The best proof a curation site can offer is that its curator uses the things.</p>
-        </div>
-
-        <h4>Built like it preaches</h4>
-        <div class="cs_body_cols">
-          <p>Astro with schema-validated content collections, so a malformed entry fails the build instead of shipping. Every feature runs spec, then plan, then implementation, with review gates at each step.</p>
-          <p>The test suite covers the content corpus, the filter engine, the install-script generator, and the marketplace manifest, so the honesty rules above are assertions, not intentions.</p>
-        </div>
-
-        <p class="canon_code_intro">The site is data, not pages. A skill entry, abbreviated:</p>
-        <pre class="canon_code"><code>slug: design-motion-principles
-name: Design Motion Principles
-tagline: &gt;-
-  Three named motion philosophies, weighted by project context,
-  with a frequency gate that decides whether it should animate at all.
-sourceUrl: https://github.com/kylezantos/design-motion-principles
-sourceAuthor: Kyle Zantos
-tools: [claude-code, cursor, generic]
-categories: [motion]
-rating: 5
-lastVerified: 2026-08-11
-fileTree:                 # generated from the real repo
-  - path: SKILL.md
-    type: file
-  - path: references/emil-kowalski.md
-    type: file
-contentOutline:           # parsed from the skill's own headings
-  - title: The Frequency Gate
-    subsections: [Duration Guidelines, The Golden Rule]</code></pre>
-
-        <p class="canon_code_intro">And a kit, which is just composition with reasons attached:</p>
-        <pre class="canon_code"><code>slug: full-redesign
-name: Full Redesign
-tagline: Brand foundation through pre-ship audits, the long arc, in working order.
-phases:
-  - title: Brand foundation
-    entries:
-      - skill: brand-guidelines
-        why: Encode the real palette, type, and logo rules once so every
-             later pass inherits them instead of improvising.
-      - skill: frontend-design
-        why: Forces a named point of view before pixels.
-  - title: Pre-ship audits
-    entries:
-      - skill: better-accessibility
-        why: Keyboard paths and hit areas checked before launch, not after
-             a complaint.
-digestPath: /kits/full-redesign-digest.md</code></pre>
       </div>
     </div>
 
     <div class="container cs_content" id="author">
       <div class="grid_12">
         <h3>Act II<br>Author</h3>
-        <p class="leadin">Reading twenty skills closely teaches you what a good one looks like. In August the positioning moved, in the log's words, from aggregator to practice that publishes. Canon's own skills are labeled as Canon's, never slipped in as peers of the curated work.</p>
-
+        <p class="leadin">Three skills came out of that reading, each built for a job I kept doing by hand. They ship as Claude Code plugins in Canon's marketplace, under Canon's name.</p>
         <figure class="cv2_fig">
           <div class="cv2_plugins">
-            <div class="cv2_plugin">
-              <h4>canon</h4>
-              <p>The router. Reads the task, pulls in the kit that applies, stays dormant until called.</p>
-            </div>
             <div class="cv2_plugin">
               <h4>graft</h4>
               <p>Maps an agent session as branches: trunk, forks, compactions. A live prototype runs at <a href="/graft/" class="inline_link">jamesmadson.me/graft</a>.</p>
@@ -266,17 +183,16 @@ digestPath: /kits/full-redesign-digest.md</code></pre>
             </div>
           </div>
           <figcaption class="cv2_figcap">
-            <span><span class="cv2_figtag">Fig. 02 · Evidence</span> · The marketplace's four plugins</span>
+            <span><span class="cv2_figtag">Fig. 02 · Evidence</span> · The marketplace, three plugins</span>
             <span>Descriptions from the manifest</span>
           </figcaption>
         </figure>
 
         <h4>Graft, and its laws</h4>
-        <p>Graft draws a session as it actually happened: the main thread as a trunk, subagents as forks, context compactions as diamonds. Its hard rules travel with it. A transcript is never read into context; parsing happens in a subprocess and only a summary returns. A map contains conversation excerpts, so a generated map is as private as the session it maps. And from the renderer spec now on its bench: truncate for display, never at the source.</p>
+        <p>Graft draws a session as it actually happened: the main thread as a trunk, subagents as forks, context compactions as diamonds. A transcript is never read into context; parsing happens in a subprocess and only a summary comes back. A map holds conversation excerpts, so a generated map is as private as the session it maps.</p>
 
         <h4>Strata, and the evidence bar</h4>
-        <p>Strata files feedback the way a researcher would, not the way a Slack scroll does. Said, meant, and decided stay separate, because verbatim, interpretation, and action are different epistemic states. Its hardest rule is the evidence bar: one is a quote, two is a possible pattern said aloud, three is a pattern. The same person twice is persistence, not pattern. Stakeholders never pool with users.</p>
-
+        <p>Strata files feedback the way a researcher would, not the way a Slack scroll does. Said, meant and decided stay separate. Its hardest rule is the evidence bar: one is a quote, two is a possible pattern said aloud, three is a pattern. The same person twice is persistence, not pattern. Stakeholders never pool with users.</p>
         <figure class="cv2_fig">
           <div class="cv2_panel cv2_evbar" id="cv2_evbar">
             <div class="cv2_evbar_controls" role="group" aria-label="Add scripted testimony">
@@ -297,76 +213,84 @@ digestPath: /kits/full-redesign-digest.md</code></pre>
         </figure>
 
         <h4>Deter, and the removals</h4>
-        <p>Deter reviews by taking away. Every finding is priced against the surface's job, one thing is kept and said out loud, at most one thing may be missing, and the unrequested rewrite, the baseline failure of AI reviews, is banned outright. Even its name follows a ruling: tribute names rendered exactly, so Rams is quoted as less, but better, and the rename from its earlier spelling got a redirect for a URL that was live for hours.</p>
-
-        <p>The act closes where it points next: the practice now logs every call it makes, with the rejected options kept visible. The log is itself becoming a skill that encodes how its author decides. Working name: Cairn, stones stacked to mark the route taken.</p>
+        <p>Deter reviews by taking away. Every finding is priced against the surface's job, one thing is kept and said out loud, at most one thing may be missing, and the unrequested rewrite, the baseline failure of AI reviews, is banned outright.</p>
       </div>
     </div>
 
-    <div class="container cs_content" id="workbench">
+    <div class="container cs_content" id="index">
       <div class="grid_12">
-        <h3>Act III<br>The workbench</h3>
-        <p class="leadin">Here is the second problem. Generation is solved; the mess it produces is not. Teams using AI to prototype now generate faster than they can track: branches nobody can find, Figma files nobody links, feedback in threads nobody can cite. Every tool in the audit ships opinions about making; nothing manages what got made.</p>
-
-        <p>Canon v2 is the answer the first two acts earned, and it fits in one sentence from the product brief: prototypes in one place, feedback that becomes evidence.</p>
-
-        <h4>The aperture</h4>
-        <p>The brief holds a wide horizon and a narrow build, in the log's words: the horizon can be wide; the build aperture cannot. The alpha is two jobs, a prototype manager and a feedback facilitator, plus a single skill run that tests whether reviews change real decisions. Everything else stays sequenced or held until the assumption ladder clears it.</p>
-
-        <h4>References, not copies</h4>
-        <p>Canon indexes and annotates; the work stays in GitHub and Figma. No code storage. That one ruling is the security story and the lean story at once, and it echoes how the gallery treats curated skills: point at the source, never redistribute it.</p>
-
-        <h4>The riskiest assumptions, in build order</h4>
-        <ol class="cv2_ladder">
-          <li>Teams will select which branches are prototypes when they connect a repo.</li>
-          <li>Feedback filed at the prototype beats feedback in Slack.</li>
-          <li>Skill runs on real prototypes produce findings a lead acts on.</li>
-          <li>A team will connect a private repo to a solo-maintained alpha.</li>
-        </ol>
-        <p>Each alpha week answers one before the next layer gets built. These are open bets, and the page says so on purpose.</p>
-
-        <h4>Changed in the open</h4>
-        <p>The first version required teams to rename branches with a prototype prefix to be indexed. Superseded: connecting a repo now lists every branch and the person chooses what appears, because requiring a rename to be indexed is adoption friction dressed as tidiness. The log keeps the old decision visible beside the new one. The change of mind is data, not embarrassment.</p>
-
-        <h4>The ledger</h4>
-        <ul class="cv2_ledger">
-          <li><span class="cv2_chip cv2_chip--committed">Committed</span> The annotation layer: one script tag, comments anchored to real page elements, each filing as Strata evidence.</li>
-          <li><span class="cv2_chip cv2_chip--sequenced">Sequenced</span> Survey: space maps beside Graft's time maps, screens captured from the running prototype so the canvas cannot drift.</li>
-          <li><span class="cv2_chip cv2_chip--held">Held</span> Component promotion: a prototype-proven component scaffolds a PR into the team's own system. Held until the ladder clears it.</li>
-          <li><span class="cv2_chip cv2_chip--held">Held</span> Linear, both ways: issues in as evidence under full pseudonymization, reviews out as comments. A mention is a person triggering, so the no-surprise-runs rule holds.</li>
-        </ul>
-
-        <p class="canon_code_intro">The core model, from the brief:</p>
-        <pre class="canon_code"><code>Account (personal at alpha; teams are a later layer, not a rename)
- └─ Project
-     ├─ Sources        a Git repo (read-only), a Figma file (by URL)
-     ├─ Prototypes     selected branches, attached Figma frames
-     ├─ Feedback       Strata entries: pseudonymized, Said/Meant/Decided
-     ├─ Maps           Graft renders: branch history, session history
-     └─ Reviews        skill runs against a prototype: deter, access</code></pre>
+        <h3>Act III<br>The index</h3>
+        <p class="leadin">The first answer to the prototype mess was a workbench: prototypes, research and reviews in one hosted product. It was too much. The version that survived is smaller and sharper: Canon is the index, not the source of truth. Your work stays where it was made. Canon points at it, shows it, and lets people talk about it.</p>
 
         <figure class="cv2_fig">
-          <div class="cv2_panel cv2_sdlc" role="img" aria-label="The SDLC loop: Strata and the decision log feed Plan, prototypes are Build artifacts, review runs are Test, PR graduation is Deploy, staleness flags are Maintain, feeding back to Plan">
-            <div class="cv2_stage"><h4>Plan</h4><p>Strata evidence, the decision log</p></div>
-            <div class="cv2_stage"><h4>Build</h4><p>Prototypes</p></div>
-            <div class="cv2_stage"><h4>Test</h4><p>Review runs</p></div>
-            <div class="cv2_stage"><h4>Deploy</h4><p>PR graduation</p></div>
-            <div class="cv2_stage cv2_stage--loop"><h4>Maintain</h4><p>Staleness flags, feeding Plan</p></div>
+          <div class="cv2_panel cv2_panel--shot">
+            <img src="/img/canon/app_board.webp" srcset="/img/canon/app_board.webp 1x, /img/canon/app_board@2x.webp 2x" alt="A Canon board: four phone and desktop screens, and a six-page site with its other pages fanning out from behind it" width="1600" height="1000" loading="lazy">
           </div>
           <figcaption class="cv2_figcap">
-            <span><span class="cv2_figtag">Fig. 04 · Abstraction</span> · The design lane of the AI-native SDLC</span>
-            <span>Structure only</span>
+            <span><span class="cv2_figtag">Fig. 04 · Evidence</span> · A board, with a multi-page prototype teasing its pages</span>
+            <span>Sample project. Every name in it is invented.</span>
           </figcaption>
         </figure>
 
-        <p>The whole act answers to one principle, adopted into the log from Anthropic's AI-native SDLC playbook: every stage commits an artifact the next stage can read. Canon's own development already runs that cycle. This page was written from those artifacts, which is the only proof of the principle that counts.</p>
+        <h4>Projects, a library, and boards</h4>
+        <p>A project holds a library of prototypes. Boards are canvases you lay them out on, and one prototype can sit on as many boards as it needs to. The canvas borrows its feel from Paper and Lunagraph on purpose: dark, quiet, the work doing the talking. It doesn't try to be Figma. Anything Figma already does well, Canon leaves alone.</p>
+
+        <figure class="cv2_fig">
+          <div class="cv2_panel cv2_panel--shot">
+            <img src="/img/canon/app_map.webp" srcset="/img/canon/app_map.webp 1x, /img/canon/app_map@2x.webp 2x" alt="A six-page prototype laid out as its information architecture, with the pricing page selected and its links highlighted" width="1600" height="1000" loading="lazy">
+          </div>
+          <figcaption class="cv2_figcap">
+            <span><span class="cv2_figtag">Fig. 05 · Evidence</span> · The map: pages by depth, links between them, orphans in their own column</span>
+            <span>Built by reading the prototype's own HTML</span>
+          </figcaption>
+        </figure>
+
+        <h4>The map is read, not drawn</h4>
+        <p>Canon reads a prototype's HTML, finds the links between its pages, and lays them out by depth from the home page. Global nav links are split out so the real flow shows through. Pages nothing links to get their own column, which is usually the most useful thing on the screen.</p>
+
+        <figure class="cv2_fig">
+          <div class="cv2_panel cv2_panel--shot">
+            <img src="/img/canon/app_comments.webp" srcset="/img/canon/app_comments.webp 1x, /img/canon/app_comments@2x.webp 2x" alt="A comment thread pinned to a prototype on the canvas, with two replies" width="1600" height="1000" loading="lazy">
+          </div>
+          <figcaption class="cv2_figcap">
+            <span><span class="cv2_figtag">Fig. 06 · Evidence</span> · Comments pinned to the work, Figma style</span>
+            <span>Sample project</span>
+          </figcaption>
+        </figure>
+
+        <h4>Local first, on purpose</h4>
+        <p>Everything lives in the browser. A service worker serves dropped-in prototypes from local storage, so a zip from v0 and a folder from Claude Code open the same way, offline. Install it and it gets its own window and a Dock or taskbar icon. Hosting only arrives when a team asks to share, and even then it hosts the index, never the files.</p>
+
+        <h4>Why not let a platform build it</h4>
+        <p>Vercel could build this. So could Figma. Each of them would build it for their own output, because that's what a platform is for. Canon's whole point is every tool, which is a thing no single tool has a reason to want. So it's open source under MIT. The value is in being neutral, and open is the honest way to be neutral.</p>
+
+        <h4>Changed in the open</h4>
+        <div class="cs_body_cols">
+          <p>Research came out. The v2 brief had feedback becoming evidence, with Strata built into the product. Strata still exists as a skill. In the app it was a second product hiding inside the first, so it went.</p>
+          <p>Color came back, once. The gallery's ruling was monochrome, any color a defect. Canon now has one hue: the orange dot in the wordmark, can<span aria-hidden="true">●</span>n. One flat block, used once, so it means something. The superseded ruling stays in the log beside the new one.</p>
+        </div>
+
+        <h4>The ledger</h4>
+        <ul class="cv2_ledger">
+          <li><span class="cv2_chip cv2_chip--committed">Committed</span> The local app: library, boards, the map, comments, and install as an app.</li>
+          <li><span class="cv2_chip cv2_chip--sequenced">Sequenced</span> A desktop app with a local MCP server, so an agent can drop what it just built straight onto a board.</li>
+          <li><span class="cv2_chip cv2_chip--sequenced">Sequenced</span> A command line tool that finds prototypes in a repo and builds them into Canon.</li>
+          <li><span class="cv2_chip cv2_chip--held">Held</span> Hosted sharing: invite people, send a link, let them comment without the tool you built it in. Designed, not built. Held until a team asks.</li>
+        </ul>
+
+        <p class="canon_code_intro">The core model:</p>
+        <pre class="canon_code"><code>Project
+├─ Library        every prototype: files, zips, folders, linked folders, URLs
+├─ Boards         canvases; a prototype can sit on many
+├─ Maps           pages and links, read from the prototype's own HTML
+└─ Comments       on a screen, a page, the canvas, or a preview link</code></pre>
       </div>
     </div>
 
     <div class="container cs_content" id="decides">
       <div class="grid_12">
         <h3>How it decides</h3>
-        <p>The log opens by extracting the pattern from its own entries. Five of the nine, verbatim in spirit:</p>
+        <p>The log opens by pulling the pattern out of its own entries. Five of them, in spirit:</p>
         <ul class="canon_list">
           <li>
             <h4>Field evidence before features</h4>
@@ -374,45 +298,41 @@ digestPath: /kits/full-redesign-digest.md</code></pre>
           </li>
           <li>
             <h4>Honesty outranks polish</h4>
-            <p>Scripted-preview labels on every mock, counts said out loud. When a mechanism could mislead, it is removed rather than softened.</p>
+            <p>Sample data is labeled as invented. Concepts that aren't built, like sharing, say so on the page.</p>
           </li>
           <li>
             <h4>Names carry the ethos</h4>
             <p>One-word field terms, puns that work twice, attributions rendered exactly.</p>
           </li>
           <li>
-            <h4>Constrain before critique; remove before add</h4>
-            <p>The default question is what should go, and additions must survive being the single missing item.</p>
+            <h4>Remove before add</h4>
+            <p>The default question is what should go. The gallery, the kits and research all answered it.</p>
           </li>
           <li>
             <h4>Change your mind in the open</h4>
-            <p>Supersede, never rewrite. The superseded call stays visible beside its replacement.</p>
+            <p>Supersede, never rewrite. The old call stays visible beside its replacement.</p>
           </li>
         </ul>
-        <p>The full log, all thirty-five decisions with their rejections, is public in <a href="https://github.com/jamesmadson/canon/blob/main/docs/DECISIONS.md" class="inline_link" target="_blank" rel="noreferrer">the Canon repo</a>.</p>
+        <p>The full log, every decision with its rejections, is public in <a href="https://github.com/jamesmadson/canon/blob/main/docs/DECISIONS.md" class="inline_link" target="_blank" rel="noreferrer">the Canon repo</a>.</p>
       </div>
     </div>
 
     <div class="container cs_content" id="open">
       <div class="grid_12">
         <h3>Open questions</h3>
-        <p>The parts I have not settled, kept here on purpose:</p>
+        <p>The parts I haven't settled, kept here on purpose:</p>
         <ul class="canon_list">
           <li>
-            <h4>Where curation stops</h4>
-            <p>Twenty entries is still small enough to read everything. It will not stay that way, and curated stops meaning anything past some number I have not found yet.</p>
+            <h4>Whether people come back</h4>
+            <p>The kill criterion is written down. A real team gets the local app with real prototypes. If they don't open it again within two weeks without being asked, I stop investing and leave it as open source.</p>
           </li>
           <li>
-            <h4>Whether people comment where the work lives</h4>
-            <p>The workbench bets that feedback filed at the prototype beats feedback in Slack. It is assumption two on the ladder, and it is genuinely untested.</p>
+            <h4>Whether local is enough</h4>
+            <p>Local first keeps it free, private and simple. Review needs other people, and other people need a link. Somewhere between those is the line where Canon has to host something.</p>
           </li>
           <li>
-            <h4>Whether trust arrives before track record</h4>
-            <p>Connecting a private repo to a solo-maintained alpha asks for real trust. Read-only scopes and a clean security story are the mitigation, not the proof.</p>
-          </li>
-          <li>
-            <h4>What happens when the format moves</h4>
-            <p>An open packaging standard is forming, backed by several of the big agent vendors. Betting on it early is either free portability or a rewrite.</p>
+            <h4>Whether the agent is the front door</h4>
+            <p>If agents can drop prototypes straight onto a board, people may never drag a file in at all. That changes what the app is for.</p>
           </li>
         </ul>
       </div>
@@ -422,18 +342,19 @@ digestPath: /kits/full-redesign-digest.md</code></pre>
       <div class="grid_12">
         <h3>Changelog</h3>
         <ul class="canon_changelog">
-          <li><span class="canon_changelog_date">Sep 2026</span> Graft renderer spec: output becomes a function of the input, and a decisions rail joins the map. Graft's skill gains its privacy rule.</li>
-          <li><span class="canon_changelog_date">Aug 2026</span> The v2 PRD and the decision log: the workbench thesis, thirty-five decisions with their rejections kept visible.</li>
-          <li><span class="canon_changelog_date">Aug 2026</span> Strata and Deter join Graft: three tools published under Canon's own name, four plugins in the marketplace.</li>
-          <li><span class="canon_changelog_date">Aug 2026</span> Graft: the first Canon-authored skill, a session cartography tool with a live prototype at <a href="/graft/" class="inline_link">jamesmadson.me/graft</a>.</li>
-          <li><span class="canon_changelog_date">Aug 2026</span> Canon router: the catalog as an installable Claude Code plugin, one marketplace add, kits routed by task.</li>
-          <li><span class="canon_changelog_date">Aug 2026</span> Kits: four curated bundles with generated install scripts.</li>
-          <li><span class="canon_changelog_date">Aug 2026</span> Stripped the palette to monochrome; hover and focus now shift value, not hue.</li>
-          <li><span class="canon_changelog_date">Aug 2026</span> Ran the site's own mobile-review skills against it; fixed twelve defects.</li>
-          <li><span class="canon_changelog_date">Jul 2026</span> First eleven skills, structure maps, faceted gallery.</li>
+          <li><span class="canon_changelog_date">Oct 2026</span> The new logo: can●n, the o drawn as an International orange dot. The app icon is the dot alone.</li>
+          <li><span class="canon_changelog_date">Oct 2026</span> The gallery, the router and the kits retired. Canon's skills are now only graft, strata and deter.</li>
+          <li><span class="canon_changelog_date">Oct 2026</span> Installable: its own window, a Dock or taskbar icon, works offline.</li>
+          <li><span class="canon_changelog_date">Oct 2026</span> Research out. Canon is the index, not the source of truth. Open source under MIT.</li>
+          <li><span class="canon_changelog_date">Oct 2026</span> The canvas: projects, a library, boards, maps of multi-page prototypes, comments, and a sharing concept.</li>
+          <li><span class="canon_changelog_date">Sep 2026</span> Graft renderer spec: output becomes a function of the input, and a decisions rail joins the map.</li>
+          <li><span class="canon_changelog_date">Aug 2026</span> The v2 brief and the decision log, with rejections kept visible.</li>
+          <li><span class="canon_changelog_date">Aug 2026</span> Graft, Strata and Deter: three skills published under Canon's own name.</li>
+          <li><span class="canon_changelog_date">Aug 2026</span> Kits and a one-command plugin for the gallery. Since retired.</li>
+          <li><span class="canon_changelog_date">Jul 2026</span> First eleven curated skills, structure maps, faceted gallery. Since retired.</li>
         </ul>
-        <p class="canon_closing">Still building. Acts I and II are shipped and live; Act III is a thesis with a ladder to climb, and the open questions above are genuinely open.</p>
-        <p class="canon_closing"><a href="https://jamesmadson.github.io/canon/" class="inline_link" target="_blank" rel="noreferrer">Browse Canon at jamesmadson.github.io/canon</a></p>
+        <p class="canon_closing">Still building. The skills are shipped. The app runs locally and is headed for its first real team. The open questions above are genuinely open.</p>
+        <p class="canon_closing"><a href="https://github.com/jamesmadson/canon" class="inline_link" target="_blank" rel="noreferrer">Canon on GitHub</a></p>
       </div>
     </div>
   </section>
