@@ -25,7 +25,7 @@ jsonld: |
       "name": "Canon",
       "applicationCategory": "DesignApplication"
     },
-    "description": "Canon is a local-first, open source app that keeps prototypes from every tool in one place: a library, a map of every multi-page prototype, and comments where the work is. It grew out of a curated gallery of design skills and three skills of James Madson's own: graft, strata and deter. Decisions are logged in public."
+    "description": "Canon is a local-first, open source app that keeps prototypes from every tool in one place: a library, a map of every multi-page prototype, and notes pinned to the work. It grew out of a curated gallery of design skills and three skills of James Madson's own: graft, strata and deter. Decisions are logged in public."
   }
 ---
 <main id="main-content">
@@ -104,8 +104,8 @@ jsonld: |
             <p>Hover a multi-page prototype on a board and its other pages tease out from behind it. Click and it opens as its own map: every page, the links between them, and the pages nothing points to anymore.</p>
           </li>
           <li>
-            <h4>Comments where the work is</h4>
-            <p>Pin a comment on a screen, a page, or the canvas between them. Comments ride along into the preview link too, so review happens on the prototype, not in a thread about it.</p>
+            <h4>Notes pinned to the work</h4>
+            <p>Pin a note on a screen, a page, or the canvas between them: what changed, what to try next, which version is current. They ride along into the preview link too.</p>
           </li>
         </ul>
 
@@ -123,7 +123,7 @@ jsonld: |
             <p class="stat_info">Tests across the app, the site and the plugins</p>
           </div>
           <div class="stat">
-            <div class="stat_number">40</div>
+            <div class="stat_number">42</div>
             <p class="stat_info">Decisions logged in public</p>
           </div>
         </div>
@@ -250,10 +250,10 @@ jsonld: |
 
         <figure class="cv2_fig">
           <div class="cv2_panel cv2_panel--shot">
-            <img src="/img/canon/app_comments.webp" srcset="/img/canon/app_comments.webp 1x, /img/canon/app_comments@2x.webp 2x" alt="A comment thread pinned to a prototype on the canvas, with two replies" width="1600" height="1000" loading="lazy">
+            <img src="/img/canon/app_comments.webp" srcset="/img/canon/app_comments.webp 1x, /img/canon/app_comments@2x.webp 2x" alt="A note pinned to a prototype on the canvas, with a follow-up" width="1600" height="1000" loading="lazy">
           </div>
           <figcaption class="cv2_figcap">
-            <span><span class="cv2_figtag">Fig. 06 · Evidence</span> · Comments pinned to the work, Figma style</span>
+            <span><span class="cv2_figtag">Fig. 06 · Evidence</span> · Notes pinned to the work</span>
             <span>Sample project</span>
           </figcaption>
         </figure>
@@ -268,14 +268,15 @@ jsonld: |
         <div class="cs_body_cols">
           <p>Research came out. The v2 brief had feedback becoming evidence, with Strata built into the product. Strata still exists as a skill. In the app it was a second product hiding inside the first, so it went.</p>
           <p>Color came back, once. The gallery's ruling was monochrome, any color a defect. Canon now has one hue: the orange dot in the wordmark, can<span aria-hidden="true">●</span>n. One flat block, used once, so it means something. The superseded ruling stays in the log beside the new one.</p>
+          <p>Comments became notes. They were built Figma style, with names and replies. Then the scope got honest: Canon is one person's prototype manager, local to their machine, and there's nobody on the other end of a comment. Notes are reminders to yourself. The data model didn't change, so comments can come back with sharing if a team ever asks.</p>
         </div>
 
         <h4>The ledger</h4>
         <ul class="cv2_ledger">
-          <li><span class="cv2_chip cv2_chip--committed">Committed</span> The local app: library, boards, the map, comments, and install as an app.</li>
+          <li><span class="cv2_chip cv2_chip--committed">Committed</span> The local app: library, boards, the map, notes, and install as an app.</li>
           <li><span class="cv2_chip cv2_chip--sequenced">Sequenced</span> A desktop app with a local MCP server, so an agent can drop what it just built straight onto a board.</li>
           <li><span class="cv2_chip cv2_chip--sequenced">Sequenced</span> A command line tool that finds prototypes in a repo and builds them into Canon.</li>
-          <li><span class="cv2_chip cv2_chip--held">Held</span> Hosted sharing: invite people, send a link, let them comment without the tool you built it in. Designed, not built. Held until a team asks.</li>
+          <li><span class="cv2_chip cv2_chip--held">Held</span> Hosted sharing: invite people, send a link, let them comment without the tool you built it in. Notes would become comments then. Designed, not built. Held until a team asks.</li>
         </ul>
 
         <p class="canon_code_intro">The core model:</p>
@@ -283,7 +284,7 @@ jsonld: |
 ├─ Library        every prototype: files, zips, folders, linked folders, URLs
 ├─ Boards         canvases; a prototype can sit on many
 ├─ Maps           pages and links, read from the prototype's own HTML
-└─ Comments       on a screen, a page, the canvas, or a preview link</code></pre>
+└─ Notes          on a screen, a page, the canvas, or a preview link</code></pre>
       </div>
     </div>
 
@@ -342,6 +343,7 @@ jsonld: |
       <div class="grid_12">
         <h3>Changelog</h3>
         <ul class="canon_changelog">
+          <li><span class="canon_changelog_date">Oct 2026</span> Comments become notes. A local tool for one person has nobody to comment to. One warm black across the site and the app.</li>
           <li><span class="canon_changelog_date">Oct 2026</span> The new logo: can●n, the o drawn as an International orange dot. The app icon is the dot alone.</li>
           <li><span class="canon_changelog_date">Oct 2026</span> The gallery, the router and the kits retired. Canon's skills are now only graft, strata and deter.</li>
           <li><span class="canon_changelog_date">Oct 2026</span> Installable: its own window, a Dock or taskbar icon, works offline.</li>
