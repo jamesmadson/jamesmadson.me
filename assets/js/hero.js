@@ -30,7 +30,7 @@
     'I <span class="hl_wrap"><a href="/case_studies/pecan/" class="highlight pecan">designed</a><span class="hl_tags" aria-hidden="true"><i class="is_name">PeCan</i><span class="hl_row"><i>UX</i><i>Data Viz</i><i>Design System</i></span></span></span> PeCan so researchers can easily navigate 9,000+ pediatric cancer samples.',
     'I <span class="hl_wrap"><a href="/case_studies/visualization_community/" class="highlight viz">shaped</a><span class="hl_tags" aria-hidden="true"><i class="is_name">Viz Community</i><span class="hl_row"><i>Platform</i><i>Data Viz</i><i>Front-End</i></span></span></span> the platform where St. Jude researchers publish genomic visualizations openly. 80+ are live.',
     'I <span class="hl_wrap"><a href="/case_studies/naturequant/" class="highlight nq">lead</a><span class="hl_tags" aria-hidden="true"><i class="is_name">NatureQuant</i><span class="hl_row"><i>Ongoing</i><i>Brand</i><i>Design System</i></span></span></span> design for NatureQuant end to end, keeping brand, product, and system consistent.',
-    'I\'m <span class="hl_wrap"><a href="/case_studies/canon/" class="highlight canon">building</a><span class="hl_tags" aria-hidden="true"><i class="is_name">Canon</i><span class="hl_row"><i>In Progress</i><i>AI Tooling</i><i>Curation</i></span></span></span> Canon, where design skills for AI agents are curated carefully, not scraped.'
+    'I\'m <span class="hl_wrap"><a href="/case_studies/canon/" class="highlight canon">building</a><span class="hl_tags" aria-hidden="true"><i class="is_name">Canon</i><span class="hl_row"><i>In Progress</i><i>AI Tooling</i><i>Open Source</i></span></span></span> Canon, a home for every prototype, from every tool.'
   ];
 
   var pendingCharTimeouts = [];
