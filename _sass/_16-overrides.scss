@@ -204,23 +204,24 @@ html.theme-light .glide_pill { background: rgba($dark-default, 0.07); }
     gap: 0.45rem;
     position: relative;
 
-    .dials_ctl_label { font-size: $type-sm; font-weight: 600; }
-    output { color: rgba($white, 0.5); font-family: $mono; font-size: $type-xs; margin-left: auto; }
+    // One label voice for every dial: the site's mono eyebrow.
+    .dials_ctl_label { font-family: $mono; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; opacity: 0.7; text-transform: uppercase; }
+    output { color: rgba($white, 0.55); font-family: $mono; font-size: 11px; margin: 0 0 0 auto; }
   }
   .dials_info {
     background: none;
-    border: 1px solid rgba($white, 0.3);
-    border-radius: 50%;
-    color: rgba($white, 0.55);
+    border: 0;
+    border-radius: 4px;
+    color: rgba($white, 0.35);
     cursor: pointer;
     font-family: $mono;
-    font-size: 10px;
-    height: 17px;
+    font-size: 11px;
+    height: 18px;
     line-height: 1;
     padding: 0;
-    width: 17px;
+    width: 18px;
 
-    &:hover, &:focus-visible, &[aria-expanded='true'] { border-color: rgba($white, 0.7); color: $white; }
+    &:hover, &:focus-visible, &[aria-expanded='true'] { color: $white; background: rgba($white, 0.08); }
   }
   .dials_tip {
     background: color-mix(in srgb, $dark-bg 92%, black);
@@ -237,8 +238,20 @@ html.theme-light .glide_pill { background: rgba($dark-default, 0.07); }
     z-index: 5;
   }
   label { display: grid; font-size: $type-sm; gap: 0.5rem; }
-  output { color: rgba($white, 0.5); font-family: $mono; font-size: $type-xs; justify-self: end; margin-top: -1.35rem; }
-  input[type='range'] { accent-color: $white; width: 100%; }
+  // Sliders share the segmented control's track: hairline rail, solid thumb.
+  input[type='range'] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    height: 20px;
+    margin: 0;
+    width: 100%;
+    &::-webkit-slider-runnable-track { background: rgba($white, 0.18); border-radius: 2px; height: 2px; }
+    &::-moz-range-track { background: rgba($white, 0.18); border-radius: 2px; height: 2px; }
+    &::-webkit-slider-thumb { -webkit-appearance: none; background: $white; border: 0; border-radius: 50%; height: 14px; margin-top: -6px; width: 14px; }
+    &::-moz-range-thumb { background: $white; border: 0; border-radius: 50%; height: 14px; width: 14px; }
+    &:focus-visible { outline: 2px solid rgba($white, 0.6); outline-offset: 2px; border-radius: 4px; }
+  }
   select, .dials_rail_reset {
     background: none;
     border: 1px solid rgba($white, 0.25);
@@ -265,8 +278,13 @@ html.theme-light {
     color: $dark-default;
     .dials_rail_close, select, .dials_rail_reset { border-color: rgba($dark-default, 0.35); color: $dark-default; }
     .dials_rail_note { color: rgba($dark-default, 0.6); }
-    output { color: rgba($dark-default, 0.55); }
-    input[type='range'] { accent-color: $dark-default; }
+    output { color: rgba($dark-default, 0.6); }
+    input[type='range'] {
+      &::-webkit-slider-runnable-track { background: rgba($dark-default, 0.2); }
+      &::-moz-range-track { background: rgba($dark-default, 0.2); }
+      &::-webkit-slider-thumb { background: $dark-default; }
+      &::-moz-range-thumb { background: $dark-default; }
+    }
   }
 }
 
@@ -274,23 +292,30 @@ html.theme-light {
   .dials_rail { transition: opacity 0.2s ease; }
 }
 
+// Every choice is the same segmented track: equal cells, one filled. Long
+// lists wrap into even rows instead of leaving one pill on its own line.
 .dials_rail_seg {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
+  background: rgba($white, 0.06);
+  border-radius: 10px;
+  display: grid;
+  gap: 2px;
+  grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
+  padding: 2px;
 
   button {
     background: none;
-    border: 1px solid rgba($white, 0.25);
-    border-radius: 99em;
-    color: rgba($white, 0.75);
+    border: 0;
+    border-radius: 8px;
+    color: rgba($white, 0.7);
     cursor: pointer;
-    flex: 0 0 auto;
     font: inherit;
     font-size: $type-xs;
-    padding: 0.4em 0.9em;
-    &.is_on, &:hover { border-color: rgba($white, 0.7); color: $white; }
-    &.is_on { background: rgba($white, 0.1); }
+    padding: 0.5em 0.4em;
+    text-align: center;
+    white-space: nowrap;
+    &:hover { color: $white; }
+    &:focus-visible { outline: 2px solid rgba($white, 0.6); outline-offset: -2px; }
+    &.is_on { background: rgba($white, 0.14); color: $white; }
   }
 }
 .dials_rail_export {
@@ -299,8 +324,9 @@ html.theme-light {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-html.theme-light .dials_rail_seg button { border-color: rgba($dark-default, 0.35); color: rgba($dark-default, 0.75); &.is_on, &:hover { border-color: $dark-default; color: $dark-default; } &.is_on { background: rgba($dark-default, 0.08); } }
-html.theme-light .dials_info { border-color: rgba($dark-default, 0.4); color: rgba($dark-default, 0.6); }
+html.theme-light .dials_rail_seg { background: rgba($dark-default, 0.06); }
+html.theme-light .dials_rail_seg button { color: rgba($dark-default, 0.7); &:hover { color: $dark-default; } &.is_on { background: rgba($white, 0.9); color: $dark-default; box-shadow: 0 1px 2px rgba($dark-default, 0.12); } }
+html.theme-light .dials_info { color: rgba($dark-default, 0.4); &:hover, &:focus-visible, &[aria-expanded='true'] { color: $dark-default; background: rgba($dark-default, 0.06); } }
 html.theme-light .dials_tip { background: $tan; border-color: rgba($dark-default, 0.25); color: $dark-default; }
 html.theme-light .dials_rail_export { color: $dark-default; }
 

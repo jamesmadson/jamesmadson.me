@@ -80,7 +80,9 @@
 
   // compact control factories for the rail
   function seg(group, opts) {
-    return '<div class="dials_rail_seg" role="group">' + opts.map(function (o) {
+    // Up to four options sit in one row; more wrap into even rows of three.
+    var cols = opts.length <= 4 ? opts.length : 3;
+    return '<div class="dials_rail_seg" role="group" style="grid-template-columns:repeat(' + cols + ',minmax(0,1fr))">' + opts.map(function (o) {
       return '<button type="button" data-seg="' + group + '" data-val="' + o[0].replace(/"/g, '&quot;') + '">' + o[1] + '</button>';
     }).join('') + '</div>';
   }
